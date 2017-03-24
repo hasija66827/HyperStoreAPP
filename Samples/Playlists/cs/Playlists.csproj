@@ -102,6 +102,7 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Billing_Data.cs" />
     <Compile Include="SampleConfiguration.cs" />
     <Compile Include="Scenario1_Create.xaml.cs">
       <DependentUpon>Scenario1_Create.xaml</DependentUpon>

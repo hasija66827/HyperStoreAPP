@@ -25,7 +25,7 @@ namespace SDKTemplate
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title = "Create a playlist", ClassType = typeof(Scenario1_Create) }, 
+            new Scenario() { Title = "Billing", ClassType = typeof(Scenario1_Create) }, 
             new Scenario() { Title = "Display a playlist", ClassType = typeof(Scenario2_Display) }, 
             new Scenario() { Title = "Add items to a playlist", ClassType = typeof(Scenario3_Add) }, 
             new Scenario() { Title = "Remove an item from a playlist", ClassType = typeof(Scenario4_Remove) }, 

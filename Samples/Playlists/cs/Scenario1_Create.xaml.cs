@@ -23,11 +23,13 @@ namespace SDKTemplate
     public sealed partial class Scenario1_Create : Page
     {
         private MainPage rootPage = MainPage.Current;
-
+        public RecordingViewModel ViewModel { get; set; }
         public Scenario1_Create()
         {
             this.InitializeComponent();
+            this.ViewModel = new RecordingViewModel();
         }
+
 
         /// <summary>
         /// Creates a playlist with the audio picked by the user in the FilePicker
