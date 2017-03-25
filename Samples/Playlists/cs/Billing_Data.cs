@@ -7,6 +7,28 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public class Product
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public decimal CostPrice { get; set; }
+        public decimal Discount { get; set; }
+        public decimal DiscountPercentage { get; set; }
+        public decimal SellingPrice { get { return this.CostPrice - this.Discount; }}
+        public Int32 Quantity { get; set; }
+        public decimal NetValue { get { return this.SellingPrice * this.Quantity; } }
+        //TODO: #feature: consider weight parameter for non inventory items
+        public Product()
+        {
+            this.Id = "";
+            this.Name = "";
+            this.CostPrice = 0;
+            this.Discount = 0;
+            this.DiscountPercentage = 0;
+            this.Quantity = 0;
+        }
+    }
+
     public class Recording
     {
         public string ArtistName { get; set; }
@@ -52,6 +74,41 @@ namespace SDKTemplate
                 ArtistName = "George Frideric Handel",
                 CompositionName = "Serse",
                 ReleaseDateTime = new DateTime(1737, 12, 3)
+            });
+        }
+    }
+    public class ProductViewModel
+    {
+        private Product _product = new Product();
+        public Product Product { get { return this._product; } }
+        private ObservableCollection<Product> _products = new ObservableCollection<Product>();
+        public ObservableCollection<Product> Products { get { return this._products; } }
+        public ProductViewModel()
+        {
+            this._products.Add(new Product()
+            {
+                Id = "4444",
+                Name = "Maggi",
+                Quantity = 1,
+                CostPrice = 12,
+                Discount = 2,
+                DiscountPercentage = (2 / 12 * 100),
+            });
+            this._products.Add(new Product()
+            {
+                Id = "55555",
+                Name = "Patanjali cow ghee 1kg",
+                CostPrice=200,
+                Discount = 10,
+                DiscountPercentage = (10 / 200 * 100),
+            });
+            this._products.Add(new Product()
+            {
+                Id = "666666",
+                Name = "Patanjali shampoo asdfaswfasgsafgsfagsfag 1kg",
+                CostPrice = 200,
+                Discount = 10,
+                DiscountPercentage = (10 / 200 * 100),
             });
         }
     }

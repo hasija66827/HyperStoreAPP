@@ -103,6 +103,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Billing_Data.cs" />
+    <Compile Include="Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
     <Compile Include="Scenario1_Create.xaml.cs">
       <DependentUpon>Scenario1_Create.xaml</DependentUpon>
