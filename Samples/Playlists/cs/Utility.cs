@@ -11,6 +11,10 @@ namespace SDKTemplate
 {
     class Utility
     {
+        public static float RoundInt32(float f)
+        {
+            return (float)(Math.Round((decimal)f,2));
+        }
         /// <summary>
         /// Retuns the list of child controls of parent control in visual tree
         /// </summary>

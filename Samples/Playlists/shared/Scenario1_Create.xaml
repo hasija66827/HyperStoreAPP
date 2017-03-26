@@ -47,18 +47,18 @@
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="Add"/>
                                     <TextBlock Text="{x:Bind Id}" Width="60"/>
-                                    <TextBlock Text="{x:Bind Name}" Width="160" TextWrapping="NoWrap" Margin="0,0,10,0"/>
-                                    <TextBlock x:Name="CostPrice"  Text="{x:Bind CostPrice}" Width="100" Margin="0,0,10,0" />
-                                    <TextBox x:Name="DiscountPercentage" Text="{x:Bind DiscountPercentage}" Width="100" Margin="0,0,10,0" InputScope="Number" />
-                                    <TextBox x:Name="Discount" Text="{x:Bind Discount}" Width="100" Margin="0,0,10,0" InputScope="Digits" />
-                                    <TextBlock x:Name="SellingPrice"  Text="{x:Bind SellingPrice}" Width="100" Margin="0,0,10,0" />
-                                    <TextBox x:Name="Quantity" Text="{x:Bind Quantity}" Width="100" Margin="0,0,10,0" InputScope="Digits"/>
-                                    <TextBlock x:Name="NetValue" Text="{x:Bind NetValue}" Width="100" Margin="0,0,10,0"/>
+                                    <TextBlock Text="{x:Bind Name, Mode=OneTime}" Width="160" TextWrapping="NoWrap" Margin="0,0,10,0"/>
+                                    <TextBlock x:Name="CostPrice"  Text="{x:Bind CostPrice, Mode=OneTime}" Width="100" Margin="0,0,10,0" />
+                                    <TextBox x:Name="DiscountPer" Text="{x:Bind DiscountPer, Mode=TwoWay}" Width="100" Margin="0,0,10,0" InputScope="Digits"/>
+                                    <TextBox x:Name="DiscountAmount" Text="{x:Bind DiscountAmount, Mode=TwoWay}" Width="100" Margin="0,0,10,0" InputScope="Digits"/>
+                                    <TextBlock x:Name="SellingPrice"  Text="{x:Bind SellingPrice, Mode=OneWay}" Width="100" Margin="0,0,10,0" />
+                                    <TextBox x:Name="Quantity" Text="{x:Bind Quantity, Mode=TwoWay}" Width="100" Margin="0,0,10,0" InputScope="Digits"/>
+                                    <TextBlock x:Name="NetValue" Text="{x:Bind NetValue, Mode=OneWay}" Width="100" Margin="0,0,10,0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <TextBox x:Name="textBox" TextWrapping="Wrap" Text="TextBox"/>
+                  
                 </StackPanel>
             </ScrollViewer>
         </Grid>
