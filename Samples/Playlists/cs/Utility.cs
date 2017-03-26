@@ -13,7 +13,14 @@ namespace SDKTemplate
     {
         public static float RoundInt32(float f)
         {
-            return (float)(Math.Round((decimal)f,2));
+            return (float)(Math.Round((decimal)f, 2));
+        }
+        public static bool CheckIfStringIsNumber(string str)
+        {
+            // TODO: Apply more checks
+            if (str == null || str == "")
+                return false;
+            return true;
         }
         /// <summary>
         /// Retuns the list of child controls of parent control in visual tree
