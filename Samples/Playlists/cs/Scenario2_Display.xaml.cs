@@ -11,49 +11,59 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using Windows.Media.Playlists;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public sealed partial class Scenario2_Display : Page
+    public sealed partial class NonInventoryProductScenario : Page
     {
         private MainPage rootPage = MainPage.Current;
-
-        public Scenario2_Display()
+        public NonInventoryViewModel ViewModel { get; set; }
+        public NonInventoryProductScenario()
         {
             this.InitializeComponent();
+            this.ViewModel = new NonInventoryViewModel();
         }
 
-        /// <summary>
-        /// Displays the playlist picked by the user in the FilePicker
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        async private void PickPlaylistButton_Click(object sender, RoutedEventArgs e)
+        public class NonInventoryViewModel : INotifyPropertyChanged
         {
-            this.rootPage.NotifyUser("", NotifyType.StatusMessage);
-            Playlist playlist = await this.rootPage.PickPlaylistAsync();
-
-            if (playlist != null)
+            public event PropertyChangedEventHandler PropertyChanged = delegate { };
+            private ObservableCollection<Product> _products = new ObservableCollection<Product>();
+            public ObservableCollection<Product> Products { get { return this._products; } }
+            public NonInventoryViewModel()
             {
-                string result = "Songs in playlist: " + playlist.Files.Count.ToString() + "\n";
-
-                foreach (StorageFile file in playlist.Files)
-                {
-                    MusicProperties properties = await file.Properties.GetMusicPropertiesAsync();
-                    result += "\n";
-                    result += "File: " + file.Path + "\n";
-                    result += "Title: " + properties.Title + "\n";
-                    result += "Album: " + properties.Album + "\n";
-                    result += "Artist: " + properties.Artist + "\n";
-                }
-
-                this.OutputStatus.Text = result;
+                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
+                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
+                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
+                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
+                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
+                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
+                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
+                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
+                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
+                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
+                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
+                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
+                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
+                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
+                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
+                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
+                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
+                this._products.Add(new Product("4333", "shampoolast", 200, 200, 50));
+            }
+            public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            {
+                // Raise the PropertyChanged event, passing the name of the property whose value has changed.
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
