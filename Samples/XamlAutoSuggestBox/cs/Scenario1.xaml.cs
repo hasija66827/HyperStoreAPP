@@ -43,7 +43,7 @@ namespace SDKTemplate
          /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
          /// <param name="args">The event arguments.</param>
         private void asb_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
-        {
+{
             // We only want to get results when it was a user typing, 
             // otherwise we assume the value got filled in by TextMemberPath 
             // or the handler for SuggestionChosen
@@ -91,8 +91,6 @@ namespace SDKTemplate
         private void asb_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var contact = (Contact)args.SelectedItem;
-
-            sender.Text = contact.DisplayName;
         }
 
         /// <summary>

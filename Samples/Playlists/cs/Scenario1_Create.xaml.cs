@@ -25,58 +25,87 @@ namespace SDKTemplate
     {
         private MainPage rootPage = MainPage.Current;
         public ProductViewModel ViewModel { get; set; }
-        // Discount Percentage and Discount Text Box names
-        public static readonly string DISCOUNTPERCENTAGE = "DiscountPercentage";
-        public static readonly string DISCOUNT = "Discount";
-        public static readonly string COSTPRICE = "CostPrice";
-        public static readonly string NETVALUE = "NetValue";
-        public static readonly string SELLINGPRICE = "SellingPrice";
-        public static readonly string QUANTITY = "Quantity";
+        private static Product _selectedProductInASB;
         public BillingScenario()
         {
             this.InitializeComponent();
             this.ViewModel = new ProductViewModel();
+            ProductDataSource.RetrieveProductDataAsync();
+            AddToCart.Click += AddToCart_Click;
+            _selectedProductInASB = null;
+            
         }
 
-
+        private void AddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.AddProductInList(_selectedProductInASB);
+        }
 
         /// <summary>
-        /// Creates a playlist with the audio picked by the user in the FilePicker
+        /// This event gets fired anytime the text in the TextBox gets updated.
+        /// It is recommended to check the reason for the text changing by checking against args.Reason
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        async private void PickAudioButton_Click(object sender, RoutedEventArgs e)
+        /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
+        /// <param name="args">The event arguments.</param>
+        private void ProductASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            FileOpenPicker picker = MainPage.CreateFilePicker(MainPage.audioExtensions);
-            IReadOnlyList<StorageFile> files = await picker.PickMultipleFilesAsync();
-
-            if (files.Count > 0)
+            // We only want to get results when it was a user typing, 
+            // otherwise we assume the value got filled in by TextMemberPath 
+            // or the handler for SuggestionChosen
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                Playlist playlist = new Playlist();
+                var matchingProducts = ProductDataSource.GetMatchingProducts(sender.Text);
+                sender.ItemsSource = matchingProducts.ToList();
+            }
+        }
 
-                foreach (StorageFile file in files)
-                {
-                    playlist.Files.Add(file);
-                }
-
-                StorageFolder folder = KnownFolders.MusicLibrary;
-                string name = "Sample";
-                NameCollisionOption collisionOption = NameCollisionOption.ReplaceExisting;
-                PlaylistFormat format = PlaylistFormat.WindowsMedia;
-
-                try
-                {
-                    StorageFile savedFile = await playlist.SaveAsAsync(folder, name, collisionOption, format);
-                    this.rootPage.NotifyUser(savedFile.Name + " was created and saved with " + files.Count + " files.", NotifyType.StatusMessage);
-                }
-                catch (Exception error)
-                {
-                    rootPage.NotifyUser(error.Message, NotifyType.ErrorMessage);
-                }
+        /// <summary>
+        /// This event gets fired when:
+        ///     * a user presses Enter while focus is in the TextBox
+        ///     * a user clicks or tabs to and invokes the query button (defined using the QueryIcon API)
+        ///     * a user presses selects (clicks/taps/presses Enter) a suggestion
+        /// </summary>
+        /// <param name="sender">The AutoSuggestBox that fired the event.</param>
+        /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
+        /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
+        private void ProductASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+            {
+                // User selected an item, take an action on it here
+                SelectProduct((Product)args.ChosenSuggestion);
             }
             else
             {
-                rootPage.NotifyUser("No files picked.", NotifyType.ErrorMessage);
+                // Do a fuzzy search on the query text.
+                var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
+
+                // Choose the first match, or clear the selection if there are no matches.
+                SelectProduct(matchingProducts.FirstOrDefault());
+            }
+        }
+
+        /// <summary>
+        /// Display details of the specified Product.
+        /// </summary>
+        /// <param name="Product"></param>
+        private void SelectProduct(Product product)
+        {
+            if (product != null)
+            {
+                _selectedProductInASB = product;
+                NoResults.Visibility = Visibility.Collapsed;
+                ProductDetails.Visibility = Visibility.Visible;
+                ProductId.Text = product.Id;
+                ProductName.Text = product.Name;
+                ProductSellingPrice.Text = product.SellingPrice.ToString();
+                ProductCostPrice.Text = product.CostPrice.ToString();
+                ProductDiscountPer.Text = product.DiscountPer+"% off";
+            }
+            else
+            {
+                NoResults.Visibility = Visibility.Visible;
+                ProductDetails.Visibility = Visibility.Collapsed;
             }
         }
     }

@@ -41,24 +41,7 @@ namespace SDKTemplate
             public ObservableCollection<Product> Products { get { return this._products; } }
             public NonInventoryViewModel()
             {
-                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
-                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
-                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
-                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
-                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
-                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
-                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
-                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
-                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
-                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
-                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
-                this._products.Add(new Product("1111", "Maggi", 12, 2, 1));
-                this._products.Add(new Product("2222", "Ghee", 310, 0, 2));
-                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
-                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
-                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
-                this._products.Add(new Product("4333", "shampoo", 200, 200, 50));
-                this._products.Add(new Product("4333", "shampoolast", 200, 200, 50));
+            
             }
             public void OnPropertyChanged([CallerMemberName] string propertyName = null)
             {
