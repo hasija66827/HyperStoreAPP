@@ -22,7 +22,17 @@ namespace SDKTemplate
                 return Utility.RoundInt32((float)sum);
             }
         }
-        public Int32 TotalProducts { get { return _products.Count(); } }
+        public Int32 TotalProducts
+        {
+            get
+            {
+
+                Int32 count = 0;
+                foreach (Product item in _products)
+                    count += item.Quantity;
+                return count;
+            }
+        }
 
         private ObservableCollection<Product> _products = new ObservableCollection<Product>();
         public ObservableCollection<Product> Products { get { return this._products; } }
@@ -38,21 +48,32 @@ namespace SDKTemplate
             }
             return -1;
         }
-        public bool AddProductInList(Product product)
+        public bool AddToCart(Product product)
         {
-            if (product == null)
-                return false;
-            // Check if product exist in the billing
             Int32 index = FirstMatchingProductIndex(product);
-            if (index >= 0)
-                this._products[index].Quantity += 1;
-            else
+            // If product does not exist
+            if (index == -1)
+            {
                 this._products.Add(product);
-            //TODO: Check if multiple productsId exist
-            // Updating the Total Value on addition of items in the list.
+                index = this._products.IndexOf(product);
+                // Subscribing a product instance to quantity changed property event handler.
+                product.QuantityPropertyChangedEvenHandler += TotalValue_TotalProductsPropertyChanged;
+                /* Will trigger the event QuantityPropertyChange
+                 and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
+                this._products[index].Quantity = 1;
+            }
+            else
+            {
+                /* Will trigger the event QuantityPropertyChange
+                 and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
+                this._products[index].Quantity += 1;
+            }
+            return true;
+        }
+        public void TotalValue_TotalProductsPropertyChanged()
+        {
             this.OnPropertyChanged(nameof(TotalValue));
             this.OnPropertyChanged(nameof(TotalProducts));
-            return true;
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

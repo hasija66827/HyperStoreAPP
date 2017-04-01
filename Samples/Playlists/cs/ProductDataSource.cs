@@ -18,7 +18,12 @@ namespace SDKTemplate
             }
             _products.Add(new Product("4333", "shampoo", 200, 200));
             _products.Add(new Product("1111", "Maggi", 12, 2));
-            _products.Add(new Product("2222", "Ghee", 310, 0));
+            _products.Add(new Product("2222", "Ghee", 310, 10));
+            _products.Add(new Product("3333", "Rice", 520, 20));
+            _products.Add(new Product("5454", "wheat flour", 605, 4));
+            _products.Add(new Product("9898", "patanjali aloe vera", 210, 110));
+            _products.Add(new Product("7878", "cashew and almonds", 1000, 100));
+
         }
 
         /// <summary>

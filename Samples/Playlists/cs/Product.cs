@@ -28,22 +28,23 @@ namespace SDKTemplate
                 this._netValue = this._sellingPrice * this._quantity;
                 this.OnPropertyChanged(nameof(Quantity));
                 this.OnPropertyChanged(nameof(NetValue));
+                // Invoking event to notify change in quantity of the product.
+                QuantityPropertyChangedEvenHandler();
             }
         }
+        // This event will notify the subscriber of Product class that the Quantity Property has been changed.
+        public event QuantityPropertyChangedDelegate QuantityPropertyChangedEvenHandler;
+
         private float _discountAmount;
-        public string DiscountAmount
+        public float DiscountAmount
         {
-            get { return Utility.RoundInt32(this._discountAmount).ToString(); }
+            get { return this._discountAmount; }
             set
             {
-                if (!Utility.CheckIfStringIsNumber(value))
-                { this._discountAmount = 0; }
-                else
-                {
-                    float f = (float)Convert.ToDouble(value);
-                    // Resetting discount amount to zero, if it is greater than costprice.
-                    this._discountAmount = (f > 0 && f <= this._costPrice) ? f : 0;
-                }
+                float f = (float)Convert.ToDouble(value);
+                // Resetting discount amount to zero, if it is greater than costprice.
+                this._discountAmount = (f > 0 && f <= this._costPrice) ? f : 0;
+
                 this._discountPer = (this._discountAmount / this._costPrice) * 100;
                 this._sellingPrice = this._costPrice - this._discountAmount;
                 this._netValue = this._sellingPrice * this._quantity;
@@ -55,20 +56,16 @@ namespace SDKTemplate
         }
 
         private float _discountPer;
-        public string DiscountPer
+        public float DiscountPer
         {
-            get { return Utility.RoundInt32(this._discountPer).ToString(); }
+            get { return Utility.RoundInt32(this._discountPer); }
             set
             {
-                // Checking if the text is number
-                if (!Utility.CheckIfStringIsNumber(value))
-                { this._discountPer = 0; }
-                else
-                {
-                    float f = (float)Convert.ToDouble(value);
-                    // Resetting discountPer to zero if it is greater than 100.
-                    this._discountPer = (f >= 0 && f <= 100) ? f : 0;
-                }
+
+                float f = (float)Convert.ToDouble(value);
+                // Resetting discountPer to zero if it is greater than 100.
+                this._discountPer = (f >= 0 && f <= 100) ? f : 0;
+
                 this._discountAmount = (this._costPrice * this._discountPer) / 100;
                 this._sellingPrice = this._costPrice - this._discountAmount;
                 this._netValue = this._sellingPrice * this._quantity;
@@ -93,7 +90,7 @@ namespace SDKTemplate
             this._id = id;
             this._name = name;
             this._costPrice = costprice != 0 ? costprice : 1;
-            this._quantity = 1;
+            this._quantity = 0;
             this._discountAmount = discount;
             this._discountPer = (discount / this._costPrice) * 100;
             this._sellingPrice = this._costPrice - discount;

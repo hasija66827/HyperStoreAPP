@@ -38,7 +38,7 @@ namespace SDKTemplate
 
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
-            this.ViewModel.AddProductInList(_selectedProductInASB);
+            this.ViewModel.AddToCart(_selectedProductInASB);
         }
 
         /// <summary>
