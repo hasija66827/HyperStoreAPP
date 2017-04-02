@@ -11,10 +11,10 @@ using Windows.UI.Xaml.Media;
 namespace SDKTemplate
 {
     public delegate void QuantityPropertyChangedDelegate();
+
+    // Append the float value with Rupee symbol.
     public class FloatToRupeeConverter : IValueConverter
     {
-        // Define the Convert method to convert a float to
-        // a month string.
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
@@ -31,17 +31,16 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
+    // Append the float value with %Off
     public class FloatToPercentageOFFConverter : IValueConverter
     {
-        // Define the Convert method to convert a float to
-        // a month string.
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
             // value is the data from the source object.
             float price = (float)value;
             // Return the value to pass to the target.
-            return price.ToString()+"%OFF";
+            return price.ToString()+"% Off";
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -51,17 +50,16 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
-    public class CheckIfInteger : IValueConverter
+
+    // Tries to convert value into positive integer, if it fails then reset the value to one.
+    public class CheckIfPositiveInteger : IValueConverter
     {
-        // Define the Convert method to convert a float to
-        // a month string.
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
             return value.ToString();
         }
 
-        // ConvertBack is not implemented for a OneWay binding.
         public object ConvertBack(object value, Type targetType,
             object parameter, string language)
         {
@@ -77,6 +75,32 @@ namespace SDKTemplate
                 //TODO: Notify that quantity has been set to one
             }
             return System.Convert.ToInt32(value);
+        }
+    }
+    // Tries to convert value into positive integer, if it fails then reset the value to one.
+    public class CheckIfValidPercentage : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            return value.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            try
+            {
+                double v = System.Convert.ToDouble(value);
+                if (v < 0 || v>100)
+                    throw new Exception();
+            }
+            catch (Exception e)
+            {
+                value = 0;
+                //TODO: Notify that percentage has been reset to zero.
+            }
+            return System.Convert.ToSingle(value);
         }
     }
     class Utility

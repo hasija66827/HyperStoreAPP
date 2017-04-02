@@ -30,7 +30,9 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this.ViewModel = new ProductViewModel();
+            this.DateTimeLbl.Text = DateTime.Now.ToString();
             ProductDataSource.RetrieveProductDataAsync();
+    
             AddToCart.Click += AddToCart_Click;
             _selectedProductInASB = null;
             
@@ -38,7 +40,12 @@ namespace SDKTemplate
 
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
-            this.ViewModel.AddToCart(_selectedProductInASB);
+            Int32 index= this.ViewModel.AddToCart(_selectedProductInASB);
+            // Scrolling the list to the last element in the list. FYI: only works for distinct items.
+            //TODO: Below loe is affecting the performance of addition of items in cart.
+            //ListView.ScrollIntoView(ListView.Items[index]);
+            ListView.SelectedIndex = index;
+            this.ProductASB.Text = "";
         }
 
         /// <summary>
@@ -98,9 +105,9 @@ namespace SDKTemplate
                 ProductDetails.Visibility = Visibility.Visible;
                 ProductId.Text = product.Id;
                 ProductName.Text = product.Name;
-                ProductSellingPrice.Text = product.SellingPrice.ToString();
-                ProductCostPrice.Text = product.CostPrice.ToString();
-                ProductDiscountPer.Text = product.DiscountPer+"% off";
+                ProductSellingPrice.Text = "\u20B9"+product.SellingPrice.ToString();
+                ProductCostPrice.Text = "\u20B9"+product.CostPrice.ToString();
+                ProductDiscountPer.Text = product.DiscountPer+"% Off";
             }
             else
             {

@@ -26,16 +26,33 @@ namespace SDKTemplate
         {
             get
             {
-
                 Int32 count = 0;
                 foreach (Product item in _products)
                     count += item.Quantity;
                 return count;
             }
         }
+        private float _additionalDiscountPer;
+        public float AdditionalDiscountPer
+        {
+            get { return this._additionalDiscountPer; }
+            set
+            {
+                this._additionalDiscountPer = value;
+                this.OnPropertyChanged(nameof(AdditionalDiscountPer));
+                this.OnPropertyChanged(nameof(AmountToPay));
+            }
+        }
+
+        public float AmountToPay { get { return ((100 - this._additionalDiscountPer) * this.TotalValue)/100; } }
 
         private ObservableCollection<Product> _products = new ObservableCollection<Product>();
         public ObservableCollection<Product> Products { get { return this._products; } }
+
+        public ProductViewModel()
+        {
+            _additionalDiscountPer = 0;
+        }
         private Int32 FirstMatchingProductIndex(Product product)
         {
             Int32 i = 0;
@@ -48,7 +65,7 @@ namespace SDKTemplate
             }
             return -1;
         }
-        public bool AddToCart(Product product)
+        public Int32 AddToCart(Product product)
         {
             Int32 index = FirstMatchingProductIndex(product);
             // If product does not exist
@@ -68,12 +85,13 @@ namespace SDKTemplate
                  and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
                 this._products[index].Quantity += 1;
             }
-            return true;
+            return index;
         }
         public void TotalValue_TotalProductsPropertyChanged()
         {
-            this.OnPropertyChanged(nameof(TotalValue));
             this.OnPropertyChanged(nameof(TotalProducts));
+            this.OnPropertyChanged(nameof(TotalValue));
+            this.OnPropertyChanged(nameof(AmountToPay));
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
