@@ -103,6 +103,12 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Billing_Data.cs" />
+    <Compile Include="DBModel.cs" />
+    <Compile Include="Migrations\20170414151925_First.cs" />
+    <Compile Include="Migrations\20170414151925_First.Designer.cs">
+      <DependentUpon>20170414151925_First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="ProductDataSource.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Utility.cs" />
