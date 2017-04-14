@@ -108,6 +108,10 @@
     <Compile Include="Migrations\20170414151925_First.Designer.cs">
       <DependentUpon>20170414151925_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20170414200844_ProductName.cs" />
+    <Compile Include="Migrations\20170414200844_ProductName.designer.cs">
+      <DependentUpon>20170414200844_ProductName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="ProductDataSource.cs" />
     <Compile Include="Product.cs" />

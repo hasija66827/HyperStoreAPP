@@ -18,7 +18,7 @@ using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
+using DatabaseModel;
 namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
@@ -34,10 +34,62 @@ namespace SDKTemplate
             ProductDataSource.RetrieveProductDataAsync();
     
             AddToCart.Click += AddToCart_Click;
+            CustomerMobileNumber.LostFocus += CustomerMobileNumber_LostFocus;
+            Verify.Click += Verify_Click;
             _selectedProductInASB = null;
             
         }
 
+        private void Verify_Click(object sender, RoutedEventArgs e)
+        {
+            //Open a Dialogue for OTP.
+            //If Succesfully Verified.
+            // Ask for Customer Name and address.
+            // Create a new customer and save the Customer.
+            using (var db = new RetailerContext())
+            {
+                var mobileNumber = CustomerMobNoTB.Text;
+                Customer customer = new Customer("abc" + mobileNumber, mobileNumber);
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                ShowVerified(customer.Name, customer.WalletBalance);
+            }
+        }
+
+        private void CustomerMobileNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var mobileNumber = CustomerMobNoTB.Text;
+            //TODO: Verify the input charecter
+
+            using (var db = new RetailerContext())
+            {
+                // Check If c.Text exist in customer database
+                var customers=db.Customers.Where(c => c.MobileNo.Equals(mobileNumber));
+                if (customers.Count()==0)
+                {
+                    ShowUnverified();
+                }
+                else
+                {
+                    var customer = customers.First();
+                    ShowVerified(customer.Name, customer.WalletBalance);
+                }
+            }
+        }
+        public void ShowVerified(string customerName, float customerWalletBalance)
+        {
+            Verify.Visibility = Visibility.Collapsed;
+            IsVerified.Visibility = Visibility.Visible;
+            CustomerNameTB.Text = customerName;
+            CustomerWalletBalanceTB.Text = "\u20b9" + customerWalletBalance;
+        }
+        public void ShowUnverified()
+        {
+            Verify.Visibility = Visibility.Visible;
+            IsVerified.Visibility = Visibility.Collapsed;
+            CustomerNameTB.Text = "";
+            CustomerWalletBalanceTB.Text = "\u20b9" + "0";
+        }
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
             Int32 index= this.ViewModel.AddToCart(_selectedProductInASB);

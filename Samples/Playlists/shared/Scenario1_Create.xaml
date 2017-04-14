@@ -118,21 +118,47 @@
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         </StackPanel>
                         <StackPanel x:Name="CustomerMobileNumber" Orientation="Horizontal" RelativePanel.Below="Cashier">
-                            <TextBlock Text="Customer Mobile No: "
+                            <TextBlock x:Name="CustomerMobNoLbl" 
+                                       Text="Customer Mobile No: "
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                        Width="150" />
-                            <TextBox Text="9632166827"
+                            <TextBox x:Name="CustomerMobNoTB"
+                                     Text=""
                                      Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal"
+                        <StackPanel x:Name="CustomerName" 
+                            Orientation="Horizontal"
                                     RelativePanel.Below="CustomerMobileNumber">
-                            <TextBlock Text="Customer Name: "
+                            <TextBlock x:Name="CustomerNameLbl"
+                                       Text="Customer Name: "
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                        Width="150" />
-                            <TextBlock Text="Rahul Hasija"
+                            <TextBlock x:Name="CustomerNameTB"
+                                       Text=""
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    x:Name="CustomerWalletBalance"
+                                    RelativePanel.Below="CustomerName">
+                            <TextBlock x:Name="CustomerWalletBalanceLbl"
+                                       Text="Wallet"
+                                       Width="150" />
+                            <TextBlock x:Name="CustomerWalletBalanceTB"
+                                       Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    RelativePanel.RightOf="CustomerMobileNumber"
+                                    RelativePanel.AlignTopWith="CustomerMobileNumber">
+                            <Button x:Name="Verify"
+                                    Content="Verify"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Visibility="Collapsed" />
+                            <TextBlock x:Name="IsVerified"
+                                       Text="Verified Buyer"
+                                       Visibility="Collapsed" />
                         </StackPanel>
                         <TextBlock x:Name="DateTimeLbl" Text="DateTime" RelativePanel.AlignRightWithPanel="True"/>
                     </RelativePanel>

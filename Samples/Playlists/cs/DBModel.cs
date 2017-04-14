@@ -107,6 +107,7 @@ namespace DatabaseModel
     public class Product
     {
         public Guid ProductId { get; set; }
+        public string Name { get; set; }
         public string BarCode { get; set; }
         public string UserDefinedCode { get; set; }
         public bool IsInventoryItem { get; set; }
@@ -118,14 +119,17 @@ namespace DatabaseModel
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
-        public Product()
+        public Product(string code, string name, float displayPrice, float discountPer, bool isInventoryItem)
         {
             this.ProductId = Guid.NewGuid();
+            this.BarCode = code;
+            this.DisplayPrice=displayPrice;
+            this.DiscountPer = discountPer;
             this.Threshold = 0;
             this.RefillTime = 0;
-            this.DisplayPrice = 0;
-            this.DiscountPer = 0;
+            this.Name = name;
         }
+        public Product() { }
     }
 
     public class Customer
@@ -141,10 +145,11 @@ namespace DatabaseModel
         public Customer(string name, string mobileNo)
         {
             this.CustomerId = Guid.NewGuid();
+            this.Address = "";
             this.IsVerifiedCustomer = false;
             this.MobileNo = mobileNo;
             this.Name = name;
-            this.Address = "";
+            this.WalletBalance = 0;
         }
         public Customer() { }
     }
