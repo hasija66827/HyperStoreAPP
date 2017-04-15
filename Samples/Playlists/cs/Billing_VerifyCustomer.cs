@@ -23,11 +23,9 @@ namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
     {
-        private void Verify_Click(object sender, RoutedEventArgs e)
+        private void AddEdit_Click(object sender, RoutedEventArgs e)
         {
-            //Open a Dialogue for OTP.
-            //If Succesfully Verified.
-            // Ask for Customer Name and address.
+            //TODO: Ask for Customer Name and address.
             // Create a new customer and save the Customer.
             using (var db = new RetailerContext())
             {
@@ -35,14 +33,26 @@ namespace SDKTemplate
                 Customer customer = new Customer("abc" + mobileNumber, mobileNumber);
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                ShowVerified(customer.Name, customer.WalletBalance);
+                // Setting the customer for the Billing.
+                this._customer = customer;
+                ShowVerified();
             }
         }
 
         private void CustomerMobileNumber_LostFocus(object sender, RoutedEventArgs e)
         {
             var mobileNumber = CustomerMobNoTB.Text;
-            //TODO: Verify the input charecter
+            // Verify the Input MobileNumber
+            if (!Utility.IsMobileNumber(mobileNumber))
+            {
+                CustomerMobNoTB.Text = "";
+                ShowUnverified();
+                Verify.Visibility = Visibility.Collapsed;
+                // Setting the empty customer
+                this._customer = new Customer();
+                //TODO: Show Notification Message
+                return;
+            }
 
             using (var db = new RetailerContext())
             {
@@ -50,21 +60,24 @@ namespace SDKTemplate
                 var customers = db.Customers.Where(c => c.MobileNo.Equals(mobileNumber));
                 if (customers.Count() == 0)
                 {
+                    // Setting the empty customer
+                    this._customer = new Customer();
                     ShowUnverified();
                 }
                 else
                 {
-                    var customer = customers.First();
-                    ShowVerified(customer.Name, customer.WalletBalance);
+                    // Setting the customer of the order.
+                    this._customer = customers.First();
+                    ShowVerified();
                 }
             }
         }
-        public void ShowVerified(string customerName, float customerWalletBalance)
+        public void ShowVerified()
         {
             Verify.Visibility = Visibility.Collapsed;
             IsVerified.Visibility = Visibility.Visible;
-            CustomerNameTB.Text = customerName;
-            CustomerWalletBalanceTB.Text = "\u20b9" + customerWalletBalance;
+            CustomerNameTB.Text = this._customer.Name;
+            CustomerWalletBalanceTB.Text = "\u20b9" + this._customer.WalletBalance;
         }
         public void ShowUnverified()
         {

@@ -36,9 +36,9 @@
                             <DataTemplate x:DataType="local:Product">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="Accept"/>
-                                    <TextBlock Text="{x:Bind Id, Mode=OneWay}" Width="60" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{x:Bind BarCode, Mode=OneWay}" Width="60" Margin="10,0,0,0"/>
                                     <TextBlock Text="{x:Bind Name, Mode=OneWay}" Width="160" TextWrapping="NoWrap" Margin="0,0,10,0"/>
-                                    <TextBlock x:Name="CostPrice"  Text="{x:Bind CostPrice, Mode=OneWay}" Width="100" Margin="0,0,10,0" />
+                                    <TextBlock x:Name="CostPrice"  Text="{x:Bind DisplayPrice, Mode=OneWay}" Width="100" Margin="0,0,10,0" />
                                     <TextBlock x:Name="DiscountPer" Text="{x:Bind DiscountPer, Mode=OneWay}" Width="100" Margin="0,0,10,0"/>
                                     <TextBlock x:Name="DiscountAmount" Text="{x:Bind DiscountAmount, Mode=OneWay}" Width="100" Margin="0,0,10,0"/>
                                     <TextBlock x:Name="SellingPrice"  Text="{x:Bind SellingPrice, Mode=OneWay}" Width="100" Margin="0,0,10,0" />

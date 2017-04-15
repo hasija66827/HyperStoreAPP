@@ -33,6 +33,7 @@ namespace SDKTemplate.Migrations
                     DiscountPer = table.Column<float>(nullable: false),
                     DisplayPrice = table.Column<float>(nullable: false),
                     IsInventoryItem = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     RefillTime = table.Column<int>(nullable: false),
                     Threshold = table.Column<int>(nullable: false),
                     UserDefinedCode = table.Column<string>(nullable: true)
@@ -107,7 +108,7 @@ namespace SDKTemplate.Migrations
                 columns: table => new
                 {
                     CustomerOrderProductId = table.Column<Guid>(nullable: false),
-                    CustomerOrderId = table.Column<Guid>(nullable: true),
+                    CustomerOrderId = table.Column<Guid>(nullable: false),
                     DiscountPerSnapShot = table.Column<float>(nullable: false),
                     DisplayCostSnapShot = table.Column<float>(nullable: false),
                     ProductId = table.Column<Guid>(nullable: false),
@@ -121,7 +122,7 @@ namespace SDKTemplate.Migrations
                         column: x => x.CustomerOrderId,
                         principalTable: "CustomerOrders",
                         principalColumn: "CustomerOrderId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CustomerOrderProducts_Products_ProductId",
                         column: x => x.ProductId,

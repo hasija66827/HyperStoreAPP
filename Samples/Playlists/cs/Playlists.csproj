@@ -102,19 +102,16 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Billing_Payment.cs" />
+    <Compile Include="Migrations\20170415181816_First.cs" />
+    <Compile Include="Migrations\20170415181816_First.designer.cs">
+      <DependentUpon>20170415181816_First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="ProductViewModel.cs" />
     <Compile Include="Billing_ASB.cs" />
     <Compile Include="Billing_VerifyCustomer.cs" />
     <Compile Include="DBModel.cs" />
-    <Compile Include="Migrations\20170414151925_First.cs" />
-    <Compile Include="Migrations\20170414151925_First.Designer.cs">
-      <DependentUpon>20170414151925_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20170414200844_ProductName.cs" />
-    <Compile Include="Migrations\20170414200844_ProductName.designer.cs">
-      <DependentUpon>20170414200844_ProductName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="ProductDataSource.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Utility.cs" />
@@ -211,6 +208,7 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

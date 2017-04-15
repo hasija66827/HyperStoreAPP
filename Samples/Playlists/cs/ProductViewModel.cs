@@ -40,11 +40,11 @@ namespace SDKTemplate
             {
                 this._additionalDiscountPer = value;
                 this.OnPropertyChanged(nameof(AdditionalDiscountPer));
-                this.OnPropertyChanged(nameof(AmountToPay));
+                this.OnPropertyChanged(nameof(BillAmount));
             }
         }
 
-        public float AmountToPay { get { return ((100 - this._additionalDiscountPer) * this.TotalValue)/100; } }
+        public float BillAmount { get { return ((100 - this._additionalDiscountPer) * this.TotalValue)/100; } }
 
         private ObservableCollection<Product> _products = new ObservableCollection<Product>();
         public ObservableCollection<Product> Products { get { return this._products; } }
@@ -58,7 +58,7 @@ namespace SDKTemplate
             Int32 i = 0;
             foreach (var p in this._products)
             {
-                if (p.Id == product.Id)
+                if (p.BarCode == product.BarCode)
                     return i;
                 i++;
 
@@ -67,7 +67,7 @@ namespace SDKTemplate
         }
         public Int32 AddToCart(DatabaseModel.Product DBProduct)
         {
-            var product = new Product(DBProduct.BarCode,DBProduct.Name, DBProduct.DisplayPrice, DBProduct.DiscountPer);
+            var product = new Product(DBProduct.ProductId, DBProduct.BarCode,DBProduct.Name, DBProduct.DisplayPrice, DBProduct.DiscountPer);
             Int32 index = FirstMatchingProductIndex(product);
             // If product does not exist
             if (index == -1)
@@ -92,7 +92,7 @@ namespace SDKTemplate
         {
             this.OnPropertyChanged(nameof(TotalProducts));
             this.OnPropertyChanged(nameof(TotalValue));
-            this.OnPropertyChanged(nameof(AmountToPay));
+            this.OnPropertyChanged(nameof(BillAmount));
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

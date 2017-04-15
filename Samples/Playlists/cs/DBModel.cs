@@ -17,7 +17,7 @@ namespace DatabaseModel
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers2.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -153,14 +153,23 @@ namespace DatabaseModel
             this.Name = name;
             this.WalletBalance = 0;
         }
-        public Customer() { }
+
+        /*Used to set the default customer*/
+        public Customer() {
+            this.CustomerId = new Guid(SDKTemplate.Utility.DEFAULT_CUSTOMER_GUID); ;
+            this.Address = "aaaaaa";
+            this.IsVerifiedCustomer = false;
+            this.MobileNo = "9987654321";
+            this.Name = "c";
+            this.WalletBalance = 0;
+        }
     }
 
     public class CustomerOrder
     {
         public Guid CustomerOrderId { get; set; }
-        public DateTime OrderDate { get; set; }
         public float BillAmount { get; set; }
+        public DateTime OrderDate { get; set; }
         public float PaidAmount { get; set; }
         public float WalletSnapShot { get; set; }
 
@@ -170,10 +179,13 @@ namespace DatabaseModel
 
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
-        public CustomerOrder(Guid customerId)
+        public CustomerOrder(Guid customerId, float billAmount, float paidAmount, float walletSnapShot )
         {
             this.CustomerOrderId = Guid.NewGuid();
+            this.BillAmount = billAmount;
             this.OrderDate = DateTime.Now;
+            this.PaidAmount = paidAmount;
+            this.WalletSnapShot = walletSnapShot;
             this.CustomerId = customerId;
         }
         public CustomerOrder() { }
@@ -182,14 +194,24 @@ namespace DatabaseModel
     public class CustomerOrderProduct
     {
         public Guid CustomerOrderProductId { get; set; }
-        public int QuantityPurchased { get; set; }
-        public float DisplayCostSnapShot { get; set; }
         public float DiscountPerSnapShot { get; set; }
+        public float DisplayCostSnapShot { get; set; }
+        public int QuantityPurchased { get; set; }
+        
+        public CustomerOrderProduct(Guid customerOrderId, Guid productId,
+            float discountPerSnapshot, float displayCostSnapshot, int quantityPurchased) {
+            this.CustomerOrderProductId = Guid.NewGuid();
+            this.CustomerOrderId = customerOrderId;
+            this.ProductId = productId;
+            this.DiscountPerSnapShot = discountPerSnapshot;
+            this.DisplayCostSnapShot = displayCostSnapshot;
+            this.QuantityPurchased = quantityPurchased;
+        }
 
-
+        public CustomerOrderProduct() { }
         [Required]
-        public Nullable<Guid> OrderId;
-        public CustomerOrder Order;
+        public Nullable<Guid> CustomerOrderId;
+        public CustomerOrder CustomerOrder;
 
         [Required]
         public Nullable<Guid> ProductId;

@@ -8,7 +8,7 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170414151925_First")]
+    [Migration("20170415181816_First")]
     partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,7 +70,8 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("CustomerOrderProductId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CustomerOrderId");
+                    b.Property<Guid?>("CustomerOrderId")
+                        .IsRequired();
 
                     b.Property<float>("DiscountPerSnapShot");
 
@@ -102,6 +103,8 @@ namespace SDKTemplate.Migrations
                     b.Property<float>("DisplayPrice");
 
                     b.Property<bool>("IsInventoryItem");
+
+                    b.Property<string>("Name");
 
                     b.Property<int>("RefillTime");
 
@@ -203,7 +206,8 @@ namespace SDKTemplate.Migrations
                 {
                     b.HasOne("DatabaseModel.CustomerOrder")
                         .WithMany("CustomerOrderProducts")
-                        .HasForeignKey("CustomerOrderId");
+                        .HasForeignKey("CustomerOrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DatabaseModel.Product")
                         .WithMany("CustomerOrderProducts")

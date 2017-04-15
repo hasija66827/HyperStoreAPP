@@ -69,7 +69,8 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("CustomerOrderProductId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CustomerOrderId");
+                    b.Property<Guid?>("CustomerOrderId")
+                        .IsRequired();
 
                     b.Property<float>("DiscountPerSnapShot");
 
@@ -204,7 +205,8 @@ namespace SDKTemplate.Migrations
                 {
                     b.HasOne("DatabaseModel.CustomerOrder")
                         .WithMany("CustomerOrderProducts")
-                        .HasForeignKey("CustomerOrderId");
+                        .HasForeignKey("CustomerOrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DatabaseModel.Product")
                         .WithMany("CustomerOrderProducts")

@@ -21,7 +21,7 @@ namespace SDKTemplate
             // value is the data from the source object.
             float price = (float)value;
             // Return the value to pass to the target.
-            return "\u20B9"+price.ToString();
+            return "\u20B9" + price.ToString();
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -40,7 +40,7 @@ namespace SDKTemplate
             // value is the data from the source object.
             float price = (float)value;
             // Return the value to pass to the target.
-            return price.ToString()+"% Off";
+            return price.ToString() + "% Off";
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -65,7 +65,7 @@ namespace SDKTemplate
         {
             try
             {
-                var v=System.Convert.ToInt32(value);
+                var v = System.Convert.ToInt32(value);
                 if (v < 0)
                     throw new Exception();
             }
@@ -92,7 +92,7 @@ namespace SDKTemplate
             try
             {
                 double v = System.Convert.ToDouble(value);
-                if (v < 0 || v>100)
+                if (v < 0 || v > 100)
                     throw new Exception();
             }
             catch (Exception e)
@@ -105,6 +105,7 @@ namespace SDKTemplate
     }
     class Utility
     {
+        public static string DEFAULT_CUSTOMER_GUID { get { return "cccccccc-cccc-cccc-cccc-cccccccccccc"; } }
         public static float RoundInt32(float f)
         {
             return (float)(Math.Round((decimal)f, 2));
@@ -115,6 +116,22 @@ namespace SDKTemplate
             if (str == null || str == "")
                 return false;
             return true;
+        }
+        public static bool IsMobileNumber(string text)
+        {
+            if (text.Length == 10)
+            {
+                try
+                {
+                    Convert.ToInt64(text);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return false;
         }
         /// <summary>
         /// Retuns the list of child controls of parent control in visual tree

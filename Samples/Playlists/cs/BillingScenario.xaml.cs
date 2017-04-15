@@ -25,6 +25,7 @@ namespace SDKTemplate
     {
         private MainPage rootPage = MainPage.Current;
         public ProductViewModel ViewModel { get; set; }
+        private Customer _customer;
         private static DatabaseModel.Product _selectedProductInASB;
         public BillingScenario()
         {
@@ -35,8 +36,11 @@ namespace SDKTemplate
     
             AddToCart.Click += AddToCart_Click;
             CustomerMobileNumber.LostFocus += CustomerMobileNumber_LostFocus;
-            Verify.Click += Verify_Click;
-            _selectedProductInASB = null;   
+            Verify.Click += AddEdit_Click;
+            PayNow.Click += PayNow_Click;
+            PayLater.Click += PayLater_Click;
+            _selectedProductInASB = null;
+            this._customer = new Customer();
         }
     }
 }

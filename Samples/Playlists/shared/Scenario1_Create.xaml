@@ -125,6 +125,7 @@
                                        Width="150" />
                             <TextBox x:Name="CustomerMobNoTB"
                                      Text=""
+                                     Width="150"
                                      Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         </StackPanel>
                         <StackPanel x:Name="CustomerName" 
@@ -152,7 +153,7 @@
                                     RelativePanel.RightOf="CustomerMobileNumber"
                                     RelativePanel.AlignTopWith="CustomerMobileNumber">
                             <Button x:Name="Verify"
-                                    Content="Verify"
+                                    Content="Add"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
                                     Visibility="Collapsed" />
@@ -182,7 +183,7 @@
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            <TextBlock Text="CostPrice"
+                            <TextBlock Text="DisplayPrice"
                                        Width="100"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
@@ -223,15 +224,15 @@
                                 <DataTemplate x:DataType="local:Product">
                                     <StackPanel Orientation="Horizontal">
                                         <SymbolIcon Symbol="Accept" />
-                                        <TextBlock Text="{x:Bind Id, Mode=OneWay}"
+                                        <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"
                                                    Width="60"
                                                    Margin="10,0,0,0" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
                                                    Width="160"
                                                    TextWrapping="NoWrap"
                                                    Margin="0,0,10,0" />
-                                        <TextBlock x:Name="CostPrice"
-                                                   Text="{x:Bind CostPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                        <TextBlock x:Name="DisplayPrice"
+                                                   Text="{x:Bind DisplayPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                                    Width="100"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="DiscountPer"
@@ -295,7 +296,7 @@
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                            Width="90" />
-                                <TextBlock Text="{x:Bind ViewModel.AmountToPay, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                <TextBlock Text="{x:Bind ViewModel.BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             </StackPanel>
@@ -304,9 +305,11 @@
                     <StackPanel x:Name="Footer"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center">
-                        <Button Content="Pay Now"
+                        <Button x:Name="PayNow"
+                                Content="Pay Now"
                                 Width="200" />
-                        <Button Content="Pay Later"
+                        <Button x:Name="PayLater"
+                                Content="Pay Later"
                                 Margin="40,0,0,0"
                                 Width="200 " />
                     </StackPanel>

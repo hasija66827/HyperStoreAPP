@@ -10,12 +10,14 @@ namespace SDKTemplate
 {
     public class Product : INotifyPropertyChanged
     {
-        private string _id;
-        public string Id { get { return this._id; } }
+        private Guid _productId;
+        public Guid ProductId { get { return this._productId; } }
+        private string _barCode;
+        public string BarCode { get { return this._barCode; } }
         private string _name;
         public string Name { get { return this._name; } }
-        private float _costPrice;
-        public float CostPrice { get { return Utility.RoundInt32(this._costPrice); } }
+        private float _displayPrice;
+        public float DisplayPrice { get { return Utility.RoundInt32(this._displayPrice); } }
         private float _sellingPrice;
         public float SellingPrice { get { return Utility.RoundInt32(this._sellingPrice); } }
         private Int32 _quantity;
@@ -43,10 +45,10 @@ namespace SDKTemplate
             {
                 float f = (float)Convert.ToDouble(value);
                 // Resetting discount amount to zero, if it is greater than costprice.
-                this._discountAmount = (f > 0 && f <= this._costPrice) ? f : 0;
+                this._discountAmount = (f > 0 && f <= this._displayPrice) ? f : 0;
 
-                this._discountPer = (this._discountAmount / this._costPrice) * 100;
-                this._sellingPrice = this._costPrice - this._discountAmount;
+                this._discountPer = (this._discountAmount / this._displayPrice) * 100;
+                this._sellingPrice = this._displayPrice - this._discountAmount;
                 this._netValue = this._sellingPrice * this._quantity;
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SellingPrice));
@@ -66,8 +68,8 @@ namespace SDKTemplate
                 // Resetting discountPer to zero if it is greater than 100.
                 this._discountPer = (f >= 0 && f <= 100) ? f : 0;
 
-                this._discountAmount = (this._costPrice * this._discountPer) / 100;
-                this._sellingPrice = this._costPrice - this._discountAmount;
+                this._discountAmount = (this._displayPrice * this._discountPer) / 100;
+                this._sellingPrice = this._displayPrice - this._discountAmount;
                 this._netValue = this._sellingPrice * this._quantity;
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SellingPrice));
@@ -83,15 +85,16 @@ namespace SDKTemplate
         //TODO: #feature: consider weight parameter for non inventory items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public Product(string id, string name, float costprice, float discountPer)
+        public Product(Guid productId, string barCode, string name, float displayPrice, float discountPer)
         {
-            this._id = id;
+            this._productId = productId;
+            this._barCode = barCode;
             this._name = name;
-            this._costPrice = costprice;
+            this._displayPrice = displayPrice;
             this._quantity = 0;
             this._discountPer = discountPer;
-            this._discountAmount = (this._costPrice*this._discountPer)/100;
-            this._sellingPrice = this._costPrice - this._discountAmount;
+            this._discountAmount = (this._displayPrice*this._discountPer)/100;
+            this._sellingPrice = this._displayPrice - this._discountAmount;
             this._netValue = this._sellingPrice * this._quantity;
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
