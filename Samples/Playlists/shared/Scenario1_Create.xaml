@@ -29,7 +29,7 @@
             <ScrollViewer VerticalScrollMode="Auto"
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <RelativePanel x:Name="temp">
+                    <RelativePanel x:Name="Header">
                         <AutoSuggestBox x:Name="ProductASB"
                                         PlaceholderText="Search for Product (e.g. 1111 or Maggi)"
                                         DisplayMemberPath="Product_Id_Name"
@@ -269,7 +269,6 @@
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                            Width="90" />
                                 <TextBlock Text="{x:Bind ViewModel.TotalProducts, Mode=OneWay}"
-                                           
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             </StackPanel>
@@ -279,7 +278,6 @@
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                            Width="90" />
                                 <TextBlock Text="{x:Bind ViewModel.TotalValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             </StackPanel>
@@ -303,6 +301,15 @@
                             </StackPanel>
                         </StackPanel>
                     </RelativePanel>
+                    <StackPanel x:Name="Footer"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Button Content="Pay Now"
+                                Width="200" />
+                        <Button Content="Pay Later"
+                                Margin="40,0,0,0"
+                                Width="200 " />
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

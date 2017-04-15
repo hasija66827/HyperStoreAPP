@@ -79,21 +79,19 @@ namespace SDKTemplate
         private float _netValue;
         public float NetValue { get { return Utility.RoundInt32(this._netValue); } }
 
-        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
-        public string Product_Id_Name { get { return string.Format("{0} ({1})", _id, _name); } }
-
+        
         //TODO: #feature: consider weight parameter for non inventory items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public Product(string id, string name, Int32 costprice, float discount)
+        public Product(string id, string name, float costprice, float discountPer)
         {
             this._id = id;
             this._name = name;
-            this._costPrice = costprice != 0 ? costprice : 1;
+            this._costPrice = costprice;
             this._quantity = 0;
-            this._discountAmount = discount;
-            this._discountPer = (discount / this._costPrice) * 100;
-            this._sellingPrice = this._costPrice - discount;
+            this._discountPer = discountPer;
+            this._discountAmount = (this._costPrice*this._discountPer)/100;
+            this._sellingPrice = this._costPrice - this._discountAmount;
             this._netValue = this._sellingPrice * this._quantity;
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

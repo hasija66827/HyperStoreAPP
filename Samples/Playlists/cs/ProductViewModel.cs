@@ -65,8 +65,9 @@ namespace SDKTemplate
             }
             return -1;
         }
-        public Int32 AddToCart(Product product)
+        public Int32 AddToCart(DatabaseModel.Product DBProduct)
         {
+            var product = new Product(DBProduct.BarCode,DBProduct.Name, DBProduct.DisplayPrice, DBProduct.DiscountPer);
             Int32 index = FirstMatchingProductIndex(product);
             // If product does not exist
             if (index == -1)

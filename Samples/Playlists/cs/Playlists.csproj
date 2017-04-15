@@ -102,7 +102,9 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Billing_Data.cs" />
+    <Compile Include="ProductViewModel.cs" />
+    <Compile Include="Billing_ASB.cs" />
+    <Compile Include="Billing_VerifyCustomer.cs" />
     <Compile Include="DBModel.cs" />
     <Compile Include="Migrations\20170414151925_First.cs" />
     <Compile Include="Migrations\20170414151925_First.Designer.cs">
@@ -117,9 +119,7 @@
     <Compile Include="Product.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
-    <Compile Include="Scenario1_Create.xaml.cs">
-      <DependentUpon>Scenario1_Create.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="BillingScenario.xaml.cs" />
     <Compile Include="Scenario2_Display.xaml.cs">
       <DependentUpon>Scenario2_Display.xaml</DependentUpon>
     </Compile>

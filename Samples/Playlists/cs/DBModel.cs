@@ -14,7 +14,7 @@ namespace DatabaseModel
         public DbSet<WholeSeller> WholeSellers { get; set; }
         public DbSet<WholeSellerOrder> WholeSellersOrders { get; set; }
         public DbSet<WholeSellerOrderProduct> WholeSellersOrderProducts { get; set; }
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=Retailers.db");
@@ -118,6 +118,8 @@ namespace DatabaseModel
 
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
+        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
+        public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
 
         public Product(string code, string name, float displayPrice, float discountPer, bool isInventoryItem)
         {
