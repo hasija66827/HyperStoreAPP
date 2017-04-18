@@ -25,13 +25,13 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="{x:Bind Title}"
+                <TextBlock Text="{x:Bind CustomerMobileNo}"
                            Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBlock Text="{x:Bind Text}"
                            Grid.Row="1"
                            MaxLines="1"
                            Style="{ThemeResource ListBodyTextBlockStyle}" />
-                <TextBlock Text="{x:Bind DateCreatedHourMinute}"
+                <TextBlock Text="{x:Bind OrderDate}"
                            Grid.Column="1"
                            Margin="12,1,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
@@ -43,7 +43,7 @@
                 <TextBlock Margin="0,8"
                            Style="{ThemeResource TitleTextBlockStyle}"
                            HorizontalAlignment="Left"
-                           Text="{x:Bind Title}" />
+                           Text="{x:Bind BillAmount}" />
                 <TextBlock Margin="0,9"
                            HorizontalAlignment="Left"
                            MaxWidth="560"

@@ -12,5 +12,14 @@ namespace MasterDetailApp.Data
         public DateTime DateCreated { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
+        public string CustomerMobileNo { get; set; }
+        public float BillAmount { get; set; }
+        public DateTime orderDate;
+        public Item(string customerMobileNo, float billAmount, DateTime orderDate)
+        {
+            this.CustomerMobileNo = customerMobileNo;
+            this.BillAmount = billAmount;
+            this.orderDate = orderDate;
+        }
     }
 }

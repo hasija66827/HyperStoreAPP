@@ -33,25 +33,21 @@ namespace MasterDetailApp
             base.OnNavigatedTo(e);
 
             var items = MasterListView.ItemsSource as List<ItemViewModel>;
+            items = new List<ItemViewModel>();
 
-            if (items == null)
+            foreach (var item in ItemsDataSource.GetAllOrders())
             {
-                items = new List<ItemViewModel>();
-
-                foreach (var item in ItemsDataSource.GetAllItems())
-                {
-                    items.Add(ItemViewModel.FromItem(item));
-                }
-
-                MasterListView.ItemsSource = items;
+                items.Add(ItemViewModel.FromItem(item));
             }
+
+            MasterListView.ItemsSource = items;
 
             if (e.Parameter != null)
             {
                 // Parameter is item ID
                 var id = (int)e.Parameter;
                 _lastSelectedItem =
-                    items.Where((item) => item.ItemId == id).FirstOrDefault();
+                    items.Where((item) => item.CustomerMobileNo == item.CustomerMobileNo).FirstOrDefault();
             }
 
             UpdateForVisualState(AdaptiveStates.CurrentState);
@@ -70,7 +66,7 @@ namespace MasterDetailApp
         {
             var isNarrow = newState == NarrowState;
 
-      
+
             EntranceNavigationTransitionInfo.SetIsTargetElement(MasterListView, isNarrow);
             if (DetailContentPresenter != null)
             {
@@ -83,10 +79,10 @@ namespace MasterDetailApp
             var clickedItem = (ItemViewModel)e.ClickedItem;
             _lastSelectedItem = clickedItem;
 
-         
-                // Play a refresh animation when the user switches detail items.
-                EnableContentTransitions();
-         
+
+            // Play a refresh animation when the user switches detail items.
+            EnableContentTransitions();
+
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)

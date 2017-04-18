@@ -11,29 +11,19 @@ namespace MasterDetailApp.ViewModels
 {
     public class ItemViewModel
     {
-        private int _itemId;
-
-        public int ItemId
-        {
-            get
-            {
-                return _itemId;
-            }
-        }
-
-        public string DateCreatedHourMinute
+        public string CustomerMobileNo { get; set; }
+        public float BillAmount { get; set; }
+        public string OrderDate
         {
             get
             {
                 var formatter = new DateTimeFormatter("hour minute");
-                return formatter.Format(DateCreated);
+                return formatter.Format(orderDate);
             }
         }
+        public DateTime orderDate;
 
-        public string Title { get; set; }
         public string Text { get; set; }
-        public DateTime DateCreated { get; set; }
-
         public ItemViewModel()
         {
         }
@@ -41,12 +31,10 @@ namespace MasterDetailApp.ViewModels
         public static ItemViewModel FromItem(Item item)
         {
             var viewModel = new ItemViewModel();
-
-            viewModel._itemId = item.Id;
-            viewModel.DateCreated = item.DateCreated;
-            viewModel.Title = item.Title;
-            viewModel.Text = item.Text;
-
+            viewModel.Text = "hasija Rocks";
+            viewModel.CustomerMobileNo = item.CustomerMobileNo;
+            viewModel.BillAmount = item.BillAmount;
+            viewModel.orderDate = item.orderDate;
             return viewModel;
         }
     }
