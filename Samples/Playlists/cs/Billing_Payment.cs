@@ -32,7 +32,7 @@ namespace SDKTemplate
                 this._customer.WalletBalance);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
-
+         
             db.SaveChanges();
             foreach (var product in ViewModel.Products)
             {

@@ -103,6 +103,8 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Billing_Payment.cs" />
+    <Compile Include="Data\Item.cs" />
+    <Compile Include="Data\ItemsDataSource.cs" />
     <Compile Include="Migrations\20170415181816_First.cs" />
     <Compile Include="Migrations\20170415181816_First.designer.cs">
       <DependentUpon>20170415181816_First.cs</DependentUpon>
@@ -129,6 +131,7 @@
     <Compile Include="Scenario5_Clear.xaml.cs">
       <DependentUpon>Scenario5_Clear.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -118,7 +118,7 @@
             x:Name="DetailContentPresenter"
             Grid.Column="1"
             Grid.RowSpan="2"
-            BorderThickness="1,0,0,0"
+            BorderThickness="10,0,0,0"
             Padding="24,0"
             BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
             Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"

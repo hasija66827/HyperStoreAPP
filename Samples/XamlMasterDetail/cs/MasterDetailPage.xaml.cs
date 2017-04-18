@@ -109,7 +109,8 @@ namespace MasterDetailApp
         private void EnableContentTransitions()
         {
             DetailContentPresenter.ContentTransitions.Clear();
-            DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
+            // just for adding the transition on the content selection.
+            //DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
         }
 
         private void DisableContentTransitions()
