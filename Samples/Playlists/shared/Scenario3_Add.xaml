@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:MasterDetailApp"
       xmlns:viewmodels="using:MasterDetailApp.ViewModels"
+      xmlns:data="using:MasterDetailApp.Data"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
@@ -27,10 +28,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind CustomerMobileNo}"
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind Text}"
-                           Grid.Row="1"
-                           MaxLines="1"
-                           Style="{ThemeResource ListBodyTextBlockStyle}" />
+                
                 <TextBlock Text="{x:Bind OrderDate}"
                            Grid.Column="1"
                            Margin="12,1,0,0"
@@ -40,15 +38,21 @@
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="viewmodels:ItemViewModel">
             <StackPanel>
-                <TextBlock Margin="0,8"
-                           Style="{ThemeResource TitleTextBlockStyle}"
-                           HorizontalAlignment="Left"
-                           Text="{x:Bind BillAmount}" />
-                <TextBlock Margin="0,9"
-                           HorizontalAlignment="Left"
-                           MaxWidth="560"
-                           Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind Text}" />
+                <ListView x:Name="OrderDetailListView"
+                          ItemsSource="{x:Bind OrderDetails}"
+                          RelativePanel.Below="StaticLabelsForList"
+                          Height="300"
+                          CanReorderItems="False"
+                          SelectedIndex="-1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:OrderDetail">
+                            <TextBlock Margin="0,8"
+                                       Style="{ThemeResource TitleTextBlockStyle}"
+                                       HorizontalAlignment="Left"
+                                       Text="{x:Bind ProductName}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>

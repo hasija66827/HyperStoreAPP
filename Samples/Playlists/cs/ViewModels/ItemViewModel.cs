@@ -11,8 +11,8 @@ namespace MasterDetailApp.ViewModels
 {
     public class ItemViewModel
     {
-        public string CustomerMobileNo { get; set; }
         public float BillAmount { get; set; }
+        public string CustomerMobileNo { get; set; }
         public string OrderDate
         {
             get
@@ -22,19 +22,19 @@ namespace MasterDetailApp.ViewModels
             }
         }
         public DateTime orderDate;
-
-        public string Text { get; set; }
-        public ItemViewModel()
-        {
+        public float PaidAmount { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
+        public ItemViewModel(){
         }
 
-        public static ItemViewModel FromItem(Item item)
+        public static ItemViewModel FromItem(Order item)
         {
             var viewModel = new ItemViewModel();
-            viewModel.Text = "hasija Rocks";
-            viewModel.CustomerMobileNo = item.CustomerMobileNo;
             viewModel.BillAmount = item.BillAmount;
-            viewModel.orderDate = item.orderDate;
+            viewModel.CustomerMobileNo = item.CustomerMobileNo;
+            viewModel.orderDate = item.OrderDate;
+            viewModel.PaidAmount = item.PaidAmount;
+            viewModel.OrderDetails=item.OrderDetails;
             return viewModel;
         }
     }
