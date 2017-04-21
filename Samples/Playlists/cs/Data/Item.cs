@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DatabaseModel;
 namespace MasterDetailApp.Data
 {
     public class Order
@@ -20,9 +20,23 @@ namespace MasterDetailApp.Data
             {
                 if (this._orderDetails.Count == 0)
                 {
-                    //TODO: make database call with a customerOrderID
-                    this._orderDetails.Add(new OrderDetail());
-                    this._orderDetails.Add(new OrderDetail());
+                    var db = new RetailerContext();
+                    // #perf Please retrieve required attribute from the database only.
+                    //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
+                    var customerOrderProducts = db.CustomerOrderProducts
+                     .Where(customerOrderProduct => customerOrderProduct.CustomerOrderId == this.CustomerOrderId).ToList();
+                    var products = db.Products.ToList();
+                     this._orderDetails=customerOrderProducts.Join(products,
+                                                        customerOrderProduct => customerOrderProduct.ProductId,
+                                                        product => product.ProductId,
+                                                        (customerOrderProduct, product) => new OrderDetail(
+                                                                        customerOrderProduct.DiscountPerSnapShot,
+                                                                        customerOrderProduct.DisplayCostSnapShot,
+                                                                        product.Name,
+                                                                        customerOrderProduct.QuantityPurchased)).ToList();
+   
+                    // Explicitly converting each record in customerOrderProduct into OrderDetail.
+                    //customerOrderProducts.ForEach(cop => this._orderDetails.Add((OrderDetail)cop));
                 }
                 return this._orderDetails;
             }
@@ -39,16 +53,33 @@ namespace MasterDetailApp.Data
     }
     public class OrderDetail
     {
-        public float DisplayPriceSnapShot { get; set; }
         public float DiscountPerSnapShot { get; set; }
+        public float DisplayPriceSnapShot { get; set; }
         public string ProductName { get; set; }
         public int QtyPurchased { get; set; }
-        public OrderDetail() {
+        public OrderDetail()
+        {
             DisplayPriceSnapShot = 0;
             DiscountPerSnapShot = 0;
             ProductName = "xxxxx";
             QtyPurchased = 0;
         }
-
+        public OrderDetail(float discountPerSnapShot, float displayPriceSnapshot, string productName, int qtyPurchased)
+        {
+            this.DiscountPerSnapShot = discountPerSnapShot;
+            this.DisplayPriceSnapShot = displayPriceSnapshot;
+            this.ProductName = productName;
+            this.QtyPurchased = qtyPurchased;
+        }
+        //#not required 
+        public static explicit operator MasterDetailApp.Data.OrderDetail(DatabaseModel.CustomerOrderProduct c)
+        {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.DiscountPerSnapShot = c.DiscountPerSnapShot;
+            orderDetail.DisplayPriceSnapShot = c.DisplayCostSnapShot;
+            orderDetail.QtyPurchased = c.QuantityPurchased;
+            orderDetail.ProductName = "Intializing";
+            return orderDetail;
+        }
     }
 }

@@ -21,6 +21,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -28,9 +30,18 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind CustomerMobileNo}"
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                
                 <TextBlock Text="{x:Bind OrderDate}"
                            Grid.Column="1"
+                           Margin="12,1,0,0"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                <TextBlock Text="{x:Bind BillAmount}"
+                           Grid.Column="1"
+                           Grid.Row="2"
+                           Margin="12,1,0,0"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                <TextBlock Text="{x:Bind PaidAmount}"
+                           Grid.Column="1"
+                           Grid.Row="3"
                            Margin="12,1,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </Grid>
@@ -46,10 +57,16 @@
                           SelectedIndex="-1">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="data:OrderDetail">
+                            <StackPanel>
                             <TextBlock Margin="0,8"
                                        Style="{ThemeResource TitleTextBlockStyle}"
                                        HorizontalAlignment="Left"
                                        Text="{x:Bind ProductName}" />
+                            <TextBlock Margin="0,8"
+                                       Style="{ThemeResource TitleTextBlockStyle}"
+                                       HorizontalAlignment="Left"
+                                       Text="{x:Bind QtyPurchased}" />
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

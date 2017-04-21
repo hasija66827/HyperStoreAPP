@@ -24,7 +24,8 @@ namespace MasterDetailApp.ViewModels
         public DateTime orderDate;
         public float PaidAmount { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
-        public ItemViewModel(){
+        public ItemViewModel()
+        {
         }
 
         public static ItemViewModel FromItem(Order item)
@@ -34,7 +35,7 @@ namespace MasterDetailApp.ViewModels
             viewModel.CustomerMobileNo = item.CustomerMobileNo;
             viewModel.orderDate = item.OrderDate;
             viewModel.PaidAmount = item.PaidAmount;
-            viewModel.OrderDetails=item.OrderDetails;
+            viewModel.OrderDetails = item.OrderDetails;
             return viewModel;
         }
     }
