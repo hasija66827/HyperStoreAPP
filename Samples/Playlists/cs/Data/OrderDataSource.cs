@@ -9,7 +9,6 @@ namespace MasterDetailApp.Data
 {
     public class OrderDataSource
     {
-        /*#perf: Highly Database intensive operation and is called eevery time when we navigate to this page*/
         public static List<Order> GetAllOrders()
         {
             List<CustomerOrder> _customerOrders = new List<CustomerOrder>();

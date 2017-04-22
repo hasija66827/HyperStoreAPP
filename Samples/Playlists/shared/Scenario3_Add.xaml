@@ -102,13 +102,25 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              Width="320" />
+                              Width="300" />
             <ColumnDefinition x:Name="DetailColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="My Orders"
-                   Margin="12,8,8,8"
-                   Style="{ThemeResource TitleTextBlockStyle}" />
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Orders"
+                       Style="{ThemeResource TitleTextBlockStyle}" />
+            <AutoSuggestBox HorizontalAlignment="Left"
+                        x:Name="MobileNumberASB"
+                        Height="30"
+                        TextMemberPath="MobileNo"
+                        DisplayMemberPath="MobileNo"
+                        PlaceholderText="Search By MobNo (e.g. 9632166827)"
+                        TextChanged="MobileNumberASB_TextChanged"
+                        QueryIcon="Find"
+                        QuerySubmitted="MobileNumberASB_QuerySubmitted"
+                        MinWidth="256"
+                        Width="280" />
+        </StackPanel>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"
@@ -135,6 +147,7 @@
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
+
     </Grid>
 </Page>
     

@@ -103,6 +103,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BillingScenario\Billing_Payment.cs" />
+    <Compile Include="Data\MobileNumberDataSource.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="Data\OrderDataSource.cs" />
     <Compile Include="Migrations\20170415181816_First.cs" />
