@@ -1,5 +1,4 @@
 using MasterDetailApp.Data;
-using MasterDetailApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +20,7 @@ namespace MasterDetailApp
 {
     public sealed partial class MasterDetailPage : Page
     {
-        private ItemViewModel _lastSelectedItem;
+        private Order _lastSelectedItem;
 
         public MasterDetailPage()
         {
@@ -32,23 +31,10 @@ namespace MasterDetailApp
         {
             base.OnNavigatedTo(e);
 
-            var items = MasterListView.ItemsSource as List<ItemViewModel>;
-            items = new List<ItemViewModel>();
-
-            foreach (var item in ItemsDataSource.GetAllOrders())
-            {
-                items.Add(ItemViewModel.FromItem(item));
-            }
-
+            var items = MasterListView.ItemsSource as List<Order>;
+            items = new List<Order>();
+            items = ItemsDataSource.GetAllOrders();
             MasterListView.ItemsSource = items;
-
-            if (e.Parameter != null)
-            {
-                // Parameter is item ID
-                var id = (int)e.Parameter;
-                _lastSelectedItem =
-                    items.Where((item) => item.CustomerMobileNo == item.CustomerMobileNo).FirstOrDefault();
-            }
 
             UpdateForVisualState(AdaptiveStates.CurrentState);
 
@@ -76,13 +62,11 @@ namespace MasterDetailApp
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = (ItemViewModel)e.ClickedItem;
+            var clickedItem = (Order)e.ClickedItem;
             _lastSelectedItem = clickedItem;
-
 
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
-
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DatabaseModel;
+using Windows.Globalization.DateTimeFormatting;
+
 namespace MasterDetailApp.Data
 {
     public class Order
@@ -12,7 +14,15 @@ namespace MasterDetailApp.Data
         public float BillAmount { get; set; }
         public string CustomerMobileNo { get; set; }
         public float PaidAmount { get; set; }
-        public DateTime OrderDate { get; set; }
+        public string OrderDate
+        {
+            get
+            {
+                var formatter = new DateTimeFormatter("hour minute");
+                return formatter.Format(this._orderDate);
+            }
+        }
+        private DateTime _orderDate;
         private List<OrderDetail> _orderDetails;
         public List<OrderDetail> OrderDetails
         {
@@ -21,7 +31,7 @@ namespace MasterDetailApp.Data
                 if (this._orderDetails.Count == 0)
                 {
                     var db = new RetailerContext();
-                    // #perf Please retrieve required attribute from the database only.
+                    // #perf Please retrieve required attribute from the database only and if possible merge the three query into one.
                     //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
                     var customerOrderProducts = db.CustomerOrderProducts
                      .Where(customerOrderProduct => customerOrderProduct.CustomerOrderId == this.CustomerOrderId).ToList();
@@ -34,9 +44,6 @@ namespace MasterDetailApp.Data
                                                                         customerOrderProduct.DisplayCostSnapShot,
                                                                         product.Name,
                                                                         customerOrderProduct.QuantityPurchased)).ToList();
-   
-                    // Explicitly converting each record in customerOrderProduct into OrderDetail.
-                    //customerOrderProducts.ForEach(cop => this._orderDetails.Add((OrderDetail)cop));
                 }
                 return this._orderDetails;
             }
@@ -46,7 +53,7 @@ namespace MasterDetailApp.Data
             this.CustomerOrderId = customerOrderId;
             this.BillAmount = billAmount;
             this.CustomerMobileNo = customerMobileNo;
-            this.OrderDate = orderDate;
+            this._orderDate = orderDate;
             this.PaidAmount = paidAmount;
             this._orderDetails = new List<OrderDetail>();
         }
@@ -70,16 +77,6 @@ namespace MasterDetailApp.Data
             this.DisplayPriceSnapShot = displayPriceSnapshot;
             this.ProductName = productName;
             this.QtyPurchased = qtyPurchased;
-        }
-        //#not required 
-        public static explicit operator MasterDetailApp.Data.OrderDetail(DatabaseModel.CustomerOrderProduct c)
-        {
-            OrderDetail orderDetail = new OrderDetail();
-            orderDetail.DiscountPerSnapShot = c.DiscountPerSnapShot;
-            orderDetail.DisplayPriceSnapShot = c.DisplayCostSnapShot;
-            orderDetail.QtyPurchased = c.QuantityPurchased;
-            orderDetail.ProductName = "Intializing";
-            return orderDetail;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MasterDetailApp.Data
     public class ItemsDataSource
     {
         /*#perf: Highly Database intensive operation and is called eevery time when we navigate to this page*/
-        public static IList<Order> GetAllOrders()
+        public static List<Order> GetAllOrders()
         {
             List<CustomerOrder> _customerOrders = new List<CustomerOrder>();
             List<Customer> _customers = new List<Customer>();
@@ -19,10 +19,12 @@ namespace MasterDetailApp.Data
                 _customerOrders = db.CustomerOrders.ToList();
                 _customers = db.Customers.ToList();
             }
-            var query = _customers.Join(_customerOrders,
+            var query = _customers
+                        .Join(_customerOrders,
                                 customer => customer.CustomerId,
                                 customerOrder => customerOrder.CustomerId,
-                                (customer, customerOrder) => new Order(customerOrder.CustomerOrderId, customerOrder.BillAmount,customer.MobileNo, customerOrder.OrderDate, customerOrder.PaidAmount));
+                                (customer, customerOrder) => new Order(customerOrder.CustomerOrderId, customerOrder.BillAmount, customer.MobileNo, customerOrder.OrderDate, customerOrder.PaidAmount))
+                        .OrderByDescending(order => order.OrderDate);
             return query.ToList();
         }
     }

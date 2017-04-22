@@ -131,7 +131,6 @@
     <Compile Include="Scenario5_Clear.xaml.cs">
       <DependentUpon>Scenario5_Clear.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -211,7 +210,9 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
