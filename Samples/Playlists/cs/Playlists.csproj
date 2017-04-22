@@ -102,29 +102,27 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Billing_Payment.cs" />
-    <Compile Include="Data\Item.cs" />
-    <Compile Include="Data\ItemsDataSource.cs" />
+    <Compile Include="BillingScenario\Billing_Payment.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="Data\OrderDataSource.cs" />
     <Compile Include="Migrations\20170415181816_First.cs" />
     <Compile Include="Migrations\20170415181816_First.designer.cs">
       <DependentUpon>20170415181816_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
-    <Compile Include="ProductViewModel.cs" />
-    <Compile Include="Billing_ASB.cs" />
-    <Compile Include="Billing_VerifyCustomer.cs" />
-    <Compile Include="DBModel.cs" />
-    <Compile Include="ProductDataSource.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="BillingScenario\Billing_ASB.cs" />
+    <Compile Include="BillingScenario\Billing_VerifyCustomer.cs" />
+    <Compile Include="DBModel\DBModel.cs" />
+    <Compile Include="Data\ProductDataSource.cs" />
     <Compile Include="Product.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="Utility\Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
-    <Compile Include="BillingScenario.xaml.cs" />
+    <Compile Include="BillingScenario\BillingScenario.xaml.cs" />
     <Compile Include="Scenario2_Display.xaml.cs">
       <DependentUpon>Scenario2_Display.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scenario3_Add.xaml.cs">
-      <DependentUpon>Scenario3_Add.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ReturnScenario\ReturnScenario.xaml.cs" />
     <Compile Include="Scenario4_Remove.xaml.cs">
       <DependentUpon>Scenario4_Remove.xaml</DependentUpon>
     </Compile>
@@ -210,9 +208,7 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

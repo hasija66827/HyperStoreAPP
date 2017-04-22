@@ -33,7 +33,7 @@ namespace MasterDetailApp
 
             var items = MasterListView.ItemsSource as List<Order>;
             items = new List<Order>();
-            items = ItemsDataSource.GetAllOrders();
+            items = OrderDataSource.GetAllOrders();
             MasterListView.ItemsSource = items;
 
             UpdateForVisualState(AdaptiveStates.CurrentState);
@@ -89,5 +89,6 @@ namespace MasterDetailApp
                 DetailContentPresenter.ContentTransitions.Clear();
             }
         }
+
     }
 }

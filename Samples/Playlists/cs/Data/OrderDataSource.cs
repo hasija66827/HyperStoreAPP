@@ -7,7 +7,7 @@ using SDKTemplate;
 using DatabaseModel;
 namespace MasterDetailApp.Data
 {
-    public class ItemsDataSource
+    public class OrderDataSource
     {
         /*#perf: Highly Database intensive operation and is called eevery time when we navigate to this page*/
         public static List<Order> GetAllOrders()

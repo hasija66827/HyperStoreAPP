@@ -67,6 +67,7 @@ namespace SDKTemplate
         }
         public Int32 AddToCart(DatabaseModel.Product DBProduct)
         {
+            //TODO: Implicityly convert the product of DB into Product of view model
             var product = new Product(DBProduct.ProductId, DBProduct.BarCode,DBProduct.Name, DBProduct.DisplayPrice, DBProduct.DiscountPer);
             Int32 index = FirstMatchingProductIndex(product);
             // If product does not exist

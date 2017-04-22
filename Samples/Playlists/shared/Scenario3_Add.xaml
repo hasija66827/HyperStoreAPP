@@ -21,7 +21,6 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -32,15 +31,15 @@
                 <TextBlock Text="{x:Bind OrderDate}"
                            Grid.Column="1"
                            Margin="12,1,0,0"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBlock Text="{x:Bind BillAmount}"
-                           Grid.Column="1"
+                           Grid.Column="0"
                            Grid.Row="2"
                            Margin="12,1,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock Text="{x:Bind PaidAmount}"
                            Grid.Column="1"
-                           Grid.Row="3"
+                           Grid.Row="2"
                            Margin="12,1,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </Grid>
@@ -107,7 +106,7 @@
             <ColumnDefinition x:Name="DetailColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="My Items"
+        <TextBlock Text="My Orders"
                    Margin="12,8,8,8"
                    Style="{ThemeResource TitleTextBlockStyle}" />
         <ListView x:Name="MasterListView"

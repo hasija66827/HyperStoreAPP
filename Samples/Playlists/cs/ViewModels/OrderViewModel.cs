@@ -11,14 +11,17 @@ namespace MasterDetailApp.Data
     public class Order
     {
         public Guid CustomerOrderId { get; set; }
-        public float BillAmount { get; set; }
+        public string BillAmount { get { return "Bill \u20b9" + this._billAmount; } }
+        private float _billAmount;
+
         public string CustomerMobileNo { get; set; }
-        public float PaidAmount { get; set; }
+        public string PaidAmount{ get { return "Paid \u20b9" + this._paidAmount; } }
+        private float _paidAmount;
         public string OrderDate
         {
             get
             {
-                var formatter = new DateTimeFormatter("hour minute");
+                var formatter = new DateTimeFormatter("day month hour minute");
                 return formatter.Format(this._orderDate);
             }
         }
@@ -36,14 +39,14 @@ namespace MasterDetailApp.Data
                     var customerOrderProducts = db.CustomerOrderProducts
                      .Where(customerOrderProduct => customerOrderProduct.CustomerOrderId == this.CustomerOrderId).ToList();
                     var products = db.Products.ToList();
-                     this._orderDetails=customerOrderProducts.Join(products,
-                                                        customerOrderProduct => customerOrderProduct.ProductId,
-                                                        product => product.ProductId,
-                                                        (customerOrderProduct, product) => new OrderDetail(
-                                                                        customerOrderProduct.DiscountPerSnapShot,
-                                                                        customerOrderProduct.DisplayCostSnapShot,
-                                                                        product.Name,
-                                                                        customerOrderProduct.QuantityPurchased)).ToList();
+                    this._orderDetails = customerOrderProducts.Join(products,
+                                                       customerOrderProduct => customerOrderProduct.ProductId,
+                                                       product => product.ProductId,
+                                                       (customerOrderProduct, product) => new OrderDetail(
+                                                                       customerOrderProduct.DiscountPerSnapShot,
+                                                                       customerOrderProduct.DisplayCostSnapShot,
+                                                                       product.Name,
+                                                                       customerOrderProduct.QuantityPurchased)).ToList();
                 }
                 return this._orderDetails;
             }
@@ -51,10 +54,10 @@ namespace MasterDetailApp.Data
         public Order(Guid customerOrderId, float billAmount, string customerMobileNo, DateTime orderDate, float paidAmount)
         {
             this.CustomerOrderId = customerOrderId;
-            this.BillAmount = billAmount;
+            this._billAmount = billAmount;
             this.CustomerMobileNo = customerMobileNo;
             this._orderDate = orderDate;
-            this.PaidAmount = paidAmount;
+            this._paidAmount = paidAmount;
             this._orderDetails = new List<OrderDetail>();
         }
     }
