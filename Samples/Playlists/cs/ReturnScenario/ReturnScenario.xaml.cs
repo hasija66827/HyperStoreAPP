@@ -25,62 +25,29 @@ namespace MasterDetailApp
         public MasterDetailPage()
         {
             this.InitializeComponent();
-            MobileNumberDataSource.RetrieveMobileNumberAsync();
         }
 
-        /// <summary>
-        /// This event gets fired anytime the text in the TextBox gets updated.
-        /// It is recommended to check the reason for the text changing by checking against args.Reason
-        /// </summary>
-        /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
-        /// <param name="args">The event arguments.</param>
-        private void MobileNumberASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void SetMasterListViewItemSource(DatabaseModel.Customer m = null)
         {
-            // We only want to get results when it was a user typing, 
-            // otherwise we assume the value got filled in by TextMemberPath 
-            // or the handler for SuggestionChosen
-            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
-            {
-                var matchingMobileNumber = MobileNumberDataSource.GetMatchingProducts(sender.Text);
-                sender.ItemsSource = matchingMobileNumber.ToList();
-            }
-        }
-
-        /// <summary>
-        /// This event gets fired when:
-        ///     * a user presses Enter while focus is in the TextBox
-        ///     * a user clicks or tabs to and invokes the query button (defined using the QueryIcon API)
-        ///     * a user presses selects (clicks/taps/presses Enter) a suggestion
-        /// </summary>
-        /// <param name="sender">The AutoSuggestBox that fired the event.</param>
-        /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
-        /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void MobileNumberASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
-        {
-            if (args.ChosenSuggestion != null)
-            {
-                // User selected an item, take an action on it here
-//                SelectProduct((DatabaseModel.Product)args.ChosenSuggestion);
-            }
+            if (m == null)
+                MasterListView.ItemsSource = OrderDataSource.AllOrders;
             else
             {
-                // Do a fuzzy search on the query text.
-                var matchingProducts = MobileNumberDataSource.GetMatchingProducts(args.QueryText);
-
-                // Choose the first match, or clear the selection if there are no matches.
-  //              SelectProduct(matchingProducts.FirstOrDefault());
+                var items = OrderDataSource.RetrieveOrdersByMobileNumber(m.MobileNo);
+                MasterListView.ItemsSource = items;
             }
         }
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var items = MasterListView.ItemsSource as List<Order>;
-            items = new List<Order>();
             /*#perf: Highly Database intensive operation and is called eevery time when we navigate to this page*/
-            items = OrderDataSource.GetAllOrders();
-            MasterListView.ItemsSource = items;
+            //#Optimization can be, if no customer has been recently added, then don't refetch again. Or with database updation we can update our all the data source as well, i.e our cache.
+            // Hence we can call this function one time only in the constructor, instead of calling it everytime on page navigation. 
+            OrderDataSource.RetrieveAllOrdersAsync();
+            CustomerDataSource.RetrieveMobileNumberAsync();
+
+            SetMasterListViewItemSource();
 
             UpdateForVisualState(AdaptiveStates.CurrentState);
 
@@ -97,8 +64,6 @@ namespace MasterDetailApp
         private void UpdateForVisualState(VisualState newState, VisualState oldState = null)
         {
             var isNarrow = newState == NarrowState;
-
-
             EntranceNavigationTransitionInfo.SetIsTargetElement(MasterListView, isNarrow);
             if (DetailContentPresenter != null)
             {
@@ -110,7 +75,6 @@ namespace MasterDetailApp
         {
             var clickedItem = (Order)e.ClickedItem;
             _lastSelectedItem = clickedItem;
-
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }

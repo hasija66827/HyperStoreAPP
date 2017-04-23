@@ -10,11 +10,6 @@ namespace DatabaseModel
         private static List<Product> _products = new List<Product>();
         public static void RetrieveProductDataAsync()
         {
-            // Don't need to do this more than once.
-            if (_products.Count > 0)
-            {
-                return;
-            }
             using (var db = new RetailerContext())
             {
                 // Retrieving data from the database synchronously.

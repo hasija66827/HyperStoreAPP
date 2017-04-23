@@ -163,6 +163,17 @@ namespace DatabaseModel
             this.Name = "c";
             this.WalletBalance = 0;
         }
+        /*#useless Used to set the default customer*/
+        public Customer(string mobileNumber)
+        {
+            this.CustomerId = new Guid(SDKTemplate.Utility.DEFAULT_CUSTOMER_GUID); ;
+            this.Address = "aaaaaa";
+            this.IsVerifiedCustomer = false;
+            this.MobileNo = mobileNumber;
+            this.Name = "c";
+            this.WalletBalance = 0;
+        }
+
     }
 
     public class CustomerOrder

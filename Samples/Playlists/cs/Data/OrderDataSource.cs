@@ -9,10 +9,13 @@ namespace MasterDetailApp.Data
 {
     public class OrderDataSource
     {
-        public static List<Order> GetAllOrders()
+        private static List<Order> _allOrders;
+        public static List<Order> AllOrders { get { return _allOrders; } }
+        // Make it as an constructor
+        public static void RetrieveAllOrdersAsync()
         {
             List<CustomerOrder> _customerOrders = new List<CustomerOrder>();
-            List<Customer> _customers = new List<Customer>();
+            List<DatabaseModel.Customer> _customers = new List<DatabaseModel.Customer>();
             using (var db = new RetailerContext())
             {
                 _customerOrders = db.CustomerOrders.ToList();
@@ -24,7 +27,12 @@ namespace MasterDetailApp.Data
                                 customerOrder => customerOrder.CustomerId,
                                 (customer, customerOrder) => new Order(customerOrder.CustomerOrderId, customerOrder.BillAmount, customer.MobileNo, customerOrder.OrderDate, customerOrder.PaidAmount))
                         .OrderByDescending(order => order.OrderDate);
-            return query.ToList();
+            _allOrders = query.ToList();
+        }
+        public static List<Order> RetrieveOrdersByMobileNumber(string MobileNumber)
+        {
+            var orderByMobileNumber = _allOrders.Where(order => order.CustomerMobileNo == MobileNumber);
+            return orderByMobileNumber.ToList();
         }
     }
 }
