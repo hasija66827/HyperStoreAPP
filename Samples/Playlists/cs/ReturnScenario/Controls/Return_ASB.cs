@@ -15,28 +15,26 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
+using MasterDetailApp.ViewModel;
 namespace MasterDetailApp
 {
     public sealed partial class MasterDetailPage : Page
-    { 
+    {
         /// <summary>
         /// This event gets fired anytime the text in the TextBox gets updated.
         /// It is recommended to check the reason for the text changing by checking against args.Reason
         /// </summary>
         /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
         /// <param name="args">The event arguments.</param>
-        private void MobileNumberASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void CustomerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             // We only want to get results when it was a user typing, 
             // otherwise we assume the value got filled in by TextMemberPath 
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var matchingMobileNumber = CustomerDataSource.GetMatchingItems(sender.Text);
-                sender.ItemsSource = matchingMobileNumber.ToList();
-                if (sender.Text == "")
-                    SetMasterListViewItemSource();
+                var matchingCustomers = CustomerDataSource.GetMatchingCustomers(sender.Text);
+                sender.ItemsSource = matchingCustomers.ToList();
             }
         }
 
@@ -49,20 +47,43 @@ namespace MasterDetailApp
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void MobileNumberASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void CustomerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item, take an action on it here
-                SetMasterListViewItemSource((DatabaseModel.Customer)args.ChosenSuggestion);
+                var choosenCustomer = (CustomerViewModel)args.ChosenSuggestion;
+                UpdateMasterListViewItemSource(choosenCustomer);
+                ShowMasterList(true);
+            }
+            else if (CustomerASB.Text == "")
+            {   //If no text present then show all the orders
+                UpdateMasterListViewItemSource(null);
+                ShowMasterList(true);
             }
             else
             {
-                // Do a fuzzy search on the query text.
-                var matchingMobileNo = CustomerDataSource.GetMatchingItems(args.QueryText);
-                // Choose the first match if it is available.
-                if (matchingMobileNo.Count() != 0)
-                    SetMasterListViewItemSource(matchingMobileNo.First());
+                // if a text is present, find best possible match.
+                var matchingCustomer = CustomerDataSource.GetMatchingCustomers(args.QueryText).FirstOrDefault();
+                UpdateMasterListViewItemSource(matchingCustomer);
+                ShowMasterList((matchingCustomer == null) ? false : true);
+            }
+        }
+        /// <summary>
+        /// Display details of the specified Product.
+        /// </summary>
+        /// <param name="Product"></param>
+        private void ShowMasterList(bool IsOrderListFull)
+        {
+            if (!IsOrderListFull)
+            {
+                NoResults.Visibility = Visibility.Visible;
+                MasterListView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                NoResults.Visibility = Visibility.Collapsed;
+                MasterListView.Visibility = Visibility.Visible;
             }
         }
     }

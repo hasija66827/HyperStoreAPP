@@ -102,21 +102,23 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="BillingScenario\Billing_Payment.cs" />
-    <Compile Include="Data\CustomerDataSource.cs" />
-    <Compile Include="ReturnScenario\Return_ASB.cs" />
-    <Compile Include="ViewModels\OrderViewModel.cs" />
-    <Compile Include="Data\OrderDataSource.cs" />
+    <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
+    <Compile Include="ReturnScenario\Controls\Return_MasterListView.cs" />
+    <Compile Include="ReturnScenario\DataSource\CustomerDataSource.cs" />
+    <Compile Include="ReturnScenario\Controls\Return_ASB.cs" />
+    <Compile Include="ReturnScenario\ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ReturnScenario\ViewModels\OrderViewModel.cs" />
+    <Compile Include="ReturnScenario\DataSource\OrderDataSource.cs" />
     <Compile Include="Migrations\20170415181816_First.cs" />
     <Compile Include="Migrations\20170415181816_First.designer.cs">
       <DependentUpon>20170415181816_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
-    <Compile Include="BillingScenario\Billing_ASB.cs" />
-    <Compile Include="BillingScenario\Billing_VerifyCustomer.cs" />
+    <Compile Include="BillingScenario\ViewModels\ProductViewModel.cs" />
+    <Compile Include="BillingScenario\Controls\Billing_ASB.cs" />
+    <Compile Include="BillingScenario\Controls\Billing_VerifyCustomer.cs" />
     <Compile Include="DBModel\DBModel.cs" />
-    <Compile Include="Data\ProductDataSource.cs" />
+    <Compile Include="BillingScenario\DataSource\ProductDataSource.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
@@ -210,7 +212,9 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

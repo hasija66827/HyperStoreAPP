@@ -20,37 +20,21 @@ namespace MasterDetailApp
 {
     public sealed partial class MasterDetailPage : Page
     {
-        private Order _lastSelectedItem;
-
         public MasterDetailPage()
         {
             this.InitializeComponent();
         }
-
-        private void SetMasterListViewItemSource(DatabaseModel.Customer m = null)
-        {
-            if (m == null)
-                MasterListView.ItemsSource = OrderDataSource.AllOrders;
-            else
-            {
-                var items = OrderDataSource.RetrieveOrdersByMobileNumber(m.MobileNo);
-                MasterListView.ItemsSource = items;
-            }
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             /*#perf: Highly Database intensive operation and is called eevery time when we navigate to this page*/
             //#Optimization can be, if no customer has been recently added, then don't refetch again. Or with database updation we can update our all the data source as well, i.e our cache.
             // Hence we can call this function one time only in the constructor, instead of calling it everytime on page navigation. 
-            OrderDataSource.RetrieveAllOrdersAsync();
-            CustomerDataSource.RetrieveMobileNumberAsync();
-
-            SetMasterListViewItemSource();
-
+            //Called every time on navigation
+            OrderDataSource.RetrieveOrdersAsync();
+            CustomerDataSource.RetrieveCustomersAsync();
+            MasterListView.ItemsSource = OrderDataSource.Orders;
             UpdateForVisualState(AdaptiveStates.CurrentState);
-
             // Don't play a content transition for first item load.
             // Sometimes, this content will be animated as part of the page transition.
             DisableContentTransitions();
@@ -70,26 +54,10 @@ namespace MasterDetailApp
                 EntranceNavigationTransitionInfo.SetIsTargetElement(DetailContentPresenter, !isNarrow);
             }
         }
-
-        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var clickedItem = (Order)e.ClickedItem;
-            _lastSelectedItem = clickedItem;
-            // Play a refresh animation when the user switches detail items.
-            EnableContentTransitions();
-        }
-
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             // Assure we are displaying the correct item. This is necessary in certain adaptive cases.
             MasterListView.SelectedItem = _lastSelectedItem;
-        }
-
-        private void EnableContentTransitions()
-        {
-            DetailContentPresenter.ContentTransitions.Clear();
-            // just for adding the transition on the content selection.
-            //DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
         }
 
         private void DisableContentTransitions()
@@ -99,6 +67,5 @@ namespace MasterDetailApp
                 DetailContentPresenter.ContentTransitions.Clear();
             }
         }
-
     }
 }
