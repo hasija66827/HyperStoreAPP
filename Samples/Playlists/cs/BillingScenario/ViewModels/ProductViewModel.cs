@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,91 +8,98 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    /*InotifyProperty changed ensures that whenever a property of the object changes 
+    we can notify that other dependent propoerty of object had been changed.*/
     public class ProductViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public float TotalValue
+        private Guid _productId;
+        public Guid ProductId { get { return this._productId; } }
+        private string _barCode;
+        public string BarCode { get { return this._barCode; } }
+        private string _name;
+        public string Name { get { return this._name; } }
+        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
+        public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
+        private float _displayPrice;
+        public float DisplayPrice { get { return Utility.RoundInt32(this._displayPrice); } }
+        private float _sellingPrice;
+        public float SellingPrice { get { return Utility.RoundInt32(this._sellingPrice); } }
+        private Int32 _quantity;
+        public Int32 Quantity
         {
-            get
-            {
-                double sum = 0;
-                foreach (Product item in _products)
-                    sum += item.NetValue;
-                return Utility.RoundInt32((float)sum);
-            }
-        }
-        public Int32 TotalProducts
-        {
-            get
-            {
-                Int32 count = 0;
-                foreach (Product item in _products)
-                    count += item.Quantity;
-                return count;
-            }
-        }
-        private float _additionalDiscountPer;
-        public float AdditionalDiscountPer
-        {
-            get { return this._additionalDiscountPer; }
+            get { return this._quantity; }
             set
             {
-                this._additionalDiscountPer = value;
-                this.OnPropertyChanged(nameof(AdditionalDiscountPer));
-                this.OnPropertyChanged(nameof(BillAmount));
+                this._quantity = (value >= 0) ? value : 0;
+                this._netValue = this._sellingPrice * this._quantity;
+                this.OnPropertyChanged(nameof(Quantity));
+                this.OnPropertyChanged(nameof(NetValue));
+                // Invoking event to notify change in quantity of the product.
+                QuantityPropertyChangedEvenHandler();
             }
         }
+        // This event will notify the subscriber of Product class that the Quantity Property has been changed.
+        public event QuantityPropertyChangedDelegate QuantityPropertyChangedEvenHandler;
 
-        public float BillAmount { get { return ((100 - this._additionalDiscountPer) * this.TotalValue)/100; } }
-
-        private ObservableCollection<Product> _products = new ObservableCollection<Product>();
-        public ObservableCollection<Product> Products { get { return this._products; } }
-
-        public ProductViewModel()
+        private float _discountAmount;
+        public float DiscountAmount
         {
-            _additionalDiscountPer = 0;
-        }
-        private Int32 FirstMatchingProductIndex(Product product)
-        {
-            Int32 i = 0;
-            foreach (var p in this._products)
+            get { return this._discountAmount; }
+            set
             {
-                if (p.BarCode == product.BarCode)
-                    return i;
-                i++;
+                float f = (float)Convert.ToDouble(value);
+                // Resetting discount amount to zero, if it is greater than costprice.
+                this._discountAmount = (f > 0 && f <= this._displayPrice) ? f : 0;
 
+                this._discountPer = (this._discountAmount / this._displayPrice) * 100;
+                this._sellingPrice = this._displayPrice - this._discountAmount;
+                this._netValue = this._sellingPrice * this._quantity;
+                this.OnPropertyChanged(nameof(DiscountAmount));
+                this.OnPropertyChanged(nameof(SellingPrice));
+                this.OnPropertyChanged(nameof(DiscountPer));
+                this.OnPropertyChanged(nameof(NetValue));
             }
-            return -1;
         }
-        public Int32 AddToCart(DatabaseModel.Product DBProduct)
+
+        private float _discountPer;
+        public float DiscountPer
         {
-            //TODO: Implicityly convert the product of DB into Product of view model
-            var product = new Product(DBProduct.ProductId, DBProduct.BarCode,DBProduct.Name, DBProduct.DisplayPrice, DBProduct.DiscountPer);
-            Int32 index = FirstMatchingProductIndex(product);
-            // If product does not exist
-            if (index == -1)
+            get { return Utility.RoundInt32(this._discountPer); }
+            set
             {
-                this._products.Add(product);
-                index = this._products.IndexOf(product);
-                // Subscribing a product instance to quantity changed property event handler.
-                product.QuantityPropertyChangedEvenHandler += TotalValue_TotalProductsPropertyChanged;
-                /* Will trigger the event QuantityPropertyChange
-                 and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
-                this._products[index].Quantity = 1;
+
+                float f = (float)Convert.ToDouble(value);
+                // Resetting discountPer to zero if it is greater than 100.
+                this._discountPer = (f >= 0 && f <= 100) ? f : 0;
+
+                this._discountAmount = (this._displayPrice * this._discountPer) / 100;
+                this._sellingPrice = this._displayPrice - this._discountAmount;
+                this._netValue = this._sellingPrice * this._quantity;
+                this.OnPropertyChanged(nameof(DiscountAmount));
+                this.OnPropertyChanged(nameof(SellingPrice));
+                this.OnPropertyChanged(nameof(DiscountPer));
+                this.OnPropertyChanged(nameof(NetValue));
             }
-            else
-            {
-                /* Will trigger the event QuantityPropertyChange
-                 and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
-                this._products[index].Quantity += 1;
-            }
-            return index;
         }
-        public void TotalValue_TotalProductsPropertyChanged()
+
+        private float _netValue;
+        public float NetValue { get { return Utility.RoundInt32(this._netValue); } }
+
+        
+        //TODO: #feature: consider weight parameter for non inventory items
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer)
         {
-            this.OnPropertyChanged(nameof(TotalProducts));
-            this.OnPropertyChanged(nameof(TotalValue));
-            this.OnPropertyChanged(nameof(BillAmount));
+            this._productId = productId;
+            this._barCode = barCode;
+            this._name = name;
+            this._displayPrice = displayPrice;
+            this._quantity = 0;
+            this._discountPer = discountPer;
+            this._discountAmount = (this._displayPrice*this._discountPer)/100;
+            this._sellingPrice = this._displayPrice - this._discountAmount;
+            this._netValue = this._sellingPrice * this._quantity;
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -101,4 +107,5 @@ namespace SDKTemplate
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
 }

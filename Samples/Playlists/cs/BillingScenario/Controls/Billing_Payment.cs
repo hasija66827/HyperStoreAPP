@@ -27,13 +27,13 @@ namespace SDKTemplate
         {
             var db = new RetailerContext();
             var customerOrder = new CustomerOrder(this._customer.CustomerId, 
-                this.ViewModel.BillAmount, 
-                this.ViewModel.BillAmount,
+                this.BillingViewModel.BillAmount, 
+                this.BillingViewModel.BillAmount,
                 this._customer.WalletBalance);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
             db.SaveChanges();
-            foreach (var product in ViewModel.Products)
+            foreach (var product in BillingViewModel.Products)
             {
                 // Adding each product purchased in the order into the Entity CustomerOrderProduct.
                 var customerOrderProduct = new CustomerOrderProduct(customerOrder.CustomerOrderId, 

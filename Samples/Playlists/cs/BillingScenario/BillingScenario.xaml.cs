@@ -24,19 +24,19 @@ namespace SDKTemplate
     public sealed partial class BillingScenario : Page
     {
         private MainPage rootPage = MainPage.Current;
-        public ProductViewModel ViewModel { get; set; }
+        public BillingViewModel BillingViewModel { get; set; }
         private Customer _customer;
-        private static DatabaseModel.Product _selectedProductInASB;
+        private static ProductViewModel _selectedProductInASB;
         public BillingScenario()
         {
             this.InitializeComponent();
-            this.ViewModel = new ProductViewModel();
+            this.BillingViewModel = new BillingViewModel();
             this.DateTimeLbl.Text = DateTime.Now.ToString();
             ProductDataSource.RetrieveProductDataAsync();
     
             AddToCart.Click += AddToCart_Click;
             CustomerMobileNumber.LostFocus += CustomerMobileNumber_LostFocus;
-            Verify.Click += AddEdit_Click;
+            AddCustomer.Click += AddCustomerClick;
             PayNow.Click += PayNow_Click;
             PayLater.Click += PayLater_Click;
             _selectedProductInASB = null;

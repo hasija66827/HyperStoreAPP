@@ -18,14 +18,14 @@ using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using DatabaseModel;
+
 namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
     {
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
-            Int32 index = this.ViewModel.AddToCart(_selectedProductInASB);
+            Int32 index = this.BillingViewModel.AddToCart(_selectedProductInASB);
             // Scrolling the list to the last element in the list. FYI: only works for distinct items.
             //TODO: Below loe is affecting the performance of addition of items in cart.
             //ListView.ScrollIntoView(ListView.Items[index]);
@@ -65,7 +65,7 @@ namespace SDKTemplate
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item, take an action on it here
-                SelectProduct((DatabaseModel.Product)args.ChosenSuggestion);
+                SelectProduct((ProductViewModel)args.ChosenSuggestion);
             }
             else
             {
@@ -81,7 +81,7 @@ namespace SDKTemplate
         /// Display details of the specified Product.
         /// </summary>
         /// <param name="Product"></param>
-        private void SelectProduct(DatabaseModel.Product product)
+        private void SelectProduct(ProductViewModel product)
         {
             if (product != null)
             {

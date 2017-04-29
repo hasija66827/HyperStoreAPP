@@ -37,8 +37,8 @@ namespace SDKTemplate
         public class NonInventoryViewModel : INotifyPropertyChanged
         {
             public event PropertyChangedEventHandler PropertyChanged = delegate { };
-            private ObservableCollection<Product> _products = new ObservableCollection<Product>();
-            public ObservableCollection<Product> Products { get { return this._products; } }
+            private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
+            public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
             public NonInventoryViewModel()
             {
             

@@ -118,8 +118,6 @@ namespace DatabaseModel
 
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
-        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
-        public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
 
         public Product(string code, string name, float displayPrice, float discountPer, bool isInventoryItem)
         {

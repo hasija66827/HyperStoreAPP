@@ -114,12 +114,12 @@
       <DependentUpon>20170415181816_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
-    <Compile Include="BillingScenario\ViewModels\ProductViewModel.cs" />
+    <Compile Include="BillingScenario\ViewModels\BillingViewModel.cs" />
     <Compile Include="BillingScenario\Controls\Billing_ASB.cs" />
     <Compile Include="BillingScenario\Controls\Billing_VerifyCustomer.cs" />
     <Compile Include="DBModel\DBModel.cs" />
     <Compile Include="BillingScenario\DataSource\ProductDataSource.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="BillingScenario\ViewModels\ProductViewModel.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
     <Compile Include="BillingScenario\BillingScenario.xaml.cs" />

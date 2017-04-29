@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace DatabaseModel
+
+namespace SDKTemplate
 {
     class ProductDataSource
     {
-        private static List<Product> _products = new List<Product>();
+        private static List<ProductViewModel> _products = new List<ProductViewModel>();
         public static void RetrieveProductDataAsync()
         {
-            using (var db = new RetailerContext())
+            using (var db = new DatabaseModel.RetailerContext())
             {
                 // Retrieving data from the database synchronously.
-                _products=db.Products.ToList();  
-                
+                _products = db.Products.Select(product => new ProductViewModel(
+                      product.ProductId,
+                      product.BarCode,
+                      product.Name,
+                      product.DisplayPrice,
+                      product.DiscountPer)).ToList();
+
             }
         }
 
@@ -23,7 +29,7 @@ namespace DatabaseModel
         /// </summary>
         /// <param name="query">The part of the name or company to look for</param>
         /// <returns>An ordered list of Product that matches the query</returns>
-        public static IEnumerable<Product> GetMatchingProducts(string query)
+        public static IEnumerable<ProductViewModel> GetMatchingProducts(string query)
         {
             return ProductDataSource._products
                 .Where(p => p.BarCode.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1 ||

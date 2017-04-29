@@ -33,7 +33,7 @@
                     </StackPanel>
                     <ListView x:Name="BillingListView" ItemsSource="{x:Bind ViewModel.Products}">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="local:Product">
+                            <DataTemplate x:DataType="local:ProductViewModel">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="Accept"/>
                                     <TextBlock Text="{x:Bind BarCode, Mode=OneWay}" Width="60" Margin="10,0,0,0"/>

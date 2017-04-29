@@ -23,7 +23,7 @@ namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
     {
-        private void AddEdit_Click(object sender, RoutedEventArgs e)
+        private void AddCustomerClick(object sender, RoutedEventArgs e)
         {
             //TODO: Ask for Customer Name and address.
             // Create a new customer and save the Customer.
@@ -35,7 +35,7 @@ namespace SDKTemplate
                 db.SaveChanges();
                 // Setting the customer for the Billing.
                 this._customer = customer;
-                ShowVerified();
+                ShowAddCustomer();
             }
         }
 
@@ -46,8 +46,8 @@ namespace SDKTemplate
             if (!Utility.IsMobileNumber(mobileNumber))
             {
                 CustomerMobNoTB.Text = "";
-                ShowUnverified();
-                Verify.Visibility = Visibility.Collapsed;
+                HideAddCustomer();
+                AddCustomer.Visibility = Visibility.Collapsed;
                 // Setting the empty customer
                 this._customer = new Customer();
                 //TODO: Show Notification Message
@@ -62,26 +62,26 @@ namespace SDKTemplate
                 {
                     // Setting the empty customer
                     this._customer = new Customer();
-                    ShowUnverified();
+                    HideAddCustomer();
                 }
                 else
                 {
                     // Setting the customer of the order.
                     this._customer = customers.First();
-                    ShowVerified();
+                    ShowAddCustomer();
                 }
             }
         }
-        public void ShowVerified()
+        public void ShowAddCustomer()
         {
-            Verify.Visibility = Visibility.Collapsed;
+            AddCustomer.Visibility = Visibility.Collapsed;
             IsVerified.Visibility = Visibility.Visible;
             CustomerNameTB.Text = this._customer.Name;
             CustomerWalletBalanceTB.Text = "\u20b9" + this._customer.WalletBalance;
         }
-        public void ShowUnverified()
+        public void HideAddCustomer()
         {
-            Verify.Visibility = Visibility.Visible;
+            AddCustomer.Visibility = Visibility.Visible;
             IsVerified.Visibility = Visibility.Collapsed;
             CustomerNameTB.Text = "";
             CustomerWalletBalanceTB.Text = "\u20b9" + "0";
