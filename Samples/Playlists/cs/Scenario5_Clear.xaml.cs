@@ -16,36 +16,69 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
     public sealed partial class Scenario5_Clear : Page
     {
-        private MainPage rootPage = MainPage.Current;
-
         public Scenario5_Clear()
         {
             this.InitializeComponent();
         }
-
-        /// <summary>
-        /// Clears the playlist picked by the user in the FilePicker
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        async private void PickPlaylistButton_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Playlist playlist = await rootPage.PickPlaylistAsync();
+            base.OnNavigatedTo(e);
+            /*#perf: Highly Database intensive operation and is called eevery time when we navigate to this page*/
+            //#Optimization can be, if no customer has been recently added, then don't refetch again. Or with database updation we can update our all the data source as well, i.e our cache.
+            // Hence we can call this function one time only in the constructor, instead of calling it everytime on page navigation. 
+            //Called every time on navigation
+            ProductDataSource.RetrieveProductDataAsync();
+            MasterListView.ItemsSource = ProductDataSource.Products;
+            UpdateForVisualState(AdaptiveStates.CurrentState);
+            // Don't play a content transition for first item load.
+            // Sometimes, this content will be animated as part of the page transition.
+            DisableContentTransitions();
+        }
 
-            if (playlist != null)
+        private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        {
+            UpdateForVisualState(e.NewState, e.OldState);
+        }
+
+        private void UpdateForVisualState(VisualState newState, VisualState oldState = null)
+        {
+            var isNarrow = newState == NarrowState;
+            EntranceNavigationTransitionInfo.SetIsTargetElement(MasterListView, isNarrow);
+            if (DetailContentPresenter != null)
             {
-                playlist.Files.Clear();
-
-                if (await rootPage.TrySavePlaylistAsync(playlist))
-                {
-                    this.rootPage.NotifyUser("Playlist cleared.", NotifyType.StatusMessage);
-                }
+                EntranceNavigationTransitionInfo.SetIsTargetElement(DetailContentPresenter, !isNarrow);
+            }
+        }
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Assure we are displaying the correct item. This is necessary in certain adaptive cases.
+            //MasterListView.SelectedItem = _lastSelectedItem;
+        }
+        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var clickedItem = (ProductViewModel)e.ClickedItem;
+            
+            // Play a refresh animation when the user switches detail items.
+            EnableContentTransitions();
+        }
+        private void EnableContentTransitions()
+        {
+            DetailContentPresenter.ContentTransitions.Clear();
+            // just for adding the transition on the content selection.
+            //DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
+        }
+        private void DisableContentTransitions()
+        {
+            if (DetailContentPresenter != null)
+            {
+                DetailContentPresenter.ContentTransitions.Clear();
             }
         }
     }

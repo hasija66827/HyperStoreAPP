@@ -9,6 +9,7 @@ namespace SDKTemplate
     class ProductDataSource
     {
         private static List<ProductViewModel> _products = new List<ProductViewModel>();
+        public static List<ProductViewModel> Products { get { return _products; } }
         public static void RetrieveProductDataAsync()
         {
             using (var db = new DatabaseModel.RetailerContext())
