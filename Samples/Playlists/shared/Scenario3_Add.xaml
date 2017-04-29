@@ -2,18 +2,23 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:MasterDetailApp"
+      xmlns:common="using:SDKTemplate"
       xmlns:data="using:MasterDetailApp.ViewModel"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       NavigationCacheMode="Enabled"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+ 
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
+        <common:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <common:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
+        
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="data:OrderViewModel">
             <Grid Margin="0,11,0,13">
@@ -54,16 +59,40 @@
                           CanReorderItems="False"
                           SelectedIndex="-1">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="data:OrderDetaiViewModel">
-                            <StackPanel>
-                            <TextBlock Margin="0,8"
-                                       Style="{ThemeResource TitleTextBlockStyle}"
-                                       HorizontalAlignment="Left"
-                                       Text="{x:Bind ProductName}" />
-                            <TextBlock Margin="0,8"
-                                       Style="{ThemeResource TitleTextBlockStyle}"
-                                       HorizontalAlignment="Left"
-                                       Text="{x:Bind QtyPurchased}" />
+                        <DataTemplate x:DataType="data:OrderDetailViewModel">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Accept" />
+                                <TextBlock Text="{x:Bind BarCode,Mode=OneTime}"
+                                           Width="60"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{x:Bind Name, Mode=OneTime}"
+                                           Width="160"
+                                           TextWrapping="NoWrap"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="DisplayPrice"
+                                           Text="{x:Bind DisplayPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="DiscountPer"
+                                           Text="{x:Bind DiscountPer, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="DiscountAmount"
+                                           Text="{x:Bind DiscountAmount, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="SellingPrice"
+                                           Text="{x:Bind SellingPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="Quantity"
+                                         Text="{x:Bind Quantity, Mode=OneTime}"
+                                         Width="100"
+                                         Margin="0,0,10,0" />
+                                <TextBlock x:Name="NetValue"
+                                           Text="{x:Bind NetValue, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

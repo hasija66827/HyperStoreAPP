@@ -42,16 +42,18 @@ namespace MasterDetailApp.Data
 
         // #perf Please retrieve required attribute from the database only and if possible merge the three query into one.
         //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
-        public static List<OrderDetaiViewModel> RetrieveOrderDetails(Guid customerOrderId)
+        public static List<OrderDetailViewModel> RetrieveOrderDetails(Guid customerOrderId)
         {
             var db = new DatabaseModel.RetailerContext();
             var customerOrderProducts = db.CustomerOrderProducts
                     .Where(customerOrderProduct => customerOrderProduct.CustomerOrderId == customerOrderId).ToList();
             var products = db.Products.ToList();
-            var orderDetails=customerOrderProducts.Join(products,
+            var orderDetails = customerOrderProducts.Join(products,
                                                        customerOrderProduct => customerOrderProduct.ProductId,
                                                        product => product.ProductId,
-                                                       (customerOrderProduct, product) => new OrderDetaiViewModel(
+                                                       (customerOrderProduct, product) => new OrderDetailViewModel(
+                                                                       product.ProductId,
+                                                                       product.BarCode,
                                                                        customerOrderProduct.DiscountPerSnapShot,
                                                                        customerOrderProduct.DisplayCostSnapShot,
                                                                        product.Name,

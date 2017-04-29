@@ -59,6 +59,13 @@ namespace SDKTemplate
         protected float _netValue;
         public virtual float NetValue { get { return Utility.RoundInt32(this._netValue); } }
 
+        public ProductViewModelBase()
+        {
+            _displayPrice = 0;
+            _discountPer = 0;
+            _name = "xxxxx";
+            _quantity = 0;
+        }
         public ProductViewModelBase(Guid productId, string barCode, string name, float displayPrice, float discountPer)
         {
             this._productId = productId;
@@ -67,9 +74,9 @@ namespace SDKTemplate
             this._displayPrice = displayPrice;
             this._quantity = 0;
             this._discountPer = discountPer;
-            this._discountAmount = (this._displayPrice*this._discountPer)/100;
+            this._discountAmount = (this._displayPrice * this._discountPer) / 100;
             this._sellingPrice = this._displayPrice - this._discountAmount;
             this._netValue = this._sellingPrice * this._quantity;
-        }   
+        }
     }
 }

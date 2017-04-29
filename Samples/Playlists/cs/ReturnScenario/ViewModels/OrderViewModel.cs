@@ -26,8 +26,8 @@ namespace MasterDetailApp.ViewModel
             }
         }
         private DateTime _orderDate;
-        private List<OrderDetaiViewModel> _orderDetails;
-        public List<OrderDetaiViewModel> OrderDetails
+        private List<OrderDetailViewModel> _orderDetails;
+        public List<OrderDetailViewModel> OrderDetails
         {
             get
             {
@@ -45,28 +45,17 @@ namespace MasterDetailApp.ViewModel
             this.CustomerMobileNo = customerMobileNo;
             this._orderDate = orderDate;
             this._paidAmount = paidAmount;
-            this._orderDetails = new List<OrderDetaiViewModel>();
+            this._orderDetails = new List<OrderDetailViewModel>();
         }
     }
-    public class OrderDetaiViewModel
+    public class OrderDetailViewModel:SDKTemplate.ProductViewModelBase
     {
-        public float DiscountPerSnapShot { get; set; }
-        public float DisplayPriceSnapShot { get; set; }
-        public string ProductName { get; set; }
-        public int QtyPurchased { get; set; }
-        public OrderDetaiViewModel()
+        public OrderDetailViewModel():base()
         {
-            DisplayPriceSnapShot = 0;
-            DiscountPerSnapShot = 0;
-            ProductName = "xxxxx";
-            QtyPurchased = 0;
         }
-        public OrderDetaiViewModel(float discountPerSnapShot, float displayPriceSnapshot, string productName, int qtyPurchased)
+        public OrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot, float displayPriceSnapshot, string name, int qtyPurchased):base(productId,barCode,name,displayPriceSnapshot,discountPerSnapShot)
         {
-            this.DiscountPerSnapShot = discountPerSnapShot;
-            this.DisplayPriceSnapShot = displayPriceSnapshot;
-            this.ProductName = productName;
-            this.QtyPurchased = qtyPurchased;
+            this._quantity = qtyPurchased;
         }
     }
 }
