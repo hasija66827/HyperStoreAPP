@@ -103,6 +103,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
+    <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
     <Compile Include="ReturnScenario\Controls\Return_MasterListView.cs" />
     <Compile Include="ReturnScenario\DataSource\CustomerDataSource.cs" />
     <Compile Include="ReturnScenario\Controls\Return_ASB.cs" />
