@@ -71,7 +71,7 @@ namespace SDKTemplate
         //TODO: #feature: consider weight parameter for non inventory items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer) : base(productId, barCode, name, displayPrice, discountPer)
+        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold) : base(productId, barCode, name, displayPrice, discountPer, threshold)
         {
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

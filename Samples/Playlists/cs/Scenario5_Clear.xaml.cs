@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
+
     public sealed partial class Scenario5_Clear : Page
     {
         public Scenario5_Clear()
@@ -32,6 +33,18 @@ namespace SDKTemplate
 
         private void ApplyFilter_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                IRange<float> discounPerRange = new IRange<float>(Convert.ToSingle(DiscountPerLB.Text), Convert.ToSingle(DiscountPerUB.Text));
+                IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
+                FilterProductCriteria filterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
+                UpdateMasterListViewItemSource(filterProductCriteria);
+            }
+            catch (Exception )
+            {
+                Console.Write(e.ToString());
+                //TODO: Invalid Percentage
+            }
             MasterListView.Visibility = Visibility.Visible;
             FilterPanel.Visibility = Visibility.Collapsed;
             FilterAppBarButton.Visibility = Visibility.Visible;
@@ -45,7 +58,18 @@ namespace SDKTemplate
             MasterListView.Visibility = Visibility.Collapsed;
             FilterPanel.Visibility = Visibility.Visible;
         }
-
+        //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
+        private void UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
+        {
+            //If filterProductCriteria is null then return whole list.
+            if (filterProductCriteria == null)
+                MasterListView.ItemsSource = ProductDataSource.Products;
+            else
+            {
+                var items = ProductDataSource.GetProducts(filterProductCriteria);
+                MasterListView.ItemsSource = items;
+            }
+        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
