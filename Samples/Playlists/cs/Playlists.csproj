@@ -104,6 +104,9 @@
     </Compile>
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
     <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
+    <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
+      <DependentUpon>RangeSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReturnScenario\Controls\Return_MasterListView.cs" />
     <Compile Include="ReturnScenario\DataSource\CustomerDataSource.cs" />
     <Compile Include="ReturnScenario\Controls\Return_ASB.cs" />
@@ -180,6 +183,10 @@
       <Link>Scenario5_Clear.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RangeSelectorControl\RangeSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

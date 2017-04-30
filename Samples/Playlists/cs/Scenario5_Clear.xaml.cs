@@ -26,7 +26,26 @@ namespace SDKTemplate
         public Scenario5_Clear()
         {
             this.InitializeComponent();
+            FilterAppBarButton.Click += FilterAppBarButton_Click;
+            ApplyFilter.Click += ApplyFilter_Click;
         }
+
+        private void ApplyFilter_Click(object sender, RoutedEventArgs e)
+        {
+            MasterListView.Visibility = Visibility.Visible;
+            FilterPanel.Visibility = Visibility.Collapsed;
+            FilterAppBarButton.Visibility = Visibility.Visible;
+            ClearAppBarButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void FilterAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            FilterAppBarButton.Visibility = Visibility.Collapsed;
+            ClearAppBarButton.Visibility = Visibility.Visible;
+            MasterListView.Visibility = Visibility.Collapsed;
+            FilterPanel.Visibility = Visibility.Visible;
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
