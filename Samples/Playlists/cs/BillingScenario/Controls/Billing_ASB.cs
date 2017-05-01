@@ -25,7 +25,7 @@ namespace SDKTemplate
     {
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
-            Int32 index = this.BillingViewModel.AddToCart(_selectedProductInASB);
+            Int32 index = this.BillingViewModel.AddToCart(new ProductViewModel(_selectedProductInASB));
             // Scrolling the list to the last element in the list. FYI: only works for distinct items.
             //TODO: Below loe is affecting the performance of addition of items in cart.
             //ListView.ScrollIntoView(ListView.Items[index]);
@@ -47,7 +47,8 @@ namespace SDKTemplate
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 var matchingProducts = ProductDataSource.GetMatchingProducts(sender.Text);
-                sender.ItemsSource = matchingProducts.ToList();
+                List<ProductASBViewModel> lstChild = matchingProducts.Select(product => new ProductASBViewModel(product)).ToList();
+                sender.ItemsSource = lstChild;
             }
         }
 
@@ -65,7 +66,7 @@ namespace SDKTemplate
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item, take an action on it here
-                SelectProduct((ProductViewModel)args.ChosenSuggestion);
+                SelectProduct((ProductASBViewModel)args.ChosenSuggestion);
             }
             else
             {
@@ -73,7 +74,7 @@ namespace SDKTemplate
                 var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
 
                 // Choose the first match, or clear the selection if there are no matches.
-                SelectProduct(matchingProducts.FirstOrDefault());
+                SelectProduct(new ProductASBViewModel(matchingProducts.FirstOrDefault()));
             }
         }
 
@@ -81,7 +82,7 @@ namespace SDKTemplate
         /// Display details of the specified Product.
         /// </summary>
         /// <param name="Product"></param>
-        private void SelectProduct(ProductViewModel product)
+        private void SelectProduct(ProductASBViewModel product)
         {
             if (product != null)
             {

@@ -40,7 +40,7 @@ namespace SDKTemplate
                     product.ProductId, 
                     product.DiscountPer,
                     product.DisplayPrice, 
-                    product.Quantity);
+                    product.QuantityPurchased);
                 db.CustomerOrderProducts.Add(customerOrderProduct);
             }
             // Saving the order.

@@ -26,7 +26,7 @@ namespace SDKTemplate
         private MainPage rootPage = MainPage.Current;
         public BillingViewModel BillingViewModel { get; set; }
         private Customer _customer;
-        private static ProductViewModel _selectedProductInASB;
+        private static ProductASBViewModel _selectedProductInASB;
         public BillingScenario()
         {
             this.InitializeComponent();

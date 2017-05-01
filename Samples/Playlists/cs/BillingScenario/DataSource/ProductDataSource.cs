@@ -23,27 +23,29 @@ namespace SDKTemplate
     {
         public T LB { get; set; }
         public T UB { get; set; }
-        public IRange(T lb, T ub){
+        public IRange(T lb, T ub)
+        {
             LB = lb;
             UB = ub;
         }
     }
     class ProductDataSource
     {
-        private static List<ProductViewModel> _products = new List<ProductViewModel>();
-        public static List<ProductViewModel> Products { get { return _products; } }
+        private static List<ProductViewModelBase> _products = new List<ProductViewModelBase>();
+        public static List<ProductViewModelBase> Products { get { return _products; } }
         public static void RetrieveProductDataAsync()
         {
             using (var db = new DatabaseModel.RetailerContext())
             {
                 // Retrieving data from the database synchronously.
-                _products = db.Products.Select(product => new ProductViewModel(
+                _products = db.Products.Select(product => new ProductViewModelBase(
                       product.ProductId,
                       product.BarCode,
                       product.Name,
                       product.DisplayPrice,
                       product.DiscountPer,
-                      product.Threshold )).ToList();
+                      product.Threshold,
+                      product.TotalQuantity)).ToList();
 
             }
         }
@@ -53,7 +55,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="query">The part of the name or company to look for</param>
         /// <returns>An ordered list of Product that matches the query</returns>
-        public static IEnumerable<ProductViewModel> GetMatchingProducts(string query)
+        public static IEnumerable<ProductViewModelBase> GetMatchingProducts(string query)
         {
             return ProductDataSource._products
                 .Where(p => p.BarCode.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1 ||
@@ -61,23 +63,25 @@ namespace SDKTemplate
                 .OrderByDescending(c => c.BarCode.StartsWith(query, StringComparison.CurrentCultureIgnoreCase))
                 .ThenByDescending(c => c.Name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
-        public static List<ProductViewModel> GetProducts(FilterProductCriteria filterProductCriteria)
+        public static List<ProductViewModelBase> GetProducts(FilterProductCriteria filterProductCriteria)
         {
-            // TODO: filter By Quantity and threshold
             if (filterProductCriteria.IncludeDeficientItemsOnly == true)
             {
                 return ProductDataSource._products
                 .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
                           p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
-                          1<=p.Threshold).ToList();
+                          p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
+                          p.TotalQuantity <= filterProductCriteria.QuantityRange.UB &&
+                          p.TotalQuantity <= p.Threshold).ToList();
             }
             else
             {
                 return ProductDataSource._products
                 .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
-                      p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB).ToList();
+                          p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB&&
+                          p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
+                          p.TotalQuantity <= filterProductCriteria.QuantityRange.UB).ToList();
             }
-
         }
 
     }

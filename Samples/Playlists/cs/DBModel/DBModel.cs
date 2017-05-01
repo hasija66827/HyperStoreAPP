@@ -115,7 +115,7 @@ namespace DatabaseModel
         public Int32 RefillTime { get; set; }
         public float DisplayPrice { get; set; }
         public float DiscountPer { get; set; }
-
+        public Int32 TotalQuantity { get; set; }
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 

@@ -249,7 +249,7 @@
                                                    Width="100"
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="Quantity"
-                                                 Text="{x:Bind Quantity, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
+                                                 Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
                                                  Width="100"
                                                  Margin="0,0,10,0" />
                                         <TextBlock x:Name="NetValue"

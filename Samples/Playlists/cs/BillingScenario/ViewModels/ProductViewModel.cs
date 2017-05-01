@@ -2,27 +2,41 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public class ProductASBViewModel : ProductViewModelBase
+    {
+        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
+        public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
+        //Constructor to convert parent obect to child object.
+        public ProductASBViewModel(ProductViewModelBase parent)
+        {
+            foreach (PropertyInfo prop in parent.GetType().GetProperties())
+            {
+                //If Property can be set then only we will set it.
+                if (prop.CanWrite)
+                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
+            }
+        }
+    }
     /*InotifyProperty changed ensures that whenever a property of the object changes 
     we can notify that other dependent propoerty of object had been changed.*/
     public class ProductViewModel : ProductViewModelBase, INotifyPropertyChanged
     {
-        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
-        public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
-        private Int32 _quantity;
-        public Int32 Quantity
+        private Int32 _quantityPurchased;
+        public Int32 QuantityPurchased
         {
-            get { return this._quantity; }
+            get { return this._quantityPurchased; }
             set
             {
-                this._quantity = (value >= 0) ? value : 0;
-                this._netValue = this._sellingPrice * this._quantity;
-                this.OnPropertyChanged(nameof(Quantity));
+                this._quantityPurchased = (value >= 0) ? value : 0;
+                this._netValue = this._sellingPrice * this._quantityPurchased;
+                this.OnPropertyChanged(nameof(QuantityPurchased));
                 this.OnPropertyChanged(nameof(NetValue));
                 // Invoking event to notify change in quantity of the product.
                 QuantityPropertyChangedEvenHandler();
@@ -44,7 +58,7 @@ namespace SDKTemplate
 
                 this._discountPer = (this._discountAmount / this._displayPrice) * 100;
                 this._sellingPrice = this._displayPrice - this._discountAmount;
-                this._netValue = this._sellingPrice * this._quantity;
+                this._netValue = this._sellingPrice * this._quantityPurchased;
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SellingPrice));
                 this.OnPropertyChanged(nameof(DiscountPer));
@@ -63,22 +77,34 @@ namespace SDKTemplate
 
                 this._discountAmount = (this._displayPrice * this._discountPer) / 100;
                 this._sellingPrice = this._displayPrice - this._discountAmount;
-                this._netValue = this._sellingPrice * this._quantity;
+                this._netValue = this._sellingPrice * this._quantityPurchased;
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SellingPrice));
                 this.OnPropertyChanged(nameof(DiscountPer));
                 this.OnPropertyChanged(nameof(NetValue));
             }
         }
-        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold) : base(productId, barCode, name, displayPrice, discountPer, threshold)
+        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity) : base(productId, barCode, name, displayPrice, discountPer, 0, 0)
         {
-            this._quantity = 0;
-            this._netValue = this._sellingPrice * this._quantity;
+            this._quantityPurchased = 0;
+            this._netValue = this._sellingPrice * this._quantityPurchased;
+        }
+        //Constructor to convert parent obect to child object.
+        public ProductViewModel(ProductViewModelBase parent)
+        {
+            foreach (PropertyInfo prop in parent.GetType().GetProperties())
+            {
+                //If Prperty can be set then only we will set it.
+                if (prop.CanWrite)
+                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
+            }
+            this._quantityPurchased = 0;
+            this._netValue = this._sellingPrice * this._quantityPurchased;
         }
         //TODO: #feature: consider weight parameter for non inventory items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-   
+
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.

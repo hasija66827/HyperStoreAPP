@@ -61,7 +61,7 @@ namespace MasterDetailApp.ViewModel
         }
         public OrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot, 
             float displayPriceSnapshot, string name, int qtyPurchased) 
-            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot)
+            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot,0,0)
         {
             this._quantityPurchased = qtyPurchased;
             this._netValue = this._sellingPrice * this._quantityPurchased;

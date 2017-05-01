@@ -103,8 +103,12 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
-    <Compile Include="BillingScenario\ViewModels\COPViewModel.cs" />
+    <Compile Include="BillingScenario\ViewModels\BillingViewModel.cs" />
     <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
+    <Compile Include="Migrations\20170501120006_Adding TotalQuantity.cs" />
+    <Compile Include="Migrations\20170501120006_Adding TotalQuantity.designer.cs">
+      <DependentUpon>20170501120006_Adding TotalQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>

@@ -28,7 +28,7 @@ namespace SDKTemplate
             {
                 Int32 count = 0;
                 foreach (ProductViewModel item in _products)
-                    count += item.Quantity;
+                    count += item.QuantityPurchased;
                 return count;
             }
         }
@@ -76,13 +76,13 @@ namespace SDKTemplate
                 product.QuantityPropertyChangedEvenHandler += TotalValue_TotalProductsPropertyChanged;
                 /* Will trigger the event QuantityPropertyChange
                  and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
-                this._products[index].Quantity = 1;
+                this._products[index].QuantityPurchased = 1;
             }
             else
             {
                 /* Will trigger the event QuantityPropertyChange
                  and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
-                this._products[index].Quantity += 1;
+                this._products[index].QuantityPurchased += 1;
             }
             return index;
         }
