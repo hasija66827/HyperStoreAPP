@@ -15,7 +15,7 @@ namespace MasterDetailApp.ViewModel
         private float _billAmount;
 
         public string CustomerMobileNo { get; set; }
-        public string PaidAmount{ get { return "Paid \u20b9" + this._paidAmount; } }
+        public string PaidAmount { get { return "Paid \u20b9" + this._paidAmount; } }
         private float _paidAmount;
         public string OrderDate
         {
@@ -38,7 +38,8 @@ namespace MasterDetailApp.ViewModel
                 return this._orderDetails;
             }
         }
-        public OrderViewModel(Guid customerOrderId, float billAmount, string customerMobileNo, DateTime orderDate, float paidAmount)
+        public OrderViewModel(Guid customerOrderId, float billAmount, string customerMobileNo,
+            DateTime orderDate, float paidAmount)
         {
             this.CustomerOrderId = customerOrderId;
             this._billAmount = billAmount;
@@ -48,14 +49,22 @@ namespace MasterDetailApp.ViewModel
             this._orderDetails = new List<OrderDetailViewModel>();
         }
     }
-    public class OrderDetailViewModel:SDKTemplate.ProductViewModelBase
+    public class OrderDetailViewModel : SDKTemplate.ProductViewModelBase
     {
-        public OrderDetailViewModel():base()
+        private Int32 _quantityPurchased;
+        public Int32 QuantityPurchased { get; set; }
+        private float _netValue;
+        public float NetValue { get { return SDKTemplate.Utility.RoundInt32(this._netValue); } }
+        public OrderDetailViewModel() : base()
         {
+            this._quantityPurchased = 0;
         }
-        public OrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot, float displayPriceSnapshot, string name, int qtyPurchased):base(productId,barCode,name,displayPriceSnapshot,discountPerSnapShot)
+        public OrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot, 
+            float displayPriceSnapshot, string name, int qtyPurchased) 
+            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot)
         {
-            this._quantity = qtyPurchased;
+            this._quantityPurchased = qtyPurchased;
+            this._netValue = this._sellingPrice * this._quantityPurchased;
         }
     }
 }

@@ -14,7 +14,8 @@ namespace SDKTemplate
     {
         // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
         public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
-        public override Int32 Quantity
+        private Int32 _quantity;
+        public Int32 Quantity
         {
             get { return this._quantity; }
             set
@@ -27,6 +28,8 @@ namespace SDKTemplate
                 QuantityPropertyChangedEvenHandler();
             }
         }
+        private float _netValue;
+        public float NetValue { get { return Utility.RoundInt32(this._netValue); } }
         // This event will notify the subscriber of Product class that the Quantity Property has been changed.
         public event QuantityPropertyChangedDelegate QuantityPropertyChangedEvenHandler;
 
@@ -67,13 +70,15 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(NetValue));
             }
         }
-
+        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold) : base(productId, barCode, name, displayPrice, discountPer, threshold)
+        {
+            this._quantity = 0;
+            this._netValue = this._sellingPrice * this._quantity;
+        }
         //TODO: #feature: consider weight parameter for non inventory items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold) : base(productId, barCode, name, displayPrice, discountPer, threshold)
-        {
-        }
+   
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.

@@ -103,6 +103,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
+    <Compile Include="BillingScenario\ViewModels\COPViewModel.cs" />
     <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
     <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
       <DependentUpon>RangeSelector.xaml</DependentUpon>
@@ -118,7 +119,6 @@
       <DependentUpon>20170415181816_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
-    <Compile Include="BillingScenario\ViewModels\BillingViewModel.cs" />
     <Compile Include="BillingScenario\Controls\Billing_ASB.cs" />
     <Compile Include="BillingScenario\Controls\Billing_VerifyCustomer.cs" />
     <Compile Include="DBModel\DBModel.cs" />
