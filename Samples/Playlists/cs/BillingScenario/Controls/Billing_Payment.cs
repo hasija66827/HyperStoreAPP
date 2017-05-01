@@ -42,6 +42,8 @@ namespace SDKTemplate
                     product.DisplayPrice, 
                     product.QuantityPurchased);
                 db.CustomerOrderProducts.Add(customerOrderProduct);
+                // TODO: Update the product entity with new total quantity.
+                
             }
             // Saving the order.
             db.SaveChanges();

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DatabaseModel
 {
     public class RetailerContext : DbContext
-    { 
+    {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerOrder> CustomerOrders { get; set; }
         public DbSet<CustomerOrderProduct> CustomerOrderProducts { get; set; }
@@ -14,7 +14,7 @@ namespace DatabaseModel
         public DbSet<WholeSeller> WholeSellers { get; set; }
         public DbSet<WholeSellerOrder> WholeSellersOrders { get; set; }
         public DbSet<WholeSellerOrderProduct> WholeSellersOrderProducts { get; set; }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=Retailers2.db");
@@ -119,17 +119,34 @@ namespace DatabaseModel
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
-        public Product(string code, string name, float displayPrice, float discountPer, bool isInventoryItem)
+        public Product(string code, string name, float displayPrice, float discountPer, bool isInventoryItem, Int32 totalQuantity)
         {
             this.ProductId = Guid.NewGuid();
             this.BarCode = code;
-            this.DisplayPrice=displayPrice;
+            this.DisplayPrice = displayPrice;
             this.DiscountPer = discountPer;
             this.Threshold = 0;
             this.RefillTime = 0;
             this.Name = name;
+            this.TotalQuantity = totalQuantity;
         }
-        public Product() { }
+        public Product()
+        {
+
+        }
+        public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold,Int32 refillTime,
+            Int32 displayPrice, Int32 discountPrice, Int32 totalQuantity)
+        {
+            ProductId = productID;
+            Name = name;
+            BarCode = barCode;
+            IsInventoryItem = isInventoryItem;
+            Threshold = threshold;
+            RefillTime = refillTime;
+            DisplayPrice = displayPrice;
+            DiscountPer = DiscountPer;
+            TotalQuantity = totalQuantity;
+        }
     }
 
     public class Customer
@@ -153,7 +170,8 @@ namespace DatabaseModel
         }
 
         /*Used to set the default customer*/
-        public Customer() {
+        public Customer()
+        {
             this.CustomerId = new Guid(SDKTemplate.Utility.DEFAULT_CUSTOMER_GUID); ;
             this.Address = "aaaaaa";
             this.IsVerifiedCustomer = false;
@@ -188,7 +206,7 @@ namespace DatabaseModel
 
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
-        public CustomerOrder(Guid customerId, float billAmount, float paidAmount, float walletSnapShot )
+        public CustomerOrder(Guid customerId, float billAmount, float paidAmount, float walletSnapShot)
         {
             this.CustomerOrderId = Guid.NewGuid();
             this.BillAmount = billAmount;
@@ -206,9 +224,10 @@ namespace DatabaseModel
         public float DiscountPerSnapShot { get; set; }
         public float DisplayCostSnapShot { get; set; }
         public int QuantityPurchased { get; set; }
-        
+
         public CustomerOrderProduct(Guid customerOrderId, Guid productId,
-            float discountPerSnapshot, float displayCostSnapshot, int quantityPurchased) {
+            float discountPerSnapshot, float displayCostSnapshot, int quantityPurchased)
+        {
             this.CustomerOrderProductId = Guid.NewGuid();
             this.CustomerOrderId = customerOrderId;
             this.ProductId = productId;

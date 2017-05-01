@@ -106,7 +106,7 @@ namespace SDKTemplate
         }
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = (ProductViewModel)e.ClickedItem;
+            var clickedItem = (ProductViewModelBase)e.ClickedItem;
             
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
