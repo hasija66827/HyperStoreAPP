@@ -12,6 +12,8 @@
             <TextBlock Text="Amount to be Paid" />
             <TextBlock Text="Adding Money to Wallet" />
             <TextBlock Text="Paying Amount" />
+            <Button x:Name="PlaceOrderBtn"
+                    Content="Place Order" />
         </StackPanel>
     </Grid>
 </Page>

@@ -20,25 +20,17 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SelectPaymentMode : Page
+    public sealed partial class PayLaterOTPVerification : Page
     {
-        public SelectPaymentMode()
+        public PayLaterOTPVerification()
         {
             this.InitializeComponent();
-            ProceedToPayment.Click += ProceedToPayment_Click;
+            SubmitBtn.Click += SubmitBtn_Click;
         }
 
-        private void ProceedToPayment_Click(object sender, RoutedEventArgs e)
+        private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (CashRadBtn.IsChecked == true)
-            {
-                if (useWalletChkBox.IsChecked == true)
-                    this.Frame.Navigate(typeof(UseWalletOTPVerification));
-                else
-                    this.Frame.Navigate(typeof(PayByCash));
-            }
-            else if (PayLaterRadBtn.IsChecked == true)
-                this.Frame.Navigate(typeof(PayLaterOTPVerification));
+            this.Frame.Navigate(typeof(BillingScenario));
         }
     }
 }

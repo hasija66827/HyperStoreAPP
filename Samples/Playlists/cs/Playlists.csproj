@@ -105,6 +105,12 @@
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
     <Compile Include="BillingScenario\ViewModels\BillingViewModel.cs" />
     <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
+    <Compile Include="UseWalletOTPVerification.xaml.cs">
+      <DependentUpon>UseWalletOTPVerification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PayLaterOTPVerification.xaml.cs">
+      <DependentUpon>PayLaterOTPVerification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PayByCash.xaml.cs">
       <DependentUpon>PayByCash.xaml</DependentUpon>
     </Compile>
@@ -193,6 +199,14 @@
       <Link>Scenario5_Clear.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UseWalletOTPVerification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PayLaterOTPVerification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PayByCash.xaml">
       <SubType>Designer</SubType>

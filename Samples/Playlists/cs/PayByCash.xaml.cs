@@ -25,6 +25,12 @@ namespace SDKTemplate
         public PayByCash()
         {
             this.InitializeComponent();
+            PlaceOrderBtn.Click += PlaceOrderBtn_Click;
+        }
+
+        private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BillingScenario));
         }
     }
 }
