@@ -103,6 +103,15 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
+    <Compile Include="BillingScenario\Payment Mode\payLater.xaml.cs">
+      <DependentUpon>payLater.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillingScenario\Payment Mode\paymentByCash.xaml.cs">
+      <DependentUpon>paymentByCash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillingScenario\SelectPaymentMode\SelectPaymentMode.xaml.cs">
+      <DependentUpon>SelectPaymentMode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BillingScenario\ViewModels\BillingViewModel.cs" />
     <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
     <Compile Include="Migrations\20170501120006_Adding TotalQuantity.cs" />
@@ -187,6 +196,18 @@
       <Link>Scenario5_Clear.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BillingScenario\Payment Mode\payLater.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillingScenario\Payment Mode\paymentByCash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillingScenario\SelectPaymentMode\SelectPaymentMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RangeSelectorControl\RangeSelector.xaml">
       <SubType>Designer</SubType>
