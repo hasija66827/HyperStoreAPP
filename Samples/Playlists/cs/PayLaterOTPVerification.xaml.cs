@@ -30,7 +30,16 @@ namespace SDKTemplate
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BillingScenario));
+            // TODO: verify OTP
+            if (OTPTB.Text == "123456")
+            {
+                MainPage.Current.NotifyUser("OTP Verified and Order Placed Successfully", NotifyType.StatusMessage);
+                this.Frame.Navigate(typeof(BillingScenario));
+            }
+            else
+            {
+                MainPage.Current.NotifyUser("Invalid OTP", NotifyType.ErrorMessage);
+            }
         }
     }
 }

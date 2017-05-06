@@ -30,6 +30,7 @@ namespace SDKTemplate
 
         private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
+            MainPage.Current.NotifyUser("Order Placed Successfully", NotifyType.StatusMessage);
             this.Frame.Navigate(typeof(BillingScenario));
         }
     }
