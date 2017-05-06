@@ -51,22 +51,7 @@ namespace SDKTemplate
 
         private void PayLater_Click(object sender, RoutedEventArgs e)
         {
-            List<CustomerOrder> _customerOrders = new List<CustomerOrder>();
-            List<Customer> _customers = new List<Customer>();
-            using (var db = new RetailerContext())
-            {
-                _customerOrders = db.CustomerOrders.ToList();
-                _customers = db.Customers.ToList();
-            }
-            var query=_customers.Join(_customerOrders,
-                                customer => customer.CustomerId,
-                                customerOrder => customerOrder.CustomerId,
-                                (customer, customerOrder) => new { customerMobileNo = customer.MobileNo, OrderDate = customerOrder.OrderDate, billAmount = customerOrder.BillAmount });
-            
-            foreach (var obj in query)
-            {
-                Console.WriteLine(obj.customerMobileNo + obj.OrderDate);
-            }
+            this.Frame.Navigate(typeof(SelectPaymentMode));
         }
     }
 }

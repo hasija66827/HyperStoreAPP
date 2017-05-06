@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="SDKTemplate.SelectPaymentMode"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDKTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Left">
+            <TextBlock TextWrapping="Wrap"
+                       Text="Total amount to be paid"
+                       Width="350"
+                       Height="30" />
+            <CheckBox Content="use wallet"
+                      Width="350"
+                      Height="30"
+                      IsChecked="True" />
+            <TextBlock TextWrapping="Wrap"
+                       Text="Select Option to pay balance"
+                       Width="350"
+                       Height="30" />
+            <StackPanel Orientation="Vertical">
+                <RadioButton x:Name="CashRadBtn"
+                             Content="Cash"
+                             IsChecked="True"
+                             GroupName="paymentMode" />
+                <RadioButton x:Name="DebitRadBtn"
+                             Content="Debit Card"
+                             GroupName="paymentMode" />
+                <RadioButton x:Name="PayLaterRadBtn"
+                             Content="Pay Later"
+                             GroupName="paymentMode" />
+            </StackPanel>
+            <Button x:Name="ProceedToPayment"
+                    Content="Proceed" />
+        </StackPanel>
+    </Grid>
+</Page>
