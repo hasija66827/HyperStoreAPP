@@ -26,10 +26,10 @@ namespace SDKTemplate
         private void PayNow_Click(object sender, RoutedEventArgs e)
         {
             var db = new RetailerContext();
-            var customerOrder = new CustomerOrder(this._customer.CustomerId,
+            var customerOrder = new CustomerOrder(CustomerViewModel.CustomerId,
                 this.BillingViewModel.TotalBillAmount,
                 this.BillingViewModel.DiscountedBillAmount,
-                this._customer.WalletBalance);
+                CustomerViewModel.WalletBalance);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
             db.SaveChanges();
@@ -52,9 +52,9 @@ namespace SDKTemplate
         private void PayLater_Click(object sender, RoutedEventArgs e)
         {
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
-                this.BillingViewModel.TotalBillAmount,
-                this.BillingViewModel.AdditionalDiscountPer,
-                this._customer.WalletBalance);
+               this.BillingViewModel,
+               BillingScenario.CustomerViewModel,
+               true);
 
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }

@@ -27,7 +27,7 @@ namespace SDKTemplate
     {
         private MainPage rootPage = MainPage.Current;
         public BillingViewModel BillingViewModel { get; set; }
-        public CustomerViewModel _customer;
+        public static CustomerViewModel CustomerViewModel;
         private static ProductASBViewModel _selectedProductInASB;
         public BillingScenario()
         {
@@ -42,7 +42,7 @@ namespace SDKTemplate
             PayNow.Click += PayNow_Click;
             PayLater.Click += PayLater_Click;
             _selectedProductInASB = null;
-            this._customer = new CustomerViewModel();
+            CustomerViewModel = new CustomerViewModel();
         }
     }
 }

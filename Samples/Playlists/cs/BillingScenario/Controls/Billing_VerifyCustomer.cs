@@ -33,7 +33,7 @@ namespace SDKTemplate
             CustomerViewModel customer = new CustomerViewModel(mobileNumber);
             CustomerDataSource.AddCustomer(customer);
             // Setting the customer for the Billing.
-            this._customer = customer;
+            CustomerViewModel = customer;
             HideAddCustomer();
         }
 
@@ -47,7 +47,7 @@ namespace SDKTemplate
                 DisplayAddCustomer();
                 AddCustomer.Visibility = Visibility.Collapsed;
                 // Setting the empty customer
-                this._customer = new CustomerViewModel();
+                CustomerViewModel = new CustomerViewModel();
                 //TODO: Show Notification Message
                 return;
             }
@@ -56,13 +56,13 @@ namespace SDKTemplate
             if (customer == null)
             {
                 // Setting the empty customer
-                this._customer = new CustomerViewModel();
+                CustomerViewModel = new CustomerViewModel();
                 DisplayAddCustomer();
             }
             else
             {
                 // Setting the customer of the order.
-                this._customer = customer;
+                CustomerViewModel = customer;
                 HideAddCustomer();
             }
         }
@@ -70,8 +70,8 @@ namespace SDKTemplate
         {
             AddCustomer.Visibility = Visibility.Collapsed;
             IsVerified.Visibility = Visibility.Visible;
-            CustomerNameTB.Text = this._customer.Name;
-            CustomerWalletBalanceTB.Text = "\u20b9" + this._customer.WalletBalance;
+            CustomerNameTB.Text = CustomerViewModel.Name;
+            CustomerWalletBalanceTB.Text = "\u20b9" + CustomerViewModel.WalletBalance;
         }
         public void DisplayAddCustomer()
         {

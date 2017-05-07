@@ -22,12 +22,16 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class PayNow : Page
     {
+        private PageNavigationParameter PageNavigationParameter { get; set; }
         public PayNow()
         {
             this.InitializeComponent();
             PlaceOrderBtn.Click += PlaceOrderBtn_Click;
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+        }
         private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
             MainPage.Current.NotifyUser("Order Placed Successfully", NotifyType.StatusMessage);

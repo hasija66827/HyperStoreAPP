@@ -22,19 +22,23 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class UseWalletOTPVerification : Page
     {
+        private PageNavigationParameter PageNavigationParameter { get; set; }
         public UseWalletOTPVerification()
         {
             this.InitializeComponent();
             SubmitBtn.Click += SubmitBtn_Click;
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+        }
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             // TODO: verify OTP
             if (OTPTB.Text == "123456")
             {
                 MainPage.Current.NotifyUser("OTP Verified", NotifyType.StatusMessage);
-                this.Frame.Navigate(typeof(PayNow));
+                this.Frame.Navigate(typeof(PayNow), this.PageNavigationParameter);
             }
             else
             {
