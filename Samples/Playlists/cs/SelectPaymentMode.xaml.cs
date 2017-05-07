@@ -22,12 +22,16 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class SelectPaymentMode : Page
     {
+        private static PageNavigationParameter PageNavigationParameter;
         public SelectPaymentMode()
         {
             this.InitializeComponent();
             ProceedToPayment.Click += ProceedToPayment_Click;
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+           PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+        }
         private void ProceedToPayment_Click(object sender, RoutedEventArgs e)
         {
             if (CashRadBtn.IsChecked == true)
@@ -35,7 +39,7 @@ namespace SDKTemplate
                 if (useWalletChkBox.IsChecked == true)
                     this.Frame.Navigate(typeof(UseWalletOTPVerification));
                 else
-                    this.Frame.Navigate(typeof(PayByCash));
+                    this.Frame.Navigate(typeof(PayNow));
             }
             else if (PayLaterRadBtn.IsChecked == true)
                 this.Frame.Navigate(typeof(PayLaterOTPVerification));

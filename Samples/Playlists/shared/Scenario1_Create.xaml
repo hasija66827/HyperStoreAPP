@@ -279,7 +279,7 @@
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                            Width="90" />
-                                <TextBlock Text="{x:Bind BillingViewModel.TotalValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                <TextBlock Text="{x:Bind BillingViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             </StackPanel>
@@ -297,7 +297,7 @@
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                            Width="90" />
-                                <TextBlock Text="{x:Bind BillingViewModel.BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                <TextBlock Text="{x:Bind BillingViewModel.DiscountedBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             </StackPanel>

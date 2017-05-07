@@ -102,6 +102,7 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BillingScenario\PageNavigationParameter.cs" />
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
     <Compile Include="BillingScenario\ViewModels\BillingViewModel.cs" />
     <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
@@ -111,8 +112,8 @@
     <Compile Include="PayLaterOTPVerification.xaml.cs">
       <DependentUpon>PayLaterOTPVerification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PayByCash.xaml.cs">
-      <DependentUpon>PayByCash.xaml</DependentUpon>
+    <Compile Include="PayNow.xaml.cs">
+      <DependentUpon>PayNow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20170501120006_Adding TotalQuantity.cs" />
     <Compile Include="Migrations\20170501120006_Adding TotalQuantity.designer.cs">
@@ -208,7 +209,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PayByCash.xaml">
+    <Page Include="PayNow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

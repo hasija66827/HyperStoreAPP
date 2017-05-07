@@ -26,9 +26,9 @@ namespace SDKTemplate
         private void PayNow_Click(object sender, RoutedEventArgs e)
         {
             var db = new RetailerContext();
-            var customerOrder = new CustomerOrder(this._customer.CustomerId, 
-                this.BillingViewModel.BillAmount, 
-                this.BillingViewModel.BillAmount,
+            var customerOrder = new CustomerOrder(this._customer.CustomerId,
+                this.BillingViewModel.TotalBillAmount,
+                this.BillingViewModel.DiscountedBillAmount,
                 this._customer.WalletBalance);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
@@ -36,14 +36,14 @@ namespace SDKTemplate
             foreach (var product in BillingViewModel.Products)
             {
                 // Adding each product purchased in the order into the Entity CustomerOrderProduct.
-                var customerOrderProduct = new CustomerOrderProduct(customerOrder.CustomerOrderId, 
-                    product.ProductId, 
+                var customerOrderProduct = new CustomerOrderProduct(customerOrder.CustomerOrderId,
+                    product.ProductId,
                     product.DiscountPer,
-                    product.DisplayPrice, 
+                    product.DisplayPrice,
                     product.QuantityPurchased);
                 db.CustomerOrderProducts.Add(customerOrderProduct);
                 // TODO: Update the product entity with new total quantity.
-                
+
             }
             // Saving the order.
             db.SaveChanges();
@@ -51,7 +51,12 @@ namespace SDKTemplate
 
         private void PayLater_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SelectPaymentMode));
+            PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
+                this.BillingViewModel.TotalBillAmount,
+                this.BillingViewModel.AdditionalDiscountPer,
+                this._customer.WalletBalance);
+
+            this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MasterDetailApp.ViewModel;
 
 namespace DatabaseModel
 {
@@ -168,28 +169,19 @@ namespace DatabaseModel
             this.Name = name;
             this.WalletBalance = 0;
         }
-
-        /*Used to set the default customer*/
         public Customer()
+        { }
+        public static explicit operator Customer(CustomerViewModel v)
         {
-            this.CustomerId = new Guid(SDKTemplate.Utility.DEFAULT_CUSTOMER_GUID); ;
-            this.Address = "aaaaaa";
-            this.IsVerifiedCustomer = false;
-            this.MobileNo = "9987654321";
-            this.Name = "c";
-            this.WalletBalance = 0;
+            Customer c = new Customer();
+            c.CustomerId = v.CustomerId;
+            c.MobileNo = v.MobileNo;
+            c.Name = v.Name;
+            c.IsVerifiedCustomer = v.IsVerifiedCustomer;
+            c.Address = v.Address;
+            c.WalletBalance = v.WalletBalance;
+            return c;
         }
-        /*#useless Used to set the default customer*/
-        public Customer(string mobileNumber)
-        {
-            this.CustomerId = new Guid(SDKTemplate.Utility.DEFAULT_CUSTOMER_GUID); ;
-            this.Address = "aaaaaa";
-            this.IsVerifiedCustomer = false;
-            this.MobileNo = mobileNumber;
-            this.Name = "c";
-            this.WalletBalance = 0;
-        }
-
     }
 
     public class CustomerOrder

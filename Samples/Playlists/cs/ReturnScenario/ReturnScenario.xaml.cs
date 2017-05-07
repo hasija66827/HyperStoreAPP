@@ -32,7 +32,6 @@ namespace MasterDetailApp
             // Hence we can call this function one time only in the constructor, instead of calling it everytime on page navigation. 
             //Called every time on navigation
             OrderDataSource.RetrieveOrdersAsync();
-            CustomerDataSource.RetrieveCustomersAsync();
             MasterListView.ItemsSource = OrderDataSource.Orders;
             UpdateForVisualState(AdaptiveStates.CurrentState);
             // Don't play a content transition for first item load.

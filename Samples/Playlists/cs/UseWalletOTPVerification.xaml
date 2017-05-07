@@ -12,8 +12,6 @@
             <TextBlock x:Name="MobNoTB" />
             <TextBox x:Name="OTPTB"
                      PlaceholderText="6 digit OTP" />
-            <TextBlock x:Name="InvalidOTPNotifyTB"
-                       Visibility="Collapsed" />
             <Button x:Name="SubmitBtn"
                     Content="Submit" />
         </StackPanel>

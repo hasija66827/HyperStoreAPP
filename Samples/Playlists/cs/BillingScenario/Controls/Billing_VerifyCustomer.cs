@@ -19,6 +19,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DatabaseModel;
+using MasterDetailApp.ViewModel;
+using MasterDetailApp.Data;
 namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
@@ -27,16 +29,12 @@ namespace SDKTemplate
         {
             //TODO: Ask for Customer Name and address.
             // Create a new customer and save the Customer.
-            using (var db = new RetailerContext())
-            {
-                var mobileNumber = CustomerMobNoTB.Text;
-                Customer customer = new Customer("abc" + mobileNumber, mobileNumber);
-                db.Customers.Add(customer);
-                db.SaveChanges();
-                // Setting the customer for the Billing.
-                this._customer = customer;
-                ShowAddCustomer();
-            }
+            var mobileNumber = CustomerMobNoTB.Text;
+            CustomerViewModel customer = new CustomerViewModel(mobileNumber);
+            CustomerDataSource.AddCustomer(customer);
+            // Setting the customer for the Billing.
+            this._customer = customer;
+            HideAddCustomer();
         }
 
         private void CustomerMobileNumber_LostFocus(object sender, RoutedEventArgs e)
@@ -46,40 +44,36 @@ namespace SDKTemplate
             if (!Utility.IsMobileNumber(mobileNumber))
             {
                 CustomerMobNoTB.Text = "";
-                HideAddCustomer();
+                DisplayAddCustomer();
                 AddCustomer.Visibility = Visibility.Collapsed;
                 // Setting the empty customer
-                this._customer = new Customer();
+                this._customer = new CustomerViewModel();
                 //TODO: Show Notification Message
                 return;
             }
-
-            using (var db = new RetailerContext())
+            // Check If c.Text exist in customer database
+            var customer = CustomerDataSource.GetCustomerByMobileNumber(mobileNumber);
+            if (customer == null)
             {
-                // Check If c.Text exist in customer database
-                var customers = db.Customers.Where(c => c.MobileNo.Equals(mobileNumber));
-                if (customers.Count() == 0)
-                {
-                    // Setting the empty customer
-                    this._customer = new Customer();
-                    HideAddCustomer();
-                }
-                else
-                {
-                    // Setting the customer of the order.
-                    this._customer = customers.First();
-                    ShowAddCustomer();
-                }
+                // Setting the empty customer
+                this._customer = new CustomerViewModel();
+                DisplayAddCustomer();
+            }
+            else
+            {
+                // Setting the customer of the order.
+                this._customer = customer;
+                HideAddCustomer();
             }
         }
-        public void ShowAddCustomer()
+        public void HideAddCustomer()
         {
             AddCustomer.Visibility = Visibility.Collapsed;
             IsVerified.Visibility = Visibility.Visible;
             CustomerNameTB.Text = this._customer.Name;
             CustomerWalletBalanceTB.Text = "\u20b9" + this._customer.WalletBalance;
         }
-        public void HideAddCustomer()
+        public void DisplayAddCustomer()
         {
             AddCustomer.Visibility = Visibility.Visible;
             IsVerified.Visibility = Visibility.Collapsed;

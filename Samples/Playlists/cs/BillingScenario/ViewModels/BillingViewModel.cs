@@ -12,7 +12,7 @@ namespace SDKTemplate
     public class BillingViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public float TotalValue
+        public float TotalBillAmount
         {
             get
             {
@@ -40,10 +40,10 @@ namespace SDKTemplate
             {
                 this._additionalDiscountPer = value;
                 this.OnPropertyChanged(nameof(AdditionalDiscountPer));
-                this.OnPropertyChanged(nameof(BillAmount));
+                this.OnPropertyChanged(nameof(DiscountedBillAmount));
             }
         }
-        public float BillAmount { get { return ((100 - this._additionalDiscountPer) * this.TotalValue)/100; } }
+        public float DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this.TotalBillAmount)/100; } }
 
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
@@ -89,8 +89,8 @@ namespace SDKTemplate
         public void TotalValue_TotalProductsPropertyChanged()
         {
             this.OnPropertyChanged(nameof(TotalProducts));
-            this.OnPropertyChanged(nameof(TotalValue));
-            this.OnPropertyChanged(nameof(BillAmount));
+            this.OnPropertyChanged(nameof(TotalBillAmount));
+            this.OnPropertyChanged(nameof(DiscountedBillAmount));
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

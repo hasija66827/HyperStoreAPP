@@ -34,7 +34,7 @@ namespace SDKTemplate
             if (OTPTB.Text == "123456")
             {
                 MainPage.Current.NotifyUser("OTP Verified", NotifyType.StatusMessage);
-                this.Frame.Navigate(typeof(PayByCash));
+                this.Frame.Navigate(typeof(PayNow));
             }
             else
             {

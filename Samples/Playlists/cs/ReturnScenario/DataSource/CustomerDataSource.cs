@@ -18,7 +18,13 @@ namespace MasterDetailApp.Data
             using (var db = new DatabaseModel.RetailerContext())
             {
                 // Retrieving data from the database synchronously.
-                _customers = db.Customers.Select(customer => new CustomerViewModel(customer.MobileNo, customer.Address)).ToList();
+                _customers = db.Customers.Select(customer => new CustomerViewModel(
+                    customer.CustomerId,
+                    customer.Name,
+                    customer.MobileNo, 
+                    customer.Address,
+                    customer.WalletBalance,
+                    customer.IsVerifiedCustomer)).ToList();
             }
         }
 
@@ -33,6 +39,36 @@ namespace MasterDetailApp.Data
                 .Where(item => item.MobileNo.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1
                             || item.Address.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
+        }
+        /// <summary>
+        /// returns the customer having matching mobile number from customer datasource.
+        /// </summary>
+        /// <param name="mobileNumber"></param>
+        /// <returns></returns>
+        public static CustomerViewModel GetCustomerByMobileNumber(string mobileNumber)
+        {
+            try
+            {
+                return _customers
+                     .Where(c => c.MobileNo.Equals(mobileNumber)).First();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Adds The customer into customer Data source as well as in sqllte database.
+        /// </summary>
+        /// <param name="newCustomer"></param>
+        public static void AddCustomer(CustomerViewModel newCustomer)
+        {
+            _customers.Add(newCustomer);
+            using (var db = new DatabaseModel.RetailerContext())
+            {
+                db.Customers.Add((DatabaseModel.Customer)newCustomer);
+                db.SaveChanges();
+            }
         }
     }
 }

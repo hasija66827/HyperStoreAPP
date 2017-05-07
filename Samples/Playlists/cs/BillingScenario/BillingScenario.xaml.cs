@@ -19,13 +19,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DatabaseModel;
+using MasterDetailApp.ViewModel;
+using MasterDetailApp.Data;
 namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
     {
         private MainPage rootPage = MainPage.Current;
         public BillingViewModel BillingViewModel { get; set; }
-        private Customer _customer;
+        public CustomerViewModel _customer;
         private static ProductASBViewModel _selectedProductInASB;
         public BillingScenario()
         {
@@ -33,14 +35,14 @@ namespace SDKTemplate
             this.BillingViewModel = new BillingViewModel();
             this.DateTimeLbl.Text = DateTime.Now.ToString();
             ProductDataSource.RetrieveProductDataAsync();
-    
+            CustomerDataSource.RetrieveCustomersAsync();
             AddToCart.Click += AddToCart_Click;
             CustomerMobileNumber.LostFocus += CustomerMobileNumber_LostFocus;
             AddCustomer.Click += AddCustomerClick;
             PayNow.Click += PayNow_Click;
             PayLater.Click += PayLater_Click;
             _selectedProductInASB = null;
-            this._customer = new Customer();
+            this._customer = new CustomerViewModel();
         }
     }
 }
