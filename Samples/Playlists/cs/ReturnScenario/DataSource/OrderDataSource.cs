@@ -16,6 +16,7 @@ namespace MasterDetailApp.Data
             // Initializing member variable all orders.
             RetrieveOrdersAsync();
         }
+        // Retrieves all the orders.
         public static void RetrieveOrdersAsync()
         {
             List<DatabaseModel.CustomerOrder> _customerOrders;
@@ -40,7 +41,7 @@ namespace MasterDetailApp.Data
             return orderByMobileNumber.ToList();
         }
 
-        // #perf Please retrieve required attribute from the database only and if possible merge the three query into one.
+        // #perf if possible merge the three query into one.
         //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
         public static List<OrderDetailViewModel> RetrieveOrderDetails(Guid customerOrderId)
         {
@@ -59,6 +60,34 @@ namespace MasterDetailApp.Data
                                                                        product.Name,
                                                                        customerOrderProduct.QuantityPurchased)).ToList();
             return orderDetails;
+        }
+
+        public static void PlaceOrder(PageNavigationParameter pageNavigationParameter)
+        {
+            BillingViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
+            CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
+            var db = new DatabaseModel.RetailerContext();
+            var customerOrder = new DatabaseModel.CustomerOrder(customerViewModel.CustomerId,
+                billingViewModel.TotalBillAmount,
+                billingViewModel.DiscountedBillAmount,
+                customerViewModel.WalletBalance);
+            // Creating Entity Record in customerOrder.
+            db.CustomerOrders.Add(customerOrder);
+            //TODO: without doing additional saving, foreign key constraints failed. See how can you make whole transaction atomic.
+            db.SaveChanges();
+            foreach (var product in billingViewModel.Products)
+            {
+                // Adding each product purchased in the order into the Entity CustomerOrderProduct.
+                var customerOrderProduct = new DatabaseModel.CustomerOrderProduct(customerOrder.CustomerOrderId,
+                    product.ProductId,
+                    product.DiscountPer,
+                    product.DisplayPrice,
+                    product.QuantityPurchased);
+                db.CustomerOrderProducts.Add(customerOrderProduct);
+                // TODO: Update the product entity with new total quantity.
+            }
+            // Saving the order.
+            db.SaveChanges();
         }
     }
 }

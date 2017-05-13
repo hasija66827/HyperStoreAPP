@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using MasterDetailApp.Data;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -34,6 +34,7 @@ namespace SDKTemplate
         }
         private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
+            OrderDataSource.PlaceOrder(PageNavigationParameter);
             MainPage.Current.NotifyUser("Order Placed Successfully", NotifyType.StatusMessage);
             this.Frame.Navigate(typeof(BillingScenario));
         }

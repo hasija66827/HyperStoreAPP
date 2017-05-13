@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace SDKTemplate
 {
-    class PageNavigationParameter : INotifyPropertyChanged
+    public class PageNavigationParameter : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public BillingViewModel BillingViewModel { get; set; }

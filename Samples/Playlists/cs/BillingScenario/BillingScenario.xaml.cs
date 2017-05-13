@@ -39,8 +39,7 @@ namespace SDKTemplate
             AddToCart.Click += AddToCart_Click;
             CustomerMobileNumber.LostFocus += CustomerMobileNumber_LostFocus;
             AddCustomer.Click += AddCustomerClick;
-            PayNow.Click += PayNow_Click;
-            PayLater.Click += PayLater_Click;
+            Checkout.Click += Checkout_Click;
             _selectedProductInASB = null;
             CustomerViewModel = new CustomerViewModel();
         }

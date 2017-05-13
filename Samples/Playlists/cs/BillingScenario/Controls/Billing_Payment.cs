@@ -22,40 +22,13 @@ using DatabaseModel;
 namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
-    {
-        private void PayNow_Click(object sender, RoutedEventArgs e)
-        {
-            var db = new RetailerContext();
-            var customerOrder = new CustomerOrder(CustomerViewModel.CustomerId,
-                this.BillingViewModel.TotalBillAmount,
-                this.BillingViewModel.DiscountedBillAmount,
-                CustomerViewModel.WalletBalance);
-            // Creating Entity Record in customerOrder.
-            db.CustomerOrders.Add(customerOrder);
-            db.SaveChanges();
-            foreach (var product in BillingViewModel.Products)
-            {
-                // Adding each product purchased in the order into the Entity CustomerOrderProduct.
-                var customerOrderProduct = new CustomerOrderProduct(customerOrder.CustomerOrderId,
-                    product.ProductId,
-                    product.DiscountPer,
-                    product.DisplayPrice,
-                    product.QuantityPurchased);
-                db.CustomerOrderProducts.Add(customerOrderProduct);
-                // TODO: Update the product entity with new total quantity.
-
-            }
-            // Saving the order.
-            db.SaveChanges();
-        }
-
-        private void PayLater_Click(object sender, RoutedEventArgs e)
+    { 
+        private void Checkout_Click(object sender, RoutedEventArgs e)
         {
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
                this.BillingViewModel,
                BillingScenario.CustomerViewModel,
                true);
-
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }

@@ -306,11 +306,8 @@
                     <StackPanel x:Name="Footer"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center">
-                        <Button x:Name="PayNow"
-                                Content="Pay Now"
-                                Width="200" />
-                        <Button x:Name="PayLater"
-                                Content="Pay Later"
+                        <Button x:Name="Checkout"
+                                Content="Checkout"
                                 Margin="40,0,0,0"
                                 Width="200 " />
                     </StackPanel>

@@ -17,6 +17,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock TextWrapping="Wrap"
                            Text="Total amount to be paid"
@@ -31,17 +32,21 @@
                           Grid.Column="0"
                           Grid.Row="1"
                           IsChecked="{x:Bind PageNavigationParameter.UseWallet, Mode=TwoWay}" />
+                <TextBlock x:Name="CurrentWalletBalance" 
+                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance, Mode=OneWay}"
+                           Grid.Column="0"
+                           Grid.Row="2" />
                 <TextBlock x:Name="WalletBalanceToBeDeducted"
                            Text="{x:Bind PageNavigationParameter.WalletBalanceToBeDeducted, Mode=OneWay}"
                            Grid.Column="1"
                            Grid.Row="1" />
                 <TextBlock TextWrapping="Wrap"
                            Text="Select Option to pay balance"
-                           Grid.Row="2"
+                           Grid.Row="3"
                            Grid.Column="0" />
                 <TextBlock x:Name="ToBePaidTB"
                            Text="{x:Bind PageNavigationParameter.ToBePaid, Mode=OneWay}"
-                           Grid.Row="2"
+                           Grid.Row="3"
                            Grid.Column="1" />
             </Grid>
             <StackPanel Orientation="Vertical">
