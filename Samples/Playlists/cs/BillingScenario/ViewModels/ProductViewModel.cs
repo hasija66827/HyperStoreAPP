@@ -94,7 +94,7 @@ namespace SDKTemplate
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())
             {
-                //If Prperty can be set then only we will set it.
+                //If Property can be set then only we will set it.
                 if (prop.CanWrite)
                     GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
             }

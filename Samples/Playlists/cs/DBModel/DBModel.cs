@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MasterDetailApp.ViewModel;
+using SDKTemplate;
 
 namespace DatabaseModel
 {
@@ -120,23 +121,13 @@ namespace DatabaseModel
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
-        public Product(string code, string name, float displayPrice, float discountPer, bool isInventoryItem, Int32 totalQuantity)
-        {
-            this.ProductId = Guid.NewGuid();
-            this.BarCode = code;
-            this.DisplayPrice = displayPrice;
-            this.DiscountPer = discountPer;
-            this.Threshold = 0;
-            this.RefillTime = 0;
-            this.Name = name;
-            this.TotalQuantity = totalQuantity;
-        }
+        
         public Product()
         {
 
         }
         public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold,Int32 refillTime,
-            Int32 displayPrice, Int32 discountPrice, Int32 totalQuantity)
+            Int32 displayPrice, float discountPer, Int32 totalQuantity)
         {
             ProductId = productID;
             Name = name;
@@ -145,8 +136,25 @@ namespace DatabaseModel
             Threshold = threshold;
             RefillTime = refillTime;
             DisplayPrice = displayPrice;
-            DiscountPer = DiscountPer;
+            DiscountPer = discountPer;
             TotalQuantity = totalQuantity;
+        }
+
+        public static explicit operator Product(ProductViewModel v)
+        {
+            Product p = new Product();
+            p.ProductId = v.ProductId;
+            p.Name = v.Name;
+            p.BarCode = v.BarCode;
+            p.Threshold = v.Threshold;
+            p.DisplayPrice = v.DisplayPrice;
+            p.DiscountPer = v.DiscountPer;
+            p.TotalQuantity = v.TotalQuantity;
+
+            //TODO: add below propery in product view model 
+            p.IsInventoryItem = false;
+            p.RefillTime =0;
+            return p;
         }
     }
 

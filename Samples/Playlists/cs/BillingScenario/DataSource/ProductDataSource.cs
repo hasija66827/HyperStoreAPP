@@ -37,6 +37,7 @@ namespace SDKTemplate
         {
             using (var db = new DatabaseModel.RetailerContext())
             {
+                //db.Products.Add(new DatabaseModel.Product(new Guid(), "Fiama Diwills", "1231", false, 20, 15, 60, 20, 50));
                 // Retrieving data from the database synchronously.
                 _products = db.Products.Select(product => new ProductViewModelBase(
                       product.ProductId,

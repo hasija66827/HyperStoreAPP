@@ -24,7 +24,7 @@ namespace SDKTemplate
             set
             { this._toBePaid = value; }
         }
-
+        // Extra money to be added in the wallet
         private float _change;
         public float Change
         {

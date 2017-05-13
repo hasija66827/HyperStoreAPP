@@ -34,7 +34,7 @@ namespace MasterDetailApp.Data
                         .OrderByDescending(order => order.OrderDate);
             _Orders = query.ToList();
         }
-     
+
         public static List<OrderViewModel> RetrieveOrdersByMobileNumber(string MobileNumber)
         {
             var orderByMobileNumber = _Orders.Where(order => order.CustomerMobileNo == MobileNumber);
@@ -61,33 +61,81 @@ namespace MasterDetailApp.Data
                                                                        customerOrderProduct.QuantityPurchased)).ToList();
             return orderDetails;
         }
-
-        public static void PlaceOrder(PageNavigationParameter pageNavigationParameter)
+        // Step 1:
+        private static bool UpdateProductStock(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel)
         {
-            BillingViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
-            CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
-            var db = new DatabaseModel.RetailerContext();
+            //#perf: You can query whole list in where clause.
+            foreach (var productViewModel in billingViewModel.Products)
+            {
+                var products = db.Products.Where(p => p.ProductId == productViewModel.ProductId).ToList();
+                var product = products.FirstOrDefault();
+                if (product == null)
+                    return false;
+                product.TotalQuantity -= productViewModel.QuantityPurchased;
+                db.Update(product);
+            }
+            db.SaveChanges();
+            return true;
+        }
+        // Step 2:
+        private static void UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, CustomerViewModel customerViewModel,
+            float walletBalanceToBeDeducted, float walletBalanceToBeAdded)
+        {
+            var customer = (DatabaseModel.Customer)customerViewModel;
+            var entityEntry = db.Attach(customer);
+            customer.WalletBalance -= walletBalanceToBeDeducted;
+            customer.WalletBalance += walletBalanceToBeAdded;
+            var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
+            memberEntry.IsModified = true;
+            db.SaveChanges();
+        }
+        // Step3:
+        private static Guid AddIntoCustomerOrder(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel, CustomerViewModel customerViewModel)
+        {
             var customerOrder = new DatabaseModel.CustomerOrder(customerViewModel.CustomerId,
-                billingViewModel.TotalBillAmount,
-                billingViewModel.DiscountedBillAmount,
-                customerViewModel.WalletBalance);
+                                     billingViewModel.TotalBillAmount,
+                                     billingViewModel.DiscountedBillAmount,
+                                    customerViewModel.WalletBalance);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
-            //TODO: without doing additional saving, foreign key constraints failed. See how can you make whole transaction atomic.
+
             db.SaveChanges();
-            foreach (var product in billingViewModel.Products)
+            return customerOrder.CustomerOrderId;
+        }
+        // Step4:
+        private static void AddIntoCustomerOrderProduct(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel, Guid customerOrderId)
+        {
+            foreach (var productViewModel in billingViewModel.Products)
             {
                 // Adding each product purchased in the order into the Entity CustomerOrderProduct.
-                var customerOrderProduct = new DatabaseModel.CustomerOrderProduct(customerOrder.CustomerOrderId,
-                    product.ProductId,
-                    product.DiscountPer,
-                    product.DisplayPrice,
-                    product.QuantityPurchased);
+                var customerOrderProduct = new DatabaseModel.CustomerOrderProduct(customerOrderId,
+                    productViewModel.ProductId,
+                    productViewModel.DiscountPer,
+                    productViewModel.DisplayPrice,
+                    productViewModel.QuantityPurchased);
                 db.CustomerOrderProducts.Add(customerOrderProduct);
                 // TODO: Update the product entity with new total quantity.
             }
             // Saving the order.
             db.SaveChanges();
+        }
+        public static void PlaceOrder(PageNavigationParameter pageNavigationParameter)
+        {
+            //TODO: without doing additional saving, foreign key constraints failed. See how can you make whole transaction atomic.
+            BillingViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
+            CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
+            var db = new DatabaseModel.RetailerContext();
+
+
+            UpdateProductStock(db, billingViewModel);
+            if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
+                throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");    
+            UpdateWalletBalanceOfCustomer(db, customerViewModel,
+                pageNavigationParameter.WalletBalanceToBeDeducted,
+                pageNavigationParameter.Change);
+
+            var customerOrderId = AddIntoCustomerOrder(db, billingViewModel, customerViewModel);
+            AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
         }
     }
 }
