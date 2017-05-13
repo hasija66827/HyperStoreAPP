@@ -76,11 +76,15 @@ namespace SDKTemplate
             }
         }
 
-        public PageNavigationParameter(BillingViewModel billingViewModel, CustomerViewModel customerViewModel, bool useWallet)
+        public PageNavigationParameter(BillingViewModel billingViewModel, CustomerViewModel customerViewModel)
         {
             this.BillingViewModel = billingViewModel;
             this.CustomerViewModel = customerViewModel;
-            this.UseWallet = useWallet;
+            // uncheck the use wallet chkbox, if wallet balance is zero.
+            if (this.CustomerViewModel.WalletBalance == 0)
+                this.UseWallet = false;
+            else
+                this.UseWallet = true;
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

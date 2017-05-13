@@ -78,7 +78,15 @@ namespace MasterDetailApp.Data
             return true;
         }
         // Step 2:
-        private static void UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, CustomerViewModel customerViewModel,
+        /// <summary>
+        /// Return the updated wallet balance of the customer.
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="customerViewModel"></param>
+        /// <param name="walletBalanceToBeDeducted"></param>
+        /// <param name="walletBalanceToBeAdded"></param>
+        /// <returns></returns>
+        private static float UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, CustomerViewModel customerViewModel,
             float walletBalanceToBeDeducted, float walletBalanceToBeAdded)
         {
             var customer = (DatabaseModel.Customer)customerViewModel;
@@ -88,8 +96,9 @@ namespace MasterDetailApp.Data
             var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
             memberEntry.IsModified = true;
             db.SaveChanges();
+            return customer.WalletBalance;
         }
-        // Step3:
+        // Step 3:
         private static Guid AddIntoCustomerOrder(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel, CustomerViewModel customerViewModel)
         {
             var customerOrder = new DatabaseModel.CustomerOrder(customerViewModel.CustomerId,
@@ -119,7 +128,12 @@ namespace MasterDetailApp.Data
             // Saving the order.
             db.SaveChanges();
         }
-        public static void PlaceOrder(PageNavigationParameter pageNavigationParameter)
+        /// <summary>
+        /// Returns the updated wallet balance of the customer
+        /// </summary>
+        /// <param name="pageNavigationParameter"></param>
+        /// <returns></returns>
+        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter)
         {
             //TODO: without doing additional saving, foreign key constraints failed. See how can you make whole transaction atomic.
             BillingViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
@@ -130,12 +144,13 @@ namespace MasterDetailApp.Data
             UpdateProductStock(db, billingViewModel);
             if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
                 throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");    
-            UpdateWalletBalanceOfCustomer(db, customerViewModel,
+            var updatedCustomerWalletBalance= UpdateWalletBalanceOfCustomer(db, customerViewModel,
                 pageNavigationParameter.WalletBalanceToBeDeducted,
                 pageNavigationParameter.Change);
 
             var customerOrderId = AddIntoCustomerOrder(db, billingViewModel, customerViewModel);
             AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
+            return updatedCustomerWalletBalance;
         }
     }
 }

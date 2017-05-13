@@ -8,35 +8,39 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock Text="Amount to be Paid"
-                       Grid.Row="0"/>
-            <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Mode=OneTime}" 
-                       Grid.Row="0"
-                       Grid.Column="1"/>
-            <TextBlock Text="Adding Money to Wallet"
-                       Grid.Row="1"/>
-            <TextBlock Text="{x:Bind PageNavigationParameter.Change, Mode=OneWay}"
-                       Grid.Row="1"
-                       Grid.Column="1" />
-            <TextBlock Text="Paying Amount" 
-                       Grid.Row="2"/>
-            <TextBox Text="{x:Bind PageNavigationParameter.Paid, Mode=TwoWay}"
-                       Grid.Row="2"
-                       Grid.Column="1" />
-            <Button 
-                Grid.Row="3"
-                x:Name="PlaceOrderBtn"
-                    Content="Place Order" />
-        </Grid>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Amount to be Paid"
+                           Grid.Row="0" />
+                <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Mode=OneTime}"
+                           Grid.Row="0"
+                           Grid.Column="1" />
+                <TextBlock Text="Adding Money to Wallet"
+                           Grid.Row="1" />
+                <TextBlock Text="{x:Bind PageNavigationParameter.Change, Mode=OneWay}"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+                <TextBlock Text="Paying Amount"
+                           Grid.Row="2" />
+                <TextBox Text="{x:Bind PageNavigationParameter.Paid, Mode=TwoWay}"
+                         Grid.Row="2"
+                         Grid.Column="1" />
+                <Button Grid.Row="3"
+                        Grid.Column="1"
+                        x:Name="PlaceOrderBtn"
+                        Content="Place Order" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

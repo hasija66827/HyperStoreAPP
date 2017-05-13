@@ -27,8 +27,7 @@ namespace SDKTemplate
         {
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
                this.BillingViewModel,
-               BillingScenario.CustomerViewModel,
-               true);
+               BillingScenario.CustomerViewModel);
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }

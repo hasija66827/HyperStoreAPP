@@ -7,10 +7,13 @@
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
+            <TextBlock Text="Current Wallet Balance" />
+            <TextBlock Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance}" />
             <TextBlock Text="To Deduct Wallet amount of Rs" />
             <TextBlock Text="{x:Bind PageNavigationParameter.WalletBalanceToBeDeducted}" />
             <TextBlock Text="Enter the verification code sent to " />
-            <TextBlock x:Name="MobNoTB" />
+            <TextBlock x:Name="MobNoTB" 
+                       Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"/>
             <TextBox x:Name="OTPTB"
                      PlaceholderText="6 digit OTP" />
             <Button x:Name="SubmitBtn"

@@ -34,8 +34,8 @@ namespace SDKTemplate
         }
         private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            OrderDataSource.PlaceOrder(PageNavigationParameter);
-            MainPage.Current.NotifyUser("Order Placed Successfully", NotifyType.StatusMessage);
+            var updatedCustomerWalletBalance= OrderDataSource.PlaceOrder(PageNavigationParameter);
+            MainPage.Current.NotifyUser("The updated wallet balance of the customer is \u20b9"+updatedCustomerWalletBalance, NotifyType.StatusMessage);
             this.Frame.Navigate(typeof(BillingScenario));
         }
     }
