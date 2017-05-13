@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </UserControl.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
@@ -31,7 +34,8 @@
                           Content="use wallet"
                           Grid.Column="0"
                           Grid.Row="1"
-                          IsChecked="{x:Bind PageNavigationParameter.UseWallet, Mode=TwoWay}" />
+                          IsChecked="{x:Bind PageNavigationParameter.UseWallet, Mode=TwoWay}"
+                          IsEnabled="{x:Bind PayLaterRadBtn.IsChecked, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}" />
                 <TextBlock x:Name="CurrentWalletBalance" 
                            Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance, Mode=OneWay}"
                            Grid.Column="0"

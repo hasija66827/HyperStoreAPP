@@ -17,7 +17,7 @@ namespace MasterDetailApp.ViewModel
         public string CustomerMobileNo { get; set; }
         public string PaidAmount { get { return "Paid \u20b9" + this._paidAmount; } }
         private float _paidAmount;
-        public string OrderDate
+        public string FormattedOrderDate
         {
             get
             {
@@ -25,6 +25,8 @@ namespace MasterDetailApp.ViewModel
                 return formatter.Format(this._orderDate);
             }
         }
+        public DateTime OrderDate
+        { get { return this._orderDate; } }
         private DateTime _orderDate;
         private List<OrderDetailViewModel> _orderDetails;
         public List<OrderDetailViewModel> OrderDetails

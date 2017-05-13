@@ -27,7 +27,18 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             ProceedToPayment.Click += ProceedToPayment_Click;
+            PayLaterRadBtn.Click += PayLaterRadBtn_Click;
         }
+
+        private void PayLaterRadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Unchecking the use wallet check box
+            PageNavigationParameter.UseWallet = false;
+            UseWalletChkBox.IsChecked = false;
+            // The usewallet chk box enable property is binded to the inverse of payLaterRadBtn checked property.
+            // Hence useWalletChkBox will be disabled after this event execution.
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;

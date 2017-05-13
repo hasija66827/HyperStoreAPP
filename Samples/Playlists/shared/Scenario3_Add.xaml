@@ -33,7 +33,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind CustomerMobileNo}"
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind OrderDate}"
+                <TextBlock Text="{x:Bind FormattedOrderDate}"
                            Grid.Column="1"
                            Margin="12,1,0,0"
                            Style="{ThemeResource BaseTextBlockStyle}" />

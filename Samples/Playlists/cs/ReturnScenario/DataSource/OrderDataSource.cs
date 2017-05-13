@@ -30,7 +30,11 @@ namespace MasterDetailApp.Data
                         .Join(_customerOrders,
                                 customer => customer.CustomerId,
                                 customerOrder => customerOrder.CustomerId,
-                                (customer, customerOrder) => new OrderViewModel(customerOrder.CustomerOrderId, customerOrder.BillAmount, customer.MobileNo, customerOrder.OrderDate, customerOrder.PaidAmount))
+                                (customer, customerOrder) => new OrderViewModel(customerOrder.CustomerOrderId, 
+                                                                                customerOrder.BillAmount,
+                                                                                customer.MobileNo,
+                                                                                customerOrder.OrderDate,
+                                                                                customerOrder.PaidAmount))
                         .OrderByDescending(order => order.OrderDate);
             _Orders = query.ToList();
         }
@@ -143,8 +147,8 @@ namespace MasterDetailApp.Data
 
             UpdateProductStock(db, billingViewModel);
             if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
-                throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");    
-            var updatedCustomerWalletBalance= UpdateWalletBalanceOfCustomer(db, customerViewModel,
+                throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");
+            var updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
                 pageNavigationParameter.WalletBalanceToBeDeducted,
                 pageNavigationParameter.Change);
 
