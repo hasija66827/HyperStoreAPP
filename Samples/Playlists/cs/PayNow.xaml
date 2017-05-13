@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
+    </UserControl.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
@@ -26,12 +29,12 @@
                            Grid.Column="1" />
                 <TextBlock Text="Adding Money to Wallet"
                            Grid.Row="1" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.Change, Mode=OneWay}"
+                <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBeAdded, Mode=OneWay}"
                            Grid.Row="1"
                            Grid.Column="1" />
                 <TextBlock Text="Paying Amount"
                            Grid.Row="2" />
-                <TextBox Text="{x:Bind PageNavigationParameter.Paid, Mode=TwoWay}"
+                <TextBox Text="{x:Bind PageNavigationParameter.Paid, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}"
                          Grid.Row="2"
                          Grid.Column="1" />
                 <Button Grid.Row="3"

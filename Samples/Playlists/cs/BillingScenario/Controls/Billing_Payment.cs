@@ -25,6 +25,18 @@ namespace SDKTemplate
     { 
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
+            if (!Utility.IsMobileNumber(CustomerMobNoTB.Text))
+            {
+                MainPage.Current.NotifyUser("Mobile Number is required", NotifyType.ErrorMessage);
+                //TODO: got focus on the mobile textBox
+                return;
+            }
+            if (BillingScenario.CustomerViewModel == null)
+            {
+                MainPage.Current.NotifyUser("Customer not added, add the customer by clicking on Add Customer", NotifyType.ErrorMessage);
+                //TODO: got focus on the mobile textBox
+                return;
+            }
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
                this.BillingViewModel,
                BillingScenario.CustomerViewModel);

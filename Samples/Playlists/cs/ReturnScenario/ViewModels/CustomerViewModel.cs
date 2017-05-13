@@ -29,6 +29,7 @@ namespace MasterDetailApp.ViewModel
         {
             this.MobileNo = mobileNo;
             this.Name += mobileNo;
+            this.IsVerifiedCustomer = true;
         }
         public CustomerViewModel(Guid customerId, string name,
             string mobileNo, string address, float walletBalance, bool isVerifiedCustomer)

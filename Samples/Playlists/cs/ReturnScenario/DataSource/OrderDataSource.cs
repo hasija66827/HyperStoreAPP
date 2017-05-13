@@ -90,7 +90,7 @@ namespace MasterDetailApp.Data
             {
                 updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
                 pageNavigationParameter.WalletBalanceToBeDeducted,
-                pageNavigationParameter.Change);
+                pageNavigationParameter.WalletAmountToBeAdded);
             }
             else if (paymentMode.Equals(PaymentMode.payLater))
             {

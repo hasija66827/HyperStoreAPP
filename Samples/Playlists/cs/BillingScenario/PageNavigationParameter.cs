@@ -25,11 +25,11 @@ namespace SDKTemplate
             { this._toBePaid = value; }
         }
         // Extra money to be added in the wallet
-        private float _change;
-        public float Change
+        private float _walletAmountToBeAdded;
+        public float WalletAmountToBeAdded
         {
-            get { return this._change; }
-            set { this._change = value; }
+            get { return this._walletAmountToBeAdded; }
+            set { this._walletAmountToBeAdded = value; }
         }
 
         private float _paid;
@@ -39,12 +39,15 @@ namespace SDKTemplate
             set
             {
                 if (value < this._toBePaid)
+                {
                     this._paid = this._toBePaid;
+                    MainPage.Current.NotifyUser("paying amount should be greater than the amount to be paid, resetting it", NotifyType.ErrorMessage);
+                }
                 else
                     this._paid = value;
-                this._change = this._paid - this._toBePaid;
+                this._walletAmountToBeAdded = this._paid - this._toBePaid;
                 this.OnPropertyChanged(nameof(Paid));
-                this.OnPropertyChanged(nameof(Change));
+                this.OnPropertyChanged(nameof(WalletAmountToBeAdded));
             }
         }
         //Above three properties changes
@@ -69,7 +72,7 @@ namespace SDKTemplate
                     this.WalletBalanceToBeDeducted = 0;
                 this._toBePaid = this.BillingViewModel.DiscountedBillAmount - this.WalletBalanceToBeDeducted;
                 this._paid = this._toBePaid;
-                this._change = 0;//THINK ABOUT IT
+                this._walletAmountToBeAdded = 0;//THINK ABOUT IT
                 this.OnPropertyChanged(nameof(WalletBalanceToBeDeducted));
                 this.OnPropertyChanged(nameof(ToBePaid));
                 this.OnPropertyChanged(nameof(Paid));

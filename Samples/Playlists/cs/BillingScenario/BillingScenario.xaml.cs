@@ -41,7 +41,7 @@ namespace SDKTemplate
             AddCustomer.Click += AddCustomerClick;
             Checkout.Click += Checkout_Click;
             _selectedProductInASB = null;
-            CustomerViewModel = new CustomerViewModel();
+            CustomerViewModel = null;
         }
     }
 }

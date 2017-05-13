@@ -88,9 +88,36 @@ namespace SDKTemplate
             catch (Exception e)
             {
                 value = 1;
-                //TODO: Notify that quantity has been set to one
+                MainPage.Current.NotifyUser("Invalid value entered, resetting it to one", NotifyType.ErrorMessage);
             }
             return System.Convert.ToInt32(value);
+        }
+    }
+    // Tries to convert value into positive float, if it fails then reset the value to one.
+    public class CheckIfPositiveFloat : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            return value.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            try
+            {
+                var v = (float)(System.Convert.ToDouble(value));
+                if (v < 0)
+                    throw new Exception();
+            }
+            catch (Exception e)
+            {
+ 
+                value = 0;
+                MainPage.Current.NotifyUser("Invalid value entered, resetting it ", NotifyType.ErrorMessage);
+            }
+            return (float)System.Convert.ToDouble(value);
         }
     }
     // Tries to convert value into positive integer, if it fails then reset the value to one.
@@ -114,8 +141,9 @@ namespace SDKTemplate
             catch (Exception e)
             {
                 value = 0;
-                //TODO: Notify that percentage has been reset to zero.
+                MainPage.Current.NotifyUser("Percentage should be between 0 to 100, resetting it to zero", NotifyType.ErrorMessage);
             }
+
             return System.Convert.ToSingle(value);
         }
     }

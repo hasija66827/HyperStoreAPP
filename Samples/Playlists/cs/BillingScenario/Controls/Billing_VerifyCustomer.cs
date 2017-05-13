@@ -46,17 +46,16 @@ namespace SDKTemplate
                 CustomerMobNoTB.Text = "";
                 DisplayAddCustomer();
                 AddCustomer.Visibility = Visibility.Collapsed;
-                // Setting the empty customer
-                CustomerViewModel = new CustomerViewModel();
-                //TODO: Show Notification Message
+                // Setting the null customer
+                CustomerViewModel = null;
+                MainPage.Current.NotifyUser("Mobile Number should be of 10 digits", NotifyType.ErrorMessage);
                 return;
             }
             // Check If c.Text exist in customer database
             var customer = CustomerDataSource.GetCustomerByMobileNumber(mobileNumber);
             if (customer == null)
             {
-                // Setting the empty customer
-                CustomerViewModel = new CustomerViewModel();
+                CustomerViewModel = null;
                 DisplayAddCustomer();
             }
             else
