@@ -7,6 +7,11 @@ using SDKTemplate;
 using MasterDetailApp.ViewModel;
 namespace MasterDetailApp.Data
 {
+    public enum PaymentMode
+    {
+        payNow = 1,
+        payLater = 2
+    }
     public class OrderDataSource
     {
         private static List<OrderViewModel> _Orders;
@@ -30,7 +35,7 @@ namespace MasterDetailApp.Data
                         .Join(_customerOrders,
                                 customer => customer.CustomerId,
                                 customerOrder => customerOrder.CustomerId,
-                                (customer, customerOrder) => new OrderViewModel(customerOrder.CustomerOrderId, 
+                                (customer, customerOrder) => new OrderViewModel(customerOrder.CustomerOrderId,
                                                                                 customerOrder.BillAmount,
                                                                                 customer.MobileNo,
                                                                                 customerOrder.OrderDate,
@@ -44,6 +49,7 @@ namespace MasterDetailApp.Data
             var orderByMobileNumber = _Orders.Where(order => order.CustomerMobileNo == MobileNumber);
             return orderByMobileNumber.ToList();
         }
+
 
         // #perf if possible merge the three query into one.
         //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
@@ -65,6 +71,42 @@ namespace MasterDetailApp.Data
                                                                        customerOrderProduct.QuantityPurchased)).ToList();
             return orderDetails;
         }
+        /// <summary>
+        /// Returns the updated wallet balance of the customer
+        /// </summary>
+        /// <param name="pageNavigationParameter"></param>
+        /// <returns></returns>
+        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter, MasterDetailApp.Data.PaymentMode paymentMode)
+        {
+            if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
+                throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");
+
+            //TODO: See how can you make whole transaction atomic.
+            BillingViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
+            CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
+            var db = new DatabaseModel.RetailerContext();
+            float updatedCustomerWalletBalance = 0;
+            if (paymentMode.Equals(PaymentMode.payNow))
+            {
+                updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
+                pageNavigationParameter.WalletBalanceToBeDeducted,
+                pageNavigationParameter.Change);
+            }
+            else if (paymentMode.Equals(PaymentMode.payLater))
+            {
+                updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
+                                pageNavigationParameter.ToBePaid,
+                                0);
+            }
+            else
+            { throw new NotImplementedException(); }
+            UpdateProductStock(db, billingViewModel);
+
+            var customerOrderId = AddIntoCustomerOrder(db, billingViewModel, customerViewModel);
+            AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
+            return updatedCustomerWalletBalance;
+        }
+
         // Step 1:
         private static bool UpdateProductStock(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel)
         {
@@ -132,29 +174,6 @@ namespace MasterDetailApp.Data
             // Saving the order.
             db.SaveChanges();
         }
-        /// <summary>
-        /// Returns the updated wallet balance of the customer
-        /// </summary>
-        /// <param name="pageNavigationParameter"></param>
-        /// <returns></returns>
-        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter)
-        {
-            //TODO: without doing additional saving, foreign key constraints failed. See how can you make whole transaction atomic.
-            BillingViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
-            CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
-            var db = new DatabaseModel.RetailerContext();
 
-
-            UpdateProductStock(db, billingViewModel);
-            if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
-                throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");
-            var updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
-                pageNavigationParameter.WalletBalanceToBeDeducted,
-                pageNavigationParameter.Change);
-
-            var customerOrderId = AddIntoCustomerOrder(db, billingViewModel, customerViewModel);
-            AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
-            return updatedCustomerWalletBalance;
-        }
     }
 }

@@ -7,9 +7,11 @@
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="To Pay later 625Rs" />
+            <TextBlock Text="To Pay later" />
+            <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid}" />
             <TextBlock Text="Enter the verification code sent to " />
-            <TextBlock x:Name="MobNoTB" />
+            <TextBlock x:Name="MobNoTB"
+                       Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}" />
             <TextBox x:Name="OTPTB"
                      PlaceholderText="6 digit OTP" />
             <TextBlock x:Name="InvalidOTPNotifyTB"

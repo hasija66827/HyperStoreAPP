@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using MasterDetailApp.Data;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -22,18 +22,23 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class PayLaterOTPVerification : Page
     {
+        private PageNavigationParameter PageNavigationParameter { get; set; }
         public PayLaterOTPVerification()
         {
             this.InitializeComponent();
             SubmitBtn.Click += SubmitBtn_Click;
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+        }
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             // TODO: verify OTP
             if (OTPTB.Text == "123456")
             {
-                MainPage.Current.NotifyUser("OTP Verified and Order Placed Successfully", NotifyType.StatusMessage);
+                var updatedCustomerWalletBalance = OrderDataSource.PlaceOrder(PageNavigationParameter,PaymentMode.payLater);
+                MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the customer is \u20b9" + updatedCustomerWalletBalance, NotifyType.StatusMessage);
                 this.Frame.Navigate(typeof(BillingScenario));
             }
             else

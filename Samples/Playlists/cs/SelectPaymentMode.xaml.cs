@@ -53,7 +53,7 @@ namespace SDKTemplate
                     this.Frame.Navigate(typeof(PayNow), this.PageNavigationParameter);
             }
             else if (PayLaterRadBtn.IsChecked == true)
-                this.Frame.Navigate(typeof(PayLaterOTPVerification),this.PageNavigationParameter);
+                this.Frame.Navigate(typeof(PayLaterOTPVerification), this.PageNavigationParameter);
         }
     }
 }
