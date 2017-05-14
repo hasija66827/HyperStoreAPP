@@ -102,6 +102,9 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
     <Compile Include="View Models\BillingViewModel.cs" />
@@ -200,6 +203,10 @@
       <Link>Scenario5_Clear.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BillingScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml">
       <SubType>Designer</SubType>

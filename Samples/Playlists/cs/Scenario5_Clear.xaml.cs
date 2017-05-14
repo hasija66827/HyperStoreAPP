@@ -24,11 +24,29 @@ namespace SDKTemplate
 
     public sealed partial class Scenario5_Clear : Page
     {
+        private Int32 _totalFilterResults;
+        public Int32 TotalFilterResults {
+            get { return this._totalFilterResults; }
+            set {
+                this._totalFilterResults = value;
+                TotalFilterResultsTB.Text = this.TotalFilterResults.ToString()+" Items"; }
+        }
         public Scenario5_Clear()
         {
             this.InitializeComponent();
             FilterAppBarButton.Click += FilterAppBarButton_Click;
+            AddProductAppBarButton.Click += AddProductAppBarButton_Click;
             ApplyFilter.Click += ApplyFilter_Click;
+            ClearFilter.Click += ClearFilter_Click;
+        }
+
+        private void AddProductAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AddProduct));
+        }
+
+        private void ClearFilter_Click(object sender, RoutedEventArgs e)
+        { 
         }
 
         private void ApplyFilter_Click(object sender, RoutedEventArgs e)
@@ -38,37 +56,40 @@ namespace SDKTemplate
                 IRange<float> discounPerRange = new IRange<float>(Convert.ToSingle(DiscountPerLB.Text), Convert.ToSingle(DiscountPerUB.Text));
                 IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
                 FilterProductCriteria filterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
-                UpdateMasterListViewItemSource(filterProductCriteria);
+                this.TotalFilterResults=UpdateMasterListViewItemSource(filterProductCriteria);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 Console.Write(e.ToString());
-                //TODO: Invalid Percentage
+                MainPage.Current.NotifyUser("Invalid Filter Criteria", NotifyType.ErrorMessage);
             }
-            MasterListView.Visibility = Visibility.Visible;
-            FilterPanel.Visibility = Visibility.Collapsed;
-            FilterAppBarButton.Visibility = Visibility.Visible;
-            ClearAppBarButton.Visibility = Visibility.Collapsed;
         }
 
         private void FilterAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            FilterAppBarButton.Visibility = Visibility.Collapsed;
-            ClearAppBarButton.Visibility = Visibility.Visible;
-            MasterListView.Visibility = Visibility.Collapsed;
-            FilterPanel.Visibility = Visibility.Visible;
+            if (FilterPanel.Visibility == Visibility.Visible)
+                FilterPanel.Visibility = Visibility.Collapsed;
+            else
+                FilterPanel.Visibility = Visibility.Visible;
+
         }
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
-        private void UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
+        private Int32 UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
         {
+            Int32 totalResults = 0;
             //If filterProductCriteria is null then return whole list.
             if (filterProductCriteria == null)
+            {
                 MasterListView.ItemsSource = ProductDataSource.Products;
+                totalResults = ProductDataSource.Products.Count;
+            }
             else
             {
                 var items = ProductDataSource.GetProducts(filterProductCriteria);
                 MasterListView.ItemsSource = items;
+                totalResults = items.Count;
             }
+            return totalResults;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -107,7 +128,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-            
+
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }

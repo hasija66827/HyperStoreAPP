@@ -99,7 +99,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="300" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
@@ -107,10 +107,10 @@
                               Width="Auto"/>
             <ColumnDefinition x:Name="DetailColumn"
                               MinWidth="200"
-                              Width="Auto" />
+                              Width="300" />
             <ColumnDefinition x:Name="FilterColumn"
                               MinWidth="200"
-                              Width="*" />
+                              Width="300" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Products"
@@ -191,22 +191,23 @@
             </StackPanel>
             <CheckBox x:Name="ShowDeficientItemsOnly"
                       Content="Show Deficient Items Only" />
-            <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="FilterResults"
-                           Text="425 Results"
-                           HorizontalAlignment="Left" />
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="TotalFilterResultsTB"
+                          />
                 <Button x:Name="ApplyFilter"
                         Content="Apply"
-                        HorizontalAlignment="Right" />
+                        />
+                <Button x:Name="ClearFilter"
+                        Content="Clear" />
             </StackPanel>
         </StackPanel>
         <CommandBar>
             <CommandBar.Content>
                 <Grid />
             </CommandBar.Content>
-            <AppBarButton x:Name="Back"
-                          Icon="Back"
-                          Label="Back"
+            <AppBarButton x:Name="AddProductAppBarButton"
+                          Icon="Add"
+                          Label="Add Product"
                           Visibility="Visible" />
             <AppBarButton x:Name="FilterAppBarButton"
                           Icon="Filter"
