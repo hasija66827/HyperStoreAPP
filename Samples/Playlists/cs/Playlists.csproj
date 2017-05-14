@@ -104,15 +104,15 @@
     </Compile>
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
-    <Compile Include="BillingScenario\ViewModels\BillingViewModel.cs" />
-    <Compile Include="BillingScenario\ViewModels\ProductViewModelBase.cs" />
-    <Compile Include="UseWalletOTPVerification.xaml.cs">
+    <Compile Include="View Models\BillingViewModel.cs" />
+    <Compile Include="View Models\ProductViewModelBase.cs" />
+    <Compile Include="BillingScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml.cs">
       <DependentUpon>UseWalletOTPVerification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PayLaterOTPVerification.xaml.cs">
+    <Compile Include="BillingScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml.cs">
       <DependentUpon>PayLaterOTPVerification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PayNow.xaml.cs">
+    <Compile Include="BillingScenario\3a PayNow Scenario\PayNow.xaml.cs">
       <DependentUpon>PayNow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20170501120006_Adding TotalQuantity.cs" />
@@ -123,11 +123,11 @@
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReturnScenario\Controls\Return_MasterListView.cs" />
-    <Compile Include="ReturnScenario\DataSource\CustomerDataSource.cs" />
+    <Compile Include="Data Source\CustomerDataSource.cs" />
     <Compile Include="ReturnScenario\Controls\Return_ASB.cs" />
-    <Compile Include="ReturnScenario\ViewModels\CustomerViewModel.cs" />
-    <Compile Include="ReturnScenario\ViewModels\OrderViewModel.cs" />
-    <Compile Include="ReturnScenario\DataSource\OrderDataSource.cs" />
+    <Compile Include="View Models\CustomerViewModel.cs" />
+    <Compile Include="View Models\OrderViewModel.cs" />
+    <Compile Include="Data Source\OrderDataSource.cs" />
     <Compile Include="Migrations\20170415181816_First.cs" />
     <Compile Include="Migrations\20170415181816_First.designer.cs">
       <DependentUpon>20170415181816_First.cs</DependentUpon>
@@ -136,9 +136,9 @@
     <Compile Include="BillingScenario\Controls\Billing_ASB.cs" />
     <Compile Include="BillingScenario\Controls\Billing_VerifyCustomer.cs" />
     <Compile Include="DBModel\DBModel.cs" />
-    <Compile Include="BillingScenario\DataSource\ProductDataSource.cs" />
-    <Compile Include="BillingScenario\ViewModels\ProductViewModel.cs" />
-    <Compile Include="SelectPaymentMode.xaml.cs">
+    <Compile Include="Data Source\ProductDataSource.cs" />
+    <Compile Include="View Models\ProductViewModel.cs" />
+    <Compile Include="BillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml.cs">
       <DependentUpon>SelectPaymentMode.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\Utility.cs" />
@@ -201,15 +201,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UseWalletOTPVerification.xaml">
+    <Page Include="BillingScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PayLaterOTPVerification.xaml">
+    <Page Include="BillingScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PayNow.xaml">
+    <Page Include="BillingScenario\3a PayNow Scenario\PayNow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,7 +217,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SelectPaymentMode.xaml">
+    <Page Include="BillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,9 +253,7 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
