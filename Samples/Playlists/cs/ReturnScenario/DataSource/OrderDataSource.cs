@@ -90,12 +90,12 @@ namespace MasterDetailApp.Data
             {
                 updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
                 pageNavigationParameter.WalletBalanceToBeDeducted,
-                pageNavigationParameter.WalletAmountToBeAdded);
+                pageNavigationParameter.WalletAmountToBeAddedNow);
             }
             else if (paymentMode.Equals(PaymentMode.payLater))
             {
                 updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
-                                pageNavigationParameter.ToBePaid,
+                                pageNavigationParameter.WalletAmountToBePaidLater,
                                 0);
             }
             else

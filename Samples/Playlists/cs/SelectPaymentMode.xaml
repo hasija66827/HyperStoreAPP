@@ -54,12 +54,9 @@
                            Grid.Column="1" />
             </Grid>
             <StackPanel Orientation="Vertical">
-                <RadioButton x:Name="CashRadBtn"
-                             Content="Cash"
+                <RadioButton x:Name="PayNowRadBtn"
+                             Content="PayNow"
                              IsChecked="True"
-                             GroupName="paymentMode" />
-                <RadioButton x:Name="DebitRadBtn"
-                             Content="Debit Card"
                              GroupName="paymentMode" />
                 <RadioButton x:Name="PayLaterRadBtn"
                              Content="Pay Later"

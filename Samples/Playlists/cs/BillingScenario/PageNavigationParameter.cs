@@ -15,8 +15,6 @@ namespace SDKTemplate
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public BillingViewModel BillingViewModel { get; set; }
         public CustomerViewModel CustomerViewModel { get; set; }
-        public float WalletBalanceToBeDeducted { get; set; }
-
         private float _toBePaid;
         public float ToBePaid
         {
@@ -24,33 +22,9 @@ namespace SDKTemplate
             set
             { this._toBePaid = value; }
         }
-        // Extra money to be added in the wallet
-        private float _walletAmountToBeAdded;
-        public float WalletAmountToBeAdded
-        {
-            get { return this._walletAmountToBeAdded; }
-            set { this._walletAmountToBeAdded = value; }
-        }
 
-        private float _paid;
-        public float Paid
-        {
-            get { return this._paid; }
-            set
-            {
-                if (value < this._toBePaid)
-                {
-                    this._paid = this._toBePaid;
-                    MainPage.Current.NotifyUser("paying amount should be greater than the amount to be paid, resetting it", NotifyType.ErrorMessage);
-                }
-                else
-                    this._paid = value;
-                this._walletAmountToBeAdded = this._paid - this._toBePaid;
-                this.OnPropertyChanged(nameof(Paid));
-                this.OnPropertyChanged(nameof(WalletAmountToBeAdded));
-            }
-        }
-        //Above three properties changes
+        #region Using Wallet
+        // Step 2: Select Payement Mode
         private bool? _useWallet;
         public bool? UseWallet
         {
@@ -71,13 +45,76 @@ namespace SDKTemplate
                 else
                     this.WalletBalanceToBeDeducted = 0;
                 this._toBePaid = this.BillingViewModel.DiscountedBillAmount - this.WalletBalanceToBeDeducted;
-                this._paid = this._toBePaid;
-                this._walletAmountToBeAdded = 0;//THINK ABOUT IT
+                this._overPaid = this._toBePaid;
+                this._walletAmountToBeAddedNow = 0;//THINK ABOUT IT
                 this.OnPropertyChanged(nameof(WalletBalanceToBeDeducted));
                 this.OnPropertyChanged(nameof(ToBePaid));
-                this.OnPropertyChanged(nameof(Paid));
+                this.OnPropertyChanged(nameof(OverPaid));
             }
         }
+        public float WalletBalanceToBeDeducted { get; set; }
+
+        #region PayNow
+        // Step 3: If Pay Now Option is selected in the Step 2:
+        // Extra money to be added into the wallet now
+        private float _walletAmountToBeAddedNow;
+        public float WalletAmountToBeAddedNow
+        {
+            get { return this._walletAmountToBeAddedNow; }
+            set { this._walletAmountToBeAddedNow = value; }
+        }
+        private float _overPaid;
+        public float OverPaid
+        {
+            get { return this._overPaid; }
+            set
+            {
+                if (value < this._toBePaid)
+                {
+                    this._overPaid = this._toBePaid;
+                    MainPage.Current.NotifyUser("paying amount should be greater or equal to the amount to be paid, resetting it", NotifyType.ErrorMessage);
+                }
+                else
+                    this._overPaid = value;
+                this._walletAmountToBeAddedNow = this._overPaid - this._toBePaid;
+                this.OnPropertyChanged(nameof(OverPaid));
+                this.OnPropertyChanged(nameof(WalletAmountToBeAddedNow));
+            }
+        }
+        #endregion
+        #endregion
+
+        #region PayLater
+        // Step 3: If Pay later option is selected in step 2 
+        // Partial billing payment to be paid later
+        private float _walletAmountToBePaidLater;
+        public float WalletAmountToBePaidLater
+        {
+            get { return this._walletAmountToBePaidLater; }
+        }
+
+        // Partial payment paid by the customer
+        private float _partiallyPaid;
+        public float PartiallyPaid
+        {
+            get { return this._partiallyPaid; }
+            set
+            {
+                if (value >= this._toBePaid)
+                {
+                    this._partiallyPaid = 0;
+                    MainPage.Current.NotifyUser("paying amount should be less than amount to be paid, resetting it to zero", NotifyType.ErrorMessage);
+                }
+                else
+                {
+                    this._partiallyPaid = value;
+                }
+                this._walletAmountToBePaidLater = this._toBePaid - this._partiallyPaid;
+                this.OnPropertyChanged(nameof(PartiallyPaid));
+                this.OnPropertyChanged(nameof(WalletAmountToBePaidLater));
+            }
+        }
+        #endregion
 
         public PageNavigationParameter(BillingViewModel billingViewModel, CustomerViewModel customerViewModel)
         {
@@ -88,6 +125,7 @@ namespace SDKTemplate
                 this.UseWallet = false;
             else
                 this.UseWallet = true;
+            this._walletAmountToBePaidLater = this.BillingViewModel.DiscountedBillAmount;
         }
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

@@ -5,14 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
+    </UserControl.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="To Pay later" />
-            <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid}" />
-            <TextBlock Text="Enter the verification code sent to " />
-            <TextBlock x:Name="MobNoTB"
-                       Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}" />
-            <TextBox x:Name="OTPTB"
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Balance to Pay " />
+                <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Partially Paying Amount " />
+                <TextBox Text="{x:Bind PageNavigationParameter.PartiallyPaid, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="To Pay later " />
+                <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBePaidLater,  Mode=OneWay}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Enter the verification code sent to " />
+                <TextBlock x:Name="MobNoTB"
+                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}" />
+            </StackPanel>
+        <TextBox x:Name="OTPTB"
                      PlaceholderText="6 digit OTP" />
             <TextBlock x:Name="InvalidOTPNotifyTB"
                        Visibility="Collapsed" />

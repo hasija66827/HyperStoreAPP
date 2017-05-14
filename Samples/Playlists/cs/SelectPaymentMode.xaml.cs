@@ -45,7 +45,7 @@ namespace SDKTemplate
         }
         private void ProceedToPayment_Click(object sender, RoutedEventArgs e)
         {
-            if (CashRadBtn.IsChecked == true)
+            if (PayNowRadBtn.IsChecked == true)
             {
                 if (UseWalletChkBox.IsChecked == true)
                     this.Frame.Navigate(typeof(UseWalletOTPVerification), this.PageNavigationParameter);
