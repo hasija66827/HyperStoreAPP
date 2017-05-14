@@ -39,26 +39,30 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition MinWidth="150"  Width="Auto" />
+                    <ColumnDefinition MinWidth="75"  Width="Auto" />
+                    <ColumnDefinition MinWidth="75"  Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind Name}"
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind DisplayPrice}"
+                <TextBlock Text="{x:Bind TotalQuantity}"
+                           Grid.Column="2"
+                           Style="{ThemeResource BaseTextBlockStyle}" />
+                
+                <TextBlock Text="{x:Bind DisplayPrice, Converter={StaticResource FloatToRupeeConverter} }"
                            Grid.Column="0"
                            Grid.Row="2"
-                           Margin="12,1,0,0"
+                         
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind DiscountPer}"
+                <TextBlock Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"
                            Grid.Column="1"
                            Grid.Row="2"
-                           Margin="12,1,0,0"
+                          
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock Text="{x:Bind SellingPrice}"
+                <TextBlock Text="{x:Bind SellingPrice, Converter={StaticResource FloatToRupeeConverter}}"
                            Grid.Column="2"
                            Grid.Row="2"
-                           Margin="12,1,0,0"
+                           
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </Grid>
         </DataTemplate>
@@ -99,10 +103,13 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              Width="300" />
+                              MinWidth="300"
+                              Width="Auto"/>
             <ColumnDefinition x:Name="DetailColumn"
-                              Width="*" />
+                              MinWidth="200"
+                              Width="Auto" />
             <ColumnDefinition x:Name="FilterColumn"
+                              MinWidth="200"
                               Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
@@ -137,8 +144,8 @@
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
         <StackPanel x:Name="FilterPanel"
-                    Grid.Column="0"
-                    Grid.Row="1"
+                    Grid.Column="2"
+                    Grid.Row="2"
                     Visibility="Collapsed">
             <TextBlock Text="Discount %" />
             <customControl:RangeSlider x:Name="DiscountPerRangeSlider"
@@ -163,9 +170,9 @@
             </StackPanel>
             <TextBlock Text="Quantity" />
             <customControl:RangeSlider x:Name="QuantityRangeSlider"
-                                       Maximum="100"
+                                       Maximum="1000"
                                        Minimum="0"
-                                       RangeMax="100"
+                                       RangeMax="1000"
                                        RangeMin="0" />
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">

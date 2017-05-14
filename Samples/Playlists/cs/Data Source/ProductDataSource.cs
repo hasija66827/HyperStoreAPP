@@ -37,7 +37,6 @@ namespace SDKTemplate
         {
             using (var db = new DatabaseModel.RetailerContext())
             {
-                //db.Products.Add(new DatabaseModel.Product(new Guid(), "Fiama Diwills", "1231", false, 20, 15, 60, 20, 50));
                 // Retrieving data from the database synchronously.
                 _products = db.Products.Select(product => new ProductViewModelBase(
                       product.ProductId,
@@ -79,7 +78,7 @@ namespace SDKTemplate
             {
                 return ProductDataSource._products
                 .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
-                          p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB&&
+                          p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
                           p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
                           p.TotalQuantity <= filterProductCriteria.QuantityRange.UB).ToList();
             }
