@@ -8,6 +8,60 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="0"
+                    >
+            
+            <TextBlock Text="Product Name"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Cost Price(\u20b9)"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Display Price(\u20b9)"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Discount(%)"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Discount Amount(\u20b9)"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Threshold(\u20b9)"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Refill Time"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Product Code"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+                <TextBox x:Name="ProductCode"
+                         ToolTipService.ToolTip="The code by which you can search for the product"
+                         PlaceholderText="Four digit product code" />
+            </StackPanel>
+            <TextBox x:Name="ProductName"
+                     ToolTipService.ToolTip="Product Name for e.g. Maggi"
+                     PlaceholderText="Maggi"/>
+            <TextBox x:Name="CostPrice" 
+                     PlaceholderText="180 Rs"
+                     ToolTipService.ToolTip="Price purchased from Wholeseller "/>
+            <TextBox x:Name="DisplayPrice"
+                     PlaceholderText="200 Rs"
+                     ToolTipService.ToolTip="Price to be sold to Customer" />
+            <TextBox x:Name="DiscountPer"
+                     PlaceholderText="1 %"
+                     ToolTipService.ToolTip="Discount % given to the Customer" />
+            <TextBox x:Name="DiscountAmount"
+                     PlaceholderText="2 Rs"
+                     ToolTipService.ToolTip="Discount in INR given to the Customer" />
+            <TextBox x:Name="Threshold" 
+                      PlaceholderText="15 units"
+                     ToolTipService.ToolTip="The number of units of product below which you want alert"/>
+            <TextBox x:Name="RefillTime" 
+                     PlaceholderText="5 Days"
+                     ToolTipService.ToolTip="The number of days required by you to get the item from Wholeseller"
+                     />
+        </StackPanel>
     </Grid>
 </Page>
