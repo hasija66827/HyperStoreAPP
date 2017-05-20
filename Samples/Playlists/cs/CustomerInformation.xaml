@@ -47,7 +47,7 @@
         <StackPanel Orientation="Vertical"
                     RelativePanel.RightOf="CustomerMobileNumber"
                     RelativePanel.AlignTopWith="CustomerMobileNumber">
-            <Button x:Name="AddCustomer"
+            <Button x:Name="AddCustomerBtn"
                     Content="AddCustomer"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"

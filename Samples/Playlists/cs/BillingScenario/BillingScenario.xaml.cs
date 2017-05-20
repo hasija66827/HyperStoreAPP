@@ -28,20 +28,20 @@ namespace SDKTemplate
         private MainPage rootPage = MainPage.Current;
         public BillingViewModel BillingViewModel { get; set; }
         public static CustomerViewModel CustomerViewModel;
-        private static ProductASBViewModel _selectedProductInASB;
+      
+        public ProductASBCustomControl productASBCustomControl;
         public BillingScenario()
         {
             this.InitializeComponent();
             this.BillingViewModel = new BillingViewModel();
-            this.DateTimeLbl.Text = DateTime.Now.ToString();
+           
             ProductDataSource.RetrieveProductDataAsync();
             CustomerDataSource.RetrieveCustomersAsync();
-            AddToCart.Click += AddToCart_Click;
-            CustomerMobileNumber.LostFocus += CustomerMobileNumber_LostFocus;
-            AddCustomer.Click += AddCustomerClick;
+          
             Checkout.Click += Checkout_Click;
-            _selectedProductInASB = null;
-            CustomerViewModel = null;
+          
+            productASBCustomControl = new ProductASBCustomControl();
+            ProductASBCustomControl.AddToCartClickEvent += new AddToCartDelegate(this.BillingViewModel.AddToCart);
         }
     }
 }

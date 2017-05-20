@@ -30,138 +30,6 @@
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <RelativePanel x:Name="Header">
-                        <AutoSuggestBox x:Name="ProductASB"
-                                        PlaceholderText="Search for Product (e.g. 1111 or Maggi)"
-                                        DisplayMemberPath="Product_Id_Name"
-                                        TextChanged="ProductASB_TextChanged"
-                                        QueryIcon="Find"
-                                        QuerySubmitted="ProductASB_QuerySubmitted"
-                                        Margin="0,12,0,24"
-                                        MinWidth="296"
-                                        TextMemberPath="Product_Id_Name"
-                                        RelativePanel.AlignHorizontalCenterWithPanel="True"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                        Width="400" />
-                        <TextBlock x:Name="NoResults"
-                                   Text="No results found"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   Grid.Row="2"
-                                   RelativePanel.AlignHorizontalCenterWith="ProductASB"
-                                   RelativePanel.Below="ProductASB"
-                                   Visibility="Collapsed" />
-                        <RelativePanel x:Name="ProductDetails"
-                                       Grid.Row="1"
-                                       RelativePanel.AlignHorizontalCenterWith="ProductASB"
-                                       RelativePanel.Below="ProductASB"
-                                       Visibility="Collapsed"
-                                       Height="80">
-                            <Ellipse x:Name="ProductBackground"
-                                     Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-                                     Height="48"
-                                     Width="48"
-                                     Margin="0,16,0,8" />
-                            <FontIcon Glyph="&#xE77B;"
-                                      FontSize="20"
-                                      Margin="0,8,0,8"
-                                      RelativePanel.AlignHorizontalCenterWith="ProductBackground"
-                                      RelativePanel.AlignVerticalCenterWith="ProductBackground" />
-                            <TextBlock x:Name="ProductId"
-                                       Style="{StaticResource BaseTextBlockStyle}"
-                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                       RelativePanel.RightOf="ProductBackground"
-                                       Margin="12,11,12,0" />
-                            <TextBlock x:Name="ProductName"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
-                                       RelativePanel.Below="ProductId"
-                                       RelativePanel.AlignLeftWith="ProductId"
-                                       Margin="12,0" />
-                            <TextBlock x:Name="ProductSellingPrice"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                       RelativePanel.Below="ProductName"
-                                       RelativePanel.AlignLeftWith="ProductName"
-                                       Margin="12,0" />
-                            <TextBlock x:Name="ProductCostPrice"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                       RelativePanel.Below="ProductName"
-                                       RelativePanel.RightOf="ProductSellingPrice"
-                                       Margin="6,0" />
-                            <Line Stretch="Fill"
-                                  Stroke="Gray"
-                                  StrokeThickness="1"
-                                  X1="1"
-                                  Width="30"
-                                  RelativePanel.AlignHorizontalCenterWith="ProductCostPrice"
-                                  RelativePanel.AlignVerticalCenterWith="ProductCostPrice" />
-                            <TextBlock x:Name="ProductDiscountPer"
-                                       Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                       RelativePanel.Below="ProductName"
-                                       RelativePanel.RightOf="ProductCostPrice"
-                                       Margin="6,0" />
-                            <Button x:Name="AddToCart"
-                                    Content="Add To Cart"
-                                    Height="40"
-                                    Width="100"
-                                    RelativePanel.AlignBottomWith="ProductDiscountPer"
-                                    RelativePanel.RightOf="ProductDiscountPer"
-                                    Margin="6,0" />
-                        </RelativePanel>
-                        <StackPanel x:Name="Cashier" Orientation="Horizontal"
-                                    RelativePanel.AlignBottomWith="ProductASB">
-                            <TextBlock Text="Cashier Name: "
-                                       Style="{StaticResource BaseTextBlockStyle}"
-                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                       Width="150" />
-                            <TextBlock Text="Mohan Hasija"
-                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                        </StackPanel>
-                        <StackPanel x:Name="CustomerMobileNumber" Orientation="Horizontal" RelativePanel.Below="Cashier">
-                            <TextBlock x:Name="CustomerMobNoLbl" 
-                                       Text="Customer Mobile No: "
-                                       Style="{StaticResource BaseTextBlockStyle}"
-                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                       Width="150" />
-                            <TextBox x:Name="CustomerMobNoTB"
-                                     Text=""
-                                     Width="150"
-                                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                        </StackPanel>
-                        <StackPanel x:Name="CustomerName" 
-                            Orientation="Horizontal"
-                                    RelativePanel.Below="CustomerMobileNumber">
-                            <TextBlock x:Name="CustomerNameLbl"
-                                       Text="Customer Name: "
-                                       Style="{StaticResource BaseTextBlockStyle}"
-                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                       Width="150" />
-                            <TextBlock x:Name="CustomerNameTB"
-                                       Text=""
-                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
-                                    x:Name="CustomerWalletBalance"
-                                    RelativePanel.Below="CustomerName">
-                            <TextBlock x:Name="CustomerWalletBalanceLbl"
-                                       Text="Wallet"
-                                       Width="150" />
-                            <TextBlock x:Name="CustomerWalletBalanceTB"
-                                       Text="0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical"
-                                    RelativePanel.RightOf="CustomerMobileNumber"
-                                    RelativePanel.AlignTopWith="CustomerMobileNumber">
-                            <Button x:Name="AddCustomer"
-                                    Content="AddCustomer"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Visibility="Collapsed" />
-                            <TextBlock x:Name="IsVerified"
-                                       Text="Verified Buyer"
-                                       Visibility="Collapsed" />
-                        </StackPanel>
-                        <TextBlock x:Name="DateTimeLbl" Text="DateTime" RelativePanel.AlignRightWithPanel="True"/>
                     </RelativePanel>
                     <RelativePanel x:Name="BillingView"
                                    Grid.Row="2"
@@ -179,37 +47,37 @@
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Name"
-                                       Width="160"
+                                       Width="120"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="DisplayPrice"
-                                       Width="100"
+                                       Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Discount Per"
-                                       Width="100"
+                                       Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Discount Amt"
-                                       Width="100"
+                                       Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="SellingPrice"
-                                       Width="100"
+                                       Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Quantity"
-                                       Width="100"
+                                       Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Net Value"
-                                       Width="100"
+                                       Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -228,32 +96,32 @@
                                                    Width="60"
                                                    Margin="10,0,0,0" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Width="160"
+                                                   Width="120"
                                                    TextWrapping="NoWrap"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="DisplayPrice"
                                                    Text="{x:Bind DisplayPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Width="100"
+                                                   Width="80"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="DiscountPer"
                                                    Text="{x:Bind DiscountPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}"
-                                                   Width="100"
+                                                   Width="80"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="DiscountAmount"
                                                    Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Width="100"
+                                                   Width="80"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="SellingPrice"
                                                    Text="{x:Bind SellingPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Width="100"
+                                                   Width="80"
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="Quantity"
                                                  Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
-                                                 Width="100"
+                                                 Width="80"
                                                  Margin="0,0,10,0" />
                                         <TextBlock x:Name="NetValue"
                                                    Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Width="100"
+                                                   Width="80"
                                                    Margin="0,0,10,0" />
                                     </StackPanel>
                                 </DataTemplate>

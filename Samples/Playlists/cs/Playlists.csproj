@@ -146,8 +146,6 @@
       <DependentUpon>20170415181816_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
-    <Compile Include="BillingScenario\Controls\Billing_ASB.cs" />
-    <Compile Include="BillingScenario\Controls\Billing_VerifyCustomer.cs" />
     <Compile Include="DBModel\DBModel.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
     <Compile Include="View Models\ProductViewModel.cs" />

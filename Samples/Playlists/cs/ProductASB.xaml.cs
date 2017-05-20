@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
+   public delegate void AddToCartDelegate(ProductViewModel productViewModel);
+
     public class ProductASBViewModel : ProductViewModelBase
     {
         // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
@@ -38,18 +40,17 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class ProductASBCustomControl : Page
     {
+        public static event AddToCartDelegate AddToCartClickEvent;
         private static ProductASBViewModel _selectedProductInASB;
         public ProductASBCustomControl()
         {
             this.InitializeComponent();
+            AddToCartBtn.Click += AddToCartBtn_Click;
         }
-        private void AddToCart_Click(object sender, RoutedEventArgs e)
+
+        private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Int32 index = this.BillingViewModel.AddToCart(new ProductViewModel(_selectedProductInASB));
-            // Scrolling the list to the last element in the list. FYI: only works for distinct items.
-            //TODO: Below loe is affecting the performance of addition of items in cart.
-            //ListView.ScrollIntoView(ListView.Items[index]);
-            //ListView.SelectedIndex = index;
+            AddToCartClickEvent?.Invoke(new ProductViewModel(_selectedProductInASB));
             this.ProductASB.Text = "";
         }
 

@@ -28,8 +28,10 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             CustomerMobileNumber.LostFocus += CustomerMobileNumber_LostFocus;
+            AddCustomerBtn.Click += AddCustomerBtn_Click;
         }
-        private void AddCustomerClick(object sender, RoutedEventArgs e)
+
+        private void AddCustomerBtn_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Ask for Customer Name and address.
             // Create a new customer and save the Customer.
@@ -40,7 +42,6 @@ namespace SDKTemplate
             CustomerViewModel = customer;
             HideAddCustomer();
         }
-
         private void CustomerMobileNumber_LostFocus(object sender, RoutedEventArgs e)
         {
             var mobileNumber = CustomerMobNoTB.Text;
@@ -49,7 +50,7 @@ namespace SDKTemplate
             {
                 CustomerMobNoTB.Text = "";
                 DisplayAddCustomer();
-                AddCustomer.Visibility = Visibility.Collapsed;
+                AddCustomerBtn.Visibility = Visibility.Collapsed;
                 // Setting the null customer
                 CustomerViewModel = null;
                 MainPage.Current.NotifyUser("Mobile Number should be of 10 digits", NotifyType.ErrorMessage);
@@ -71,14 +72,14 @@ namespace SDKTemplate
         }
         public void HideAddCustomer()
         {
-            AddCustomer.Visibility = Visibility.Collapsed;
+            AddCustomerBtn.Visibility = Visibility.Collapsed;
             IsVerified.Visibility = Visibility.Visible;
             CustomerNameTB.Text = CustomerViewModel.Name;
             CustomerWalletBalanceTB.Text = "\u20b9" + CustomerViewModel.WalletBalance;
         }
         public void DisplayAddCustomer()
         {
-            AddCustomer.Visibility = Visibility.Visible;
+            AddCustomerBtn.Visibility = Visibility.Visible;
             IsVerified.Visibility = Visibility.Collapsed;
             CustomerNameTB.Text = "";
             CustomerWalletBalanceTB.Text = "\u20b9" + "0";

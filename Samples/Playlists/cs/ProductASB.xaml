@@ -79,7 +79,7 @@
                        RelativePanel.Below="ProductName"
                        RelativePanel.RightOf="ProductCostPrice"
                        Margin="6,0" />
-            <Button x:Name="AddToCart"
+            <Button x:Name="AddToCartBtn"
                     Content="Add To Cart"
                     Height="40"
                     Width="100"

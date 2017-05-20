@@ -22,24 +22,24 @@ using DatabaseModel;
 namespace SDKTemplate
 {
     public sealed partial class BillingScenario : Page
-    { 
+    {
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            if (!Utility.IsMobileNumber(CustomerMobNoTB.Text))
-            {
-                MainPage.Current.NotifyUser("Mobile Number is required", NotifyType.ErrorMessage);
-                //TODO: got focus on the mobile textBox
-                return;
-            }
-            if (BillingScenario.CustomerViewModel == null)
+            if (CustomerInformation.CustomerViewModel == null)
             {
                 MainPage.Current.NotifyUser("Customer not added, add the customer by clicking on Add Customer", NotifyType.ErrorMessage);
                 //TODO: got focus on the mobile textBox
                 return;
             }
+            if (!Utility.IsMobileNumber(CustomerViewModel.MobileNo))
+            {
+                MainPage.Current.NotifyUser("Mobile Number is required", NotifyType.ErrorMessage);
+                //TODO: got focus on the mobile textBox
+                return;
+            }
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
                this.BillingViewModel,
-               BillingScenario.CustomerViewModel);
+               CustomerInformation.CustomerViewModel);
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }
