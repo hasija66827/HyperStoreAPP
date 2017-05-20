@@ -22,9 +22,29 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class AddProduct : Page
     {
+        public AddProductViewModel addProductViewModelBase;
         public AddProduct()
         {
+            this.addProductViewModelBase = new AddProductViewModel();
             this.InitializeComponent();
+        }
+
+        private void ProductCodeTB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Utility.CheckIfValidProductCode(ProductCodeTB.Text);
+        }
+        private void ProductNameTB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Utility.CheckIfValidProductName(ProductNameTB.Text);
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text) && Utility.CheckIfValidProductName(ProductNameTB.Text))
+            {
+                if (ProductDataSource.AddProduct(addProductViewModelBase) == true)
+                    MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
+            }
         }
     }
 }

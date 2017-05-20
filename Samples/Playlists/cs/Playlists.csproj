@@ -108,6 +108,7 @@
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
     <Compile Include="View Models\BillingViewModel.cs" />
+    <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
     <Compile Include="BillingScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml.cs">
       <DependentUpon>UseWalletOTPVerification.xaml</DependentUpon>
@@ -156,6 +157,9 @@
     </Compile>
     <Compile Include="Scenario5_Clear.xaml.cs">
       <DependentUpon>Scenario5_Clear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WholeSellerScenario.xaml.cs">
+      <DependentUpon>WholeSellerScenario.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WholeSellerScenario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

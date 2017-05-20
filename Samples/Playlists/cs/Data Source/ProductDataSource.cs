@@ -83,6 +83,39 @@ namespace SDKTemplate
                           p.TotalQuantity <= filterProductCriteria.QuantityRange.UB).ToList();
             }
         }
-
+        public static bool IsProductCodeExist(string barCode)
+        {
+            var products = ProductDataSource._products
+                .Where(p => p.BarCode == barCode);
+            if (products.Count() == 0)
+                return false;
+            return true;
+        }
+        public static bool IsProductNameExist(string name)
+        {
+            var products = ProductDataSource._products
+                .Where(p => p.Name.ToLower() == name.ToLower());
+            if (products.Count() == 0)
+                return false;
+            return true;
+        }
+        public static bool AddProduct(AddProductViewModel productViewModelBase)
+        {
+            var db = new DatabaseModel.RetailerContext();
+            db.Products.Add(new DatabaseModel.Product(
+                productViewModelBase.ProductId,
+                productViewModelBase.Name,
+                productViewModelBase.BarCode,
+                false,
+                productViewModelBase.Threshold,
+                productViewModelBase.RefillTime,
+                productViewModelBase.DisplayPrice,
+                productViewModelBase.DiscountPer,
+                productViewModelBase.TotalQuantity
+                ));
+            db.SaveChanges();
+            _products.Add(productViewModelBase);
+            return true;
+        }
     }
 }

@@ -181,7 +181,6 @@
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-
     </Grid>
 </Page>
     

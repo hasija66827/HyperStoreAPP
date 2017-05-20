@@ -97,9 +97,9 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="300" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="550" />
+            <RowDefinition Height="150" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
@@ -145,7 +145,7 @@
         </ContentPresenter>
         <StackPanel x:Name="FilterPanel"
                     Grid.Column="2"
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Visibility="Collapsed">
             <TextBlock Text="Discount %" />
             <customControl:RangeSlider x:Name="DiscountPerRangeSlider"
@@ -205,10 +205,6 @@
             <CommandBar.Content>
                 <Grid />
             </CommandBar.Content>
-            <AppBarButton x:Name="AddProductAppBarButton"
-                          Icon="Add"
-                          Label="Add Product"
-                          Visibility="Visible" />
             <AppBarButton x:Name="FilterAppBarButton"
                           Icon="Filter"
                           Label="Filter" />

@@ -28,7 +28,7 @@ namespace SDKTemplate
             new Scenario() { Title = "Billing", ClassType = typeof(BillingScenario) }, 
             new Scenario() { Title = "NonInventoryItems", ClassType = typeof(NonInventoryProductScenario) }, 
             new Scenario() { Title = "All Orders", ClassType = typeof(MasterDetailApp.MasterDetailPage) }, 
-            new Scenario() { Title = "----", ClassType = typeof(Scenario4_Remove) }, 
+            new Scenario() { Title = "Adding Product from wholeseller", ClassType = typeof(WholeSellerScenario) }, 
             new Scenario() { Title = "Product In stock", ClassType = typeof(Scenario5_Clear) } 
         };
 

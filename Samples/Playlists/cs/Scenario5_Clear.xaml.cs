@@ -35,14 +35,8 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             FilterAppBarButton.Click += FilterAppBarButton_Click;
-            AddProductAppBarButton.Click += AddProductAppBarButton_Click;
             ApplyFilter.Click += ApplyFilter_Click;
             ClearFilter.Click += ClearFilter_Click;
-        }
-
-        private void AddProductAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(AddProduct));
         }
 
         private void ClearFilter_Click(object sender, RoutedEventArgs e)

@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Media;
 namespace SDKTemplate
 {
     public delegate void QuantityPropertyChangedDelegate();
-    
+
     public class InverseBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -93,6 +93,7 @@ namespace SDKTemplate
             return System.Convert.ToInt32(value);
         }
     }
+
     // Tries to convert value into positive float, if it fails then reset the value to one.
     public class CheckIfPositiveFloat : IValueConverter
     {
@@ -113,9 +114,9 @@ namespace SDKTemplate
             }
             catch (Exception e)
             {
- 
+
                 value = 0;
-                MainPage.Current.NotifyUser("Invalid value entered, resetting it ", NotifyType.ErrorMessage);
+                MainPage.Current.NotifyUser("Invalid value entered, resetting it to zero", NotifyType.ErrorMessage);
             }
             return (float)System.Convert.ToDouble(value);
         }
@@ -176,6 +177,45 @@ namespace SDKTemplate
                 }
             }
             return false;
+        }
+        public static bool CheckIfValidProductName(string productName)
+        {
+            if (ProductDataSource.IsProductNameExist(productName))
+            {
+                MainPage.Current.NotifyUser("The product name already exist", NotifyType.ErrorMessage);
+                return false;
+            }
+            return true;
+        }
+        public static bool CheckIfValidProductCode(string productCode)
+        {
+            if (productCode == "")
+            {
+                MainPage.Current.NotifyUser("The Product code cannot be empty", NotifyType.ErrorMessage);
+                return false;
+            }
+            try
+            {
+                //TODO: negative number should also be not allowed.
+                System.Convert.ToInt16(productCode);
+            }
+            catch
+            {
+                MainPage.Current.NotifyUser("The Product should contains digits only", NotifyType.ErrorMessage);
+                return false;
+            }
+            if (productCode.Length != 4)
+            {
+                MainPage.Current.NotifyUser("The Product code should be of 4 digits", NotifyType.ErrorMessage);
+                return false;
+            }
+
+            if (ProductDataSource.IsProductCodeExist(productCode))
+            {
+                MainPage.Current.NotifyUser("The product code already exist", NotifyType.ErrorMessage);
+                return false;
+            }
+            return true;
         }
         /// <summary>
         /// Retuns the list of child controls of parent control in visual tree

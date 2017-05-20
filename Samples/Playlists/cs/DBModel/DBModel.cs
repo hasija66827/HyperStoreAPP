@@ -127,7 +127,7 @@ namespace DatabaseModel
 
         }
         public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold,Int32 refillTime,
-            Int32 displayPrice, float discountPer, Int32 totalQuantity)
+            float displayPrice, float discountPer, Int32 totalQuantity)
         {
             ProductId = productID;
             Name = name;

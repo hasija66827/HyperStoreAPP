@@ -43,12 +43,18 @@ namespace SDKTemplate
         protected float _discountAmount;
         public virtual float DiscountAmount {
             get { return this._discountAmount; }
-            set { this._discountAmount = value; } }
+            set {
+                this._discountAmount = value;
+                this._discountPer=(this._discountAmount*100)/this._displayPrice;
+            } }
 
         protected float _discountPer;
         public virtual float DiscountPer {
             get { return Utility.RoundInt32(this._discountPer); }
-            set { this._discountPer = value; } }
+            set {
+                this._discountPer = value;
+                this._discountAmount = this._displayPrice*(100 - this._discountPer) * 100;
+            } }
 
         protected Int32 _threshold;
         public virtual Int32 Threshold
@@ -56,7 +62,12 @@ namespace SDKTemplate
             get { return this._threshold; }
             set { this._threshold = value; }
         }
-
+        protected Int32 _refillTime;
+        public virtual Int32 RefillTime
+        {
+            get { return this._refillTime; }
+            set { this._refillTime = value; }
+        }
         private Int32 _totalQuantity;
         public virtual Int32 TotalQuantity {
             get { return this._totalQuantity; }
@@ -65,6 +76,16 @@ namespace SDKTemplate
 
         public ProductViewModelBase()
         {
+            this._productId = Guid.NewGuid();
+            this._barCode = "";
+            this._name = "";
+            this._displayPrice = 0;
+            this._discountAmount = 0;
+            this._discountPer = 0;
+            this._sellingPrice = 0;
+            this._threshold = 0;
+            this._refillTime = 0;
+            this._totalQuantity = 0;
         }
         public ProductViewModelBase(Guid productId, string barCode, string name, 
             float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity)
