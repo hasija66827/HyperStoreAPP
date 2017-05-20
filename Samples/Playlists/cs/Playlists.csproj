@@ -116,6 +116,7 @@
     <Compile Include="ProductASB.xaml.cs">
       <DependentUpon>ProductASB.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View Models\BillingSummaryViewModel.cs" />
     <Compile Include="View Models\BillingViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />

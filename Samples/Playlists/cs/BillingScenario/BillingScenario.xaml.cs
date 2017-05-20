@@ -23,12 +23,13 @@ using MasterDetailApp.ViewModel;
 using MasterDetailApp.Data;
 namespace SDKTemplate
 {
+    public delegate void ListSizeChangedDelegate(Int32 updatedSize, float updateBillAmount);
     public sealed partial class BillingScenario : Page
     {
         private MainPage rootPage = MainPage.Current;
         public BillingViewModel BillingViewModel { get; set; }
         public static CustomerViewModel CustomerViewModel;
-      
+        public static event ListSizeChangedDelegate ListSizeChangedEvent;
         public ProductASBCustomControl productASBCustomControl;
         public BillingScenario()
         {
@@ -41,7 +42,13 @@ namespace SDKTemplate
             Checkout.Click += Checkout_Click;
           
             productASBCustomControl = new ProductASBCustomControl();
-            ProductASBCustomControl.AddToCartClickEvent += new AddToCartDelegate(this.BillingViewModel.AddToCart);
+            ProductASBCustomControl.AddToCartClickEvent += new AddToCartDelegate(this.AddToCart);
+        }
+        public void AddToCart(ProductViewModel product)
+        {
+            var index=this.BillingViewModel.AddToBillingList(product);
+            ListView.SelectedIndex = index;
+            BillingScenario.ListSizeChangedEvent?.Invoke(this.BillingViewModel.TotalProducts, this.BillingViewModel.TotalBillAmount);
         }
     }
 }

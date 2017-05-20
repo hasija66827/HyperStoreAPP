@@ -22,9 +22,11 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class BillingSummary : Page
     {
+        private BillingSummaryViewModel billingSummaryViewModel;
         public BillingSummary()
         {
             this.InitializeComponent();
+            billingSummaryViewModel = new BillingSummaryViewModel();
         }
     }
 }

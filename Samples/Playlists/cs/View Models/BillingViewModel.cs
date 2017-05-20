@@ -64,7 +64,7 @@ namespace SDKTemplate
             }
             return -1;
         }
-        public void AddToCart(ProductViewModel product)
+        public Int32 AddToBillingList(ProductViewModel product)
         {
             Int32 index = FirstMatchingProductIndex(product);
             // If product does not exist
@@ -84,7 +84,7 @@ namespace SDKTemplate
                  and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
                 this._products[index].QuantityPurchased += 1;
             }
-            //ListView.SelectedIndex = index;
+            return index;
         }
         public void TotalValue_TotalProductsPropertyChanged()
         {
