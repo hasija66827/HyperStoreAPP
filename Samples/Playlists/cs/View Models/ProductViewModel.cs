@@ -9,21 +9,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class ProductASBViewModel : ProductViewModelBase
-    {
-        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
-        public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
-        //Constructor to convert parent obect to child object.
-        public ProductASBViewModel(ProductViewModelBase parent)
-        {
-            foreach (PropertyInfo prop in parent.GetType().GetProperties())
-            {
-                //If Property can be set then only we will set it.
-                if (prop.CanWrite)
-                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
-            }
-        }
-    }
+ 
     /*InotifyProperty changed ensures that whenever a property of the object changes 
     we can notify that other dependent propoerty of object had been changed.*/
     public class ProductViewModel : ProductViewModelBase, INotifyPropertyChanged

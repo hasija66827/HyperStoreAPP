@@ -107,6 +107,15 @@
     </Compile>
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
     <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
+    <Compile Include="BillingSummary.xaml.cs">
+      <DependentUpon>BillingSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerInformation.xaml.cs">
+      <DependentUpon>CustomerInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductASB.xaml.cs">
+      <DependentUpon>ProductASB.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View Models\BillingViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
@@ -221,6 +230,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BillingScenario\3a PayNow Scenario\PayNow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillingSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductASB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

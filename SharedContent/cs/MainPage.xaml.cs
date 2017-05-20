@@ -69,6 +69,12 @@ namespace SDKTemplate
             if (s != null)
             {
                 ScenarioFrame.Navigate(s.ClassType);
+                if (s.ClassType == typeof(BillingScenario))
+                {
+                    HeaderFrame.Navigate(typeof(CustomerInformation));
+                    SearchBoxFrame.Navigate(typeof(ProductASBCustomControl));
+                    SummaryFrame.Navigate(typeof(BillingSummary));
+                }
                 if (Window.Current.Bounds.Width < 640)
                 {
                     Splitter.IsPaneOpen = false;

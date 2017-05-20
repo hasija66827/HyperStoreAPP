@@ -1,0 +1,60 @@
+﻿<Page x:Class="SDKTemplate.CustomerInformation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <StackPanel x:Name="Cashier"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWith="ProductASB">
+              </StackPanel>
+        <StackPanel x:Name="CustomerMobileNumber"
+                    Orientation="Horizontal"
+                    RelativePanel.Below="Cashier">
+            <TextBlock x:Name="CustomerMobNoLbl"
+                       Text="Customer Mobile No: "
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                       Width="150" />
+            <TextBox x:Name="CustomerMobNoTB"
+                     Text=""
+                     Width="150"
+                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+        </StackPanel>
+        <StackPanel x:Name="CustomerName"
+                    Orientation="Horizontal"
+                    RelativePanel.Below="CustomerMobileNumber">
+            <TextBlock x:Name="CustomerNameLbl"
+                       Text="Customer Name: "
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                       Width="150" />
+            <TextBlock x:Name="CustomerNameTB"
+                       Text=""
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    x:Name="CustomerWalletBalance"
+                    RelativePanel.Below="CustomerName">
+            <TextBlock x:Name="CustomerWalletBalanceLbl"
+                       Text="Wallet"
+                       Width="150" />
+            <TextBlock x:Name="CustomerWalletBalanceTB"
+                       Text="0" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+                    RelativePanel.RightOf="CustomerMobileNumber"
+                    RelativePanel.AlignTopWith="CustomerMobileNumber">
+            <Button x:Name="AddCustomer"
+                    Content="AddCustomer"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Visibility="Collapsed" />
+            <TextBlock x:Name="IsVerified"
+                       Text="Verified Buyer"
+                       Visibility="Collapsed" />
+        </StackPanel>
+    </StackPanel>
+</Page>

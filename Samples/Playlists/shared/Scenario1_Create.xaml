@@ -23,7 +23,7 @@
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid >
         <Grid x:Name="RootGrid"
               Margin="12,10,12,12">
             <ScrollViewer VerticalScrollMode="Auto"
