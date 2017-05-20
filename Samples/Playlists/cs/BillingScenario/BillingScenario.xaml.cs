@@ -28,7 +28,7 @@ namespace SDKTemplate
     {
         private MainPage rootPage = MainPage.Current;
         public BillingViewModel BillingViewModel { get; set; }
-        public static CustomerViewModel CustomerViewModel;
+ 
         public static event ListSizeChangedDelegate ListSizeChangedEvent;
         public ProductASBCustomControl productASBCustomControl;
         public BillingScenario()

@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class BillingViewModel : INotifyPropertyChanged
+    public class BillingViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public float TotalBillAmount
         {
             get
@@ -32,25 +31,17 @@ namespace SDKTemplate
                 return count;
             }
         }
-        private float _additionalDiscountPer;
-        public float AdditionalDiscountPer
-        {
-            get { return this._additionalDiscountPer; }
-            set
-            {
-                this._additionalDiscountPer = value;
-                this.OnPropertyChanged(nameof(AdditionalDiscountPer));
-                this.OnPropertyChanged(nameof(DiscountedBillAmount));
-            }
-        }
-        public float DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this.TotalBillAmount)/100; } }
+        //TODO
+       // public float DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this.TotalBillAmount) / 100; } }
+
+        public float DiscountedBillAmount { get { return ((100 - 0) * this.TotalBillAmount) / 100; } }
 
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
 
         public BillingViewModel()
         {
-            _additionalDiscountPer = 0;
+
         }
         private Int32 FirstMatchingProductIndex(ProductViewModel product)
         {
@@ -72,10 +63,6 @@ namespace SDKTemplate
             {
                 this._products.Add(product);
                 index = this._products.IndexOf(product);
-                // Subscribing a product instance to quantity changed property event handler.
-                product.QuantityPropertyChangedEvenHandler += TotalValue_TotalProductsPropertyChanged;
-                /* Will trigger the event QuantityPropertyChange
-                 and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
                 this._products[index].QuantityPurchased = 1;
             }
             else
@@ -85,17 +72,6 @@ namespace SDKTemplate
                 this._products[index].QuantityPurchased += 1;
             }
             return index;
-        }
-        public void TotalValue_TotalProductsPropertyChanged()
-        {
-            this.OnPropertyChanged(nameof(TotalProducts));
-            this.OnPropertyChanged(nameof(TotalBillAmount));
-            this.OnPropertyChanged(nameof(DiscountedBillAmount));
-        }
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            // Raise the PropertyChanged event, passing the name of the property whose value has changed.
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

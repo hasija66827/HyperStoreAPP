@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
-    public delegate void QuantityPropertyChangedDelegate();
+   
 
     public class InverseBooleanConverter : IValueConverter
     {

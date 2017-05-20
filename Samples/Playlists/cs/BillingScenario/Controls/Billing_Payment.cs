@@ -31,7 +31,7 @@ namespace SDKTemplate
                 //TODO: got focus on the mobile textBox
                 return;
             }
-            if (!Utility.IsMobileNumber(CustomerViewModel.MobileNo))
+            if (!Utility.IsMobileNumber(CustomerInformation.CustomerViewModel.MobileNo))
             {
                 MainPage.Current.NotifyUser("Mobile Number is required", NotifyType.ErrorMessage);
                 //TODO: got focus on the mobile textBox

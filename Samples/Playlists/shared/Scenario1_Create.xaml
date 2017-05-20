@@ -127,48 +127,6 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                        <StackPanel x:Name="TransactionInformation"
-                                    Width="300"
-                                    Orientation="Vertical"
-                                    RelativePanel.AlignBottomWithPanel="True"
-                                    RelativePanel.Below="ListView">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Quantity: "
-                                           Style="{StaticResource BaseTextBlockStyle}"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                           Width="90" />
-                                <TextBlock Text="{x:Bind BillingViewModel.TotalProducts, Mode=OneWay}"
-                                           Style="{StaticResource BaseTextBlockStyle}"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Price: "
-                                           Style="{StaticResource BaseTextBlockStyle}"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                           Width="90" />
-                                <TextBlock Text="{x:Bind BillingViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource BaseTextBlockStyle}"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Discount %: "
-                                           Style="{StaticResource BaseTextBlockStyle}"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                           Width="90" />
-                                <TextBox Text="{x:Bind BillingViewModel.AdditionalDiscountPer, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
-                                         Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                         MinHeight="32" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Pay: "
-                                           Style="{StaticResource BaseTextBlockStyle}"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                           Width="90" />
-                                <TextBlock Text="{x:Bind BillingViewModel.DiscountedBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource BaseTextBlockStyle}"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            </StackPanel>
-                        </StackPanel>
                     </RelativePanel>
                     <StackPanel x:Name="Footer"
                                 Orientation="Horizontal"

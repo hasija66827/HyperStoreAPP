@@ -25,13 +25,13 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(QuantityPurchased));
                 this.OnPropertyChanged(nameof(NetValue));
                 // Invoking event to notify change in quantity of the product.
-                QuantityPropertyChangedEvenHandler();
+           
             }
         }
         private float _netValue;
         public float NetValue { get { return Utility.RoundInt32(this._netValue); } }
         // This event will notify the subscriber of Product class that the Quantity Property has been changed.
-        public event QuantityPropertyChangedDelegate QuantityPropertyChangedEvenHandler;
+       
 
         public override float DiscountAmount
         {
