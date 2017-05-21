@@ -19,7 +19,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers3.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers5.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -228,6 +228,8 @@ namespace DatabaseModel
 
             this.PartiallyPaid = pageNavigationParameter.PartiallyPaid;
             this.PayingLater = pageNavigationParameter.WalletAmountToBePaidLater;
+
+            this.CustomerId = pageNavigationParameter.CustomerViewModel.CustomerId;
         }
         [Required]
         public Nullable<Guid> CustomerId;

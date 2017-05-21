@@ -8,8 +8,8 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170415181816_First")]
-    partial class First
+    [Migration("20170521204747_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,16 +47,28 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("CustomerOrderId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("BillAmount");
+                    b.Property<float>("AddingMoneyToWallet");
 
                     b.Property<Guid?>("CustomerId")
                         .IsRequired();
 
+                    b.Property<float>("DiscountedAmount");
+
+                    b.Property<bool>("IsPaidNow");
+
+                    b.Property<bool>("IsUseWallet");
+
                     b.Property<DateTime>("OrderDate");
 
-                    b.Property<float>("PaidAmount");
+                    b.Property<float>("PartiallyPaid");
 
-                    b.Property<float>("WalletSnapShot");
+                    b.Property<float>("PayingLater");
+
+                    b.Property<float>("PayingNow");
+
+                    b.Property<float>("TotalBillAmount");
+
+                    b.Property<float>("UsingWalletAmount");
 
                     b.HasKey("CustomerOrderId");
 
@@ -109,6 +121,8 @@ namespace SDKTemplate.Migrations
                     b.Property<int>("RefillTime");
 
                     b.Property<int>("Threshold");
+
+                    b.Property<int>("TotalQuantity");
 
                     b.Property<string>("UserDefinedCode");
 

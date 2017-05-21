@@ -25,14 +25,21 @@ namespace MasterDetailApp
         //Will Update the MasterListView by filtering out Customers of specific mobile number.
         private void UpdateMasterListViewItemSource(CustomerViewModel customer=null)
         {
+            List<OrderViewModel> items;
             //If mobile number is null then return empty list.
             if (customer == null)
-                MasterListView.ItemsSource =OrderDataSource.Orders;
+                items =OrderDataSource.Orders;
             else
             {
-                var items = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
-                MasterListView.ItemsSource = items;
+                 items = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
             }
+            MasterListView.ItemsSource = items;
+            string sum = "";
+            foreach (var item in items)
+            {
+                sum += item.PaidAmount;
+            }
+            
         }
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {

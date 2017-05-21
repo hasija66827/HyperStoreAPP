@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SDKTemplate.Migrations
 {
-    public partial class First : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,7 @@ namespace SDKTemplate.Migrations
                     Name = table.Column<string>(nullable: true),
                     RefillTime = table.Column<int>(nullable: false),
                     Threshold = table.Column<int>(nullable: false),
+                    TotalQuantity = table.Column<int>(nullable: false),
                     UserDefinedCode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -64,11 +65,17 @@ namespace SDKTemplate.Migrations
                 columns: table => new
                 {
                     CustomerOrderId = table.Column<Guid>(nullable: false),
-                    BillAmount = table.Column<float>(nullable: false),
+                    AddingMoneyToWallet = table.Column<float>(nullable: false),
                     CustomerId = table.Column<Guid>(nullable: false),
+                    DiscountedAmount = table.Column<float>(nullable: false),
+                    IsPaidNow = table.Column<bool>(nullable: false),
+                    IsUseWallet = table.Column<bool>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false),
-                    PaidAmount = table.Column<float>(nullable: false),
-                    WalletSnapShot = table.Column<float>(nullable: false)
+                    PartiallyPaid = table.Column<float>(nullable: false),
+                    PayingLater = table.Column<float>(nullable: false),
+                    PayingNow = table.Column<float>(nullable: false),
+                    TotalBillAmount = table.Column<float>(nullable: false),
+                    UsingWalletAmount = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {

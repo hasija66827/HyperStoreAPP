@@ -119,13 +119,13 @@
     <Compile Include="CCF\ProductListCC\ProductListCC.xaml.cs">
       <DependentUpon>ProductListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20170521200221_AddingAttributes to order entity.cs" />
-    <Compile Include="Migrations\20170521200221_AddingAttributes to order entity.designer.cs">
-      <DependentUpon>20170521200221_AddingAttributes to order entity.cs</DependentUpon>
+    <Compile Include="Migrations\20170521204747_first.cs" />
+    <Compile Include="Migrations\20170521204747_first.designer.cs">
+      <DependentUpon>20170521204747_first.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20170521204132_Updaing attributes of CustomerOrder.cs" />
-    <Compile Include="Migrations\20170521204132_Updaing attributes of CustomerOrder.designer.cs">
-      <DependentUpon>20170521204132_Updaing attributes of CustomerOrder.cs</DependentUpon>
+    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
+    <Compile Include="CCF\OrderSummaryCC\OrderSummary.xaml.cs">
+      <DependentUpon>OrderSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="View Models\ProductListViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
@@ -139,10 +139,6 @@
     <Compile Include="BillingScenario\3a PayNow Scenario\PayNow.xaml.cs">
       <DependentUpon>PayNow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20170501120006_Adding TotalQuantity.cs" />
-    <Compile Include="Migrations\20170501120006_Adding TotalQuantity.designer.cs">
-      <DependentUpon>20170501120006_Adding TotalQuantity.cs</DependentUpon>
-    </Compile>
     <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>
@@ -152,11 +148,6 @@
     <Compile Include="CCF\CustomerInformationCC\CustomerViewModel.cs" />
     <Compile Include="View Models\OrderViewModel.cs" />
     <Compile Include="Data Source\OrderDataSource.cs" />
-    <Compile Include="Migrations\20170415181816_First.cs" />
-    <Compile Include="Migrations\20170415181816_First.designer.cs">
-      <DependentUpon>20170415181816_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="DBModel\DBModel.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
     <Compile Include="View Models\ProductViewModel.cs" />
@@ -249,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\ProductListCC\ProductListCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\OrderSummaryCC\OrderSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
