@@ -11,7 +11,10 @@
     <Grid >
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
-            <Grid>
+            <TextBlock Text="Select the Payment Mode"
+                       Style="{StaticResource SampleHeaderTextStyle}"
+                       Margin="10,0,0,20"/>
+            <Grid Margin="10,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="1*" />

@@ -26,24 +26,23 @@ namespace SDKTemplate
     public sealed partial class ProductListCC : Page
     {
         private MainPage rootPage = MainPage.Current;
-        public ProductListViewModel ProductistViewModel { get; set; }
+        public ProductListViewModel ProductListViewModel { get; set; }
         public ProductListCC()
         {
             this.InitializeComponent();
-            this.ProductistViewModel = new ProductListViewModel();
+            this.ProductListViewModel = new ProductListViewModel();
             Checkout.Click += Checkout_Click;
             ProductASBCustomControl.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
-            BillingSummaryViewModel.AdditionalDiscountPerDiscountedBillAmountChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
-                ((sender, additonalDiscountPer, discountedBillAmount) =>
+            BillingSummaryViewModel.AdditionalDiscountPerChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
+                ((sender, additonalDiscountPer) =>
                 {
-                    this.ProductistViewModel.AdditonalDiscountPer = additonalDiscountPer;
-                    this.ProductistViewModel.DiscountedBillAmount = discountedBillAmount;
+                    this.ProductListViewModel.AdditonalDiscountPer = additonalDiscountPer;
                 });
         }
         // Will be invoked on an event in ProductASBCC
         public void AddProductToCart(object sender, ProductViewModel product)
         {
-            var index = this.ProductistViewModel.AddToBillingList(product);
+            var index = this.ProductListViewModel.AddToBillingList(product);
             ListView.SelectedIndex = index;
         }
         private void Checkout_Click(object sender, RoutedEventArgs e)
@@ -51,17 +50,17 @@ namespace SDKTemplate
             if (CustomerInformation.CustomerViewModel == null)
             {
                 MainPage.Current.NotifyUser("Customer not added, add the customer by clicking on Add Customer", NotifyType.ErrorMessage);
-                //TODO: got focus on the mobile textBox
+            
                 return;
             }
             if (!Utility.IsMobileNumber(CustomerInformation.CustomerViewModel.MobileNo))
             {
                 MainPage.Current.NotifyUser("Mobile Number is required", NotifyType.ErrorMessage);
-                //TODO: got focus on the mobile textBox
+         
                 return;
             }
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
-               this.ProductistViewModel,
+               this.ProductListViewModel,
                CustomerInformation.CustomerViewModel);
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }

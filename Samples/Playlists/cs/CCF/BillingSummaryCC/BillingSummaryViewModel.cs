@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public delegate void AdditionalDiscountPerDiscountedBillAmountChangedDelegate(object sender, float additionalDiscountPer, float discountedBillAmount);
+    public delegate void AdditionalDiscountPerDiscountedBillAmountChangedDelegate(object sender, float additionalDiscountPer);
     public class BillingSummaryViewModel : INotifyPropertyChanged
     {
-        public static event AdditionalDiscountPerDiscountedBillAmountChangedDelegate AdditionalDiscountPerDiscountedBillAmountChangedEvent;
+        public static event AdditionalDiscountPerDiscountedBillAmountChangedDelegate AdditionalDiscountPerChangedEvent;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private float _totalBillAmount;
         public float TotalBillAmount
@@ -48,7 +48,7 @@ namespace SDKTemplate
             set
             {
                 this._additionalDiscountPer = value;
-                AdditionalDiscountPerDiscountedBillAmountChangedEvent?.Invoke(this, AdditionalDiscountPer, DiscountedBillAmount);
+                AdditionalDiscountPerChangedEvent?.Invoke(this, AdditionalDiscountPer);
                 this.OnPropertyChanged(nameof(AdditionalDiscountPer));
                 this.OnPropertyChanged(nameof(DiscountedBillAmount));
             }

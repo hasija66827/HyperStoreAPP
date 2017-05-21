@@ -10,6 +10,9 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel>
+            <TextBlock Text="OTP Verification for Paying Later"
+                       Style="{StaticResource SampleHeaderTextStyle}"
+                       Margin="10,0,0,20" />
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Total Balance to Pay " />
                 <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid}" />
@@ -27,13 +30,12 @@
                 <TextBlock x:Name="MobNoTB"
                            Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}" />
             </StackPanel>
-        <TextBox x:Name="OTPTB"
+            <TextBox x:Name="OTPTB"
                      PlaceholderText="6 digit OTP" />
             <TextBlock x:Name="InvalidOTPNotifyTB"
                        Visibility="Collapsed" />
-            <Button
-                x:Name="SubmitBtn"
-                Content="Submit" />
+            <Button x:Name="SubmitBtn"
+                    Content="Submit" />
         </StackPanel>
     </Grid>
 </Page>

@@ -7,6 +7,9 @@
       mc:Ignorable="d">
     <Grid >
         <StackPanel Orientation="Vertical">
+            <TextBlock Text="OTP Verification for using Wallet"
+                       Style="{StaticResource SampleHeaderTextStyle}"
+                       Margin="10,0,0,20" />
             <TextBlock Text="Current Wallet Balance" />
             <TextBlock Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance}" />
             <TextBlock Text="To Deduct Wallet amount of Rs" />

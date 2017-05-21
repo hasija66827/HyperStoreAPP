@@ -82,7 +82,7 @@
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         </StackPanel>
                         <ListView x:Name="ListView"
-                                  ItemsSource="{x:Bind ProductistViewModel.Products}"
+                                  ItemsSource="{x:Bind ProductListViewModel.Products}"
                                   RelativePanel.Below="StaticLabelsForList"
                                   Height="300"
                                   CanReorderItems="False"
