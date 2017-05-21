@@ -41,6 +41,7 @@ namespace SDKTemplate
         private static ProductASBViewModel _selectedProductInASB;
         public ProductASBCustomControl()
         {
+
             this.InitializeComponent();
             AddToCartBtn.Click += AddToCartBtn_Click;
         }
@@ -86,7 +87,7 @@ namespace SDKTemplate
                 SelectProduct((ProductASBViewModel)args.ChosenSuggestion);
             }
             else
-            { 
+            {
                 var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
                 // Choose the first match, or clear the selection if there are no matches.
                 SelectProduct(new ProductASBViewModel(matchingProducts.FirstOrDefault()));
@@ -108,6 +109,7 @@ namespace SDKTemplate
                 ProductSellingPrice.Text = "\u20B9" + product.DisplayPrice * (100 - product.DiscountPer) / 100;
                 ProductCostPrice.Text = "\u20B9" + product.DisplayPrice;
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
+                ProductGlyph.Text = Utility.GenerateProductGlyph(product.Name);
             }
             else
             {
@@ -115,5 +117,6 @@ namespace SDKTemplate
                 ProductDetails.Visibility = Visibility.Collapsed;
             }
         }
+        
     }
 }

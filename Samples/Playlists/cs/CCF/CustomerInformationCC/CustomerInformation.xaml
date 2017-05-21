@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <RelativePanel>
+    <RelativePanel Margin="10,0,0,0">
         <TextBlock x:Name="CustomerSummary"
                    Text="Customer Information"
                    Style="{StaticResource SampleHeaderTextStyle}"
-                   Margin="0,0,0,10"/>
+                   Margin="0,0,0,20" />
         <StackPanel x:Name="CustomerMobileNumber"
                     Orientation="Horizontal"
                     RelativePanel.Below="CustomerSummary">
@@ -42,20 +42,23 @@
                     Margin="40,0,0,0">
             <TextBlock x:Name="CustomerWalletBalanceLbl"
                        Text="Wallet"
-                       Width="150" />
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                       Width="100" />
             <TextBlock x:Name="CustomerWalletBalanceTB"
                        Text="0" />
         </StackPanel>
         <StackPanel Orientation="Vertical"
-                    RelativePanel.Below="CustomerName">
+                    RelativePanel.AlignBottomWith="CustomerMobileNumber"
+                    RelativePanel.RightOf="CustomerMobileNumber">
             <Button x:Name="AddCustomerBtn"
-                    Content="AddCustomer"
+                    Content="+"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Visibility="Collapsed" />
-            <TextBlock x:Name="IsVerified"
-                       Text="Verified Buyer"
-                       Visibility="Collapsed" />
+                    Visibility="Visible" />
+            <SymbolIcon x:Name="IsVerified"
+                        Symbol="Accept"
+                        Visibility="Collapsed" />
         </StackPanel>
     </RelativePanel>
 </Page>

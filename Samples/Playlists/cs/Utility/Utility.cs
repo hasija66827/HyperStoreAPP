@@ -10,8 +10,6 @@ using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
-   
-
     public class InverseBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -177,6 +175,16 @@ namespace SDKTemplate
                 }
             }
             return false;
+        }
+        public static string GenerateProductGlyph(String productName)
+        {
+            var productGlyph = "";
+            var tokenizeProductName = productName.Split(' ');
+            foreach (var a in tokenizeProductName)
+            {
+                productGlyph += a.ElementAtOrDefault(0).ToString();
+            }
+            return productGlyph.ToUpper();
         }
         public static bool CheckIfValidProductName(string productName)
         {

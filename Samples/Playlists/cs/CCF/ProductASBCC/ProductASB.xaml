@@ -5,47 +5,47 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical"
-                    Grid.Column="0"
-                    Margin="10">
-            <TextBlock Text="Add The product"
-                       Margin="0,0,0,10"
-                       Style="{StaticResource SampleHeaderTextStyle}" />
-            <TextBlock x:Name="NoResults"
-                       Text="No results found"
-                       Style="{StaticResource BodyTextBlockStyle}"
-                       RelativePanel.Below="ProductASB"
-                       Visibility="Collapsed" />
-            <AutoSuggestBox x:Name="ProductASB"
-                            PlaceholderText="Search for Product (e.g. 1111 or Maggi)"
-                            DisplayMemberPath="Product_Id_Name"
-                            TextChanged="ProductASB_TextChanged"
-                            QueryIcon="Find"
-                            QuerySubmitted="ProductASB_QuerySubmitted"
-                            MinWidth="250"
-                            TextMemberPath="Product_Id_Name"
-                            Width="300"/>
-        </StackPanel>
+    <RelativePanel Margin="10,0,0,0">
+        <TextBlock x:Name="Header"
+                   Text="Add The product"
+                   Margin="0,0,0,20"
+                   Style="{StaticResource SampleHeaderTextStyle}" />
+        <AutoSuggestBox x:Name="ProductASB"
+                        PlaceholderText="Search for Product (e.g. 1111 or Maggi)"
+                        DisplayMemberPath="Product_Id_Name"
+                        TextChanged="ProductASB_TextChanged"
+                        QueryIcon="Find"
+                        QuerySubmitted="ProductASB_QuerySubmitted"
+                        MinWidth="250"
+                        TextMemberPath="Product_Id_Name"
+                        Width="300"
+                        RelativePanel.Below="Header"
+                        RelativePanel.AlignLeftWith="Header" />
+        <TextBlock x:Name="NoResults"
+                   Text="No results found"
+                   Style="{StaticResource BodyTextBlockStyle}"
+                   RelativePanel.AlignBottomWith="ProductASB"
+                   RelativePanel.RightOf="ProductASB"
+                   Visibility="Collapsed" />
         <RelativePanel x:Name="ProductDetails"
                        Visibility="Collapsed"
                        Height="80"
                        Margin="60,0,0,0"
-                       Grid.Column="1">
+                       RelativePanel.AlignBottomWith="ProductASB"
+                       RelativePanel.RightOf="ProductASB">
             <Ellipse x:Name="ProductBackground"
-                     Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
                      Height="48"
                      Width="48"
-                     Margin="0,16,0,8" />
-            <FontIcon Glyph="&#xE77B;"
-                      FontSize="20"
-                      Margin="0,8,0,8"
-                      RelativePanel.AlignHorizontalCenterWith="ProductBackground"
-                      RelativePanel.AlignVerticalCenterWith="ProductBackground" />
+                     Margin="0,16,0,8"
+                     Fill="#99797A05" />
+            <TextBlock x:Name="ProductGlyph"
+                       Text="RH"
+                       FontSize="20"
+                       Margin="0,8,0,8"
+                       RelativePanel.AlignHorizontalCenterWith="ProductBackground"
+                       RelativePanel.AlignVerticalCenterWith="ProductBackground"
+                       Foreground="#FFFCFCFC"
+                       SelectionHighlightColor="#FFE8EEEE" />
             <TextBlock x:Name="ProductId"
                        Style="{StaticResource BaseTextBlockStyle}"
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
@@ -89,5 +89,5 @@
                     RelativePanel.RightOf="ProductDiscountPer"
                     Margin="6,0" />
         </RelativePanel>
-    </Grid>
+    </RelativePanel>
 </Page>
