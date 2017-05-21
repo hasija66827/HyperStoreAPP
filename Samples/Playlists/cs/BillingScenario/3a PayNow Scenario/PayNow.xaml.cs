@@ -36,7 +36,7 @@ namespace SDKTemplate
         {
             var updatedCustomerWalletBalance = OrderDataSource.PlaceOrder(PageNavigationParameter, PaymentMode.payNow);
             MainPage.Current.NotifyUser("The updated wallet balance of the customer is \u20b9" + updatedCustomerWalletBalance, NotifyType.StatusMessage);
-            this.Frame.Navigate(typeof(BillingScenario));
+            this.Frame.Navigate(typeof(ProductListCC));
         }
     }
 }

@@ -9,6 +9,7 @@
 //
 //*********************************************************
 
+using MasterDetailApp.Data;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Core;
@@ -42,6 +43,8 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
+            ProductDataSource.RetrieveProductDataAsync();
+            CustomerDataSource.RetrieveCustomersAsync();
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {
@@ -69,7 +72,7 @@ namespace SDKTemplate
             if (s != null)
             {
                 ScenarioFrame.Navigate(s.ClassType);
-                if (s.ClassType == typeof(BillingScenario))
+                if (s.ClassType == typeof(ProductListCC))
                 {
                     HeaderFrame.Navigate(typeof(CustomerInformation));
                     SearchBoxFrame.Navigate(typeof(ProductASBCustomControl));

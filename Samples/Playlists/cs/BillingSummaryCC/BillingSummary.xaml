@@ -40,7 +40,9 @@
                            Style="{StaticResource BaseTextBlockStyle}"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                            Width="90" />
-                <TextBox Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                <TextBox 
+                    x:Name="AdditonalDiscountPerTB"
+                    Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                          Text="{x:Bind billingSummaryViewModel.AdditionalDiscountPer, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
                          MinHeight="32" />
             </StackPanel>

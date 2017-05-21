@@ -13,7 +13,7 @@ namespace SDKTemplate
     public class PageNavigationParameter : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public BillingViewModel BillingViewModel { get; set; }
+        public ProductListViewModel BillingViewModel { get; set; }
         public CustomerViewModel CustomerViewModel { get; set; }
         private float _toBePaid;
         public float ToBePaid
@@ -116,7 +116,7 @@ namespace SDKTemplate
         }
         #endregion
 
-        public PageNavigationParameter(BillingViewModel billingViewModel, CustomerViewModel customerViewModel)
+        public PageNavigationParameter(ProductListViewModel billingViewModel, CustomerViewModel customerViewModel)
         {
             this.BillingViewModel = billingViewModel;
             this.CustomerViewModel = customerViewModel;

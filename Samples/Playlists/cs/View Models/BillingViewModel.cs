@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class BillingViewModel
+    public class ProductListViewModel
     {
         public float TotalBillAmount
         {
@@ -38,7 +38,7 @@ namespace SDKTemplate
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
 
-        public BillingViewModel()
+        public ProductListViewModel()
         {
 
         }

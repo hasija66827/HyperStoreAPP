@@ -19,10 +19,36 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DatabaseModel;
+using MasterDetailApp.ViewModel;
+using MasterDetailApp.Data;
 namespace SDKTemplate
 {
-    public sealed partial class BillingScenario : Page
+    public delegate void ProductListChangedDelegate(object sender, Int32 updatedSize, float updateBillAmount);
+    public sealed partial class ProductListCC : Page
     {
+        public static event ProductListChangedDelegate ProductListChangedEvent;
+        private MainPage rootPage = MainPage.Current;
+        public ProductListViewModel ProductistViewModel { get; set; }
+        public ProductListCC()
+        {
+            this.InitializeComponent();
+            this.ProductistViewModel = new ProductListViewModel();
+            Checkout.Click += Checkout_Click;
+            ProductASBCustomControl.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
+            BillingSummaryViewModel.AdditionalDiscountPerDiscountedBillAmountChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
+                ((sender, additonalDiscountPer, discountedBillAmount) =>
+                {
+                    this.ProductistViewModel.AdditonalDiscountPer = additonalDiscountPer;
+                    this.ProductistViewModel.DiscountedBillAmount = discountedBillAmount;
+                });
+        }
+        // Will be invoked on an event in ProductASBCC
+        public void AddProductToCart(object sender, ProductViewModel product)
+        {
+            var index = this.ProductistViewModel.AddToBillingList(product);
+            ListView.SelectedIndex = index;
+            ProductListCC.ProductListChangedEvent?.Invoke(this, this.ProductistViewModel.TotalProducts, this.ProductistViewModel.TotalBillAmount);
+        }
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
             if (CustomerInformation.CustomerViewModel == null)
@@ -38,9 +64,10 @@ namespace SDKTemplate
                 return;
             }
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
-               this.BillingViewModel,
+               this.ProductistViewModel,
                CustomerInformation.CustomerViewModel);
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }
 }
+

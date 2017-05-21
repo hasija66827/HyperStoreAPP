@@ -82,7 +82,7 @@ namespace MasterDetailApp.Data
                 throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");
 
             //TODO: See how can you make whole transaction atomic.
-            BillingViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
+            ProductListViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
             CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
             var db = new DatabaseModel.RetailerContext();
             float updatedCustomerWalletBalance = 0;
@@ -108,7 +108,7 @@ namespace MasterDetailApp.Data
         }
 
         // Step 1:
-        private static bool UpdateProductStock(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel)
+        private static bool UpdateProductStock(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel)
         {
             //#perf: You can query whole list in where clause.
             foreach (var productViewModel in billingViewModel.Products)
@@ -145,7 +145,7 @@ namespace MasterDetailApp.Data
             return customer.WalletBalance;
         }
         // Step 3:
-        private static Guid AddIntoCustomerOrder(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel, CustomerViewModel customerViewModel)
+        private static Guid AddIntoCustomerOrder(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel, CustomerViewModel customerViewModel)
         {
             var customerOrder = new DatabaseModel.CustomerOrder(customerViewModel.CustomerId,
                                      billingViewModel.TotalBillAmount,
@@ -158,7 +158,7 @@ namespace MasterDetailApp.Data
             return customerOrder.CustomerOrderId;
         }
         // Step4:
-        private static void AddIntoCustomerOrderProduct(DatabaseModel.RetailerContext db, BillingViewModel billingViewModel, Guid customerOrderId)
+        private static void AddIntoCustomerOrderProduct(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel, Guid customerOrderId)
         {
             foreach (var productViewModel in billingViewModel.Products)
             {

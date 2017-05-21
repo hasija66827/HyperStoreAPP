@@ -13,12 +13,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace SDKTemplate
 {
-   public delegate void AddToCartDelegate(ProductViewModel productViewModel);
+    public delegate void OnAddProductClickedDelegate(object sender, ProductViewModel productViewModel);
 
     public class ProductASBViewModel : ProductViewModelBase
     {
@@ -40,7 +37,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class ProductASBCustomControl : Page
     {
-        public static event AddToCartDelegate AddToCartClickEvent;
+        public static event OnAddProductClickedDelegate OnAddProductClickedEvent;
         private static ProductASBViewModel _selectedProductInASB;
         public ProductASBCustomControl()
         {
@@ -50,7 +47,7 @@ namespace SDKTemplate
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddToCartClickEvent?.Invoke(new ProductViewModel(_selectedProductInASB));
+            OnAddProductClickedEvent?.Invoke(this, new ProductViewModel(_selectedProductInASB));
             this.ProductASB.Text = "";
         }
 
@@ -86,19 +83,15 @@ namespace SDKTemplate
         {
             if (args.ChosenSuggestion != null)
             {
-                // User selected an item, take an action on it here
                 SelectProduct((ProductASBViewModel)args.ChosenSuggestion);
             }
             else
-            {
-                // Do a fuzzy search on the query text.
+            { 
                 var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
-
                 // Choose the first match, or clear the selection if there are no matches.
                 SelectProduct(new ProductASBViewModel(matchingProducts.FirstOrDefault()));
             }
         }
-
         /// <summary>
         /// Display details of the specified Product.
         /// </summary>

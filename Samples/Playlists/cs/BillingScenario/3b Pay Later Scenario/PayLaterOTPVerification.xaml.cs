@@ -39,7 +39,7 @@ namespace SDKTemplate
             {
                 var updatedCustomerWalletBalance = OrderDataSource.PlaceOrder(PageNavigationParameter,PaymentMode.payLater);
                 MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the customer is \u20b9" + updatedCustomerWalletBalance, NotifyType.StatusMessage);
-                this.Frame.Navigate(typeof(BillingScenario));
+                this.Frame.Navigate(typeof(ProductListCC));
             }
             else
             {

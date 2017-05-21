@@ -1,0 +1,142 @@
+﻿<!--
+//*********************************************************
+//
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+//
+//*********************************************************
+-->
+<Page x:Class="SDKTemplate.BillingScenario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:local="using:SDKTemplate"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
+        <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
+        <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="RootGrid"
+              Margin="12,10,12,12">
+            <ScrollViewer VerticalScrollMode="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <RelativePanel x:Name="Header"></RelativePanel>
+                    <RelativePanel x:Name="BillingView"
+                                   Grid.Row="2"
+                                   HorizontalAlignment="Left"
+                                   Visibility="Visible">
+                        <TextBlock x:Name="HeaderForBilling"
+                                   Text="Price List"
+                                   Style="{StaticResource SampleHeaderTextStyle}" />
+                        <StackPanel x:Name="StaticLabelsForList"
+                                    RelativePanel.Below="HeaderForBilling"
+                                    Orientation="Horizontal">
+                            <TextBlock Text="Id"
+                                       Width="60"
+                                       Margin="40,0,0,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="Name"
+                                       Width="120"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="DisplayPrice"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="Discount Per"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="Discount Amt"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="SellingPrice"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="Quantity"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="Net Value"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                        </StackPanel>
+                        <ListView x:Name="ListView"
+                                  ItemsSource="{x:Bind BillingViewModel.Products}"
+                                  RelativePanel.Below="StaticLabelsForList"
+                                  Height="300"
+                                  CanReorderItems="False"
+                                  SelectedIndex="-1">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="local:ProductViewModel">
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Accept" />
+                                        <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"
+                                                   Width="60"
+                                                   Margin="10,0,0,0" />
+                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                                   Width="120"
+                                                   TextWrapping="NoWrap"
+                                                   Margin="0,0,10,0" />
+                                        <TextBlock x:Name="DisplayPrice"
+                                                   Text="{x:Bind DisplayPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                        <TextBlock x:Name="DiscountPer"
+                                                   Text="{x:Bind DiscountPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                        <TextBlock x:Name="DiscountAmount"
+                                                   Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                        <TextBlock x:Name="SellingPrice"
+                                                   Text="{x:Bind SellingPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                        <TextBox x:Name="Quantity"
+                                                 Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
+                                                 Width="80"
+                                                 Margin="0,0,10,0" />
+                                        <TextBlock x:Name="NetValue"
+                                                   Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </RelativePanel>
+                    <StackPanel x:Name="Footer"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Button x:Name="Checkout"
+                                Content="Checkout"
+                                Margin="40,0,0,0"
+                                Width="200 " />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

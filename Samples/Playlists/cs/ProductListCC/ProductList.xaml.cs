@@ -1,4 +1,4 @@
-//*********************************************************
+﻿//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // This code is licensed under the MIT License (MIT).
@@ -28,20 +28,20 @@ namespace SDKTemplate
     {
         private MainPage rootPage = MainPage.Current;
         public BillingViewModel BillingViewModel { get; set; }
- 
+
         public static event ListSizeChangedDelegate ListSizeChangedEvent;
         public ProductASBCustomControl productASBCustomControl;
         public BillingScenario()
         {
             this.InitializeComponent();
             this.BillingViewModel = new BillingViewModel();
-           
+
             ProductDataSource.RetrieveProductDataAsync();
             CustomerDataSource.RetrieveCustomersAsync();
-          
+
             Checkout.Click += Checkout_Click;
-          
-            ProductASBCustomControl.AddToCartClickEvent += new AddToCartDelegate(this.AddToCart);
+
+            ProductASBCustomControl.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddToCart);
             BillingSummaryViewModel.AdditionalDiscountPerDiscountedBillAmountChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
                 ((additonalDiscountPer, discountedBillAmount) =>
                 {
@@ -51,7 +51,7 @@ namespace SDKTemplate
         }
         public void AddToCart(ProductViewModel product)
         {
-            var index=this.BillingViewModel.AddToBillingList(product);
+            var index = this.BillingViewModel.AddToBillingList(product);
             ListView.SelectedIndex = index;
             BillingScenario.ListSizeChangedEvent?.Invoke(this.BillingViewModel.TotalProducts, this.BillingViewModel.TotalBillAmount);
         }

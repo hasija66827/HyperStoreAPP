@@ -106,17 +106,19 @@
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
-    <Compile Include="BillingScenario\Controls\Billing_Payment.cs" />
-    <Compile Include="BillingSummary.xaml.cs">
+    <Compile Include="BillingSummaryCC\BillingSummary.xaml.cs">
       <DependentUpon>BillingSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerInformation.xaml.cs">
+    <Compile Include="CustomerInformationCC\CustomerInformation.xaml.cs">
       <DependentUpon>CustomerInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProductASB.xaml.cs">
+    <Compile Include="ProductASBCC\ProductASB.xaml.cs">
       <DependentUpon>ProductASB.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View Models\BillingSummaryViewModel.cs" />
+    <Compile Include="BillingSummaryCC\BillingSummaryViewModel.cs" />
+    <Compile Include="ProductListCC\ProductListCC.xaml.cs">
+      <DependentUpon>ProductListCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View Models\BillingViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
@@ -139,7 +141,7 @@
     <Compile Include="ReturnScenario\Controls\Return_MasterListView.cs" />
     <Compile Include="Data Source\CustomerDataSource.cs" />
     <Compile Include="ReturnScenario\Controls\Return_ASB.cs" />
-    <Compile Include="View Models\CustomerViewModel.cs" />
+    <Compile Include="CustomerInformationCC\CustomerViewModel.cs" />
     <Compile Include="View Models\OrderViewModel.cs" />
     <Compile Include="Data Source\OrderDataSource.cs" />
     <Compile Include="Migrations\20170415181816_First.cs" />
@@ -155,7 +157,6 @@
     </Compile>
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
-    <Compile Include="BillingScenario\BillingScenario.xaml.cs" />
     <Compile Include="Scenario2_Display.xaml.cs">
       <DependentUpon>Scenario2_Display.xaml</DependentUpon>
     </Compile>
@@ -188,11 +189,6 @@
     </Page>
     <Page Include="..\..\..\SharedContent\xaml\Styles.xaml">
       <Link>Styles\Styles.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\shared\Scenario1_Create.xaml">
-      <Link>Scenario1_Create.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -232,15 +228,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BillingSummary.xaml">
+    <Page Include="BillingSummaryCC\BillingSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerInformation.xaml">
+    <Page Include="CustomerInformationCC\CustomerInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductASB.xaml">
+    <Page Include="ProductASBCC\ProductASB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductListCC\ProductListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -288,7 +288,9 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BillingScenario\Controls\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

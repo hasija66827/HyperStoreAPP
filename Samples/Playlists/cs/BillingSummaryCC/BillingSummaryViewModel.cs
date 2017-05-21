@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public delegate void AdditionalDiscountPerDiscountedBillAmountChangedDelegate(object sender, float additionalDiscountPer, float discountedBillAmount);
     public class BillingSummaryViewModel : INotifyPropertyChanged
     {
-        public static AdditionalDiscountPerDiscountedBillAmountChangedDelegate AdditionalDiscountPerDiscountedBillAmountChangedEvent;
+        public static event AdditionalDiscountPerDiscountedBillAmountChangedDelegate AdditionalDiscountPerDiscountedBillAmountChangedEvent;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private float _totalBillAmount;
         public float TotalBillAmount
@@ -47,7 +48,7 @@ namespace SDKTemplate
             set
             {
                 this._additionalDiscountPer = value;
-                AdditionalDiscountPerDiscountedBillAmountChangedEvent?.Invoke(AdditionalDiscountPer, DiscountedBillAmount);
+                AdditionalDiscountPerDiscountedBillAmountChangedEvent?.Invoke(this, AdditionalDiscountPer, DiscountedBillAmount);
                 this.OnPropertyChanged(nameof(AdditionalDiscountPer));
                 this.OnPropertyChanged(nameof(DiscountedBillAmount));
             }
@@ -60,13 +61,13 @@ namespace SDKTemplate
             _totalProducts = 0;
             _totalBillAmount = 0;
             _additionalDiscountPer = 0;
-            ListSizeChangedDelegate d = new ListSizeChangedDelegate(
-                (totalProducts, totalBillAmount) =>
+            ProductListChangedDelegate d = new ProductListChangedDelegate(
+                (sender,totalProducts, totalBillAmount) =>
                 {
                     TotalProducts = totalProducts;
                     TotalBillAmount = totalBillAmount;
                  });
-            BillingScenario.ListSizeChangedEvent += d;
+            ProductListCC.ProductListChangedEvent += d;
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
