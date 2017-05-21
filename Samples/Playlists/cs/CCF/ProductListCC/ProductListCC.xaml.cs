@@ -23,10 +23,8 @@ using MasterDetailApp.ViewModel;
 using MasterDetailApp.Data;
 namespace SDKTemplate
 {
-    public delegate void ProductListChangedDelegate(object sender, Int32 updatedSize, float updateBillAmount);
     public sealed partial class ProductListCC : Page
     {
-        public static event ProductListChangedDelegate ProductListChangedEvent;
         private MainPage rootPage = MainPage.Current;
         public ProductListViewModel ProductistViewModel { get; set; }
         public ProductListCC()
@@ -47,7 +45,6 @@ namespace SDKTemplate
         {
             var index = this.ProductistViewModel.AddToBillingList(product);
             ListView.SelectedIndex = index;
-            ProductListCC.ProductListChangedEvent?.Invoke(this, this.ProductistViewModel.TotalProducts, this.ProductistViewModel.TotalBillAmount);
         }
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {

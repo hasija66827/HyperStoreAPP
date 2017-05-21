@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public delegate void ProductListChangedDelegate(object sender, Int32 updatedSize, float updateBillAmount);
     public class ProductListViewModel
     {
+        public static event ProductListChangedDelegate ProductListChangedEvent;
         public float TotalBillAmount
         {
             get
@@ -40,7 +42,6 @@ namespace SDKTemplate
 
         public ProductListViewModel()
         {
-
         }
         private Int32 FirstMatchingProductIndex(ProductViewModel product)
         {
@@ -62,6 +63,9 @@ namespace SDKTemplate
             {
                 this._products.Add(product);
                 index = this._products.IndexOf(product);
+                //if new product is added, subscrbing to the Quantity Changed event.
+                this._products[index].QuantityChangedEvent += new QuantityChangedDelegate
+                ((sender, quantity) => { ProductListChangedEvent?.Invoke(this, TotalProducts, TotalBillAmount); });
                 this._products[index].QuantityPurchased = 1;
             }
             else

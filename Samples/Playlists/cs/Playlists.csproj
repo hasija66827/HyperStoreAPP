@@ -119,7 +119,7 @@
     <Compile Include="CCF\ProductListCC\ProductListCC.xaml.cs">
       <DependentUpon>ProductListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View Models\BillingViewModel.cs" />
+    <Compile Include="View Models\ProductListViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
     <Compile Include="BillingScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml.cs">

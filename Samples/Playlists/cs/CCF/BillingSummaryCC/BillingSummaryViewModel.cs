@@ -67,7 +67,7 @@ namespace SDKTemplate
                     TotalProducts = totalProducts;
                     TotalBillAmount = totalBillAmount;
                  });
-            ProductListCC.ProductListChangedEvent += d;
+            ProductListViewModel.ProductListChangedEvent += d;
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

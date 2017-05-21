@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
- 
+
+    public delegate void QuantityChangedDelegate(object sender, Int32 Quantity);
     /*InotifyProperty changed ensures that whenever a property of the object changes 
     we can notify that other dependent propoerty of object had been changed.*/
     public class ProductViewModel : ProductViewModelBase, INotifyPropertyChanged
     {
+        public event QuantityChangedDelegate QuantityChangedEvent;
         private Int32 _quantityPurchased;
         public Int32 QuantityPurchased
         {
@@ -24,8 +26,8 @@ namespace SDKTemplate
                 this._netValue = this._sellingPrice * this._quantityPurchased;
                 this.OnPropertyChanged(nameof(QuantityPurchased));
                 this.OnPropertyChanged(nameof(NetValue));
-                // Invoking event to notify change in quantity of the product.
-           
+                this.QuantityChangedEvent?.Invoke(this, this._quantityPurchased);
+                // Invoking event to notify change in quantity of the product.       
             }
         }
         private float _netValue;
