@@ -29,16 +29,16 @@
             <ScrollViewer VerticalScrollMode="Auto"
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <RelativePanel x:Name="Header"></RelativePanel>
+                    <TextBlock x:Name="Header"
+                               Text="Price List"
+                               Style="{StaticResource SampleHeaderTextStyle}"
+                               Margin="0,0,0,20 " />
                     <RelativePanel x:Name="BillingView"
                                    Grid.Row="2"
                                    HorizontalAlignment="Left"
                                    Visibility="Visible">
-                        <TextBlock x:Name="HeaderForBilling"
-                                   Text="Price List"
-                                   Style="{StaticResource SampleHeaderTextStyle}" />
                         <StackPanel x:Name="StaticLabelsForList"
-                                    RelativePanel.Below="HeaderForBilling"
+                                    Margin="0,0,0,10"
                                     Orientation="Horizontal">
                             <TextBlock Text="Id"
                                        Width="60"
@@ -84,7 +84,7 @@
                         <ListView x:Name="ListView"
                                   ItemsSource="{x:Bind ProductListViewModel.Products}"
                                   RelativePanel.Below="StaticLabelsForList"
-                                  Height="300"
+                                  Height="260"
                                   CanReorderItems="False"
                                   SelectedIndex="-1">
                             <ListView.ItemTemplate>
@@ -129,10 +129,11 @@
                     </RelativePanel>
                     <StackPanel x:Name="Footer"
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Center">
+                                HorizontalAlignment="Center"
+                                Margin="40,20,0,0">
                         <Button x:Name="Checkout"
                                 Content="Checkout"
-                                Margin="40,0,0,0"
+                               
                                 Width="200 " />
                     </StackPanel>
                 </StackPanel>

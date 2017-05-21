@@ -115,7 +115,7 @@ namespace SDKTemplate
             switch (type)
             {
                 case NotifyType.StatusMessage:
-                    StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.GhostWhite);
+                    StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.LawnGreen);
                     break;
                 case NotifyType.ErrorMessage:
                     StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.PaleVioletRed);
