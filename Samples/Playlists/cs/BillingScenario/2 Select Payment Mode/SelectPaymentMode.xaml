@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid >
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
             <Grid>

@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid >
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
             <Grid Width="393">

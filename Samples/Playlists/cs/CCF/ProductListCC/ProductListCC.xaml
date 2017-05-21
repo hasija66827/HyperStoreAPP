@@ -45,27 +45,27 @@
                                        Margin="40,0,0,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            <TextBlock Text="Name"
-                                       Width="120"
+                            <TextBlock Text="Product Name"
+                                       Width="140"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            <TextBlock Text="DisplayPrice"
+                            <TextBlock Text="Display Price"
                                        Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            <TextBlock Text="Discount Per"
+                            <TextBlock Text="Discount %"
                                        Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            <TextBlock Text="Discount Amt"
+                            <TextBlock Text="Discount Amount"
                                        Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                            <TextBlock Text="SellingPrice"
+                            <TextBlock Text="Selling Price"
                                        Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
@@ -95,8 +95,8 @@
                                                    Width="60"
                                                    Margin="10,0,0,0" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Width="120"
-                                                   TextWrapping="NoWrap"
+                                                   Width="140"
+                                                   TextWrapping="Wrap"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="DisplayPrice"
                                                    Text="{x:Bind DisplayPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"

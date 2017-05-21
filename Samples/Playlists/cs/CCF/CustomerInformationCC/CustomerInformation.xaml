@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <StackPanel Orientation="Vertical">
-        <StackPanel x:Name="Cashier"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWith="ProductASB">
-              </StackPanel>
+    <RelativePanel>
+        <TextBlock x:Name="CustomerSummary"
+                   Text="Customer Information"
+                   Style="{StaticResource SampleHeaderTextStyle}"
+                   Margin="0,0,0,10"/>
         <StackPanel x:Name="CustomerMobileNumber"
                     Orientation="Horizontal"
-                    RelativePanel.Below="Cashier">
+                    RelativePanel.Below="CustomerSummary">
             <TextBlock x:Name="CustomerMobNoLbl"
                        Text="Customer Mobile No: "
                        Style="{StaticResource BaseTextBlockStyle}"
@@ -37,7 +37,9 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     x:Name="CustomerWalletBalance"
-                    RelativePanel.Below="CustomerName">
+                    RelativePanel.Below="CustomerSummary"
+                    RelativePanel.RightOf="CustomerMobileNumber"
+                    Margin="40,0,0,0">
             <TextBlock x:Name="CustomerWalletBalanceLbl"
                        Text="Wallet"
                        Width="150" />
@@ -45,8 +47,7 @@
                        Text="0" />
         </StackPanel>
         <StackPanel Orientation="Vertical"
-                    RelativePanel.RightOf="CustomerMobileNumber"
-                    RelativePanel.AlignTopWith="CustomerMobileNumber">
+                    RelativePanel.Below="CustomerName">
             <Button x:Name="AddCustomerBtn"
                     Content="AddCustomer"
                     HorizontalAlignment="Stretch"
@@ -56,5 +57,5 @@
                        Text="Verified Buyer"
                        Visibility="Collapsed" />
         </StackPanel>
-    </StackPanel>
+    </RelativePanel>
 </Page>

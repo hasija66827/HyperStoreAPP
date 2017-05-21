@@ -97,7 +97,7 @@
                        Width="800"
                        />
                 <Frame x:Name="SearchBoxFrame"
-                       Background="Azure"
+                       Background="AliceBlue"
                        Margin="40,10,40,0"
                        RelativePanel.Below="HeaderFrame"
                        Height="100"
@@ -110,14 +110,14 @@
                        Width="800"
                        RelativePanel.Below="SearchBoxFrame" />
                 <Frame x:Name="NewsFeedFrame"
-                       Background="Lavender"
+                       Background="CadetBlue"
                        RelativePanel.RightOf="HeaderFrame"
                        Width="700"
                        Height="210"
                        RelativePanel.AlignTopWith="HeaderFrame"
                        Margin="0,10,40,0" />
                 <Frame x:Name="SummaryFrame"
-                       Background="LightGray"
+                       Background="LightSteelBlue"
                        RelativePanel.RightOf="ScenarioFrame"
                        RelativePanel.Below="NewsFeedFrame"
                        Width="700"
