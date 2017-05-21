@@ -76,7 +76,8 @@ namespace MasterDetailApp.Data
         /// </summary>
         /// <param name="pageNavigationParameter"></param>
         /// <returns></returns>
-        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter, MasterDetailApp.Data.PaymentMode paymentMode)
+        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter, 
+            MasterDetailApp.Data.PaymentMode paymentMode)
         {
             if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
                 throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");
@@ -150,7 +151,7 @@ namespace MasterDetailApp.Data
             var customerOrder = new DatabaseModel.CustomerOrder(customerViewModel.CustomerId,
                                      billingViewModel.TotalBillAmount,
                                      billingViewModel.DiscountedBillAmount,
-                                    customerViewModel.WalletBalance);
+                                     customerViewModel.WalletBalance);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
 

@@ -119,6 +119,10 @@
     <Compile Include="CCF\ProductListCC\ProductListCC.xaml.cs">
       <DependentUpon>ProductListCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20170521200221_AddingAttributes to order entity.cs" />
+    <Compile Include="Migrations\20170521200221_AddingAttributes to order entity.designer.cs">
+      <DependentUpon>20170521200221_AddingAttributes to order entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="View Models\ProductListViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />

@@ -197,8 +197,20 @@ namespace DatabaseModel
         public Guid CustomerOrderId { get; set; }
         public float BillAmount { get; set; }
         public DateTime OrderDate { get; set; }
-        public float PaidAmount { get; set; }
         public float WalletSnapShot { get; set; }
+        public float PaidAmount { get; set; }//RENAME IT TO DiscountedBillAmount
+        
+        // PayingNow= DiscountedBillAmount + AddingMoneyToWallet - UsingWalletAmount
+        public bool IsPaidNow { get; set; }
+        public float PayingNow { get; set; }
+        public bool AddingMoneyToWallet { get; set; }
+
+        public bool IsUseWallet { get; set; }
+        public bool UsingWalletAmount { get; set; }
+
+        // DiscountedBillAmt=PartiallyPaid + PayingLater
+        public float PartiallyPaid { get; set; }
+        public float PayingLater { get; set; }
 
         [Required]
         public Nullable<Guid> CustomerId;
@@ -206,14 +218,15 @@ namespace DatabaseModel
 
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
-        public CustomerOrder(Guid customerId, float billAmount, float paidAmount, float walletSnapShot)
+        public CustomerOrder(Guid customerId, float billAmount, float discountedBillAmount, float walletSnapShot)
         {
             this.CustomerOrderId = Guid.NewGuid();
-            this.BillAmount = billAmount;
             this.OrderDate = DateTime.Now;
-            this.PaidAmount = paidAmount;
-            this.WalletSnapShot = walletSnapShot;
             this.CustomerId = customerId;
+            this.BillAmount = billAmount;
+            this.PaidAmount = discountedBillAmount;
+            this.WalletSnapShot = walletSnapShot;
+
         }
         public CustomerOrder() { }
     }

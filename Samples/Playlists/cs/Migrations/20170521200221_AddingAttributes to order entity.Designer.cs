@@ -8,9 +8,10 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    partial class RetailerContextModelSnapshot : ModelSnapshot
+    [Migration("20170521200221_AddingAttributes to order entity")]
+    partial class AddingAttributestoorderentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1");
