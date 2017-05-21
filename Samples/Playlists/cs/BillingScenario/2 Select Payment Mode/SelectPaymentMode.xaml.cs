@@ -47,13 +47,17 @@ namespace SDKTemplate
         {
             if (PayNowRadBtn.IsChecked == true)
             {
+                this.PageNavigationParameter.IsPaidNow = true;
                 if (UseWalletChkBox.IsChecked == true)
                     this.Frame.Navigate(typeof(UseWalletOTPVerification), this.PageNavigationParameter);
                 else
                     this.Frame.Navigate(typeof(PayNow), this.PageNavigationParameter);
             }
             else if (PayLaterRadBtn.IsChecked == true)
+            {
+                this.PageNavigationParameter.IsPaidNow = false;
                 this.Frame.Navigate(typeof(PayLaterOTPVerification), this.PageNavigationParameter);
+            }
         }
     }
 }

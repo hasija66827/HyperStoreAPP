@@ -56,6 +56,12 @@ namespace SDKTemplate
 
         #region PayNow
         // Step 3: If Pay Now Option is selected in the Step 2:
+        private bool _isPaidNow;
+        public bool IsPaidNow
+        {
+            get { return this._isPaidNow; }
+            set { this._isPaidNow = value; }
+        }
         // Extra money to be added into the wallet now
         private float _walletAmountToBeAddedNow;
         public float WalletAmountToBeAddedNow

@@ -36,10 +36,10 @@ namespace MasterDetailApp.Data
                                 customer => customer.CustomerId,
                                 customerOrder => customerOrder.CustomerId,
                                 (customer, customerOrder) => new OrderViewModel(customerOrder.CustomerOrderId,
-                                                                                customerOrder.BillAmount,
+                                                                                customerOrder.TotalBillAmount,
                                                                                 customer.MobileNo,
                                                                                 customerOrder.OrderDate,
-                                                                                customerOrder.PaidAmount))
+                                                                                customerOrder.DiscountedAmount))
                         .OrderByDescending(order => order.OrderDate);
             _Orders = query.ToList();
         }
@@ -101,30 +101,13 @@ namespace MasterDetailApp.Data
             }
             else
             { throw new NotImplementedException(); }
-            UpdateProductStock(db, billingViewModel);
 
-            var customerOrderId = AddIntoCustomerOrder(db, billingViewModel, customerViewModel);
+            UpdateProductStock(db, billingViewModel);
+            var customerOrderId = AddIntoCustomerOrder(db, pageNavigationParameter);
             AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
             return updatedCustomerWalletBalance;
         }
-
         // Step 1:
-        private static bool UpdateProductStock(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel)
-        {
-            //#perf: You can query whole list in where clause.
-            foreach (var productViewModel in billingViewModel.Products)
-            {
-                var products = db.Products.Where(p => p.ProductId == productViewModel.ProductId).ToList();
-                var product = products.FirstOrDefault();
-                if (product == null)
-                    return false;
-                product.TotalQuantity -= productViewModel.QuantityPurchased;
-                db.Update(product);
-            }
-            db.SaveChanges();
-            return true;
-        }
-        // Step 2:
         /// <summary>
         /// Return the updated wallet balance of the customer.
         /// </summary>
@@ -145,19 +128,34 @@ namespace MasterDetailApp.Data
             db.SaveChanges();
             return customer.WalletBalance;
         }
-        // Step 3:
-        private static Guid AddIntoCustomerOrder(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel, CustomerViewModel customerViewModel)
+        // Step 2:
+        private static bool UpdateProductStock(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel)
         {
-            var customerOrder = new DatabaseModel.CustomerOrder(customerViewModel.CustomerId,
-                                     billingViewModel.TotalBillAmount,
-                                     billingViewModel.DiscountedBillAmount,
-                                     customerViewModel.WalletBalance);
+            //#perf: You can query whole list in where clause.
+            foreach (var productViewModel in billingViewModel.Products)
+            {
+                var products = db.Products.Where(p => p.ProductId == productViewModel.ProductId).ToList();
+                var product = products.FirstOrDefault();
+                if (product == null)
+                    return false;
+                product.TotalQuantity -= productViewModel.QuantityPurchased;
+                db.Update(product);
+            }
+            db.SaveChanges();
+            return true;
+        }
+
+        // Step 3:
+        private static Guid AddIntoCustomerOrder(DatabaseModel.RetailerContext db, PageNavigationParameter pageNavigationParameter)
+        {
+            var customerOrder = new DatabaseModel.CustomerOrder(pageNavigationParameter);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
 
             db.SaveChanges();
             return customerOrder.CustomerOrderId;
         }
+
         // Step4:
         private static void AddIntoCustomerOrderProduct(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel, Guid customerOrderId)
         {

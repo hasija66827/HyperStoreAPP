@@ -123,6 +123,10 @@
     <Compile Include="Migrations\20170521200221_AddingAttributes to order entity.designer.cs">
       <DependentUpon>20170521200221_AddingAttributes to order entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20170521204132_Updaing attributes of CustomerOrder.cs" />
+    <Compile Include="Migrations\20170521204132_Updaing attributes of CustomerOrder.designer.cs">
+      <DependentUpon>20170521204132_Updaing attributes of CustomerOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="View Models\ProductListViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />

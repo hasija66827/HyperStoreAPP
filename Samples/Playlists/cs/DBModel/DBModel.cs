@@ -19,7 +19,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers2.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers3.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -195,39 +195,44 @@ namespace DatabaseModel
     public class CustomerOrder
     {
         public Guid CustomerOrderId { get; set; }
-        public float BillAmount { get; set; }
         public DateTime OrderDate { get; set; }
-        public float WalletSnapShot { get; set; }
-        public float PaidAmount { get; set; }//RENAME IT TO DiscountedBillAmount
+        public float TotalBillAmount { get; set; }
+
+        public float DiscountedAmount { get; set; }    
         
-        // PayingNow= DiscountedBillAmount + AddingMoneyToWallet - UsingWalletAmount
+        // PayingNow = DiscountedBillAmount + AddingMoneyToWallet - UsingWalletAmount
         public bool IsPaidNow { get; set; }
         public float PayingNow { get; set; }
-        public bool AddingMoneyToWallet { get; set; }
-
+        public float AddingMoneyToWallet { get; set; }
+        
         public bool IsUseWallet { get; set; }
-        public bool UsingWalletAmount { get; set; }
+        public float UsingWalletAmount { get; set; }
 
-        // DiscountedBillAmt=PartiallyPaid + PayingLater
+        // DiscountedBillAmt = PartiallyPaid + PayingLater
         public float PartiallyPaid { get; set; }
         public float PayingLater { get; set; }
 
-        [Required]
-        public Nullable<Guid> CustomerId;
-        public Customer Customer;
-
-        public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
-
-        public CustomerOrder(Guid customerId, float billAmount, float discountedBillAmount, float walletSnapShot)
+        public CustomerOrder(PageNavigationParameter pageNavigationParameter)
         {
             this.CustomerOrderId = Guid.NewGuid();
             this.OrderDate = DateTime.Now;
-            this.CustomerId = customerId;
-            this.BillAmount = billAmount;
-            this.PaidAmount = discountedBillAmount;
-            this.WalletSnapShot = walletSnapShot;
+            this.TotalBillAmount = pageNavigationParameter.BillingViewModel.TotalBillAmount;
+            this.DiscountedAmount = pageNavigationParameter.BillingViewModel.DiscountedBillAmount;
 
+            this.IsPaidNow = pageNavigationParameter.IsPaidNow;
+            this.PayingNow = pageNavigationParameter.OverPaid;
+            this.AddingMoneyToWallet = pageNavigationParameter.WalletAmountToBeAddedNow;
+
+            this.IsUseWallet = pageNavigationParameter.UseWallet.Value;
+            this.UsingWalletAmount = pageNavigationParameter.CustomerViewModel.WalletBalance;
+
+            this.PartiallyPaid = pageNavigationParameter.PartiallyPaid;
+            this.PayingLater = pageNavigationParameter.WalletAmountToBePaidLater;
         }
+        [Required]
+        public Nullable<Guid> CustomerId;
+        public Customer Customer;
+        public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
         public CustomerOrder() { }
     }
 
