@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
+    public delegate void AdditionalDiscountPerDiscountedBillAmountChangedDelegate(float additionalDiscountPer, float discountedBillAmount);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>

@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -38,7 +41,7 @@
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                            Width="90" />
                 <TextBox Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                         Text="{x:Bind billingSummaryViewModel.AdditionalDiscountPer, Mode=TwoWay}"
+                         Text="{x:Bind billingSummaryViewModel.AdditionalDiscountPer, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
                          MinHeight="32" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">

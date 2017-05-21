@@ -41,8 +41,13 @@ namespace SDKTemplate
           
             Checkout.Click += Checkout_Click;
           
-            productASBCustomControl = new ProductASBCustomControl();
             ProductASBCustomControl.AddToCartClickEvent += new AddToCartDelegate(this.AddToCart);
+            BillingSummaryViewModel.AdditionalDiscountPerDiscountedBillAmountChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
+                ((additonalDiscountPer, discountedBillAmount) =>
+                {
+                    this.BillingViewModel.AdditonalDiscountPer = additonalDiscountPer;
+                    this.BillingViewModel.DiscountedBillAmount = discountedBillAmount;
+                });
         }
         public void AddToCart(ProductViewModel product)
         {

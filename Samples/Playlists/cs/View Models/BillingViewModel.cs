@@ -31,10 +31,9 @@ namespace SDKTemplate
                 return count;
             }
         }
-        //TODO
-       // public float DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this.TotalBillAmount) / 100; } }
-
-        public float DiscountedBillAmount { get { return ((100 - 0) * this.TotalBillAmount) / 100; } }
+        // To be set by event subscribed to billingsummaryViewModel
+        public float AdditonalDiscountPer { get; set; }
+        public float DiscountedBillAmount { get; set; }
 
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
