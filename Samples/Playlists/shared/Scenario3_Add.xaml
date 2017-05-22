@@ -42,7 +42,7 @@
                            Grid.Row="2"
                            Margin="12,1,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock Text="{x:Bind PaidAmount}"
+                <TextBlock Text="{x:Bind DiscountedBillAmount}"
                            Grid.Column="1"
                            Grid.Row="2"
                            Margin="12,1,0,0"

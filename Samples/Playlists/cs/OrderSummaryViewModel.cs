@@ -10,15 +10,39 @@ using System.Runtime.CompilerServices;
 
 namespace SDKTemplate
 {
-    public class OrderSummaryViewModel: INotifyPropertyChanged
+    public class OrderSummaryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private float _totalSales;
-        public float TotalSales { get { return this._totalSales; } set { this._totalSales = value; } }
+        public float TotalSales
+        {
+            get { return this._totalSales; }
+            set
+            {
+                this._totalSales = value;
+                this.OnPropertyChanged(nameof(TotalSales));
+            }
+        }
         private float _totalSalesWithDiscount;
-        public float TotalSalesWithDiscount { get { return this._totalSalesWithDiscount; } set { this._totalSalesWithDiscount = value; } }
+        public float TotalSalesWithDiscount
+        {
+            get { return this._totalSalesWithDiscount; }
+            set
+            {
+                this._totalSalesWithDiscount = value;
+                this.OnPropertyChanged(nameof(TotalSalesWithDiscount));
+            }
+        }
         private float _receivedNow;
-        public float ReceivedNow { get { return this._receivedNow; } set { this._receivedNow = value; } }
+        public float ReceivedNow
+        {
+            get { return this._receivedNow; }
+            set
+            {
+                this._receivedNow = value;
+                this.OnPropertyChanged(nameof(ReceivedNow));
+            }
+        }
         private float _receivedLater;
         public float ReceivedLater { get { return this._receivedLater; } set { this._receivedLater = value; } }
         public OrderSummaryViewModel()
@@ -31,9 +55,9 @@ namespace SDKTemplate
         }
         public void OrderListChangedSubscriber(OrderListCC orderListCC)
         {
-            OrderSummaryCC.Current.orderSummaryViewModel.TotalSales = orderListCC.orderList.Sum(s => s.BillAmount);
-            OrderSummaryCC.Current.orderSummaryViewModel.TotalSalesWithDiscount = orderListCC.orderList.Sum(ds => ds.DiscountedBillAmount);
-            OrderSummaryCC.Current.orderSummaryViewModel.ReceivedNow = CalculatedReceivedNow(orderListCC.orderList);
+            TotalSales = orderListCC.orderList.Sum(s => s.BillAmount);
+            TotalSalesWithDiscount = orderListCC.orderList.Sum(ds => ds.DiscountedBillAmount);
+            ReceivedNow = CalculatedReceivedNow(orderListCC.orderList);
             OrderSummaryCC.Current.orderSummaryViewModel.ReceivedLater = CalculatedReceivedNow(orderListCC.orderList);
         }
         private float CalculatedReceivedNow(List<OrderViewModel> orderList)
