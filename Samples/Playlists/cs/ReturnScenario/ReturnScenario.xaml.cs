@@ -1,4 +1,4 @@
-using MasterDetailApp.Data;
+using SDKTemp.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,13 +16,15 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-namespace MasterDetailApp
+namespace SDKTemp
 {
     public sealed partial class OrderListCC : Page
     {
+        public static OrderListCC Current;
         public OrderListCC()
         {
             this.InitializeComponent();
+            Current = this;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

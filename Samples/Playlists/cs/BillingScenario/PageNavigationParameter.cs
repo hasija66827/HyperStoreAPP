@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
-using MasterDetailApp.ViewModel;
+using SDKTemp.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 

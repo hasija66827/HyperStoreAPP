@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using MasterDetailApp.ViewModel;
+using SDKTemp.ViewModel;
 using SDKTemplate;
 
 namespace DatabaseModel

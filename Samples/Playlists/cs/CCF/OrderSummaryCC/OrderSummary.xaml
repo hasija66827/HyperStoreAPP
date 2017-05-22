@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SDKTemplate.OrderSummary"
+    x:Class="SDKTemplate.OrderSummaryCC"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SDKTemplate"
@@ -41,7 +41,7 @@
                            Style="{StaticResource BaseTextBlockStyle}"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                            Width="190" />
-                <TextBlock x:Name="AdditonalDiscountPerTB"
+                <TextBlock
                          Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                          Text="{x:Bind orderSummaryViewModel.ReceivedNow, Mode=OneWay}"
                           />

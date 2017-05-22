@@ -20,12 +20,14 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class OrderSummary : Page
+    public sealed partial class OrderSummaryCC : Page
     {
+        public static OrderSummaryCC Current;
         public OrderSummaryViewModel orderSummaryViewModel;
-        public OrderSummary()
+        public OrderSummaryCC()
         {
-            orderSummaryViewModel = new OrderSummaryViewModel();
+            Current = this;
+            this.orderSummaryViewModel = new OrderSummaryViewModel();
             this.InitializeComponent();
         }
     }

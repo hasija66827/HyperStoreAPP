@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using DatabaseModel;
 using Windows.Globalization.DateTimeFormatting;
-using MasterDetailApp.Data;
-namespace MasterDetailApp.ViewModel
+using SDKTemp.Data;
+namespace SDKTemp.ViewModel
 {
     public class OrderViewModel
     {
         public Guid CustomerOrderId { get; set; }
-        public string BillAmount { get { return "Bill \u20b9" + this._billAmount; } }
+        public float BillAmount { get { return this._billAmount; } }
         private float _billAmount;
 
         public string CustomerMobileNo { get; set; }
-        public string PaidAmount { get { return "Paid \u20b9" + this._paidAmount; } }
-        private float _paidAmount;
+        public float DiscountedBillAmount { get { return this._discountedBillAmount; } }
+        private float _discountedBillAmount;
         public string FormattedOrderDate
         {
             get
@@ -47,7 +47,7 @@ namespace MasterDetailApp.ViewModel
             this._billAmount = billAmount;
             this.CustomerMobileNo = customerMobileNo;
             this._orderDate = orderDate;
-            this._paidAmount = paidAmount;
+            this._discountedBillAmount = paidAmount;
             this._orderDetails = new List<OrderDetailViewModel>();
         }
     }

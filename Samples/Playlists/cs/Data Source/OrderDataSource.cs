@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SDKTemplate;
-using MasterDetailApp.ViewModel;
-namespace MasterDetailApp.Data
+using SDKTemp.ViewModel;
+namespace SDKTemp.Data
 {
     public enum PaymentMode
     {
@@ -77,7 +77,7 @@ namespace MasterDetailApp.Data
         /// <param name="pageNavigationParameter"></param>
         /// <returns></returns>
         public static float PlaceOrder(PageNavigationParameter pageNavigationParameter, 
-            MasterDetailApp.Data.PaymentMode paymentMode)
+            SDKTemp.Data.PaymentMode paymentMode)
         {
             if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
                 throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");

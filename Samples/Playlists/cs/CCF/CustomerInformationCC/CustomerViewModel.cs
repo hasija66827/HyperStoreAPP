@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DatabaseModel;
 using Windows.Globalization.DateTimeFormatting;
-using MasterDetailApp.Data;
-namespace MasterDetailApp.ViewModel
+using SDKTemp.Data;
+namespace SDKTemp.ViewModel
 {
     public class CustomerViewModel
     {

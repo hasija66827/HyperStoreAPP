@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MasterDetailApp.ViewModel;
-namespace MasterDetailApp.Data
+using SDKTemp.ViewModel;
+namespace SDKTemp.Data
 {
     class CustomerDataSource
     {

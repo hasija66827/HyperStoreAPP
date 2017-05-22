@@ -9,7 +9,7 @@
 //
 //*********************************************************
 
-using MasterDetailApp.Data;
+using SDKTemp.Data;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Core;
@@ -78,8 +78,8 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(ProductASBCustomControl));
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
-                if (s.ClassType == typeof(MasterDetailApp.OrderListCC)){
-                    SummaryFrame.Navigate(typeof(OrderSummary)); 
+                if (s.ClassType == typeof(SDKTemp.OrderListCC)){
+                    SummaryFrame.Navigate(typeof(OrderSummaryCC)); 
                 }
                 if (Window.Current.Bounds.Width < 640)
                 {

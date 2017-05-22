@@ -1,4 +1,4 @@
-using MasterDetailApp.Data;
+using SDKTemp.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,31 +15,25 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using MasterDetailApp.ViewModel;
-namespace MasterDetailApp
+using SDKTemp.ViewModel;
+namespace SDKTemp
 {
+    public delegate void OrderListChangedDelegate(OrderListCC sender);
     public sealed partial class OrderListCC : Page
     {
         private OrderViewModel _lastSelectedItem;
-        public static List<OrderViewModel> OrderList;
-        
-        //Will Update the MasterListView by filtering out Customers of specific mobile number.
-        private void UpdateMasterListViewItemSource(CustomerViewModel customer=null)
+        public List<OrderViewModel> orderList;
+        public event OrderListChangedDelegate OrderListChangedEvent;
+        private void UpdateMasterListViewItemSource(CustomerViewModel customer = null)
         {
-            //If mobile number is null then return empty list.
             if (customer == null)
-                OrderList =OrderDataSource.Orders;
+                Current.orderList = OrderDataSource.Orders;
             else
             {
-                 OrderList = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
+                Current.orderList = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
             }
-            MasterListView.ItemsSource = OrderList;
-            string sum = "";
-            foreach (var item in OrderList)
-            {
-                sum += item.PaidAmount;
-            }
-            
+            OrderListCC.Current.OrderListChangedEvent?.Invoke(OrderListCC.Current);
+            MasterListView.ItemsSource = orderList;            
         }
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {

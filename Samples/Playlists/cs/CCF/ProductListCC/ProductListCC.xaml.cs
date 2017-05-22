@@ -19,8 +19,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DatabaseModel;
-using MasterDetailApp.ViewModel;
-using MasterDetailApp.Data;
+using SDKTemp.ViewModel;
+using SDKTemp.Data;
 namespace SDKTemplate
 {
     public sealed partial class ProductListCC : Page

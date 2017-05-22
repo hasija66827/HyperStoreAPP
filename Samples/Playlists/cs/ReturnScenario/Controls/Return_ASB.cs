@@ -1,4 +1,4 @@
-using MasterDetailApp.Data;
+using SDKTemp.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,8 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using MasterDetailApp.ViewModel;
-namespace MasterDetailApp
+using SDKTemp.ViewModel;
+namespace SDKTemp
 {
     public sealed partial class OrderListCC : Page
     {
