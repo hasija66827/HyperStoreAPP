@@ -18,24 +18,24 @@ using Windows.UI.Xaml.Navigation;
 using MasterDetailApp.ViewModel;
 namespace MasterDetailApp
 {
-    public sealed partial class MasterDetailPage : Page
+    public sealed partial class OrderListCC : Page
     {
         private OrderViewModel _lastSelectedItem;
-
+        public static List<OrderViewModel> OrderList;
+        
         //Will Update the MasterListView by filtering out Customers of specific mobile number.
         private void UpdateMasterListViewItemSource(CustomerViewModel customer=null)
         {
-            List<OrderViewModel> items;
             //If mobile number is null then return empty list.
             if (customer == null)
-                items =OrderDataSource.Orders;
+                OrderList =OrderDataSource.Orders;
             else
             {
-                 items = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
+                 OrderList = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
             }
-            MasterListView.ItemsSource = items;
+            MasterListView.ItemsSource = OrderList;
             string sum = "";
-            foreach (var item in items)
+            foreach (var item in OrderList)
             {
                 sum += item.PaidAmount;
             }

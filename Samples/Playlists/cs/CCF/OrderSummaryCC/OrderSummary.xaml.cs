@@ -22,8 +22,10 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class OrderSummary : Page
     {
+        public OrderSummaryViewModel orderSummaryViewModel;
         public OrderSummary()
         {
+            orderSummaryViewModel = new OrderSummaryViewModel();
             this.InitializeComponent();
         }
     }

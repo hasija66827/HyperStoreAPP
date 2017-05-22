@@ -127,6 +127,7 @@
     <Compile Include="CCF\OrderSummaryCC\OrderSummary.xaml.cs">
       <DependentUpon>OrderSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderSummaryViewModel.cs" />
     <Compile Include="View Models\ProductListViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />

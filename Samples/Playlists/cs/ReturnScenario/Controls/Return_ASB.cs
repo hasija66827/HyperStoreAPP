@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using MasterDetailApp.ViewModel;
 namespace MasterDetailApp
 {
-    public sealed partial class MasterDetailPage : Page
+    public sealed partial class OrderListCC : Page
     {
         /// <summary>
         /// This event gets fired anytime the text in the TextBox gets updated.

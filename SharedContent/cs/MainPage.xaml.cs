@@ -78,7 +78,7 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(ProductASBCustomControl));
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
-                if (s.ClassType == typeof(MasterDetailApp.MasterDetailPage)){
+                if (s.ClassType == typeof(MasterDetailApp.OrderListCC)){
                     SummaryFrame.Navigate(typeof(OrderSummary)); 
                 }
                 if (Window.Current.Bounds.Width < 640)

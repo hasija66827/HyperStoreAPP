@@ -8,6 +8,53 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Total Sales" />
+        <StackPanel x:Name="OrderStatisitcs"
+                    Width="600"
+                    Margin="10,10,10,10"
+                   
+                    HorizontalAlignment="Left"
+                    Orientation="Vertical">
+            <TextBlock x:Name="HeaderForOrderStatistics"
+                       Text="Order Summary"
+                       Margin="0,0,0,10"
+                       Style="{StaticResource SampleHeaderTextStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Sales"
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                           Width="190" />
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
+                           Text="{x:Bind orderSummaryViewModel.TotalSales, Mode=OneWay}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Sales with Discount "
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                           Width="190" />
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
+                           Text="{x:Bind orderSummaryViewModel.TotalSalesWithDiscount, Mode=OneWay}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Received Now"
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                           Width="190" />
+                <TextBlock x:Name="AdditonalDiscountPerTB"
+                         Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                         Text="{x:Bind orderSummaryViewModel.ReceivedNow, Mode=OneWay}"
+                          />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Received Later "
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                           Width="190" />
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
+                           Text="{x:Bind orderSummaryViewModel.ReceivedLater, Mode=OneWay}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

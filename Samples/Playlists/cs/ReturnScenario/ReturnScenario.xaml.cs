@@ -18,9 +18,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MasterDetailApp
 {
-    public sealed partial class MasterDetailPage : Page
+    public sealed partial class OrderListCC : Page
     {
-        public MasterDetailPage()
+        public OrderListCC()
         {
             this.InitializeComponent();
         }
