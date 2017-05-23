@@ -176,7 +176,7 @@ namespace SDKTemplate
             }
             return false;
         }
-        public static string GenerateProductGlyph(String productName)
+        public static string GetGlyphValue(String productName)
         {
             var productGlyph = "";
             var tokenizeProductName = productName.Split(' ');

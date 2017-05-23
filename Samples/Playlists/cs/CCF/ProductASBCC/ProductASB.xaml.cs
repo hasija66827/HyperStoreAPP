@@ -109,14 +109,13 @@ namespace SDKTemplate
                 ProductSellingPrice.Text = "\u20B9" + product.DisplayPrice * (100 - product.DiscountPer) / 100;
                 ProductCostPrice.Text = "\u20B9" + product.DisplayPrice;
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
-                ProductGlyph.Text = Utility.GenerateProductGlyph(product.Name);
+                ProductGlyph.Text = Utility.GetGlyphValue(product.Name);
             }
             else
             {
                 NoResults.Visibility = Visibility.Visible;
                 ProductDetails.Visibility = Visibility.Collapsed;
             }
-        }
-        
+        } 
     }
 }

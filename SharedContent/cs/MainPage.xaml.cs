@@ -79,7 +79,8 @@ namespace SDKTemplate
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
                 if (s.ClassType == typeof(SDKTemp.OrderListCC)){
-                    SummaryFrame.Navigate(typeof(OrderSummaryCC)); 
+                    SummaryFrame.Navigate(typeof(OrderSummaryCC));
+                    SearchBoxFrame.Navigate(typeof(CustomerASBCC));
                 }
                 if (Window.Current.Bounds.Width < 640)
                 {
