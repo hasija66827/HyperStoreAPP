@@ -138,22 +138,7 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Orders"
                        Style="{ThemeResource TitleTextBlockStyle}" />
-            <AutoSuggestBox HorizontalAlignment="Left"
-                        x:Name="CustomerASB"
-                        Height="30"
-                        TextMemberPath="Customer_MobileNo_Address"
-                        DisplayMemberPath="Customer_MobileNo_Address"
-                        PlaceholderText="Search By MobNo (e.g. 9632166827)"
-                        TextChanged="CustomerASB_TextChanged"
-                        QueryIcon="Find"
-                        QuerySubmitted="CustomerASB_QuerySubmitted"
-                        MinWidth="256"
-                        Width="280" />
-            <TextBlock x:Name="NoResults"
-                       Text="No results found"
-                       Style="{StaticResource BodyTextBlockStyle}"
-                       Visibility="Collapsed" />
-        </StackPanel>
+          </StackPanel>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"

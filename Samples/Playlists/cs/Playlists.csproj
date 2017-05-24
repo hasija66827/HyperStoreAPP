@@ -146,9 +146,7 @@
     <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReturnScenario\Controls\Return_MasterListView.cs" />
     <Compile Include="Data Source\CustomerDataSource.cs" />
-    <Compile Include="ReturnScenario\Controls\Return_ASB.cs" />
     <Compile Include="CCF\CustomerInformationCC\CustomerViewModel.cs" />
     <Compile Include="View Models\OrderViewModel.cs" />
     <Compile Include="Data Source\OrderDataSource.cs" />
@@ -299,7 +297,9 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ReturnScenario\Controls\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
