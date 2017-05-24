@@ -47,13 +47,12 @@ namespace SDKTemplate
         }
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            if (CustomerInformation.CustomerViewModel == null)
+            if (CustomerASBCC.Current.SelectedCustomerInASB== null)
             {
                 MainPage.Current.NotifyUser("Customer not added, add the customer by clicking on Add Customer", NotifyType.ErrorMessage);
-            
                 return;
             }
-            if (!Utility.IsMobileNumber(CustomerInformation.CustomerViewModel.MobileNo))
+            if (!Utility.IsMobileNumber(CustomerASBCC.Current.SelectedCustomerInASB.MobileNo))
             {
                 MainPage.Current.NotifyUser("Mobile Number is required", NotifyType.ErrorMessage);
          
@@ -61,7 +60,7 @@ namespace SDKTemplate
             }
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
                this.ProductListViewModel,
-               CustomerInformation.CustomerViewModel);
+               CustomerASBCC.Current.SelectedCustomerInASB);
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }

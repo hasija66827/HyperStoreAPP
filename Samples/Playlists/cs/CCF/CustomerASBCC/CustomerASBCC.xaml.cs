@@ -26,6 +26,7 @@ namespace SDKTemplate
     public sealed partial class CustomerASBCC : Page
     {
         public static CustomerASBCC Current;
+        public CustomerViewModel SelectedCustomerInASB { get { return this._selectedCustomerInASB; } }
         private CustomerViewModel _selectedCustomerInASB;
         public event SelectedCustomerChangedDelegate SelectedCustomerChangedEvent;
         public CustomerASBCC()
@@ -92,6 +93,7 @@ namespace SDKTemplate
             }
             else
             {
+                _selectedCustomerInASB = null;
                NoResults.Visibility = Visibility.Visible;
                CustomerDetails.Visibility = Visibility.Collapsed;
             }
