@@ -130,6 +130,9 @@
     <Compile Include="CCF\OrderSummaryCC\OrderSummary.xaml.cs">
       <DependentUpon>OrderSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\OrderListCC\OrderList.xaml.cs">
+      <DependentUpon>OrderList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrderSummaryViewModel.cs" />
     <Compile Include="View Models\ProductListViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
@@ -161,7 +164,6 @@
     <Compile Include="Scenario2_Display.xaml.cs">
       <DependentUpon>Scenario2_Display.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReturnScenario\ReturnScenario.xaml.cs" />
     <Compile Include="Scenario4_Remove.xaml.cs">
       <DependentUpon>Scenario4_Remove.xaml</DependentUpon>
     </Compile>
@@ -195,11 +197,6 @@
     </Page>
     <Page Include="..\shared\Scenario2_Display.xaml">
       <Link>Scenario2_Display.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\shared\Scenario3_Add.xaml">
-      <Link>Scenario3_Add.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -250,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\CustomerASBCC\CustomerASBCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\OrderListCC\OrderList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,4 @@
-using SDKTemp.Data;
+﻿using SDKTemp.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,7 +30,7 @@ namespace SDKTemp
         public OrderListCC()
         {
             Current = this;
-            this.InitializeComponent();         
+            this.InitializeComponent();
             if (CustomerASBCC.Current == null)
                 throw new Exception("CustomerASBCC should be loaded before orderListCC");
             CustomerASBCC.Current.SelectedCustomerChangedEvent += new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSource);
