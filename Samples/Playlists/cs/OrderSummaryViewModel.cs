@@ -51,6 +51,8 @@ namespace SDKTemplate
             this._totalSalesWithDiscount = 0;
             this._receivedNow = 0;
             this._receivedLater = 0;
+            if (OrderListCC.Current == null)
+                throw new Exception("OrderListCC is should be loaded before OrderSummaryCC");
             OrderListCC.Current.OrderListChangedEvent += new OrderListChangedDelegate(OrderListChangedSubscriber);
         }
         public void OrderListChangedSubscriber(OrderListCC orderListCC)

@@ -119,7 +119,7 @@
     <Compile Include="CCF\ProductListCC\ProductListCC.xaml.cs">
       <DependentUpon>ProductListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerASBCC.xaml.cs">
+    <Compile Include="CCF\CustomerASBCC\CustomerASBCC.xaml.cs">
       <DependentUpon>CustomerASBCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20170521204747_first.cs" />
@@ -251,7 +251,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerASBCC.xaml">
+    <Page Include="CCF\CustomerASBCC\CustomerASBCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

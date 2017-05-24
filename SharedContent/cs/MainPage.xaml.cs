@@ -71,16 +71,17 @@ namespace SDKTemplate
             Scenario s = scenarioListBox.SelectedItem as Scenario;
             if (s != null)
             {
-                ScenarioFrame.Navigate(s.ClassType);
                 if (s.ClassType == typeof(ProductListCC))
                 {
+                    ScenarioFrame.Navigate(s.ClassType);
                     HeaderFrame.Navigate(typeof(CustomerInformation));
                     SearchBoxFrame.Navigate(typeof(ProductASBCustomControl));
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
                 if (s.ClassType == typeof(SDKTemp.OrderListCC)){
-                    SummaryFrame.Navigate(typeof(OrderSummaryCC));
                     SearchBoxFrame.Navigate(typeof(CustomerASBCC));
+                    ScenarioFrame.Navigate(s.ClassType);
+                    SummaryFrame.Navigate(typeof(OrderSummaryCC));
                 }
                 if (Window.Current.Bounds.Width < 640)
                 {

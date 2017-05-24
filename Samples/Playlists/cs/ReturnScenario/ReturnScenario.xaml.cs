@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
+using SDKTemplate;
 namespace SDKTemp
 {
     public sealed partial class OrderListCC : Page
@@ -25,6 +25,9 @@ namespace SDKTemp
         {
             this.InitializeComponent();
             Current = this;
+            if (CustomerASBCC.Current == null)
+                throw new Exception("CustomerASBCC should be loaded before orderListCC");
+            CustomerASBCC.Current.SelectedCustomerChangedEvent += new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSource);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
