@@ -125,11 +125,11 @@
     <Compile Include="CCF\CustomerASBCC\CustomerASBCC.xaml.cs">
       <DependentUpon>CustomerASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FilterOrderViewModel.cs" />
-    <Compile Include="FilterOrderCC.xaml.cs">
+    <Compile Include="CCF\FilterOrderCC\FilterOrderViewModel.cs" />
+    <Compile Include="CCF\FilterOrderCC\FilterOrderCC.xaml.cs">
       <DependentUpon>FilterOrderCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FilterProduct.xaml.cs">
+    <Compile Include="CCF\FilterProductCC\FilterProduct.xaml.cs">
       <DependentUpon>FilterProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20170521204747_first.cs" />
@@ -143,7 +143,7 @@
     <Compile Include="CCF\OrderListCC\OrderList.xaml.cs">
       <DependentUpon>OrderList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrderSummaryViewModel.cs" />
+    <Compile Include="CCF\OrderSummaryCC\OrderSummaryViewModel.cs" />
     <Compile Include="ProductInStock.xaml.cs">
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
@@ -263,11 +263,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FilterOrderCC.xaml">
+    <Page Include="CCF\FilterOrderCC\FilterOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FilterProduct.xaml">
+    <Page Include="CCF\FilterProductCC\FilterProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

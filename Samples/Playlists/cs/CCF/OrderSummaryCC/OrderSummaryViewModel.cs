@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +51,7 @@ namespace SDKTemplate
             this._receivedNow = 0;
             this._receivedLater = 0;
             if (OrderListCC.Current == null)
-                throw new Exception("OrderListCC is should be loaded before OrderSummaryCC");
+                throw new System.Exception("OrderListCC is should be loaded before OrderSummaryCC");
             OrderListCC.Current.OrderListChangedEvent += new OrderListChangedDelegate(OrderListChangedSubscriber);
         }
         public void OrderListChangedSubscriber(OrderListCC orderListCC)

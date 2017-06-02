@@ -26,7 +26,8 @@ namespace SDKTemplate
     {
         public ProductInStock()
         {
-            this.InitializeComponent();           
+            this.InitializeComponent();
+            FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSource;
         }     
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
         private Int32 UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
