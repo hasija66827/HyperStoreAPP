@@ -1,0 +1,80 @@
+﻿<Page x:Class="SDKTemplate.FilterProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:customControl="using:UWP"
+      mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel x:Name="FilterPanel"
+                    Orientation="Horizontal">
+            <RelativePanel x:Name="DiscountPer">
+            <TextBlock Text="Discount %" x:Name="DiscountPerTB"/>
+            <customControl:RangeSlider x:Name="DiscountPerRangeSlider"
+                                       Maximum="100"
+                                       Minimum="0"
+                                       RangeMax="100"
+                                       RangeMin="0" 
+                                       Width="200"
+                                       RelativePanel.Below="DiscountPerTB"
+                                       />
+            <StackPanel 
+                RelativePanel.Below="DiscountPerRangeSlider"
+                Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <TextBox x:Name="DiscountPerLB"
+                         HorizontalAlignment="Left"
+                         FontSize="20"
+                         Text="{Binding RangeMin, ElementName=DiscountPerRangeSlider, Mode=TwoWay}" />
+                <TextBlock Text="to"
+                           FontSize="20" />
+                <TextBox x:Name="DiscountPerUB"
+                         HorizontalAlignment="Right"
+                         FontSize="20"
+                         Text="{Binding RangeMax,
+                            ElementName=DiscountPerRangeSlider,
+                            Mode=TwoWay}" />
+            </StackPanel>
+            </RelativePanel>
+            <RelativePanel x:Name="Quantity" Margin="30,0,0,0"
+                >
+            <TextBlock x:Name="QuantityTB" Text="Quantity" />
+            <customControl:RangeSlider x:Name="QuantityRangeSlider"
+                                       Maximum="1000"
+                                       Minimum="0"
+                                       RangeMax="1000"
+                                       RangeMin="0" 
+                                       Width="200"
+                                       RelativePanel.Below="QuantityTB"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        RelativePanel.Below="QuantityRangeSlider">
+                <TextBox x:Name="QuantityLB"
+                         HorizontalAlignment="Left"
+                         FontSize="20"
+                         Text="{Binding RangeMin, ElementName=QuantityRangeSlider, Mode=TwoWay}" />
+                <TextBlock Text="to"
+                           FontSize="20" />
+                <TextBox x:Name="QuantityUB"
+                         HorizontalAlignment="Right"
+                         FontSize="20"
+                         Text="{Binding RangeMax,
+                            ElementName=QuantityRangeSlider,
+                            Mode=TwoWay}" />
+            </StackPanel>
+            </RelativePanel>
+            <CheckBox x:Name="ShowDeficientItemsOnly"
+                      Content="Show Deficient Items Only"
+                      VerticalAlignment="Top" 
+                      Margin="30,0,0,0"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="TotalFilterResultsTB" />
+                <Button x:Name="ApplyFilter"
+                        Content="Apply" />
+                <Button x:Name="ClearFilter"
+                        Content="Clear" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

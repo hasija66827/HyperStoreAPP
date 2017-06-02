@@ -24,52 +24,10 @@ namespace SDKTemplate
 
     public sealed partial class ProductInStock : Page
     {
-        private Int32 _totalFilterResults;
-        public Int32 TotalFilterResults
-        {
-            get { return this._totalFilterResults; }
-            set
-            {
-                this._totalFilterResults = value;
-                TotalFilterResultsTB.Text = this.TotalFilterResults.ToString() + " Items";
-            }
-        }
         public ProductInStock()
         {
-            this.InitializeComponent();
-            FilterAppBarButton.Click += FilterAppBarButton_Click;
-            ApplyFilter.Click += ApplyFilter_Click;
-            ClearFilter.Click += ClearFilter_Click;
-        }
-
-        private void ClearFilter_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void ApplyFilter_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                IRange<float> discounPerRange = new IRange<float>(Convert.ToSingle(DiscountPerLB.Text), Convert.ToSingle(DiscountPerUB.Text));
-                IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
-                FilterProductCriteria filterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
-                this.TotalFilterResults = UpdateMasterListViewItemSource(filterProductCriteria);
-            }
-            catch (Exception)
-            {
-                Console.Write(e.ToString());
-                MainPage.Current.NotifyUser("Invalid Filter Criteria", NotifyType.ErrorMessage);
-            }
-        }
-
-        private void FilterAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (FilterPanel.Visibility == Visibility.Visible)
-                FilterPanel.Visibility = Visibility.Collapsed;
-            else
-                FilterPanel.Visibility = Visibility.Visible;
-
-        }
+            this.InitializeComponent();           
+        }     
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
         private Int32 UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
         {

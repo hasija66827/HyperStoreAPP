@@ -129,6 +129,9 @@
     <Compile Include="FilterOrderCC.xaml.cs">
       <DependentUpon>FilterOrderCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FilterProduct.xaml.cs">
+      <DependentUpon>FilterProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\20170521204747_first.cs" />
     <Compile Include="Migrations\20170521204747_first.designer.cs">
       <DependentUpon>20170521204747_first.cs</DependentUpon>
@@ -261,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FilterOrderCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FilterProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

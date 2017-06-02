@@ -88,7 +88,7 @@ namespace SDKTemplate
                 if (s.ClassType == typeof(ProductInStock))
                 {
                     HeaderFrame.Navigate(typeof(ProductASBCustomControl));
-                    SearchBoxFrame.Navigate(typeof(BlankPage));
+                    SearchBoxFrame.Navigate(typeof(FilterProduct));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BlankPage));
                 }
