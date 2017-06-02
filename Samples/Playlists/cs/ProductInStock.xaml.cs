@@ -1,4 +1,4 @@
-//*********************************************************
+﻿//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // This code is licensed under the MIT License (MIT).
@@ -22,16 +22,19 @@ using Windows.UI.Xaml.Navigation;
 namespace SDKTemplate
 {
 
-    public sealed partial class Scenario5_Clear : Page
+    public sealed partial class ProductInStock : Page
     {
         private Int32 _totalFilterResults;
-        public Int32 TotalFilterResults {
+        public Int32 TotalFilterResults
+        {
             get { return this._totalFilterResults; }
-            set {
+            set
+            {
                 this._totalFilterResults = value;
-                TotalFilterResultsTB.Text = this.TotalFilterResults.ToString()+" Items"; }
+                TotalFilterResultsTB.Text = this.TotalFilterResults.ToString() + " Items";
+            }
         }
-        public Scenario5_Clear()
+        public ProductInStock()
         {
             this.InitializeComponent();
             FilterAppBarButton.Click += FilterAppBarButton_Click;
@@ -40,7 +43,7 @@ namespace SDKTemplate
         }
 
         private void ClearFilter_Click(object sender, RoutedEventArgs e)
-        { 
+        {
         }
 
         private void ApplyFilter_Click(object sender, RoutedEventArgs e)
@@ -50,7 +53,7 @@ namespace SDKTemplate
                 IRange<float> discounPerRange = new IRange<float>(Convert.ToSingle(DiscountPerLB.Text), Convert.ToSingle(DiscountPerUB.Text));
                 IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
                 FilterProductCriteria filterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
-                this.TotalFilterResults=UpdateMasterListViewItemSource(filterProductCriteria);
+                this.TotalFilterResults = UpdateMasterListViewItemSource(filterProductCriteria);
             }
             catch (Exception)
             {

@@ -41,7 +41,6 @@ namespace SDKTemplate
         private static ProductASBViewModel _selectedProductInASB;
         public ProductASBCustomControl()
         {
-
             this.InitializeComponent();
             AddToCartBtn.Click += AddToCartBtn_Click;
         }

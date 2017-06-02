@@ -43,7 +43,7 @@ namespace SDKTemplate
         public void AddProductToCart(object sender, ProductViewModel product)
         {
             var index = this.ProductListViewModel.AddToBillingList(product);
-            ListView.SelectedIndex = index;
+            //ListView.SelectedIndex = index;
         }
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {

@@ -85,7 +85,15 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
                 }
-                else {
+                if (s.ClassType == typeof(ProductInStock))
+                {
+                    HeaderFrame.Navigate(typeof(ProductASBCustomControl));
+                    SearchBoxFrame.Navigate(typeof(BlankPage));
+                    ScenarioFrame.Navigate(s.ClassType);
+                    SummaryFrame.Navigate(typeof(BlankPage));
+                }
+                else
+                {
                     ScenarioFrame.Navigate(s.ClassType);
                 }
                 if (Window.Current.Bounds.Width < 640)

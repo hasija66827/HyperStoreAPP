@@ -141,6 +141,9 @@
       <DependentUpon>OrderList.xaml</DependentUpon>
     </Compile>
     <Compile Include="OrderSummaryViewModel.cs" />
+    <Compile Include="ProductInStock.xaml.cs">
+      <DependentUpon>ProductInStock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View Models\ProductListViewModel.cs" />
     <Compile Include="View Models\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
@@ -174,9 +177,6 @@
     <Compile Include="Scenario4_Remove.xaml.cs">
       <DependentUpon>Scenario4_Remove.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scenario5_Clear.xaml.cs">
-      <DependentUpon>Scenario5_Clear.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WholeSellerScenario.xaml.cs">
       <DependentUpon>WholeSellerScenario.xaml</DependentUpon>
     </Compile>
@@ -209,11 +209,6 @@
     </Page>
     <Page Include="..\shared\Scenario4_Remove.xaml">
       <Link>Scenario4_Remove.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\shared\Scenario5_Clear.xaml">
-      <Link>Scenario5_Clear.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -266,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FilterOrderCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductInStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
