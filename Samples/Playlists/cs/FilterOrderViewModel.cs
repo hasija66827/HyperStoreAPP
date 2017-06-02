@@ -18,7 +18,7 @@ namespace SDKTemplate
         public DateTime EndDate
         {
             get { return this._endDate; }
-            set { this._endDate = value; }
+            set { this._endDate = value;}
         }
         public FilterOrderViewModel()
         {

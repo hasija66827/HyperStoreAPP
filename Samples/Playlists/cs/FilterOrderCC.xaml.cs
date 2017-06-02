@@ -23,31 +23,20 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class FilterOrderCC : Page
     {
-        public FilterOrderViewModel SelectedDateRange { get { return this._selectedDate; } }
-        private FilterOrderViewModel _selectedDate;
+        public FilterOrderViewModel SelectedDateRange;
         public static FilterOrderCC Current;
         public event DateChangedDelegate DateChangedEvent;
         public FilterOrderCC()
         {
             Current = this;
-            this._selectedDate = new FilterOrderViewModel();
-            
+            this.SelectedDateRange = new FilterOrderViewModel();
             this.InitializeComponent();
-
-            startDateCP.DateChanged += StartDate_DateChanged;
-            endDateCP.DateChanged += EndDate_DateChanged;
+            ApplyDateRangeFilterBtn.Click += ApplyDateRangeFilterBtn_Click;
         }
 
-        private void EndDate_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        private void ApplyDateRangeFilterBtn_Click(object sender, RoutedEventArgs e)
         {
-            Current._selectedDate.EndDate = endDateCP.Date.Value.Date;
-            DateChangedEvent?.Invoke(this);
-        }
-
-        private void StartDate_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
-        {
-            this._selectedDate.StartDate = startDateCP.Date.Value.Date;
-            DateChangedEvent?.Invoke(this);
+            DateChangedEvent?.Invoke(FilterOrderCC.Current);
         }
     }
 }

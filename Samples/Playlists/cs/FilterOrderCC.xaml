@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
+    </UserControl.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel Margin="10,0,0,0">
             <TextBlock x:Name="Header"
@@ -15,18 +18,26 @@
                        RelativePanel.Below="Header"
                        x:Name="startDateLabel" />
             <CalendarDatePicker x:Name="startDateCP"
+                                Date="{x:Bind SelectedDateRange.StartDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
                                 Margin="30,0,0,0"                
                                 RelativePanel.AlignBottomWith="startDateLabel"
-                                RelativePanel.RightOf="startDateLabel" />
+                                RelativePanel.RightOf="startDateLabel"
+                                />
             <TextBlock Text="End Date"
                        Margin="30,0,0,0"
                        RelativePanel.RightOf="startDateCP"
                        RelativePanel.AlignBottomWith="startDateCP"
                        x:Name="endDateLabel" />
             <CalendarDatePicker x:Name="endDateCP"
+                                Date="{x:Bind SelectedDateRange.EndDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
                                 Margin="30,0,0,0"
                                 RelativePanel.AlignBottomWith="endDateLabel"
                                 RelativePanel.RightOf="endDateLabel" />
+            <Button Content="Apply"
+                    x:Name="ApplyDateRangeFilterBtn"
+                    RelativePanel.Below="startDateCP"
+                    Height="32"
+                    Width="65" />
         </RelativePanel>
     </Grid>
 </Page>

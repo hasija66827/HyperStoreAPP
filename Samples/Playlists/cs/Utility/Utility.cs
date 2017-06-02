@@ -10,6 +10,20 @@ using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
+    public class ConvertDateTimeOffsetToDateTime : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            return new DateTimeOffset((DateTime)value);
+        }   
+        
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            return ((DateTimeOffset)value).Date;
+        }
+    }
     public class InverseBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
