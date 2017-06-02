@@ -97,6 +97,7 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="550" />
             <RowDefinition Height="150" />
         </Grid.RowDefinitions>
@@ -107,16 +108,15 @@
             <ColumnDefinition x:Name="DetailColumn"
                               MinWidth="200"
                               Width="300" />
-            <ColumnDefinition x:Name="FilterColumn"
-                              MinWidth="200"
-                              Width="300" />
+            
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="0">
             <TextBlock Text="Products"
                        Style="{ThemeResource TitleTextBlockStyle}" />
         </StackPanel>
         <ListView x:Name="MasterListView"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   ItemContainerTransitions="{x:Null}"
                   ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                   IsItemClickEnabled="True"
@@ -131,7 +131,7 @@
         </ListView>
         <ContentPresenter x:Name="DetailContentPresenter"
                           Grid.Column="1"
-                          Grid.RowSpan="2"
+                          Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
                           Padding="24,0"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
@@ -142,6 +142,12 @@
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-        
+        <AppBar
+            Grid.Row="1">
+        <AppBarButton Label="Add Product"
+                      Icon="Add"
+                      HorizontalAlignment="Right"
+                      />
+        </AppBar>
     </Grid>
 </Page>
