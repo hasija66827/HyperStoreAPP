@@ -49,6 +49,13 @@ namespace SDKTemp.Data
             var orderByMobileNumber = _Orders.Where(order => order.CustomerMobileNo == MobileNumber);
             return orderByMobileNumber.ToList();
         }
+        public static List<OrderViewModel> RetrieveOrdersByDate(FilterOrderViewModel selectedDateRange)
+        {
+            var orderByDateRange = _Orders.
+                Where(order => order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
+                               order.OrderDate.Date<=selectedDateRange.EndDate.Date);
+            return orderByDateRange.ToList();
+        }
 
 
         // #perf if possible merge the three query into one.

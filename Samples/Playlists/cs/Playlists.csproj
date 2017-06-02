@@ -106,6 +106,9 @@
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
+    <Compile Include="BlankPage.xaml.cs">
+      <DependentUpon>BlankPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CCF\BillingSummaryCC\BillingSummary.xaml.cs">
       <DependentUpon>BillingSummary.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
     </Compile>
     <Compile Include="CCF\CustomerASBCC\CustomerASBCC.xaml.cs">
       <DependentUpon>CustomerASBCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FilterOrderViewModel.cs" />
+    <Compile Include="FilterOrderCC.xaml.cs">
+      <DependentUpon>FilterOrderCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20170521204747_first.cs" />
     <Compile Include="Migrations\20170521204747_first.designer.cs">
@@ -226,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BlankPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CCF\BillingSummaryCC\BillingSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\OrderListCC\OrderList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FilterOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

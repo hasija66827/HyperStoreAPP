@@ -1,0 +1,32 @@
+﻿<Page x:Class="SDKTemplate.FilterOrderCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel Margin="10,0,0,0">
+            <TextBlock x:Name="Header"
+                       Text="Filter the Orders"
+                       Margin="0,0,0,10"
+                       Style="{StaticResource SampleHeaderTextStyle}" />
+            <TextBlock Text="Start Date"
+                       RelativePanel.Below="Header"
+                       x:Name="startDateLabel" />
+            <CalendarDatePicker x:Name="startDateCP"
+                                Margin="30,0,0,0"                
+                                RelativePanel.AlignBottomWith="startDateLabel"
+                                RelativePanel.RightOf="startDateLabel" />
+            <TextBlock Text="End Date"
+                       Margin="30,0,0,0"
+                       RelativePanel.RightOf="startDateCP"
+                       RelativePanel.AlignBottomWith="startDateCP"
+                       x:Name="endDateLabel" />
+            <CalendarDatePicker x:Name="endDateCP"
+                                Margin="30,0,0,0"
+                                RelativePanel.AlignBottomWith="endDateLabel"
+                                RelativePanel.RightOf="endDateLabel" />
+        </RelativePanel>
+    </Grid>
+</Page>

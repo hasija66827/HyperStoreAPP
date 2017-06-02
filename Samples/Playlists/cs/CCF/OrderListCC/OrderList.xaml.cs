@@ -33,16 +33,27 @@ namespace SDKTemp
             this.InitializeComponent();
             if (CustomerASBCC.Current == null)
                 throw new Exception("CustomerASBCC should be loaded before orderListCC");
-            CustomerASBCC.Current.SelectedCustomerChangedEvent += new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSource);
+            CustomerASBCC.Current.SelectedCustomerChangedEvent +=
+                new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSourceByCustomer);
+            FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSourceByDate;
         }
-        private void UpdateMasterListViewItemSource(CustomerViewModel customer = null)
+        private void UpdateMasterListViewItemSourceByDate(object sender)
+        {
+            FilterOrderCC a = (FilterOrderCC)sender;
+            FilterOrderViewModel selectedDateRange = a.SelectedDateRange;
+            if (selectedDateRange == null)
+                Current.orderList = OrderDataSource.Orders;
+            else
+                Current.orderList = OrderDataSource.RetrieveOrdersByDate(selectedDateRange);
+            OrderListCC.Current.OrderListChangedEvent?.Invoke(OrderListCC.Current);
+            MasterListView.ItemsSource = Current.orderList;
+        }
+        private void UpdateMasterListViewItemSourceByCustomer(CustomerViewModel customer = null)
         {
             if (customer == null)
                 Current.orderList = OrderDataSource.Orders;
             else
-            {
                 Current.orderList = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
-            }
             OrderListCC.Current.OrderListChangedEvent?.Invoke(OrderListCC.Current);
             MasterListView.ItemsSource = orderList;
         }

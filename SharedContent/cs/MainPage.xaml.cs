@@ -78,10 +78,15 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(ProductASBCustomControl));
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
-                if (s.ClassType == typeof(SDKTemp.OrderListCC)){
-                    SearchBoxFrame.Navigate(typeof(CustomerASBCC));
+                if (s.ClassType == typeof(SDKTemp.OrderListCC))
+                {
+                    HeaderFrame.Navigate(typeof(CustomerASBCC));
+                    SearchBoxFrame.Navigate(typeof(FilterOrderCC));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
+                }
+                else {
+                    ScenarioFrame.Navigate(s.ClassType);
                 }
                 if (Window.Current.Bounds.Width < 640)
                 {
