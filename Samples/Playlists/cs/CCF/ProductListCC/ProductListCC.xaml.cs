@@ -32,7 +32,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             this.ProductListViewModel = new ProductListViewModel();
             Checkout.Click += Checkout_Click;
-            ProductASBCustomControl.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
+            ProductASBCustomCC.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
             BillingSummaryViewModel.AdditionalDiscountPerChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
                 ((sender, additonalDiscountPer) =>
                 {

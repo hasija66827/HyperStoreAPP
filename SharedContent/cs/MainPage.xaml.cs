@@ -75,7 +75,7 @@ namespace SDKTemplate
                 {
                     ScenarioFrame.Navigate(s.ClassType);
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
-                    SearchBoxFrame.Navigate(typeof(ProductASBCustomControl));
+                    SearchBoxFrame.Navigate(typeof(ProductASBCustomCC));
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
                 if (s.ClassType == typeof(SDKTemp.OrderListCC))
@@ -87,7 +87,7 @@ namespace SDKTemplate
                 }
                 if (s.ClassType == typeof(ProductInStock))
                 {
-                    HeaderFrame.Navigate(typeof(ProductASBCustomControl));
+                    HeaderFrame.Navigate(typeof(ProductASBCustomCC));
                     SearchBoxFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BlankPage));

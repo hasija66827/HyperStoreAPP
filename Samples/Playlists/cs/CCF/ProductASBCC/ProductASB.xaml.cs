@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 namespace SDKTemplate
 {
     public delegate void OnAddProductClickedDelegate(object sender, ProductViewModel productViewModel);
-
+    public delegate void SelectedProductChangedDelegate(ProductASBViewModel productASBViewModel);
     public class ProductASBViewModel : ProductViewModelBase
     {
         // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
@@ -35,12 +35,15 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProductASBCustomControl : Page
+    public sealed partial class ProductASBCustomCC : Page
     {
+        public static ProductASBCustomCC Current;
         public static event OnAddProductClickedDelegate OnAddProductClickedEvent;
+        public event SelectedProductChangedDelegate SelectedProductChangedEvent;
         private static ProductASBViewModel _selectedProductInASB;
-        public ProductASBCustomControl()
+        public ProductASBCustomCC()
         {
+            Current = this;
             this.InitializeComponent();
             AddToCartBtn.Click += AddToCartBtn_Click;
         }
@@ -81,16 +84,19 @@ namespace SDKTemplate
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
         private void ProductASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
+            ProductASBViewModel selectedProductInASB;
             if (args.ChosenSuggestion != null)
             {
-                SelectProduct((ProductASBViewModel)args.ChosenSuggestion);
+                selectedProductInASB = (ProductASBViewModel)args.ChosenSuggestion;
             }
             else
             {
                 var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
                 // Choose the first match, or clear the selection if there are no matches.
-                SelectProduct(new ProductASBViewModel(matchingProducts.FirstOrDefault()));
+                selectedProductInASB = new ProductASBViewModel(matchingProducts.FirstOrDefault());
             }
+            SelectProduct(selectedProductInASB);
+            Current.SelectedProductChangedEvent?.Invoke(selectedProductInASB);
         }
         /// <summary>
         /// Display details of the specified Product.

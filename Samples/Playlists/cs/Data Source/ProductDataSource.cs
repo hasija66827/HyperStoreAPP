@@ -63,6 +63,11 @@ namespace SDKTemplate
                 .OrderByDescending(c => c.BarCode.StartsWith(query, StringComparison.CurrentCultureIgnoreCase))
                 .ThenByDescending(c => c.Name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
+        public static List<ProductViewModelBase> GetProductsById(Guid productId)
+        {
+            return ProductDataSource._products
+                .Where(p => p.ProductId==productId).ToList();
+        }
         public static List<ProductViewModelBase> GetProducts(FilterProductCriteria filterProductCriteria)
         {
             if (filterProductCriteria.IncludeDeficientItemsOnly == true)

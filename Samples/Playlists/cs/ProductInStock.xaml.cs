@@ -27,6 +27,7 @@ namespace SDKTemplate
         public ProductInStock()
         {
             this.InitializeComponent();
+            ProductASBCustomCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByProductASB;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSource;
         }     
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
@@ -46,6 +47,15 @@ namespace SDKTemplate
                 totalResults = items.Count;
             }
             return totalResults;
+        }
+        private void UpdateMasterListViewItemSourceByProductASB(ProductASBViewModel productASBViewModel)
+        {
+            List<ProductViewModelBase> resultList;
+            if (productASBViewModel == null)
+                resultList = ProductDataSource.Products;
+            else
+                resultList = ProductDataSource.GetProductsById(productASBViewModel.ProductId);
+            MasterListView.ItemsSource = resultList;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
