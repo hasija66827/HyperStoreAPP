@@ -67,7 +67,8 @@ namespace SDKTemplate
         }
         public override int RefillTime
         {
-            get => base.RefillTime; set
+            get => base.RefillTime;
+            set
             {
                 this._refillTime = value;
                 this.OnPropertyChanged(nameof(RefillTime));
@@ -76,7 +77,8 @@ namespace SDKTemplate
 
         public override int Threshold
         {
-            get => base.Threshold; set
+            get => base.Threshold;
+            set
             {
                 this._threshold = value;
                 this.OnPropertyChanged(nameof(Threshold));

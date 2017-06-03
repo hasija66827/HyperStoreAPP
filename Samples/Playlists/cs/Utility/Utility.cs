@@ -16,8 +16,8 @@ namespace SDKTemplate
             object parameter, string language)
         {
             return new DateTimeOffset((DateTime)value);
-        }   
-        
+        }
+
         public object ConvertBack(object value, Type targetType,
             object parameter, string language)
         {
@@ -200,11 +200,40 @@ namespace SDKTemplate
             }
             return productGlyph.ToUpper();
         }
-        public static bool CheckIfValidProductName(string productName)
+        public static bool CheckIfUniqueProductName(string productName)
         {
             if (ProductDataSource.IsProductNameExist(productName))
             {
                 MainPage.Current.NotifyUser("The product name already exist", NotifyType.ErrorMessage);
+                return false;
+            }
+            return true;
+        }
+        public static bool CheckIfValidCustomerMobileNumber(string mobileNo)
+        {
+            if (IsMobileNumber(mobileNo) == false)
+            {
+                MainPage.Current.NotifyUser("Mobile number is not valid", NotifyType.ErrorMessage);
+                return false;
+            }
+
+            if (CustomerDataSource.IsMobileNumberExist(mobileNo))
+            {
+                MainPage.Current.NotifyUser("Mobile Number already exist", NotifyType.ErrorMessage);
+                return false;
+            }
+            return true;
+        }
+        public static bool CheckIfValidCustomerName(string name)
+        {
+            if (name == "")
+            {
+                MainPage.Current.NotifyUser("Name cannot be empty", NotifyType.ErrorMessage);
+                return false;
+            }
+            if (CustomerDataSource.IsNameExist(name))
+            {
+                MainPage.Current.NotifyUser("Name already exist", NotifyType.ErrorMessage);
                 return false;
             }
             return true;
@@ -239,22 +268,6 @@ namespace SDKTemplate
             }
             return true;
         }
-        /// <summary>
-        /// Retuns the list of child controls of parent control in visual tree
-        /// </summary>
-        /// <param name="parent">parent control handler in visual tree</param>
-        /// <returns></returns>
-        public static List<Control> AllChildren(DependencyObject parent)
-        {
-            var _List = new List<Control>();
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                var _Child = VisualTreeHelper.GetChild(parent, i);
-                if (_Child is Control)
-                    _List.Add(_Child as Control);
-                _List.AddRange(AllChildren(_Child));
-            }
-            return _List;
-        }
+
     }
 }

@@ -11,17 +11,17 @@ namespace SDKTemp.ViewModel
     public class CustomerViewModel
     {
         public Guid CustomerId;
-        public string Name { get; set; }
-        public string MobileNo { get; set; }
-        public string Address { get; set; }
-        public float WalletBalance { get; set; }
-        public bool IsVerifiedCustomer { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string MobileNo { get; set; }
+        public virtual string Address { get; set; }
+        public virtual float WalletBalance { get; set; }
+        public virtual bool IsVerifiedCustomer { get; set; }
         public CustomerViewModel()
         {
             this.CustomerId = Guid.NewGuid();
-            this.Name = "m";
-            this.MobileNo = "9987654321";
-            this.Address = "aaaaaa";
+            this.Name = "";
+            this.MobileNo = "";
+            this.Address = "";
             this.WalletBalance = 0;
             this.IsVerifiedCustomer = false;
         }

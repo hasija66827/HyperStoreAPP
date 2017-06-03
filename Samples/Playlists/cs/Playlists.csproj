@@ -102,7 +102,11 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CCF\AddNewProductCC\AddProductCC.xaml.cs">
+    <Compile Include="AddCustomer.xaml.cs">
+      <DependentUpon>AddCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddCustomeViewModel.cs" />
+    <Compile Include="CCF\AddProductCC\AddProductCC.xaml.cs">
       <DependentUpon>AddProductCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
@@ -163,7 +167,7 @@
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data Source\CustomerDataSource.cs" />
-    <Compile Include="CCF\CustomerInformationCC\CustomerViewModel.cs" />
+    <Compile Include="View Models\CustomerViewModel.cs" />
     <Compile Include="View Models\OrderViewModel.cs" />
     <Compile Include="Data Source\OrderDataSource.cs" />
     <Compile Include="DBModel\DBModel.cs" />
@@ -212,7 +216,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CCF\AddNewProductCC\AddProductCC.xaml">
+    <Page Include="AddCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\AddProductCC\AddProductCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

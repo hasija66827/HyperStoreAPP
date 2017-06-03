@@ -34,12 +34,12 @@ namespace SDKTemplate
         }
         private void ProductNameTB_LostFocus(object sender, RoutedEventArgs e)
         {
-            Utility.CheckIfValidProductName(ProductNameTB.Text);
+            Utility.CheckIfUniqueProductName(ProductNameTB.Text);
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text) && Utility.CheckIfValidProductName(ProductNameTB.Text))
+            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text) && Utility.CheckIfUniqueProductName(ProductNameTB.Text))
             {
                 if (ProductDataSource.AddProduct(addProductViewModelBase) == true)
                     MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);

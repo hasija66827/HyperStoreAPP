@@ -40,7 +40,10 @@ namespace SDKTemplate
             SampleTitle.Text = FEATURE_NAME;
             AddProductBtn.Click += AddProductBtn_Click;
         }
-
+        private void AddCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            NewsFeedFrame.Navigate(typeof(AddCustomerCC));
+        }
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
         {
             NewsFeedFrame.Navigate(typeof(AddProductCC));
@@ -170,6 +173,8 @@ namespace SDKTemplate
         {
             Splitter.IsPaneOpen = !Splitter.IsPaneOpen;
         }
+
+  
     }
     public enum NotifyType
     {

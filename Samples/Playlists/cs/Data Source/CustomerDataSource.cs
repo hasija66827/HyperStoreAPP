@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SDKTemp.ViewModel;
-namespace SDKTemp.Data
+namespace SDKTemplate
 {
     class CustomerDataSource
     {
@@ -63,12 +63,30 @@ namespace SDKTemp.Data
         /// <param name="newCustomer"></param>
         public static void AddCustomer(CustomerViewModel newCustomer)
         {
-            _customers.Add(newCustomer);
             using (var db = new DatabaseModel.RetailerContext())
             {
                 db.Customers.Add((DatabaseModel.Customer)newCustomer);
                 db.SaveChanges();
             }
+            _customers.Add(newCustomer);
         }
+
+        public static bool IsNameExist(string name)
+        {
+            var customers =CustomerDataSource._customers
+             .Where(c => c.Name.ToLower() == name.ToLower());
+            if (customers.Count() == 0)
+                return false;
+            return true;
+        }
+        public static bool IsMobileNumberExist(string mobileNumber)
+        {
+            var customers = CustomerDataSource._customers
+             .Where(c => c.MobileNo == mobileNumber);
+            if (customers.Count() == 0)
+                return false;
+            return true;
+        }
+
     }
 }

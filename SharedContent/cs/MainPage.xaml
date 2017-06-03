@@ -171,10 +171,11 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <AppBarButton 
+            <AppBarButton x:Name="AddCustomer"
                           Icon="AddFriend"
                           Label="Customer"
-                          VerticalAlignment="Top" />
+                          VerticalAlignment="Top"
+                          Click="AddCustomer_Click" />
             <AppBarButton x:Name="AddProductBtn"
                 HorizontalAlignment="Center"
                           Icon="Add"
