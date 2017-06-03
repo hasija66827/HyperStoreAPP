@@ -102,8 +102,8 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AddProduct.xaml.cs">
-      <DependentUpon>AddProduct.xaml</DependentUpon>
+    <Compile Include="CCF\AddNewProductCC\AddProductCC.xaml.cs">
+      <DependentUpon>AddProductCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="BillingScenario\PageNavigationParameter.cs" />
     <Compile Include="BlankPage.xaml.cs">
@@ -180,9 +180,6 @@
     <Compile Include="Scenario4_Remove.xaml.cs">
       <DependentUpon>Scenario4_Remove.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSellerScenario.xaml.cs">
-      <DependentUpon>WholeSellerScenario.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -215,7 +212,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AddProduct.xaml">
+    <Page Include="CCF\AddNewProductCC\AddProductCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -280,10 +277,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WholeSellerScenario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

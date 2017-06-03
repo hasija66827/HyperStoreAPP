@@ -14,16 +14,15 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace SDKTemplate
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddProduct : Page
+    public sealed partial class AddProductCC : Page
     {
         public AddProductViewModel addProductViewModelBase;
-        public AddProduct()
+        public AddProductCC()
         {
             this.addProductViewModelBase = new AddProductViewModel();
             this.InitializeComponent();
@@ -45,6 +44,12 @@ namespace SDKTemplate
                 if (ProductDataSource.AddProduct(addProductViewModelBase) == true)
                     MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
             }
+            this.Frame.Navigate(typeof(BlankPage));
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BlankPage));
         }
     }
 }

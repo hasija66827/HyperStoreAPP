@@ -110,7 +110,7 @@
                        Width="800"
                        RelativePanel.Below="SearchBoxFrame" />
                 <Frame x:Name="NewsFeedFrame"
-                       Background="CadetBlue"
+                       Background="Azure"
                        RelativePanel.RightOf="HeaderFrame"
                        Width="700"
                        Height="410"
@@ -175,13 +175,13 @@
                           Icon="AddFriend"
                           Label="Customer"
                           VerticalAlignment="Top" />
-            <AppBarButton HorizontalAlignment="Center"
+            <AppBarButton x:Name="AddProductBtn"
+                HorizontalAlignment="Center"
                           Icon="Add"
                           Label="Product"
                           VerticalAlignment="Top" />
             <AppBarButton HorizontalAlignment="Center"
-                          Icon="AddFriend"
-                          Background="DarkCyan"
+                          Icon="AddFriend"  
                           Label="WholeSeller"
                           VerticalAlignment="Top" />
         </StackPanel>

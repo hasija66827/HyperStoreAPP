@@ -38,6 +38,12 @@ namespace SDKTemplate
             // in order to call methods that are in this class.
             Current = this;
             SampleTitle.Text = FEATURE_NAME;
+            AddProductBtn.Click += AddProductBtn_Click;
+        }
+
+        private void AddProductBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NewsFeedFrame.Navigate(typeof(AddProductCC));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
