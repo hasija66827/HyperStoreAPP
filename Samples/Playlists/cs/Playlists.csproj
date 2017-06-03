@@ -102,10 +102,16 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AddCustomer.xaml.cs">
-      <DependentUpon>AddCustomer.xaml</DependentUpon>
+    <Compile Include="CCF\AddWholesellerCC\AddWholeSellerCC.xaml.cs">
+      <DependentUpon>AddWholeSellerCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddCustomeViewModel.cs" />
+    <Compile Include="CCF\AddCustomerCC\AddCustomerCC.xaml.cs">
+      <DependentUpon>AddCustomerCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data Source\WholeSellerDataSource.cs" />
+    <Compile Include="View Models\AddWholeSellerViewModel.cs" />
+    <Compile Include="View Models\WholeSellerViewModel.cs" />
+    <Compile Include="View Models\AddCustomeViewModel.cs" />
     <Compile Include="CCF\AddProductCC\AddProductCC.xaml.cs">
       <DependentUpon>AddProductCC.xaml</DependentUpon>
     </Compile>
@@ -148,7 +154,7 @@
       <DependentUpon>OrderList.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\OrderSummaryCC\OrderSummaryViewModel.cs" />
-    <Compile Include="ProductInStock.xaml.cs">
+    <Compile Include="CCF\ProductInStock\ProductInStock.xaml.cs">
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
     <Compile Include="View Models\ProductListViewModel.cs" />
@@ -216,7 +222,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AddCustomer.xaml">
+    <Page Include="CCF\AddWholesellerCC\AddWholeSellerCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\AddCustomerCC\AddCustomerCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,7 +286,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductInStock.xaml">
+    <Page Include="CCF\ProductInStock\ProductInStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

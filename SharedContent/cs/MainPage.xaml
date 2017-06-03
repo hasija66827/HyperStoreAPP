@@ -181,10 +181,13 @@
                           Icon="Add"
                           Label="Product"
                           VerticalAlignment="Top" />
-            <AppBarButton HorizontalAlignment="Center"
+            <AppBarButton 
+                x:Name="AddWholeSellerBtn"
+                HorizontalAlignment="Center"
                           Icon="AddFriend"  
                           Label="WholeSeller"
-                          VerticalAlignment="Top" />
+                          VerticalAlignment="Top"
+                          Click="AddWholeSellerBtn_Click" />
         </StackPanel>
     </Grid>
 </Page>

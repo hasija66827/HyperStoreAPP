@@ -48,7 +48,10 @@ namespace SDKTemplate
         {
             NewsFeedFrame.Navigate(typeof(AddProductCC));
         }
-
+        private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NewsFeedFrame.Navigate(typeof(AddWholeSellerCC));
+        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
@@ -174,7 +177,7 @@ namespace SDKTemplate
             Splitter.IsPaneOpen = !Splitter.IsPaneOpen;
         }
 
-  
+     
     }
     public enum NotifyType
     {

@@ -39,7 +39,7 @@ namespace SDKTemp.ViewModel
             this.MobileNo = mobileNo;
             this.Address = address;
             this.WalletBalance = walletBalance;
-            this.IsVerifiedCustomer = IsVerifiedCustomer;
+            this.IsVerifiedCustomer = isVerifiedCustomer;
         }
         
         public string Customer_MobileNo_Address

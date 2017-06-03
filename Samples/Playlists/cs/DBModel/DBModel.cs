@@ -65,6 +65,17 @@ namespace DatabaseModel
         }
         public WholeSeller() { }
 
+        public static explicit operator WholeSeller(WholeSellerViewModel v)
+        {
+            WholeSeller w = new WholeSeller();
+            w.WholeSellerId = v.WholeSellerId;
+            w.MobileNo = v.MobileNo;
+            w.Name = v.Name;
+            w.IsVerifiedWholeSeller = v.IsVerifiedWholeSeller;
+            w.Address = v.Address;
+            w.WalletBalance = v.WalletBalance;
+            return w;
+        }
     }
     public class WholeSellerOrder
     {
@@ -89,6 +100,7 @@ namespace DatabaseModel
             this.PaidAmount = 0;
             this.WholeSellerId = wholeSellerId;
         }
+
         public WholeSellerOrder() { }
     }
     public class WholeSellerOrderProduct

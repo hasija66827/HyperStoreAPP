@@ -209,32 +209,53 @@ namespace SDKTemplate
             }
             return true;
         }
-        public static bool CheckIfValidCustomerMobileNumber(string mobileNo)
+        public static bool CheckIfValidMobileNumber(string mobileNo, Person person)
         {
             if (IsMobileNumber(mobileNo) == false)
             {
                 MainPage.Current.NotifyUser("Mobile number is not valid", NotifyType.ErrorMessage);
                 return false;
             }
-
-            if (CustomerDataSource.IsMobileNumberExist(mobileNo))
+            if (person == Person.Customer)
             {
-                MainPage.Current.NotifyUser("Mobile Number already exist", NotifyType.ErrorMessage);
-                return false;
+                if (CustomerDataSource.IsMobileNumberExist(mobileNo))
+                {
+                    MainPage.Current.NotifyUser("Mobile Number already exist", NotifyType.ErrorMessage);
+                    return false;
+                }
+            }
+            else if (person == Person.WholeSeller)
+            {
+                if (WholeSellerDataSource.IsMobileNumberExist(mobileNo))
+                {
+                    MainPage.Current.NotifyUser("Mobile Number already exist", NotifyType.ErrorMessage);
+                    return false;
+                }
             }
             return true;
         }
-        public static bool CheckIfValidCustomerName(string name)
+        public static bool CheckIfValidName(string name, Person person)
         {
             if (name == "")
             {
                 MainPage.Current.NotifyUser("Name cannot be empty", NotifyType.ErrorMessage);
                 return false;
             }
-            if (CustomerDataSource.IsNameExist(name))
+            if (person == Person.Customer)
             {
-                MainPage.Current.NotifyUser("Name already exist", NotifyType.ErrorMessage);
-                return false;
+                if (CustomerDataSource.IsNameExist(name))
+                {
+                    MainPage.Current.NotifyUser("Name already exist", NotifyType.ErrorMessage);
+                    return false;
+                }
+            }
+            else if (person == Person.WholeSeller)
+            {
+                if (WholeSellerDataSource.IsNameExist(name))
+                {
+                    MainPage.Current.NotifyUser("Name already exist", NotifyType.ErrorMessage);
+                    return false;
+                }
             }
             return true;
         }

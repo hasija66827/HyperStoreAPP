@@ -17,42 +17,45 @@ using SDKTemp.ViewModel;
 
 namespace SDKTemplate
 {
+    enum Person
+    {
+        WholeSeller,
+        Customer
+    }
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddCustomerCC : Page
+    public sealed partial class AddWholeSellerCC : Page
     {
-        private AddCustomerViewModel addCustomerViewModel;
-        public AddCustomerCC()
+        public AddWholeSellerViewModel addWholeSellerViewModel;
+        public AddWholeSellerCC()
         {
             this.InitializeComponent();
-            addCustomerViewModel = new AddCustomerViewModel();
+            addWholeSellerViewModel = new AddWholeSellerViewModel();
             NameTB.LostFocus += NameTB_LostFocus;
             MobileNoTB.LostFocus += MobileNoTB_LostFocus;
         }
         private void NameTB_LostFocus(object sender, RoutedEventArgs e)
         {
-            Utility.CheckIfValidCustomerName(NameTB.Text);
+            Utility.CheckIfValidName(NameTB.Text, Person.WholeSeller);
         }
 
         private void MobileNoTB_LostFocus(object sender, RoutedEventArgs e)
         {
-            Utility.CheckIfValidCustomerMobileNumber(MobileNoTB.Text);
+            Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.WholeSeller);
         }
-
-
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Utility.CheckIfValidCustomerName(NameTB.Text) && Utility.CheckIfValidCustomerMobileNumber(MobileNoTB.Text))
+            if (Utility.CheckIfValidName(NameTB.Text, Person.WholeSeller) && Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.WholeSeller))
             {
                 try
                 {
-                    CustomerDataSource.AddCustomer((CustomerViewModel)addCustomerViewModel);
-                    MainPage.Current.NotifyUser("New customer was added succesfully ", NotifyType.StatusMessage);
+                    WholeSellerDataSource.AddWholeSeller(addWholeSellerViewModel);
+                    MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
                 }
                 catch
                 {
-                    MainPage.Current.NotifyUser("New customer was not added succesfully ", NotifyType.ErrorMessage);
+                    MainPage.Current.NotifyUser("New wholeseller was not added succesfully ", NotifyType.ErrorMessage);
                 }
             }
             this.Frame.Navigate(typeof(BlankPage));
