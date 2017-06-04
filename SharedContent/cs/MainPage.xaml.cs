@@ -86,9 +86,10 @@ namespace SDKTemplate
             {
                 if (s.ClassType == typeof(ProductListCC))
                 {
-                    ScenarioFrame.Navigate(s.ClassType);
+                   
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
+                    ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
                 else if (s.ClassType == typeof(SDKTemp.OrderListCC))

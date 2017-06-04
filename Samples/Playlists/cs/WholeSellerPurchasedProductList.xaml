@@ -9,6 +9,7 @@
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
+        <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
     <Grid>
         <Grid x:Name="RootGrid"
@@ -70,8 +71,8 @@
                                                    Width="140"
                                                    TextWrapping="Wrap"
                                                    Margin="0,0,10,0" />
-                                        <TextBox x:Name="DisplayPrice"
-                                                   Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                        <TextBox x:Name="PurchasePrice"
+                                                   Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
                                                    Width="80"
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="Quantity"

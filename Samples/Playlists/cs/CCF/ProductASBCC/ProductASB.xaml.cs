@@ -38,7 +38,7 @@ namespace SDKTemplate
     public sealed partial class ProductASBCC : Page
     {
         public static ProductASBCC Current;
-        public static event OnAddProductClickedDelegate OnAddProductClickedEvent;
+        public event OnAddProductClickedDelegate OnAddProductClickedEvent;
         public event SelectedProductChangedDelegate SelectedProductChangedEvent;
         private static ProductASBViewModel _selectedProductInASB;
         public ProductASBCC()
@@ -50,7 +50,7 @@ namespace SDKTemplate
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            OnAddProductClickedEvent?.Invoke(this, new ProductViewModel(_selectedProductInASB));
+            Current.OnAddProductClickedEvent?.Invoke(this, new ProductViewModel(_selectedProductInASB));
             this.ProductASB.Text = "";
         }
 
