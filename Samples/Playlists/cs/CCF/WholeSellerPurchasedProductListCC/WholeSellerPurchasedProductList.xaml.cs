@@ -18,12 +18,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-
+    public delegate void WholeSellerProductListUpdatedDelegate(ObservableCollection<WholeSellerProductListVieModel> products);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class WholeSellerPurchasedProductListCC : Page
     {
+        public event WholeSellerProductListUpdatedDelegate WholeSellerProductListUpdatedEvent;
         private ObservableCollection<WholeSellerProductListVieModel> _products = new ObservableCollection<WholeSellerProductListVieModel>();
         public ObservableCollection<WholeSellerProductListVieModel> Products { get { return this._products; } }
         public static WholeSellerPurchasedProductListCC Current;
@@ -42,12 +43,17 @@ namespace SDKTemplate
                 WholeSellerProductListVieModel w = new WholeSellerProductListVieModel(selectedProduct.BarCode,
                     selectedProduct.Name, 0, 1);
                 this._products.Add(w);
+                InvokeProductListChangeEvent();
             }
             else
             {
                 Int32 index = this._products.IndexOf(existingProduct.FirstOrDefault());
                 this._products[index].QuantityPurchased += 1;
             }
+        }
+        public static void InvokeProductListChangeEvent()
+        {
+            Current.WholeSellerProductListUpdatedEvent?.Invoke(Current.Products);
         }
     }
 }

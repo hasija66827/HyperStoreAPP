@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class WholeSellerProductListVieModel: INotifyPropertyChanged
+    public class WholeSellerProductListVieModel : INotifyPropertyChanged
     {
         private string _barCode;
         public string BarCode
@@ -26,17 +26,23 @@ namespace SDKTemplate
         public float PurchasePrice
         {
             get { return this._purchasePrice; }
-            set { this._purchasePrice = value;
+            set
+            {
+                this._purchasePrice = value;
                 this.OnPropertyChanged(nameof(NetValue));
+                WholeSellerPurchasedProductListCC.InvokeProductListChangeEvent();
             }
         }
         private Int32 _quantityPurchased;
         public Int32 QuantityPurchased
         {
             get { return this._quantityPurchased; }
-            set { this._quantityPurchased = value;
-                this.OnPropertyChanged(nameof(QuantityPurchased));
+            set
+            {
+                this._quantityPurchased = value;
+                this.OnPropertyChanged(nameof(QuantityPurchased));// This is done because quantity is updated by addItemtoBillingList method.
                 this.OnPropertyChanged(nameof(NetValue));
+                WholeSellerPurchasedProductListCC.InvokeProductListChangeEvent();
             }
         }
         public float NetValue

@@ -193,10 +193,14 @@
     <Compile Include="CCF\WholeSellerASBCC\WholeSellerASBCC.xaml.cs">
       <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSellerPurcahsedPRoductListVieModel.cs" />
-    <Compile Include="WholeSellerPurchasedProductList.xaml.cs">
+    <Compile Include="CCF\WholeSellerPurchasedProductListCC\WholeSellerPurcahsedProductListVieModel.cs" />
+    <Compile Include="CCF\WholeSellerPurchasedProductListCC\WholeSellerPurchasedProductList.xaml.cs">
       <DependentUpon>WholeSellerPurchasedProductList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryCC.xaml.cs">
+      <DependentUpon>WholeSellerBillingSummaryCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -309,7 +313,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSellerPurchasedProductList.xaml">
+    <Page Include="CCF\WholeSellerPurchasedProductListCC\WholeSellerPurchasedProductList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
