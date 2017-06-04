@@ -41,5 +41,10 @@ namespace SDKTemp.ViewModel
             this.WalletBalance = walletBalance;
             this.IsVerifiedWholeSeller = isVerifiedWholeSeller;
         }
+        public string WholeSeller_MobileNo_Address
+        {
+            get { return string.Format("{0}({1})", this.MobileNo, this.Address); }
+        }
+
     }
 }

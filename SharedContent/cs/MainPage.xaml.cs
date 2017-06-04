@@ -57,6 +57,7 @@ namespace SDKTemplate
             // Populate the scenario list from the SampleConfiguration.cs file
             ProductDataSource.RetrieveProductDataAsync();
             CustomerDataSource.RetrieveCustomersAsync();
+            WholeSellerDataSource.RetrieveWholeSellersAsync();
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {
@@ -87,22 +88,27 @@ namespace SDKTemplate
                 {
                     ScenarioFrame.Navigate(s.ClassType);
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
-                    SearchBoxFrame.Navigate(typeof(ProductASBCustomCC));
+                    SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     SummaryFrame.Navigate(typeof(BillingSummary));
                 }
-                if (s.ClassType == typeof(SDKTemp.OrderListCC))
+                else if (s.ClassType == typeof(SDKTemp.OrderListCC))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterOrderCC));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
                 }
-                if (s.ClassType == typeof(ProductInStock))
+                else if (s.ClassType == typeof(ProductInStock))
                 {
-                    HeaderFrame.Navigate(typeof(ProductASBCustomCC));
+                    HeaderFrame.Navigate(typeof(ProductASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BlankPage));
+                }
+                else if (s.ClassType == typeof(BlankPage))
+                {
+                    HeaderFrame.Navigate(typeof(WholeSellerASBCC));
+                    SearchBoxFrame.Navigate(typeof(ProductASBCC));
                 }
                 else
                 {

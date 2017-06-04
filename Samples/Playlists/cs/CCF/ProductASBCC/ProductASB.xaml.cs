@@ -35,13 +35,13 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProductASBCustomCC : Page
+    public sealed partial class ProductASBCC : Page
     {
-        public static ProductASBCustomCC Current;
+        public static ProductASBCC Current;
         public static event OnAddProductClickedDelegate OnAddProductClickedEvent;
         public event SelectedProductChangedDelegate SelectedProductChangedEvent;
         private static ProductASBViewModel _selectedProductInASB;
-        public ProductASBCustomCC()
+        public ProductASBCC()
         {
             Current = this;
             this.InitializeComponent();

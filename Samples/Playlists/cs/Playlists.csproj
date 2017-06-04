@@ -109,9 +109,9 @@
       <DependentUpon>AddCustomerCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data Source\WholeSellerDataSource.cs" />
-    <Compile Include="View Models\AddWholeSellerViewModel.cs" />
+    <Compile Include="CCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
-    <Compile Include="View Models\AddCustomeViewModel.cs" />
+    <Compile Include="CCF\AddCustomerCC\AddCustomeViewModel.cs" />
     <Compile Include="CCF\AddProductCC\AddProductCC.xaml.cs">
       <DependentUpon>AddProductCC.xaml</DependentUpon>
     </Compile>
@@ -158,7 +158,7 @@
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
     <Compile Include="View Models\ProductListViewModel.cs" />
-    <Compile Include="View Models\AddProductViewModel.cs" />
+    <Compile Include="CCF\AddProductCC\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
     <Compile Include="BillingScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml.cs">
       <DependentUpon>UseWalletOTPVerification.xaml</DependentUpon>
@@ -189,6 +189,10 @@
     </Compile>
     <Compile Include="Scenario4_Remove.xaml.cs">
       <DependentUpon>Scenario4_Remove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WholeSellerASBCCViewModel.cs" />
+    <Compile Include="WholeSellerASBCC.xaml.cs">
+      <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WholeSellerASBCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

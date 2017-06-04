@@ -27,7 +27,7 @@ namespace SDKTemplate
         public ProductInStock()
         {
             this.InitializeComponent();
-            ProductASBCustomCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByProductASB;
+            ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByProductASB;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSource;
         }     
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
