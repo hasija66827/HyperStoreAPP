@@ -193,6 +193,10 @@
     <Compile Include="CCF\WholeSellerASBCC\WholeSellerASBCC.xaml.cs">
       <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WholeSellerPurcahsedPRoductListVieModel.cs" />
+    <Compile Include="WholeSellerPurchasedProductList.xaml.cs">
+      <DependentUpon>WholeSellerPurchasedProductList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -302,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\WholeSellerASBCC\WholeSellerASBCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WholeSellerPurchasedProductList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

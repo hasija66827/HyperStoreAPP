@@ -105,10 +105,11 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BlankPage));
                 }
-                else if (s.ClassType == typeof(BlankPage))
+                else if (s.ClassType == typeof(WholeSellerPurchasedProductListCC))
                 {
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
+                    ScenarioFrame.Navigate(typeof(WholeSellerPurchasedProductListCC));
                 }
                 else
                 {
