@@ -190,8 +190,7 @@
     <Compile Include="Scenario4_Remove.xaml.cs">
       <DependentUpon>Scenario4_Remove.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSellerASBCCViewModel.cs" />
-    <Compile Include="WholeSellerASBCC.xaml.cs">
+    <Compile Include="CCF\WholeSellerASBCC\WholeSellerASBCC.xaml.cs">
       <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -302,7 +301,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSellerASBCC.xaml">
+    <Page Include="CCF\WholeSellerASBCC\WholeSellerASBCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
