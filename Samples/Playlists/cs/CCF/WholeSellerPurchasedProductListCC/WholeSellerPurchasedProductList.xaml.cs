@@ -33,7 +33,14 @@ namespace SDKTemplate
             Current = this;
             this.InitializeComponent();
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddToBillingList);
+            CheckoutBtn.Click += CheckoutBtn_Click;
         }
+
+        private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(UpdateStockCC));
+        }
+
         public void AddToBillingList(object sender, ProductViewModel selectedProduct)
         {
             var existingProduct = this._products.Where(p => p.BarCode == selectedProduct.BarCode);

@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="SDKTemplate.UpdateStockCC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDKTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
+        <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
+        <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
+    </UserControl.Resources>
+    <StackPanel Margin="10,0,0,0">
+        <TextBlock x:Name="Header"
+                   Text="Update Stock"
+                   Margin="0,0,0,10"
+                   Style="{StaticResource SampleHeaderTextStyle}" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Amount To Be Paid" />
+            <TextBlock Text="{x:Bind updateStockViewModel.AmountToBePaid, Mode=OneWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Paid Amount" />
+            <TextBox Text="{x:Bind updateStockViewModel.PaidAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Remaining Amount" />
+            <TextBlock Text="{x:Bind updateStockViewModel.RemainingAmount, Mode=OneWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Interest Rate (%)" />
+            <TextBox Text="{x:Bind updateStockViewModel.IntrestRate, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Due date" />
+            <CalendarDatePicker Date="{x:Bind updateStockViewModel.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+        </StackPanel>
+    </StackPanel>
+</Page>
