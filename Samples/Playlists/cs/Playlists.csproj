@@ -110,7 +110,8 @@
     </Compile>
     <Compile Include="Data Source\WholeSellerDataSource.cs" />
     <Compile Include="CCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
-    <Compile Include="UpdateStockViewModel.cs" />
+    <Compile Include="WholeSellerNavigationParameter.cs" />
+    <Compile Include="WholeSellerPurchaseCheckoutViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
     <Compile Include="CCF\AddCustomerCC\AddCustomeViewModel.cs" />
     <Compile Include="CCF\AddProductCC\AddProductCC.xaml.cs">
@@ -202,8 +203,8 @@
       <DependentUpon>WholeSellerBillingSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryViewModel.cs" />
-    <Compile Include="UpdateStock.xaml.cs">
-      <DependentUpon>UpdateStock.xaml</DependentUpon>
+    <Compile Include="WholeSellerPurchasedCheckoutCC.xaml.cs">
+      <DependentUpon>WholeSellerPurchasedCheckoutCC.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -325,7 +326,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateStock.xaml">
+    <Page Include="WholeSellerPurchasedCheckoutCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

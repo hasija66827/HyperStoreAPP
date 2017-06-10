@@ -38,7 +38,18 @@ namespace SDKTemplate
 
         private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(UpdateStockCC));
+            var selectedWholesellerInASB = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
+            if (selectedWholesellerInASB == null)
+            {
+                MainPage.Current.NotifyUser("Select the Wholeseller", NotifyType.ErrorMessage);
+                return;
+            }
+            var navigationParameter = new WholeSellerPurchaseNavigationParameter();
+            navigationParameter.WholeSellerViewModel = selectedWholesellerInASB;
+            navigationParameter.productViewModelList = this.Products.ToList();
+            navigationParameter.WholeSellerBillingViewModel =
+                WholeSellerBillingSummaryCC.Current.wholeSellerBillingSummaryViewModel;
+            this.Frame.Navigate(typeof(WholeSellerPurchasedCheckoutCC), navigationParameter);
         }
 
         public void AddToBillingList(object sender, ProductViewModel selectedProduct)

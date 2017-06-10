@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;

@@ -47,6 +47,7 @@ namespace SDKTemplate
         }
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
+            //TODO: need to changed
             if (CustomerASBCC.Current.SelectedCustomerInASB== null)
             {
                 MainPage.Current.NotifyUser("Customer not added, add the customer by clicking on Add Customer", NotifyType.ErrorMessage);

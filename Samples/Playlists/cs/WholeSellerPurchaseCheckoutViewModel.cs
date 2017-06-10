@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-   public class UpdateStockViewModel : INotifyPropertyChanged
+   public class WholeSellerPurchaseCheckoutViewModel : INotifyPropertyChanged
     {
         private float _amountToBePaid;
         public float AmountToBePaid { get { return this._amountToBePaid; } set { this._amountToBePaid = value; } }
@@ -47,12 +47,12 @@ namespace SDKTemplate
         private DateTime _dueDate;
         public DateTime DueDate { get { return this._dueDate; } set { this._dueDate = value; } }
 
-        public UpdateStockViewModel()
+        public WholeSellerPurchaseCheckoutViewModel(float amountToBePaid)
         {
-            this._amountToBePaid = 10;
+            this._amountToBePaid = amountToBePaid;
             this._paidAmount = 0;
             this._intrestRate = 0;
-            this._dueDate=DateTime.Now;
+            this._dueDate=DateTime.Now.AddDays(15);
         }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
