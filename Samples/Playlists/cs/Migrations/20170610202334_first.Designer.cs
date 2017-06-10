@@ -8,7 +8,7 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170521204747_first")]
+    [Migration("20170610202334_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -197,7 +197,8 @@ namespace SDKTemplate.Migrations
 
                     b.Property<int>("QuantityPurchased");
 
-                    b.Property<Guid?>("WholeSellerOrderId");
+                    b.Property<Guid?>("WholeSellerOrderId")
+                        .IsRequired();
 
                     b.HasKey("WholeSellerOrderProductId");
 
@@ -246,7 +247,8 @@ namespace SDKTemplate.Migrations
 
                     b.HasOne("DatabaseModel.WholeSellerOrder")
                         .WithMany("WholeSellerOrderProducts")
-                        .HasForeignKey("WholeSellerOrderId");
+                        .HasForeignKey("WholeSellerOrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

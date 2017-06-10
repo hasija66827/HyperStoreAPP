@@ -19,7 +19,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers5.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers7.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -100,7 +100,15 @@ namespace DatabaseModel
             this.PaidAmount = 0;
             this.WholeSellerId = wholeSellerId;
         }
-
+        public WholeSellerOrder(WholeSellerPurchaseNavigationParameter wholeSellerPurchaseNavigationParameter)
+        {
+            this.WholeSellerOrderId = Guid.NewGuid();
+            this.OrderDate = DateTime.Now;
+            this.DueDate = wholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel.DueDate;
+            this.BillAmount = wholeSellerPurchaseNavigationParameter.WholeSellerBillingViewModel.BillAmount;
+            this.PaidAmount = wholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel.PaidAmount;
+            this.WholeSellerId = wholeSellerPurchaseNavigationParameter.WholeSellerViewModel.WholeSellerId;
+        }
         public WholeSellerOrder() { }
     }
     public class WholeSellerOrderProduct
@@ -111,12 +119,20 @@ namespace DatabaseModel
 
 
         [Required]
-        public Nullable<Guid> OrderId;
+        public Nullable<Guid> WholeSellerOrderId;
         public WholeSellerOrder WholeSellerOrder;
 
         [Required]
         public Nullable<Guid> ProductId;
         public Product Product;
+        public WholeSellerOrderProduct(Guid productId, Guid wholeSellerOrderId, int quantityPurchased, float purchasePrice)
+        {
+            this.WholeSellerOrderProductId = Guid.NewGuid();
+            this.ProductId = productId;
+            this.WholeSellerOrderId = wholeSellerOrderId;
+            this.QuantityPurchased = quantityPurchased;
+            this.PurchasePrice = purchasePrice;
+        }
     }
     public class Product
     {
@@ -133,12 +149,12 @@ namespace DatabaseModel
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
-        
+
         public Product()
         {
 
         }
-        public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold,Int32 refillTime,
+        public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold, Int32 refillTime,
             float displayPrice, float discountPer, Int32 totalQuantity)
         {
             ProductId = productID;
@@ -165,7 +181,7 @@ namespace DatabaseModel
 
             //TODO: add below propery in product view model 
             p.IsInventoryItem = false;
-            p.RefillTime =0;
+            p.RefillTime = 0;
             return p;
         }
     }
@@ -210,13 +226,13 @@ namespace DatabaseModel
         public DateTime OrderDate { get; set; }
         public float TotalBillAmount { get; set; }
 
-        public float DiscountedAmount { get; set; }    
-        
+        public float DiscountedAmount { get; set; }
+
         // PayingNow = DiscountedBillAmount + AddingMoneyToWallet - UsingWalletAmount
         public bool IsPaidNow { get; set; }
         public float PayingNow { get; set; }
         public float AddingMoneyToWallet { get; set; }
-        
+
         public bool IsUseWallet { get; set; }
         public float UsingWalletAmount { get; set; }
 

@@ -196,7 +196,8 @@ namespace SDKTemplate.Migrations
 
                     b.Property<int>("QuantityPurchased");
 
-                    b.Property<Guid?>("WholeSellerOrderId");
+                    b.Property<Guid?>("WholeSellerOrderId")
+                        .IsRequired();
 
                     b.HasKey("WholeSellerOrderProductId");
 
@@ -245,7 +246,8 @@ namespace SDKTemplate.Migrations
 
                     b.HasOne("DatabaseModel.WholeSellerOrder")
                         .WithMany("WholeSellerOrderProducts")
-                        .HasForeignKey("WholeSellerOrderId");
+                        .HasForeignKey("WholeSellerOrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

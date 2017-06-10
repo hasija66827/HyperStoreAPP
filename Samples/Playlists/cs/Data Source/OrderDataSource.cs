@@ -175,7 +175,6 @@ namespace SDKTemp.Data
                     productViewModel.DisplayPrice,
                     productViewModel.QuantityPurchased);
                 db.CustomerOrderProducts.Add(customerOrderProduct);
-                // TODO: Update the product entity with new total quantity.
             }
             // Saving the order.
             db.SaveChanges();

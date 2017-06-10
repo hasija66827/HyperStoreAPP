@@ -110,6 +110,13 @@
     </Compile>
     <Compile Include="Data Source\WholeSellerDataSource.cs" />
     <Compile Include="CCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
+    <Compile Include="Data Source\WholeSellerOrderDataSource.cs" />
+    <Compile Include="Migrations\20170610202334_first.cs" />
+    <Compile Include="Migrations\20170610202334_first.designer.cs">
+      <DependentUpon>20170610202334_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
+    <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="WholeSellerPurchaseCheckoutViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
@@ -144,11 +151,6 @@
     <Compile Include="CCF\FilterProductCC\FilterProduct.xaml.cs">
       <DependentUpon>FilterProduct.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20170521204747_first.cs" />
-    <Compile Include="Migrations\20170521204747_first.designer.cs">
-      <DependentUpon>20170521204747_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="CCF\OrderSummaryCC\OrderSummary.xaml.cs">
       <DependentUpon>OrderSummary.xaml</DependentUpon>
     </Compile>

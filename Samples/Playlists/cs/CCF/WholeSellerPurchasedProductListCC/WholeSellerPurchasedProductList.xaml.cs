@@ -58,7 +58,7 @@ namespace SDKTemplate
             // If product does not exist
             if (existingProduct.Count() == 0)
             {
-                WholeSellerProductListVieModel w = new WholeSellerProductListVieModel(selectedProduct.BarCode,
+                WholeSellerProductListVieModel w = new WholeSellerProductListVieModel(selectedProduct.ProductId, selectedProduct.BarCode,
                     selectedProduct.Name, 0, 1);
                 this._products.Add(w);
                 InvokeProductListChangeEvent();

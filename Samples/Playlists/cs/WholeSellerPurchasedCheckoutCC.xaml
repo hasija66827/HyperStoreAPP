@@ -36,5 +36,8 @@
             <TextBlock Text="Due date" />
             <CalendarDatePicker Date="{x:Bind wholeSellerPurchaseCheckoutViewModel.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
         </StackPanel>
+        <Button x:Name="PlaceOrderBtn"
+                Content="Place Order"
+                />
     </StackPanel>
 </Page>

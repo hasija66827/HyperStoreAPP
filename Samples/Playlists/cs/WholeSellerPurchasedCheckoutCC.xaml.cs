@@ -23,17 +23,26 @@ namespace SDKTemplate
     public sealed partial class WholeSellerPurchasedCheckoutCC : Page
     {
         public WholeSellerPurchaseCheckoutViewModel wholeSellerPurchaseCheckoutViewModel;
-        public WholeSellerPurchaseNavigationParameter WholeSellerPurchaseNavigationParameter { get; set; };
+        public WholeSellerPurchaseNavigationParameter WholeSellerPurchaseNavigationParameter { get; set; }
         public WholeSellerPurchasedCheckoutCC()
         {
             this.InitializeComponent();
+            PlaceOrderBtn.Click += PlaceOrderBtn_Click;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var w=(WholeSellerPurchaseNavigationParameter)e.Parameter;
-            this.wholeSellerPurchaseCheckoutViewModel = new WholeSellerPurchaseCheckoutViewModel(w.WholeSellerBillingViewModel.BillAmount);
-            w.WholeSellerPurchaseCheckoutViewModel = wholeSellerPurchaseCheckoutViewModel;
+            var w = (WholeSellerPurchaseNavigationParameter)e.Parameter;
             this.WholeSellerPurchaseNavigationParameter = w;
+            this.wholeSellerPurchaseCheckoutViewModel = new WholeSellerPurchaseCheckoutViewModel(w.WholeSellerBillingViewModel.BillAmount);
+        }
+
+        private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel = this.wholeSellerPurchaseCheckoutViewModel;
+            WholeSellerOrderDataSource.PlaceOrder(this.WholeSellerPurchaseNavigationParameter);
+            //TODO: need to be removed when back button will be used.
+            this.Frame.Navigate(typeof(WholeSellerPurchasedProductListCC));
         }
     }
 }

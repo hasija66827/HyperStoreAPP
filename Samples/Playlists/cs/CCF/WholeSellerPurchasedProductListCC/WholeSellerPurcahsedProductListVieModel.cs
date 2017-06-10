@@ -10,6 +10,9 @@ namespace SDKTemplate
 {
     public class WholeSellerProductListVieModel : INotifyPropertyChanged
     {
+        private Guid _productId;
+        public Guid ProductId { get { return this._productId; } }
+
         private string _barCode;
         public string BarCode
         {
@@ -49,8 +52,9 @@ namespace SDKTemplate
         {
             get { return this._quantityPurchased * this._purchasePrice; }
         }
-        public WholeSellerProductListVieModel(string barCode, string name, float purchasePrice, Int32 quantityPurchased)
+        public WholeSellerProductListVieModel(Guid productId, string barCode, string name, float purchasePrice, Int32 quantityPurchased)
         {
+            this._productId = productId;
             this._barCode = barCode;
             this._name = name;
             this._purchasePrice = purchasePrice;

@@ -146,7 +146,7 @@ namespace SDKTemplate.Migrations
                     ProductId = table.Column<Guid>(nullable: false),
                     PurchasePrice = table.Column<float>(nullable: false),
                     QuantityPurchased = table.Column<int>(nullable: false),
-                    WholeSellerOrderId = table.Column<Guid>(nullable: true)
+                    WholeSellerOrderId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,7 +162,7 @@ namespace SDKTemplate.Migrations
                         column: x => x.WholeSellerOrderId,
                         principalTable: "WholeSellersOrders",
                         principalColumn: "WholeSellerOrderId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
