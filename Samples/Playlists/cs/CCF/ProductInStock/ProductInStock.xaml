@@ -142,12 +142,6 @@
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-        <AppBar
-            Grid.Row="1">
-        <AppBarButton Label="Add Product"
-                      Icon="Add"
-                      HorizontalAlignment="Right"
-                      />
-        </AppBar>
+        
     </Grid>
 </Page>

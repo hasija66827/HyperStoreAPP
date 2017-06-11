@@ -108,6 +108,7 @@
     <Compile Include="CCF\AddCustomerCC\AddCustomerCC.xaml.cs">
       <DependentUpon>AddCustomerCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data Source\AnalyticsDataSource.cs" />
     <Compile Include="Data Source\WholeSellerDataSource.cs" />
     <Compile Include="CCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
     <Compile Include="Data Source\WholeSellerOrderDataSource.cs" />

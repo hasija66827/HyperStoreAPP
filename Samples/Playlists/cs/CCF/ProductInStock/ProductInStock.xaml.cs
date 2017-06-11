@@ -94,7 +94,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-
+            AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId);
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }

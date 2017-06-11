@@ -125,6 +125,7 @@ namespace DatabaseModel
         [Required]
         public Nullable<Guid> ProductId;
         public Product Product;
+        public WholeSellerOrderProduct() { }
         public WholeSellerOrderProduct(Guid productId, Guid wholeSellerOrderId, int quantityPurchased, float purchasePrice)
         {
             this.WholeSellerOrderProductId = Guid.NewGuid();
@@ -150,10 +151,7 @@ namespace DatabaseModel
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
 
-        public Product()
-        {
-
-        }
+        public Product() {   }
         public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold, Int32 refillTime,
             float displayPrice, float discountPer, Int32 totalQuantity)
         {
@@ -239,7 +237,7 @@ namespace DatabaseModel
         // DiscountedBillAmt = PartiallyPaid + PayingLater
         public float PartiallyPaid { get; set; }
         public float PayingLater { get; set; }
-
+        public CustomerOrder() { }
         public CustomerOrder(PageNavigationParameter pageNavigationParameter)
         {
             this.CustomerOrderId = Guid.NewGuid();
@@ -263,7 +261,7 @@ namespace DatabaseModel
         public Nullable<Guid> CustomerId;
         public Customer Customer;
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
-        public CustomerOrder() { }
+        
     }
 
     public class CustomerOrderProduct
