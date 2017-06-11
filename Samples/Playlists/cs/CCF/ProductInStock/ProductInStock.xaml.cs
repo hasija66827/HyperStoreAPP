@@ -29,7 +29,7 @@ namespace SDKTemplate
         public ProductInStock()
         {
             Current = this;
-            this.PriceQuotedByWholeSellerCollection = new PriceQuotedByWholeSellerCollection();
+            
             this.InitializeComponent();
             ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByProductASB;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSource;
@@ -98,7 +98,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-            this.PriceQuotedByWholeSellerCollection.PriceQuotedByWholeSellers=AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId);
+            this.PriceQuotedByWholeSellerCollection=new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
             DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
 
             // Play a refresh animation when the user switches detail items.

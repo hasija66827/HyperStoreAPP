@@ -10,25 +10,28 @@ namespace SDKTemplate
 {
     public class PriceQuotedByWholeSellerViewModel
     {
-        public Guid? wholeSellerId;
-        public DateTime orderDate;
-        public Guid? productId;
-        public float purchasePrice;
-
-        public PriceQuotedByWholeSellerViewModel(Guid? wholeSellerId, DateTime orderDate, Guid? productId, float purchasePrice)
-        {
-            this.wholeSellerId = wholeSellerId;
-            this.orderDate = orderDate;
-            this.productId = productId;
-            this.purchasePrice = purchasePrice;
-        }
+        private string _wholeSellerName;
+        public string WholeSellerName { get { return this._wholeSellerName; } }
+        private string _wholeSellerMobileNo;
+        public string WholeSellerMobileNo { get { return this._wholeSellerMobileNo; } }
+        private float _purchasePrice;
+        public float PurchasePrice { get { return this._purchasePrice; } }
+        private DateTime _orderDate;
+        public DateTime OrderDate { get { return this._orderDate; } }
 
         public PriceQuotedByWholeSellerViewModel()
         {
-            this.wholeSellerId = null;
-            this.orderDate = DateTime.Now.AddYears(-100);
-            this.productId = null;
-            this.purchasePrice = 0;
+            this._wholeSellerName = "";
+            this._wholeSellerMobileNo = "";
+            this._purchasePrice = 0;
+            this._orderDate = DateTime.Now.AddYears(-100);
+        }
+        public PriceQuotedByWholeSellerViewModel(PriceQuotedByWholeSeller p)
+        {
+            this._wholeSellerName = "xxx";
+            this._wholeSellerMobileNo = "9879997778";
+            this._purchasePrice = p.purchasePrice;
+            this._orderDate = p.orderDate;
         }
     }
 
@@ -43,8 +46,13 @@ namespace SDKTemplate
                 this._priceQuotedByWholeSellers = value;
             }
         }
-        public PriceQuotedByWholeSellerCollection()
+        public PriceQuotedByWholeSellerCollection(List<PriceQuotedByWholeSeller> items)
         {
+            this._priceQuotedByWholeSellers = new List<PriceQuotedByWholeSellerViewModel>();
+            foreach (var item in items)
+            {
+                this._priceQuotedByWholeSellers.Add(new PriceQuotedByWholeSellerViewModel(item));
+            }
         }
 
     }

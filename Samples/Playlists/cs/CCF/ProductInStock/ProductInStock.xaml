@@ -77,12 +77,21 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="common:PriceQuotedByWholeSellerViewModel">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="PurchasePrice"
-                                           Text="{x:Bind purchasePrice, Mode=OneWay}"
+                                <TextBlock x:Name="WholeSellerName"
+                                           Text="{x:Bind WholeSellerName, Mode=OneWay}"
                                            Width="100"
                                            Margin="0,0,10,0" />
+                                <TextBlock x:Name="WholeSellerMobileNo"
+                                           Text="{x:Bind WholeSellerMobileNo, Mode=OneWay}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                              
                                 <TextBlock x:Name="OrderDate"
-                                           Text="{x:Bind orderDate, Mode=OneWay}"
+                                           Text="{x:Bind OrderDate, Mode=OneWay}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="PurchasePrice"
+                                           Text="{x:Bind PurchasePrice, Mode=OneWay}"
                                            Width="100"
                                            Margin="0,0,10,0" />
                             </StackPanel>
@@ -129,7 +138,7 @@
                               Width="Auto" />
             <ColumnDefinition x:Name="DetailColumn"
                               MinWidth="200"
-                              Width="300" />
+                              Width="1000" />
             
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical"
