@@ -66,8 +66,23 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="common:ProductViewModelBase">
-            <StackPanel></StackPanel>
+                      x:DataType="common:PriceListByWholeSellers">
+            <StackPanel>
+                <ListView x:Name="PriceListByWholeSellersListView"
+                          ItemsSource="{x:Bind PriceQuotedByWholeSellers}"
+                          Height="300"
+                          CanReorderItems="False"
+                          SelectedIndex="-1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="common:PriceQuotedByWholeSellersViewModel">
+                            <TextBlock x:Name="NetValue"
+                                       Text="{x:Bind purchasePrice, Mode=OneWay}"
+                                       Width="100"
+                                       Margin="0,0,10,0" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+        </ListView>
+        </StackPanel>
         </DataTemplate>
     </Page.Resources>
     <Grid x:Name="LayoutRoot"
@@ -135,7 +150,7 @@
                           BorderThickness="10,0,0,0"
                           Padding="24,0"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-                          Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
+                          
                           ContentTemplate="{StaticResource DetailContentTemplate}">
             <ContentPresenter.ContentTransitions>
                 <!-- Empty by default. See MasterListView_ItemClick -->

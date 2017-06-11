@@ -117,6 +117,7 @@
       <DependentUpon>20170610202334_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
+    <Compile Include="PriceQuotedByWholeSellerViewModel.cs" />
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />

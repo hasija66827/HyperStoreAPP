@@ -6,21 +6,6 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public struct WholeSellerOrderProductsJoin
-    {
-        public Guid? wholeSellerId;
-        public DateTime orderDate;
-        public Guid? productId;
-        public float purchasePrice;
-
-        public WholeSellerOrderProductsJoin(Guid? wholeSellerId, DateTime orderDate, Guid? productId, float purchasePrice) : this()
-        {
-            this.wholeSellerId = wholeSellerId;
-            this.orderDate = orderDate;
-            this.productId = productId;
-            this.purchasePrice = purchasePrice;
-        }
-    }
    public class AnalyticsDataSource
     {
         /// <summary>
@@ -29,7 +14,7 @@ namespace SDKTemplate
         /// This will guide him to choose best wholeseller for its product
         /// </summary>
         /// <param name="ProductId"></param>
-        public static List<WholeSellerOrderProductsJoin> GetWholeSellersForProduct(Guid ProductId)
+        public static List<PriceQuotedByWholeSellersViewModel> GetWholeSellersForProduct(Guid ProductId)
         {
             var db = new DatabaseModel.RetailerContext();
             var wholeSellerOrderProducts = db.WholeSellersOrderProducts
@@ -38,7 +23,7 @@ namespace SDKTemplate
             var ret = wholeSellerOrderProducts.Join(wholeSellerOrders,
                 wop => wop.WholeSellerOrderId,
                 wo => wo.WholeSellerOrderId,
-                (wop, wo) => new WholeSellerOrderProductsJoin(wo.WholeSellerId, wo.OrderDate,
+                (wop, wo) => new PriceQuotedByWholeSellersViewModel(wo.WholeSellerId, wo.OrderDate,
                                                         wop.ProductId, wop.PurchasePrice)).ToList();
             
             var wholeSellers_purchasePrices = ret.GroupBy(w => w.wholeSellerId);
@@ -50,10 +35,10 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        public static WholeSellerOrderProductsJoin SelectLatestPriceQuoted(IGrouping<Guid?, WholeSellerOrderProductsJoin> items)
+        public static PriceQuotedByWholeSellersViewModel SelectLatestPriceQuoted(IGrouping<Guid?, PriceQuotedByWholeSellersViewModel> items)
         {
             DateTime maxOrderDate=DateTime.Now.AddYears(-100);
-            WholeSellerOrderProductsJoin ret=new WholeSellerOrderProductsJoin();
+            PriceQuotedByWholeSellersViewModel ret=new PriceQuotedByWholeSellersViewModel();
             foreach (var item in items)
             {
                 if (maxOrderDate < item.orderDate)

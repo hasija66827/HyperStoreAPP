@@ -24,11 +24,15 @@ namespace SDKTemplate
 
     public sealed partial class ProductInStock : Page
     {
+        public PriceListByWholeSellers PriceListByWholeSellers { get; set; }
+        public static ProductInStock Current;
         public ProductInStock()
         {
+            Current = this;
             this.InitializeComponent();
             ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByProductASB;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSource;
+            this.PriceListByWholeSellers = new PriceListByWholeSellers();
         }     
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
         private Int32 UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
@@ -94,8 +98,10 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-            AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId);
+            this.PriceListByWholeSellers.PriceQuotedByWholeSellers=AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId);
+            DetailContentPresenter.Content = this.PriceListByWholeSellers;
             // Play a refresh animation when the user switches detail items.
+
             EnableContentTransitions();
         }
         private void EnableContentTransitions()
