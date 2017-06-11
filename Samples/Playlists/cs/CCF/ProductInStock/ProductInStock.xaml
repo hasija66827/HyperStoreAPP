@@ -66,7 +66,8 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="common:PriceListByWholeSellers">
+                      x:DataType="common:PriceQuotedByWholeSellerCollection">
+        
             <StackPanel>
                 <ListView x:Name="PriceListByWholeSellersListView"
                           ItemsSource="{x:Bind PriceQuotedByWholeSellers}"
@@ -74,11 +75,17 @@
                           CanReorderItems="False"
                           SelectedIndex="-1">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="common:PriceQuotedByWholeSellersViewModel">
-                            <TextBlock x:Name="NetValue"
-                                       Text="{x:Bind purchasePrice, Mode=OneWay}"
-                                       Width="100"
-                                       Margin="0,0,10,0" />
+                        <DataTemplate x:DataType="common:PriceQuotedByWholeSellerViewModel">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="PurchasePrice"
+                                           Text="{x:Bind purchasePrice, Mode=OneWay}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="OrderDate"
+                                           Text="{x:Bind orderDate, Mode=OneWay}"
+                                           Width="100"
+                                           Margin="0,0,10,0" />
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
         </ListView>
@@ -149,8 +156,7 @@
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
                           Padding="24,0"
-                          BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-                          
+                          BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"  
                           ContentTemplate="{StaticResource DetailContentTemplate}">
             <ContentPresenter.ContentTransitions>
                 <!-- Empty by default. See MasterListView_ItemClick -->
