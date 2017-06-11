@@ -42,18 +42,18 @@ namespace SDKTemp
             FilterOrderCC a = (FilterOrderCC)sender;
             FilterOrderViewModel selectedDateRange = a.SelectedDateRange;
             if (selectedDateRange == null)
-                Current.orderList = OrderDataSource.Orders;
+                Current.orderList = CustomerOrderDataSource.Orders;
             else
-                Current.orderList = OrderDataSource.RetrieveOrdersByDate(selectedDateRange);
+                Current.orderList = CustomerOrderDataSource.RetrieveOrdersByDate(selectedDateRange);
             OrderListCC.Current.OrderListChangedEvent?.Invoke(OrderListCC.Current);
             MasterListView.ItemsSource = Current.orderList;
         }
         private void UpdateMasterListViewItemSourceByCustomer(CustomerViewModel customer = null)
         {
             if (customer == null)
-                Current.orderList = OrderDataSource.Orders;
+                Current.orderList = CustomerOrderDataSource.Orders;
             else
-                Current.orderList = OrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
+                Current.orderList = CustomerOrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
             OrderListCC.Current.OrderListChangedEvent?.Invoke(OrderListCC.Current);
             MasterListView.ItemsSource = orderList;
         }
@@ -77,8 +77,8 @@ namespace SDKTemp
             //#Optimization can be, if no customer has been recently added, then don't refetch again. Or with database updation we can update our all the data source as well, i.e our cache.
             // Hence we can call this function one time only in the constructor, instead of calling it everytime on page navigation. 
             //Called every time on navigation
-            OrderDataSource.RetrieveOrdersAsync();
-            MasterListView.ItemsSource = OrderDataSource.Orders;
+            CustomerOrderDataSource.RetrieveOrdersAsync();
+            MasterListView.ItemsSource = CustomerOrderDataSource.Orders;
             UpdateForVisualState(AdaptiveStates.CurrentState);
             // Don't play a content transition for first item load.
             // Sometimes, this content will be animated as part of the page transition.

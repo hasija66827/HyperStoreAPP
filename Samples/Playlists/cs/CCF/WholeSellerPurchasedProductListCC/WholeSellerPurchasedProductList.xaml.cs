@@ -59,7 +59,7 @@ namespace SDKTemplate
             if (existingProduct.Count() == 0)
             {
                 WholeSellerProductListVieModel w = new WholeSellerProductListVieModel(selectedProduct.ProductId, selectedProduct.BarCode,
-                    selectedProduct.Name, 0, 1);
+                    selectedProduct.Name, 0, 1, selectedProduct.SellingPrice);
                 this._products.Add(w);
                 InvokeProductListChangeEvent();
             }

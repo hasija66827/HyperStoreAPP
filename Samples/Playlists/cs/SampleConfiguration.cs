@@ -25,11 +25,11 @@ namespace SDKTemplate
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title = "Billing", ClassType = typeof(ProductListCC) }, 
-            new Scenario() { Title = "NonInventoryItems", ClassType = typeof(NonInventoryProductScenario) }, 
-            new Scenario() { Title = "All Orders", ClassType = typeof(SDKTemp.OrderListCC) }, 
-            new Scenario() { Title = "Adding Product from wholeseller", ClassType = typeof(WholeSellerPurchasedProductListCC) }, 
-            new Scenario() { Title = "Product In stock", ClassType = typeof(ProductInStock) } 
+            new Scenario() { Title = "Customer Billing", ClassType = typeof(ProductListCC) }, 
+            new Scenario() { Title = "Lenders & Borrowers", ClassType = typeof(NonInventoryProductScenario) }, 
+            new Scenario() { Title = "Customer Orders", ClassType = typeof(SDKTemp.OrderListCC) }, 
+            new Scenario() { Title = "Wholeseller Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) }, 
+            new Scenario() { Title = "Products", ClassType = typeof(ProductInStock) } 
         };
 
         /// <summary> 

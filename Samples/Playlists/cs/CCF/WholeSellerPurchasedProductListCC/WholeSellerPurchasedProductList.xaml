@@ -43,6 +43,11 @@
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="Selling Price"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Quantity"
                                        Width="80"
                                        Margin="0,0,10,0"
@@ -73,6 +78,10 @@
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="PurchasePrice"
                                                    Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                        <TextBlock x:Name="SellingPrice"
+                                                   Text="{x:Bind SellingPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                                    Width="80"
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="Quantity"

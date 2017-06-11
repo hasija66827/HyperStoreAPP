@@ -52,13 +52,18 @@ namespace SDKTemplate
         {
             get { return this._quantityPurchased * this._purchasePrice; }
         }
-        public WholeSellerProductListVieModel(Guid productId, string barCode, string name, float purchasePrice, Int32 quantityPurchased)
+
+        private float _sellingPrice;
+        public float SellingPrice { get { return this._sellingPrice; } }
+        public WholeSellerProductListVieModel(Guid productId, string barCode, string name, 
+            float purchasePrice, Int32 quantityPurchased, float sellingPrice)
         {
             this._productId = productId;
             this._barCode = barCode;
             this._name = name;
             this._purchasePrice = purchasePrice;
             this._quantityPurchased = quantityPurchased;
+            this._sellingPrice = sellingPrice;
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

@@ -35,7 +35,7 @@ namespace SDKTemp.ViewModel
             {
                 if (this._orderDetails.Count == 0)
                 {
-                    this._orderDetails = OrderDataSource.RetrieveOrderDetails(this.CustomerOrderId);
+                    this._orderDetails = CustomerOrderDataSource.RetrieveOrderDetails(this.CustomerOrderId);
                 }
                 return this._orderDetails;
             }

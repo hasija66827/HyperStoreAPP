@@ -12,11 +12,11 @@ namespace SDKTemp.Data
         payNow = 1,
         payLater = 2
     }
-    public class OrderDataSource
+    public class CustomerOrderDataSource
     {
         private static List<OrderViewModel> _Orders;
         public static List<OrderViewModel> Orders { get { return _Orders; } }
-        public OrderDataSource()
+        public CustomerOrderDataSource()
         {
             // Initializing member variable all orders.
             RetrieveOrdersAsync();
