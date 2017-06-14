@@ -71,9 +71,15 @@ namespace SDKTemplate
             ProductDataSource.RetrieveProductDataAsync();
             MasterListView.ItemsSource = ProductDataSource.Products;
             UpdateForVisualState(AdaptiveStates.CurrentState);
+            CartBtn.Click += CartBtn_Click;
             // Don't play a content transition for first item load.
             // Sometimes, this content will be animated as part of the page transition.
             DisableContentTransitions();
+        }
+
+        private void CartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ProductListToPurhcase));
         }
 
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)

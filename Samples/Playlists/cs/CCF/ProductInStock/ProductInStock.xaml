@@ -98,7 +98,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
         </ListView>
-        </StackPanel>
+                
+            </StackPanel>
         </DataTemplate>
     </Page.Resources>
     <Grid x:Name="LayoutRoot"
@@ -172,6 +173,11 @@
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-        
+        <Button Content="Cart" 
+                x:Name="CartBtn"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="450"
+                />
     </Grid>
 </Page>

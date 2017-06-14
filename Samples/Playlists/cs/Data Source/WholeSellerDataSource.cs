@@ -58,6 +58,22 @@ namespace SDKTemplate
                 return null;
             }
         }
+
+        public static WholeSellerViewModel GetWholeSellerById(Guid? wholeSellerId)
+        {
+            if (wholeSellerId == null)
+                return null;
+            try
+            {
+                return _WholeSellers
+                     .Where(w => w.WholeSellerId.Equals(wholeSellerId)).First();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Adds The WholeSeller into WholeSeller Data source as well as in sqllte database.
         /// </summary>

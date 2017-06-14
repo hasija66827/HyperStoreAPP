@@ -28,13 +28,16 @@ namespace SDKTemplate
         }
         public PriceQuotedByWholeSellerViewModel(PriceQuotedByWholeSeller p)
         {
-            this._wholeSellerName = "xxx";
-            this._wholeSellerMobileNo = "9879997778";
+            var wholeSellerViewModel = WholeSellerDataSource.GetWholeSellerById(p.wholeSellerId);
+            this._wholeSellerName = wholeSellerViewModel!=null? wholeSellerViewModel.Name:"xxxxx";
+            this._wholeSellerMobileNo = wholeSellerViewModel != null ? wholeSellerViewModel.MobileNo : "99xxx88xxx";
             this._purchasePrice = p.purchasePrice;
             this._orderDate = p.orderDate;
         }
     }
-
+    /// <summary>
+    /// This class is used by detail page of Product in stock page.
+    /// </summary>
     public class PriceQuotedByWholeSellerCollection
     {
         private List<PriceQuotedByWholeSellerViewModel> _priceQuotedByWholeSellers;
