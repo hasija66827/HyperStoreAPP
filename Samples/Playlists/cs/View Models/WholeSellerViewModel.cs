@@ -25,7 +25,7 @@ namespace SDKTemplate
         {
             this._wholeSellerId = Guid.NewGuid();
             this._mobileNo = "";
-            this._name = "";
+            this._name = "y";
             this._isVerifiedWholeSeller = false;
             this._address = "";
             this._walletBalance = 0;

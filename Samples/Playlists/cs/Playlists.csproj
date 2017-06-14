@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="PriceQuotedByWholeSellerViewModel.cs" />
+    <Compile Include="ProductListToPurchase.cs" />
     <Compile Include="ProductListToPurhcase.xaml.cs">
       <DependentUpon>ProductListToPurhcase.xaml</DependentUpon>
     </Compile>

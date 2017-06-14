@@ -26,5 +26,10 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
         }
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var viewModel = pivot.DataContext as ProductListToPurchaseCollection;
+            await viewModel.LoadFeeds();
+        }
     }
 }
