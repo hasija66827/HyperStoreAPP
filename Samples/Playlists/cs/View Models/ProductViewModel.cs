@@ -72,7 +72,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(NetValue));
             }
         }
-        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity) : base(productId, barCode, name, displayPrice, discountPer, 0, 0)
+        public ProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity) : base(productId, barCode, name, displayPrice, discountPer, 0, 0,null)
         {
             this._quantityPurchased = 0;
             this._netValue = this._sellingPrice * this._quantityPurchased;

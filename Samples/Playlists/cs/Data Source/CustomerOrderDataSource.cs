@@ -109,7 +109,7 @@ namespace SDKTemp.Data
             else
             { throw new NotImplementedException(); }
 
-            UpdateProductStock(db, billingViewModel);
+            ProductDataSource.UpdateProductStock(db, billingViewModel);
             var customerOrderId = AddIntoCustomerOrder(db, pageNavigationParameter);
             AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
             return updatedCustomerWalletBalance;
@@ -135,22 +135,7 @@ namespace SDKTemp.Data
             db.SaveChanges();
             return customer.WalletBalance;
         }
-        // Step 2:
-        private static bool UpdateProductStock(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel)
-        {
-            //#perf: You can query whole list in where clause.
-            foreach (var productViewModel in billingViewModel.Products)
-            {
-                var products = db.Products.Where(p => p.ProductId == productViewModel.ProductId).ToList();
-                var product = products.FirstOrDefault();
-                if (product == null)
-                    return false;
-                product.TotalQuantity -= productViewModel.QuantityPurchased;
-                db.Update(product);
-            }
-            db.SaveChanges();
-            return true;
-        }
+
 
         // Step 3:
         private static Guid AddIntoCustomerOrder(DatabaseModel.RetailerContext db, PageNavigationParameter pageNavigationParameter)

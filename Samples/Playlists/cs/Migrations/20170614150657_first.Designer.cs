@@ -8,7 +8,7 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170614145335_first")]
+    [Migration("20170614150657_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

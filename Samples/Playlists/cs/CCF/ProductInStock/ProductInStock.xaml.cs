@@ -21,19 +21,17 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-
     public sealed partial class ProductInStock : Page
     {
-        public PriceQuotedByWholeSellerCollection  PriceQuotedByWholeSellerCollection { get; set; }
+        public PriceQuotedByWholeSellerCollection PriceQuotedByWholeSellerCollection { get; set; }
         public static ProductInStock Current;
         public ProductInStock()
         {
             Current = this;
-            
             this.InitializeComponent();
             ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByProductASB;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSource;
-        }     
+        }
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
         private Int32 UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
         {
@@ -71,15 +69,56 @@ namespace SDKTemplate
             ProductDataSource.RetrieveProductDataAsync();
             MasterListView.ItemsSource = ProductDataSource.Products;
             UpdateForVisualState(AdaptiveStates.CurrentState);
-            CartBtn.Click += CartBtn_Click;
+            AddToCartBtn.Click += AddToCartBtn_Click;
+            GoToCartBtn.Click += GoToCartBtn_Click;
             // Don't play a content transition for first item load.
             // Sometimes, this content will be animated as part of the page transition.
             DisableContentTransitions();
         }
 
-        private void CartBtn_Click(object sender, RoutedEventArgs e)
+        private void GoToCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ProductListToPurhcase));
+            var selectedProduct = (ProductViewModelBase)MasterListView.SelectedItem;
+            try
+            {
+                //If product has not been added to cart already
+                if (selectedProduct.WholeSellerId == null)
+                    throw new Exception("Go To Cart Button should have been disabled");
+                this.Frame.Navigate(typeof(ProductListToPurhcaseCC));
+            }
+            catch (Exception exception)
+            {
+
+            }
+        }
+
+        private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedProduct = (ProductViewModelBase)MasterListView.SelectedItem;
+            if (selectedProduct == null)
+            {
+                MainPage.Current.NotifyUser("Please select the product", NotifyType.ErrorMessage);
+                return;
+            }
+            var selectedWholeSeller = PriceQuotedByWholeSellerViewModel.selectedWholeSeller;
+            if (selectedWholeSeller == null)
+            {
+                MainPage.Current.NotifyUser("Please select the whole seller", NotifyType.ErrorMessage);
+                return;
+            }
+            try
+            {
+                //if Product has been added to cart already.
+                if (selectedProduct.WholeSellerId != null)
+                    throw new Exception("AddToCart Button should have been disabled");
+                ProductDataSource.UpdateWholSellerIdForProduct(selectedProduct.ProductId, selectedWholeSeller.WholeSellerId);
+                ((ProductViewModelBase)MasterListView.SelectedItem).WholeSellerId = selectedWholeSeller.WholeSellerId;
+                AddToCartBtn.IsEnabled = false;
+            }
+            catch (Exception exception)
+            {
+
+            }
         }
 
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
@@ -104,12 +143,32 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-            this.PriceQuotedByWholeSellerCollection=new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
-            DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
+            if (clickedItem.WholeSellerId != null)
+                AddToCartBtnVisibility(false);
+            else
+                AddToCartBtnVisibility(true);
 
+            this.PriceQuotedByWholeSellerCollection =
+                new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
+            DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }
+
+        private void AddToCartBtnVisibility(bool visibilty)
+        {
+            if (visibilty == true)
+            {
+                AddToCartBtn.Visibility = Visibility.Visible;
+                GoToCartBtn.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                AddToCartBtn.Visibility = Visibility.Collapsed;
+                GoToCartBtn.Visibility = Visibility.Visible;
+            }
+        }
+
         private void EnableContentTransitions()
         {
             DetailContentPresenter.ContentTransitions.Clear();

@@ -19,7 +19,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers8.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers10.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -152,7 +152,7 @@ namespace DatabaseModel
 
         //This is used by Retailer to mark the product to be prurchased from Wholeseller.
         [Required]
-        public Nullable<Guid> WholeSellerId;
+        public Guid? WholeSellerId;
         public WholeSeller WholeSeller;
 
         public Product() {   }

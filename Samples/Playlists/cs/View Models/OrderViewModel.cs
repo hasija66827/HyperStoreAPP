@@ -63,7 +63,7 @@ namespace SDKTemp.ViewModel
         }
         public OrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot, 
             float displayPriceSnapshot, string name, int qtyPurchased) 
-            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot,0,0)
+            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot,0,0,null)
         {
             this._quantityPurchased = qtyPurchased;
             this._netValue = this._sellingPrice * this._quantityPurchased;

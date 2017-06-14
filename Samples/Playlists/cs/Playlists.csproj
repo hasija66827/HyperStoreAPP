@@ -112,15 +112,15 @@
     <Compile Include="Data Source\WholeSellerDataSource.cs" />
     <Compile Include="CCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
     <Compile Include="Data Source\WholeSellerOrderDataSource.cs" />
-    <Compile Include="Migrations\20170614145335_first.cs" />
-    <Compile Include="Migrations\20170614145335_first.designer.cs">
-      <DependentUpon>20170614145335_first.cs</DependentUpon>
+    <Compile Include="Migrations\20170614150657_first.cs" />
+    <Compile Include="Migrations\20170614150657_first.designer.cs">
+      <DependentUpon>20170614150657_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
-    <Compile Include="PriceQuotedByWholeSellerViewModel.cs" />
-    <Compile Include="ProductListToPurchase.cs" />
-    <Compile Include="ProductListToPurhcase.xaml.cs">
-      <DependentUpon>ProductListToPurhcase.xaml</DependentUpon>
+    <Compile Include="CCF\ProductInStock\PriceQuotedByWholeSellerViewModel.cs" />
+    <Compile Include="CCF\ProductListToPurchaseCC\ProductListToPurchaseViewModel.cs" />
+    <Compile Include="CCF\ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml.cs">
+      <DependentUpon>ProductListToPurhcaseCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
@@ -307,7 +307,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductListToPurhcase.xaml">
+    <Page Include="CCF\ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

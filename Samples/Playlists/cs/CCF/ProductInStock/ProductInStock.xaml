@@ -67,7 +67,6 @@
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="common:PriceQuotedByWholeSellerCollection">
-        
             <StackPanel>
                 <ListView x:Name="PriceListByWholeSellersListView"
                           ItemsSource="{x:Bind PriceQuotedByWholeSellers}"
@@ -77,6 +76,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="common:PriceQuotedByWholeSellerViewModel">
                             <StackPanel Orientation="Horizontal">
+                                <RadioButton GroupName="xxx"
+                                             IsChecked="{x:Bind IsSelected, Mode=TwoWay}" />
                                 <TextBlock x:Name="WholeSellerName"
                                            Text="{x:Bind WholeSellerName, Mode=OneWay}"
                                            Width="100"
@@ -173,11 +174,19 @@
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-        <Button Content="Cart" 
-                x:Name="CartBtn"
+        <Button Content="Add To Cart" 
+                x:Name="AddToCartBtn"
                 Grid.Row="2"
                 Grid.Column="1"
                 Width="450"
+                Visibility="Collapsed"
+                />
+        <Button Content="Go To Cart"
+                x:Name="GoToCartBtn"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="450" 
+                Visibility="Collapsed"
                 />
     </Grid>
 </Page>

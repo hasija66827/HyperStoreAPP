@@ -82,7 +82,7 @@ namespace SDKTemplate.Migrations
                     Threshold = table.Column<int>(nullable: false),
                     TotalQuantity = table.Column<int>(nullable: false),
                     UserDefinedCode = table.Column<string>(nullable: true),
-                    WholeSellerId = table.Column<Guid>(nullable: false)
+                    WholeSellerId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {

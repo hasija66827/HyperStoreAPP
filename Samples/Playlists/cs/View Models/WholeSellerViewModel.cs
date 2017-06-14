@@ -25,7 +25,7 @@ namespace SDKTemplate
         {
             this._wholeSellerId = Guid.NewGuid();
             this._mobileNo = "";
-            this._name = "y";
+            this._name = "";
             this._isVerifiedWholeSeller = false;
             this._address = "";
             this._walletBalance = 0;
@@ -44,6 +44,10 @@ namespace SDKTemplate
         public string WholeSeller_MobileNo_Address
         {
             get { return string.Format("{0}({1})", this.MobileNo, this.Address); }
+        }
+        public string WholeSeller_Name_MobileNo
+        {
+            get { return string.Format("{0}\n{1}", this.Name, this.MobileNo); }
         }
 
     }

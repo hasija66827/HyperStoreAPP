@@ -9,52 +9,63 @@ using System.Threading.Tasks;
 namespace SDKTemplate
 {
     public class ProductViewModelBase
-    {    
+    {
         protected Guid _productId;
-        public virtual Guid ProductId {
+        public virtual Guid ProductId
+        {
             get { return this._productId; }
             set { this._productId = value; }
         }
 
         protected string _barCode;
-        public virtual string BarCode {
+        public virtual string BarCode
+        {
             get { return this._barCode; }
             set { this._barCode = value; }
         }
 
         protected string _name;
-        public virtual string Name {
+        public virtual string Name
+        {
             get { return this._name; }
             set { this._name = value; }
         }
 
         protected float _displayPrice;
-        public virtual float DisplayPrice {
+        public virtual float DisplayPrice
+        {
             get { return Utility.RoundInt32(this._displayPrice); }
             set { this._displayPrice = value; }
         }
 
         protected float _sellingPrice;
-        public virtual float SellingPrice {
+        public virtual float SellingPrice
+        {
             get { return Utility.RoundInt32(this._sellingPrice); }
             set { this._sellingPrice = value; }
         }
 
         protected float _discountAmount;
-        public virtual float DiscountAmount {
+        public virtual float DiscountAmount
+        {
             get { return this._discountAmount; }
-            set {
+            set
+            {
                 this._discountAmount = value;
-                this._discountPer=(this._discountAmount*100)/this._displayPrice;
-            } }
+                this._discountPer = (this._discountAmount * 100) / this._displayPrice;
+            }
+        }
 
         protected float _discountPer;
-        public virtual float DiscountPer {
+        public virtual float DiscountPer
+        {
             get { return Utility.RoundInt32(this._discountPer); }
-            set {
+            set
+            {
                 this._discountPer = value;
-                this._discountAmount = this._displayPrice*(100 - this._discountPer) * 100;
-            } }
+                this._discountAmount = this._displayPrice * (100 - this._discountPer) * 100;
+            }
+        }
 
         protected Int32 _threshold;
         public virtual Int32 Threshold
@@ -69,9 +80,31 @@ namespace SDKTemplate
             set { this._refillTime = value; }
         }
         private Int32 _totalQuantity;
-        public virtual Int32 TotalQuantity {
+        public virtual Int32 TotalQuantity
+        {
             get { return this._totalQuantity; }
             set { this._totalQuantity = value; }
+        }
+
+        private Guid? _wholeSellerId;
+        public virtual Guid? WholeSellerId
+        {
+            get { return this._wholeSellerId; }
+            set { this._wholeSellerId = value; }
+        }
+
+        public ProductViewModelBase(DatabaseModel.Product item)
+        {
+            _productId = item.ProductId;
+            _barCode = item.BarCode;
+            _name = item.Name;
+            _displayPrice = item.DisplayPrice;
+            _discountPer = item.DiscountPer;
+            _discountAmount = (_displayPrice * _discountPer) / 100;
+            _sellingPrice = _displayPrice - _discountAmount;
+            _threshold = item.Threshold;
+            _totalQuantity = item.TotalQuantity;
+            _wholeSellerId = item.WholeSellerId;
         }
 
         public ProductViewModelBase()
@@ -86,9 +119,11 @@ namespace SDKTemplate
             this._threshold = 0;
             this._refillTime = 0;
             this._totalQuantity = 0;
+            this._wholeSellerId = null;
         }
-        public ProductViewModelBase(Guid productId, string barCode, string name, 
-            float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity)
+
+        public ProductViewModelBase(Guid productId, string barCode, string name,
+            float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity, Guid? wholeSellerId)
         {
             this._productId = productId;
             this._barCode = barCode;
@@ -99,6 +134,7 @@ namespace SDKTemplate
             this._sellingPrice = this._displayPrice - this._discountAmount;
             this._threshold = threshold;
             this._totalQuantity = totalQuantity;
+            this._wholeSellerId = wholeSellerId;
         }
     }
 }

@@ -45,8 +45,8 @@ namespace SDKTemplate
                       product.DisplayPrice,
                       product.DiscountPer,
                       product.Threshold,
-                      product.TotalQuantity)).ToList();
-
+                      product.TotalQuantity,
+                      product.WholeSellerId)).ToList();
             }
         }
 
@@ -120,6 +120,54 @@ namespace SDKTemplate
                 ));
             db.SaveChanges();
             _products.Add(productViewModelBase);
+            return true;
+        }
+
+        public static List<ProductListToPurchaseViewModel> RetreiveProductListToPurchaseByRespectiveWholeSellers()
+        {
+            var items = new List<ProductListToPurchaseViewModel>();
+            var db = new DatabaseModel.RetailerContext();
+            var groups= db.Products.GroupBy(p => p.WholeSellerId);
+            foreach (var group in groups)
+            {
+                var item = new ProductListToPurchaseViewModel();
+                item.WholeSellerViewModel= WholeSellerDataSource.GetWholeSellerById(group.Key);
+                if (item.WholeSellerViewModel == null)
+                { item.WholeSellerViewModel = new WholeSellerViewModel();
+                    item.WholeSellerViewModel.Name = "Not In Cart";
+                }
+                item.Products = group.Select(p => new ProductViewModelBase(p)).ToList();
+                items.Add(item);
+            }
+            return items;
+        }
+
+        public static bool UpdateProductStock(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel)
+        {
+            //#perf: You can query whole list in where clause.
+            foreach (var productViewModel in billingViewModel.Products)
+            {
+                var products = db.Products.Where(p => p.ProductId == productViewModel.ProductId).ToList();
+                var product = products.FirstOrDefault();
+                if (product == null)
+                    return false;
+                product.TotalQuantity -= productViewModel.QuantityPurchased;
+                db.Update(product);
+            }
+            db.SaveChanges();
+            return true;
+        }
+
+        public static bool UpdateWholSellerIdForProduct(Guid productId, Guid? wholeSellerId)
+        {
+            var db = new DatabaseModel.RetailerContext();
+            var products = db.Products.Where(p => p.ProductId == productId).ToList();
+                var product = products.FirstOrDefault();
+                if (product == null)
+                    return false;
+                product.WholeSellerId = wholeSellerId;
+                db.Update(product);
+            db.SaveChanges();
             return true;
         }
     }
