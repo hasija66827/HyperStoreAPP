@@ -112,9 +112,9 @@
     <Compile Include="Data Source\WholeSellerDataSource.cs" />
     <Compile Include="CCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
     <Compile Include="Data Source\WholeSellerOrderDataSource.cs" />
-    <Compile Include="Migrations\20170610202334_first.cs" />
-    <Compile Include="Migrations\20170610202334_first.designer.cs">
-      <DependentUpon>20170610202334_first.cs</DependentUpon>
+    <Compile Include="Migrations\20170614145335_first.cs" />
+    <Compile Include="Migrations\20170614145335_first.designer.cs">
+      <DependentUpon>20170614145335_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="PriceQuotedByWholeSellerViewModel.cs" />

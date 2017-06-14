@@ -25,26 +25,6 @@ namespace SDKTemplate.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    ProductId = table.Column<Guid>(nullable: false),
-                    BarCode = table.Column<string>(nullable: true),
-                    DiscountPer = table.Column<float>(nullable: false),
-                    DisplayPrice = table.Column<float>(nullable: false),
-                    IsInventoryItem = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    RefillTime = table.Column<int>(nullable: false),
-                    Threshold = table.Column<int>(nullable: false),
-                    TotalQuantity = table.Column<int>(nullable: false),
-                    UserDefinedCode = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WholeSellers",
                 columns: table => new
                 {
@@ -85,6 +65,33 @@ namespace SDKTemplate.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<Guid>(nullable: false),
+                    BarCode = table.Column<string>(nullable: true),
+                    DiscountPer = table.Column<float>(nullable: false),
+                    DisplayPrice = table.Column<float>(nullable: false),
+                    IsInventoryItem = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    RefillTime = table.Column<int>(nullable: false),
+                    Threshold = table.Column<int>(nullable: false),
+                    TotalQuantity = table.Column<int>(nullable: false),
+                    UserDefinedCode = table.Column<string>(nullable: true),
+                    WholeSellerId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Products_WholeSellers_WholeSellerId",
+                        column: x => x.WholeSellerId,
+                        principalTable: "WholeSellers",
+                        principalColumn: "WholeSellerId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -203,6 +210,11 @@ namespace SDKTemplate.Migrations
                 table: "Products",
                 column: "UserDefinedCode",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_WholeSellerId",
+                table: "Products",
+                column: "WholeSellerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WholeSellers_MobileNo",

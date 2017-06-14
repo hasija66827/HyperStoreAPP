@@ -8,7 +8,7 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170610202334_first")]
+    [Migration("20170614145335_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,6 +126,9 @@ namespace SDKTemplate.Migrations
 
                     b.Property<string>("UserDefinedCode");
 
+                    b.Property<Guid?>("WholeSellerId")
+                        .IsRequired();
+
                     b.HasKey("ProductId");
 
                     b.HasIndex("BarCode")
@@ -133,6 +136,8 @@ namespace SDKTemplate.Migrations
 
                     b.HasIndex("UserDefinedCode")
                         .IsUnique();
+
+                    b.HasIndex("WholeSellerId");
 
                     b.ToTable("Products");
                 });
@@ -227,6 +232,14 @@ namespace SDKTemplate.Migrations
                     b.HasOne("DatabaseModel.Product")
                         .WithMany("CustomerOrderProducts")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DatabaseModel.Product", b =>
+                {
+                    b.HasOne("DatabaseModel.WholeSeller")
+                        .WithMany("Products")
+                        .HasForeignKey("WholeSellerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

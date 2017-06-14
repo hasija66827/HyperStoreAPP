@@ -19,7 +19,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers7.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers8.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,7 +54,7 @@ namespace DatabaseModel
         public string Address { get; set; }
         public float WalletBalance { get; set; }
         public List<WholeSellerOrder> WholeSellerOrders { get; set; }
-
+        public List<Product> Products { get; set; }
         public WholeSeller(string name, string mobileNo)
         {
             this.WholeSellerId = Guid.NewGuid();
@@ -150,6 +150,10 @@ namespace DatabaseModel
         public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
+        //This is used by Retailer to mark the product to be prurchased from Wholeseller.
+        [Required]
+        public Nullable<Guid> WholeSellerId;
+        public WholeSeller WholeSeller;
 
         public Product() {   }
         public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold, Int32 refillTime,
@@ -164,6 +168,7 @@ namespace DatabaseModel
             DisplayPrice = displayPrice;
             DiscountPer = discountPer;
             TotalQuantity = totalQuantity;
+            WholeSellerId = null;
         }
 
         public static explicit operator Product(ProductViewModel v)
