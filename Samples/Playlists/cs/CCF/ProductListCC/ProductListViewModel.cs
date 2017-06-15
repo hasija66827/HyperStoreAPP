@@ -17,25 +17,19 @@ namespace SDKTemplate
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
         public ProductListViewModel()
         {
-            
-        }
-        private Int32 FirstMatchingProductIndex(ProductViewModel product)
-        {
-            Int32 i = 0;
-            foreach (var p in this._products)
-            {
-                if (p.BarCode == product.BarCode)
-                    return i;
-                i++;
 
-            }
-            return -1;
         }
+
         public Int32 AddToBillingList(ProductViewModel product)
         {
-            Int32 index = FirstMatchingProductIndex(product);
-            // If product does not exist
-            if (index == -1)
+            var prd = this._products.Where(p => p.ProductId == product.ProductId).FirstOrDefault();
+            Int32 index;
+            if (prd!=null)
+            {
+                index = this._products.IndexOf(prd);
+                this._products[index].QuantityPurchased += 1;
+            }
+            else
             {
                 this._products.Add(product);
                 index = this._products.IndexOf(product);
@@ -43,12 +37,6 @@ namespace SDKTemplate
                 this._products[index].QuantityChangedEvent += new QuantityChangedDelegate
                 ((sender, quantity) => { this.ProductListViewModelChangedEvent?.Invoke(this); });
                 this._products[index].QuantityPurchased = 1;
-            }
-            else
-            {
-                /* Will trigger the event QuantityPropertyChange
-                 and which will inturn invoke the function TotalValue_TotalProductsPropertyChanged.*/
-                this._products[index].QuantityPurchased += 1;
             }
             return index;
         }
