@@ -247,7 +247,7 @@ namespace DatabaseModel
         {
             this.CustomerOrderId = Guid.NewGuid();
             this.OrderDate = DateTime.Now;
-            this.TotalBillAmount = pageNavigationParameter.ProductListViewModel.TotalBillAmount;
+            this.TotalBillAmount = pageNavigationParameter.BillingSummaryViewModel.TotalBillAmount;
             this.DiscountedAmount = pageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount;
 
             this.IsPaidNow = pageNavigationParameter.IsPaidNow;

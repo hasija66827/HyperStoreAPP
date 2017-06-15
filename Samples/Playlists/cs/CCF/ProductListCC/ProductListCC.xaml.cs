@@ -21,27 +21,30 @@ using Windows.UI.Xaml.Navigation;
 using DatabaseModel;
 using SDKTemp.ViewModel;
 using SDKTemp.Data;
+using System.Collections.ObjectModel;
+
 namespace SDKTemplate
 {
+    public delegate void ProductListCCUpdatedDelegate(ObservableCollection<ProductViewModel> products);
     public sealed partial class ProductListCC : Page
     {
         public static ProductListCC Current;
-        public event ProductListChangedDelegate ProductListChangedEvent;
+        public event ProductListCCUpdatedDelegate ProductListCCUpdatedEvent;
         public ProductListViewModel ProductListViewModel { get; set; }
         public ProductListCC()
         {
             Current = this;
             this.InitializeComponent();
             this.ProductListViewModel = new ProductListViewModel();
-            this.ProductListViewModel.ProductListChangedEvent += ProductListViewModel_ProductListChangedEvent;
+            this.ProductListViewModel.ProductListViewModelChangedEvent += ProductListViewModel_ProductListChangedEvent;
             Checkout.Click += Checkout_Click;
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
            
         }
 
-        private void ProductListViewModel_ProductListChangedEvent(object sender, int updatedSize, float updateBillAmount)
+        private void ProductListViewModel_ProductListChangedEvent(object sender)
         {
-            this.ProductListChangedEvent?.Invoke(this, updatedSize, updateBillAmount);
+            this.ProductListCCUpdatedEvent?.Invoke(this.ProductListViewModel.Products);
         }
 
         // Will be invoked on an event in ProductASBCC

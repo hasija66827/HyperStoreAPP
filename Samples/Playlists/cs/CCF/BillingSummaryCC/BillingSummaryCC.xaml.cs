@@ -24,13 +24,20 @@ namespace SDKTemplate
             this.InitializeComponent();
             BillingSummaryViewModel = new BillingSummaryViewModel();
             //Subscribing to product list changed event of ProductListCC
-            ProductListChangedDelegate d = new ProductListChangedDelegate(
-                (sender, totalProducts, totalBillAmount) =>
+            ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
+                (products) =>
                 {
-                    this.BillingSummaryViewModel.TotalProducts = totalProducts;
-                    this.BillingSummaryViewModel.TotalBillAmount = totalBillAmount;
+                    double sum = 0;
+                    foreach (ProductViewModel product in products)
+                        sum += product.NetValue;
+                    Int32 count = 0;
+                    foreach (ProductViewModel product in products)
+                        count += product.QuantityPurchased;
+                    
+                    this.BillingSummaryViewModel.TotalProducts = count;
+                    this.BillingSummaryViewModel.TotalBillAmount = Utility.RoundInt32((float)sum); 
                 });
-            ProductListCC.Current.ProductListChangedEvent += d;
+            ProductListCC.Current.ProductListCCUpdatedEvent += d;
         }
     }
 }

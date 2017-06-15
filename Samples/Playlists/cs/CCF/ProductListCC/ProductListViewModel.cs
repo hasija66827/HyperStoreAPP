@@ -9,34 +9,12 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public delegate void ProductListChangedDelegate(object sender, Int32 updatedSize, float updateBillAmount);
+    public delegate void ProductListChangedDelegate(object sender);
     public class ProductListViewModel
     {
-        public event ProductListChangedDelegate ProductListChangedEvent;
-        public float TotalBillAmount
-        {
-            get
-            {
-                double sum = 0;
-                foreach (ProductViewModel item in _products)
-                    sum += item.NetValue;
-                return Utility.RoundInt32((float)sum);
-            }
-        }
-        public Int32 TotalProducts
-        {
-            get
-            {
-                Int32 count = 0;
-                foreach (ProductViewModel item in _products)
-                    count += item.QuantityPurchased;
-                return count;
-            }
-        }
-      
+        public event ProductListChangedDelegate ProductListViewModelChangedEvent;
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
-
         public ProductListViewModel()
         {
             
@@ -63,7 +41,7 @@ namespace SDKTemplate
                 index = this._products.IndexOf(product);
                 //if new product is added, subscrbing to the Quantity Changed event.
                 this._products[index].QuantityChangedEvent += new QuantityChangedDelegate
-                ((sender, quantity) => { this.ProductListChangedEvent?.Invoke(this, TotalProducts, TotalBillAmount); });
+                ((sender, quantity) => { this.ProductListViewModelChangedEvent?.Invoke(this); });
                 this._products[index].QuantityPurchased = 1;
             }
             else
