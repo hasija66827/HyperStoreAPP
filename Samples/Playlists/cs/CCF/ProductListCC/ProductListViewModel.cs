@@ -33,17 +33,13 @@ namespace SDKTemplate
                 return count;
             }
         }
-        // To be set by event subscribed to billingsummaryViewModel
-        private float _additionalDiscountPer;
-        public float AdditonalDiscountPer { get => this._additionalDiscountPer; set => this._additionalDiscountPer = value; }
-        public float DiscountedBillAmount { get { return this.TotalBillAmount * (100 - this.AdditonalDiscountPer) / 100; } }
-
+      
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
 
         public ProductListViewModel()
         {
-            this._additionalDiscountPer = 0;
+            
         }
         private Int32 FirstMatchingProductIndex(ProductViewModel product)
         {

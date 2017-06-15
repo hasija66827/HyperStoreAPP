@@ -31,7 +31,7 @@
                            Width="350"
                            Height="30" />
                 <TextBlock x:Name="TotalAmountToBePaidTB"
-                           Text="{x:Bind PageNavigationParameter.BillingViewModel.DiscountedBillAmount, Mode=OneWay}"
+                           Text="{x:Bind PageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount, Mode=OneWay}"
                            Grid.Column="1" />
                 <CheckBox x:Name="UseWalletChkBox"
                           Content="use wallet"

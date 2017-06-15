@@ -90,7 +90,7 @@ namespace SDKTemp.Data
                 throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");
 
             //TODO: See how can you make whole transaction atomic.
-            ProductListViewModel billingViewModel = pageNavigationParameter.BillingViewModel;
+            ProductListViewModel billingViewModel = pageNavigationParameter.ProductListViewModel;
             CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
             var db = new DatabaseModel.RetailerContext();
             float updatedCustomerWalletBalance = 0;

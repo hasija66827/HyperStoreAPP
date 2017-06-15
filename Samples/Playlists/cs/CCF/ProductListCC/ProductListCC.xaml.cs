@@ -36,11 +36,7 @@ namespace SDKTemplate
             this.ProductListViewModel.ProductListChangedEvent += ProductListViewModel_ProductListChangedEvent;
             Checkout.Click += Checkout_Click;
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
-            BillingSummaryViewModel.AdditionalDiscountPerChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
-                ((sender, additonalDiscountPer) =>
-                {
-                    this.ProductListViewModel.AdditonalDiscountPer = additonalDiscountPer;
-                });
+           
         }
 
         private void ProductListViewModel_ProductListChangedEvent(object sender, int updatedSize, float updateBillAmount)
@@ -70,7 +66,8 @@ namespace SDKTemplate
             }
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
                this.ProductListViewModel,
-               CustomerASBCC.Current.SelectedCustomerInASB);
+               CustomerASBCC.Current.SelectedCustomerInASB,
+               BillingSummaryCC.Current.BillingSummaryViewModel);
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }
