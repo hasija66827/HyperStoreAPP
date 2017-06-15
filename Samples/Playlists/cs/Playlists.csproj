@@ -134,8 +134,8 @@
     <Compile Include="BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\BillingSummaryCC\BillingSummary.xaml.cs">
-      <DependentUpon>BillingSummary.xaml</DependentUpon>
+    <Compile Include="CCF\BillingSummaryCC\BillingSummaryCC.xaml.cs">
+      <DependentUpon>BillingSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ProductASBCC\ProductASB.xaml.cs">
       <DependentUpon>ProductASB.xaml</DependentUpon>
@@ -164,7 +164,7 @@
     <Compile Include="CCF\ProductInStock\ProductInStock.xaml.cs">
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View Models\ProductListViewModel.cs" />
+    <Compile Include="CCF\ProductListCC\ProductListViewModel.cs" />
     <Compile Include="CCF\AddProductCC\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
     <Compile Include="BillingScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml.cs">
@@ -271,7 +271,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\BillingSummaryCC\BillingSummary.xaml">
+    <Page Include="CCF\BillingSummaryCC\BillingSummaryCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

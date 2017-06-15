@@ -90,7 +90,7 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(s.ClassType);
-                    SummaryFrame.Navigate(typeof(BillingSummary));
+                    SummaryFrame.Navigate(typeof(BillingSummaryCC));
                 }
                 else if (s.ClassType == typeof(SDKTemp.OrderListCC))
                 {

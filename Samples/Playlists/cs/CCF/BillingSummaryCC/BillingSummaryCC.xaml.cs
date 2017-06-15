@@ -14,13 +14,23 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 namespace SDKTemplate
 {
-    public sealed partial class BillingSummary : Page
+    public sealed partial class BillingSummaryCC : Page
     {
+        public BillingSummaryCC Current;
         private BillingSummaryViewModel billingSummaryViewModel;
-        public BillingSummary()
+        public BillingSummaryCC()
         {
+            Current = this;
             this.InitializeComponent();
             billingSummaryViewModel = new BillingSummaryViewModel();
+            //Subscribing to product list changed event of ProductListCC
+            ProductListChangedDelegate d = new ProductListChangedDelegate(
+                (sender, totalProducts, totalBillAmount) =>
+                {
+                    this.billingSummaryViewModel.TotalProducts = totalProducts;
+                    this.billingSummaryViewModel.TotalBillAmount = totalBillAmount;
+                });
+            ProductListCC.Current.ProductListChangedEvent += d;
         }
     }
 }

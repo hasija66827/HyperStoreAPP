@@ -61,13 +61,6 @@ namespace SDKTemplate
             _totalProducts = 0;
             _totalBillAmount = 0;
             _additionalDiscountPer = 0;
-            ProductListChangedDelegate d = new ProductListChangedDelegate(
-                (sender,totalProducts, totalBillAmount) =>
-                {
-                    TotalProducts = totalProducts;
-                    TotalBillAmount = totalBillAmount;
-                 });
-            ProductListViewModel.ProductListChangedEvent += d;
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

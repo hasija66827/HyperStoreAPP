@@ -25,12 +25,15 @@ namespace SDKTemplate
 {
     public sealed partial class ProductListCC : Page
     {
-        private MainPage rootPage = MainPage.Current;
+        public static ProductListCC Current;
+        public event ProductListChangedDelegate ProductListChangedEvent;
         public ProductListViewModel ProductListViewModel { get; set; }
         public ProductListCC()
         {
+            Current = this;
             this.InitializeComponent();
             this.ProductListViewModel = new ProductListViewModel();
+            this.ProductListViewModel.ProductListChangedEvent += ProductListViewModel_ProductListChangedEvent;
             Checkout.Click += Checkout_Click;
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
             BillingSummaryViewModel.AdditionalDiscountPerChangedEvent += new AdditionalDiscountPerDiscountedBillAmountChangedDelegate
@@ -39,6 +42,12 @@ namespace SDKTemplate
                     this.ProductListViewModel.AdditonalDiscountPer = additonalDiscountPer;
                 });
         }
+
+        private void ProductListViewModel_ProductListChangedEvent(object sender, int updatedSize, float updateBillAmount)
+        {
+            this.ProductListChangedEvent?.Invoke(this, updatedSize, updateBillAmount);
+        }
+
         // Will be invoked on an event in ProductASBCC
         public void AddProductToCart(object sender, ProductViewModel product)
         {

@@ -12,7 +12,7 @@ namespace SDKTemplate
     public delegate void ProductListChangedDelegate(object sender, Int32 updatedSize, float updateBillAmount);
     public class ProductListViewModel
     {
-        public static event ProductListChangedDelegate ProductListChangedEvent;
+        public event ProductListChangedDelegate ProductListChangedEvent;
         public float TotalBillAmount
         {
             get
@@ -35,7 +35,7 @@ namespace SDKTemplate
         }
         // To be set by event subscribed to billingsummaryViewModel
         private float _additionalDiscountPer;
-        public float AdditonalDiscountPer { get=>this._additionalDiscountPer; set=>this._additionalDiscountPer=value; }
+        public float AdditonalDiscountPer { get => this._additionalDiscountPer; set => this._additionalDiscountPer = value; }
         public float DiscountedBillAmount { get { return this.TotalBillAmount * (100 - this.AdditonalDiscountPer) / 100; } }
 
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
@@ -67,7 +67,7 @@ namespace SDKTemplate
                 index = this._products.IndexOf(product);
                 //if new product is added, subscrbing to the Quantity Changed event.
                 this._products[index].QuantityChangedEvent += new QuantityChangedDelegate
-                ((sender, quantity) => { ProductListChangedEvent?.Invoke(this, TotalProducts, TotalBillAmount); });
+                ((sender, quantity) => { this.ProductListChangedEvent?.Invoke(this, TotalProducts, TotalBillAmount); });
                 this._products[index].QuantityPurchased = 1;
             }
             else
