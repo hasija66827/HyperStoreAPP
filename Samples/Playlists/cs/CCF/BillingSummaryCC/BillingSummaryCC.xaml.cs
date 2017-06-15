@@ -26,16 +26,10 @@ namespace SDKTemplate
             //Subscribing to product list changed event of ProductListCC
             ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
                 (products) =>
-                {
-                    double sum = 0;
-                    foreach (ProductViewModel product in products)
-                        sum += product.NetValue;
-                    Int32 count = 0;
-                    foreach (ProductViewModel product in products)
-                        count += product.QuantityPurchased;
+                {                    
+                    this.BillingSummaryViewModel.TotalProducts = products.Sum(p=>p.QuantityPurchased);
+                    this.BillingSummaryViewModel.TotalBillAmount = products.Sum(p => p.NetValue);
                     
-                    this.BillingSummaryViewModel.TotalProducts = count;
-                    this.BillingSummaryViewModel.TotalBillAmount = Utility.RoundInt32((float)sum); 
                 });
             ProductListCC.Current.ProductListCCUpdatedEvent += d;
         }
