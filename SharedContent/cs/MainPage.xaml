@@ -89,40 +89,40 @@
                     </StackPanel>
                 </RelativePanel>
             </SplitView.Pane>
-            <RelativePanel Margin="0,0,20,0">
+            <RelativePanel Margin="0,0,5,0">
                 <Frame x:Name="HeaderFrame"
-                       Margin="40,10,40,0"
+                       Margin="10,10,10,0"
                        Background="AliceBlue"
                        Height="120"
-                       Width="800"
+                       Width="900"
                        />
                 <Frame x:Name="SearchBoxFrame"
                        Background="AliceBlue"
-                       Margin="40,10,40,0"
+                       Margin="10,10,10,0"
                        RelativePanel.Below="HeaderFrame"
                        Height="100"
-                       Width="800"
+                       Width="900"
                        />
                 <Frame x:Name="ScenarioFrame"
                        Height="450"
                        Background="AliceBlue"
-                       Margin="40,10,40,0"
-                       Width="800"
+                       Margin="10,10,10,0"
+                       Width="900"
                        RelativePanel.Below="SearchBoxFrame" />
                 <Frame x:Name="NewsFeedFrame"
-                       Background="Azure"
+                       Background="AliceBlue"
                        RelativePanel.RightOf="HeaderFrame"
                        Width="700"
                        Height="410"
                        RelativePanel.AlignTopWith="HeaderFrame"
-                       Margin="0,10,40,0" />
+                       Margin="0,10,10,0" />
                 <Frame x:Name="SummaryFrame"
-                       Background="LightSteelBlue"
+                       Background="AliceBlue"
                        RelativePanel.RightOf="ScenarioFrame"
                        RelativePanel.Below="NewsFeedFrame"
                        Width="700"
                        Height="270"
-                       Margin="0,10,40,0" />
+                       Margin="0,10,10,0" />
                 <StackPanel x:Name="StatusPanel"
                             Orientation="Vertical"
                             RelativePanel.AlignLeftWith="ScenarioFrame"

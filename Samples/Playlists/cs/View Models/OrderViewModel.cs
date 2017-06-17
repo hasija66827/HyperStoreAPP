@@ -54,7 +54,7 @@ namespace SDKTemp.ViewModel
     public class OrderDetailViewModel : SDKTemplate.ProductViewModelBase
     {
         private Int32 _quantityPurchased;
-        public Int32 QuantityPurchased { get; set; }
+        public Int32 QuantityPurchased { get { return this._quantityPurchased; } }
         private float _netValue;
         public float NetValue { get { return SDKTemplate.Utility.RoundInt32(this._netValue); } }
         public OrderDetailViewModel() : base()

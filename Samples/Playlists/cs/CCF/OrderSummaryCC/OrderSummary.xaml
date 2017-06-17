@@ -24,7 +24,7 @@
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                            Width="190" />
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind orderSummaryViewModel.TotalSales, Mode=OneWay}"
+                           Text="{x:Bind OrderSummaryViewModel.TotalSales, Mode=OneWay}"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -33,7 +33,7 @@
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                            Width="190" />
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind orderSummaryViewModel.TotalSalesWithDiscount, Mode=OneWay}"
+                           Text="{x:Bind OrderSummaryViewModel.TotalSalesWithDiscount, Mode=OneWay}"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -43,7 +43,7 @@
                            Width="190" />
                 <TextBlock
                          Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                         Text="{x:Bind orderSummaryViewModel.ReceivedNow, Mode=OneWay}"
+                         Text="{x:Bind OrderSummaryViewModel.ReceivedNow, Mode=OneWay}"
                           />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -52,7 +52,7 @@
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                            Width="190" />
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind orderSummaryViewModel.ReceivedLater, Mode=OneWay}"
+                           Text="{x:Bind OrderSummaryViewModel.ReceivedLater, Mode=OneWay}"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
             </StackPanel>
         </StackPanel>

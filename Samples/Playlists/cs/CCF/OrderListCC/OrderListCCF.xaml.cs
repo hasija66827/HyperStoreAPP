@@ -57,7 +57,7 @@ namespace SDKTemplate
             Current.orderList = CustomerOrderDataSource.GetOrders(selectedCustomer, selectedDateRange);
             OrderListCCF.Current.OrderListChangedEvent?.Invoke(OrderListCCF.Current);
             MasterListView.ItemsSource = Current.orderList;
-            OrderCountTB.Text ="("+ Current.orderList.Count.ToString()+ "/"+ CustomerOrderDataSource.Orders.Count.ToString() + ")";
+            OrderCountTB.Text = "(" + Current.orderList.Count.ToString() + "/" + CustomerOrderDataSource.Orders.Count.ToString() + ")";
         }
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
