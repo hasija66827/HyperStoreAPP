@@ -58,6 +58,8 @@ namespace SDKTemplate
             ProductDataSource.RetrieveProductDataAsync();
             CustomerDataSource.RetrieveCustomersAsync();
             WholeSellerDataSource.RetrieveWholeSellersAsync();
+            CustomerOrderDataSource.RetrieveOrdersAsync();
+
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {
@@ -92,7 +94,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BillingSummaryCC));
                 }
-                else if (s.ClassType == typeof(SDKTemp.OrderListCC))
+                else if (s.ClassType == typeof(OrderListCCF))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterOrderCC));

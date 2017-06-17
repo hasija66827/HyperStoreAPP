@@ -122,6 +122,9 @@
     <Compile Include="CCF\ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml.cs">
       <DependentUpon>ProductListToPurhcaseCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\OrderListCC\OrderListCCF.xaml.cs">
+      <DependentUpon>OrderListCCF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
@@ -156,9 +159,6 @@
     </Compile>
     <Compile Include="CCF\OrderSummaryCC\OrderSummary.xaml.cs">
       <DependentUpon>OrderSummary.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CCF\OrderListCC\OrderList.xaml.cs">
-      <DependentUpon>OrderList.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\OrderSummaryCC\OrderSummaryViewModel.cs" />
     <Compile Include="CCF\ProductInStock\ProductInStock.xaml.cs">
@@ -291,10 +291,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\OrderListCC\OrderList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CCF\FilterOrderCC\FilterOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -308,6 +304,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\OrderListCC\OrderListCCF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

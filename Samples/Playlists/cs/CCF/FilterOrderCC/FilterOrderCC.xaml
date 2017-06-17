@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <local:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <RelativePanel Margin="10,0,0,0">
             <TextBlock x:Name="Header"
                        Text="Filter the Orders"

@@ -27,7 +27,7 @@ namespace SDKTemplate
         {
             new Scenario() { Title = "Customer Billing", ClassType = typeof(ProductListCC) }, 
             new Scenario() { Title = "Lenders & Borrowers", ClassType = typeof(NonInventoryProductScenario) }, 
-            new Scenario() { Title = "Customer Orders", ClassType = typeof(SDKTemp.OrderListCC) }, 
+            new Scenario() { Title = "Customer Orders", ClassType = typeof(OrderListCCF) }, 
             new Scenario() { Title = "Wholeseller Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) }, 
             new Scenario() { Title = "Products", ClassType = typeof(ProductInStock) } 
         };

@@ -50,11 +50,11 @@ namespace SDKTemplate
             this._totalSalesWithDiscount = 0;
             this._receivedNow = 0;
             this._receivedLater = 0;
-            if (OrderListCC.Current == null)
+            if (OrderListCCF.Current == null)
                 throw new System.Exception("OrderListCC is should be loaded before OrderSummaryCC");
-            OrderListCC.Current.OrderListChangedEvent += new OrderListChangedDelegate(OrderListChangedSubscriber);
+            OrderListCCF.Current.OrderListChangedEvent += new OrderListChangedDelegate(OrderListChangedSubscriber);
         }
-        public void OrderListChangedSubscriber(OrderListCC orderListCC)
+        public void OrderListChangedSubscriber(OrderListCCF orderListCC)
         {
             TotalSales = orderListCC.orderList.Sum(s => s.BillAmount);
             TotalSalesWithDiscount = orderListCC.orderList.Sum(ds => ds.DiscountedBillAmount);

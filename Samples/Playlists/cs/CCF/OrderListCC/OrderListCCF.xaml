@@ -1,25 +1,23 @@
-﻿<Page x:Class="SDKTemp.OrderListCC"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:SDKTemp"
-      xmlns:common="using:SDKTemplate"
+﻿<Page
+    x:Class="SDKTemplate.OrderListCCF"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDKTemplate"
       xmlns:data="using:SDKTemp.ViewModel"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d"
-      NavigationCacheMode="Enabled"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
-        <common:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
-        <common:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="data:OrderViewModel">
-            <Grid Margin="0,11,0,13">
+            <Grid Margin="12,10,12,12">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -135,6 +133,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Orders"
+                       Margin="12,10,12,12"
                        Style="{ThemeResource TitleTextBlockStyle}" />
         </StackPanel>
         <ListView x:Name="MasterListView"
@@ -166,4 +165,3 @@
         </ContentPresenter>
     </Grid>
 </Page>
-    
