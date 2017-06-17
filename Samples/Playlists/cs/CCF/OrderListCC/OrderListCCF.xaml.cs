@@ -41,18 +41,23 @@ namespace SDKTemplate
 
             // Getting a refresh list from the database.
             CustomerOrderDataSource.RetrieveOrdersAsync();
-
-            // Rendering the refresh list on the UI is not required as date change event is already calling update method.
-            //UpdateMasterListViewItemSource(this);
+            // Rendering the refresh list on the UI.
+            UpdateMasterListViewItemSource(this);
         }
 
         private void UpdateMasterListViewItemSource(object sender)
         {
             var selectedDateRange = FilterOrderCC.Current.SelectedDateRange;
+            if (selectedDateRange.StartDate.Date > selectedDateRange.EndDate.Date)
+            {
+                MainPage.Current.NotifyUser("Date range is invalid", NotifyType.ErrorMessage);
+                return;
+            }
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             Current.orderList = CustomerOrderDataSource.GetOrders(selectedCustomer, selectedDateRange);
             OrderListCCF.Current.OrderListChangedEvent?.Invoke(OrderListCCF.Current);
             MasterListView.ItemsSource = Current.orderList;
+            OrderCountTB.Text ="("+Current.orderList.Count.ToString()+")";
         }
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)

@@ -131,10 +131,14 @@
             <ColumnDefinition x:Name="DetailColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal"
+                    Margin="12,10,12,12">
             <TextBlock Text="Orders"
-                       Margin="12,10,12,12"
+                       
                        Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock x:Name="OrderCountTB"
+                       Width="40"
+                       />
         </StackPanel>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
