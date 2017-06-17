@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void SelectedCustomerChangedDelegate(object sender); 
+    public delegate void SelectedCustomerChangedDelegate(object sender);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -72,8 +72,9 @@ namespace SDKTemplate
             }
             else
             {
-                // if a text is present, find best possible match.
-                var matchingCustomer = CustomerDataSource.GetMatchingCustomers(args.QueryText).FirstOrDefault();
+                CustomerViewModel matchingCustomer = null;
+                if (args.QueryText != "")
+                    matchingCustomer = CustomerDataSource.GetMatchingCustomers(args.QueryText).FirstOrDefault();
                 SelectCustomer(matchingCustomer);
             }
         }
@@ -88,14 +89,14 @@ namespace SDKTemplate
                 CustomerMobNo.Text = customer.MobileNo;
                 CustomerName.Text = customer.Name;
                 CustomerAddress.Text = customer.Address;
-                CustomerWalletBalance.Text = customer.WalletBalance.ToString()+ "\u20B9";
+                CustomerWalletBalance.Text = customer.WalletBalance.ToString() + "\u20B9";
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
             }
             else
             {
                 _selectedCustomerInASB = null;
-               NoResults.Visibility = Visibility.Visible;
-               CustomerDetails.Visibility = Visibility.Collapsed;
+                NoResults.Visibility = Visibility.Visible;
+                CustomerDetails.Visibility = Visibility.Collapsed;
             }
             SelectedCustomerChangedEvent?.Invoke(this);
         }
