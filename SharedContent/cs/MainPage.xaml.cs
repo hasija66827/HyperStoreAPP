@@ -58,8 +58,6 @@ namespace SDKTemplate
             ProductDataSource.RetrieveProductDataAsync();
             CustomerDataSource.RetrieveCustomersAsync();
             WholeSellerDataSource.RetrieveWholeSellersAsync();
-            CustomerOrderDataSource.RetrieveOrdersAsync();
-
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {

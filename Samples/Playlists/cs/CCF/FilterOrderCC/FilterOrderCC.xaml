@@ -33,11 +33,6 @@
                                 Margin="30,0,0,0"
                                 RelativePanel.AlignBottomWith="endDateLabel"
                                 RelativePanel.RightOf="endDateLabel" />
-            <Button Content="Apply"
-                    x:Name="ApplyDateRangeFilterBtn"
-                    RelativePanel.Below="startDateCP"
-                    Height="32"
-                    Width="65" />
         </RelativePanel>
     </Grid>
 </Page>

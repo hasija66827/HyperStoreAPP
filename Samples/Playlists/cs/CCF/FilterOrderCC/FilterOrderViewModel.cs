@@ -22,7 +22,7 @@ namespace SDKTemplate
         }
         public FilterOrderViewModel()
         {
-            _startDate = DateTime.Now;
+            _startDate = DateTime.Now.AddDays(-31);
             _endDate = DateTime.Now;
         }
     }

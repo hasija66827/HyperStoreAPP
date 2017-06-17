@@ -44,19 +44,28 @@ namespace SDKTemp.Data
             _Orders = query.ToList();
         }
 
-        public static List<OrderViewModel> RetrieveOrdersByMobileNumber(string MobileNumber)
+        public static List<OrderViewModel> GetOrders(CustomerViewModel selectedCustomer, FilterOrderViewModel selectedDateRange)
         {
-            var orderByMobileNumber = _Orders.Where(order => order.CustomerMobileNo == MobileNumber);
-            return orderByMobileNumber.ToList();
-        }
-        public static List<OrderViewModel> RetrieveOrdersByDate(FilterOrderViewModel selectedDateRange)
-        {
-            var orderByDateRange = _Orders.
-                Where(order => order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
-                               order.OrderDate.Date<=selectedDateRange.EndDate.Date);
-            return orderByDateRange.ToList();
-        }
+            if (selectedDateRange == null)
+                throw new Exception("A Date Range cannot be null");
 
+            if (selectedCustomer == null && selectedDateRange != null)
+            {
+                var orderByDateRange = _Orders.
+                    Where(order => order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
+                                   order.OrderDate.Date <= selectedDateRange.EndDate.Date);
+                return orderByDateRange.ToList();
+            }
+            else
+            {
+                var orderByMobNoDateRange = _Orders.Where(order =>
+                order.CustomerMobileNo == selectedCustomer.MobileNo &&
+                order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
+                order.OrderDate.Date <= selectedDateRange.EndDate.Date
+                );
+                return orderByMobNoDateRange.ToList();
+            }
+        }
 
         // #perf if possible merge the three query into one.
         //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
@@ -84,7 +93,7 @@ namespace SDKTemp.Data
         /// </summary>
         /// <param name="pageNavigationParameter"></param>
         /// <returns></returns>
-        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter, 
+        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter,
             SDKTemp.Data.PaymentMode paymentMode)
         {
             if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
@@ -123,7 +132,6 @@ namespace SDKTemp.Data
             var customerOrder = new DatabaseModel.CustomerOrder(pageNavigationParameter);
             // Creating Entity Record in customerOrder.
             db.CustomerOrders.Add(customerOrder);
-
             db.SaveChanges();
             return customerOrder.CustomerOrderId;
         }

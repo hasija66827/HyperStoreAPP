@@ -33,33 +33,26 @@ namespace SDKTemplate
             if (CustomerASBCC.Current == null)
                 throw new Exception("CustomerASBCC should be loaded before OrderListCCF");
             CustomerASBCC.Current.SelectedCustomerChangedEvent +=
-                new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSourceByCustomer);
+                new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSource);
 
             if (FilterOrderCC.Current == null)
                 throw new Exception("FilterOrderCC should be loaded before OrderListCCF");
-            FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSourceByDate;
+            FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSource;
+
+            // Getting a refresh list from the database.
+            CustomerOrderDataSource.RetrieveOrdersAsync();
+
+            // Rendering the refresh list on the UI is not required as date change event is already calling update method.
+            //UpdateMasterListViewItemSource(this);
         }
 
-        private void UpdateMasterListViewItemSourceByDate(object sender)
+        private void UpdateMasterListViewItemSource(object sender)
         {
-            FilterOrderCC a = (FilterOrderCC)sender;
-            FilterOrderViewModel selectedDateRange = a.SelectedDateRange;
-            if (selectedDateRange == null)
-                Current.orderList = CustomerOrderDataSource.Orders;
-            else
-                Current.orderList = CustomerOrderDataSource.RetrieveOrdersByDate(selectedDateRange);
+            var selectedDateRange = FilterOrderCC.Current.SelectedDateRange;
+            var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
+            Current.orderList = CustomerOrderDataSource.GetOrders(selectedCustomer, selectedDateRange);
             OrderListCCF.Current.OrderListChangedEvent?.Invoke(OrderListCCF.Current);
             MasterListView.ItemsSource = Current.orderList;
-        }
-
-        private void UpdateMasterListViewItemSourceByCustomer(CustomerViewModel customer = null)
-        {
-            if (customer == null)
-                Current.orderList = CustomerOrderDataSource.Orders;
-            else
-                Current.orderList = CustomerOrderDataSource.RetrieveOrdersByMobileNumber(customer.MobileNo);
-            OrderListCCF.Current.OrderListChangedEvent?.Invoke(OrderListCCF.Current);
-            MasterListView.ItemsSource = orderList;
         }
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)

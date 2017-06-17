@@ -31,10 +31,11 @@ namespace SDKTemplate
             Current = this;
             this.SelectedDateRange = new FilterOrderViewModel();
             this.InitializeComponent();
-            ApplyDateRangeFilterBtn.Click += ApplyDateRangeFilterBtn_Click;
+            startDateCP.DateChanged += StartEndDateCP_DateChanged;
+            endDateCP.DateChanged += StartEndDateCP_DateChanged;
         }
 
-        private void ApplyDateRangeFilterBtn_Click(object sender, RoutedEventArgs e)
+        private void StartEndDateCP_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
             DateChangedEvent?.Invoke(FilterOrderCC.Current);
         }
