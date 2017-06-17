@@ -23,11 +23,12 @@ namespace SDKTemplate
     public sealed partial class OrderSummaryCC : Page
     {
         public static OrderSummaryCC Current;
-        public OrderSummaryViewModel orderSummaryViewModel;
+        public OrderSummaryViewModel OrderSummaryViewModel;
         public OrderSummaryCC()
         {
             Current = this;
-            this.orderSummaryViewModel = new OrderSummaryViewModel();
+            this.OrderSummaryViewModel = new OrderSummaryViewModel();
+            this.OrderSummaryViewModel.ComputeSales(OrderListCCF.Current);
             this.InitializeComponent();
         }
     }

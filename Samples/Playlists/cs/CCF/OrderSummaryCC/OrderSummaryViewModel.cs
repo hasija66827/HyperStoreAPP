@@ -52,14 +52,14 @@ namespace SDKTemplate
             this._receivedLater = 0;
             if (OrderListCCF.Current == null)
                 throw new System.Exception("OrderListCC is should be loaded before OrderSummaryCC");
-            OrderListCCF.Current.OrderListChangedEvent += new OrderListChangedDelegate(OrderListChangedSubscriber);
+            OrderListCCF.Current.OrderListChangedEvent += new OrderListChangedDelegate(ComputeSales);
         }
-        public void OrderListChangedSubscriber(OrderListCCF orderListCC)
+        public void ComputeSales(OrderListCCF orderListCC)
         {
             TotalSales = orderListCC.orderList.Sum(s => s.BillAmount);
             TotalSalesWithDiscount = orderListCC.orderList.Sum(ds => ds.DiscountedBillAmount);
             ReceivedNow = CalculatedReceivedNow(orderListCC.orderList);
-            OrderSummaryCC.Current.orderSummaryViewModel.ReceivedLater = CalculatedReceivedNow(orderListCC.orderList);
+            ReceivedLater = CalculatedReceivedNow(orderListCC.orderList);
         }
         private float CalculatedReceivedNow(List<OrderViewModel> orderList)
         {
