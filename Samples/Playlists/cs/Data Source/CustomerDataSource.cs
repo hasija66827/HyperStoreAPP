@@ -28,6 +28,33 @@ namespace SDKTemplate
             }
         }
 
+        // Step 1:
+        /// <summary>
+        /// Return the updated wallet balance of the customer.
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="customerViewModel"></param>
+        /// <param name="walletBalanceToBeDeducted"></param>
+        /// <param name="walletBalanceToBeAdded"></param>
+        /// <returns></returns>
+        public static float UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, CustomerViewModel customerViewModel,
+            float walletBalanceToBeDeducted, float walletBalanceToBeAdded)
+        {
+            var billingCustomer = (DatabaseModel.Customer)customerViewModel;
+            var entityEntry = db.Attach(billingCustomer);
+            billingCustomer.WalletBalance -= walletBalanceToBeDeducted;
+            billingCustomer.WalletBalance += walletBalanceToBeAdded;
+            var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
+            memberEntry.IsModified = true;
+            db.SaveChanges();
+            int index=_customers.FindIndex(c => c.CustomerId == customerViewModel.CustomerId);
+            if (index < 0 || index >= _customers.Count())
+                throw new Exception("Assert: Customer should be present in customer data source");
+            _customers[index].WalletBalance = billingCustomer.WalletBalance;
+            return billingCustomer.WalletBalance;
+        }
+
+
         /// <summary>
         /// Do a fuzzy search on all Product and order results based on a pre-defined rule set
         /// </summary>
@@ -57,6 +84,26 @@ namespace SDKTemplate
                 return null;
             }
         }
+
+        /// <summary>
+        /// returns the customer having matching mobile number from customer datasource.
+        /// </summary>
+        /// <param name="mobileNumber"></param>
+        /// <returns></returns>
+        public static CustomerViewModel GetCustomerById(Guid customerId)
+        {
+            try
+            {
+                return _customers
+                     .Where(c => c.CustomerId.Equals(customerId)).First();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         /// <summary>
         /// Adds The customer into customer Data source as well as in sqllte database.
         /// </summary>

@@ -78,6 +78,7 @@ namespace SDKTemp.Data
                                                                        customerOrderProduct.QuantityPurchased)).ToList();
             return orderDetails;
         }
+
         /// <summary>
         /// Returns the updated wallet balance of the customer
         /// </summary>
@@ -96,13 +97,13 @@ namespace SDKTemp.Data
             float updatedCustomerWalletBalance = 0;
             if (paymentMode.Equals(PaymentMode.payNow))
             {
-                updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
+                updatedCustomerWalletBalance = CustomerDataSource.UpdateWalletBalanceOfCustomer(db, customerViewModel,
                 pageNavigationParameter.WalletBalanceToBeDeducted,
                 pageNavigationParameter.WalletAmountToBeAddedNow);
             }
             else if (paymentMode.Equals(PaymentMode.payLater))
             {
-                updatedCustomerWalletBalance = UpdateWalletBalanceOfCustomer(db, customerViewModel,
+                updatedCustomerWalletBalance = CustomerDataSource.UpdateWalletBalanceOfCustomer(db, customerViewModel,
                                 pageNavigationParameter.WalletAmountToBePaidLater,
                                 0);
             }
@@ -113,27 +114,6 @@ namespace SDKTemp.Data
             var customerOrderId = AddIntoCustomerOrder(db, pageNavigationParameter);
             AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
             return updatedCustomerWalletBalance;
-        }
-        // Step 1:
-        /// <summary>
-        /// Return the updated wallet balance of the customer.
-        /// </summary>
-        /// <param name="db"></param>
-        /// <param name="customerViewModel"></param>
-        /// <param name="walletBalanceToBeDeducted"></param>
-        /// <param name="walletBalanceToBeAdded"></param>
-        /// <returns></returns>
-        private static float UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, CustomerViewModel customerViewModel,
-            float walletBalanceToBeDeducted, float walletBalanceToBeAdded)
-        {
-            var customer = (DatabaseModel.Customer)customerViewModel;
-            var entityEntry = db.Attach(customer);
-            customer.WalletBalance -= walletBalanceToBeDeducted;
-            customer.WalletBalance += walletBalanceToBeAdded;
-            var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
-            memberEntry.IsModified = true;
-            db.SaveChanges();
-            return customer.WalletBalance;
         }
 
 
