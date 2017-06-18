@@ -6,17 +6,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
-            <local:FloatToInverseRupeeConverter x:Key="FloatToInverseRupeeConverter" />
+        <local:FloatToInverseRupeeConverter x:Key="FloatToInverseRupeeConverter" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
-        
     </UserControl.Resources>
-    <Grid >
+    <Grid>
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
-            <RelativePanel 
-                           HorizontalAlignment="Center"
-                           >
+            <RelativePanel HorizontalAlignment="Center">
                 <RadioButton x:Name="BillingRadBtn"
                              IsChecked="True"
                              GroupName="Billing"
@@ -40,9 +37,8 @@
                              RelativePanel.RightOf="OTPVerificationBtn" />
                 <TextBlock RelativePanel.Below="BillingRadBtn"
                            RelativePanel.AlignLeftWith="BillingRadBtn"
-                           Text="Billing" 
-                           Style="{StaticResource CaptionTextBlockStyle}"
-                           />
+                           Text="Billing"
+                           Style="{StaticResource CaptionTextBlockStyle}" />
                 <TextBlock  Text="Payment Mode"
                             RelativePanel.Below="PaymentModRadBtn"
                             Style="{StaticResource CaptionTextBlockStyle}"
@@ -65,19 +61,17 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                 
                 </Grid.RowDefinitions>
                 <TextBlock TextWrapping="NoWrap"
                            Text="Total Amount to Pay"
                            Grid.Column="0"
                            Grid.Row="0"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                            />
+                           Style="{StaticResource SubtitleTextBlockStyle}" />
                 <TextBlock x:Name="TotalAmountToBePaidTB"
                            Text="{x:Bind PageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Column="1"
-                           HorizontalAlignment="Right"/>
+                           HorizontalAlignment="Right" />
                 <CheckBox x:Name="UseWalletChkBox"
                           Content="Use wallet"
                           Grid.Column="0"
@@ -86,32 +80,26 @@
                           IsEnabled="{x:Bind PayLaterRadBtn.IsChecked, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}" />
                 <TextBlock x:Name="CurrentWalletBalance"
                            Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                           
                            Grid.Column="0"
                            Grid.Row="2" />
                 <TextBlock x:Name="WalletBalanceToBeDeductedTB"
                            Text="{x:Bind PageNavigationParameter.WalletBalanceToBeDeducted,Converter={StaticResource FloatToInverseRupeeConverter}, Mode=OneWay}"
                            Grid.Column="1"
                            Grid.Row="1"
-                           HorizontalAlignment="Right"
-                           />
-                 
+                           HorizontalAlignment="Right" />
             </Grid>
             <StackPanel Orientation="Vertical"
-                        Margin="10,20,0,0"
-                        >
+                        Margin="10,20,0,0">
                 <StackPanel Orientation="Horizontal">
-                <TextBlock TextWrapping="Wrap"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           Text="Select Payment Mode"
-                           Width="400"
-                           />
-                <TextBlock x:Name="ToBePaidTB"
+                    <TextBlock TextWrapping="Wrap"
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Text="Select Payment Mode"
+                               Width="400" />
+                    <TextBlock x:Name="ToBePaidTB"
                                Width="500"
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                Text="{x:Bind PageNavigationParameter.ToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               HorizontalAlignment="Right"
-                           />
+                               HorizontalAlignment="Right" />
                 </StackPanel>
                 <RadioButton x:Name="PayNowRadBtn"
                              Content="Pay Now"
@@ -124,7 +112,7 @@
             <Button x:Name="ProceedToPayment"
                     Margin="0,40,0,0"
                     Content="Proceed"
-                    HorizontalAlignment="Center"/>
+                    HorizontalAlignment="Center" />
         </StackPanel>
     </Grid>
 </Page>

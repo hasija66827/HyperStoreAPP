@@ -6,10 +6,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
+    <Grid >
+        <StackPanel Orientation="Vertical">
             <RelativePanel HorizontalAlignment="Center">
                 <RadioButton x:Name="BillingRadBtn"
                              IsChecked="True"
@@ -48,29 +49,65 @@
                             RelativePanel.Below="MakePaymentRadBtn"
                             RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
             </RelativePanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Total Balance to Pay " />
-                <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Partially Paying Amount " />
-                <TextBox Text="{x:Bind PageNavigationParameter.PartiallyPaid, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="To Pay later " />
-                <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBePaidLater,  Mode=OneWay}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Enter the verification code sent to " />
+            <Grid Margin="10,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="140" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Total Balance"
+                           Style="{StaticResource SubtitleTextBlockStyle}" />
+                <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Converter={StaticResource FloatToRupeeConverter}}"
+                           Grid.Column="1"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource SubtitleTextBlockStyle}"                            
+                           />
+                <TextBlock Text="Partially Paying"
+                           Grid.Row="1" />
+                <TextBox Text="{x:Bind PageNavigationParameter.PartiallyPaid, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}"
+                         Grid.Row="1"
+                         Width="120"
+                         HorizontalAlignment="Right"
+                         HorizontalContentAlignment="Right"
+                         Grid.Column="1"
+                         Foreground="LawnGreen" />
+                <TextBlock Text="To Pay later"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Grid.Row="2"
+                           Grid.Column="0" />
+                <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBePaidLater,  Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           HorizontalAlignment="Right"
+                           Grid.Row="2"
+                           Grid.Column="1" />
+                <TextBlock Text="OTP"
+                           Grid.Column="0"
+                           Grid.Row="3" />
                 <TextBlock x:Name="MobNoTB"
-                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}" />
-            </StackPanel>
-            <TextBox x:Name="OTPTB"
-                     PlaceholderText="6 digit OTP" />
+                           Margin="40,0"
+                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
+                           Foreground="#FF1091EB"
+                           Grid.Row="3" />
+                <TextBox x:Name="OTPTB"
+                         Width="120"
+                         PlaceholderText="6 digit"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         HorizontalContentAlignment="Right"/>
+            </Grid>
+            <Button x:Name="SubmitBtn"
+                    Margin="0,40,0,0"
+                    Content="Verify"
+                    HorizontalAlignment="Center" />
             <TextBlock x:Name="InvalidOTPNotifyTB"
                        Visibility="Collapsed" />
-            <Button x:Name="SubmitBtn"
-                    Content="Submit" />
+           
         </StackPanel>
     </Grid>
 </Page>
