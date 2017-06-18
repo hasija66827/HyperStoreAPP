@@ -7,6 +7,7 @@
       mc:Ignorable="d">
     <UserControl.Resources>
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical"
@@ -48,10 +49,10 @@
                             RelativePanel.Below="MakePaymentRadBtn"
                             RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
             </RelativePanel>
-            <Grid Width="393">
+            <Grid  Margin="10,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="268*" />
-                    <ColumnDefinition Width="129*" />
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="180" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -60,28 +61,35 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Amount to be Paid"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="0" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Mode=OneTime}"
+                <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="0"
                            Grid.Column="1" />
                 <TextBlock Text="Adding Money to Wallet"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="1" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBeAddedNow, Mode=OneWay}"
+                <TextBlock x:Name="AddMonToWalletTB"
+                           Text="{x:Bind PageNavigationParameter.WalletAmountToBeAddedNow, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="1"
-                           Grid.Column="1" />
+                           Grid.Column="1"
+                           Foreground="#FF9EDF19" />
                 <TextBlock Text="Paying Amount"
-                           Grid.Row="2" />
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Grid.Row="2"
+                           Height="32"
+                           VerticalAlignment="Bottom" />
                 <TextBox Text="{x:Bind PageNavigationParameter.OverPaid, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}"
+                         MinWidth="180"
                          Grid.Row="2"
                          Grid.Column="1" />
-                <Button Grid.Row="3"
-                        Grid.Column="1"
-                        x:Name="PlaceOrderBtn"
-                        Content="Place Order"
-                        Height="32"
-                        Width="97"
-                        Margin="31,0,0,0" />
             </Grid>
+            <Button Margin="0,40"
+                    x:Name="PlaceOrderBtn"
+                    Content="Place Order"
+                    HorizontalAlignment="Center" />
         </StackPanel>
     </Grid>
 </Page>

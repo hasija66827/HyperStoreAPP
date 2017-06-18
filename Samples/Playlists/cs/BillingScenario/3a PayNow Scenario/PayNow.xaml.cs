@@ -28,6 +28,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             PlaceOrderBtn.Click += PlaceOrderBtn_Click;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
