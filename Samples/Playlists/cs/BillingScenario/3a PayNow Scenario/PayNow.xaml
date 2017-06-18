@@ -8,12 +8,46 @@
     <UserControl.Resources>
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid >
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
-            <TextBlock Text="Make Payment"
-                       Style="{StaticResource SampleHeaderTextStyle}"
-                       Margin="10,0,0,20" />
+            <RelativePanel HorizontalAlignment="Center">
+                <RadioButton x:Name="BillingRadBtn"
+                             IsChecked="True"
+                             GroupName="Billing"
+                             Width="200" />
+                <RadioButton x:Name="PaymentModRadBtn"
+                             IsChecked="True"
+                             GroupName="SelectPaymentMode"
+                             Width="200"
+                             RelativePanel.RightOf="BillingRadBtn" />
+                <RadioButton x:Name="OTPVerificationBtn"
+                             IsChecked="True"
+                             GroupName="OTPVerification"
+                             Width="200"
+                             RelativePanel.RightOf="PaymentModRadBtn" />
+                <RadioButton x:Name="MakePaymentRadBtn"
+                             IsChecked="True"
+                             GroupName="MakePayment"
+                             Width="200"
+                             RelativePanel.RightOf="OTPVerificationBtn" />
+                <TextBlock RelativePanel.Below="BillingRadBtn"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           RelativePanel.AlignLeftWith="BillingRadBtn"
+                           Text="Billing" />
+                <TextBlock  Text="Payment Mode"
+                            Style="{StaticResource CaptionTextBlockStyle}"
+                            RelativePanel.Below="PaymentModRadBtn"
+                            RelativePanel.AlignLeftWith="PaymentModRadBtn" />
+                <TextBlock  Text="OTP Verify"
+                            Style="{StaticResource CaptionTextBlockStyle}"
+                            RelativePanel.Below="OTPVerificationBtn"
+                            RelativePanel.AlignLeftWith="OTPVerificationBtn" />
+                <TextBlock  Text="Make Payment"
+                            Style="{StaticResource CaptionTextBlockStyle}"
+                            RelativePanel.Below="MakePaymentRadBtn"
+                            RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
+            </RelativePanel>
             <Grid Width="393">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="268*" />

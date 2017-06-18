@@ -169,7 +169,7 @@
             <TextBlock Text="Orders"
                        Style="{ThemeResource TitleTextBlockStyle}" />
             <TextBlock x:Name="OrderCountTB"
-                       Width="40" />
+                       MinWidth="100" />
         </StackPanel>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"

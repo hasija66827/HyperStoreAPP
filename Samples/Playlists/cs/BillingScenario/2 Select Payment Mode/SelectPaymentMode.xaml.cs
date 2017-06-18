@@ -28,6 +28,17 @@ namespace SDKTemplate
             this.InitializeComponent();
             ProceedToPayment.Click += ProceedToPayment_Click;
             PayLaterRadBtn.Click += PayLaterRadBtn_Click;
+            WalletBalanceToBeDeductedTB.DataContextChanged += WalletBalanceToBeDeducted_DataContextChanged;
+        }
+
+        private void WalletBalanceToBeDeducted_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            if (this.PageNavigationParameter == null)
+                throw new Exception("Page Navigation parameter should not be null");
+            if (this.PageNavigationParameter.WalletBalanceToBeDeducted >= 0)
+                WalletBalanceToBeDeductedTB.Foreground = new SolidColorBrush(Windows.UI.Colors.LawnGreen);
+            else
+                WalletBalanceToBeDeductedTB.Foreground = new SolidColorBrush(Windows.UI.Colors.PaleVioletRed);
         }
 
         private void PayLaterRadBtn_Click(object sender, RoutedEventArgs e)
@@ -43,6 +54,7 @@ namespace SDKTemplate
         {
             this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
         }
+
         private void ProceedToPayment_Click(object sender, RoutedEventArgs e)
         {
             if (PayNowRadBtn.IsChecked == true)

@@ -40,6 +40,30 @@ namespace SDKTemplate
             throw new Exception("Binding of the payltrRadBtn.ischecked is done one way to the enable property of the use walllet.");
         }
     }
+
+    // Append the float value with Rupee symbol.
+    public class FloatToInverseRupeeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            // value is the data from the source object.
+            float price =(float)value;
+            if (price < 0)
+                return "+" + Math.Abs(price).ToString() + "\u20B9";
+            else
+                return "-" + Math.Abs(price).ToString() + "\u20B9";
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
     // Append the float value with Rupee symbol.
     public class FloatToRupeeConverter : IValueConverter
     {
@@ -49,7 +73,7 @@ namespace SDKTemplate
             // value is the data from the source object.
             float price = (float)value;
             // Return the value to pass to the target.
-            return "\u20B9" + price.ToString();
+            return price.ToString() + "\u20B9";
         }
 
         // ConvertBack is not implemented for a OneWay binding.
