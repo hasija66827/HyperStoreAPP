@@ -10,34 +10,64 @@
         <local:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <StackPanel Margin="10,0,0,0">
+    <Grid
+          Margin="10,10,12,12">
         <TextBlock x:Name="Header"
                    Text="Update Stock"
-                   Margin="0,0,0,10"
-                   Style="{StaticResource SampleHeaderTextStyle}" />
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Amount To Be Paid" />
-            <TextBlock Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.AmountToBePaid, Mode=OneWay}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Paid Amount" />
-            <TextBox Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.PaidAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Remaining Amount" />
-            <TextBlock Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.RemainingAmount, Mode=OneWay}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Interest Rate (%)" />
-            <TextBox Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.IntrestRate, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Due date" />
-            <CalendarDatePicker Date="{x:Bind wholeSellerPurchaseCheckoutViewModel.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
-        </StackPanel>
-        <Button x:Name="PlaceOrderBtn"
-                Content="Place Order"
-                />
-    </StackPanel>
+                   Style="{StaticResource SampleHeaderTextStyle}"
+                   Margin="0,0,0,20 " />
+        <Grid  Margin="0,40,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="180" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Amount to be Paid"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="0" />
+            <TextBlock Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="0"
+                       Grid.Column="1" />
+            <TextBlock Text="Paid Amount"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="1" />
+            <TextBox Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.PaidAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Foreground="#FFDC0F0F" />
+            <TextBlock Text="Remaining Amount"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="2" />
+            <TextBlock Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.RemainingAmount, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="2"
+                       Grid.Column="1" />
+            <TextBlock Text="Interest Rate (%)"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="3" />
+            <TextBox Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.IntrestRate, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
+                     Grid.Row="3"
+                     Grid.Column="1" />
+            <TextBlock Text="Due date"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="4" />
+            <CalendarDatePicker Date="{x:Bind wholeSellerPurchaseCheckoutViewModel.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
+                                Grid.Row="4"
+                                Grid.Column="1" />
+            <Button x:Name="PlaceOrderBtn"
+                    Content="Place Order"
+                    Grid.Row="5"
+                    HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
 </Page>

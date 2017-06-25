@@ -9,7 +9,7 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid >
+    <Grid>
         <StackPanel Orientation="Vertical">
             <RelativePanel HorizontalAlignment="Center">
                 <RadioButton x:Name="BillingRadBtn"
@@ -66,8 +66,7 @@
                 <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Converter={StaticResource FloatToRupeeConverter}}"
                            Grid.Column="1"
                            HorizontalAlignment="Right"
-                           Style="{StaticResource SubtitleTextBlockStyle}"                            
-                           />
+                           Style="{StaticResource SubtitleTextBlockStyle}" />
                 <TextBlock Text="Partially Paying"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="1" />
@@ -77,7 +76,7 @@
                          HorizontalAlignment="Right"
                          HorizontalContentAlignment="Right"
                          Grid.Column="1"
-                         Foreground="LawnGreen" />
+                         Foreground="#FFED2314" />
                 <TextBlock Text="Pay Later"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="2"
@@ -85,40 +84,36 @@
                 <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBePaidLater,  Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            HorizontalAlignment="Right"
-                          
                            Grid.Row="2"
                            Grid.Column="1" />
             </Grid>
             <StackPanel Orientation="Vertical"
                         Margin="0,80">
-                <TextBlock Text="Enter the OTP"
-                           HorizontalAlignment="Center" 
-                           Style="{StaticResource SampleHeaderTextStyle}"/>
+                <TextBlock Text="Enter OTP"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource SampleHeaderTextStyle}" />
                 <TextBlock x:Name="MobNoTB"
-                       Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
-                       Foreground="#FF08BFC2"
-                       HorizontalAlignment="Center"
-                       />
-            <TextBox x:Name="OTPTB"
-                     Width="120"
-                     PlaceholderText="6 digit"
-                     Grid.Row="3"
-                     Grid.Column="1"
-                     HorizontalContentAlignment="Right" />
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        Margin="0,20">
-            <Button x:Name="SubmitBtn"
-                    Content="Verify" />
-                <Button x:Name="ResendBtn"
-                        Margin="40,0,0,0"
-                        Content="Resend"
-                       />
-            </StackPanel>
+                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
+                           Foreground="#FF08BFC2"
+                           HorizontalAlignment="Center" />
+                <TextBox x:Name="OTPTB"
+                         Width="120"
+                         PlaceholderText="6 digit"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         HorizontalContentAlignment="Right" />
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,20">
+                    <Button x:Name="SubmitBtn"
+                            Content="Verify" />
+                    <Button x:Name="ResendBtn"
+                            Margin="40,0,0,0"
+                            Content="Resend" />
+                </StackPanel>
             </StackPanel>
             <TextBlock x:Name="InvalidOTPNotifyTB"
                        Visibility="Collapsed" />
-           
         </StackPanel>
     </Grid>
 </Page>

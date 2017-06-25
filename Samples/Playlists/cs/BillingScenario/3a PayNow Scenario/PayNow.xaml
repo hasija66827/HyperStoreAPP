@@ -9,7 +9,7 @@
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
             <RelativePanel HorizontalAlignment="Center">
@@ -55,7 +55,6 @@
                     <ColumnDefinition Width="180" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />

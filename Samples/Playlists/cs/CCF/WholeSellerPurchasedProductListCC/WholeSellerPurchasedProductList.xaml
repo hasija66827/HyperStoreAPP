@@ -29,7 +29,7 @@
                                     Margin="0,0,0,10"
                                     Orientation="Horizontal">
                             <TextBlock Text="Id"
-                                       Width="60"
+                                       Width="80"
                                        Margin="40,0,0,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -44,7 +44,7 @@
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Selling Price"
-                                       Width="80"
+                                       Width="120"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -70,7 +70,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <SymbolIcon Symbol="Accept" />
                                         <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"
-                                                   Width="60"
+                                                   Width="80"
                                                    Margin="10,0,0,0" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
                                                    Width="140"
@@ -78,11 +78,11 @@
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="PurchasePrice"
                                                    Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
-                                                   Width="80"
+                                                   Width="120"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="SellingPrice"
                                                    Text="{x:Bind SellingPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Width="80"
+                                                   Width="120"
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="Quantity"
                                                  Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"

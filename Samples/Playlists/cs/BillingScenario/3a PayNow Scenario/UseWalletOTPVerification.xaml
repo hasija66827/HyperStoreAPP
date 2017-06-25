@@ -5,7 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <UserControl.Resources>
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+    </UserControl.Resources>
+    <Grid>
         <StackPanel Orientation="Vertical">
             <RelativePanel HorizontalAlignment="Center">
                 <RadioButton x:Name="BillingRadBtn"
@@ -45,17 +48,56 @@
                             RelativePanel.Below="MakePaymentRadBtn"
                             RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
             </RelativePanel>
-            <TextBlock Text="Current Wallet Balance" />
-            <TextBlock Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance}" />
-            <TextBlock Text="To Deduct Wallet amount of Rs" />
-            <TextBlock Text="{x:Bind PageNavigationParameter.WalletBalanceToBeDeducted}" />
-            <TextBlock Text="Enter the verification code sent to " />
-            <TextBlock x:Name="MobNoTB" 
-                       Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"/>
-            <TextBox x:Name="OTPTB"
-                     PlaceholderText="6 digit OTP" />
-            <Button x:Name="SubmitBtn"
-                    Content="Submit" />
+            <Grid  Margin="10,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="180" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Wallet Balance"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Grid.Row="0" />
+                <TextBlock Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Grid.Row="0"
+                           Grid.Column="1" />
+                <TextBlock Text="To Deduct Wallet amount"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Grid.Row="1" />
+                <TextBlock Text="{x:Bind PageNavigationParameter.WalletBalanceToBeDeducted, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+            </Grid>
+            <StackPanel Orientation="Vertical"
+                        Margin="0,80">
+                <TextBlock Text="Enter OTP"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource SampleHeaderTextStyle}" />
+                <TextBlock x:Name="MobNoTB"
+                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
+                           Foreground="#FF08BFC2"
+                           HorizontalAlignment="Center" />
+                <TextBox x:Name="OTPTB"
+                         Width="120"
+                         PlaceholderText="6 digit"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         HorizontalContentAlignment="Right" />
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,20">
+                    <Button x:Name="SubmitBtn"
+                            Content="Verify" />
+                    <Button x:Name="ResendBtn"
+                            Margin="40,0,0,0"
+                            Content="Resend" />
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
