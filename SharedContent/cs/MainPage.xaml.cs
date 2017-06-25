@@ -29,7 +29,6 @@ namespace SDKTemplate
     public sealed partial class MainPage : Page
     {
         public static MainPage Current;
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -40,18 +39,22 @@ namespace SDKTemplate
             SampleTitle.Text = FEATURE_NAME;
             AddProductBtn.Click += AddProductBtn_Click;
         }
+
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
             NewsFeedFrame.Navigate(typeof(AddCustomerCC));
         }
+
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
         {
             NewsFeedFrame.Navigate(typeof(AddProductCC));
         }
+
         private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
         {
             NewsFeedFrame.Navigate(typeof(AddWholeSellerCC));
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
@@ -85,8 +88,7 @@ namespace SDKTemplate
             if (s != null)
             {
                 if (s.ClassType == typeof(ProductListCC))
-                {
-                   
+                { 
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(s.ClassType);
@@ -101,7 +103,7 @@ namespace SDKTemplate
                 }
                 else if (s.ClassType == typeof(ProductInStock))
                 {
-                    HeaderFrame.Navigate(typeof(ProductASBCC));
+                    HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
                     SearchBoxFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BlankPage));

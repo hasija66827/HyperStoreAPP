@@ -39,15 +39,16 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="150"
-                                      Width="Auto" />
-                    <ColumnDefinition MinWidth="75"
+                    <ColumnDefinition Width="130"
+                                      />
+                    <ColumnDefinition MinWidth="65"
                                       Width="Auto" />
                     <ColumnDefinition MinWidth="75"
                                       Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind Name}"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           Style="{ThemeResource BaseTextBlockStyle}" 
+                           TextWrapping="Wrap"/>
                 <TextBlock Text="{x:Bind TotalQuantity}"
                            Grid.Column="2"
                            Style="{ThemeResource BaseTextBlockStyle}" />
@@ -77,7 +78,8 @@
                         <DataTemplate x:DataType="common:PriceQuotedByWholeSellerViewModel">
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton GroupName="xxx"
-                                             IsChecked="{x:Bind IsSelected, Mode=TwoWay}" />
+                                             IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
+                                             Width="10"/>
                                 <TextBlock x:Name="WholeSellerName"
                                            Text="{x:Bind WholeSellerName, Mode=OneWay}"
                                            Width="100"
@@ -86,7 +88,6 @@
                                            Text="{x:Bind WholeSellerMobileNo, Mode=OneWay}"
                                            Width="100"
                                            Margin="0,0,10,0" />
-                              
                                 <TextBlock x:Name="OrderDate"
                                            Text="{x:Bind OrderDate, Mode=OneWay}"
                                            Width="100"
@@ -98,13 +99,13 @@
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-        </ListView>
-                
+                </ListView>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
     <Grid x:Name="LayoutRoot"
-          Loaded="LayoutRoot_Loaded">
+          Loaded="LayoutRoot_Loaded"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates"
                               CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
@@ -130,26 +131,28 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="360" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="550" />
-            <RowDefinition Height="150" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              MinWidth="300"
+                              MinWidth="270"
                               Width="Auto" />
             <ColumnDefinition x:Name="DetailColumn"
                               MinWidth="200"
-                              Width="1000" />
-            
+                              Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical"
-                    Grid.Row="0">
-            <TextBlock Text="Products"
-                       Style="{ThemeResource TitleTextBlockStyle}" />
-        </StackPanel>
+        <TextBlock Text="Products"
+                   Grid.Row="0"
+                   Margin="12,10,12,12"
+                   Style="{ThemeResource TitleTextBlockStyle}" />
+        <TextBlock Text="Wholesalers"
+                   Margin="52,10,12,12"
+                   Style="{ThemeResource TitleTextBlockStyle}" 
+                   Grid.Column="1"
+                   />
         <ListView x:Name="MasterListView"
-                  Grid.Row="2"
+                  Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"
                   ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                   IsItemClickEnabled="True"
@@ -163,30 +166,31 @@
             </ListView.ItemContainerStyle>
         </ListView>
         <ContentPresenter x:Name="DetailContentPresenter"
+                          Grid.Row="1"
                           Grid.Column="1"
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
                           Padding="24,0"
-                          BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"  
+                          BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
                           ContentTemplate="{StaticResource DetailContentTemplate}">
             <ContentPresenter.ContentTransitions>
                 <!-- Empty by default. See MasterListView_ItemClick -->
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-        <Button Content="Add To Cart" 
+        <Button Content="Add To Cart"
                 x:Name="AddToCartBtn"
                 Grid.Row="2"
                 Grid.Column="1"
                 Width="450"
-                Visibility="Collapsed"
-                />
+                Visibility="Visible" 
+                HorizontalAlignment="Center"/>
         <Button Content="Go To Cart"
                 x:Name="GoToCartBtn"
                 Grid.Row="2"
                 Grid.Column="1"
-                Width="450" 
-                Visibility="Collapsed"
-                />
+                Width="450"
+                HorizontalAlignment="Center"
+                Visibility="Collapsed" />
     </Grid>
 </Page>

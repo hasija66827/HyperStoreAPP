@@ -15,6 +15,11 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 namespace SDKTemplate
 {
+    enum ProductPage
+    {
+        AddTheProduct,
+        SearchTheProduct
+    }
     public delegate void OnAddProductClickedDelegate(object sender, ProductViewModel productViewModel);
     public delegate void SelectedProductChangedDelegate(ProductASBViewModel productASBViewModel);
     public class ProductASBViewModel : ProductViewModelBase
@@ -46,6 +51,24 @@ namespace SDKTemplate
             Current = this;
             this.InitializeComponent();
             AddToCartBtn.Click += AddToCartBtn_Click;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                var pageType = (ProductPage)e.Parameter;
+                if (pageType == ProductPage.SearchTheProduct)
+                {
+                    Header.Text = "Search by Product";
+                    AddToCartBtn.Visibility = Visibility.Collapsed;
+                }
+                else if(pageType==ProductPage.AddTheProduct)
+                {
+                    Header.Text = "Add the Product";
+                    AddToCartBtn.Visibility = Visibility.Visible;
+                }
+            }
         }
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
