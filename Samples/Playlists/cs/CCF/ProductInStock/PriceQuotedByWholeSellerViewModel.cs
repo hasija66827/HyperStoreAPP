@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Globalization.DateTimeFormatting;
 
 namespace SDKTemplate
 {
@@ -32,7 +33,14 @@ namespace SDKTemplate
         public float PurchasePrice { get { return this._purchasePrice; } }
         private DateTime _orderDate;
         public DateTime OrderDate { get { return this._orderDate; } }
-
+        public string FormattedOrderDate
+        {
+            get
+            {
+                var formatter = new DateTimeFormatter("day month hour minute");
+                return formatter.Format(this._orderDate);
+            }
+        }
         public PriceQuotedByWholeSellerViewModel()
         {
             PriceQuotedByWholeSellerViewModel.selectedWholeSeller = null;

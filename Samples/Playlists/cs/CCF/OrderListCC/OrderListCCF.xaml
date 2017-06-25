@@ -171,6 +171,14 @@
             <TextBlock x:Name="OrderCountTB"
                        MinWidth="100" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Margin="12,10,12,12"
+                    Grid.Column="1">
+            <TextBlock Text="Order Details"
+                       Style="{ThemeResource TitleTextBlockStyle}" 
+                       />
+        </StackPanel>
+        
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"
@@ -186,6 +194,7 @@
             </ListView.ItemContainerStyle>
         </ListView>
         <ContentPresenter x:Name="DetailContentPresenter"
+                          Grid.Row="1"
                           Grid.Column="1"
                           Grid.RowSpan="2"
                           BorderThickness="10,0,0,0"

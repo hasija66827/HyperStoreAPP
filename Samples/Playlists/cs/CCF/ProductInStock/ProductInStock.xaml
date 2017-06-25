@@ -39,16 +39,15 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130"
-                                      />
+                    <ColumnDefinition Width="130" />
                     <ColumnDefinition MinWidth="65"
                                       Width="Auto" />
                     <ColumnDefinition MinWidth="75"
                                       Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind Name}"
-                           Style="{ThemeResource BaseTextBlockStyle}" 
-                           TextWrapping="Wrap"/>
+                           Style="{ThemeResource BaseTextBlockStyle}"
+                           TextWrapping="Wrap" />
                 <TextBlock Text="{x:Bind TotalQuantity}"
                            Grid.Column="2"
                            Style="{ThemeResource BaseTextBlockStyle}" />
@@ -69,6 +68,25 @@
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="common:PriceQuotedByWholeSellerCollection">
             <StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="10,0,0,0">
+                    <TextBlock Text="Name"
+                               Width="100"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Margin="30,0,10,0"/>
+                    <TextBlock Text="Mobile No"
+                               Width="130"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Margin="0,0,10,0"/>
+                    <TextBlock Text="Last Order Date"
+                               Width="130"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Margin="0,0,10,0"/>
+                    <TextBlock Text="Purchase Price"
+                               Width="130"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Margin="0,0,10,0" />
+                </StackPanel>
                 <ListView x:Name="PriceListByWholeSellersListView"
                           ItemsSource="{x:Bind PriceQuotedByWholeSellers}"
                           Height="300"
@@ -79,23 +97,21 @@
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton GroupName="xxx"
                                              IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
-                                             Width="10"/>
-                                <TextBlock x:Name="WholeSellerName"
-                                           Text="{x:Bind WholeSellerName, Mode=OneWay}"
-                                           Width="100"
-                                           Margin="0,0,10,0" />
+                                             Content="{x:Bind WholeSellerName, Mode=OneWay}"
+                                             Width="130"
+                                             Margin="0,0,10,0" />
                                 <TextBlock x:Name="WholeSellerMobileNo"
                                            Text="{x:Bind WholeSellerMobileNo, Mode=OneWay}"
-                                           Width="100"
-                                           Margin="0,0,10,0" />
+                                           Width="130"
+                                           Margin="0,5,10,0" />
                                 <TextBlock x:Name="OrderDate"
-                                           Text="{x:Bind OrderDate, Mode=OneWay}"
-                                           Width="100"
-                                           Margin="0,0,10,0" />
+                                           Text="{x:Bind FormattedOrderDate, Mode=OneWay}"
+                                           Width="130"
+                                           Margin="0,5,10,0" />
                                 <TextBlock x:Name="PurchasePrice"
-                                           Text="{x:Bind PurchasePrice, Mode=OneWay}"
-                                           Width="100"
-                                           Margin="0,0,10,0" />
+                                           Text="{x:Bind PurchasePrice, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter}}"
+                                           Width="130"
+                                           Margin="0,5,10,0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -104,8 +120,7 @@
         </DataTemplate>
     </Page.Resources>
     <Grid x:Name="LayoutRoot"
-          Loaded="LayoutRoot_Loaded"
-          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+          Loaded="LayoutRoot_Loaded">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates"
                               CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
@@ -131,7 +146,7 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="360" />
+            <RowDefinition Height="350" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -148,9 +163,8 @@
                    Style="{ThemeResource TitleTextBlockStyle}" />
         <TextBlock Text="Wholesalers"
                    Margin="52,10,12,12"
-                   Style="{ThemeResource TitleTextBlockStyle}" 
-                   Grid.Column="1"
-                   />
+                   Style="{ThemeResource TitleTextBlockStyle}"
+                   Grid.Column="1" />
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"
@@ -183,8 +197,8 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 Width="450"
-                Visibility="Visible" 
-                HorizontalAlignment="Center"/>
+                Visibility="Visible"
+                HorizontalAlignment="Center" />
         <Button Content="Go To Cart"
                 x:Name="GoToCartBtn"
                 Grid.Row="2"
