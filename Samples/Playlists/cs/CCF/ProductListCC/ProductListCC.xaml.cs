@@ -39,7 +39,6 @@ namespace SDKTemplate
             this.ProductListViewModel.ProductListViewModelChangedEvent += ProductListViewModel_ProductListChangedEvent;
             Checkout.Click += Checkout_Click;
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
-           
         }
 
         private void ProductListViewModel_ProductListChangedEvent(object sender)

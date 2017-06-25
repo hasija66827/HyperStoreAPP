@@ -122,6 +122,21 @@ namespace SDKTemplate
             this._wholeSellerId = null;
         }
 
+        public ProductViewModelBase(ProductViewModelBase p)
+        {
+            this._productId = p.ProductId;
+            this._barCode = p.BarCode;
+            this._name = p.Name;
+            this._displayPrice = p.DisplayPrice;
+            this._discountAmount = p.DiscountAmount;
+            this._discountPer = p.DiscountPer;
+            this._sellingPrice = p.SellingPrice;
+            this._threshold = p.Threshold;
+            this._refillTime = p.RefillTime;
+            this._totalQuantity = p.TotalQuantity;
+            this._wholeSellerId = p.WholeSellerId;
+        }
+
         public ProductViewModelBase(Guid productId, string barCode, string name,
             float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity, Guid? wholeSellerId)
         {

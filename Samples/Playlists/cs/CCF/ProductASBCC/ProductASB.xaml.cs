@@ -29,12 +29,13 @@ namespace SDKTemplate
         //Constructor to convert parent obect to child object.
         public ProductASBViewModel(ProductViewModelBase parent)
         {
-            foreach (PropertyInfo prop in parent.GetType().GetProperties())
-            {
-                //If Property can be set then only we will set it.
-                if (prop.CanWrite)
-                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
-            }
+            if (parent != null)
+                foreach (PropertyInfo prop in parent.GetType().GetProperties())
+                {
+                    //If Property can be set then only we will set it.
+                    if (prop.CanWrite)
+                        GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
+                }
         }
     }
     /// <summary>
@@ -63,7 +64,7 @@ namespace SDKTemplate
                     Header.Text = "Search by Product";
                     AddToCartBtn.Visibility = Visibility.Collapsed;
                 }
-                else if(pageType==ProductPage.AddTheProduct)
+                else if (pageType == ProductPage.AddTheProduct)
                 {
                     Header.Text = "Add the Product";
                     AddToCartBtn.Visibility = Visibility.Visible;
@@ -116,7 +117,11 @@ namespace SDKTemplate
             {
                 var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
                 // Choose the first match, or clear the selection if there are no matches.
-                selectedProductInASB = new ProductASBViewModel(matchingProducts.FirstOrDefault());
+                var product = matchingProducts.FirstOrDefault();
+                if (product == null)
+                    selectedProductInASB = null;
+                else
+                    selectedProductInASB = new ProductASBViewModel(matchingProducts.FirstOrDefault());
             }
             SelectProduct(selectedProductInASB);
             Current.SelectedProductChangedEvent?.Invoke(selectedProductInASB);
@@ -144,6 +149,6 @@ namespace SDKTemplate
                 NoResults.Visibility = Visibility.Visible;
                 ProductDetails.Visibility = Visibility.Collapsed;
             }
-        } 
+        }
     }
 }
