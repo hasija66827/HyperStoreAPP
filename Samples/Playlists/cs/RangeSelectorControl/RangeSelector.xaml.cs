@@ -42,6 +42,8 @@ namespace UWP
             get { return (double)GetValue(RangeMaxProperty); }
             set { SetValue(RangeMaxProperty, value); }
         }
+        public delegate void DragCompletedDelegate(object sender);
+        public event DragCompletedDelegate DragCompletedEvent;
 
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(double), typeof(RangeSlider), new PropertyMetadata(0.0));
 
@@ -181,6 +183,7 @@ namespace UWP
             UpdateMinThumb(RangeMin);
             Canvas.SetZIndex(MinThumb, 10);
             Canvas.SetZIndex(MaxThumb, 0);
+            DragCompletedEvent?.Invoke(this);
         }
 
         private void MaxThumb_DragCompleted(object sender, DragCompletedEventArgs e)
@@ -188,6 +191,7 @@ namespace UWP
             UpdateMaxThumb(RangeMax);
             Canvas.SetZIndex(MinThumb, 0);
             Canvas.SetZIndex(MaxThumb, 10);
+            DragCompletedEvent?.Invoke(this);
         }
     }
 }

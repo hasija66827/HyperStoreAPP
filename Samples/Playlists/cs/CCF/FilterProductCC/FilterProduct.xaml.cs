@@ -26,43 +26,35 @@ namespace SDKTemplate
     {
         public event FilterProductCriteriaChangedDelegate FilterProductCriteriaChangedEvent;
         public static FilterProductCC Current;
-        private Int32 _totalFilterResults;
-        public Int32 TotalFilterResults
-        {
-            get { return this._totalFilterResults; }
-            set
-            {
-                this._totalFilterResults = value;
-                TotalFilterResultsTB.Text = this.TotalFilterResults.ToString() + " Items";
-            }
-        }
+       
         public FilterProductCC()
         {
             Current = this;
             this.InitializeComponent();
-            ApplyFilter.Click += ApplyFilter_Click;
-            ClearFilter.Click += ClearFilter_Click;
-        }
-        private void ClearFilter_Click(object sender, RoutedEventArgs e)
-        {
+            DiscountPerRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
+            QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
+            ShowDeficientItemsOnly.Click += ShowDeficientItemsOnly_Click;
         }
 
-        private void ApplyFilter_Click(object sender, RoutedEventArgs e)
+        private void ShowDeficientItemsOnly_Click(object sender, RoutedEventArgs e)
+        {
+            InvokeFilterProductCriteriaChangedEvent(sender);
+        }
+
+        private void InvokeFilterProductCriteriaChangedEvent(object sender)
         {
             try
             {
                 IRange<float> discounPerRange = new IRange<float>(Convert.ToSingle(DiscountPerLB.Text), Convert.ToSingle(DiscountPerUB.Text));
                 IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
                 FilterProductCriteria filterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
-                var a= FilterProductCriteriaChangedEvent?.Invoke(filterProductCriteria);
-                this.TotalFilterResults= a ?? 0;              
+                FilterProductCriteriaChangedEvent?.Invoke(filterProductCriteria);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Console.Write(e.ToString());
                 MainPage.Current.NotifyUser("Invalid Filter Criteria", NotifyType.ErrorMessage);
             }
         }
-
     }
 }

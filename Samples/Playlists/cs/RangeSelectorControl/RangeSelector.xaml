@@ -14,8 +14,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Thumb">
-                            <Ellipse Width="32"
-                                     Height="32"
+                            <Ellipse Width="28"
+                                     Height="28"
                                      Fill="White"
                                      RenderTransformOrigin="0.5 0.5"
                                      Stroke="Gray"
@@ -47,7 +47,7 @@
                        Canvas.Top="8"
                        Height="16"
                        Canvas.ZIndex="-1"
-                       Fill="#FF69A0CC" />
+                       Fill="#FF0DE8E8" />
         </Canvas>
     </Grid>
 </UserControl>
