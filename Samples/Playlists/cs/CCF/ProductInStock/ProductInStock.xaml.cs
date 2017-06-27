@@ -29,7 +29,6 @@ namespace SDKTemplate
         {
             Current = this;
             this.InitializeComponent();
-            ProductDataSource.RetrieveProductDataAsync();
             ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             UpdateMasterListViewItemSourceByFilterCriteria();

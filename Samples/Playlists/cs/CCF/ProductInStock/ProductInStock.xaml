@@ -37,8 +37,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130" />
-                    <ColumnDefinition MinWidth="65"
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition MinWidth="75"
                                       Width="Auto" />
                     <ColumnDefinition MinWidth="75"
                                       Width="Auto" />

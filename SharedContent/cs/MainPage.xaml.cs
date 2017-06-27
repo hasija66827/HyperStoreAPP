@@ -103,6 +103,7 @@ namespace SDKTemplate
                 }
                 else if (s.ClassType == typeof(ProductInStock))
                 {
+                    ProductDataSource.RetrieveProductDataAsync();
                     HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
                     SearchBoxFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
