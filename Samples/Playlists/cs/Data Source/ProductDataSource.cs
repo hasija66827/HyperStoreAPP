@@ -63,31 +63,51 @@ namespace SDKTemplate
                 .OrderByDescending(c => c.BarCode.StartsWith(query, StringComparison.CurrentCultureIgnoreCase))
                 .ThenByDescending(c => c.Name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
-        public static List<ProductViewModelBase> GetProductsById(Guid productId)
+
+        public static List<ProductViewModelBase> GetProductsById(Guid? productId)
         {
             return ProductDataSource._products
-                .Where(p => p.ProductId==productId).ToList();
+                .Where(p => p.ProductId == productId).ToList();
         }
-        public static List<ProductViewModelBase> GetProducts(FilterProductCriteria filterProductCriteria)
+
+        public static Int32 GetMaximumQuantity()
         {
-            if (filterProductCriteria.IncludeDeficientItemsOnly == true)
-            {
-                return ProductDataSource._products
-                .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
-                          p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
-                          p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
-                          p.TotalQuantity <= filterProductCriteria.QuantityRange.UB &&
-                          p.TotalQuantity <= p.Threshold).ToList();
-            }
+            return ProductDataSource._products.Max(p => p.TotalQuantity);
+        }
+        public static List<ProductViewModelBase> GetFilteredProducts(FilterProductCriteria filterProductCriteria, Guid? productId)
+        {
+            List<ProductViewModelBase> result;
+
+            if (productId == null)
+                result = ProductDataSource._products;
+            else
+                result = ProductDataSource.GetProductsById(productId);
+
+            if (filterProductCriteria == null)
+                return result;
             else
             {
-                return ProductDataSource._products
-                .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
-                          p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
-                          p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
-                          p.TotalQuantity <= filterProductCriteria.QuantityRange.UB).ToList();
+                if (filterProductCriteria.IncludeDeficientItemsOnly == true)
+                {
+                    return result
+                    .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
+                              p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
+                              p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
+                              p.TotalQuantity <= filterProductCriteria.QuantityRange.UB &&
+                              p.TotalQuantity <= p.Threshold).ToList();
+                }
+                else
+                {
+                    return result
+                    .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
+                              p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
+                              p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
+                              p.TotalQuantity <= filterProductCriteria.QuantityRange.UB).ToList();
+                }
             }
         }
+
+
         public static bool IsProductCodeExist(string barCode)
         {
             var products = ProductDataSource._products
@@ -127,13 +147,14 @@ namespace SDKTemplate
         {
             var items = new List<ProductListToPurchaseViewModel>();
             var db = new DatabaseModel.RetailerContext();
-            var groups= db.Products.GroupBy(p => p.WholeSellerId);
+            var groups = db.Products.GroupBy(p => p.WholeSellerId);
             foreach (var group in groups)
             {
                 var item = new ProductListToPurchaseViewModel();
-                item.WholeSellerViewModel= WholeSellerDataSource.GetWholeSellerById(group.Key);
+                item.WholeSellerViewModel = WholeSellerDataSource.GetWholeSellerById(group.Key);
                 if (item.WholeSellerViewModel == null)
-                { item.WholeSellerViewModel = new WholeSellerViewModel();
+                {
+                    item.WholeSellerViewModel = new WholeSellerViewModel();
                     item.WholeSellerViewModel.Name = "Not In Cart";
                 }
                 item.Products = group.Select(p => new ProductViewModelBase(p)).ToList();
@@ -162,11 +183,11 @@ namespace SDKTemplate
         {
             var db = new DatabaseModel.RetailerContext();
             var products = db.Products.Where(p => p.ProductId == productId).ToList();
-                var product = products.FirstOrDefault();
-                if (product == null)
-                    return false;
-                product.WholeSellerId = wholeSellerId;
-                db.Update(product);
+            var product = products.FirstOrDefault();
+            if (product == null)
+                return false;
+            product.WholeSellerId = wholeSellerId;
+            db.Update(product);
             db.SaveChanges();
             return true;
         }

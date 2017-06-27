@@ -18,9 +18,10 @@
                                            Minimum="0"
                                            RangeMax="100"
                                            RangeMin="0"
-                                           Width="200"
+                                           Width="300"
                                            RelativePanel.Below="DiscountPerTB" />
                 <StackPanel RelativePanel.Below="DiscountPerRangeSlider"
+                            RelativePanel.AlignHorizontalCenterWith="DiscountPerRangeSlider"
                             Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <TextBlock x:Name="DiscountPerLB"
@@ -45,15 +46,14 @@
                 <TextBlock x:Name="QuantityTB"
                            Text="Quantity" />
                 <customControl:RangeSlider x:Name="QuantityRangeSlider"
-                                           Maximum="200"
                                            Minimum="0"
-                                           RangeMax="200"
                                            RangeMin="0"
-                                           Width="300"
+                                           Width="330"
                                            RelativePanel.Below="QuantityTB" />
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
-                            RelativePanel.Below="QuantityRangeSlider">
+                            RelativePanel.Below="QuantityRangeSlider"
+                            RelativePanel.AlignHorizontalCenterWith="QuantityRangeSlider">
                     <TextBlock x:Name="QuantityLB"
                                HorizontalAlignment="Left"
                                FontSize="20"
@@ -72,9 +72,9 @@
                 </StackPanel>
             </RelativePanel>
             <CheckBox x:Name="ShowDeficientItemsOnly"
-                      Content="Show Deficient Items Only"
+                      Content="Deficient Items Only"
                       VerticalAlignment="Top"
-                      Margin="30,0,0,0" />
+                      Margin="20,0,0,0" />
         </StackPanel>
     </Grid>
 </Page>

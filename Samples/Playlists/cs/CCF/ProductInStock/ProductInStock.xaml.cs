@@ -29,48 +29,30 @@ namespace SDKTemplate
         {
             Current = this;
             this.InitializeComponent();
-            ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByProductASB;
-            FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSource;
+            ProductDataSource.RetrieveProductDataAsync();
+            ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            UpdateMasterListViewItemSourceByFilterCriteria();
+            AddToCartBtn.Click += AddToCartBtn_Click;
+            GoToCartBtn.Click += GoToCartBtn_Click;
         }
+
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
-        private Int32 UpdateMasterListViewItemSource(FilterProductCriteria filterProductCriteria = null)
+        private void UpdateMasterListViewItemSourceByFilterCriteria()
         {
-            Int32 totalResults = 0;
-            //If filterProductCriteria is null then return whole list.
-            if (filterProductCriteria == null)
-            {
-                MasterListView.ItemsSource = ProductDataSource.Products;
-                totalResults = ProductDataSource.Products.Count;
-            }
-            else
-            {
-                var items = ProductDataSource.GetProducts(filterProductCriteria);
-                MasterListView.ItemsSource = items;
-                totalResults = items.Count;
-            }
-            return totalResults;
+            var selectedProduct = ProductASBCC.Current.SelectedProductInASB;
+            var productId = selectedProduct?.ProductId;
+            var filterProductCriteria = FilterProductCC.Current.FilterProductCriteria;
+            var items = ProductDataSource.GetFilteredProducts(filterProductCriteria, productId);
+            MasterListView.ItemsSource = items;
+            var totalResults = items.Count;
+            ProductCountTB.Text = "(" + totalResults.ToString() + "/" + ProductDataSource.Products.Count.ToString() + ")";
         }
-        private void UpdateMasterListViewItemSourceByProductASB(ProductASBViewModel productASBViewModel)
-        {
-            List<ProductViewModelBase> resultList;
-            if (productASBViewModel == null)
-                resultList = ProductDataSource.Products;
-            else
-                resultList = ProductDataSource.GetProductsById(productASBViewModel.ProductId);
-            MasterListView.ItemsSource = resultList;
-        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            /*#perf: Highly Database intensive operation and is called eevery time when we navigate to this page*/
-            //#Optimization can be, if no customer has been recently added, then don't refetch again. Or with database updation we can update our all the data source as well, i.e our cache.
-            // Hence we can call this function one time only in the constructor, instead of calling it everytime on page navigation. 
-            //Called every time on navigation
-            ProductDataSource.RetrieveProductDataAsync();
-            MasterListView.ItemsSource = ProductDataSource.Products;
             UpdateForVisualState(AdaptiveStates.CurrentState);
-            AddToCartBtn.Click += AddToCartBtn_Click;
-            GoToCartBtn.Click += GoToCartBtn_Click;
             // Don't play a content transition for first item load.
             // Sometimes, this content will be animated as part of the page transition.
             DisableContentTransitions();

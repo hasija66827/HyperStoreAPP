@@ -21,7 +21,7 @@ namespace SDKTemplate
         SearchTheProduct
     }
     public delegate void OnAddProductClickedDelegate(object sender, ProductViewModel productViewModel);
-    public delegate void SelectedProductChangedDelegate(ProductASBViewModel productASBViewModel);
+    public delegate void SelectedProductChangedDelegate();
     public class ProductASBViewModel : ProductViewModelBase
     {
         // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
@@ -46,7 +46,7 @@ namespace SDKTemplate
         public static ProductASBCC Current;
         public event OnAddProductClickedDelegate OnAddProductClickedEvent;
         public event SelectedProductChangedDelegate SelectedProductChangedEvent;
-        private static ProductASBViewModel _selectedProductInASB;
+        public ProductASBViewModel SelectedProductInASB;
         public ProductASBCC()
         {
             Current = this;
@@ -74,7 +74,7 @@ namespace SDKTemplate
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            Current.OnAddProductClickedEvent?.Invoke(this, new ProductViewModel(_selectedProductInASB));
+            Current.OnAddProductClickedEvent?.Invoke(this, new ProductViewModel(this.SelectedProductInASB));
             this.ProductASB.Text = "";
         }
 
@@ -113,6 +113,10 @@ namespace SDKTemplate
             {
                 selectedProductInASB = (ProductASBViewModel)args.ChosenSuggestion;
             }
+            else if (args.QueryText == "")
+            {
+                selectedProductInASB = null;
+            }
             else
             {
                 var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
@@ -124,7 +128,7 @@ namespace SDKTemplate
                     selectedProductInASB = new ProductASBViewModel(matchingProducts.FirstOrDefault());
             }
             SelectProduct(selectedProductInASB);
-            Current.SelectedProductChangedEvent?.Invoke(selectedProductInASB);
+            Current.SelectedProductChangedEvent?.Invoke();
         }
         /// <summary>
         /// Display details of the specified Product.
@@ -132,9 +136,9 @@ namespace SDKTemplate
         /// <param name="Product"></param>
         private void SelectProduct(ProductASBViewModel product)
         {
+            this.SelectedProductInASB = product;
             if (product != null)
-            {
-                _selectedProductInASB = product;
+            { 
                 NoResults.Visibility = Visibility.Collapsed;
                 ProductDetails.Visibility = Visibility.Visible;
                 ProductId.Text = product.BarCode;

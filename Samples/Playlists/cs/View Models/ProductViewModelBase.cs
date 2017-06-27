@@ -63,7 +63,7 @@ namespace SDKTemplate
             set
             {
                 this._discountPer = value;
-                this._discountAmount = this._displayPrice * (100 - this._discountPer) * 100;
+                this._discountAmount = this._displayPrice * (100 - this._discountPer) / 100;
             }
         }
 

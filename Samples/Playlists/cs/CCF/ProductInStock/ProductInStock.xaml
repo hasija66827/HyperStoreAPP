@@ -155,10 +155,14 @@
                               MinWidth="200"
                               Width="*" />
         </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Margin="12,10,12,12">
         <TextBlock Text="Products"
                    Grid.Row="0"
-                   Margin="12,10,12,12"
                    Style="{ThemeResource TitleTextBlockStyle}" />
+        <TextBlock x:Name="ProductCountTB"
+                   MinWidth="100" />
+        </StackPanel>
         <TextBlock Text="Wholesalers"
                    Margin="52,10,12,12"
                    Style="{ThemeResource TitleTextBlockStyle}"

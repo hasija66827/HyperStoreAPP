@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate Int32 FilterProductCriteriaChangedDelegate(FilterProductCriteria filterProuductCriteria);
+    public delegate void FilterProductCriteriaChangedDelegate();
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -26,7 +26,7 @@ namespace SDKTemplate
     {
         public event FilterProductCriteriaChangedDelegate FilterProductCriteriaChangedEvent;
         public static FilterProductCC Current;
-       
+        public FilterProductCriteria FilterProductCriteria;
         public FilterProductCC()
         {
             Current = this;
@@ -34,6 +34,8 @@ namespace SDKTemplate
             DiscountPerRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             ShowDeficientItemsOnly.Click += ShowDeficientItemsOnly_Click;
+            QuantityRangeSlider.Maximum = ProductDataSource.GetMaximumQuantity();
+            QuantityRangeSlider.RangeMax = QuantityRangeSlider.Maximum;
         }
 
         private void ShowDeficientItemsOnly_Click(object sender, RoutedEventArgs e)
@@ -47,8 +49,8 @@ namespace SDKTemplate
             {
                 IRange<float> discounPerRange = new IRange<float>(Convert.ToSingle(DiscountPerLB.Text), Convert.ToSingle(DiscountPerUB.Text));
                 IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
-                FilterProductCriteria filterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
-                FilterProductCriteriaChangedEvent?.Invoke(filterProductCriteria);
+                this.FilterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
+                FilterProductCriteriaChangedEvent?.Invoke();
             }
             catch (Exception e)
             {
