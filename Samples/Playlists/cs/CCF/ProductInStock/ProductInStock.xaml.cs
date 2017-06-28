@@ -21,8 +21,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
+    public delegate void ProductStockSelectionChangedDelegate(ProductViewModelBase productViewModelBase);
     public sealed partial class ProductInStock : Page
     {
+        public event ProductStockSelectionChangedDelegate ProductStockSelectionChangedEvent;
         public PriceQuotedByWholeSellerCollection PriceQuotedByWholeSellerCollection { get; set; }
         public static ProductInStock Current;
         public ProductInStock()
@@ -132,6 +134,8 @@ namespace SDKTemplate
             this.PriceQuotedByWholeSellerCollection =
                 new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
             DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
+
+            this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }

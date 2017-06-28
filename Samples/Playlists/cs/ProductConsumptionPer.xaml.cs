@@ -46,7 +46,16 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this.InitiailizeRecord();
-            LoadChartContents();
+            ProductInStock.Current.ProductStockSelectionChangedEvent += Current_ProductStockSelectionChangedEvent;
+            
+        }
+
+        private void Current_ProductStockSelectionChangedEvent(ProductViewModelBase productViewModelBase)
+        {
+            //TODO: make an ODATA CAll, currently chart is not rerendering
+            Random rand = new Random();
+            this.Records.ForEach(record => record.Quantity = rand.Next(0, 200));
+            (ColumnChart.Series[0] as ColumnSeries).ItemsSource = Records;
         }
 
         private void InitiailizeRecord()
@@ -55,14 +64,6 @@ namespace SDKTemplate
             string[] days = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
             foreach(var day in days)
                 this.Records.Add(new Record(day, 0));   
-        }
-
-        private void LoadChartContents()
-        {
-            this.Records[0].Quantity = 10;
-            this.Records[3].Quantity = 50;
-
-            (ColumnChart.Series[0] as ColumnSeries).ItemsSource = Records;
         }
     }
 }
