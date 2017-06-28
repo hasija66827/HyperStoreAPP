@@ -125,6 +125,9 @@
     <Compile Include="CCF\OrderListCC\OrderListCCF.xaml.cs">
       <DependentUpon>OrderListCCF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductConsumptionPer.xaml.cs">
+      <DependentUpon>ProductConsumptionPer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
@@ -308,6 +311,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\OrderListCC\OrderListCCF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductConsumptionPer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

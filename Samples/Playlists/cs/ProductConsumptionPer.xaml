@@ -1,0 +1,21 @@
+﻿<Page x:Class="SDKTemplate.ProductConsumptionPer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+      mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Charting:Chart x:Name="ColumnChart"
+                        HorizontalAlignment="Left"
+                        Margin="0"
+                        Width="350">
+            <Charting:ColumnSeries Margin="0"
+                                   IndependentValuePath="Day"
+                                   DependentValuePath="Quantity"
+                                   CharacterSpacing="4"
+                                   IsSelectionEnabled="True" />
+        </Charting:Chart>
+    </Grid>
+</Page>

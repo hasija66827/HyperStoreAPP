@@ -2,7 +2,9 @@
   "dependencies": {
     "Microsoft.EntityFrameworkCore.Sqlite": "1.1.1",
     "Microsoft.EntityFrameworkCore.Tools": "1.1.0",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "WinRTXamlToolkit.Controls.DataVisualization.UWP": "2.3.0",
+    "Xam.Plugins.Forms.ProgressRing": "0.1.1"
   },
   "frameworks": {
     "uap10.0": {}

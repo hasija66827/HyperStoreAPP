@@ -107,7 +107,7 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
                     SearchBoxFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
-                    SummaryFrame.Navigate(typeof(BlankPage));
+                    SummaryFrame.Navigate(typeof(ProductConsumptionPer));
                 }
                 else if (s.ClassType == typeof(WholeSellerPurchasedProductListCC))
                 {
