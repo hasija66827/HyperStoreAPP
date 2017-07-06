@@ -10,86 +10,71 @@
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <RelativePanel Margin="10,0,0,0">
-        <TextBlock x:Name="Header"
-                   Text="Product"
-                   Margin="0,0,0,10"
-                   Style="{StaticResource SampleHeaderTextStyle}" />
-        <StackPanel 
-            RelativePanel.Below="Header"
-            Orientation="Vertical"
+    <Grid Margin="10,20,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="140" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical"
                     Grid.Column="0">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Product Code"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="ProductCodeTB"
-                         Text="{x:Bind AddProductViewModel.BarCode, Mode=TwoWay}"
-                         ToolTipService.ToolTip="The code by which you can search for the product"
-                         PlaceholderText="Four digit product code"
-                          />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Product Name"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="ProductNameTB"
-                         Text="{x:Bind AddProductViewModel.Name, Mode=TwoWay}"
-                         ToolTipService.ToolTip="Product Name for e.g. Maggi"
-                         PlaceholderText=""
-                         />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Display Price(INR)"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="DisplayPrice"
-                         Text="{x:Bind AddProductViewModel.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="Price of the product to be sold to the Customer" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Discount(%)"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="DiscountPer"
-                         Text="{x:Bind AddProductViewModel.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="Discount % on Display Price, given to the Customer" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Discount Amount(INR)"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="DiscountAmount"
-                         Text="{x:Bind AddProductViewModel.DiscountAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="Discount in INR on the Display Price, given to the Customer" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Selling Price(INR)"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind AddProductViewModel.SellingPrice, Mode=OneWay}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Threshold"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="Threshold"
-                         Text="{x:Bind AddProductViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="The number of units of product below which you want get notified" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Refill Time"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="RefillTime"
-                         Text="{x:Bind AddProductViewModel.RefillTime,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Save"
-                        x:Name="SaveBtn"
-                        Click="SaveBtn_Click" />
-                <Button x:Name="CancelBtn"
-                        Content="Cancel"
-                        Click="CancelBtn_Click" />
-            </StackPanel>
+            <TextBlock Text="Code"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Name"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Display Price"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Discount(%)"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Discount Amt"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Selling Price"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Threshold"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Refill Time"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <Button Content="Save"
+                    x:Name="SaveBtn"
+                    Click="SaveBtn_Click" />
         </StackPanel>
-    </RelativePanel>
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="1">
+            <TextBox x:Name="ProductCodeTB"
+                     Text="{x:Bind AddProductViewModel.BarCode, Mode=TwoWay}"
+                     ToolTipService.ToolTip="The code by which you can search for the product"
+                     PlaceholderText="Four digit product code" 
+                     LostFocus="ProductCodeTB_LostFocus"/>
+            <TextBox x:Name="ProductNameTB"
+                     Text="{x:Bind AddProductViewModel.Name, Mode=TwoWay}"
+                     ToolTipService.ToolTip="Product Name for e.g. Maggi"
+                     PlaceholderText="" />
+            <TextBox x:Name="DisplayPrice"
+                     Text="{x:Bind AddProductViewModel.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
+                     PlaceholderText=""
+                     ToolTipService.ToolTip="Price of the product to be sold to the Customer" />
+            <TextBox x:Name="DiscountPer"
+                     Text="{x:Bind AddProductViewModel.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
+                     PlaceholderText=""
+                     ToolTipService.ToolTip="Discount % on Display Price, given to the Customer" />
+            <TextBox x:Name="DiscountAmount"
+                     Text="{x:Bind AddProductViewModel.DiscountAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     PlaceholderText=""
+                     ToolTipService.ToolTip="Discount in INR on the Display Price, given to the Customer" />
+            <TextBlock Text="{x:Bind AddProductViewModel.SellingPrice, Mode=OneWay}" />
+            <TextBox x:Name="Threshold"
+                     Text="{x:Bind AddProductViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                     PlaceholderText=""
+                     ToolTipService.ToolTip="The number of units of product below which you want get notified" />
+            <TextBox x:Name="RefillTime"
+                     Text="{x:Bind AddProductViewModel.RefillTime,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                     PlaceholderText=""
+                     ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller" />
+            <Button x:Name="CancelBtn"
+                    Content="Cancel"
+                    Click="CancelBtn_Click" />
+        </StackPanel>
+    </Grid>
 </Page>

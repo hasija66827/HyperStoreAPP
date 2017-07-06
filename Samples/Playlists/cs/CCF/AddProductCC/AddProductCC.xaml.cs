@@ -55,16 +55,21 @@ namespace SDKTemplate
                     )
                 {
                     if (ProductDataSource.AddProduct(AddProductViewModel) == true)
+                    {
                         MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
+                        this.Frame.Navigate(typeof(BlankPage));
+                    }
                 }
             }
-            else if(this._Mode==Mode.Update)
+            else if (this._Mode == Mode.Update)
             {
-               
-                    if (ProductDataSource.UpdateProductDetails(this.AddProductViewModel) == true)
-                        MainPage.Current.NotifyUser("The Product was updated scuccesfully", NotifyType.StatusMessage);
+
+                if (ProductDataSource.UpdateProductDetails(this.AddProductViewModel) == true)
+                {
+                    MainPage.Current.NotifyUser("The Product was updated scuccesfully", NotifyType.StatusMessage);
+                    this.Frame.Navigate(typeof(BlankPage));
+                }
             }
-            this.Frame.Navigate(typeof(BlankPage));
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
