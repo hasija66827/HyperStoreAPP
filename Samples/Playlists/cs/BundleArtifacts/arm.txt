@@ -1,0 +1,2 @@
+MainPackage=E:\Hasija66827\Windows-universal-samples\Samples\Playlists\cs\bin\ARM\Release\Playlists_1.0.0.0_ARM.appx
+SymbolPackage=E:\Hasija66827\Windows-universal-samples\Samples\Playlists\cs\AppPackages\Playlists_1.0.0.0_Test\Playlists_1.0.0.0_ARM.appxsym

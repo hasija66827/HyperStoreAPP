@@ -74,6 +74,7 @@ namespace SDKTemplate
         {
             return ProductDataSource._products.Max(p => p.TotalQuantity);
         }
+
         public static List<ProductViewModelBase> GetFilteredProducts(FilterProductCriteria filterProductCriteria, Guid? productId)
         {
             List<ProductViewModelBase> result;
@@ -107,7 +108,6 @@ namespace SDKTemplate
             }
         }
 
-
         public static bool IsProductCodeExist(string barCode)
         {
             var products = ProductDataSource._products
@@ -116,6 +116,7 @@ namespace SDKTemplate
                 return false;
             return true;
         }
+
         public static bool IsProductNameExist(string name)
         {
             var products = ProductDataSource._products
@@ -124,6 +125,7 @@ namespace SDKTemplate
                 return false;
             return true;
         }
+
         public static bool AddProduct(AddProductViewModel productViewModelBase)
         {
             var db = new DatabaseModel.RetailerContext();
@@ -142,6 +144,28 @@ namespace SDKTemplate
             _products.Add(productViewModelBase);
             return true;
         }
+
+
+        public static bool UpdateProductDetails(AddProductViewModel addProductViewModel)
+        {
+            var db = new DatabaseModel.RetailerContext();
+            var products = db.Products.Where(p => p.ProductId == addProductViewModel.ProductId).ToList();
+            var product = products.FirstOrDefault();
+            if (product == null)
+                return false;
+            product.Threshold = addProductViewModel.Threshold;
+            product.RefillTime = addProductViewModel.RefillTime;
+            product.DiscountPer = addProductViewModel.DiscountPer;
+            product.DisplayPrice = addProductViewModel.DisplayPrice;
+            db.Update(product);
+            db.SaveChanges();
+            ProductDataSource._products.Add(new ProductViewModelBase(product));
+
+            var prd =_products.Where(p => p.ProductId == addProductViewModel.ProductId).FirstOrDefault();
+            ProductDataSource._products.Remove(prd);
+            return true;
+        }
+
 
         public static List<ProductListToPurchaseViewModel> RetreiveProductListToPurchaseByRespectiveWholeSellers()
         {

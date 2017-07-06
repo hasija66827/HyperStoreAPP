@@ -134,8 +134,10 @@ namespace SDKTemplate
             this.PriceQuotedByWholeSellerCollection =
                 new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
             DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
-
+            MainPage.Current.NavigateNewsFeedFrame(typeof(ProductDetailsCC), clickedItem);
+            
             this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
+            
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }

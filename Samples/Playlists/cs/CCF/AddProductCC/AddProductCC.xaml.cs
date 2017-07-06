@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 namespace SDKTemplate
 {
+    public enum Mode
+    {
+        Create,
+        Update
+    }
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddProductCC : Page
+    public sealed partial class ProductDetailsCC : Page
     {
-        public AddProductViewModel addProductViewModelBase;
-        public AddProductCC()
+        public AddProductViewModel AddProductViewModel;
+        private Mode _Mode { get; set; }
+        public ProductDetailsCC()
         {
-            this.addProductViewModelBase = new AddProductViewModel();
             this.InitializeComponent();
         }
 
@@ -32,17 +26,43 @@ namespace SDKTemplate
         {
             Utility.CheckIfValidProductCode(ProductCodeTB.Text);
         }
-        private void ProductNameTB_LostFocus(object sender, RoutedEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Utility.CheckIfUniqueProductName(ProductNameTB.Text);
+            base.OnNavigatedTo(e);
+            var product = (ProductViewModelBase)e.Parameter;
+            if (product == null)
+            {
+                this.AddProductViewModel = new AddProductViewModel();
+                this._Mode = Mode.Create;
+            }
+            else
+            {
+                this.AddProductViewModel = new AddProductViewModel(product);
+                ProductCodeTB.IsReadOnly = true;
+                ProductNameTB.IsReadOnly = true;
+                this._Mode = Mode.Update;
+            }
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text) && Utility.CheckIfUniqueProductName(ProductNameTB.Text))
+            if (this._Mode == Mode.Create)
             {
-                if (ProductDataSource.AddProduct(addProductViewModelBase) == true)
-                    MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
+                if (Utility.CheckIfValidProductCode(ProductCodeTB.Text)
+                    && Utility.CheckIfUniqueProductName(ProductNameTB.Text)
+                    && Utility.CheckIfUniqueProductCode(ProductCodeTB.Text)
+                    )
+                {
+                    if (ProductDataSource.AddProduct(AddProductViewModel) == true)
+                        MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
+                }
+            }
+            else if(this._Mode==Mode.Update)
+            {
+               
+                    if (ProductDataSource.UpdateProductDetails(this.AddProductViewModel) == true)
+                        MainPage.Current.NotifyUser("The Product was updated scuccesfully", NotifyType.StatusMessage);
             }
             this.Frame.Navigate(typeof(BlankPage));
         }

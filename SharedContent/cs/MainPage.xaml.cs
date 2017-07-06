@@ -39,7 +39,10 @@ namespace SDKTemplate
             SampleTitle.Text = FEATURE_NAME;
             AddProductBtn.Click += AddProductBtn_Click;
         }
-
+        public void NavigateNewsFeedFrame(Type sourcePageType, object parameter)
+        {
+            NewsFeedFrame.Navigate(sourcePageType, parameter);
+        }
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
             NewsFeedFrame.Navigate(typeof(AddCustomerCC));
@@ -47,7 +50,7 @@ namespace SDKTemplate
 
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewsFeedFrame.Navigate(typeof(AddProductCC));
+            NewsFeedFrame.Navigate(typeof(ProductDetailsCC), null);
         }
 
         private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)

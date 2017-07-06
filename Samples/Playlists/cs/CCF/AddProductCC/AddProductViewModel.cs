@@ -13,6 +13,18 @@ namespace SDKTemplate
     we can notify that other dependent propoerty of object had been changed.*/
     public class AddProductViewModel : ProductViewModelBase, INotifyPropertyChanged
     {
+        public AddProductViewModel() { }
+        public AddProductViewModel(ProductViewModelBase product)
+        {
+            this.BarCode = product.BarCode;
+            this.ProductId = product.ProductId;
+            this.DisplayPrice = product.DisplayPrice;
+            this.DiscountAmount = product.DiscountAmount;
+            this.Name = product.Name;
+            this.RefillTime = product.RefillTime;
+            this.Threshold = product.Threshold;
+        }
+
         public override float DisplayPrice
         {
             get => base.DisplayPrice;
@@ -28,6 +40,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(DiscountPer));
             }
         }
+
         public override float DiscountPer
         {
             get { return Utility.RoundInt32(this._discountPer); }
@@ -44,6 +57,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(DiscountPer));
             }
         }
+
         public override float DiscountAmount
         {
             get { return this._discountAmount; }
@@ -58,13 +72,14 @@ namespace SDKTemplate
                     this._discountAmount = 0;
                     MainPage.Current.NotifyUser("Discount Amount cannot be greater than the Display Price, resetting Discount Amount to zero", NotifyType.ErrorMessage);
                 }
-                this._discountPer = (this._discountAmount / this._displayPrice) * 100;
+                this._discountPer = this._displayPrice != 0 ? (this._discountAmount / this._displayPrice) * 100 : 0;
                 this._sellingPrice = this._displayPrice - this._discountAmount;
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SellingPrice));
                 this.OnPropertyChanged(nameof(DiscountPer));
             }
         }
+
         public override int RefillTime
         {
             get => base.RefillTime;

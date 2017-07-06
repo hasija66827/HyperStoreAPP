@@ -283,6 +283,17 @@ namespace SDKTemplate
             }
             return true;
         }
+
+        public static bool CheckIfUniqueProductCode(string productCode)
+        {
+            if (ProductDataSource.IsProductCodeExist(productCode))
+            {
+                MainPage.Current.NotifyUser("The product code already exist", NotifyType.ErrorMessage);
+                return false;
+            }
+            return true;
+        }
+
         public static bool CheckIfValidProductCode(string productCode)
         {
             if (productCode == "")
@@ -306,11 +317,7 @@ namespace SDKTemplate
                 return false;
             }
 
-            if (ProductDataSource.IsProductCodeExist(productCode))
-            {
-                MainPage.Current.NotifyUser("The product code already exist", NotifyType.ErrorMessage);
-                return false;
-            }
+     
             return true;
         }
 
