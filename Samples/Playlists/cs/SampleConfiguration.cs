@@ -21,84 +21,19 @@ namespace SDKTemplate
 {
     public partial class MainPage : Page
     {
-        public const string FEATURE_NAME = "Playlists";
+        public const string FEATURE_NAME = "HyperS";
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title = "Customer Billing", ClassType = typeof(ProductListCC) }, 
-            new Scenario() { Title = "Customers", ClassType = typeof(CustomersCCF) }, 
-            new Scenario() { Title = "Customer Orders", ClassType = typeof(OrderListCCF) }, 
-            new Scenario() { Title = "Wholeseller Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) }, 
-            new Scenario() { Title = "Products", ClassType = typeof(ProductInStock) } 
+            new Scenario() { Title = "Customer Billing", ClassType = typeof(ProductListCC) },
+            new Scenario() { Title = "Customers", ClassType = typeof(CustomersCCF) },
+            new Scenario() { Title = "Customer Orders", ClassType = typeof(OrderListCCF) },
+            new Scenario() { Title = "Products", ClassType = typeof(ProductInStock) },
+            new Scenario() { Title = "WholeSaller Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) },
+            new Scenario() { Title = "WholeSaller Order", ClassType = typeof(WholeSalerOrderCC) },
+            new Scenario() { Title = "Refer & Earn", ClassType = typeof(BlankPage) }
         };
-
-        /// <summary> 
-        /// Audio file extensions. 
-        /// </summary> 
-        public static readonly string[] audioExtensions = new string[] { ".wma", ".mp3", ".mp2", ".aac", ".adt", ".adts", ".m4a" }; 
- 
-        /// <summary> 
-        /// Playlist file extensions. 
-        /// </summary> 
-        public static readonly string[] playlistExtensions = new string[] { ".m3u", ".wpl", ".zpl" }; 
- 
-        /// <summary> 
-        /// Creates a FileOpenPicker for the specified extensions.  
-        /// </summary> 
-        /// <param name="extensions">File extensions to pick.</param> 
-        /// <returns>FileOpenPicker instance.</returns> 
-        public static FileOpenPicker CreateFilePicker(string[] extensions) 
-        { 
-            FileOpenPicker picker = new FileOpenPicker(); 
-            picker.SuggestedStartLocation = PickerLocationId.MusicLibrary; 
- 
-            foreach (string extension in extensions) 
-            { 
-                picker.FileTypeFilter.Add(extension); 
-            } 
- 
-            return picker; 
-        } 
- 
-        /// <summary> 
-        /// Picks and loads a playlist. 
-        /// </summary> 
-        async public Task<Playlist> PickPlaylistAsync() 
-        { 
-            FileOpenPicker picker = CreateFilePicker(MainPage.playlistExtensions); 
-            StorageFile file = await picker.PickSingleFileAsync(); 
- 
-            if (file == null)
-            {
-                NotifyUser("No playlist picked.", NotifyType.ErrorMessage);
-                return null;
-            }
-
-            try
-            {
-                return await Playlist.LoadAsync(file);
-            }
-            catch (Exception ex)
-            {
-                NotifyUser(ex.Message, NotifyType.ErrorMessage);
-                return null;
-            }
-        }
-
-        async public Task<bool> TrySavePlaylistAsync(Playlist playlist)
-        {
-            try
-            {
-                await playlist.SaveAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                NotifyUser(ex.Message, NotifyType.ErrorMessage);
-                return false;
-            }
-        }
-    } 
+    }
 
     public class Scenario
     {

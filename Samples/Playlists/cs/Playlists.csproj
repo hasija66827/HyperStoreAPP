@@ -136,6 +136,9 @@
       <DependentUpon>ProductConsumptionPer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
+    <Compile Include="WholeSalerOrder.xaml.cs">
+      <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
@@ -201,12 +204,6 @@
     </Compile>
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
-    <Compile Include="Scenario2_Display.xaml.cs">
-      <DependentUpon>Scenario2_Display.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scenario4_Remove.xaml.cs">
-      <DependentUpon>Scenario4_Remove.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CCF\WholeSellerASBCC\WholeSellerASBCC.xaml.cs">
       <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
@@ -240,16 +237,6 @@
     </Page>
     <Page Include="..\..\..\SharedContent\xaml\Styles.xaml">
       <Link>Styles\Styles.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\shared\Scenario2_Display.xaml">
-      <Link>Scenario2_Display.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\shared\Scenario4_Remove.xaml">
-      <Link>Scenario4_Remove.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -354,6 +341,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchasedCheckoutCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WholeSalerOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
