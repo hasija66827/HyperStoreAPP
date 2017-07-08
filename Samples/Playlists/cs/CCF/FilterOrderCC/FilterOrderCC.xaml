@@ -8,11 +8,11 @@
     <UserControl.Resources>
         <local:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
     </UserControl.Resources>
-    <Grid>
+    <Grid >
         <RelativePanel Margin="10,0,0,0">
             <TextBlock x:Name="Header"
                        Text="Filter the Orders"
-                       Margin="0,0,0,10"
+                       Margin="0,0,0,20"
                        Style="{StaticResource SampleHeaderTextStyle}" />
             <TextBlock Text="Start Date"
                        RelativePanel.Below="Header"

@@ -77,6 +77,7 @@ namespace DatabaseModel
             return w;
         }
     }
+
     public class WholeSellerOrder
     {
         public Guid WholeSellerOrderId { get; set; }
@@ -111,12 +112,12 @@ namespace DatabaseModel
         }
         public WholeSellerOrder() { }
     }
+
     public class WholeSellerOrderProduct
     {
         public Guid WholeSellerOrderProductId { get; set; }
         public int QuantityPurchased { get; set; }
         public float PurchasePrice { get; set; }
-
 
         [Required]
         public Nullable<Guid> WholeSellerOrderId;
@@ -135,6 +136,7 @@ namespace DatabaseModel
             this.PurchasePrice = purchasePrice;
         }
     }
+
     public class Product
     {
         public Guid ProductId { get; set; }

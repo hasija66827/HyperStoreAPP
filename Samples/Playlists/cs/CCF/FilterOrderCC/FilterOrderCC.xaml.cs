@@ -31,11 +31,11 @@ namespace SDKTemplate
             Current = this;
             this.SelectedDateRange = new FilterOrderViewModel();
             this.InitializeComponent();
-            startDateCP.Closed += EndDateCP_Closed;
-            endDateCP.Closed += EndDateCP_Closed;
+            startDateCP.Closed += DateCP_Closed;
+            endDateCP.Closed += DateCP_Closed;
         }
    
-        private void EndDateCP_Closed(object sender, object e)
+        private void DateCP_Closed(object sender, object e)
         {
             DateChangedEvent?.Invoke();
         }

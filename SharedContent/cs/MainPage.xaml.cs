@@ -129,7 +129,7 @@ namespace SDKTemplate
                 else if (s.ClassType == typeof(WholeSalerOrderCC))
                 {
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
-                    SearchBoxFrame.Navigate(typeof(BlankPage));
+                    SearchBoxFrame.Navigate(typeof(FilterWholeSalerOrderCC));
                     ScenarioFrame.Navigate(typeof(WholeSalerOrderCC));
                     SummaryFrame.Navigate(typeof(BlankPage));
                 }

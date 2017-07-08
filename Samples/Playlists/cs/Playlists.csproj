@@ -108,6 +108,10 @@
     <Compile Include="CCF\AddCustomerCC\AddCustomerCC.xaml.cs">
       <DependentUpon>AddCustomerCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FilterWholeSalerOrderCC.xaml.cs">
+      <DependentUpon>FilterWholeSalerOrderCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FilterWholeSalerOrderViewModel.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
@@ -313,6 +317,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\FilterCustomerCC\FilterCustomerCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FilterWholeSalerOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
