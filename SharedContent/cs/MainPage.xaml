@@ -100,7 +100,7 @@
                        Background="AliceBlue"
                        Margin="10,10,10,0"
                        RelativePanel.Below="HeaderFrame"
-                       Height="100"
+                       Height="130"
                        Width="900"
                        />
                 <Frame x:Name="ScenarioFrame"

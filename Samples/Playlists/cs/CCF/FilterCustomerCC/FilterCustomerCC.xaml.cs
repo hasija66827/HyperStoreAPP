@@ -52,7 +52,7 @@ namespace SDKTemplate
 
         private void WalletRangeSlider_DragCompletedEvent(object sender)
         {
-            IRange<float> walletBalance = new IRange<float>(Convert.ToSingle(WalletBalanceLB.Text), Convert.ToSingle(WalletBalanceUB.Text));
+            IRange<float> walletBalance = new IRange<float>(Convert.ToSingle(WalletRangeSlider.RangeMin), Convert.ToSingle(WalletRangeSlider.RangeMax));
             this.FilterCustomerCriteria.WalletBalance = walletBalance;
             FilterCustomerCChangedEvent?.Invoke();
         }

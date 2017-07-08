@@ -8,7 +8,6 @@ namespace SDKTemplate
 {
     class CustomerDataSource
     {
-  
         private static List<CustomerViewModel> _customers = new List<CustomerViewModel>();
         public CustomerDataSource()
         {

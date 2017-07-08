@@ -1,0 +1,56 @@
+﻿<Page x:Class="SDKTemplate.FilterCustomerCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:customControl="using:UWP"
+      mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+    </UserControl.Resources>
+    <Grid >
+       
+        <RelativePanel x:Name="WalletAmount"
+                       Margin="10,0,0,0">
+            <TextBlock x:Name="Header"
+                       Text="Filter by Wallet Amount"
+                       Style="{StaticResource SampleHeaderTextStyle}"
+                       Margin="0,0,0,10"/>
+            <TextBlock x:Name="WalletTB"
+                       Text="Wallet Balance"
+                       RelativePanel.Below="Header"/>
+            <customControl:RangeSlider x:Name="WalletRangeSlider"
+                                       Width="500"
+                                       Minimum="-100000"
+                                       RangeMin="-100000"
+                                       Maximum="100000"
+                                       RangeMax="100000"
+                                       RelativePanel.Below="WalletTB" />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        RelativePanel.Below="WalletRangeSlider"
+                        RelativePanel.AlignHorizontalCenterWith="WalletRangeSlider">
+                <TextBlock x:Name="WalletBalanceLB"
+                           HorizontalAlignment="Left"
+                           FontSize="20"
+                           Width=" 80"
+                           Text="{Binding RangeMin, ElementName=WalletRangeSlider, Mode=TwoWay,
+                    Converter={StaticResource FloatToRupeeConverter}}" />
+                <TextBlock Text="to"
+                           Margin="10,0,10,0"
+                           Width=" 40"
+                           FontSize="20" />
+                <TextBlock x:Name="WalletBalanceUB"
+                           Width="80"
+                           HorizontalAlignment="Right"
+                           FontSize="20"
+                           Text="{Binding RangeMax,
+                            ElementName=WalletRangeSlider,
+                            Mode=TwoWay,
+                    Converter={StaticResource FloatToRupeeConverter}
+                    }" />
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</Page>
