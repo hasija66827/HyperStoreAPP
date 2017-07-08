@@ -17,7 +17,7 @@ using SDKTemp.ViewModel;
 
 namespace SDKTemplate
 {
-    public delegate void SelectedWholeSellerChangedDelegate(WholeSellerViewModel WholeSeller);
+    public delegate void SelectedWholeSellerChangedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -70,8 +70,10 @@ namespace SDKTemplate
             }
             else
             {
+                WholeSellerViewModel matchingWholeSeller = null;
                 // if a text is present, find best possible match.
-                var matchingWholeSeller = WholeSellerDataSource.GetMatchingWholeSellers(args.QueryText).FirstOrDefault();
+                if (args.QueryText != "")
+                    matchingWholeSeller = WholeSellerDataSource.GetMatchingWholeSellers(args.QueryText).FirstOrDefault();
                 SelectWholeSeller(matchingWholeSeller);
             }
         }
@@ -95,7 +97,7 @@ namespace SDKTemplate
                 NoResults.Visibility = Visibility.Visible;
                 WholeSellerDetails.Visibility = Visibility.Collapsed;
             }
-            SelectedWholeSellerChangedEvent?.Invoke(WholeSeller);
+            SelectedWholeSellerChangedEvent?.Invoke();
         }
     }
 }

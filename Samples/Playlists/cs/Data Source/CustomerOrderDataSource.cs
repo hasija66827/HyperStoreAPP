@@ -44,7 +44,7 @@ namespace SDKTemp.Data
             _Orders = query.ToList();
         }
 
-        public static List<OrderViewModel> GetOrders(CustomerViewModel selectedCustomer, FilterOrderViewModel selectedDateRange)
+        public static List<OrderViewModel> GetFilteredOrders(CustomerViewModel selectedCustomer, FilterOrderViewModel selectedDateRange)
         {
             if (selectedDateRange == null)
                 throw new Exception("A Date Range cannot be null");

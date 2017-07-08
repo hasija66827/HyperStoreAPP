@@ -22,9 +22,25 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class WholeSalerOrderCC : Page
     {
+        public static WholeSalerOrderCC Current;
         public WholeSalerOrderCC()
         {
+            Current = this;
             this.InitializeComponent();
+            WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListView;
+            FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteriaChangedEvent += UpdateMasterListView;
+            WholeSellerOrderDataSource.RetrieveOrdersAsync();
+            UpdateMasterListView();
+        }
+
+        private void UpdateMasterListView()
+        {
+            var wholeSellerId = WholeSellerASBCC.Current.SelectedWholeSellerInASB?.WholeSellerId;
+            var filterWholeSalerOrderCriteria = FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteria;
+            var items = WholeSellerOrderDataSource.GetFilteredOrder(filterWholeSalerOrderCriteria, wholeSellerId);
+            MasterListView.ItemsSource = items;
+            var totalResults = items.Count;
+            OrderCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerOrderDataSource.Orders.Count.ToString() + ")";
         }
     }
 }

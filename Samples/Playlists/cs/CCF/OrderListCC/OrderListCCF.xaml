@@ -16,7 +16,7 @@
         <local:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="data:OrderViewModel">
-            <Grid Margin="12,10,12,12">
+            <Grid  Margin="12,10,12,12">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -128,7 +128,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid x:Name="LayoutRoot"
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="LayoutRoot"
           Loaded="LayoutRoot_Loaded"
           >
         <VisualStateManager.VisualStateGroups>
@@ -175,10 +175,8 @@
                     Margin="12,10,12,12"
                     Grid.Column="1">
             <TextBlock Text="Order Details"
-                       Style="{ThemeResource TitleTextBlockStyle}" 
-                       />
+                       Style="{ThemeResource TitleTextBlockStyle}" />
         </StackPanel>
-        
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"

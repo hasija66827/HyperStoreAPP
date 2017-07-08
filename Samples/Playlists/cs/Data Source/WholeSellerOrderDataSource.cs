@@ -13,9 +13,62 @@ namespace SDKTemplate
 
         public WholeSellerOrderDataSource()
         {
-            // Initializing member variable all orders.
-            //RetrieveOrdersAsync();
         }
+
+        //Retrieves all the wholeSaler orders.
+        public static void RetrieveOrdersAsync()
+        {
+            List<DatabaseModel.WholeSellerOrder> _wholeSellerOrders;
+            List<DatabaseModel.WholeSeller> _wholeSellers;
+            using (var db = new DatabaseModel.RetailerContext())
+            {
+                _wholeSellerOrders = db.WholeSellersOrders.ToList();
+                _wholeSellers = db.WholeSellers.ToList();
+            }
+            var query = _wholeSellers
+                        .Join(_wholeSellerOrders,
+                                wholeSeller => wholeSeller.WholeSellerId,
+                                wholeSellerOrder => wholeSellerOrder.WholeSellerId,
+                                (wholeseller, wholeSellerOrder) => new WholeSellerOrderViewModel(wholeSellerOrder.WholeSellerOrderId,
+                                                                                wholeSellerOrder.OrderDate,
+                                                                                wholeSellerOrder.DueDate,
+                                                                                wholeSellerOrder.BillAmount,
+                                                                                wholeSellerOrder.PaidAmount,
+                                                                                wholeseller.WholeSellerId
+                                                                                ))
+                        .OrderByDescending(order => order.OrderDate);
+            _Orders = query.ToList();
+        }
+
+        /// <summary>
+        /// Return the ordered filtered by filter criteria and the wholesellerId.
+        /// </summary>
+        /// <param name="filterWholeSalerOrderCriteria"></param>
+        /// <param name="wholesellerId"></param>
+        /// <returns></returns>
+        public static List<WholeSellerOrderViewModel> GetFilteredOrder(FilterWholeSalerOrderCriteria filterWholeSalerOrderCriteria, Guid? wholesellerId)
+        {
+            List<WholeSellerOrderViewModel> result = new List<WholeSellerOrderViewModel>();
+            if (wholesellerId == null)
+                result = WholeSellerOrderDataSource.Orders;
+            else
+                result = WholeSellerOrderDataSource.Orders.Where(o => o.WholeSeller.WholeSellerId == wholesellerId).ToList();
+            if (filterWholeSalerOrderCriteria == null)
+                return result;
+            else
+            {
+                var ret = result
+                    .Where(r => r.DueDate.Date <= filterWholeSalerOrderCriteria.DueDate.Date
+                              && r.OrderDate.Date >= filterWholeSalerOrderCriteria.StartDate
+                              && r.OrderDate.Date <= filterWholeSalerOrderCriteria.EndDate);
+                if (filterWholeSalerOrderCriteria.IncludePartiallyPaidOrdersOnly == true)
+                {
+                    ret = ret.Where(r => r.PaidAmount < r.BillAmount);
+                }
+                return ret.ToList();
+            }
+        }
+
         public static bool PlaceOrder(WholeSellerPurchaseNavigationParameter pageNavigationParameter)
         {
             //TODO: See how can you make whole transaction atomic.
@@ -31,6 +84,7 @@ namespace SDKTemplate
             AddIntoWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
             return true;
         }
+
         //Step 1:
         private static float UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
           float walletBalanceToBeAdded)
@@ -43,6 +97,7 @@ namespace SDKTemplate
             db.SaveChanges();
             return wholeSeller.WalletBalance;
         }
+
         // Step 2:
         private static bool UpdateProductStock(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts)
         {
@@ -60,6 +115,7 @@ namespace SDKTemplate
             db.SaveChanges();
             return true;
         }
+
         // Step 3:
         private static Guid AddIntoWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerPurchaseNavigationParameter navigationParameter)
         {
@@ -69,6 +125,7 @@ namespace SDKTemplate
             db.SaveChanges();
             return wholeSellerOrder.WholeSellerOrderId;
         }
+
         // Step4:
         private static void AddIntoWholeSellerOrderProduct(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts, Guid wholeSellerOrderId)
         {
@@ -86,31 +143,5 @@ namespace SDKTemplate
             // Saving the order.
             db.SaveChanges();
         }
-        /*
-        // Retrieves all the orders.
-        public static void RetrieveOrdersAsync()
-        {
-            List<DatabaseModel.WholeSellerOrder> _wholeSellerOrders;
-            List<DatabaseModel.WholeSeller> _wholeSellers;
-            using (var db = new DatabaseModel.RetailerContext())
-            {
-                _wholeSellerOrders = db.WholeSellersOrders.ToList();
-                _wholeSellers = db.WholeSellers.ToList();
-            }
-            var query = _wholeSellers
-                        .Join(_wholeSellerOrders,
-                                wholeSeller => wholeSeller.WholeSellerId,
-                                wholeSellerOrder => wholeSellerOrder.WholeSellerId,
-                                (wholeseller, wholeSellerOrder) => new WholeSellerOrderViewModel(wholeSellerOrder.WholeSellerOrderId,
-                                                                                wholeSellerOrder.DueDate,
-                                                                                customer.,
-                                                                                customerOrder.OrderDate,
-                                                                                customerOrder.DiscountedAmount))
-                        .OrderByDescending(order => order.OrderDate);
-            _Orders = query.ToList();
-        }
-        */
-
-
     }
 }

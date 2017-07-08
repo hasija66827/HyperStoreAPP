@@ -44,7 +44,7 @@
                                 RelativePanel.AlignBottomWith="dueDateLabel"
                                 RelativePanel.RightOf="dueDateLabel" />
             <CheckBox x:Name="PartialOrderOnlyCB"
-                      Content="Partially Paid Orders"
+                      Content="Partially Paid Orders Only"
                       RelativePanel.Below="startDateLabel"
                       IsChecked="{x:Bind FilterWholeSalerOrderCriteria.IncludePartiallyPaidOrdersOnly, Mode=TwoWay}"></CheckBox>
         </RelativePanel>

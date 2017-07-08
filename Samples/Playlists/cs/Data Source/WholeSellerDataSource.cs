@@ -41,6 +41,7 @@ namespace SDKTemplate
                             || item.Address.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
+
         /// <summary>
         /// returns the WholeSeller having matching mobile number from WholeSeller datasource.
         /// </summary>
@@ -96,6 +97,7 @@ namespace SDKTemplate
                 return false;
             return true;
         }
+
         public static bool IsMobileNumberExist(string mobileNumber)
         {
             var WholeSellers = WholeSellerDataSource._WholeSellers

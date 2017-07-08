@@ -54,7 +54,7 @@ namespace SDKTemplate
                 return;
             }
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
-            Current.orderList = CustomerOrderDataSource.GetOrders(selectedCustomer, selectedDateRange);
+            Current.orderList = CustomerOrderDataSource.GetFilteredOrders(selectedCustomer, selectedDateRange);
             OrderListCCF.Current.OrderListChangedEvent?.Invoke(OrderListCCF.Current);
             MasterListView.ItemsSource = Current.orderList;
             OrderCountTB.Text = "(" + Current.orderList.Count.ToString() + "/" + CustomerOrderDataSource.Orders.Count.ToString() + ")";

@@ -45,7 +45,7 @@ namespace SDKTemplate
             _startDate = DateTime.Now.AddMonths(-2);
             _endDate = DateTime.Now;
             _dueDate = DateTime.Now.AddMonths(2);
-            _includePartiallyPaidOrdersOnly = false;
+            _includePartiallyPaidOrdersOnly = true;
         }
     }
 }

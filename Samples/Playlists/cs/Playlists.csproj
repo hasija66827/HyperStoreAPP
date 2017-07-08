@@ -108,10 +108,10 @@
     <Compile Include="CCF\AddCustomerCC\AddCustomerCC.xaml.cs">
       <DependentUpon>AddCustomerCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FilterWholeSalerOrderCC.xaml.cs">
+    <Compile Include="CCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderCC.xaml.cs">
       <DependentUpon>FilterWholeSalerOrderCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FilterWholeSalerOrderViewModel.cs" />
+    <Compile Include="CCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
@@ -143,6 +143,7 @@
     <Compile Include="WholeSalerOrder.xaml.cs">
       <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WholeSalerOrderViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
@@ -198,7 +199,7 @@
     </Compile>
     <Compile Include="Data Source\CustomerDataSource.cs" />
     <Compile Include="View Models\CustomerViewModel.cs" />
-    <Compile Include="View Models\OrderViewModel.cs" />
+    <Compile Include="CCF\OrderListCC\OrderViewModel.cs" />
     <Compile Include="Data Source\CustomerOrderDataSource.cs" />
     <Compile Include="DBModel\DBModel.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
@@ -320,7 +321,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FilterWholeSalerOrderCC.xaml">
+    <Page Include="CCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
