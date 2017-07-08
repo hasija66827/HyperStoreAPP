@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void SelectedCustomerChangedDelegate(object sender);
+    public delegate void SelectedCustomerChangedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -98,7 +98,7 @@ namespace SDKTemplate
                 NoResults.Visibility = Visibility.Visible;
                 CustomerDetails.Visibility = Visibility.Collapsed;
             }
-            SelectedCustomerChangedEvent?.Invoke(this);
+            SelectedCustomerChangedEvent?.Invoke();
         }
     }
 }

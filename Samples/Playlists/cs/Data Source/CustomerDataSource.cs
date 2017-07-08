@@ -8,6 +8,7 @@ namespace SDKTemplate
 {
     class CustomerDataSource
     {
+  
         private static List<CustomerViewModel> _customers = new List<CustomerViewModel>();
         public CustomerDataSource()
         {
@@ -21,7 +22,7 @@ namespace SDKTemplate
                 _customers = db.Customers.Select(customer => new CustomerViewModel(
                     customer.CustomerId,
                     customer.Name,
-                    customer.MobileNo, 
+                    customer.MobileNo,
                     customer.Address,
                     customer.WalletBalance,
                     customer.IsVerifiedCustomer)).ToList();
@@ -47,7 +48,7 @@ namespace SDKTemplate
             var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
             memberEntry.IsModified = true;
             db.SaveChanges();
-            int index=_customers.FindIndex(c => c.CustomerId == customerViewModel.CustomerId);
+            int index = _customers.FindIndex(c => c.CustomerId == customerViewModel.CustomerId);
             if (index < 0 || index >= _customers.Count())
                 throw new Exception("Assert: Customer should be present in customer data source");
             _customers[index].WalletBalance = billingCustomer.WalletBalance;
@@ -90,8 +91,10 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="mobileNumber"></param>
         /// <returns></returns>
-        public static CustomerViewModel GetCustomerById(Guid customerId)
+        public static CustomerViewModel GetCustomerById(Guid? customerId)
         {
+            if (customerId == null)
+                return null;
             try
             {
                 return _customers
@@ -103,6 +106,15 @@ namespace SDKTemplate
             }
         }
 
+        public static float GetMinimumWalletBalance()
+        {
+            return _customers.Min(c => c.WalletBalance);
+        }
+
+        public static float GetMaximumWalletBalance()
+        {
+            return _customers.Max(c => c.WalletBalance);
+        }
 
         /// <summary>
         /// Adds The customer into customer Data source as well as in sqllte database.
@@ -120,7 +132,7 @@ namespace SDKTemplate
 
         public static bool IsNameExist(string name)
         {
-            var customers =CustomerDataSource._customers
+            var customers = CustomerDataSource._customers
              .Where(c => c.Name.ToLower() == name.ToLower());
             if (customers.Count() == 0)
                 return false;
@@ -135,5 +147,22 @@ namespace SDKTemplate
             return true;
         }
 
+        public static List<CustomerViewModel> GetFilteredCustomer(Guid? customerId, FilterCustomerCriteria filterCustomerCriteria)
+        {
+            List<CustomerViewModel> result = new List<CustomerViewModel>();
+            if (customerId == null)
+                result = CustomerDataSource._customers;
+            else
+                result.Add(GetCustomerById(customerId));
+
+            if (filterCustomerCriteria.WalletBalance == null)
+                return result;
+            else
+            {
+                return result
+                    .Where(c => c.WalletBalance >= filterCustomerCriteria.WalletBalance.LB
+                            && c.WalletBalance <= filterCustomerCriteria.WalletBalance.UB).ToList();
+            }
+        }
     }
 }

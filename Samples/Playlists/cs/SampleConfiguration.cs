@@ -26,7 +26,7 @@ namespace SDKTemplate
         List<Scenario> scenarios = new List<Scenario>
         {
             new Scenario() { Title = "Customer Billing", ClassType = typeof(ProductListCC) }, 
-            new Scenario() { Title = "Lenders & Borrowers", ClassType = typeof(NonInventoryProductScenario) }, 
+            new Scenario() { Title = "Customers", ClassType = typeof(CustomersCCF) }, 
             new Scenario() { Title = "Customer Orders", ClassType = typeof(OrderListCCF) }, 
             new Scenario() { Title = "Wholeseller Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) }, 
             new Scenario() { Title = "Products", ClassType = typeof(ProductInStock) } 

@@ -91,7 +91,7 @@ namespace SDKTemplate
             if (s != null)
             {
                 if (s.ClassType == typeof(ProductListCC))
-                { 
+                {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(s.ClassType);
@@ -118,6 +118,13 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(typeof(WholeSellerPurchasedProductListCC));
                     SummaryFrame.Navigate(typeof(WholeSellerBillingSummaryCC));
+                }
+                else if (s.ClassType == typeof(CustomersCCF))
+                {
+                    HeaderFrame.Navigate(typeof(CustomerASBCC));
+                    SearchBoxFrame.Navigate(typeof(FilterCustomerCC));
+                    ScenarioFrame.Navigate(typeof(CustomersCCF));
+                    SummaryFrame.Navigate(typeof(BlankPage));
                 }
                 else
                 {

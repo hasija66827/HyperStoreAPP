@@ -42,10 +42,10 @@ namespace SDKTemplate
             // Getting a refresh list from the database.
             CustomerOrderDataSource.RetrieveOrdersAsync();
             // Rendering the refresh list on the UI.
-            UpdateMasterListViewItemSource(this);
+            UpdateMasterListViewItemSource();
         }
 
-        private void UpdateMasterListViewItemSource(object sender)
+        private void UpdateMasterListViewItemSource()
         {
             var selectedDateRange = FilterOrderCC.Current.SelectedDateRange;
             if (selectedDateRange.StartDate.Date > selectedDateRange.EndDate.Date)
