@@ -143,7 +143,6 @@
     <Compile Include="WholeSalerOrder.xaml.cs">
       <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSalerOrderViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
