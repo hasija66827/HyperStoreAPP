@@ -44,8 +44,8 @@ namespace SDKTemplate
             this.InitializeComponent();
             this.FilterCustomerCriteria = new FilterCustomerCriteria();
             WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
-            WalletRangeSlider.RangeMin = CustomerDataSource.GetMinimumWalletBalance();
-            WalletRangeSlider.RangeMax = CustomerDataSource.GetMaximumWalletBalance();
+            WalletRangeSlider.RangeMin = CustomerDataSource.GetMinimumWalletBalance()-10;
+            WalletRangeSlider.RangeMax = CustomerDataSource.GetMaximumWalletBalance()+10;
             WalletRangeSlider.Minimum = WalletRangeSlider.RangeMin;
             WalletRangeSlider.Maximum = WalletRangeSlider.RangeMax;
         }

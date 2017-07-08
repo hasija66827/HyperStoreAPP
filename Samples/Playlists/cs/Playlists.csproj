@@ -108,7 +108,7 @@
     <Compile Include="CCF\AddCustomerCC\AddCustomerCC.xaml.cs">
       <DependentUpon>AddCustomerCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerPurchaseHistoryViewModel.cs" />
+    <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
     </Compile>

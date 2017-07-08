@@ -8,11 +8,16 @@ namespace SDKTemplate
 {
     public class CustomerPurchaseHistoryViewModel
     {
-        Int32 BarCode;
-        Guid productName;
-        Guid TotalQuantity;
-        public CustomerPurchaseHistoryViewModel() { }
+        public Guid? ProductId;
+        public ProductViewModelBase ProductViewModelBase { get; set; }
+        public Int32 TotalQuantity { get; set; }
+        public CustomerPurchaseHistoryViewModel(Guid? productId, Int32 totalQuantity) {
+            this.ProductId = productId;
+            this.ProductViewModelBase = ProductDataSource.GetProductsById(productId).FirstOrDefault();
+            this.TotalQuantity = totalQuantity;
+        }
     }
+
     /// <summary>
     /// This class is used by Detail Page of Customer CCF.
     /// </summary>
@@ -26,5 +31,4 @@ namespace SDKTemplate
         }
         public CustomerPurchaseHistoryCollection() { }
     }
-
 }

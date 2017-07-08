@@ -8,6 +8,7 @@ namespace SDKTemplate
 {
     class CustomerDataSource
     {
+        public static List<CustomerViewModel> Customers { get { return _customers; } }
         private static List<CustomerViewModel> _customers = new List<CustomerViewModel>();
         public CustomerDataSource()
         {
@@ -107,11 +108,15 @@ namespace SDKTemplate
 
         public static float GetMinimumWalletBalance()
         {
+            if (_customers.Count == 0)
+                return 0;
             return _customers.Min(c => c.WalletBalance);
         }
 
         public static float GetMaximumWalletBalance()
         {
+            if (_customers.Count == 0)
+                return 0;
             return _customers.Max(c => c.WalletBalance);
         }
 

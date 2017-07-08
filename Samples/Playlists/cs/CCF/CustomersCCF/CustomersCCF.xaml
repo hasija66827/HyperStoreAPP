@@ -35,9 +35,53 @@
                            Style="{ThemeResource BaseTextBlockStyle}" />
             </Grid>
         </DataTemplate>
-        
+        <DataTemplate x:Key="DetailContentTemplate"
+                      x:DataType="local:CustomerPurchaseHistoryCollection">
+            <StackPanel
+                Margin="12,0,0,0"
+                >
+                <StackPanel Orientation="Horizontal"
+                            Margin="10,0,10,0">
+                    <TextBlock Text="BarCode"
+                               Width="130"
+                               Margin="0,0,10,0"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                                />
+                    <TextBlock Text="Name"
+                               Width="130"
+                               Margin="0,0,10,0"
+                               Style="{StaticResource BaseTextBlockStyle}" />
+                    <TextBlock Text="Total Quantity"
+                               Width="130"
+                               Style="{StaticResource BaseTextBlockStyle}" />
+                </StackPanel>
+                <ListView x:Name="PurchaseHistoriesOfCustomer"
+                          ItemsSource="{x:Bind CustomerPurchaseHistories}"
+                          CanReorderItems="False"
+                          SelectedIndex="-1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:CustomerPurchaseHistoryViewModel">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="BarCode"
+                                           Text="{x:Bind ProductViewModelBase.BarCode, Mode=OneWay}"
+                                           Width="130"
+                                           Margin="0,5,10,0" />
+                                <TextBlock x:Name="ProductName"
+                                           Text="{x:Bind ProductViewModelBase.Name, Mode=OneWay}"
+                                           Width="130"
+                                           Margin="0,5,10,0" />
+                                <TextBlock x:Name="TotalQuantity"
+                                           Text="{x:Bind TotalQuantity, Mode=OneWay}"
+                                           Width="130"
+                                           Margin="0,5,10,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="350" />
@@ -72,7 +116,7 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <TextBlock Text="Customer Purchase History"
+        <TextBlock Text="Purchase History"
                    Margin="52,10,12,12"
                    Style="{ThemeResource TitleTextBlockStyle}"
                    Grid.Column="1" />
@@ -82,7 +126,7 @@
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
                           Padding="24,0"
-                          
+                          ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter.ContentTransitions>
                 <!-- Empty by default. See MasterListView_ItemClick -->

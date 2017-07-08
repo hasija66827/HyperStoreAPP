@@ -22,11 +22,13 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class CustomersCCF : Page
     {
+        public CustomerPurchaseHistoryCollection CustomerPurchaseHistoryCollection { get; set; }
         public static CustomersCCF Current;
         public CustomersCCF()
         {
             Current = this;
             this.InitializeComponent();
+            this.CustomerPurchaseHistoryCollection = new CustomerPurchaseHistoryCollection();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterCustomerCC.Current.FilterCustomerCChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             UpdateMasterListViewItemSourceByFilterCriteria();
@@ -39,11 +41,15 @@ namespace SDKTemplate
             var filterCustomerCriteria = FilterCustomerCC.Current.FilterCustomerCriteria;
             var items = CustomerDataSource.GetFilteredCustomer(customerId, filterCustomerCriteria);
             MasterListView.ItemsSource = items;
+            var totalResults = items.Count;
+            CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + CustomerDataSource.Customers.Count.ToString() + ")";
         }
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (CustomerViewModel)e.ClickedItem;
+            this.CustomerPurchaseHistoryCollection.CustomerPurchaseHistories = AnalyticsDataSource.GetPurchasedProductForCustomer(clickedItem.CustomerId, 4);
+            DetailContentPresenter.Content = this.CustomerPurchaseHistoryCollection;
         }
     }
 }
