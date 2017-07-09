@@ -8,53 +8,73 @@
     <UserControl.Resources>
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <RelativePanel Margin="10,0,0,0">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Margin="10,10,0,0">
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="60" />
+            <ColumnDefinition MinWidth="60" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <TextBlock x:Name="Header"
                    Text="Customer"
                    Margin="0,0,0,10"
                    Style="{StaticResource SampleHeaderTextStyle}" />
-        <StackPanel RelativePanel.Below="Header"
-                    Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Name"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="NameTB"
-                         Text="{x:Bind addCustomerViewModel.Name, Mode=TwoWay}"
-                         ToolTipService.ToolTip="The name of the customer"
-                         PlaceholderText="Rahul Hasija" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Address"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="AddressTB"
-                         Text="{x:Bind addCustomerViewModel.Address, Mode=TwoWay}"
-                         ToolTipService.ToolTip="Address by which you can search the customer"
-                         PlaceholderText="F806 Aparna Cyber Commune" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Initial Wallet Amount(INR)"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="WalletAmountTB"
-                         Text="{x:Bind addCustomerViewModel.WalletBalance, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="Initial wallet amount of the customer" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Mobile Number"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBox x:Name="MobileNoTB"
-                         Text="{x:Bind addCustomerViewModel.MobileNo, Mode=TwoWay}"
-                         ToolTipService.ToolTip="Mobile Number by which you can search the customer"
-                         PlaceholderText="9632166827" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Save"
-                        x:Name="SaveBtn"
-                        Click="SaveBtn_Click" />
-                <Button x:Name="CancelBtn"
-                        Content="Cancel"
-                        Click="CancelBtn_Click" />
-            </StackPanel>
-        </StackPanel>
-    </RelativePanel>
+        <TextBlock Text="Name"
+                   Style="{ThemeResource BaseTextBlockStyle}"
+                   Grid.Row="1" />
+        <TextBox x:Name="NameTB"
+                 Text="{x:Bind addCustomerViewModel.Name, Mode=TwoWay}"
+                 ToolTipService.ToolTip="The name of the customer"
+                 PlaceholderText="Rahul Hasija"
+                 Grid.Row="1"
+                 Grid.Column="1" />
+        <TextBlock Text="Address"
+                   Style="{ThemeResource BaseTextBlockStyle}"
+                   Grid.Row="2"
+                   Grid.Column="0" />
+        <TextBox x:Name="AddressTB"
+                 Text="{x:Bind addCustomerViewModel.Address, Mode=TwoWay}"
+                 ToolTipService.ToolTip="Address by which you can search the customer"
+                 PlaceholderText="F806 Aparna Cyber Commune"
+                 Grid.Row="2"
+                 Grid.Column="1" />
+        <TextBlock Text="Wallet Amount"
+                   Style="{ThemeResource BaseTextBlockStyle}"
+                   Grid.Row="3"
+                   Grid.Column="0" />
+        <TextBox x:Name="WalletAmountTB"
+                 Text="{x:Bind addCustomerViewModel.WalletBalance, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
+                 PlaceholderText=""
+                 ToolTipService.ToolTip="Initial wallet amount of the customer"
+                 Grid.Row="3"
+                 Grid.Column="1" />
+        <TextBlock Text="Mobile Number"
+                   Style="{ThemeResource BaseTextBlockStyle}"
+                   Grid.Row="4"
+                   Grid.Column="0" />
+        <TextBox x:Name="MobileNoTB"
+                 Text="{x:Bind addCustomerViewModel.MobileNo, Mode=TwoWay}"
+                 ToolTipService.ToolTip="Mobile Number by which you can search the customer"
+                 PlaceholderText="9632166827"
+                 Grid.Row="4"
+                 Grid.Column="1" />
+        <Button Content="Save"
+                x:Name="SaveBtn"
+                Click="SaveBtn_Click"
+                Grid.Row="5"
+                Grid.Column="0" />
+        <Button x:Name="CancelBtn"
+                Content="Cancel"
+                Click="CancelBtn_Click"
+                Grid.Row="5"
+                Grid.Column="1" />
+    </Grid>
+    </Grid>
 </Page>
