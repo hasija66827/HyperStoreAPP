@@ -37,9 +37,7 @@
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerPurchaseHistoryCollection">
-            <StackPanel
-                Margin="12,0,0,0"
-                >
+            <StackPanel Margin="12,0,0,0">
                 <StackPanel Orientation="Horizontal"
                             Margin="10,0,10,0">
                     <TextBlock Text="BarCode"

@@ -125,7 +125,7 @@ namespace DatabaseModel
 
         [Required]
         public Nullable<Guid> ProductId;
-        public Product Product;
+        public virtual Product Product { get; set; }
         public WholeSellerOrderProduct() { }
         public WholeSellerOrderProduct(Guid productId, Guid wholeSellerOrderId, int quantityPurchased, float purchasePrice)
         {

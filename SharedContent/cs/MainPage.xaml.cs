@@ -131,7 +131,7 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterWholeSalerOrderCC));
                     ScenarioFrame.Navigate(typeof(WholeSalerOrderCC));
-                    SummaryFrame.Navigate(typeof(BlankPage));
+                    SummaryFrame.Navigate(typeof(WholeSellerOrderSummary));
                 }
                 else
                 {

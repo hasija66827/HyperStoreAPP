@@ -11,7 +11,6 @@
         <StackPanel x:Name="OrderStatisitcs"
                     Width="600"
                     Margin="10,10,10,10"
-                   
                     HorizontalAlignment="Left"
                     Orientation="Vertical">
             <TextBlock x:Name="HeaderForOrderStatistics"

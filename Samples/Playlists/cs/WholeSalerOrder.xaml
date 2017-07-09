@@ -7,7 +7,6 @@
       mc:Ignorable="d">
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
-        <local:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:WholeSellerOrderViewModel">
             <Grid  Margin="12,10,12,12">
@@ -37,8 +36,74 @@
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="DetailContentTemplate"
+                      x:DataType="local:WholeSellerOrderViewModel">
+            <StackPanel>
+                <StackPanel x:Name="StaticLabelsForList"
+                            Margin="0,0,0,10"
+                            Orientation="Horizontal">
+                    <TextBlock Text="Id"
+                               Width="80"
+                               Margin="40,0,0,0"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    <TextBlock Text="Product Name"
+                               Width="140"
+                               Margin="0,0,10,0"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    <TextBlock Text="Purchase Price"
+                               Width="110"
+                               Margin="0,0,10,0"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    <TextBlock Text="Quantity"
+                               Width="80"
+                               Margin="0,0,10,0"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                    <TextBlock Text="Net Value"
+                               Width="80"
+                               Margin="0,0,10,0"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                </StackPanel>
+                <ListView x:Name="OrderDetailListView"
+                          ItemsSource="{x:Bind WholeSellerOrderDetails}"
+                          Height="300"
+                          CanReorderItems="False"
+                          SelectedIndex="-1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:WholeSellerOrderDetail">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Accept" />
+                                <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"
+                                           Width="80"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                           Width="140"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,10,0" />
+                                <TextBlock x:Name="PurchasePrice"
+                                         Text="{x:Bind PurchasePrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
+                                         Width="120"
+                                         Margin="0,0,10,0" />
+                                <TextBlock x:Name="Quantity"
+                                         Text="{x:Bind QuantityPurchased, Mode=OneWay}"
+                                         Width="80"
+                                         Margin="0,0,10,0" />
+                                <TextBlock x:Name="NetValue"
+                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Width="80"
+                                           Margin="0,0,10,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -81,6 +146,7 @@
                           Grid.RowSpan="2"
                           BorderThickness="10,0,0,0"
                           Padding="24,0"
+                          ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
                           Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">
             <ContentPresenter.ContentTransitions>

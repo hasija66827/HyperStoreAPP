@@ -17,16 +17,20 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
+    public delegate void WholeSellerOrderListUpdatedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class WholeSalerOrderCC : Page
     {
         public static WholeSalerOrderCC Current;
+        public List<WholeSellerOrderViewModel> WholeSellerOrdersViewModel;
+        public WholeSellerOrderListUpdatedDelegate WholeSellerProductListUpdatedEvent;
         public WholeSalerOrderCC()
         {
             Current = this;
             this.InitializeComponent();
+            this.WholeSellerOrdersViewModel = new List<WholeSellerOrderViewModel>();
             WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListView;
             FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteriaChangedEvent += UpdateMasterListView;
             WholeSellerOrderDataSource.RetrieveOrdersAsync();
@@ -37,10 +41,11 @@ namespace SDKTemplate
         {
             var wholeSellerId = WholeSellerASBCC.Current.SelectedWholeSellerInASB?.WholeSellerId;
             var filterWholeSalerOrderCriteria = FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteria;
-            var items = WholeSellerOrderDataSource.GetFilteredOrder(filterWholeSalerOrderCriteria, wholeSellerId);
-            MasterListView.ItemsSource = items;
-            var totalResults = items.Count;
+            this.WholeSellerOrdersViewModel = WholeSellerOrderDataSource.GetFilteredOrder(filterWholeSalerOrderCriteria, wholeSellerId);
+            MasterListView.ItemsSource = this.WholeSellerOrdersViewModel;
+            var totalResults = this.WholeSellerOrdersViewModel.Count;
             OrderCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerOrderDataSource.Orders.Count.ToString() + ")";
+            this.WholeSellerProductListUpdatedEvent?.Invoke();
         }
     }
 }
