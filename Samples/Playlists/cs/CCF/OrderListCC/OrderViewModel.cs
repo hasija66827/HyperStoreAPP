@@ -11,12 +11,20 @@ namespace SDKTemp.ViewModel
     public class OrderViewModel
     {
         public Guid CustomerOrderId { get; set; }
-        public float BillAmount { get { return this._billAmount; } }
         private float _billAmount;
+        public float BillAmount { get { return this._billAmount; } }
 
         public string CustomerMobileNo { get; set; }
-        public float DiscountedBillAmount { get { return this._discountedBillAmount; } }
+
         private float _discountedBillAmount;
+        public float DiscountedBillAmount { get { return this._discountedBillAmount; } }
+        private float _paidAmount;
+        public float PaidAmount { get { return this._paidAmount; } }
+        public string FormattedPaidBillAmount
+        {
+            get { return this.PaidAmount.ToString() + "\u20b9" + "/" + this.DiscountedBillAmount.ToString() + "\u20b9"; }
+        }
+
         public string FormattedOrderDate
         {
             get
@@ -41,13 +49,14 @@ namespace SDKTemp.ViewModel
             }
         }
         public OrderViewModel(Guid customerOrderId, float billAmount, string customerMobileNo,
-            DateTime orderDate, float paidAmount)
+            DateTime orderDate, float discountedBillAmount, float paidAmount)
         {
             this.CustomerOrderId = customerOrderId;
             this._billAmount = billAmount;
             this.CustomerMobileNo = customerMobileNo;
             this._orderDate = orderDate;
-            this._discountedBillAmount = paidAmount;
+            this._discountedBillAmount = discountedBillAmount;
+            this._paidAmount = paidAmount;
             this._orderDetails = new List<OrderDetailViewModel>();
         }
     }
@@ -61,9 +70,9 @@ namespace SDKTemp.ViewModel
         {
             this._quantityPurchased = 0;
         }
-        public OrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot, 
-            float displayPriceSnapshot, string name, int qtyPurchased) 
-            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot,0,0,null)
+        public OrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot,
+            float displayPriceSnapshot, string name, int qtyPurchased)
+            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot, 0, 0, null)
         {
             this._quantityPurchased = qtyPurchased;
             this._netValue = this._sellingPrice * this._quantityPurchased;

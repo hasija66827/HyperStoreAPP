@@ -55,7 +55,7 @@ namespace SDKTemplate
 
         public string FormattedPaidBillAmount
         {
-            get { return this.PaidAmount.ToString() + "/" + this.BillAmount.ToString(); }
+            get { return this.PaidAmount.ToString() +"\u20b9" +"/" + this.BillAmount.ToString()+"\u20b9"; }
         }
 
         public WholeSellerOrderViewModel(Guid _wholeSellerOrderId, DateTime orderDate, DateTime dueDate, float billAmount,

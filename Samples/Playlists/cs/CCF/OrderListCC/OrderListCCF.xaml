@@ -32,13 +32,8 @@
                            Grid.Column="1"
                            Margin="12,1,0,0"
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind BillAmount}"
+                <TextBlock Text="{x:Bind FormattedPaidBillAmount}"
                            Grid.Column="0"
-                           Grid.Row="2"
-                           Margin="12,1,0,0"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock Text="{x:Bind DiscountedBillAmount}"
-                           Grid.Column="1"
                            Grid.Row="2"
                            Margin="12,1,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
@@ -109,7 +104,7 @@
                                            Text="{x:Bind DiscountPer, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}"
                                            Width="80"
                                            Margin="0,0,10,0" />
-                                 <TextBlock x:Name="SellingPrice"
+                                <TextBlock x:Name="SellingPrice"
                                            Text="{x:Bind SellingPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
                                            Width="80"
                                            Margin="0,0,10,0" />
@@ -128,9 +123,8 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="LayoutRoot"
-          Loaded="LayoutRoot_Loaded"
-          >
+    <Grid x:Name="LayoutRoot"
+          Loaded="LayoutRoot_Loaded">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates"
                               CurrentStateChanged="AdaptiveStates_CurrentStateChanged">

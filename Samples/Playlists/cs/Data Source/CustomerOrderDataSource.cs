@@ -39,7 +39,8 @@ namespace SDKTemp.Data
                                                                                 customerOrder.TotalBillAmount,
                                                                                 customer.MobileNo,
                                                                                 customerOrder.OrderDate,
-                                                                                customerOrder.DiscountedAmount))
+                                                                                customerOrder.DiscountedAmount,
+                                                                                customerOrder.PayingNow))
                         .OrderByDescending(order => order.OrderDate);
             _Orders = query.ToList();
         }

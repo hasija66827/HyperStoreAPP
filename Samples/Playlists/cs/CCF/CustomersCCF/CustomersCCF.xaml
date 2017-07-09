@@ -29,10 +29,11 @@
                 <TextBlock Text="{x:Bind MobileNo}"
                            Grid.Row="1"
                            Grid.Column="0"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                           />
                 <TextBlock Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
                            Grid.Column="2"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           Style="{ThemeResource BaseMessageStyle}" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"

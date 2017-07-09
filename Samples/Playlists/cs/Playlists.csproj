@@ -141,10 +141,10 @@
       <DependentUpon>ProductConsumptionPer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
-    <Compile Include="WholeSalerOrder.xaml.cs">
+    <Compile Include="CCF\WholeSellerOrder\WholeSalerOrder.xaml.cs">
       <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSelleOrderSummaryViewModel.cs" />
+    <Compile Include="CCF\WholeSellerOrderSummaryCC\WholeSelleOrderSummaryViewModel.cs" />
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
@@ -224,7 +224,7 @@
     <Compile Include="CCF\WholeSellerCheckoutCC\WholeSellerPurchasedCheckoutCC.xaml.cs">
       <DependentUpon>WholeSellerPurchasedCheckoutCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSellerOrderSummary.xaml.cs">
+    <Compile Include="CCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml.cs">
       <DependentUpon>WholeSellerOrderSummary.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -357,11 +357,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSalerOrder.xaml">
+    <Page Include="CCF\WholeSellerOrder\WholeSalerOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSellerOrderSummary.xaml">
+    <Page Include="CCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
