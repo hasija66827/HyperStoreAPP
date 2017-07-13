@@ -95,8 +95,8 @@
                        Background="AliceBlue"
                        MinHeight="250"
                        Height="250"
-                       MinWidth="280"
-                       Width="280"
+                       MinWidth="300"
+                       Width="300"
                        />
                 <Frame x:Name="SearchBoxFrame"
                        Background="AliceBlue"
@@ -104,13 +104,13 @@
                        RelativePanel.Below="HeaderFrame"
                        MinHeight="350"
                        Height="350"
-                       MinWidth="280"
-                       Width="280" />
+                       MinWidth="300"
+                       Width="300" />
                 <Frame x:Name="ScenarioFrame"
                        Background="AliceBlue"
                        Margin="10,10,10,0"
-                       MinWidth="850"
-                       Width="850"
+                       MinWidth="830"
+                       Width="830"
                        MinHeight="700"
                        Height="700"
                        RelativePanel.RightOf="SearchBoxFrame" />
