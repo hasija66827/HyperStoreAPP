@@ -19,7 +19,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical"
-                    Grid.Column="0">
+                    Grid.Column="0"
+                    local:MarginSetter.Margin="11">
+            
             <TextBlock Text="Code"
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Name"
@@ -41,7 +43,8 @@
                     Click="SaveBtn_Click" />
         </StackPanel>
         <StackPanel Orientation="Vertical"
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    local:MarginSetter.Margin="5">
             <TextBox x:Name="ProductCodeTB"
                      Text="{x:Bind AddProductViewModel.BarCode, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"

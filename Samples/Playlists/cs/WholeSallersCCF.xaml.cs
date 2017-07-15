@@ -50,5 +50,10 @@ namespace SDKTemplate
             //this.CustomerPurchaseHistoryCollection.CustomerPurchaseHistories = AnalyticsDataSource.GetPurchasedProductForCustomer(clickedItem.CustomerId, 4);
             //DetailContentPresenter.Content = this.CustomerPurchaseHistoryCollection;
         }
+
+        private void AddMoney_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(WholeSellerTransactionCC));
+        }
     }
 }

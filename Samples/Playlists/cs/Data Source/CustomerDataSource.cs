@@ -68,6 +68,7 @@ namespace SDKTemplate
                             || item.Address.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
+
         /// <summary>
         /// returns the customer having matching mobile number from customer datasource.
         /// </summary>

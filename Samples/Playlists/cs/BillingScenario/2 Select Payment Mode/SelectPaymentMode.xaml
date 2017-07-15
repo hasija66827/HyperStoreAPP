@@ -10,7 +10,7 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
             <RelativePanel HorizontalAlignment="Center">

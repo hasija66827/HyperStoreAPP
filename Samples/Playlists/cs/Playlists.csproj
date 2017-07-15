@@ -115,6 +115,7 @@
       <DependentUpon>FilterWholeSalerOrderCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
+    <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\WholeSellerOrderProductDataSource.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
@@ -232,6 +233,9 @@
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml.cs">
       <DependentUpon>WholeSellerOrderSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WholeSellerTransactionCC.xaml.cs">
+      <DependentUpon>WholeSellerTransactionCC.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +380,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WholeSellerTransactionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

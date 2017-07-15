@@ -34,6 +34,12 @@
                            Style="{ThemeResource BaseMessageStyle}" />
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="DetailContentTemplate"
+                      x:DataType="local:CustomerPurchaseHistoryCollection">
+            <Button x:Name="AddMoney"
+                    Content="Add Money"
+                    Click="AddMoney_Click"/>
+        </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -80,6 +86,7 @@
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
                           Padding="24,0"
+                          ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter.ContentTransitions>
                 <!-- Empty by default. See MasterListView_ItemClick -->
