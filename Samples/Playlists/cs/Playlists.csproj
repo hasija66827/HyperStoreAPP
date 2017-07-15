@@ -148,6 +148,9 @@
       <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSelleOrderSummaryViewModel.cs" />
+    <Compile Include="WholeSallersCCF.xaml.cs">
+      <DependentUpon>WholeSallersCCF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
     <Compile Include="View Models\WholeSellerViewModel.cs" />
@@ -357,6 +360,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WholeSallersCCF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

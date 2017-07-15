@@ -80,15 +80,14 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition MinHeight="400" Height="650" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              Width="270"
-                               />
+                              Width="270" />
             <ColumnDefinition x:Name="DetailColumn"
                               MinWidth="200"
                               Width="*" />
