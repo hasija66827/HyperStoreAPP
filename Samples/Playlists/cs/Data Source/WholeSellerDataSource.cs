@@ -30,6 +30,24 @@ namespace SDKTemplate
             }
         }
 
+        public static List<WholeSellerViewModel> GetFilteredWholeSeller(Guid? wholeSellerId, FilterPersonCriteria filterWholeSellerCriteria)
+        {
+            List<WholeSellerViewModel> result = new List<WholeSellerViewModel>();
+            if (wholeSellerId == null)
+                result = WholeSellerDataSource._WholeSellers;
+            else
+                result.Add(GetWholeSellerById(wholeSellerId));
+            
+            if (filterWholeSellerCriteria.WalletBalance == null)
+                return result;
+            else
+            {
+                return result
+                    .Where(c => c.WalletBalance >= filterWholeSellerCriteria.WalletBalance.LB
+                            && c.WalletBalance <= filterWholeSellerCriteria.WalletBalance.UB).ToList();
+            }
+        }
+
         /// <summary>
         /// Do a fuzzy search on all Product and order results based on a pre-defined rule set
         /// </summary>
@@ -107,5 +125,21 @@ namespace SDKTemplate
                 return false;
             return true;
         }
+
+
+        public static float GetMinimumWalletBalance()
+        {
+            if (_WholeSellers.Count == 0)
+                return 0;
+            return _WholeSellers.Min(c => c.WalletBalance);
+        }
+
+        public static float GetMaximumWalletBalance()
+        {
+            if (_WholeSellers.Count == 0)
+                return 0;
+            return _WholeSellers.Max(c => c.WalletBalance);
+        }
+
     }
 }

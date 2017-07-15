@@ -30,7 +30,8 @@ namespace SDKTemplate
             this.InitializeComponent();
             this.CustomerPurchaseHistoryCollection = new CustomerPurchaseHistoryCollection();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
-            FilterCustomerCC.Current.FilterCustomerCChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            FilterPersonCC.Current.InitializeRangeSlider(CustomerDataSource.GetMinimumWalletBalance(), CustomerDataSource.GetMaximumWalletBalance());
             UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
@@ -38,7 +39,7 @@ namespace SDKTemplate
         {
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             var customerId = selectedCustomer?.CustomerId;
-            var filterCustomerCriteria = FilterCustomerCC.Current.FilterCustomerCriteria;
+            var filterCustomerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
             var items = CustomerDataSource.GetFilteredCustomer(customerId, filterCustomerCriteria);
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;

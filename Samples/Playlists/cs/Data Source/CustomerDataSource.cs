@@ -151,7 +151,7 @@ namespace SDKTemplate
             return true;
         }
 
-        public static List<CustomerViewModel> GetFilteredCustomer(Guid? customerId, FilterCustomerCriteria filterCustomerCriteria)
+        public static List<CustomerViewModel> GetFilteredCustomer(Guid? customerId, FilterPersonCriteria filterCustomerCriteria)
         {
             List<CustomerViewModel> result = new List<CustomerViewModel>();
             if (customerId == null)

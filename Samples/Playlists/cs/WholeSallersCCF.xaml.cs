@@ -27,15 +27,18 @@ namespace SDKTemplate
         {
             Current = this;
             this.InitializeComponent();
+            WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            FilterPersonCC.Current.InitializeRangeSlider(WholeSellerDataSource.GetMinimumWalletBalance(), WholeSellerDataSource.GetMaximumWalletBalance());
             UpdateMasterListViewItemSourceByFilterCriteria();
         }
+
         private void UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
             var wholeSalerId = selectedWholesaler?.WholeSellerId;
-            //var filterWholeSalerCriteria = FilterWhole.Current.FilterCustomerCriteria;
-            //var items = CustomerDataSource.GetFilteredCustomer(wholeSalerId, filterWholeSalerCriteria);
-            var items = WholeSellerDataSource.WholeSellers;
+            var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
+            var items = WholeSellerDataSource.GetFilteredWholeSeller(wholeSalerId, filterWholeSalerCriteria);            
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
             WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerDataSource.WholeSellers.Count.ToString() + ")";

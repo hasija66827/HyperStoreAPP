@@ -17,35 +17,40 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void FilterCustomerCCChangedDelegate();
+    public delegate void FilterPersonChangedDelegate();
 
-    public class FilterCustomerCriteria
+    public class FilterPersonCriteria
     {
         public IRange<float> WalletBalance { get; set; }
-        public FilterCustomerCriteria(IRange<float> walletBalance)
+        public FilterPersonCriteria(IRange<float> walletBalance)
         {
             this.WalletBalance = walletBalance;
         }
-        public FilterCustomerCriteria() { }
+        public FilterPersonCriteria() { }
     }
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class FilterCustomerCC : Page
+    public sealed partial class FilterPersonCC : Page
     {
-        public event FilterCustomerCCChangedDelegate FilterCustomerCChangedEvent;
-        public FilterCustomerCriteria FilterCustomerCriteria;
-        public static FilterCustomerCC Current;
+        public event FilterPersonChangedDelegate FilterPersonChangedEvent;
+        public FilterPersonCriteria FilterPersonCriteria;
+        public static FilterPersonCC Current;
 
-        public FilterCustomerCC()
+        public FilterPersonCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.FilterCustomerCriteria = new FilterCustomerCriteria();
+            this.FilterPersonCriteria = new FilterPersonCriteria();
             WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
-            WalletRangeSlider.RangeMin = CustomerDataSource.GetMinimumWalletBalance()-10;
-            WalletRangeSlider.RangeMax = CustomerDataSource.GetMaximumWalletBalance()+10;
+            
+        }
+
+        public void InitializeRangeSlider(float min, float max)
+        {
+            WalletRangeSlider.RangeMin = min - 10;
+            WalletRangeSlider.RangeMax = max + 10;
             WalletRangeSlider.Minimum = WalletRangeSlider.RangeMin;
             WalletRangeSlider.Maximum = WalletRangeSlider.RangeMax;
         }
@@ -53,8 +58,8 @@ namespace SDKTemplate
         private void WalletRangeSlider_DragCompletedEvent(object sender)
         {
             IRange<float> walletBalance = new IRange<float>(Convert.ToSingle(WalletRangeSlider.RangeMin), Convert.ToSingle(WalletRangeSlider.RangeMax));
-            this.FilterCustomerCriteria.WalletBalance = walletBalance;
-            FilterCustomerCChangedEvent?.Invoke();
+            this.FilterPersonCriteria.WalletBalance = walletBalance;
+            FilterPersonChangedEvent?.Invoke();
         }
     }
 }
