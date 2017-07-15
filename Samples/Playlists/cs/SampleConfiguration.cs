@@ -26,12 +26,12 @@ namespace SDKTemplate
         List<Scenario> scenarios = new List<Scenario>
         {
             new Scenario() { Title = "Customer Billing", ClassType = typeof(ProductListCC) },
-            new Scenario() { Title = "Customers", ClassType = typeof(CustomersCCF) },
             new Scenario() { Title = "Customer Orders", ClassType = typeof(OrderListCCF) },
+            new Scenario() { Title = "Customers", ClassType = typeof(CustomersCCF) },
             new Scenario() { Title = "Products", ClassType = typeof(ProductInStock) },
-            new Scenario() { Title = "WholeSaller Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) },
-            new Scenario() { Title = "WholeSaller Order", ClassType = typeof(WholeSalerOrderCC) },
-            new Scenario() { Title = "Refer & Earn", ClassType = typeof(BlankPage) }
+            new Scenario() { Title = "Suppliers", ClassType = typeof(WholeSalersCCF) },
+            new Scenario() { Title = "Supplier Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) },
+            new Scenario() { Title = "Supplier Orders", ClassType = typeof(WholeSalerOrderCC) },
         };
     }
 

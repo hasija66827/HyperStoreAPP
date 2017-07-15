@@ -10,6 +10,7 @@ namespace SDKTemplate
     class WholeSellerDataSource
     {
         private static List<WholeSellerViewModel> _WholeSellers = new List<WholeSellerViewModel>();
+        public static List<WholeSellerViewModel> WholeSellers { get { return _WholeSellers; } }
         public WholeSellerDataSource()
         {
             RetrieveWholeSellersAsync();
