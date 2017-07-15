@@ -12,21 +12,24 @@
     <Grid >
        
         <RelativePanel x:Name="WalletAmount"
-                       Margin="10,0,0,0">
+                       Margin="10,10,0,0">
             <TextBlock x:Name="Header"
-                       Text="Filter by Wallet Amount"
+                       Text="Filter Customers"
                        Style="{StaticResource SampleHeaderTextStyle}"
-                       Margin="0,0,0,10"/>
-            <TextBlock x:Name="WalletTB"
-                       Text="Wallet Balance"
-                       RelativePanel.Below="Header"/>
+                       Margin="0,0,0,30"/>
             <customControl:RangeSlider x:Name="WalletRangeSlider"
-                                       Width="500"
+                                       Width="250"
                                        Minimum="-100000"
                                        RangeMin="-100000"
                                        Maximum="100000"
                                        RangeMax="100000"
-                                       RelativePanel.Below="WalletTB" />
+                                       RelativePanel.Below="Header"
+                                       />
+            <TextBlock x:Name="WalletTB"
+                       Text="Wallet Balance"
+                       RelativePanel.Above="WalletRangeSlider"
+                       
+                       />
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         RelativePanel.Below="WalletRangeSlider"

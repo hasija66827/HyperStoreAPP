@@ -23,12 +23,13 @@
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
     </UserControl.Resources>
-    <Grid>
+    <Grid >
         <Grid x:Name="RootGrid"
               Margin="12,10,12,12">
             <ScrollViewer VerticalScrollMode="Auto"
                           VerticalScrollBarVisibility="Auto">
-                <StackPanel>
+                <StackPanel
+                    Height="700">
                     <RelativePanel x:Name="Header"
                                    HorizontalAlignment="Center">
                         <RadioButton x:Name="BillingRadBtn"
@@ -121,9 +122,11 @@
                         <ListView x:Name="ListView"
                                   ItemsSource="{x:Bind ProductListViewModel.Products}"
                                   RelativePanel.Below="StaticLabelsForList"
-                                  Height="260"
+                                  MinHeight="400"
+                                  Height="480"
                                   CanReorderItems="False"
-                                  SelectedIndex="-1">
+                                  SelectedIndex="-1"
+                                  Width="799">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="local:ProductViewModel">
                                     <StackPanel Orientation="Horizontal">
@@ -170,8 +173,7 @@
                                 Margin="40,20,0,0">
                         <Button x:Name="Checkout"
                                 Content="Checkout"
-                               
-                                Width="200 " />
+                                Width="800 " />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

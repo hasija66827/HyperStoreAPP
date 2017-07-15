@@ -118,7 +118,8 @@
         </DataTemplate>
     </Page.Resources>
     <Grid x:Name="LayoutRoot"
-          Loaded="LayoutRoot_Loaded">
+          Loaded="LayoutRoot_Loaded"
+        >
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates"
                               CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
@@ -144,15 +145,14 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="350" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              MinWidth="270"
-                              Width="Auto" />
+                              Width="270"
+                              />
             <ColumnDefinition x:Name="DetailColumn"
-                              MinWidth="200"
                               Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"
@@ -164,7 +164,7 @@
                    MinWidth="100" />
         </StackPanel>
         <TextBlock Text="Wholesalers"
-                   Margin="52,10,12,12"
+                   Margin="50,10,0,0"
                    Style="{ThemeResource TitleTextBlockStyle}"
                    Grid.Column="1" />
         <ListView x:Name="MasterListView"

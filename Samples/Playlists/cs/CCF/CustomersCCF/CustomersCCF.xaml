@@ -17,11 +17,11 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition MinWidth="75"
-                                      Width="Auto" />
-                    <ColumnDefinition MinWidth="75"
-                                      Width="Auto" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="3*"
+                                       />
+                    <ColumnDefinition Width="3*"
+                                     />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind Name}"
                            Style="{ThemeResource BaseTextBlockStyle}"
@@ -38,7 +38,7 @@
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerPurchaseHistoryCollection">
-            <StackPanel Margin="12,0,0,0">
+            <StackPanel Margin="10,10">
                 <StackPanel Orientation="Horizontal"
                             Margin="10,0,10,0">
                     <TextBlock Text="BarCode"
@@ -83,18 +83,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="350" />
+            <RowDefinition MinHeight="400" Height="650" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              MinWidth="270"
-                              Width="Auto" />
+                              Width="270"
+                               />
             <ColumnDefinition x:Name="DetailColumn"
                               MinWidth="200"
                               Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"
-                    Margin="12,10,12,12">
+                    Margin="12,10,0,0">
             <TextBlock Text="Customers"
                        Grid.Row="0"
                        Style="{ThemeResource TitleTextBlockStyle}" />
@@ -116,7 +116,7 @@
             </ListView.ItemContainerStyle>
         </ListView>
         <TextBlock Text="Purchase History"
-                   Margin="52,10,12,12"
+                   Margin="50,10,0,0"
                    Style="{ThemeResource TitleTextBlockStyle}"
                    Grid.Column="1" />
         <ContentPresenter x:Name="DetailContentPresenter"

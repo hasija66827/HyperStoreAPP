@@ -10,7 +10,7 @@
     <RelativePanel  Margin="10,10,0,0">
         <TextBlock x:Name="Header"
                    Text="Customer"
-                   Margin="0,0,0,10"
+                   Margin="0,0,0,30"
                    Style="{StaticResource SampleHeaderTextStyle}" />
         <AutoSuggestBox HorizontalAlignment="Left"
                         x:Name="CustomerASB"
