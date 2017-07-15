@@ -16,7 +16,7 @@
               Margin="12,10,12,12">
             <ScrollViewer VerticalScrollMode="Auto"
                           VerticalScrollBarVisibility="Auto">
-                <StackPanel>
+                <StackPanel Height="700">
                     <TextBlock x:Name="Header"
                                Text="Price List"
                                Style="{StaticResource SampleHeaderTextStyle}"
@@ -62,7 +62,9 @@
                         <ListView x:Name="ListView"
                                   ItemsSource="{x:Bind Products}"
                                   RelativePanel.Below="StaticLabelsForList"
-                                  Height="260"
+                                  MinHeight="400"
+                                  Height="500"
+                                  Width="830"
                                   CanReorderItems="False"
                                   SelectedIndex="-1">
                             <ListView.ItemTemplate>
@@ -103,7 +105,7 @@
                                 Margin="40,20,0,0">
                         <Button x:Name="CheckoutBtn"
                                 Content="Checkout"
-                                Width="200 " />
+                                Width="830 " />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

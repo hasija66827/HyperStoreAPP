@@ -12,40 +12,42 @@
     <Grid>
         <RelativePanel Margin="10,10,0,0">
             <TextBlock x:Name="Header"
-                       Text="Filter the Orders"
-                       Margin="0,0,0,20"
+                       Text="Filter Orders"
+                       Margin="0,0,0,30"
                        Style="{StaticResource SampleHeaderTextStyle}" />
             <TextBlock Text="Start Date"
                        RelativePanel.Below="Header"
-                       x:Name="startDateLabel" />
+                       x:Name="startDateLabel"
+                       Margin="0,0,20,0"/>
             <CalendarDatePicker x:Name="startDateCP"
                                 Date="{x:Bind FilterWholeSalerOrderCriteria.StartDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
-                                Margin="30,0,0,0"
                                 RelativePanel.AlignBottomWith="startDateLabel"
                                 RelativePanel.RightOf="startDateLabel" />
             <TextBlock Text="End Date"
-                       Margin="30,0,0,0"
-                       RelativePanel.RightOf="startDateCP"
-                       RelativePanel.AlignBottomWith="startDateCP"
+                       Margin="0,30,0,0"
+                       RelativePanel.Below="startDateCP"
+                       RelativePanel.AlignLeftWith="startDateLabel"
                        x:Name="endDateLabel" />
             <CalendarDatePicker x:Name="endDateCP"
                                 Date="{x:Bind FilterWholeSalerOrderCriteria.EndDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
-                                Margin="30,0,0,0"
+                                RelativePanel.AlignLeftWith="startDateCP"
                                 RelativePanel.AlignBottomWith="endDateLabel"
-                                RelativePanel.RightOf="endDateLabel" />
+                                RelativePanel.RightOf="endDateLabel"/>
             <TextBlock Text="Due Date"
-                       RelativePanel.RightOf="endDateCP"
-                       Margin="30,0,0,0"
-                       RelativePanel.AlignBottomWith="endDateCP"
+                       RelativePanel.Below="endDateLabel"
+                       Margin="0,30,0,0"
+                       RelativePanel.AlignLeftWith="endDateLabel"
                        x:Name="dueDateLabel" />
             <CalendarDatePicker x:Name="dueDateCP"
                                 Date="{x:Bind FilterWholeSalerOrderCriteria.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
-                                Margin="30,0,0,0"
+                                Margin="0,30,0,0"
+                                RelativePanel.AlignLeftWith="startDateCP"
                                 RelativePanel.AlignBottomWith="dueDateLabel"
                                 RelativePanel.RightOf="dueDateLabel" />
             <CheckBox x:Name="PartialOrderOnlyCB"
                       Content="Partially Paid Orders Only"
-                      RelativePanel.Below="startDateLabel"
+                      RelativePanel.Below="dueDateLabel"
+                      Margin="0,30,0,0"
                       IsChecked="{x:Bind FilterWholeSalerOrderCriteria.IncludePartiallyPaidOrdersOnly, Mode=TwoWay}"></CheckBox>
         </RelativePanel>
     </Grid>

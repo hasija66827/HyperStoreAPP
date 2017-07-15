@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControl="using:UWP"
       mc:Ignorable="d">
-    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid  >
         <StackPanel x:Name="FilterPanel"
                     Margin="10,10,0,0"
                     Orientation="Vertical">

@@ -30,7 +30,11 @@
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel
                     Height="700">
-                    <RelativePanel x:Name="Header"
+                    <TextBlock x:Name="Header"
+                               Text="Price List"
+                               Style="{StaticResource SampleHeaderTextStyle}"
+                               Margin="0,0,0,20 " />
+                    <RelativePanel x:Name="HeaderRad"
                                    HorizontalAlignment="Center">
                         <RadioButton x:Name="BillingRadBtn"
                                      IsChecked="True"
@@ -123,7 +127,7 @@
                                   ItemsSource="{x:Bind ProductListViewModel.Products}"
                                   RelativePanel.Below="StaticLabelsForList"
                                   MinHeight="400"
-                                  Height="480"
+                                  Height="450"
                                   CanReorderItems="False"
                                   SelectedIndex="-1"
                                   Width="799">
@@ -173,7 +177,7 @@
                                 Margin="40,20,0,0">
                         <Button x:Name="Checkout"
                                 Content="Checkout"
-                                Width="800 " />
+                                Width="830 " />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
