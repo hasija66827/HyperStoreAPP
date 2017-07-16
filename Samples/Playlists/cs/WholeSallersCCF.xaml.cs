@@ -23,10 +23,12 @@ namespace SDKTemplate
     public sealed partial class WholeSalersCCF : Page
     {
         public static WholeSalersCCF Current;
+        private WholeSellerViewModel SelectedWholeSeller { get; set; }
         public WholeSalersCCF()
         {
             Current = this;
             this.InitializeComponent();
+            this.SelectedWholeSeller = null;
             WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.InitializeRangeSlider(WholeSellerDataSource.GetMinimumWalletBalance(), WholeSellerDataSource.GetMaximumWalletBalance());
@@ -38,7 +40,7 @@ namespace SDKTemplate
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
             var wholeSalerId = selectedWholesaler?.WholeSellerId;
             var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
-            var items = WholeSellerDataSource.GetFilteredWholeSeller(wholeSalerId, filterWholeSalerCriteria);            
+            var items = WholeSellerDataSource.GetFilteredWholeSeller(wholeSalerId, filterWholeSalerCriteria);
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
             WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerDataSource.WholeSellers.Count.ToString() + ")";
@@ -46,14 +48,14 @@ namespace SDKTemplate
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = (WholeSellerViewModel)e.ClickedItem;
+            this.SelectedWholeSeller = (WholeSellerViewModel)e.ClickedItem;
             //this.CustomerPurchaseHistoryCollection.CustomerPurchaseHistories = AnalyticsDataSource.GetPurchasedProductForCustomer(clickedItem.CustomerId, 4);
             //DetailContentPresenter.Content = this.CustomerPurchaseHistoryCollection;
         }
 
         private void AddMoney_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(WholeSellerTransactionCC));
+            this.Frame.Navigate(typeof(WholeSellerTransactionCC), SelectedWholeSeller);
         }
     }
 }

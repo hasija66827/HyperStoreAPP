@@ -48,14 +48,17 @@ namespace SDKTemplate
             var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
             memberEntry.IsModified = true;
             db.SaveChanges();
-            int index = _customers.FindIndex(c => c.CustomerId == customerViewModel.CustomerId);
-            if (index < 0 || index >= _customers.Count())
-                throw new Exception("Assert: Customer should be present in customer data source");
-            _customers[index].WalletBalance = billingCustomer.WalletBalance;
+            UpdateWalletBalanceOfCustomerInMemory(customerViewModel, billingCustomer.WalletBalance);
             return billingCustomer.WalletBalance;
         }
 
-
+        public static void UpdateWalletBalanceOfCustomerInMemory(CustomerViewModel customerViewModel, float walletBalance)
+        {
+            int index = _customers.FindIndex(c => c.CustomerId == customerViewModel.CustomerId);
+            if (index < 0 || index >= _customers.Count())
+                throw new Exception("Assert: Customer should be present in customer data source");
+            _customers[index].WalletBalance =walletBalance;
+        }
         /// <summary>
         /// Do a fuzzy search on all Product and order results based on a pre-defined rule set
         /// </summary>

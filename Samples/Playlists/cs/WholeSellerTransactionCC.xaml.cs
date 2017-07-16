@@ -22,9 +22,36 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class WholeSellerTransactionCC : Page
     {
+        public WholeSellerTransactionViewModel WholeSellerTransactionViewModel { get; set; }
         public WholeSellerTransactionCC()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.WholeSellerTransactionViewModel = new WholeSellerTransactionViewModel((WholeSellerViewModel)e.Parameter);
+        }
+
+        private void AddMoney_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(WholeSellerTransactionOTPVerification), this.WholeSellerTransactionViewModel);
+        }
+    }
+
+    public class WholeSellerTransactionViewModel
+    {
+        public WholeSellerViewModel WholeSellerViewModel { get; set; }
+        public float Amount { get; set; }
+        public WholeSellerTransactionViewModel(WholeSellerViewModel w)
+        {
+            this.WholeSellerViewModel = w;
+            this.Amount = 0;
+        }
+        public WholeSellerTransactionViewModel()
+        {
+            this.WholeSellerViewModel = new WholeSellerViewModel();
+            this.Amount = 0;
         }
     }
 }

@@ -60,6 +60,61 @@
                         <Setter Property="Foreground"
                                 Value="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
                     </Style>
+                    <Style x:Key="FormTBPropStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="SemiBold" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="TextTrimming"
+                                Value="None" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="LineStackingStrategy"
+                                Value="MaxHeight" />
+                        <Setter Property="TextLineBounds"
+                                Value="Full" />
+                        <Setter Property="Width"
+                                Value="130" />
+                    </Style>
+                    <Style x:Key="FormTBValueStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="TextTrimming"
+                                Value="None" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="LineStackingStrategy"
+                                Value="MaxHeight" />
+                        <Setter Property="TextLineBounds"
+                                Value="Full" />
+                        <Setter Property="Width"
+                                Value="150" />
+                        <Setter Property="Margin"
+                                Value="20,0,0,0" />
+                    </Style>
+                    <Style x:Key="FormTextBoxStyle"
+                           TargetType="TextBox">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="Width"
+                                Value="120" />
+                        <Setter Property="Margin"
+                                Value="20,0,0,0" />
+                    </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="HighContrast">
                     <!-- Don't set the Foreground in high contrast theme -->

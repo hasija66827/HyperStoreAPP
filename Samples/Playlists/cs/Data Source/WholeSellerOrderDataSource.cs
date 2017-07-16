@@ -76,26 +76,13 @@ namespace SDKTemplate
             var wholeSellerViewModel = pageNavigationParameter.WholeSellerViewModel;
 
             var db = new DatabaseModel.RetailerContext();
-            var updatedWholeSellerWalletBalance = UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
+            var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
             pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);
 
             UpdateProductStock(db, productViewModelList);
             var wholeSellerOrderId = AddIntoWholeSellerOrder(db, pageNavigationParameter);
             AddIntoWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
             return true;
-        }
-
-        //Step 1:
-        private static float UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
-          float walletBalanceToBeAdded)
-        {
-            var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;
-            var entityEntry = db.Attach(wholeSeller);
-            wholeSeller.WalletBalance += walletBalanceToBeAdded;
-            var memberEntry = entityEntry.Member(nameof(DatabaseModel.WholeSeller.WalletBalance));
-            memberEntry.IsModified = true;
-            db.SaveChanges();
-            return wholeSeller.WalletBalance;
         }
 
         // Step 2:

@@ -237,6 +237,9 @@
     <Compile Include="WholeSellerTransactionCC.xaml.cs">
       <DependentUpon>WholeSellerTransactionCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WholeSellerTransactionOTPVerification.xaml.cs">
+      <DependentUpon>WholeSellerTransactionOTPVerification.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -384,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WholeSellerTransactionCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WholeSellerTransactionOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

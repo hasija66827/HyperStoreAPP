@@ -9,8 +9,8 @@ namespace SDKTemplate
 {
     class WholeSellerDataSource
     {
-        private static List<WholeSellerViewModel> _WholeSellers = new List<WholeSellerViewModel>();
-        public static List<WholeSellerViewModel> WholeSellers { get { return _WholeSellers; } }
+        private static List<WholeSellerViewModel> _wholeSellers = new List<WholeSellerViewModel>();
+        public static List<WholeSellerViewModel> WholeSellers { get { return _wholeSellers; } }
         public WholeSellerDataSource()
         {
             RetrieveWholeSellersAsync();
@@ -20,7 +20,7 @@ namespace SDKTemplate
             using (var db = new DatabaseModel.RetailerContext())
             {
                 // Retrieving data from the database synchronously.
-                _WholeSellers = db.WholeSellers.Select(WholeSeller => new WholeSellerViewModel(
+                _wholeSellers = db.WholeSellers.Select(WholeSeller => new WholeSellerViewModel(
                     WholeSeller.WholeSellerId,
                     WholeSeller.Name,
                     WholeSeller.MobileNo,
@@ -34,10 +34,10 @@ namespace SDKTemplate
         {
             List<WholeSellerViewModel> result = new List<WholeSellerViewModel>();
             if (wholeSellerId == null)
-                result = WholeSellerDataSource._WholeSellers;
+                result = WholeSellerDataSource._wholeSellers;
             else
                 result.Add(GetWholeSellerById(wholeSellerId));
-            
+
             if (filterWholeSellerCriteria.WalletBalance == null)
                 return result;
             else
@@ -55,7 +55,7 @@ namespace SDKTemplate
         /// <returns>An ordered list of mobileNumber that matches the query</returns>
         public static IEnumerable<WholeSellerViewModel> GetMatchingWholeSellers(string query)
         {
-            return _WholeSellers
+            return _wholeSellers
                 .Where(item => item.MobileNo.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1
                             || item.Address.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
@@ -70,7 +70,7 @@ namespace SDKTemplate
         {
             try
             {
-                return _WholeSellers
+                return _wholeSellers
                      .Where(c => c.MobileNo.Equals(mobileNumber)).First();
             }
             catch
@@ -85,7 +85,7 @@ namespace SDKTemplate
                 return null;
             try
             {
-                return _WholeSellers
+                return _wholeSellers
                      .Where(w => w.WholeSellerId.Equals(wholeSellerId)).First();
             }
             catch
@@ -105,12 +105,34 @@ namespace SDKTemplate
                 db.WholeSellers.Add((DatabaseModel.WholeSeller)newWholeSeller);
                 db.SaveChanges();
             }
-            _WholeSellers.Add(newWholeSeller);
+            _wholeSellers.Add(newWholeSeller);
+        }
+
+        //Step 1:
+        public static float UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
+          float walletBalanceToBeAdded)
+        {
+            var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;
+            var entityEntry = db.Attach(wholeSeller);
+            wholeSeller.WalletBalance += walletBalanceToBeAdded;
+            var memberEntry = entityEntry.Member(nameof(DatabaseModel.WholeSeller.WalletBalance));
+            memberEntry.IsModified = true;
+            db.SaveChanges();
+            UpdateWalletBalanceOfWholeSellerInMemory(wholeSellerViewModel.WholeSellerId, wholeSeller.WalletBalance);
+            return wholeSeller.WalletBalance;
+        }
+
+        private static void UpdateWalletBalanceOfWholeSellerInMemory(Guid wholeSellerId, float newWalletBalance)
+        {
+            int index = _wholeSellers.FindIndex(c => c.WholeSellerId == wholeSellerId);
+            if (index < 0 || index >= _wholeSellers.Count())
+                throw new Exception("Assert: WholeSeller should be present in wholeSeller data source");
+            _wholeSellers[index].WalletBalance = newWalletBalance;
         }
 
         public static bool IsNameExist(string name)
         {
-            var WholeSellers = WholeSellerDataSource._WholeSellers
+            var WholeSellers = WholeSellerDataSource._wholeSellers
              .Where(c => c.Name.ToLower() == name.ToLower());
             if (WholeSellers.Count() == 0)
                 return false;
@@ -119,7 +141,7 @@ namespace SDKTemplate
 
         public static bool IsMobileNumberExist(string mobileNumber)
         {
-            var WholeSellers = WholeSellerDataSource._WholeSellers
+            var WholeSellers = WholeSellerDataSource._wholeSellers
              .Where(c => c.MobileNo == mobileNumber);
             if (WholeSellers.Count() == 0)
                 return false;
@@ -129,16 +151,16 @@ namespace SDKTemplate
 
         public static float GetMinimumWalletBalance()
         {
-            if (_WholeSellers.Count == 0)
+            if (_wholeSellers.Count == 0)
                 return 0;
-            return _WholeSellers.Min(c => c.WalletBalance);
+            return _wholeSellers.Min(c => c.WalletBalance);
         }
 
         public static float GetMaximumWalletBalance()
         {
-            if (_WholeSellers.Count == 0)
+            if (_wholeSellers.Count == 0)
                 return 0;
-            return _WholeSellers.Max(c => c.WalletBalance);
+            return _wholeSellers.Max(c => c.WalletBalance);
         }
 
     }
