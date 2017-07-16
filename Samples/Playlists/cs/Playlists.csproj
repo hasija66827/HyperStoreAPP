@@ -117,6 +117,11 @@
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\WholeSellerOrderProductDataSource.cs" />
+    <Compile Include="Migrations\20170716190307_initial.cs" />
+    <Compile Include="Migrations\20170716190307_initial.designer.cs">
+      <DependentUpon>20170716190307_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
@@ -128,11 +133,6 @@
     <Compile Include="CCF\FilterFrameCCF\FilterCustomerCC\FilterCustomerCC.xaml.cs">
       <DependentUpon>FilterCustomerCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20170614150657_first.cs" />
-    <Compile Include="Migrations\20170614150657_first.designer.cs">
-      <DependentUpon>20170614150657_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\ProductInStock\PriceQuotedByWholeSellerViewModel.cs" />
     <Compile Include="ProductListToPurchaseCC\ProductListToPurchaseViewModel.cs" />
     <Compile Include="ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml.cs">

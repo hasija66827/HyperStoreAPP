@@ -16,11 +16,14 @@ namespace DatabaseModel
         public DbSet<WholeSeller> WholeSellers { get; set; }
         public DbSet<WholeSellerOrder> WholeSellersOrders { get; set; }
         public DbSet<WholeSellerOrderProduct> WholeSellersOrderProducts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<WholeSellerOrderTransaction> WholeSellerOrderTransactions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers10.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers14.db");
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>()
@@ -43,6 +46,7 @@ namespace DatabaseModel
                 .HasIndex(p => p.UserDefinedCode)
                 .IsUnique();
         }
+
     }
 
     public class WholeSeller
@@ -54,7 +58,9 @@ namespace DatabaseModel
         public string Address { get; set; }
         public float WalletBalance { get; set; }
         public List<WholeSellerOrder> WholeSellerOrders { get; set; }
+        //This is used by Retailer to mark the product to be prurchased from Wholeseller.
         public List<Product> Products { get; set; }
+        public List<Transaction> Transactions { get; set; }
         public WholeSeller(string name, string mobileNo)
         {
             this.WholeSellerId = Guid.NewGuid();
@@ -78,6 +84,40 @@ namespace DatabaseModel
         }
     }
 
+    public class Transaction
+    {
+        public Guid TransactionId { get; set; }
+        public float WalletSnapshot { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public float Amount { get; set; }
+
+        [Required]
+        public Nullable<Guid> WholeSellerId;
+        public WholeSeller WholeSeller;
+
+        public List<WholeSellerOrderTransaction> WholeSellerOrderTransactions { get; set; }
+
+        public Transaction() { }
+         
+    }
+
+    public class WholeSellerOrderTransaction
+    {
+        public Guid WholeSellerOrderTransactionId { get; set; }
+        public float PaidAmount { get; set; }
+        public bool IsPaymentComplete { get; set; }//This states whether the order is completly paid by this transaction.
+        public WholeSellerOrderTransaction() { }
+
+        [Required]
+        public Nullable<Guid> TransactionId;
+        public Transaction Transaction;
+
+        [Required]
+        public Nullable<Guid> WholeSellerOrderId;
+        public WholeSellerOrder WholeSellerOrder;
+    }
+
+
     public class WholeSellerOrder
     {
         public Guid WholeSellerOrderId { get; set; }
@@ -91,6 +131,7 @@ namespace DatabaseModel
         public WholeSeller WholeSeller;
 
         public List<WholeSellerOrderProduct> WholeSellerOrderProducts { get; set; }
+        public List<WholeSellerOrderTransaction> WholeSellerOrderTransactions { get; set; }
 
         public WholeSellerOrder(Guid wholeSellerId)
         {
@@ -101,6 +142,7 @@ namespace DatabaseModel
             this.PaidAmount = 0;
             this.WholeSellerId = wholeSellerId;
         }
+
         public WholeSellerOrder(WholeSellerPurchaseNavigationParameter wholeSellerPurchaseNavigationParameter)
         {
             this.WholeSellerOrderId = Guid.NewGuid();
@@ -149,7 +191,7 @@ namespace DatabaseModel
         public float DisplayPrice { get; set; }
         public float DiscountPer { get; set; }
         public Int32 TotalQuantity { get; set; }
-        public List<WholeSellerOrderProduct> WholeSellerOrderPorducts { get; set; }
+        public List<WholeSellerOrderProduct> WholeSellerOrderProducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
         //This is used by Retailer to mark the product to be prurchased from Wholeseller.

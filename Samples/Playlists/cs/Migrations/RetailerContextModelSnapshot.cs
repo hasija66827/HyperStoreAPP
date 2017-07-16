@@ -141,6 +141,27 @@ namespace SDKTemplate.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("DatabaseModel.Transaction", b =>
+                {
+                    b.Property<Guid>("TransactionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<float>("Amount");
+
+                    b.Property<DateTime>("TransactionDate");
+
+                    b.Property<float>("WalletSnapshot");
+
+                    b.Property<Guid?>("WholeSellerId")
+                        .IsRequired();
+
+                    b.HasKey("TransactionId");
+
+                    b.HasIndex("WholeSellerId");
+
+                    b.ToTable("Transactions");
+                });
+
             modelBuilder.Entity("DatabaseModel.WholeSeller", b =>
                 {
                     b.Property<Guid>("WholeSellerId")
@@ -213,6 +234,30 @@ namespace SDKTemplate.Migrations
                     b.ToTable("WholeSellersOrderProducts");
                 });
 
+            modelBuilder.Entity("DatabaseModel.WholeSellerOrderTransaction", b =>
+                {
+                    b.Property<Guid>("WholeSellerOrderTransactionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("IsPaymentComplete");
+
+                    b.Property<float>("PaidAmount");
+
+                    b.Property<Guid?>("TransactionId")
+                        .IsRequired();
+
+                    b.Property<Guid?>("WholeSellerOrderId")
+                        .IsRequired();
+
+                    b.HasKey("WholeSellerOrderTransactionId");
+
+                    b.HasIndex("TransactionId");
+
+                    b.HasIndex("WholeSellerOrderId");
+
+                    b.ToTable("WholeSellerOrderTransactions");
+                });
+
             modelBuilder.Entity("DatabaseModel.CustomerOrder", b =>
                 {
                     b.HasOne("DatabaseModel.Customer")
@@ -242,6 +287,14 @@ namespace SDKTemplate.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("DatabaseModel.Transaction", b =>
+                {
+                    b.HasOne("DatabaseModel.WholeSeller")
+                        .WithMany("Transactions")
+                        .HasForeignKey("WholeSellerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("DatabaseModel.WholeSellerOrder", b =>
                 {
                     b.HasOne("DatabaseModel.WholeSeller")
@@ -252,13 +305,26 @@ namespace SDKTemplate.Migrations
 
             modelBuilder.Entity("DatabaseModel.WholeSellerOrderProduct", b =>
                 {
-                    b.HasOne("DatabaseModel.Product")
-                        .WithMany("WholeSellerOrderPorducts")
+                    b.HasOne("DatabaseModel.Product", "Product")
+                        .WithMany("WholeSellerOrderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DatabaseModel.WholeSellerOrder")
                         .WithMany("WholeSellerOrderProducts")
+                        .HasForeignKey("WholeSellerOrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DatabaseModel.WholeSellerOrderTransaction", b =>
+                {
+                    b.HasOne("DatabaseModel.Transaction")
+                        .WithMany("WholeSellerOrderTransactions")
+                        .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DatabaseModel.WholeSellerOrder")
+                        .WithMany("WholeSellerOrderTransactions")
                         .HasForeignKey("WholeSellerOrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

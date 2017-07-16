@@ -203,6 +203,25 @@ namespace SDKTemplate
             return true;
         }
 
+
+        // Step 2:
+        public static bool UpdateProductStockByWholeSeller(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts)
+        {
+            //#perf: You can query whole list in where clause.
+            foreach (var purchasedProduct in purchasedProducts)
+            {
+                //TODO: check where clouse whether threough id or bar code.
+                var products = db.Products.Where(p => p.BarCode == purchasedProduct.BarCode).ToList();
+                var product = products.FirstOrDefault();
+                if (product == null)
+                    return false;
+                product.TotalQuantity += purchasedProduct.QuantityPurchased;
+                db.Update(product);
+            }
+            db.SaveChanges();
+            return true;
+        }
+
         public static bool UpdateWholSellerIdForProduct(Guid productId, Guid? wholeSellerId)
         {
             var db = new DatabaseModel.RetailerContext();

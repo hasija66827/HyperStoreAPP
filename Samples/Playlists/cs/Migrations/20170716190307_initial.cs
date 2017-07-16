@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SDKTemplate.Migrations
 {
-    public partial class first : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -96,6 +96,27 @@ namespace SDKTemplate.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    TransactionId = table.Column<Guid>(nullable: false),
+                    Amount = table.Column<float>(nullable: false),
+                    TransactionDate = table.Column<DateTime>(nullable: false),
+                    WalletSnapshot = table.Column<float>(nullable: false),
+                    WholeSellerId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.TransactionId);
+                    table.ForeignKey(
+                        name: "FK_Transactions_WholeSellers_WholeSellerId",
+                        column: x => x.WholeSellerId,
+                        principalTable: "WholeSellers",
+                        principalColumn: "WholeSellerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "WholeSellersOrders",
                 columns: table => new
                 {
@@ -172,6 +193,33 @@ namespace SDKTemplate.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WholeSellerOrderTransactions",
+                columns: table => new
+                {
+                    WholeSellerOrderTransactionId = table.Column<Guid>(nullable: false),
+                    IsPaymentComplete = table.Column<bool>(nullable: false),
+                    PaidAmount = table.Column<float>(nullable: false),
+                    TransactionId = table.Column<Guid>(nullable: false),
+                    WholeSellerOrderId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WholeSellerOrderTransactions", x => x.WholeSellerOrderTransactionId);
+                    table.ForeignKey(
+                        name: "FK_WholeSellerOrderTransactions_Transactions_TransactionId",
+                        column: x => x.TransactionId,
+                        principalTable: "Transactions",
+                        principalColumn: "TransactionId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WholeSellerOrderTransactions_WholeSellersOrders_WholeSellerOrderId",
+                        column: x => x.WholeSellerOrderId,
+                        principalTable: "WholeSellersOrders",
+                        principalColumn: "WholeSellerOrderId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_MobileNo",
                 table: "Customers",
@@ -217,6 +265,11 @@ namespace SDKTemplate.Migrations
                 column: "WholeSellerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Transactions_WholeSellerId",
+                table: "Transactions",
+                column: "WholeSellerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WholeSellers_MobileNo",
                 table: "WholeSellers",
                 column: "MobileNo");
@@ -241,6 +294,16 @@ namespace SDKTemplate.Migrations
                 name: "IX_WholeSellersOrderProducts_WholeSellerOrderId",
                 table: "WholeSellersOrderProducts",
                 column: "WholeSellerOrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WholeSellerOrderTransactions_TransactionId",
+                table: "WholeSellerOrderTransactions",
+                column: "TransactionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WholeSellerOrderTransactions_WholeSellerOrderId",
+                table: "WholeSellerOrderTransactions",
+                column: "WholeSellerOrderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -252,10 +315,16 @@ namespace SDKTemplate.Migrations
                 name: "WholeSellersOrderProducts");
 
             migrationBuilder.DropTable(
+                name: "WholeSellerOrderTransactions");
+
+            migrationBuilder.DropTable(
                 name: "CustomerOrders");
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "WholeSellersOrders");

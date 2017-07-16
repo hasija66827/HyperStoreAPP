@@ -79,29 +79,13 @@ namespace SDKTemplate
             var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
             pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);
 
-            UpdateProductStock(db, productViewModelList);
+            ProductDataSource.UpdateProductStockByWholeSeller(db, productViewModelList);
             var wholeSellerOrderId = AddIntoWholeSellerOrder(db, pageNavigationParameter);
-            AddIntoWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
+            WholeSellerOrderProductDataSource.AddIntoWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
             return true;
         }
 
-        // Step 2:
-        private static bool UpdateProductStock(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts)
-        {
-            //#perf: You can query whole list in where clause.
-            foreach (var purchasedProduct in purchasedProducts)
-            {
-                //TODO: check where clouse whether threough id or bar code.
-                var products = db.Products.Where(p => p.BarCode == purchasedProduct.BarCode).ToList();
-                var product = products.FirstOrDefault();
-                if (product == null)
-                    return false;
-                product.TotalQuantity += purchasedProduct.QuantityPurchased;
-                db.Update(product);
-            }
-            db.SaveChanges();
-            return true;
-        }
+   
 
         // Step 3:
         private static Guid AddIntoWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerPurchaseNavigationParameter navigationParameter)
@@ -113,22 +97,6 @@ namespace SDKTemplate
             return wholeSellerOrder.WholeSellerOrderId;
         }
 
-        // Step4:
-        private static void AddIntoWholeSellerOrderProduct(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts, Guid wholeSellerOrderId)
-        {
-            foreach (var purchasedProduct in purchasedProducts)
-            {
-                // Adding each product purchased in the order into the Entity WholeSellerOrderProduct.
-                var wholeSellerOrderProduct = new DatabaseModel.WholeSellerOrderProduct(
-                    purchasedProduct.ProductId,
-                    wholeSellerOrderId,
-                    purchasedProduct.QuantityPurchased,
-                    purchasedProduct.PurchasePrice
-                    );
-                db.WholeSellersOrderProducts.Add(wholeSellerOrderProduct);
-            }
-            // Saving the order.
-            db.SaveChanges();
-        }
+    
     }
 }

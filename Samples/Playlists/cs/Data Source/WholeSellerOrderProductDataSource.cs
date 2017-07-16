@@ -18,5 +18,22 @@ namespace SDKTemplate
                 product_wop.Select(wop => new WholeSellerOrderDetail(wop.Product.BarCode, wop.Product.Name, wop.PurchasePrice, wop.QuantityPurchased));
             return wholeSellerOrderDetails.ToList();
         }
+        // Step4:
+        public static void AddIntoWholeSellerOrderProduct(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts, Guid wholeSellerOrderId)
+        {
+            foreach (var purchasedProduct in purchasedProducts)
+            {
+                // Adding each product purchased in the order into the Entity WholeSellerOrderProduct.
+                var wholeSellerOrderProduct = new DatabaseModel.WholeSellerOrderProduct(
+                    purchasedProduct.ProductId,
+                    wholeSellerOrderId,
+                    purchasedProduct.QuantityPurchased,
+                    purchasedProduct.PurchasePrice
+                    );
+                db.WholeSellersOrderProducts.Add(wholeSellerOrderProduct);
+            }
+            // Saving the order.
+            db.SaveChanges();
+        }
     }
 }
