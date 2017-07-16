@@ -115,6 +115,7 @@
       <DependentUpon>FilterWholeSalerOrderCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
+    <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\WholeSellerOrderProductDataSource.cs" />
     <Compile Include="Migrations\20170716190307_initial.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="ProductConsumptionPer.xaml.cs">
       <DependentUpon>ProductConsumptionPer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View Models\TransactionViewModel.cs" />
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrder\WholeSalerOrder.xaml.cs">
       <DependentUpon>WholeSalerOrder.xaml</DependentUpon>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SDKTemp.ViewModel;
 using SDKTemplate;
-
+using SDKTemplate.View_Models;
 namespace DatabaseModel
 {
     public class RetailerContext : DbContext
@@ -87,18 +87,25 @@ namespace DatabaseModel
     public class Transaction
     {
         public Guid TransactionId { get; set; }
-        public float WalletSnapshot { get; set; }
-        public DateTime TransactionDate { get; set; }
         public float Amount { get; set; }
-
+        public DateTime TransactionDate { get; set; }
+        public float WalletSnapshot { get; set; }
+        
         [Required]
         public Nullable<Guid> WholeSellerId;
         public WholeSeller WholeSeller;
 
         public List<WholeSellerOrderTransaction> WholeSellerOrderTransactions { get; set; }
 
-        public Transaction() { }
-         
+        
+        public Transaction(TransactionViewModel transactionViewModel)
+        {
+            this.TransactionId = transactionViewModel.TransactionId;
+            this.Amount = transactionViewModel.Amount;
+            this.TransactionDate = transactionViewModel.TransactionDate;
+            this.WholeSellerId = transactionViewModel.WholeSellerId;
+            this.WalletSnapshot =transactionViewModel.WalletSnapshot;
+        }
     }
 
     public class WholeSellerOrderTransaction

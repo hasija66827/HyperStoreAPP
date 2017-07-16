@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SDKTemplate.View_Models;
 namespace SDKTemplate
 {
     public class WholeSellerOrderDataSource
@@ -74,8 +74,11 @@ namespace SDKTemplate
             //TODO: See how can you make whole transaction atomic.
             var productViewModelList = pageNavigationParameter.productViewModelList;
             var wholeSellerViewModel = pageNavigationParameter.WholeSellerViewModel;
-
+            var remainingAmount = pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount;
             var db = new DatabaseModel.RetailerContext();
+
+            var transaction = new TransactionViewModel(remainingAmount, DateTime.Now, wholeSellerViewModel);
+            TransactionDataSource.CreateTransaction(transaction);
             var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
             pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);
 
