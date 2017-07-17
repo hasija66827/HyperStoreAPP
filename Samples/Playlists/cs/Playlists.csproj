@@ -145,18 +145,18 @@
     <Compile Include="ProductConsumptionPer.xaml.cs">
       <DependentUpon>ProductConsumptionPer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View Models\TransactionViewModel.cs" />
+    <Compile Include="WholeSellerTransactionScenario\TransactionViewModel.cs" />
     <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrder\WholeSalerOrder.xaml.cs">
       <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSelleOrderSummaryViewModel.cs" />
-    <Compile Include="WholeSallersCCF.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSallersCCF.xaml.cs">
       <DependentUpon>WholeSallersCCF.xaml</DependentUpon>
     </Compile>
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
-    <Compile Include="View Models\WholeSellerViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSellerViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\AddCustomerCC\AddCustomeViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\AddProductCC\AddProductCC.xaml.cs">
       <DependentUpon>AddProductCC.xaml</DependentUpon>
@@ -236,10 +236,10 @@
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml.cs">
       <DependentUpon>WholeSellerOrderSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSellerTransactionCC.xaml.cs">
+    <Compile Include="WholeSellerTransactionScenario\WholeSellerTransactionCC.xaml.cs">
       <DependentUpon>WholeSellerTransactionCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSellerTransactionOTPVerification.xaml.cs">
+    <Compile Include="WholeSellerTransactionScenario\WholeSellerTransactionOTPVerification.xaml.cs">
       <DependentUpon>WholeSellerTransactionOTPVerification.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -372,7 +372,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSallersCCF.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSallersCCF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -388,11 +388,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSellerTransactionCC.xaml">
+    <Page Include="WholeSellerTransactionScenario\WholeSellerTransactionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSellerTransactionOTPVerification.xaml">
+    <Page Include="WholeSellerTransactionScenario\WholeSellerTransactionOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
