@@ -146,7 +146,7 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("TransactionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("Amount");
+                    b.Property<float>("CreditAmount");
 
                     b.Property<DateTime>("TransactionDate");
 

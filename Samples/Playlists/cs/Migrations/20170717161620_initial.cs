@@ -100,7 +100,7 @@ namespace SDKTemplate.Migrations
                 columns: table => new
                 {
                     TransactionId = table.Column<Guid>(nullable: false),
-                    Amount = table.Column<float>(nullable: false),
+                    CreditAmount = table.Column<float>(nullable: false),
                     TransactionDate = table.Column<DateTime>(nullable: false),
                     WalletSnapshot = table.Column<float>(nullable: false),
                     WholeSellerId = table.Column<Guid>(nullable: false)

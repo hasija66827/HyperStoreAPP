@@ -8,7 +8,7 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170716190307_initial")]
+    [Migration("20170717161620_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,7 +147,7 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("TransactionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("Amount");
+                    b.Property<float>("CreditAmount");
 
                     b.Property<DateTime>("TransactionDate");
 

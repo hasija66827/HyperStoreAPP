@@ -118,9 +118,9 @@
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\WholeSellerOrderProductDataSource.cs" />
-    <Compile Include="Migrations\20170716190307_initial.cs" />
-    <Compile Include="Migrations\20170716190307_initial.designer.cs">
-      <DependentUpon>20170716190307_initial.cs</DependentUpon>
+    <Compile Include="Migrations\20170717161620_initial.cs" />
+    <Compile Include="Migrations\20170717161620_initial.designer.cs">
+      <DependentUpon>20170717161620_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
