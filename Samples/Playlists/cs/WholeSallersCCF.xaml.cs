@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using SDKTemplate.View_Models;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -23,11 +23,13 @@ namespace SDKTemplate
     public sealed partial class WholeSalersCCF : Page
     {
         public static WholeSalersCCF Current;
+        public TransactionHistoryOfWholeSellerCollection TransactionHistoryOfWholeSellerCollection { get; set; }
         private WholeSellerViewModel SelectedWholeSeller { get; set; }
         public WholeSalersCCF()
         {
             Current = this;
             this.InitializeComponent();
+            this.TransactionHistoryOfWholeSellerCollection = new TransactionHistoryOfWholeSellerCollection();
             this.SelectedWholeSeller = null;
             WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
@@ -49,8 +51,8 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.SelectedWholeSeller = (WholeSellerViewModel)e.ClickedItem;
-            //this.CustomerPurchaseHistoryCollection.CustomerPurchaseHistories = AnalyticsDataSource.GetPurchasedProductForCustomer(clickedItem.CustomerId, 4);
-            //DetailContentPresenter.Content = this.CustomerPurchaseHistoryCollection;
+            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransaction(SelectedWholeSeller.WholeSellerId);
+            DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
         }
 
         private void AddMoney_Click(object sender, RoutedEventArgs e)

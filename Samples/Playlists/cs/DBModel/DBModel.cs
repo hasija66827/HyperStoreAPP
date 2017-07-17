@@ -87,7 +87,7 @@ namespace DatabaseModel
     public class Transaction
     {
         public Guid TransactionId { get; set; }
-        public float Amount { get; set; }
+        public float CreditAmount { get; set; }
         public DateTime TransactionDate { get; set; }
         public float WalletSnapshot { get; set; }
         
@@ -97,11 +97,11 @@ namespace DatabaseModel
 
         public List<WholeSellerOrderTransaction> WholeSellerOrderTransactions { get; set; }
 
-        
+        public Transaction() { }
         public Transaction(TransactionViewModel transactionViewModel)
         {
             this.TransactionId = transactionViewModel.TransactionId;
-            this.Amount = transactionViewModel.Amount;
+            this.CreditAmount = transactionViewModel.CreditAmount;
             this.TransactionDate = transactionViewModel.TransactionDate;
             this.WholeSellerId = transactionViewModel.WholeSellerId;
             this.WalletSnapshot =transactionViewModel.WalletSnapshot;

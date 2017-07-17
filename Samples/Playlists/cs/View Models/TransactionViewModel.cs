@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Globalization.DateTimeFormatting;
 
 namespace SDKTemplate.View_Models
 {
@@ -11,26 +12,50 @@ namespace SDKTemplate.View_Models
         private Guid _transactionId;
         public Guid TransactionId { get { return this._transactionId; } }
 
-        private float _amount;
-        public float Amount { get { return this._amount; } }
+        //Amount credited into the account of the wholeseller.
+        private float _creditAmount;
+        public float CreditAmount { get { return this._creditAmount; } }
 
         private DateTime _transactionDate;
         public DateTime TransactionDate { get { return this._transactionDate; } }
+        public string FormattedTransactionDate
+        {
+            get
+            {
+                var formatter = new DateTimeFormatter("day month");
+                return formatter.Format(this._transactionDate);
+            }
+        }
+
 
         private float _walletSnapShot;
         public float WalletSnapshot { get { return this._walletSnapShot; } }
 
+        public float UpdatedWalletSnapshot { get { return this._walletSnapShot - this._creditAmount; } }
         private Guid? _wholeSellerId;
         public Guid? WholeSellerId { get { return this._wholeSellerId; } }
 
-        public TransactionViewModel(float amount, DateTime transactionDate,
+        public TransactionViewModel(float creditAmount, DateTime transactionDate,
                    WholeSellerViewModel wholeSellerViewModel)
         { 
             this._transactionId = Guid.NewGuid();
-            this._amount = amount;
+            this._creditAmount = creditAmount;
             this._transactionDate = transactionDate;
             this._walletSnapShot = wholeSellerViewModel.WalletBalance;
             this._wholeSellerId = wholeSellerViewModel.WholeSellerId;
         }
+
+        public TransactionViewModel(DatabaseModel.Transaction transaction)
+        {
+            this._transactionId = transaction.TransactionId;
+            this._transactionDate = transaction.TransactionDate;
+            this._walletSnapShot = transaction.WalletSnapshot;
+            this._creditAmount = transaction.CreditAmount;
+            this._wholeSellerId = transaction.WholeSellerId;
+        }
+    }
+    public class TransactionHistoryOfWholeSellerCollection {
+        public List<TransactionViewModel> Transactions { get; set; }
+        public TransactionHistoryOfWholeSellerCollection() { }
     }
 }

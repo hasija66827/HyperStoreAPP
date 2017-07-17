@@ -77,7 +77,7 @@ namespace SDKTemplate
             var remainingAmount = pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount;
             var db = new DatabaseModel.RetailerContext();
 
-            var transaction = new TransactionViewModel(remainingAmount, DateTime.Now, wholeSellerViewModel);
+            var transaction = new TransactionViewModel(-remainingAmount, DateTime.Now, wholeSellerViewModel);
             TransactionDataSource.CreateTransaction(transaction);
             var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
             pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);

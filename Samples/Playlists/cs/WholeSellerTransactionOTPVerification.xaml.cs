@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using SDKTemplate.View_Models;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -40,9 +40,11 @@ namespace SDKTemplate
             if (OTPTB.Text == "123456")
             {
                 var db = new DatabaseModel.RetailerContext();
-                var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db,
-                                                        this.WholeSellerTransactionViewModel.WholeSellerViewModel,
-                                                        -this.WholeSellerTransactionViewModel.Amount);
+                var wholeSeller = this.WholeSellerTransactionViewModel.WholeSellerViewModel;
+                var transactionAmount = this.WholeSellerTransactionViewModel.Amount;
+                var transactionViewModel = new TransactionViewModel(transactionAmount, DateTime.Now, wholeSeller);
+                TransactionDataSource.CreateTransaction(transactionViewModel);
+                var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -transactionAmount);
                 MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the wholeSeller is \u20b9" + updatedWholeSellerWalletBalance
                     , NotifyType.StatusMessage);
                 this.Frame.Navigate(typeof(WholeSalersCCF));

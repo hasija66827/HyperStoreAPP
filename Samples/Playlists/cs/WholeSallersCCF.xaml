@@ -1,12 +1,11 @@
-﻿<Page
-    x:Class="SDKTemplate.WholeSalersCCF"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SDKTemplate"
+﻿<Page x:Class="SDKTemplate.WholeSalersCCF"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:viewmodel="using:SDKTemplate.View_Models"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-    
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
@@ -29,16 +28,51 @@
                            Grid.Row="1"
                            TextWrapping="Wrap" />
                 <TextBlock Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
-                           
                            Grid.Column="2"
                            Style="{ThemeResource BaseMessageStyle}" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="local:CustomerPurchaseHistoryCollection">
-            <Button x:Name="AddMoney"
-                    Content="Add Money"
-                    Click="AddMoney_Click"/>
+                      x:DataType="viewmodel:TransactionHistoryOfWholeSellerCollection">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="10,0,10,0">
+                    <TextBlock Text="Date"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="Balance"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="Credit"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="Updated Balance"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                </StackPanel>
+                <ListView x:Name="TransactionHistoriesOfWholeSellers"
+                          ItemsSource="{x:Bind Transactions}"
+                          CanReorderItems="False"
+                          SelectedIndex="-1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:TransactionViewModel">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="TransactionDate"
+                                           Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
+                                           Style="{StaticResource ListTBStyle}" />
+                                <TextBlock x:Name="WalletSnapshot"
+                                           Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{StaticResource ListTBStyle}" />
+                                <TextBlock x:Name="CreditAmount"
+                                           Text="{x:Bind CreditAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{StaticResource ListTBStyle}" />
+                                <TextBlock x:Name="updatedWalletBalance"
+                                           Text="{x:Bind UpdatedWalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{StaticResource ListTBStyle}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="AddMoney"
+                        Content="Add Money"
+                        Click="AddMoney_Click" />
+            </StackPanel>
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -67,7 +101,7 @@
                   ItemContainerTransitions="{x:Null}"
                   ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                   IsItemClickEnabled="True"
-                 ItemClick="MasterListView_ItemClick"
+                  ItemClick="MasterListView_ItemClick"
                   Visibility="Visible">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

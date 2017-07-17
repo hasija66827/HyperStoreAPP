@@ -6,14 +6,26 @@ using System.Threading.Tasks;
 using SDKTemplate.View_Models;
 namespace SDKTemplate
 {
-
-
     public class TransactionDataSource
     {
-        /*public static List<TransactionViewModel> RetrieveTransaction(Guid WholeSellerId)
+        /// <summary>
+        /// Retrieves all the transaction corresponding to a wholeseller.
+        /// </summary>
+        /// <param name="wholeSellerId"></param>
+        /// <returns></returns>
+        public static List<TransactionViewModel> RetreiveTransaction(Guid wholeSellerId)
         {
+            var db = new DatabaseModel.RetailerContext();
+            var transactions = db.Transactions.Where(t => t.WholeSellerId == wholeSellerId).ToList();
+            var res = transactions.Select(trans => new TransactionViewModel(trans));
+            return res.ToList();
+        }
 
-        }*/
+        /// <summary>
+        /// Creates a new transaction in database corresponding to the wholeseller.
+        /// </summary>
+        /// <param name="transactionViewModel"></param>
+        /// <returns></returns>
         public static bool CreateTransaction(TransactionViewModel transactionViewModel)
         {
             var db = new DatabaseModel.RetailerContext();
