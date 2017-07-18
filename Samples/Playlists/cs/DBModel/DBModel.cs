@@ -111,10 +111,17 @@ namespace DatabaseModel
     public class WholeSellerOrderTransaction
     {
         public Guid WholeSellerOrderTransactionId { get; set; }
-        public float PaidAmount { get; set; }
-        public bool IsPaymentComplete { get; set; }//This states whether the order is completly paid by this transaction.
+        public float PaidAmount { get; set; }//#remove it.
+        public bool IsPaymentComplete { get; set; }// # remove it.
         public WholeSellerOrderTransaction() { }
-
+        public WholeSellerOrderTransaction(Guid transactionId, Guid wholeSellerOrderId)
+        {
+            this.WholeSellerOrderTransactionId = Guid.NewGuid();
+            this.TransactionId = transactionId;
+            this.WholeSellerOrderId = wholeSellerOrderId;
+            this.PaidAmount = 0;
+            this.IsPaymentComplete = false;
+        }
         [Required]
         public Nullable<Guid> TransactionId;
         public Transaction Transaction;

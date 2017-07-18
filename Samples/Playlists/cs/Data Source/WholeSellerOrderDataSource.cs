@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SDKTemplate.View_Models;
+using SDKTemplate.Data_Source;
+
 namespace SDKTemplate
 {
     public class WholeSellerOrderDataSource
@@ -83,23 +85,70 @@ namespace SDKTemplate
             pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);
 
             ProductDataSource.UpdateProductStockByWholeSeller(db, productViewModelList);
-            var wholeSellerOrderId = AddIntoWholeSellerOrder(db, pageNavigationParameter);
+            var wholeSellerOrderId = CreateWholeSellerOrder(db, pageNavigationParameter);
             WholeSellerOrderProductDataSource.AddIntoWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
             return true;
         }
 
-   
+        /// <summary>
+        /// settle up the orders of the wholeseller with the credit amount.
+        /// It starts with the oldest order and settle up the order till the credit amount is reduced to zero or all the orders are completly paid.
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <param name="wholeSeller"></param>
+        /// <returns>returns the credit amount remaining after completing the payements of order.</returns>
+        public static float SettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller)
+        {
+            var db = new DatabaseModel.RetailerContext();
+            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId
+                                                                        && wo.BillAmount - wo.PaidAmount > 0)
+                                                            .OrderBy(wo => wo.OrderDate);
+            var creditAmount = transaction.CreditAmount;
+            foreach (var partiallyPaidOrder in partiallyPaidOrders)
+            {
+                if (creditAmount < 0)
+                    break;
+                var remainingAmount = partiallyPaidOrder.BillAmount - partiallyPaidOrder.PaidAmount;
+                if (remainingAmount < 0)
+                    throw new Exception(string.Format("remaining amount {0} cannot be less than zero", remainingAmount));
+                float payingAmountForOrder = remainingAmount <= creditAmount ? remainingAmount : creditAmount;
+                var IsOrderSettleUp = SettleUpOrder(transaction, partiallyPaidOrder, payingAmountForOrder, db);
+                if (IsOrderSettleUp)
+                    WholeSellerOrderTransactionDataSource.CreateWholeSellerOrderTransaction(transaction.TransactionId, partiallyPaidOrder.WholeSellerOrderId,db);
+                creditAmount -= payingAmountForOrder;
+            }
+            db.SaveChanges();
+            return creditAmount;
+        }
+
+        /// <summary>
+        /// Used to settle up the order with required credit amount.
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <param name="wholeSellerOrder"></param>
+        /// <param name="creditAmount"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        private static bool SettleUpOrder(TransactionViewModel transaction, DatabaseModel.WholeSellerOrder wholeSellerOrder, float creditAmount, DatabaseModel.RetailerContext db)
+        {
+            var remainingAmount = wholeSellerOrder.BillAmount - wholeSellerOrder.PaidAmount;
+            if (creditAmount > remainingAmount)
+                throw new Exception(String.Format("credit amount {0} for an order cannot be greater than remaining amount {1} of the order {2}", creditAmount, remainingAmount, wholeSellerOrder.WholeSellerOrderId));
+            wholeSellerOrder.PaidAmount += creditAmount;
+            db.WholeSellersOrders.Update(wholeSellerOrder);
+        
+            return true;
+        }
+
 
         // Step 3:
-        private static Guid AddIntoWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerPurchaseNavigationParameter navigationParameter)
+        private static Guid CreateWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerPurchaseNavigationParameter navigationParameter)
         {
             var wholeSellerOrder = new DatabaseModel.WholeSellerOrder(navigationParameter);
             // Creating Entity Record in customerOrder.
             db.WholeSellersOrders.Add(wholeSellerOrder);
-            db.SaveChanges();
             return wholeSellerOrder.WholeSellerOrderId;
         }
 
-    
     }
 }

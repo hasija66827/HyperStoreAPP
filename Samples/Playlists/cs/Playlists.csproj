@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
+    <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\WholeSellerOrderProductDataSource.cs" />
     <Compile Include="Migrations\20170717161620_initial.cs" />

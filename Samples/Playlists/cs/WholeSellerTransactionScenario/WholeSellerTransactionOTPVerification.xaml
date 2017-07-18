@@ -26,7 +26,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Amount"
                            Style="{ThemeResource FormTBPropStyle}" />
-                <TextBlock Text="{x:Bind WholeSellerTransactionViewModel.Amount, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind WholeSellerTransactionViewModel.CreditAmount, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{ThemeResource FormTBValueStyle}" />
             </StackPanel>
             <StackPanel Orientation="Vertical"

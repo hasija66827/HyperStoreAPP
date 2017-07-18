@@ -41,10 +41,13 @@ namespace SDKTemplate
             {
                 var db = new DatabaseModel.RetailerContext();
                 var wholeSeller = this.WholeSellerTransactionViewModel.WholeSellerViewModel;
-                var transactionAmount = this.WholeSellerTransactionViewModel.Amount;
-                var transactionViewModel = new TransactionViewModel(transactionAmount, DateTime.Now, wholeSeller);
+                var creditAmount = this.WholeSellerTransactionViewModel.CreditAmount;
+                var transactionViewModel = new TransactionViewModel(creditAmount, DateTime.Now, wholeSeller);
+
                 TransactionDataSource.CreateTransaction(transactionViewModel);
-                var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -transactionAmount);
+                var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -creditAmount);
+                WholeSellerOrderDataSource.SettleUpOrders(transactionViewModel, wholeSeller);
+
                 MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the wholeSeller is \u20b9" + updatedWholeSellerWalletBalance
                     , NotifyType.StatusMessage);
                 this.Frame.Navigate(typeof(WholeSalersCCF));

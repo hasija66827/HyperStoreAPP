@@ -28,7 +28,7 @@
                 <TextBlock Text="Amount"
                            Style="{ThemeResource FormTBPropStyle}" />
                 <TextBox PlaceholderText="Enter Amount"
-                         Text="{x:Bind WholeSellerTransactionViewModel.Amount, Mode=TwoWay}"
+                         Text="{x:Bind WholeSellerTransactionViewModel.CreditAmount, Mode=TwoWay}"
                          Style="{ThemeResource FormTextBoxStyle}" />
             </StackPanel>
             <Button 
