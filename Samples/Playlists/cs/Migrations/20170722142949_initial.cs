@@ -14,7 +14,6 @@ namespace SDKTemplate.Migrations
                 {
                     CustomerId = table.Column<Guid>(nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    IsVerifiedCustomer = table.Column<bool>(nullable: false),
                     MobileNo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     WalletBalance = table.Column<float>(nullable: false)
@@ -47,6 +46,7 @@ namespace SDKTemplate.Migrations
                     CustomerOrderId = table.Column<Guid>(nullable: false),
                     AddingMoneyToWallet = table.Column<float>(nullable: false),
                     CustomerId = table.Column<Guid>(nullable: false),
+                    CustomerOrderNo = table.Column<long>(nullable: false),
                     DiscountedAmount = table.Column<float>(nullable: false),
                     IsPaidNow = table.Column<bool>(nullable: false),
                     IsUseWallet = table.Column<bool>(nullable: false),
@@ -102,6 +102,7 @@ namespace SDKTemplate.Migrations
                     TransactionId = table.Column<Guid>(nullable: false),
                     CreditAmount = table.Column<float>(nullable: false),
                     TransactionDate = table.Column<DateTime>(nullable: false),
+                    TransactionNo = table.Column<long>(nullable: false),
                     WalletSnapshot = table.Column<float>(nullable: false),
                     WholeSellerId = table.Column<Guid>(nullable: false)
                 },
@@ -125,7 +126,8 @@ namespace SDKTemplate.Migrations
                     DueDate = table.Column<DateTime>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false),
                     PaidAmount = table.Column<float>(nullable: false),
-                    WholeSellerId = table.Column<Guid>(nullable: false)
+                    WholeSellerId = table.Column<Guid>(nullable: false),
+                    WholeSellerOrderNo = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {

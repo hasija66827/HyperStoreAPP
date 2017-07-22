@@ -21,7 +21,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers16.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers17.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -87,6 +87,7 @@ namespace DatabaseModel
     public class Transaction
     {
         public Guid TransactionId { get; set; }
+        public Int64 TransactionNo { get; set; }
         public float CreditAmount { get; set; }
         public DateTime TransactionDate { get; set; }
         public float WalletSnapshot { get; set; }
@@ -101,6 +102,7 @@ namespace DatabaseModel
         public Transaction(TransactionViewModel transactionViewModel)
         {
             this.TransactionId = transactionViewModel.TransactionId;
+            this.TransactionNo = 2222;
             this.CreditAmount = transactionViewModel.CreditAmount;
             this.TransactionDate = transactionViewModel.TransactionDate;
             this.WholeSellerId = transactionViewModel.WholeSellerId;
@@ -135,6 +137,7 @@ namespace DatabaseModel
     public class WholeSellerOrder
     {
         public Guid WholeSellerOrderId { get; set; }
+        public Int64 WholeSellerOrderNo { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DueDate { get; set; }
         public float BillAmount { get; set; }
@@ -150,6 +153,7 @@ namespace DatabaseModel
         public WholeSellerOrder(Guid wholeSellerId)
         {
             this.WholeSellerOrderId = Guid.NewGuid();
+            this.WholeSellerOrderNo = 1111;
             this.OrderDate = DateTime.Now;
             this.DueDate = DateTime.Now;
             this.BillAmount = 0;
@@ -281,6 +285,7 @@ namespace DatabaseModel
     public class CustomerOrder
     {
         public Guid CustomerOrderId { get; set; }
+        public Int64 CustomerOrderNo { get; set; }
         public DateTime OrderDate { get; set; }
         public float TotalBillAmount { get; set; }
 
@@ -301,6 +306,7 @@ namespace DatabaseModel
         public CustomerOrder(PageNavigationParameter pageNavigationParameter)
         {
             this.CustomerOrderId = Guid.NewGuid();
+            this.CustomerOrderNo = 0000;
             this.OrderDate = DateTime.Now;
             this.TotalBillAmount = pageNavigationParameter.BillingSummaryViewModel.TotalBillAmount;
             this.DiscountedAmount = pageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount;

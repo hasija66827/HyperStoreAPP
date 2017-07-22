@@ -119,15 +119,15 @@
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\WholeSellerOrderProductDataSource.cs" />
-    <Compile Include="Migrations\20170717161620_initial.cs" />
-    <Compile Include="Migrations\20170717161620_initial.designer.cs">
-      <DependentUpon>20170717161620_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="CCF\NewsFeedFrame\SettledOrdersOfTransactionCC.xaml.cs">
       <DependentUpon>SettledOrdersOfTransactionCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\SettledOrderOfTransactionViewModel.cs" />
+    <Compile Include="Migrations\20170722142949_initial.cs" />
+    <Compile Include="Migrations\20170722142949_initial.designer.cs">
+      <DependentUpon>20170722142949_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
