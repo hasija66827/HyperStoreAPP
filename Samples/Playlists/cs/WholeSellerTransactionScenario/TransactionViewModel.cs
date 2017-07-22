@@ -58,4 +58,9 @@ namespace SDKTemplate.View_Models
         public List<TransactionViewModel> Transactions { get; set; }
         public TransactionHistoryOfWholeSellerCollection() { }
     }
+    public class TransactionHistoryOfWholeSellerOrderCollection {
+
+        public List<TransactionViewModel> Transactions { get; set; }
+        public TransactionHistoryOfWholeSellerOrderCollection() { }
+    }
 }

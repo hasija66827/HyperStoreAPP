@@ -54,7 +54,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.SelectedWholeSeller = (WholeSellerViewModel)e.ClickedItem;
-            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransaction(SelectedWholeSeller.WholeSellerId);
+            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionWholeSellerId(SelectedWholeSeller.WholeSellerId);
             DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
         }
 

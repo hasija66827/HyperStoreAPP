@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SDKTemplate.Data_Source;
+using SDKTemplate.View_Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +36,12 @@ namespace SDKTemplate
                 return this._wholeSellerOrderDetails;
 
             } }
-
+        public List<SettledOrderOfTransactionViewModel> _transactions;
+        public List<SettledOrderOfTransactionViewModel> Transactions { get {
+                if (this._transactions.Count == 0)
+                    this._transactions = WholeSellerOrderTransactionDataSource.RetrieveWholeSellerOrderTransaction(null, this._wholeSellerOrderId);
+                return this._transactions;
+            } }
         public string FormattedOrderDate
         {
             get
@@ -62,6 +69,7 @@ namespace SDKTemplate
         {
             this._wholeSellerOrderId = wo.WholeSellerOrderId;
             this._wholeSellerOrderDetails = new List<WholeSellerOrderDetail>();
+            this._transactions = new List<SettledOrderOfTransactionViewModel>();
             this._orderDate = wo.OrderDate;
             this._dueDate = wo.DueDate;
             this._billAmount = wo.BillAmount;
@@ -75,6 +83,7 @@ namespace SDKTemplate
         {
             this._wholeSellerOrderId = _wholeSellerOrderId;
             this._wholeSellerOrderDetails = new List<WholeSellerOrderDetail>();
+            this._transactions = new List<SettledOrderOfTransactionViewModel>();
             this._orderDate = orderDate;
             this._dueDate = dueDate;
             this._billAmount = billAmount;

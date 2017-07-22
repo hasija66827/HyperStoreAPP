@@ -13,7 +13,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="wholeSellerId"></param>
         /// <returns></returns>
-        public static List<TransactionViewModel> RetreiveTransaction(Guid wholeSellerId)
+        public static List<TransactionViewModel> RetreiveTransactionWholeSellerId(Guid wholeSellerId)
         {
             var db = new DatabaseModel.RetailerContext();
             var transactions = db.Transactions.Where(t => t.WholeSellerId == wholeSellerId).ToList();

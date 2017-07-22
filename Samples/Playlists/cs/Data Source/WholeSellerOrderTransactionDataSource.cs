@@ -21,24 +21,37 @@ namespace SDKTemplate.Data_Source
             return true;
         }
 
-        public static IEnumerable<SettledOrderOfTransactionViewModel> RetrieveWholeSellerOrderTransaction(Guid? transactionId = null, Guid? wholeSellerOrderId = null, DatabaseModel.RetailerContext db = null)
+        public static List<SettledOrderOfTransactionViewModel> RetrieveWholeSellerOrderTransaction(Guid? transactionId = null, Guid? wholeSellerOrderId = null, DatabaseModel.RetailerContext db = null)
         {
-            List<DatabaseModel.WholeSellerOrderTransaction> ret;
-
+            List<DatabaseModel.WholeSellerOrderTransaction> wholeSellerOrderTransactions;
+            IEnumerable<SettledOrderOfTransactionViewModel> result;
             if (db == null)
                 db = new DatabaseModel.RetailerContext();
             if ((transactionId == null && wholeSellerOrderId == null) || (transactionId != null && wholeSellerOrderId != null))
                 return null;
             else if (transactionId != null)
-                ret = db.WholeSellerOrderTransactions.Where(wot => wot.TransactionId == transactionId).ToList();
+            {
+                wholeSellerOrderTransactions = db.WholeSellerOrderTransactions
+                    .Where(wot => wot.TransactionId == transactionId).ToList();
+                var wholeSellerOrder = db.WholeSellersOrders.ToList();
+                result = wholeSellerOrderTransactions
+                        .Join(wholeSellerOrder,
+                            wot => wot.WholeSellerOrderId,
+                             wo => wo.WholeSellerOrderId,
+                             (wot, wo) => new SettledOrderOfTransactionViewModel(wo, wot.PaidAmount));
+            }
             else
-                ret = db.WholeSellerOrderTransactions.Where(wot => wot.WholeSellerOrderId == wholeSellerOrderId).ToList();
-            var list= ret.Select(wot => 
-                        new SettledOrderOfTransactionViewModel(
-                                WholeSellerOrderDataSource.RetrieveWholeSellerOrder(wot.WholeSellerOrderId,db), 
-                                wot.PaidAmount)
-                       );
-            return list;
+            {
+                wholeSellerOrderTransactions = db.WholeSellerOrderTransactions
+                    .Where(wot => wot.WholeSellerOrderId == wholeSellerOrderId).ToList();
+                var transactions = db.Transactions.ToList();
+                result = wholeSellerOrderTransactions
+                   .Join(transactions,
+                       wot => wot.TransactionId,
+                       t => t.TransactionId,
+                       (wot, t) => new SettledOrderOfTransactionViewModel(wot.PaidAmount, t));
+            }
+            return result.ToList();
         }
     }
 }
