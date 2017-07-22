@@ -21,7 +21,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers17.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers18.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,22 +52,23 @@ namespace DatabaseModel
     public class WholeSeller
     {
         public Guid WholeSellerId { get; set; }
+        public string Address { get; set; }
         public string MobileNo { get; set; }
         public string Name { get; set; }
-        public bool IsVerifiedWholeSeller { get; set; }
-        public string Address { get; set; }
         public float WalletBalance { get; set; }
+
         public List<WholeSellerOrder> WholeSellerOrders { get; set; }
         //This is used by Retailer to mark the product to be prurchased from Wholeseller.
         public List<Product> Products { get; set; }
         public List<Transaction> Transactions { get; set; }
-        public WholeSeller(string name, string mobileNo)
+
+        public WholeSeller(string address, string mobileNo, string name, float walletBalance)
         {
             this.WholeSellerId = Guid.NewGuid();
-            this.Address = "";
-            this.IsVerifiedWholeSeller = false;
+            this.Address = address;
             this.MobileNo = mobileNo;
             this.Name = name;
+            this.WalletBalance = walletBalance;
         }
         public WholeSeller() { }
 
@@ -77,7 +78,6 @@ namespace DatabaseModel
             w.WholeSellerId = v.WholeSellerId;
             w.MobileNo = v.MobileNo;
             w.Name = v.Name;
-            w.IsVerifiedWholeSeller = v.IsVerifiedWholeSeller;
             w.Address = v.Address;
             w.WalletBalance = v.WalletBalance;
             return w;

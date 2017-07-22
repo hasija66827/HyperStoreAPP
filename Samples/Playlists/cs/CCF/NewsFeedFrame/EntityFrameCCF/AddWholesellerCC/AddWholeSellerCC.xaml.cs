@@ -50,7 +50,7 @@ namespace SDKTemplate
             {
                 try
                 {
-                    WholeSellerDataSource.AddWholeSeller(addWholeSellerViewModel);
+                    WholeSellerDataSource.CreateWholeSeller(addWholeSellerViewModel);
                     MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
                 }
                 catch

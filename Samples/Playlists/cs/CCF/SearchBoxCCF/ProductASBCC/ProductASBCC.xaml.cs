@@ -20,6 +20,7 @@ namespace SDKTemplate
         AddTheProduct,
         SearchTheProduct
     }
+
     public delegate void OnAddProductClickedDelegate(object sender, ProductViewModel productViewModel);
     public delegate void SelectedProductChangedDelegate();
     public class ProductASBViewModel : ProductViewModelBase

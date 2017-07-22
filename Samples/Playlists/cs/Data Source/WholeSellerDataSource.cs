@@ -13,23 +13,49 @@ namespace SDKTemplate
         public static List<WholeSellerViewModel> WholeSellers { get { return _wholeSellers; } }
         public WholeSellerDataSource()
         {
-            RetrieveWholeSellersAsync();
+
         }
+
+        #region Create
+        /// <summary>
+        /// Adds The WholeSeller into WholeSeller Data source as well as in sqllte database.
+        /// </summary>
+        /// <param name="newWholeSeller"></param>
+        public static void CreateWholeSeller(WholeSellerViewModel newWholeSeller)
+        {
+            using (var db = new DatabaseModel.RetailerContext())
+            {
+                db.WholeSellers.Add((DatabaseModel.WholeSeller)newWholeSeller);
+                db.SaveChanges();
+            }
+            _wholeSellers.Add(newWholeSeller);
+        }
+        #endregion
+
+        #region Read
         public static void RetrieveWholeSellersAsync()
         {
             using (var db = new DatabaseModel.RetailerContext())
             {
                 // Retrieving data from the database synchronously.
-                _wholeSellers = db.WholeSellers.Select(WholeSeller => new WholeSellerViewModel(
-                    WholeSeller.WholeSellerId,
-                    WholeSeller.Name,
-                    WholeSeller.MobileNo,
-                    WholeSeller.Address,
-                    WholeSeller.WalletBalance,
-                    WholeSeller.IsVerifiedWholeSeller)).ToList();
+                _wholeSellers = db.WholeSellers.Select(w => new WholeSellerViewModel(
+                    w.WholeSellerId,
+                    w.Name,
+                    w.MobileNo,
+                    w.Address,
+                    w.WalletBalance
+                    )).ToList();
             }
         }
 
+        /// <summary>
+        /// Retrieves the list of wholesellers with the given wholesellerId AND filterPersonCriteria.
+        /// If wholesellerId is null, then no wholesellers are retrieved on the bases of filterPersonCriteria only.
+        /// Used by FilterwholesellerCC
+        /// </summary>
+        /// <param name="wholeSellerId"></param>
+        /// <param name="filterWholeSellerCriteria"></param>
+        /// <returns></returns>
         public static List<WholeSellerViewModel> GetFilteredWholeSeller(Guid? wholeSellerId, FilterPersonCriteria filterWholeSellerCriteria)
         {
             List<WholeSellerViewModel> result = new List<WholeSellerViewModel>();
@@ -61,24 +87,6 @@ namespace SDKTemplate
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        /// <summary>
-        /// returns the WholeSeller having matching mobile number from WholeSeller datasource.
-        /// </summary>
-        /// <param name="mobileNumber"></param>
-        /// <returns></returns>
-        public static WholeSellerViewModel GetWholeSellerByMobileNumber(string mobileNumber)
-        {
-            try
-            {
-                return _wholeSellers
-                     .Where(c => c.MobileNo.Equals(mobileNumber)).First();
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
         public static WholeSellerViewModel GetWholeSellerById(Guid? wholeSellerId)
         {
             if (wholeSellerId == null)
@@ -92,42 +100,6 @@ namespace SDKTemplate
             {
                 return null;
             }
-        }
-
-        /// <summary>
-        /// Adds The WholeSeller into WholeSeller Data source as well as in sqllte database.
-        /// </summary>
-        /// <param name="newWholeSeller"></param>
-        public static void AddWholeSeller(WholeSellerViewModel newWholeSeller)
-        {
-            using (var db = new DatabaseModel.RetailerContext())
-            {
-                db.WholeSellers.Add((DatabaseModel.WholeSeller)newWholeSeller);
-                db.SaveChanges();
-            }
-            _wholeSellers.Add(newWholeSeller);
-        }
-
-        //Step 1:
-        public static float UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
-          float walletBalanceToBeAdded)
-        {
-            var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;
-            var entityEntry = db.Attach(wholeSeller);
-            wholeSeller.WalletBalance += walletBalanceToBeAdded;
-            var memberEntry = entityEntry.Member(nameof(DatabaseModel.WholeSeller.WalletBalance));
-            memberEntry.IsModified = true;
-            db.SaveChanges();
-            UpdateWalletBalanceOfWholeSellerInMemory(wholeSellerViewModel.WholeSellerId, wholeSeller.WalletBalance);
-            return wholeSeller.WalletBalance;
-        }
-
-        private static void UpdateWalletBalanceOfWholeSellerInMemory(Guid wholeSellerId, float newWalletBalance)
-        {
-            int index = _wholeSellers.FindIndex(c => c.WholeSellerId == wholeSellerId);
-            if (index < 0 || index >= _wholeSellers.Count())
-                throw new Exception("Assert: WholeSeller should be present in wholeSeller data source");
-            _wholeSellers[index].WalletBalance = newWalletBalance;
         }
 
         public static bool IsNameExist(string name)
@@ -148,7 +120,6 @@ namespace SDKTemplate
             return true;
         }
 
-
         public static float GetMinimumWalletBalance()
         {
             if (_wholeSellers.Count == 0)
@@ -162,6 +133,29 @@ namespace SDKTemplate
                 return 0;
             return _wholeSellers.Max(c => c.WalletBalance);
         }
+        #endregion
 
+        #region Update
+        public static float UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
+        float walletBalanceToBeAdded)
+        {
+            var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;
+            var entityEntry = db.Attach(wholeSeller);
+            wholeSeller.WalletBalance += walletBalanceToBeAdded;
+            var memberEntry = entityEntry.Member(nameof(DatabaseModel.WholeSeller.WalletBalance));
+            memberEntry.IsModified = true;
+            db.SaveChanges();
+            UpdateWalletBalanceOfWholeSellerInMemory(wholeSellerViewModel.WholeSellerId, wholeSeller.WalletBalance);
+            return wholeSeller.WalletBalance;
+        }
+
+        private static void UpdateWalletBalanceOfWholeSellerInMemory(Guid wholeSellerId, float newWalletBalance)
+        {
+            int index = _wholeSellers.FindIndex(c => c.WholeSellerId == wholeSellerId);
+            if (index < 0 || index >= _wholeSellers.Count())
+                throw new Exception("Assert: WholeSeller should be present in wholeSeller data source");
+            _wholeSellers[index].WalletBalance = newWalletBalance;
+        }
+        #endregion
     }
 }
