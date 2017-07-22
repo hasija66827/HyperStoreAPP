@@ -47,7 +47,7 @@ namespace SDKTemplate
             {
                 try
                 {
-                    CustomerDataSource.AddCustomer((CustomerViewModel)addCustomerViewModel);
+                    CustomerDataSource.CreateNewCustomer((CustomerViewModel)addCustomerViewModel);
                     MainPage.Current.NotifyUser("New customer was added succesfully ", NotifyType.StatusMessage);
                 }
                 catch

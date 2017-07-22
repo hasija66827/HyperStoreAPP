@@ -252,7 +252,6 @@ namespace DatabaseModel
         public Guid CustomerId { get; set; }
         public string MobileNo { get; set; }
         public string Name { get; set; }
-        public bool IsVerifiedCustomer { get; set; }
         public string Address { get; set; }
         public float WalletBalance { get; set; }
         public List<CustomerOrder> CustomerOrders { get; set; }
@@ -261,7 +260,6 @@ namespace DatabaseModel
         {
             this.CustomerId = Guid.NewGuid();
             this.Address = "";
-            this.IsVerifiedCustomer = false;
             this.MobileNo = mobileNo;
             this.Name = name;
             this.WalletBalance = 0;
@@ -274,7 +272,6 @@ namespace DatabaseModel
             c.CustomerId = v.CustomerId;
             c.MobileNo = v.MobileNo;
             c.Name = v.Name;
-            c.IsVerifiedCustomer = v.IsVerifiedCustomer;
             c.Address = v.Address;
             c.WalletBalance = v.WalletBalance;
             return c;
