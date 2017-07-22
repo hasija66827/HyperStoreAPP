@@ -17,6 +17,7 @@ using SDKTemplate.View_Models;
 
 namespace SDKTemplate
 {
+    public delegate void SelectedTransactionChangedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -24,7 +25,9 @@ namespace SDKTemplate
     {
         public static WholeSalersCCF Current;
         public TransactionHistoryOfWholeSellerCollection TransactionHistoryOfWholeSellerCollection { get; set; }
-        private WholeSellerViewModel SelectedWholeSeller { get; set; }
+        public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
+        public WholeSellerViewModel SelectedWholeSeller { get; set; }
+        public TransactionViewModel SelectedTransaction { get; set; }
         public WholeSalersCCF()
         {
             Current = this;
@@ -58,6 +61,12 @@ namespace SDKTemplate
         private void AddMoney_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(WholeSellerTransactionCC), SelectedWholeSeller);
+        }
+
+        private void TransactionHistoriesOfWholeSellers_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.SelectedTransaction = (TransactionViewModel)e.ClickedItem;
+            this.SelectedTransactionChangedEvent?.Invoke();
         }
     }
 }

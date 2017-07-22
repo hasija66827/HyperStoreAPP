@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="SDKTemplate.SettledOrdersOfTransactionCC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDKTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:FloatToRupeeConverterWithSign x:Key="FloatToRupeeConverterWithSign" />
+        
+        <DataTemplate x:Key="ListViewItemTemplate"
+                      x:DataType="local:SettledOrderOfTransactionViewModel">
+            <Grid  Margin="12,10,12,12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Bind WholeSellerOrder.FormattedOrderDate}"
+                           Grid.Column="1"
+                           Margin="12,1,0,0"
+                           Style="{ThemeResource BaseTextBlockStyle}" />
+                <TextBlock Text="{x:Bind CreditedAmountFromTransaction, Converter={StaticResource FloatToRupeeConverterWithSign}}"
+                           Style="{ThemeResource PositiveValueTB}"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="12,1,0,0"
+                            />
+                <TextBlock Text="{x:Bind WholeSellerOrder.FormattedPaidBillAmount}"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           Margin="12,1,0,0"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Paid To Orders"
+                   Grid.Row="0"
+                   Margin="10,10,0,0"
+                   Style="{ThemeResource TitleTextBlockStyle}" />
+        <ListView x:Name="SettLeUpOrderForTransactionList"
+                  ItemContainerTransitions="{x:Null}"
+                  ItemTemplate="{StaticResource ListViewItemTemplate}"
+                  IsItemClickEnabled="False"
+                  Visibility="Visible"
+                  Grid.Row="1">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</Page>

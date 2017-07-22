@@ -26,12 +26,23 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="transactionViewModel"></param>
         /// <returns></returns>
-        public static bool CreateTransaction(TransactionViewModel transactionViewModel)
+        public static bool CreateTransaction(TransactionViewModel transactionViewModel, DatabaseModel.RetailerContext db=null)
         {
-            var db = new DatabaseModel.RetailerContext();
+            if(db ==null)
+               db= new DatabaseModel.RetailerContext();
             db.Transactions.Add(new DatabaseModel.Transaction(transactionViewModel));
             db.SaveChanges();
             return true;
+        }
+
+
+        public static float MakeTransaction(TransactionViewModel transactionViewModel, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db)
+        {
+            var creditAmount = transactionViewModel.CreditAmount;
+            TransactionDataSource.CreateTransaction(transactionViewModel, db);
+            var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -creditAmount);
+            WholeSellerOrderDataSource.SettleUpOrders(transactionViewModel, wholeSeller, db);
+            return updatedWholeSellerWalletBalance;
         }
     }
 }

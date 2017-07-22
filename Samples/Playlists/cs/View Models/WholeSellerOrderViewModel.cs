@@ -23,8 +23,8 @@ namespace SDKTemplate
         public float IntrestRate { get { return this._intrestRate; } }
         private WholeSellerViewModel _wholeSeller;
         public WholeSellerViewModel WholeSeller { get { return this._wholeSeller; } }
-        private Guid _wholeSellerId;
-        public Guid WholesellerId { get { return this._wholeSellerId; } }
+        private Guid? _wholeSellerId;
+        public Guid? WholesellerId { get { return this._wholeSellerId; } }
         private List<WholeSellerOrderDetail> _wholeSellerOrderDetails;
         public List<WholeSellerOrderDetail> WholeSellerOrderDetails {
             get { 
@@ -56,6 +56,18 @@ namespace SDKTemplate
         public string FormattedPaidBillAmount
         {
             get { return this.PaidAmount.ToString() +"\u20b9" +"/" + this.BillAmount.ToString()+"\u20b9"; }
+        }
+
+        public WholeSellerOrderViewModel(DatabaseModel.WholeSellerOrder wo)
+        {
+            this._wholeSellerOrderId = wo.WholeSellerOrderId;
+            this._wholeSellerOrderDetails = new List<WholeSellerOrderDetail>();
+            this._orderDate = wo.OrderDate;
+            this._dueDate = wo.DueDate;
+            this._billAmount = wo.BillAmount;
+            this._paidAmount = wo.PaidAmount;
+            this._wholeSellerId = wo.WholeSellerId;
+            this._wholeSeller = null;
         }
 
         public WholeSellerOrderViewModel(Guid _wholeSellerOrderId, DateTime orderDate, DateTime dueDate, float billAmount,

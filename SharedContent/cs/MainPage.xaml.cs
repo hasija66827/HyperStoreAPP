@@ -138,6 +138,7 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
                     ScenarioFrame.Navigate(typeof(WholeSalersCCF));
+                    NewsFeedFrame.Navigate(typeof(SettledOrdersOfTransactionCC));
                 }
                 else
                 {

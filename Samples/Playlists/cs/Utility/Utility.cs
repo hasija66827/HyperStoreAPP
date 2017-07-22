@@ -83,6 +83,32 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
+
+    // Append the float value with Rupee symbol and (+ve or -ve sign).
+    public class FloatToRupeeConverterWithSign : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            // value is the data from the source object.
+            float price = System.Convert.ToSingle(value);
+            // Return the value to pass to the target.
+            string sign="";
+            
+           if (price > 0)
+                sign = "+";
+                
+            return sign+price.ToString() + "\u20B9";
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     // Append the float value with %Off
     public class FloatToPercentageOFFConverter : IValueConverter
     {

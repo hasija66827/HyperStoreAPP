@@ -42,6 +42,18 @@ namespace SDKTemplate
             _Orders = query.ToList();
         }
 
+        public static WholeSellerOrderViewModel RetrieveWholeSellerOrder(Guid? wholeSellerOrderId, DatabaseModel.RetailerContext db)
+        {
+            if (db == null)
+                db = new DatabaseModel.RetailerContext();
+            var list=db.WholeSellersOrders.Where(wo => wo.WholeSellerOrderId == wholeSellerOrderId).ToList();
+            if (list.Count != 1)
+                throw new Exception(String.Format("{0} wholesellerOrderId found in wholesellerorder entity", list.Count));
+            var wholeSellerOrderDB=list.ElementAt(0);
+            var wholeSellerOrderViewModel=new WholeSellerOrderViewModel(wholeSellerOrderDB);
+            return wholeSellerOrderViewModel;
+        }
+
         /// <summary>
         /// Return the ordered filtered by filter criteria and the wholesellerId.
         /// </summary>
@@ -76,17 +88,20 @@ namespace SDKTemplate
             //TODO: See how can you make whole transaction atomic.
             var productViewModelList = pageNavigationParameter.productViewModelList;
             var wholeSellerViewModel = pageNavigationParameter.WholeSellerViewModel;
+            var payingAmount = pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.PaidAmount;
             var remainingAmount = pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount;
-            var db = new DatabaseModel.RetailerContext();
-
+            var IsOrderSettleUp = remainingAmount == 0 ? true : false;
             var transaction = new TransactionViewModel(-remainingAmount, DateTime.Now, wholeSellerViewModel);
-            TransactionDataSource.CreateTransaction(transaction);
-            var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
-            pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);
 
-            ProductDataSource.UpdateProductStockByWholeSeller(db, productViewModelList);
+            var db = new DatabaseModel.RetailerContext();
+            // Six entities updated
+            TransactionDataSource.CreateTransaction(transaction, db);
+            var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
+                                                                                                            pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);
             var wholeSellerOrderId = CreateWholeSellerOrder(db, pageNavigationParameter);
-            WholeSellerOrderProductDataSource.AddIntoWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
+            WholeSellerOrderTransactionDataSource.CreateWholeSellerOrderTransaction(transaction.TransactionId, wholeSellerOrderId, -remainingAmount, IsOrderSettleUp, db);
+            WholeSellerOrderProductDataSource.CreateWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
+            ProductDataSource.UpdateProductStockByWholeSeller(db, productViewModelList);
             return true;
         }
 
@@ -97,9 +112,41 @@ namespace SDKTemplate
         /// <param name="transaction"></param>
         /// <param name="wholeSeller"></param>
         /// <returns>returns the credit amount remaining after completing the payements of order.</returns>
-        public static float SettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller)
+        public static float SettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db = null)
         {
-            var db = new DatabaseModel.RetailerContext();
+            if (db == null)
+                db = new DatabaseModel.RetailerContext();
+            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId
+                                                                        && wo.BillAmount - wo.PaidAmount > 0)
+                                                            .OrderBy(wo => wo.OrderDate);
+            var creditAmount = transaction.CreditAmount;
+            foreach (var partiallyPaidOrder in partiallyPaidOrders)
+            {
+                if (creditAmount <= 0)
+                    break;
+                var remainingAmount = partiallyPaidOrder.BillAmount - partiallyPaidOrder.PaidAmount;
+                if (remainingAmount < 0)
+                    throw new Exception(string.Format("remaining amount {0} cannot be less than zero", remainingAmount));
+                float payingAmountForOrder = remainingAmount <= creditAmount ? remainingAmount : creditAmount;
+                var IsOrderSettleUp = SettleUpOrder(transaction, partiallyPaidOrder, payingAmountForOrder, db);
+                WholeSellerOrderTransactionDataSource.CreateWholeSellerOrderTransaction(transaction.TransactionId, partiallyPaidOrder.WholeSellerOrderId, payingAmountForOrder, IsOrderSettleUp, db);
+                creditAmount -= payingAmountForOrder;
+            }
+            db.SaveChanges();
+            return creditAmount;
+        }
+
+        /// <summary>
+        /// Read only transaction
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <param name="wholeSeller"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static float RetrieveSettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db = null)
+        {
+            if (db == null)
+                db = new DatabaseModel.RetailerContext();
             var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId
                                                                         && wo.BillAmount - wo.PaidAmount > 0)
                                                             .OrderBy(wo => wo.OrderDate);
@@ -112,14 +159,11 @@ namespace SDKTemplate
                 if (remainingAmount < 0)
                     throw new Exception(string.Format("remaining amount {0} cannot be less than zero", remainingAmount));
                 float payingAmountForOrder = remainingAmount <= creditAmount ? remainingAmount : creditAmount;
-                var IsOrderSettleUp = SettleUpOrder(transaction, partiallyPaidOrder, payingAmountForOrder, db);
-                if (IsOrderSettleUp)
-                    WholeSellerOrderTransactionDataSource.CreateWholeSellerOrderTransaction(transaction.TransactionId, partiallyPaidOrder.WholeSellerOrderId,db);
                 creditAmount -= payingAmountForOrder;
             }
-            db.SaveChanges();
             return creditAmount;
         }
+
 
         /// <summary>
         /// Used to settle up the order with required credit amount.
@@ -136,8 +180,9 @@ namespace SDKTemplate
                 throw new Exception(String.Format("credit amount {0} for an order cannot be greater than remaining amount {1} of the order {2}", creditAmount, remainingAmount, wholeSellerOrder.WholeSellerOrderId));
             wholeSellerOrder.PaidAmount += creditAmount;
             db.WholeSellersOrders.Update(wholeSellerOrder);
-        
-            return true;
+            if (wholeSellerOrder.PaidAmount == wholeSellerOrder.BillAmount)
+                return true;
+            return false;
         }
 
 

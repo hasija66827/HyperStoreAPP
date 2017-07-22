@@ -124,6 +124,10 @@
       <DependentUpon>20170717161620_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
+    <Compile Include="SettledOrdersOfTransactionCC.xaml.cs">
+      <DependentUpon>SettledOrdersOfTransactionCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettledOrderOfTransactionViewModel.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
@@ -374,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSallersCCF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettledOrdersOfTransactionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

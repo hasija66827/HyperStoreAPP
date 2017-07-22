@@ -21,7 +21,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers15.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers16.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -114,13 +114,13 @@ namespace DatabaseModel
         public float PaidAmount { get; set; }//#remove it.
         public bool IsPaymentComplete { get; set; }// # remove it.
         public WholeSellerOrderTransaction() { }
-        public WholeSellerOrderTransaction(Guid transactionId, Guid wholeSellerOrderId)
+        public WholeSellerOrderTransaction(Guid transactionId, Guid wholeSellerOrderId, float paidAmount, bool isPaymentComplete)
         {
             this.WholeSellerOrderTransactionId = Guid.NewGuid();
             this.TransactionId = transactionId;
             this.WholeSellerOrderId = wholeSellerOrderId;
-            this.PaidAmount = 0;
-            this.IsPaymentComplete = false;
+            this.PaidAmount =paidAmount;
+            this.IsPaymentComplete = isPaymentComplete;
         }
         [Required]
         public Nullable<Guid> TransactionId;

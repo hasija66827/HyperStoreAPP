@@ -19,7 +19,7 @@ namespace SDKTemplate
             return wholeSellerOrderDetails.ToList();
         }
         // Step4:
-        public static void AddIntoWholeSellerOrderProduct(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts, Guid wholeSellerOrderId)
+        public static void CreateWholeSellerOrderProduct(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts, Guid wholeSellerOrderId)
         {
             foreach (var purchasedProduct in purchasedProducts)
             {
