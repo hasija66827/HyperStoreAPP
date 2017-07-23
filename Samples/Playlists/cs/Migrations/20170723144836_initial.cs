@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SDKTemplate.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,6 +29,7 @@ namespace SDKTemplate.Migrations
                 {
                     WholeSellerId = table.Column<Guid>(nullable: false),
                     Address = table.Column<string>(nullable: true),
+                    GSTIN = table.Column<string>(nullable: true),
                     MobileNo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     WalletBalance = table.Column<float>(nullable: false)
@@ -73,11 +74,13 @@ namespace SDKTemplate.Migrations
                 {
                     ProductId = table.Column<Guid>(nullable: false),
                     BarCode = table.Column<string>(nullable: true),
+                    CGSTPer = table.Column<float>(nullable: false),
                     DiscountPer = table.Column<float>(nullable: false),
                     DisplayPrice = table.Column<float>(nullable: false),
                     IsInventoryItem = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     RefillTime = table.Column<int>(nullable: false),
+                    SGSTPer = table.Column<float>(nullable: false),
                     Threshold = table.Column<int>(nullable: false),
                     TotalQuantity = table.Column<int>(nullable: false),
                     UserDefinedCode = table.Column<string>(nullable: true),
@@ -101,7 +104,7 @@ namespace SDKTemplate.Migrations
                     TransactionId = table.Column<Guid>(nullable: false),
                     CreditAmount = table.Column<float>(nullable: false),
                     TransactionDate = table.Column<DateTime>(nullable: false),
-                    TransactionNo = table.Column<long>(nullable: false),
+                    TransactionNo = table.Column<string>(nullable: true),
                     WalletSnapshot = table.Column<float>(nullable: false),
                     WholeSellerId = table.Column<Guid>(nullable: false)
                 },

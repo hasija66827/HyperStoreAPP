@@ -8,8 +8,8 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170723115944_Initial")]
-    partial class Initial
+    [Migration("20170723144836_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,6 +110,8 @@ namespace SDKTemplate.Migrations
 
                     b.Property<string>("BarCode");
 
+                    b.Property<float>("CGSTPer");
+
                     b.Property<float>("DiscountPer");
 
                     b.Property<float>("DisplayPrice");
@@ -119,6 +121,8 @@ namespace SDKTemplate.Migrations
                     b.Property<string>("Name");
 
                     b.Property<int>("RefillTime");
+
+                    b.Property<float>("SGSTPer");
 
                     b.Property<int>("Threshold");
 
@@ -151,7 +155,7 @@ namespace SDKTemplate.Migrations
 
                     b.Property<DateTime>("TransactionDate");
 
-                    b.Property<long>("TransactionNo");
+                    b.Property<string>("TransactionNo");
 
                     b.Property<float>("WalletSnapshot");
 
@@ -171,6 +175,8 @@ namespace SDKTemplate.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
+
+                    b.Property<string>("GSTIN");
 
                     b.Property<string>("MobileNo");
 

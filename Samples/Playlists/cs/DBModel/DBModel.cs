@@ -21,7 +21,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers22.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers24.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,8 +55,8 @@ namespace DatabaseModel
         public string Address { get; set; }
         public string MobileNo { get; set; }
         public string Name { get; set; }
+        public string GSTIN { get; set; }
         public float WalletBalance { get; set; }
-
         public List<WholeSellerOrder> WholeSellerOrders { get; set; }
         //This is used by Retailer to mark the product to be prurchased from Wholeseller.
         public List<Product> Products { get; set; }
@@ -87,7 +87,7 @@ namespace DatabaseModel
     public class Transaction
     {
         public Guid TransactionId { get; set; }
-        public Int64 TransactionNo { get; set; }
+        public string TransactionNo { get; set; }
         public float CreditAmount { get; set; }
         public DateTime TransactionDate { get; set; }
         public float WalletSnapshot { get; set; }
@@ -102,7 +102,7 @@ namespace DatabaseModel
         public Transaction(TransactionViewModel transactionViewModel)
         {
             this.TransactionId = transactionViewModel.TransactionId;
-            this.TransactionNo = 2222;
+            this.TransactionNo = Utility.GenerateWholeSellerTransactionNo();
             this.CreditAmount = transactionViewModel.CreditAmount;
             this.TransactionDate = transactionViewModel.TransactionDate;
             this.WholeSellerId = transactionViewModel.WholeSellerId;
@@ -210,6 +210,9 @@ namespace DatabaseModel
         public float DisplayPrice { get; set; }
         public float DiscountPer { get; set; }
         public Int32 TotalQuantity { get; set; }
+        public float SGSTPer { get; set; }
+        public float CGSTPer { get; set; }
+
         public List<WholeSellerOrderProduct> WholeSellerOrderProducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
 
@@ -258,6 +261,7 @@ namespace DatabaseModel
         public string MobileNo { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public string GSTIN;
         public float WalletBalance { get; set; }
         public List<CustomerOrder> CustomerOrders { get; set; }
 
