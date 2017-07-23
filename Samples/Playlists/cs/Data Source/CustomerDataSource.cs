@@ -10,8 +10,7 @@ namespace SDKTemplate
     {
         public static List<CustomerViewModel> Customers { get { return _customers; } }
         private static List<CustomerViewModel> _customers = new List<CustomerViewModel>();
-        public CustomerDataSource()
-        {
+        public CustomerDataSource(){
         }
 
         #region Create Transaction

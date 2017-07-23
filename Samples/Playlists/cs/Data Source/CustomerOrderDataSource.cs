@@ -101,8 +101,8 @@ namespace SDKTemp.Data
                 throw new Exception("assertion failed: wallet amount should not be deducted, if it is not checked, although money can be added into the wallet with uncheck checkbox");
 
             //TODO: See how can you make whole transaction atomic.
-            ProductListViewModel billingViewModel = pageNavigationParameter.ProductListViewModel;
-            CustomerViewModel customerViewModel = pageNavigationParameter.CustomerViewModel;
+            var productListTobePurchased = pageNavigationParameter.ProductsToBePurchased;
+            var customerViewModel = pageNavigationParameter.CustomerViewModel;
             var db = new DatabaseModel.RetailerContext();
             float updatedCustomerWalletBalance = 0;
             if (paymentMode.Equals(PaymentMode.payNow))
@@ -120,9 +120,9 @@ namespace SDKTemp.Data
             else
             { throw new NotImplementedException(); }
 
-            ProductDataSource.UpdateProductStock(db, billingViewModel);
+            ProductDataSource.UpdateProductStock(db, productListTobePurchased);
             var customerOrderId = AddIntoCustomerOrder(db, pageNavigationParameter);
-            AddIntoCustomerOrderProduct(db, billingViewModel, customerOrderId);
+            AddIntoCustomerOrderProduct(db, productListTobePurchased, customerOrderId);
             return updatedCustomerWalletBalance;
         }
 
@@ -138,16 +138,16 @@ namespace SDKTemp.Data
         }
 
         // Step4:
-        private static void AddIntoCustomerOrderProduct(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel, Guid customerOrderId)
+        private static void AddIntoCustomerOrderProduct(DatabaseModel.RetailerContext db, List<CustomerProductViewModel> productsToBePurchased, Guid customerOrderId)
         {
-            foreach (var productViewModel in billingViewModel.Products)
+            foreach (var product in productsToBePurchased)
             {
                 // Adding each product purchased in the order into the Entity CustomerOrderProduct.
                 var customerOrderProduct = new DatabaseModel.CustomerOrderProduct(customerOrderId,
-                    productViewModel.ProductId,
-                    productViewModel.DiscountPer,
-                    productViewModel.DisplayPrice,
-                    productViewModel.QuantityPurchased);
+                    product.ProductId,
+                    product.DiscountPer,
+                    product.DisplayPrice,
+                    product.QuantityPurchased);
                 db.CustomerOrderProducts.Add(customerOrderProduct);
             }
             // Saving the order.

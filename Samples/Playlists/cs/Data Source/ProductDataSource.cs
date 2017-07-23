@@ -178,12 +178,12 @@ namespace SDKTemplate
         /// Reduces the number of products from the product entity during purchase of product by Customer.
         /// </summary>
         /// <param name="db"></param>
-        /// <param name="billingViewModel"></param>
+        /// <param name="productListToBePurchased"></param>
         /// <returns></returns>
-        public static bool UpdateProductStock(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel)
+        public static bool UpdateProductStock(DatabaseModel.RetailerContext db, List<CustomerProductViewModel> productListToBePurchased)
         {
             //#perf: You can query whole list in where clause.
-            foreach (var productViewModel in billingViewModel.Products)
+            foreach (var productViewModel in productListToBePurchased)
             {
                 var products = db.Products.Where(p => p.ProductId == productViewModel.ProductId).ToList();
                 var product = products.FirstOrDefault();

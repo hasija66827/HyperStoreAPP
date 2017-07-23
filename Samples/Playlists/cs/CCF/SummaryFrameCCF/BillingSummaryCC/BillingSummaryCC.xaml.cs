@@ -25,8 +25,9 @@ namespace SDKTemplate
             BillingSummaryViewModel = new BillingSummaryViewModel();
             //Subscribing to product list changed event of ProductListCC
             ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
-                (products) =>
-                {                    
+                () =>
+                {
+                    var products = ProductListCC.Current.Products;
                     this.BillingSummaryViewModel.TotalProducts = products.Sum(p=>p.QuantityPurchased);
                     this.BillingSummaryViewModel.TotalBillAmount = products.Sum(p => p.NetValue);
                     

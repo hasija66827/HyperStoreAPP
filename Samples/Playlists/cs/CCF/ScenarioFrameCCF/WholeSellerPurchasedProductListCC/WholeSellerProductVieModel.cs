@@ -35,7 +35,7 @@ namespace SDKTemplate
             {
                 this._purchasePrice = value;
                 this.OnPropertyChanged(nameof(NetValue));
-                WholeSellerPurchasedProductListCC.InvokeProductListChangeEvent();
+                WholeSellerPurchasedProductListCC.Current.InvokeProductListChangeEvent(); 
             }
         }
 
@@ -48,7 +48,7 @@ namespace SDKTemplate
                 this._quantityPurchased = value;
                 this.OnPropertyChanged(nameof(QuantityPurchased));// This is done because quantity is updated by addItemtoBillingList method.
                 this.OnPropertyChanged(nameof(NetValue));
-                WholeSellerPurchasedProductListCC.InvokeProductListChangeEvent();
+                WholeSellerPurchasedProductListCC.Current.InvokeProductListChangeEvent();
             }
         }
 

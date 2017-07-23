@@ -21,7 +21,7 @@ namespace SDKTemplate
         SearchTheProduct
     }
 
-    public delegate void OnAddProductClickedDelegate(object sender, ProductViewModel productViewModel);
+    public delegate int OnAddProductClickedDelegate(CustomerProductViewModel productViewModel);
     public delegate void SelectedProductChangedDelegate();
     public class ProductASBViewModel : ProductViewModelBase
     {
@@ -39,6 +39,7 @@ namespace SDKTemplate
                 }
         }
     }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -75,7 +76,7 @@ namespace SDKTemplate
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            Current.OnAddProductClickedEvent?.Invoke(this, new ProductViewModel(this.SelectedProductInASB));
+            this.OnAddProductClickedEvent?.Invoke(new CustomerProductViewModel(this.SelectedProductInASB));
             this.ProductASB.Text = "";
         }
 
@@ -131,6 +132,7 @@ namespace SDKTemplate
             SelectProduct(selectedProductInASB);
             Current.SelectedProductChangedEvent?.Invoke();
         }
+
         /// <summary>
         /// Display details of the specified Product.
         /// </summary>
@@ -139,7 +141,7 @@ namespace SDKTemplate
         {
             this.SelectedProductInASB = product;
             if (product != null)
-            { 
+            {
                 NoResults.Visibility = Visibility.Collapsed;
                 ProductDetails.Visibility = Visibility.Visible;
                 ProductId.Text = product.BarCode;

@@ -124,7 +124,7 @@
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         </StackPanel>
                         <ListView x:Name="ListView"
-                                  ItemsSource="{x:Bind ProductListViewModel.Products}"
+                                  ItemsSource="{x:Bind Products}"
                                   RelativePanel.Below="StaticLabelsForList"
                                   MinHeight="400"
                                   Height="450"
@@ -132,7 +132,7 @@
                                   SelectedIndex="-1"
                                   Width="799">
                             <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="local:ProductViewModel">
+                                <DataTemplate x:DataType="local:CustomerProductViewModel">
                                     <StackPanel Orientation="Horizontal">
                                         <SymbolIcon Symbol="Accept" />
                                         <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"

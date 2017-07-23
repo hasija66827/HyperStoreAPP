@@ -25,36 +25,48 @@ using System.Collections.ObjectModel;
 
 namespace SDKTemplate
 {
-    public delegate void ProductListCCUpdatedDelegate(ObservableCollection<ProductViewModel> products);
+    public delegate void ProductListCCUpdatedDelegate();
     public sealed partial class ProductListCC : Page
     {
         public static ProductListCC Current;
         public event ProductListCCUpdatedDelegate ProductListCCUpdatedEvent;
-        public ProductListViewModel ProductListViewModel { get; set; }
+        private ObservableCollection<CustomerProductViewModel> _products = new ObservableCollection<CustomerProductViewModel>();
+        public ObservableCollection<CustomerProductViewModel> Products { get { return this._products; } }
+       
         public ProductListCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.ProductListViewModel = new ProductListViewModel();
-            this.ProductListViewModel.ProductListViewModelChangedEvent += ProductListViewModel_ProductListChangedEvent;
-            ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
+            ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this._AddProductToCart);
             Checkout.Click += Checkout_Click;
         }
 
-        private void ProductListViewModel_ProductListChangedEvent()
+        /// <summary>
+        /// Adds the product into @Products and raise the list update event indirectly.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        private int _AddProductToCart(CustomerProductViewModel product)
         {
-            this.ProductListCCUpdatedEvent?.Invoke(this.ProductListViewModel.Products);
+            Int32 index = 0;
+            var existingProduct = this._products.Where(p => p.ProductId == product.ProductId).FirstOrDefault();
+            if (existingProduct != null)
+            {
+                index = this._products.IndexOf(existingProduct);
+                this._products[index].QuantityPurchased += 1;//Event will be triggered.
+            }
+            else
+            {
+                this._products.Add(product);
+                index = this._products.IndexOf(product);
+                this._products[index].QuantityPurchased = 1;//Event will be triggered.
+            }
+            return index;
         }
 
-        /// <summary>
-        /// Adds the product in product Billing list.
-        /// Method is function on event triggered from ProductASB
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="product"></param>
-        public void AddProductToCart(object sender, ProductViewModel product)
+        public void InvokeProductListChangedEvent()
         {
-            var index = this.ProductListViewModel.AddToBillingList(product);
+            this.ProductListCCUpdatedEvent?.Invoke();
         }
 
         private void Checkout_Click(object sender, RoutedEventArgs e)
@@ -67,7 +79,7 @@ namespace SDKTemplate
             
             PageNavigationParameter pageNavigationParameter = 
                 new PageNavigationParameter(
-                                             this.ProductListViewModel,
+                                             Products.ToList(),
                                              CustomerASBCC.Current.SelectedCustomerInASB,
                                              BillingSummaryCC.Current.BillingSummaryViewModel);
                                              this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);

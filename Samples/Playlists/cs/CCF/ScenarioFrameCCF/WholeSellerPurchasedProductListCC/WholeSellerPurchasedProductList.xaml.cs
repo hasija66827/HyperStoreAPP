@@ -24,15 +24,15 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class WholeSellerPurchasedProductListCC : Page
     {
+        public static WholeSellerPurchasedProductListCC Current;
         public event WholeSellerProductListUpdatedDelegate WholeSellerProductListUpdatedEvent;
         private ObservableCollection<WholeSellerProductVieModel> _products = new ObservableCollection<WholeSellerProductVieModel>();
         public ObservableCollection<WholeSellerProductVieModel> Products { get { return this._products; } }
-        public static WholeSellerPurchasedProductListCC Current;
         public WholeSellerPurchasedProductListCC()
         {
             Current = this;
             this.InitializeComponent();
-            ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddToBillingList);
+            ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this._AddProductToCart);
             CheckoutBtn.Click += CheckoutBtn_Click;
         }
 
@@ -52,26 +52,34 @@ namespace SDKTemplate
             this.Frame.Navigate(typeof(WholeSellerPurchasedCheckoutCC), navigationParameter);
         }
 
-        public void AddToBillingList(object sender, ProductViewModel selectedProduct)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="selectedProduct"></param>
+        /// <returns></returns>
+        private int _AddProductToCart(CustomerProductViewModel selectedProduct)
         {
-            var existingProduct = this._products.Where(p => p.BarCode == selectedProduct.BarCode);
-            // If product does not exist
-            if (existingProduct.Count() == 0)
+            Int32 index = 0;
+            var existingProduct = this._products.Where(p => p.ProductId == selectedProduct.ProductId).FirstOrDefault();
+            if (existingProduct!=null)
             {
-                WholeSellerProductVieModel w = new WholeSellerProductVieModel(selectedProduct.ProductId, selectedProduct.BarCode,
-                    selectedProduct.Name, 0, 1, selectedProduct.SellingPrice);
-                this._products.Add(w);
-                InvokeProductListChangeEvent();
+                index = this._products.IndexOf(existingProduct);
+                this._products[index].QuantityPurchased += 1;//Event will be triggered.
             }
             else
             {
-                Int32 index = this._products.IndexOf(existingProduct.FirstOrDefault());
-                this._products[index].QuantityPurchased += 1;
+                WholeSellerProductVieModel w = new WholeSellerProductVieModel(selectedProduct.ProductId, selectedProduct.BarCode,
+                   selectedProduct.Name, 0, 1, selectedProduct.SellingPrice);
+                this._products.Add(w);
+                index = this._products.IndexOf(w);
+                InvokeProductListChangeEvent();
             }
+            return index;
         }
-        public static void InvokeProductListChangeEvent()
+
+        public void InvokeProductListChangeEvent()
         {
-            Current.WholeSellerProductListUpdatedEvent?.Invoke(Current.Products);
+            this.WholeSellerProductListUpdatedEvent?.Invoke(Current.Products);
         }
     }
 }

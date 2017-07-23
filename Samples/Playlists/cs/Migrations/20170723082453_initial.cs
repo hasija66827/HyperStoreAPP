@@ -29,7 +29,6 @@ namespace SDKTemplate.Migrations
                 {
                     WholeSellerId = table.Column<Guid>(nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    IsVerifiedWholeSeller = table.Column<bool>(nullable: false),
                     MobileNo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     WalletBalance = table.Column<float>(nullable: false)

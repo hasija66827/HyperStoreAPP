@@ -13,7 +13,7 @@ namespace SDKTemplate
     public class PageNavigationParameter : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public ProductListViewModel ProductListViewModel { get; set; }
+        public List<CustomerProductViewModel> ProductsToBePurchased{ get; set; }
         public CustomerViewModel CustomerViewModel { get; set; }
         public BillingSummaryViewModel BillingSummaryViewModel { get; set; }
         private float _toBePaid;
@@ -123,9 +123,9 @@ namespace SDKTemplate
         }
         #endregion
 
-        public PageNavigationParameter(ProductListViewModel productListViewModel, CustomerViewModel customerViewModel, BillingSummaryViewModel billingSummaryViewModel)
+        public PageNavigationParameter(List<CustomerProductViewModel> productsToBePurchased, CustomerViewModel customerViewModel, BillingSummaryViewModel billingSummaryViewModel)
         {
-            this.ProductListViewModel = productListViewModel;
+            this.ProductsToBePurchased = productsToBePurchased;
             this.CustomerViewModel = customerViewModel;
             this.BillingSummaryViewModel = billingSummaryViewModel;
             // uncheck the use wallet chkbox, if wallet balance is zero.

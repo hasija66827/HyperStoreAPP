@@ -21,7 +21,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers18.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers20.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -232,7 +232,7 @@ namespace DatabaseModel
             WholeSellerId = null;
         }
 
-        public static explicit operator Product(ProductViewModel v)
+        public static explicit operator Product(CustomerProductViewModel v)
         {
             Product p = new Product();
             p.ProductId = v.ProductId;

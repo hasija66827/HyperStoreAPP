@@ -171,8 +171,6 @@ namespace SDKTemplate.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<bool>("IsVerifiedWholeSeller");
-
                     b.Property<string>("MobileNo");
 
                     b.Property<string>("Name");
