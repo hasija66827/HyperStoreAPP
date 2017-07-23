@@ -24,25 +24,11 @@ namespace SDKTemplate
             set { this._barCode = value; }
         }
 
-        protected string _name;
-        public virtual string Name
+        protected float _CGSTPer;
+        public virtual float CGSTPer
         {
-            get { return this._name; }
-            set { this._name = value; }
-        }
-
-        protected float _displayPrice;
-        public virtual float DisplayPrice
-        {
-            get { return Utility.RoundInt32(this._displayPrice); }
-            set { this._displayPrice = value; }
-        }
-
-        protected float _sellingPrice;
-        public virtual float SellingPrice
-        {
-            get { return Utility.RoundInt32(this._sellingPrice); }
-            set { this._sellingPrice = value; }
+            get { return this._CGSTPer; }
+            set { this._CGSTPer = value; }
         }
 
         protected float _discountAmount;
@@ -67,18 +53,48 @@ namespace SDKTemplate
             }
         }
 
-        protected Int32 _threshold;
-        public virtual Int32 Threshold
+        protected float _displayPrice;
+        public virtual float DisplayPrice
         {
-            get { return this._threshold; }
-            set { this._threshold = value; }
+            get { return Utility.RoundInt32(this._displayPrice); }
+            set { this._displayPrice = value; }
         }
+
+        protected string _name;
+        public virtual string Name
+        {
+            get { return this._name; }
+            set { this._name = value; }
+        }
+
         protected Int32 _refillTime;
         public virtual Int32 RefillTime
         {
             get { return this._refillTime; }
             set { this._refillTime = value; }
         }
+
+        protected float _sellingPrice;
+        public virtual float SellingPrice
+        {
+            get { return Utility.RoundInt32(this._sellingPrice); }
+            set { this._sellingPrice = value; }
+        }
+
+        protected float _SGSTPer;
+        public virtual float SGSTPer
+        {
+            get { return this._SGSTPer; }
+            set { this._SGSTPer = value; }
+        }
+
+        protected Int32 _threshold;
+        public virtual Int32 Threshold
+        {
+            get { return this._threshold; }
+            set { this._threshold = value; }
+        }
+
         private Int32 _totalQuantity;
         public virtual Int32 TotalQuantity
         {
@@ -93,60 +109,51 @@ namespace SDKTemplate
             set { this._wholeSellerId = value; }
         }
 
-        public ProductViewModelBase(DatabaseModel.Product item)
+        public ProductViewModelBase(DatabaseModel.Product product)
         {
-            _productId = item.ProductId;
-            _barCode = item.BarCode;
-            _name = item.Name;
-            _displayPrice = item.DisplayPrice;
-            _discountPer = item.DiscountPer;
+            _productId = product.ProductId;
+            _barCode = product.BarCode;
+            _CGSTPer = product.CGSTPer;
+            _name = product.Name;
+            _displayPrice = product.DisplayPrice;
+            _discountPer = product.DiscountPer;
             _discountAmount = (_displayPrice * _discountPer) / 100;
             _sellingPrice = _displayPrice - _discountAmount;
-            _threshold = item.Threshold;
-            _totalQuantity = item.TotalQuantity;
-            _wholeSellerId = item.WholeSellerId;
+            _SGSTPer = product.SGSTPer;
+            _threshold = product.Threshold;
+            _totalQuantity = product.TotalQuantity;
+            _wholeSellerId = product.WholeSellerId;
         }
 
         public ProductViewModelBase()
         {
             this._productId = Guid.NewGuid();
             this._barCode = "";
-            this._name = "";
+            this._CGSTPer = 0;
             this._displayPrice = 0;
             this._discountAmount = 0;
             this._discountPer = 0;
-            this._sellingPrice = 0;
-            this._threshold = 0;
+            this._name = "";
             this._refillTime = 0;
+            this._sellingPrice = 0;
+            this._SGSTPer = 0;
+            this._threshold = 0;
             this._totalQuantity = 0;
             this._wholeSellerId = null;
         }
 
-        public ProductViewModelBase(ProductViewModelBase p)
-        {
-            this._productId = p.ProductId;
-            this._barCode = p.BarCode;
-            this._name = p.Name;
-            this._displayPrice = p.DisplayPrice;
-            this._discountAmount = p.DiscountAmount;
-            this._discountPer = p.DiscountPer;
-            this._sellingPrice = p.SellingPrice;
-            this._threshold = p.Threshold;
-            this._refillTime = p.RefillTime;
-            this._totalQuantity = p.TotalQuantity;
-            this._wholeSellerId = p.WholeSellerId;
-        }
-
-        public ProductViewModelBase(Guid productId, string barCode, string name,
-            float displayPrice, float discountPer, Int32 threshold, Int32 totalQuantity, Guid? wholeSellerId)
+        public ProductViewModelBase(Guid productId, string barCode, float cgstPer,
+            float displayPrice, float discountPer, string name, float sgstPer, Int32 threshold, Int32 totalQuantity, Guid? wholeSellerId)
         {
             this._productId = productId;
             this._barCode = barCode;
+            this._CGSTPer = cgstPer;
             this._name = name;
             this._displayPrice = displayPrice;
             this._discountPer = discountPer;
             this._discountAmount = (this._displayPrice * this._discountPer) / 100;
             this._sellingPrice = this._displayPrice - this._discountAmount;
+            this._SGSTPer = sgstPer;
             this._threshold = threshold;
             this._totalQuantity = totalQuantity;
             this._wholeSellerId = wholeSellerId;

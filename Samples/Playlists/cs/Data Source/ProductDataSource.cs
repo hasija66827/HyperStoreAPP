@@ -20,9 +20,11 @@ namespace SDKTemplate
                 _products = db.Products.Select(product => new ProductViewModelBase(
                       product.ProductId,
                       product.BarCode,
-                      product.Name,
+                      product.CGSTPer,
                       product.DisplayPrice,
                       product.DiscountPer,
+                      product.Name,
+                      product.SGSTPer,
                       product.Threshold,
                       product.TotalQuantity,
                       product.WholeSellerId)).ToList();
@@ -109,22 +111,12 @@ namespace SDKTemplate
         #endregion
 
         #region Create
-        public static bool CreateNewProduct(AddProductViewModel productViewModelBase)
+        public static bool CreateNewProduct(AddProductViewModel productViewModel)
         {
             var db = new DatabaseModel.RetailerContext();
-            db.Products.Add(new DatabaseModel.Product(
-                productViewModelBase.ProductId,
-                productViewModelBase.Name,
-                productViewModelBase.BarCode,
-                false,
-                productViewModelBase.Threshold,
-                productViewModelBase.RefillTime,
-                productViewModelBase.DisplayPrice,
-                productViewModelBase.DiscountPer,
-                productViewModelBase.TotalQuantity
-                ));
+            db.Products.Add(new DatabaseModel.Product(productViewModel));
             db.SaveChanges();
-            _products.Add(productViewModelBase);
+            _products.Add(productViewModel);
             return true;
         }
         public static List<ProductListToPurchaseViewModel> RetreiveProductListToPurchaseByRespectiveWholeSellers()

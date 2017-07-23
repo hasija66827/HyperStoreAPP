@@ -67,12 +67,6 @@ namespace SDKTemplate
             }
         }
 
-        public CustomerProductViewModel(Guid productId, string barCode, string name, float displayPrice, float discountPer, Int32 threshold, Int32 quantityPurchased) : base(productId, barCode, name, displayPrice, discountPer, 0, 0,null)
-        {
-            this._quantityPurchased = quantityPurchased;
-            this._netValue = this._sellingPrice * this._quantityPurchased;
-        }
-
         // Constructor to convert parent obect to child object.
         public CustomerProductViewModel(ProductViewModelBase parent)
         {

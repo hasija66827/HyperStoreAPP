@@ -16,12 +16,14 @@ namespace SDKTemplate
         public AddProductViewModel() { }
         public AddProductViewModel(ProductViewModelBase product)
         {
-            this.BarCode = product.BarCode;
             this.ProductId = product.ProductId;
+            this._barCode = product.BarCode;
+            this._CGSTPer = product.CGSTPer;
             this.DisplayPrice = product.DisplayPrice;
             this.DiscountAmount = product.DiscountAmount;
             this.Name = product.Name;
             this.RefillTime = product.RefillTime;
+            this._SGSTPer = product.SGSTPer;
             this.Threshold = product.Threshold;
         }
 

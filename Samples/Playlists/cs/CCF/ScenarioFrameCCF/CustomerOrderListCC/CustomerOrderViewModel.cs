@@ -97,9 +97,9 @@ namespace SDKTemplate
             this._quantityPurchased = 0;
         }
 
-        public CustomerOrderDetailViewModel(Guid productId, string barCode, float discountPerSnapShot,
-            float displayPriceSnapshot, string name, int qtyPurchased)
-            : base(productId, barCode, name, displayPriceSnapshot, discountPerSnapShot, 0, 0, null)
+        public CustomerOrderDetailViewModel(Guid productId, string barCode, float cgstPer, float discountPerSnapShot,
+            float displayPriceSnapshot, string name, float sgstPer, int qtyPurchased)
+            : base(productId, barCode, cgstPer, displayPriceSnapshot, discountPerSnapShot, name, sgstPer, 0, 0, null)
         {
             this._quantityPurchased = qtyPurchased;
             this._netValue = this._sellingPrice * this._quantityPurchased;

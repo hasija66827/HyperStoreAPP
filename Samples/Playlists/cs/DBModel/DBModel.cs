@@ -222,31 +222,35 @@ namespace DatabaseModel
         public WholeSeller WholeSeller;
 
         public Product() {   }
-        public Product(Guid productID, string name, string barCode, bool isInventoryItem, Int32 threshold, Int32 refillTime,
-            float displayPrice, float discountPer, Int32 totalQuantity)
+
+        public Product(ProductViewModelBase productViewModel)
         {
-            ProductId = productID;
-            Name = name;
-            BarCode = barCode;
-            IsInventoryItem = isInventoryItem;
-            Threshold = threshold;
-            RefillTime = refillTime;
-            DisplayPrice = displayPrice;
-            DiscountPer = discountPer;
-            TotalQuantity = totalQuantity;
+            ProductId = productViewModel.ProductId;
+            Name = productViewModel.Name;
+            BarCode = productViewModel.BarCode;
+            CGSTPer = productViewModel.CGSTPer;
+            DisplayPrice = productViewModel.DisplayPrice;
+            DiscountPer = productViewModel.DiscountPer;
+            //IsInventoryItem = productViewModel.IsInventoryItem;
+            RefillTime = productViewModel.RefillTime;
+            SGSTPer = productViewModel.SGSTPer;
+            Threshold = productViewModel.Threshold;
+            TotalQuantity = productViewModel.TotalQuantity;
             WholeSellerId = null;
         }
 
-        public static explicit operator Product(CustomerProductViewModel v)
+        public static explicit operator Product(CustomerProductViewModel customerProductViewModel)
         {
             Product p = new Product();
-            p.ProductId = v.ProductId;
-            p.Name = v.Name;
-            p.BarCode = v.BarCode;
-            p.Threshold = v.Threshold;
-            p.DisplayPrice = v.DisplayPrice;
-            p.DiscountPer = v.DiscountPer;
-            p.TotalQuantity = v.TotalQuantity;
+            p.ProductId = customerProductViewModel.ProductId;
+            p.Name = customerProductViewModel.Name;
+            p.BarCode = customerProductViewModel.BarCode;
+            p.CGSTPer = customerProductViewModel.CGSTPer;
+            p.Threshold = customerProductViewModel.Threshold;
+            p.DisplayPrice = customerProductViewModel.DisplayPrice;
+            p.DiscountPer = customerProductViewModel.DiscountPer;
+            p.SGSTPer = customerProductViewModel.SGSTPer;
+            p.TotalQuantity = customerProductViewModel.TotalQuantity;
 
             //TODO: add below propery in product view model 
             p.IsInventoryItem = false;

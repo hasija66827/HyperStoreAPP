@@ -32,6 +32,10 @@
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Discount Amt"
                        Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="CGST %"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="SGST %"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Selling Price"
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Threshold"
@@ -53,19 +57,22 @@
             <TextBox x:Name="ProductNameTB"
                      Text="{x:Bind AddProductViewModel.Name, Mode=TwoWay}"
                      ToolTipService.ToolTip="Product Name for e.g. Maggi"
-                     PlaceholderText="" />
+      />
             <TextBox x:Name="DisplayPrice"
                      Text="{x:Bind AddProductViewModel.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
-                     PlaceholderText=""
                      ToolTipService.ToolTip="Price of the product to be sold to the Customer" />
             <TextBox x:Name="DiscountPer"
                      Text="{x:Bind AddProductViewModel.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
-                     PlaceholderText=""
                      ToolTipService.ToolTip="Discount % on Display Price, given to the Customer" />
             <TextBox x:Name="DiscountAmount"
                      Text="{x:Bind AddProductViewModel.DiscountAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                     PlaceholderText=""
                      ToolTipService.ToolTip="Discount in INR on the Display Price, given to the Customer" />
+            <TextBox x:Name="CGSTPer"
+                     Text="{x:Bind AddProductViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     ToolTipService.ToolTip="CGST Percentage on the Discounted Price" />
+            <TextBox x:Name="SGSTPer"
+                     Text="{x:Bind AddProductViewModel.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     ToolTipService.ToolTip="SGSTPer on the Discounted Price" />
             <TextBlock Text="{x:Bind AddProductViewModel.SellingPrice, Mode=OneWay}" />
             <TextBox x:Name="Threshold"
                      Text="{x:Bind AddProductViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"

@@ -76,9 +76,11 @@ namespace SDKTemp.Data
                                                        (customerOrderProduct, product) => new CustomerOrderDetailViewModel(
                                                                        product.ProductId,
                                                                        product.BarCode,
+                                                                       product.CGSTPer,
                                                                        customerOrderProduct.DiscountPerSnapShot,
                                                                        customerOrderProduct.DisplayCostSnapShot,
                                                                        product.Name,
+                                                                       product.SGSTPer,
                                                                        customerOrderProduct.QuantityPurchased)).ToList();
             return orderDetails;
         }
