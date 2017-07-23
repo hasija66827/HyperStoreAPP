@@ -26,14 +26,14 @@ using System.Collections.ObjectModel;
 namespace SDKTemplate
 {
     public delegate void ProductListCCUpdatedDelegate();
-    public sealed partial class ProductListCC : Page
+    public sealed partial class CustomerProductListCC : Page
     {
-        public static ProductListCC Current;
+        public static CustomerProductListCC Current;
         public event ProductListCCUpdatedDelegate ProductListCCUpdatedEvent;
         private ObservableCollection<CustomerProductViewModel> _products = new ObservableCollection<CustomerProductViewModel>();
         public ObservableCollection<CustomerProductViewModel> Products { get { return this._products; } }
        
-        public ProductListCC()
+        public CustomerProductListCC()
         {
             Current = this;
             this.InitializeComponent();

@@ -42,14 +42,14 @@ namespace SDKTemplate
         {
             var db = new DatabaseModel.RetailerContext();
             var customerOrders = db.CustomerOrders
-                .Where(co => co.CustomerId == CustomerId
-                            &&co.OrderDate >= DateTime.Now.AddMonths(-months)).ToList();
+                                .Where(co => co.CustomerId == CustomerId &&
+                                        co.OrderDate >= DateTime.Now.AddMonths(-months)).ToList();
             var customerOrderProduct = db.CustomerOrderProducts.ToList();
             var joinRes = customerOrderProduct
                     .Join(customerOrders,
-                    cop => cop.CustomerOrderId,
-                    co => co.CustomerOrderId,
-                    (cop, co) => new CustomerPurchaseHistoryViewModel(cop.ProductId, cop.QuantityPurchased));
+                            cop => cop.CustomerOrderId,
+                            co => co.CustomerOrderId,
+                            (cop, co) => new CustomerPurchaseHistoryViewModel(cop.ProductId, cop.QuantityPurchased));
             var products_quantities = joinRes.GroupBy(cphv => cphv.ProductId);
             var product_totalQuantity = products_quantities.Select(cphv => AggregateQuantity(cphv)).ToList();
             return product_totalQuantity;
@@ -70,14 +70,14 @@ namespace SDKTemplate
         {
             var db = new DatabaseModel.RetailerContext();
             var wholeSellerOrderProducts = db.WholeSellersOrderProducts
-                .Where(wholeSellerOrderProduct => wholeSellerOrderProduct.ProductId == ProductId).ToList();
+                                            .Where(wholeSellerOrderProduct => wholeSellerOrderProduct.ProductId == ProductId).ToList();
             var wholeSellerOrders = db.WholeSellersOrders.ToList();
             var ret = wholeSellerOrderProducts.Join(wholeSellerOrders,
-                wop => wop.WholeSellerOrderId,
-                wo => wo.WholeSellerOrderId,
-                (wop, wo) => new PriceQuotedByWholeSeller(wo.WholeSellerId, wo.OrderDate,
-                                                        wop.ProductId, wop.PurchasePrice)).ToList();
-            
+                                                    wop => wop.WholeSellerOrderId,
+                                                    wo => wo.WholeSellerOrderId,
+                                                    (wop, wo) => new PriceQuotedByWholeSeller(wo.WholeSellerId, wo.OrderDate,
+                                                                                                wop.ProductId, wop.PurchasePrice)).ToList();
+
             var wholeSellers_purchasePrices = ret.GroupBy(w => w.wholeSellerId);
             var wholeSellers_purchasePrice = wholeSellers_purchasePrices.Select(w_ps => SelectLatestPriceQuoted(w_ps));
             return wholeSellers_purchasePrice.ToList();
@@ -90,8 +90,8 @@ namespace SDKTemplate
         /// <returns></returns>
         private static PriceQuotedByWholeSeller SelectLatestPriceQuoted(IGrouping<Guid?, PriceQuotedByWholeSeller> items)
         {
-            DateTime maxOrderDate=DateTime.Now.AddYears(-100);
-            PriceQuotedByWholeSeller ret=new PriceQuotedByWholeSeller();
+            DateTime maxOrderDate = DateTime.Now.AddYears(-100);
+            PriceQuotedByWholeSeller ret = new PriceQuotedByWholeSeller();
             foreach (var item in items)
             {
                 if (maxOrderDate < item.orderDate)

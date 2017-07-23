@@ -24,6 +24,7 @@ namespace SDKTemplate
             return ((DateTimeOffset)value).Date;
         }
     }
+
     public class InverseBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -62,7 +63,6 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
-
 
     // Append the float value with Rupee symbol.
     public class FloatToRupeeConverter : IValueConverter
@@ -183,6 +183,7 @@ namespace SDKTemplate
             return (float)System.Convert.ToDouble(value);
         }
     }
+    
     // Tries to convert value into positive integer, if it fails then reset the value to one.
     public class CheckIfValidPercentage : IValueConverter
     {
@@ -210,13 +211,16 @@ namespace SDKTemplate
             return System.Convert.ToSingle(value);
         }
     }
+
     class Utility
     {
         public static string DEFAULT_CUSTOMER_GUID { get { return "cccccccc-cccc-cccc-cccc-cccccccccccc"; } }
+
         public static float RoundInt32(float f)
         {
             return (float)(Math.Round((decimal)f, 2));
         }
+
         public static bool CheckIfStringIsNumber(string str)
         {
             // TODO: Apply more checks
@@ -224,6 +228,7 @@ namespace SDKTemplate
                 return false;
             return true;
         }
+
         public static bool IsMobileNumber(string text)
         {
             if (text.Length == 10)
@@ -240,6 +245,7 @@ namespace SDKTemplate
             }
             return false;
         }
+
         public static string GetGlyphValue(String productName)
         {
             var productGlyph = "";
@@ -250,6 +256,7 @@ namespace SDKTemplate
             }
             return productGlyph.ToUpper();
         }
+
         public static bool CheckIfUniqueProductName(string productName)
         {
             if (ProductDataSource.IsProductNameExist(productName))
@@ -259,6 +266,7 @@ namespace SDKTemplate
             }
             return true;
         }
+
         public static bool CheckIfValidMobileNumber(string mobileNo, Person person)
         {
             if (IsMobileNumber(mobileNo) == false)
@@ -284,6 +292,7 @@ namespace SDKTemplate
             }
             return true;
         }
+
         public static bool CheckIfValidName(string name, Person person)
         {
             if (name == "")
@@ -347,5 +356,16 @@ namespace SDKTemplate
             return true;
         }
 
+        public static string GenerateRandom(int? length=null)
+        {
+            if (length == null)
+                length = 7;
+            var random = new Random();
+            string s = string.Empty;
+            s = String.Concat(s, random.Next(1,10).ToString());
+            for (int i = 1; i < length; i++)
+                s = String.Concat(s, random.Next(10).ToString());
+            return s;
+        }
     }
 }

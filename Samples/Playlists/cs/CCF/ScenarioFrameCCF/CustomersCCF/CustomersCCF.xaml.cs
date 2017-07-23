@@ -18,12 +18,15 @@ using SDKTemp.ViewModel;
 namespace SDKTemplate
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Master Detail View where 
+    /// Master shows the list of the customer and
+    /// Detail shows the all the products purchased by the customer in last three months.
     /// </summary>
     public sealed partial class CustomersCCF : Page
     {
         public CustomerPurchaseHistoryCollection CustomerPurchaseHistoryCollection { get; set; }
         public static CustomersCCF Current;
+        public CustomerViewModel SelectedCustomer { get; set; }
         public CustomersCCF()
         {
             Current = this;
@@ -35,6 +38,11 @@ namespace SDKTemplate
             UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
+        /// <summary>
+        /// Rerenders the Master View on
+        /// a) Initialization of the class
+        /// b) FilterCustomerCC or CustomerASBCC triggers the event.
+        /// </summary>
         private void UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
@@ -46,10 +54,15 @@ namespace SDKTemplate
             CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + CustomerDataSource.Customers.Count.ToString() + ")";
         }
 
+        /// <summary>
+        /// Rerenders the Detail view.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = (CustomerViewModel)e.ClickedItem;
-            this.CustomerPurchaseHistoryCollection.CustomerPurchaseHistories = AnalyticsDataSource.GetPurchasedProductForCustomer(clickedItem.CustomerId, 4);
+            this.SelectedCustomer = (CustomerViewModel)e.ClickedItem;
+            this.CustomerPurchaseHistoryCollection.CustomerPurchaseHistories = AnalyticsDataSource.GetPurchasedProductForCustomer(this.SelectedCustomer.CustomerId, 4);
             DetailContentPresenter.Content = this.CustomerPurchaseHistoryCollection;
         }
     }

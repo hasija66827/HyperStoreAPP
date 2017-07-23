@@ -23,7 +23,7 @@ namespace SDKTemplate
     public sealed partial class OrderListCCF : Page
     {
         public static OrderListCCF Current;
-        public List<OrderViewModel> orderList;
+        public List<CustomerOrderViewModel> orderList;
         public event OrderListChangedDelegate OrderListChangedEvent;
         public OrderListCCF()
         {
@@ -62,7 +62,7 @@ namespace SDKTemplate
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = (OrderViewModel)e.ClickedItem;
+            var clickedItem = (CustomerOrderViewModel)e.ClickedItem;
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }

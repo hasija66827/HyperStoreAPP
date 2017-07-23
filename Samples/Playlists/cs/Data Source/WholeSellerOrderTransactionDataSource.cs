@@ -21,7 +21,7 @@ namespace SDKTemplate.Data_Source
             return true;
         }
 
-        public static List<SettledOrderOfTransactionViewModel> RetrieveWholeSellerOrderTransaction(Guid? transactionId = null, Guid? wholeSellerOrderId = null, DatabaseModel.RetailerContext db = null)
+        public static List<SettledOrderOfTransactionViewModel> RetrieveWholeSellerOrderTransactions(Guid? transactionId = null, Guid? wholeSellerOrderId = null, DatabaseModel.RetailerContext db = null)
         {
             List<DatabaseModel.WholeSellerOrderTransaction> wholeSellerOrderTransactions;
             IEnumerable<SettledOrderOfTransactionViewModel> result;

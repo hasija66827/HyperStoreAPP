@@ -27,12 +27,12 @@ namespace SDKTemplate
             ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
                 () =>
                 {
-                    var products = ProductListCC.Current.Products;
+                    var products = CustomerProductListCC.Current.Products;
                     this.BillingSummaryViewModel.TotalProducts = products.Sum(p=>p.QuantityPurchased);
                     this.BillingSummaryViewModel.TotalBillAmount = products.Sum(p => p.NetValue);
                     
                 });
-            ProductListCC.Current.ProductListCCUpdatedEvent += d;
+            CustomerProductListCC.Current.ProductListCCUpdatedEvent += d;
         }
     }
 }

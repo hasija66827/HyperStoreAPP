@@ -25,13 +25,13 @@ namespace SDKTemplate
         public SettledOrdersOfTransactionCC()
         {
             this.InitializeComponent();
-            WholeSalersCCF.Current.SelectedTransactionChangedEvent += Current_SelectedTransactionChangedEvent;
+            WholeSellersCCF.Current.SelectedTransactionChangedEvent += Current_SelectedTransactionChangedEvent;
         }
 
         private void Current_SelectedTransactionChangedEvent()
         {
-            var selectedTransaction = WholeSalersCCF.Current.SelectedTransaction;
-            SettLeUpOrderForTransactionList.ItemsSource = WholeSellerOrderTransactionDataSource.RetrieveWholeSellerOrderTransaction(selectedTransaction.TransactionId);
+            var selectedTransaction = WholeSellersCCF.Current.SelectedTransaction;
+            SettLeUpOrderForTransactionList.ItemsSource = WholeSellerOrderTransactionDataSource.RetrieveWholeSellerOrderTransactions(selectedTransaction.TransactionId);
         }
     }
 }

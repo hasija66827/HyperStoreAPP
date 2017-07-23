@@ -61,7 +61,7 @@ namespace SDKTemplate
             ReceivedNow = CalculatedReceivedNow(orderListCC.orderList);
             ReceivedLater = CalculatedReceivedNow(orderListCC.orderList);
         }
-        private float CalculatedReceivedNow(List<OrderViewModel> orderList)
+        private float CalculatedReceivedNow(List<CustomerOrderViewModel> orderList)
         {
             float f = 2;
             return f;

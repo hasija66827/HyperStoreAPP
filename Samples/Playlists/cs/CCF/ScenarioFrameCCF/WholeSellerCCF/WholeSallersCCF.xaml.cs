@@ -19,16 +19,18 @@ namespace SDKTemplate
 {
     public delegate void SelectedTransactionChangedDelegate();
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Master Detail View where 
+    /// Master shows the list of wholeseller and 
+    /// Detail shows list of transaction done with the wholeseller.
     /// </summary>
-    public sealed partial class WholeSalersCCF : Page
+    public sealed partial class WholeSellersCCF : Page
     {
-        public static WholeSalersCCF Current;
+        public static WholeSellersCCF Current;
         public TransactionHistoryOfWholeSellerCollection TransactionHistoryOfWholeSellerCollection { get; set; }
         public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
         public WholeSellerViewModel SelectedWholeSeller { get; set; }
         public TransactionViewModel SelectedTransaction { get; set; }
-        public WholeSalersCCF()
+        public WholeSellersCCF()
         {
             Current = this;
             this.InitializeComponent();
@@ -40,6 +42,11 @@ namespace SDKTemplate
             UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
+        /// <summary>
+        /// Rerenders the Master View on
+        /// a) Initialization of the class
+        /// b) FilterWholesellerCC or WholesellerASBCC triggers the event.
+        /// </summary>
         private void UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
@@ -51,6 +58,11 @@ namespace SDKTemplate
             WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerDataSource.WholeSellers.Count.ToString() + ")";
         }
 
+        /// <summary>
+        /// Rerenders the Detail View.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.SelectedWholeSeller = (WholeSellerViewModel)e.ClickedItem;

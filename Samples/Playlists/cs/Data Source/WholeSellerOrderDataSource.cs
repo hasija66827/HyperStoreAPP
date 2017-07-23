@@ -31,13 +31,7 @@ namespace SDKTemplate
                         .Join(_wholeSellerOrders,
                                 wholeSeller => wholeSeller.WholeSellerId,
                                 wholeSellerOrder => wholeSellerOrder.WholeSellerId,
-                                (wholeseller, wholeSellerOrder) => new WholeSellerOrderViewModel(wholeSellerOrder.WholeSellerOrderId,
-                                                                                wholeSellerOrder.OrderDate,
-                                                                                wholeSellerOrder.DueDate,
-                                                                                wholeSellerOrder.BillAmount,
-                                                                                wholeSellerOrder.PaidAmount,
-                                                                                wholeseller.WholeSellerId
-                                                                                ))
+                                (wholeseller, wholeSellerOrder) => new WholeSellerOrderViewModel(wholeSellerOrder))
                         .OrderByDescending(order => order.OrderDate);
             _Orders = query.ToList();
         }

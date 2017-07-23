@@ -27,7 +27,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(SellingPrice));
                 this.OnPropertyChanged(nameof(DiscountPer));
                 this.OnPropertyChanged(nameof(NetValue));
-                ProductListCC.Current.InvokeProductListChangedEvent();
+                CustomerProductListCC.Current.InvokeProductListChangedEvent();
                 //TODO: ProfileSettings: Allow People to change the discount  on run time.
             }
         }
@@ -45,7 +45,7 @@ namespace SDKTemplate
                 this._netValue = this._sellingPrice * this._quantityPurchased;
                 this.OnPropertyChanged(nameof(QuantityPurchased));
                 this.OnPropertyChanged(nameof(NetValue));
-                ProductListCC.Current.InvokeProductListChangedEvent();      
+                CustomerProductListCC.Current.InvokeProductListChangedEvent();      
             }
         }
 

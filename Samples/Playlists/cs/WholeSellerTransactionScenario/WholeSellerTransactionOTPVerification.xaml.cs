@@ -46,7 +46,7 @@ namespace SDKTemplate
                 var updatedWalletBalance = TransactionDataSource.MakeTransaction(transactionViewModel, wholeSeller, db);
                 MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the wholeSeller is \u20b9" + updatedWalletBalance
                     , NotifyType.StatusMessage);
-                this.Frame.Navigate(typeof(WholeSalersCCF));
+                this.Frame.Navigate(typeof(WholeSellersCCF));
             }
             else
             {

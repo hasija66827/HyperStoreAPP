@@ -146,15 +146,15 @@
     <Compile Include="ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml.cs">
       <DependentUpon>ProductListToPurhcaseCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\OrderListCC\OrderListCCF.xaml.cs">
-      <DependentUpon>OrderListCCF.xaml</DependentUpon>
+    <Compile Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderListCC.xaml.cs">
+      <DependentUpon>CustomerOrderListCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductConsumptionPer.xaml.cs">
       <DependentUpon>ProductConsumptionPer.xaml</DependentUpon>
     </Compile>
     <Compile Include="WholeSellerTransactionScenario\TransactionViewModel.cs" />
-    <Compile Include="View Models\WholeSellerOrderViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrder\WholeSalerOrder.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSellerOrderViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSalerOrder.xaml.cs">
       <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSelleOrderSummaryViewModel.cs" />
@@ -179,8 +179,8 @@
       <DependentUpon>ProductASBCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\BillingSummaryCC\BillingSummaryViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\ProductListCC\ProductListCC.xaml.cs">
-      <DependentUpon>ProductListCC.xaml</DependentUpon>
+    <Compile Include="CCF\ScenarioFrameCCF\CustomerProductListCC\CustomerProductListCC.xaml.cs">
+      <DependentUpon>CustomerProductListCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBCC.xaml.cs">
       <DependentUpon>CustomerASBCC.xaml</DependentUpon>
@@ -215,11 +215,11 @@
     </Compile>
     <Compile Include="Data Source\CustomerDataSource.cs" />
     <Compile Include="View Models\CustomerViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\OrderListCC\OrderViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderViewModel.cs" />
     <Compile Include="Data Source\CustomerOrderDataSource.cs" />
     <Compile Include="DBModel\DBModel.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\ProductListCC\CustomerProductViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\CustomerProductListCC\CustomerProductViewModel.cs" />
     <Compile Include="CustomerPaymentScenario\2 Select Payment Mode\SelectPaymentMode.xaml.cs">
       <DependentUpon>SelectPaymentMode.xaml</DependentUpon>
     </Compile>
@@ -228,8 +228,8 @@
     <Compile Include="CCF\SearchBoxCCF\WholeSellerASBCC\WholeSellerASBCC.xaml.cs">
       <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerPurchasedProductListCC\WholeSellerProductVieModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerPurchasedProductListCC\WholeSellerPurchasedProductList.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerProductListCC\WholeSellerProductVieModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerProductListCC\WholeSellerPurchasedProductList.xaml.cs">
       <DependentUpon>WholeSellerPurchasedProductList.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryCC.xaml.cs">
@@ -310,7 +310,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\ProductListCC\ProductListCC.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\CustomerProductListCC\CustomerProductListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,7 +338,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\OrderListCC\OrderListCCF.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -370,7 +370,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\WholeSellerPurchasedProductListCC\WholeSellerPurchasedProductList.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\WholeSellerProductListCC\WholeSellerPurchasedProductList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -390,7 +390,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\WholeSellerOrder\WholeSalerOrder.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSalerOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

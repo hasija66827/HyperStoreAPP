@@ -136,7 +136,7 @@ namespace DatabaseModel
     public class WholeSellerOrder
     {
         public Guid WholeSellerOrderId { get; set; }
-        public Int64 WholeSellerOrderNo { get; set; }
+        public string WholeSellerOrderNo { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DueDate { get; set; }
         public float BillAmount { get; set; }
@@ -152,7 +152,7 @@ namespace DatabaseModel
         public WholeSellerOrder(Guid wholeSellerId)
         {
             this.WholeSellerOrderId = Guid.NewGuid();
-            this.WholeSellerOrderNo = 1111;
+            this.WholeSellerOrderNo = Utility.GenerateRandom();
             this.OrderDate = DateTime.Now;
             this.DueDate = DateTime.Now;
             this.BillAmount = 0;
@@ -169,6 +169,7 @@ namespace DatabaseModel
             this.PaidAmount = wholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel.PaidAmount;
             this.WholeSellerId = wholeSellerPurchaseNavigationParameter.WholeSellerViewModel.WholeSellerId;
         }
+
         public WholeSellerOrder() { }
     }
 
@@ -284,10 +285,10 @@ namespace DatabaseModel
     public class CustomerOrder
     {
         public Guid CustomerOrderId { get; set; }
-        public Int64 CustomerOrderNo { get; set; }
+        public string CustomerOrderNo { get; set; }
         public DateTime OrderDate { get; set; }
-        public float TotalBillAmount { get; set; }
 
+        public float BillAmount { get; set; }
         public float DiscountedAmount { get; set; }
 
         // PayingNow = DiscountedBillAmount + AddingMoneyToWallet - UsingWalletAmount
@@ -305,9 +306,9 @@ namespace DatabaseModel
         public CustomerOrder(PageNavigationParameter pageNavigationParameter)
         {
             this.CustomerOrderId = Guid.NewGuid();
-            this.CustomerOrderNo = 0000;
+            this.CustomerOrderNo = Utility.GenerateRandom();
             this.OrderDate = DateTime.Now;
-            this.TotalBillAmount = pageNavigationParameter.BillingSummaryViewModel.TotalBillAmount;
+            this.BillAmount = pageNavigationParameter.BillingSummaryViewModel.TotalBillAmount;
             this.DiscountedAmount = pageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount;
 
             this.IsPaidNow = pageNavigationParameter.IsPaidNow;

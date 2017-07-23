@@ -90,7 +90,7 @@ namespace SDKTemplate
             Scenario s = scenarioListBox.SelectedItem as Scenario;
             if (s != null)
             {
-                if (s.ClassType == typeof(ProductListCC))
+                if (s.ClassType == typeof(CustomerProductListCC))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
@@ -126,18 +126,18 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
                     SummaryFrame.Navigate(typeof(BlankPage));
                 }
-                else if (s.ClassType == typeof(WholeSalerOrderCC))
+                else if (s.ClassType == typeof(WholeSellerOrderCC))
                 {
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterWholeSalerOrderCC));
-                    ScenarioFrame.Navigate(typeof(WholeSalerOrderCC));
+                    ScenarioFrame.Navigate(typeof(WholeSellerOrderCC));
                     SummaryFrame.Navigate(typeof(WholeSellerOrderSummary));
                 }
-                else if (s.ClassType == typeof(WholeSalersCCF))
+                else if (s.ClassType == typeof(WholeSellersCCF))
                 {
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
-                    ScenarioFrame.Navigate(typeof(WholeSalersCCF));
+                    ScenarioFrame.Navigate(typeof(WholeSellersCCF));
                     NewsFeedFrame.Navigate(typeof(SettledOrdersOfTransactionCC));
                 }
                 else

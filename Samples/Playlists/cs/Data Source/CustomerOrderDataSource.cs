@@ -14,8 +14,8 @@ namespace SDKTemp.Data
     }
     public class CustomerOrderDataSource
     {
-        private static List<OrderViewModel> _Orders;
-        public static List<OrderViewModel> Orders { get { return _Orders; } }
+        private static List<CustomerOrderViewModel> _Orders;
+        public static List<CustomerOrderViewModel> Orders { get { return _Orders; } }
         public CustomerOrderDataSource()
         {
             // Initializing member variable all orders.
@@ -35,17 +35,12 @@ namespace SDKTemp.Data
                         .Join(_customerOrders,
                                 customer => customer.CustomerId,
                                 customerOrder => customerOrder.CustomerId,
-                                (customer, customerOrder) => new OrderViewModel(customerOrder.CustomerOrderId,
-                                                                                customerOrder.TotalBillAmount,
-                                                                                customer.MobileNo,
-                                                                                customerOrder.OrderDate,
-                                                                                customerOrder.DiscountedAmount,
-                                                                                customerOrder.PayingNow))
+                                (customer, customerOrder) => new CustomerOrderViewModel(customer,customerOrder))
                         .OrderByDescending(order => order.OrderDate);
             _Orders = query.ToList();
         }
 
-        public static List<OrderViewModel> GetFilteredOrders(CustomerViewModel selectedCustomer, FilterOrderViewModel selectedDateRange)
+        public static List<CustomerOrderViewModel> GetFilteredOrders(CustomerViewModel selectedCustomer, FilterOrderViewModel selectedDateRange)
         {
             if (selectedDateRange == null)
                 throw new Exception("A Date Range cannot be null");
@@ -60,17 +55,16 @@ namespace SDKTemp.Data
             else
             {
                 var orderByMobNoDateRange = _Orders.Where(order =>
-                order.CustomerMobileNo == selectedCustomer.MobileNo &&
-                order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
-                order.OrderDate.Date <= selectedDateRange.EndDate.Date
-                );
+                                                            order.CustomerMobileNo == selectedCustomer.MobileNo &&
+                                                            order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
+                                                            order.OrderDate.Date <= selectedDateRange.EndDate.Date);
                 return orderByMobNoDateRange.ToList();
             }
         }
 
         // #perf if possible merge the three query into one.
         //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
-        public static List<OrderDetailViewModel> RetrieveOrderDetails(Guid customerOrderId)
+        public static List<CustomerOrderDetailViewModel> RetrieveOrderDetails(Guid customerOrderId)
         {
             var db = new DatabaseModel.RetailerContext();
             var customerOrderProducts = db.CustomerOrderProducts
@@ -79,7 +73,7 @@ namespace SDKTemp.Data
             var orderDetails = customerOrderProducts.Join(products,
                                                        customerOrderProduct => customerOrderProduct.ProductId,
                                                        product => product.ProductId,
-                                                       (customerOrderProduct, product) => new OrderDetailViewModel(
+                                                       (customerOrderProduct, product) => new CustomerOrderDetailViewModel(
                                                                        product.ProductId,
                                                                        product.BarCode,
                                                                        customerOrderProduct.DiscountPerSnapShot,

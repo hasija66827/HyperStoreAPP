@@ -9,39 +9,62 @@ using Windows.Globalization.DateTimeFormatting;
 
 namespace SDKTemplate
 {
+    /// <summary>
+    /// This class represents the Master Detail View Model
+    /// Detail view show detail of the order and the trnasactions which completed the payment of the order.
+    /// </summary>
     public class WholeSellerOrderViewModel
     {
         private Guid _wholeSellerOrderId;
         public Guid WholeSellerOrderId { get { return this._wholeSellerOrderId; } }
+
+        private string _wholeSellerOrderNo;
+        public string WholeSellerOrderNo { get { return this.WholeSellerOrderNo; } }
+
         public DateTime OrderDate { get { return this._orderDate; } }
         private DateTime _orderDate;
+
         public DateTime DueDate { get { return this._dueDate; } }
         private DateTime _dueDate;
+
         private float _billAmount;
         public float BillAmount { get { return this._billAmount; } }
+
         private float _paidAmount;
         public float PaidAmount { get { return this._paidAmount; } }
+
         private float _intrestRate;
         public float IntrestRate { get { return this._intrestRate; } }
+
         private WholeSellerViewModel _wholeSeller;
         public WholeSellerViewModel WholeSeller { get { return this._wholeSeller; } }
+
         private Guid? _wholeSellerId;
         public Guid? WholesellerId { get { return this._wholeSellerId; } }
-        private List<WholeSellerOrderDetail> _wholeSellerOrderDetails;
-        public List<WholeSellerOrderDetail> WholeSellerOrderDetails {
-            get { 
+
+        private List<WholeSellerOrderDetailViewModel> _wholeSellerOrderDetails;
+        public List<WholeSellerOrderDetailViewModel> WholeSellerOrderDetails
+        {
+            get
+            {
                 //Retrieves the order details on demand
-                if(this._wholeSellerOrderDetails.Count==0)
+                if (this._wholeSellerOrderDetails.Count == 0)
                     this._wholeSellerOrderDetails = WholeSellerOrderProductDataSource.RetrieveOrderDetails(_wholeSellerOrderId);
                 return this._wholeSellerOrderDetails;
+            }
+        }
 
-            } }
         public List<SettledOrderOfTransactionViewModel> _transactions;
-        public List<SettledOrderOfTransactionViewModel> Transactions { get {
+        public List<SettledOrderOfTransactionViewModel> Transactions
+        {
+            get
+            {
                 if (this._transactions.Count == 0)
-                    this._transactions = WholeSellerOrderTransactionDataSource.RetrieveWholeSellerOrderTransaction(null, this._wholeSellerOrderId);
+                    this._transactions = WholeSellerOrderTransactionDataSource.RetrieveWholeSellerOrderTransactions(null, this._wholeSellerOrderId);
                 return this._transactions;
-            } }
+            }
+        }
+
         public string FormattedOrderDate
         {
             get
@@ -62,13 +85,14 @@ namespace SDKTemplate
 
         public string FormattedPaidBillAmount
         {
-            get { return this.PaidAmount.ToString() +"\u20b9" +"/" + this.BillAmount.ToString()+"\u20b9"; }
+            get { return this.PaidAmount.ToString() + "\u20b9" + "/" + this.BillAmount.ToString() + "\u20b9"; }
         }
 
         public WholeSellerOrderViewModel(DatabaseModel.WholeSellerOrder wo)
         {
             this._wholeSellerOrderId = wo.WholeSellerOrderId;
-            this._wholeSellerOrderDetails = new List<WholeSellerOrderDetail>();
+            this._wholeSellerOrderNo = wo.WholeSellerOrderNo;
+            this._wholeSellerOrderDetails = new List<WholeSellerOrderDetailViewModel>();
             this._transactions = new List<SettledOrderOfTransactionViewModel>();
             this._orderDate = wo.OrderDate;
             this._dueDate = wo.DueDate;
@@ -78,11 +102,13 @@ namespace SDKTemplate
             this._wholeSeller = null;
         }
 
-        public WholeSellerOrderViewModel(Guid _wholeSellerOrderId, DateTime orderDate, DateTime dueDate, float billAmount,
+        public WholeSellerOrderViewModel(Guid wholeSellerOrderId, string wholeSellerOrderNo, DateTime orderDate, DateTime dueDate, float billAmount,
             float paidAmount, Guid wholeSellerId)
         {
-            this._wholeSellerOrderId = _wholeSellerOrderId;
-            this._wholeSellerOrderDetails = new List<WholeSellerOrderDetail>();
+
+            this._wholeSellerOrderId = wholeSellerOrderId;
+            this._wholeSellerOrderNo = wholeSellerOrderNo;
+            this._wholeSellerOrderDetails = new List<WholeSellerOrderDetailViewModel>();
             this._transactions = new List<SettledOrderOfTransactionViewModel>();
             this._orderDate = orderDate;
             this._dueDate = dueDate;
@@ -93,7 +119,7 @@ namespace SDKTemplate
         }
     }
 
-    public class WholeSellerOrderDetail
+    public class WholeSellerOrderDetailViewModel
     {
         private string _barCode;
         public string BarCode
@@ -101,6 +127,7 @@ namespace SDKTemplate
             get { return this._barCode; }
             set { this._barCode = value; }
         }
+
         private string _name;
         public string Name
         {
@@ -117,6 +144,7 @@ namespace SDKTemplate
                 this._purchasePrice = value;
             }
         }
+
         private Int32 _quantityPurchased;
         public Int32 QuantityPurchased
         {
@@ -126,18 +154,20 @@ namespace SDKTemplate
                 this._quantityPurchased = value;
             }
         }
+
         public float NetValue
         {
             get { return this._quantityPurchased * this._purchasePrice; }
         }
-        public WholeSellerOrderDetail(string barcode ,string name,
+
+        public WholeSellerOrderDetailViewModel(string barcode, string name,
             float purchasePrice, Int32 quantityPurchased)
         {
-            this._barCode =barcode;
+            this._barCode = barcode;
             this._name = name;
             this._purchasePrice = purchasePrice;
             this._quantityPurchased = quantityPurchased;
         }
-        public WholeSellerOrderDetail() { }
+        public WholeSellerOrderDetailViewModel() { }
     }
 }
