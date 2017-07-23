@@ -33,7 +33,7 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static void RetrieveWholeSellersAsync()
+        public static void RetrieveWholeSellers()
         {
             using (var db = new DatabaseModel.RetailerContext())
             {
@@ -56,7 +56,7 @@ namespace SDKTemplate
         /// <param name="wholeSellerId"></param>
         /// <param name="filterWholeSellerCriteria"></param>
         /// <returns></returns>
-        public static List<WholeSellerViewModel> GetFilteredWholeSeller(Guid? wholeSellerId, FilterPersonCriteria filterWholeSellerCriteria)
+        public static List<WholeSellerViewModel> GetFilteredWholeSeller(Guid? wholeSellerId, FilterPersonViewModel filterWholeSellerCriteria)
         {
             List<WholeSellerViewModel> result = new List<WholeSellerViewModel>();
             if (wholeSellerId == null)
@@ -91,15 +91,8 @@ namespace SDKTemplate
         {
             if (wholeSellerId == null)
                 return null;
-            try
-            {
                 return _wholeSellers
-                     .Where(w => w.WholeSellerId.Equals(wholeSellerId)).First();
-            }
-            catch
-            {
-                return null;
-            }
+                     .Where(w => w.WholeSellerId.Equals(wholeSellerId)).FirstOrDefault();
         }
 
         public static bool IsNameExist(string name)

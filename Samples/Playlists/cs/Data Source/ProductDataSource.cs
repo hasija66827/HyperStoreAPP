@@ -6,29 +6,6 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class FilterProductCriteria
-    {
-        public IRange<float> DiscountPerRange { get; set; }
-        public IRange<Int32> QuantityRange { get; set; }
-        public bool IncludeDeficientItemsOnly { get; set; }
-
-        public FilterProductCriteria(IRange<float> discounPerRange, IRange<Int32> quantityRange, bool? isChecked)
-        {
-            this.DiscountPerRange = discounPerRange;
-            this.QuantityRange = quantityRange;
-            this.IncludeDeficientItemsOnly = isChecked ?? false;
-        }
-    }
-    public class IRange<T>
-    {
-        public T LB { get; set; }
-        public T UB { get; set; }
-        public IRange(T lb, T ub)
-        {
-            LB = lb;
-            UB = ub;
-        }
-    }
     class ProductDataSource
     {
         private static List<ProductViewModelBase> _products = new List<ProductViewModelBase>();
@@ -72,6 +49,8 @@ namespace SDKTemplate
 
         public static Int32 GetMaximumQuantity()
         {
+            if (_products.Count == 0)
+                return 0;
             return ProductDataSource._products.Max(p => p.TotalQuantity);
         }
 

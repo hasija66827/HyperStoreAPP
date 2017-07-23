@@ -19,10 +19,10 @@ namespace SDKTemp.Data
         public CustomerOrderDataSource()
         {
             // Initializing member variable all orders.
-            RetrieveOrdersAsync();
+            RetrieveOrders();
         }
         // Retrieves all the orders.
-        public static void RetrieveOrdersAsync()
+        public static void RetrieveOrders()
         {
             List<DatabaseModel.CustomerOrder> _customerOrders;
             List<DatabaseModel.Customer> _customers;

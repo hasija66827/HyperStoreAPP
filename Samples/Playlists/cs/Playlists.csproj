@@ -117,6 +117,8 @@
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
+    <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
+    <Compile Include="FilterViewModel\FilterProductCriteria.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\WholeSellerOrderProductDataSource.cs" />
     <Compile Include="CCF\NewsFeedFrame\SettledOrdersOfTransactionCC.xaml.cs">

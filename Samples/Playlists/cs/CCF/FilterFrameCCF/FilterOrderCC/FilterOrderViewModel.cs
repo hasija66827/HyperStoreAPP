@@ -14,12 +14,14 @@ namespace SDKTemplate
             get { return this._startDate; }
             set { this._startDate = value; }
         }
+
         private DateTime _endDate;
         public DateTime EndDate
         {
             get { return this._endDate; }
             set { this._endDate = value;}
         }
+
         public FilterOrderViewModel()
         {
             _startDate = DateTime.Now.AddMonths(-2);

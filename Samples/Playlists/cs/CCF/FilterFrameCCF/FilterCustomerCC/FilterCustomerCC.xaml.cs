@@ -17,32 +17,20 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void FilterPersonChangedDelegate();
-
-    public class FilterPersonCriteria
-    {
-        public IRange<float> WalletBalance { get; set; }
-        public FilterPersonCriteria(IRange<float> walletBalance)
-        {
-            this.WalletBalance = walletBalance;
-        }
-        public FilterPersonCriteria() { }
-    }
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class FilterPersonCC : Page
     {
         public event FilterPersonChangedDelegate FilterPersonChangedEvent;
-        public FilterPersonCriteria FilterPersonCriteria;
+        public FilterPersonViewModel FilterPersonCriteria;
         public static FilterPersonCC Current;
 
         public FilterPersonCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.FilterPersonCriteria = new FilterPersonCriteria();
+            this.FilterPersonCriteria = new FilterPersonViewModel();
             WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
             
         }

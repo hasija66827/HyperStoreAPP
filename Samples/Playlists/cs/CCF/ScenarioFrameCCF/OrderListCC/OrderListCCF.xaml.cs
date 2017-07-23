@@ -40,7 +40,7 @@ namespace SDKTemplate
             FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSource;
 
             // Getting a refresh list from the database.
-            CustomerOrderDataSource.RetrieveOrdersAsync();
+            CustomerOrderDataSource.RetrieveOrders();
             // Rendering the refresh list on the UI.
             UpdateMasterListViewItemSource();
         }
