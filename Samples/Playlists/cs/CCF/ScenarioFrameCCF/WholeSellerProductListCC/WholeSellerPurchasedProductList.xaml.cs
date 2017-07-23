@@ -44,12 +44,12 @@ namespace SDKTemplate
                 MainPage.Current.NotifyUser("Select the Wholeseller", NotifyType.ErrorMessage);
                 return;
             }
-            var navigationParameter = new WholeSellerPurchaseNavigationParameter();
+            var navigationParameter = new WholeSellerCheckoutNavigationParameter();
             navigationParameter.WholeSellerViewModel = selectedWholesellerInASB;
             navigationParameter.productViewModelList = this.Products.ToList();
-            navigationParameter.WholeSellerBillingViewModel =
-                WholeSellerBillingSummaryCC.Current.wholeSellerBillingSummaryViewModel;
-            this.Frame.Navigate(typeof(WholeSellerPurchasedCheckoutCC), navigationParameter);
+            navigationParameter.WholeSellerBillingSummaryViewModel =
+                                    WholeSellerBillingSummaryCC.Current.wholeSellerBillingSummaryViewModel;
+            this.Frame.Navigate(typeof(WholeSellerCheckoutCC), navigationParameter);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace SDKTemplate
         {
             Int32 index = 0;
             var existingProduct = this._products.Where(p => p.ProductId == selectedProduct.ProductId).FirstOrDefault();
-            if (existingProduct!=null)
+            if (existingProduct != null)
             {
                 index = this._products.IndexOf(existingProduct);
                 this._products[index].QuantityPurchased += 1;//Event will be triggered.

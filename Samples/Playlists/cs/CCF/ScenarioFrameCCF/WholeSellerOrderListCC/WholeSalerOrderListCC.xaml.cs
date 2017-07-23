@@ -33,7 +33,7 @@ namespace SDKTemplate
             this.WholeSellerOrdersViewModel = new List<WholeSellerOrderViewModel>();
             WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListView;
             FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteriaChangedEvent += UpdateMasterListView;
-            WholeSellerOrderDataSource.RetrieveOrdersAsync();
+            WholeSellerOrderDataSource.RetrieveOrders();
             UpdateMasterListView();
         }
 

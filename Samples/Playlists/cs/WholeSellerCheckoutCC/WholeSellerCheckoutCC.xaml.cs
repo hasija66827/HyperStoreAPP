@@ -20,11 +20,11 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class WholeSellerPurchasedCheckoutCC : Page
+    public sealed partial class WholeSellerCheckoutCC : Page
     {
-        public WholeSellerPurchaseCheckoutViewModel wholeSellerPurchaseCheckoutViewModel;
-        public WholeSellerPurchaseNavigationParameter WholeSellerPurchaseNavigationParameter { get; set; }
-        public WholeSellerPurchasedCheckoutCC()
+        public WholeSellerCheckoutViewModel wholeSellerPurchaseCheckoutViewModel;
+        public WholeSellerCheckoutNavigationParameter WholeSellerCheckoutNavigationParameter { get; set; }
+        public WholeSellerCheckoutCC()
         {
             this.InitializeComponent();
             PlaceOrderBtn.Click += PlaceOrderBtn_Click;
@@ -32,16 +32,15 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var w = (WholeSellerPurchaseNavigationParameter)e.Parameter;
-            this.WholeSellerPurchaseNavigationParameter = w;
-            this.wholeSellerPurchaseCheckoutViewModel = new WholeSellerPurchaseCheckoutViewModel(w.WholeSellerBillingViewModel.BillAmount);
+            this.WholeSellerCheckoutNavigationParameter = (WholeSellerCheckoutNavigationParameter)e.Parameter;
+            var w = this.WholeSellerCheckoutNavigationParameter;
+            this.wholeSellerPurchaseCheckoutViewModel = new WholeSellerCheckoutViewModel(w.WholeSellerBillingSummaryViewModel.BillAmount);
         }
 
         private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.WholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel = this.wholeSellerPurchaseCheckoutViewModel;
-            WholeSellerOrderDataSource.PlaceOrder(this.WholeSellerPurchaseNavigationParameter);
-            //TODO: need to be removed when back button will be used.
+            this.WholeSellerCheckoutNavigationParameter.WholeSellerPurchaseCheckoutViewModel = this.wholeSellerPurchaseCheckoutViewModel;
+            WholeSellerOrderDataSource.PlaceOrder(this.WholeSellerCheckoutNavigationParameter);
             this.Frame.Navigate(typeof(WholeSellerPurchasedProductListCC));
         }
     }

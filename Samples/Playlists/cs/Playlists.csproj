@@ -154,15 +154,15 @@
     </Compile>
     <Compile Include="WholeSellerTransactionScenario\TransactionViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSellerOrderViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSalerOrder.xaml.cs">
-      <DependentUpon>WholeSalerOrder.xaml</DependentUpon>
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSalerOrderListCC.xaml.cs">
+      <DependentUpon>WholeSalerOrderListCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSelleOrderSummaryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSallersCCF.xaml.cs">
       <DependentUpon>WholeSallersCCF.xaml</DependentUpon>
     </Compile>
     <Compile Include="WholeSellerNavigationParameter.cs" />
-    <Compile Include="WholeSellerCheckoutCC\WholeSellerPurchaseCheckoutViewModel.cs" />
+    <Compile Include="WholeSellerCheckoutCC\WholeSellerCheckoutViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSellerViewModel.cs" />
     <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddCustomerCC\AddCustomeViewModel.cs" />
     <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddProductCC\AddProductCC.xaml.cs">
@@ -236,8 +236,8 @@
       <DependentUpon>WholeSellerBillingSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryViewModel.cs" />
-    <Compile Include="WholeSellerCheckoutCC\WholeSellerPurchasedCheckoutCC.xaml.cs">
-      <DependentUpon>WholeSellerPurchasedCheckoutCC.xaml</DependentUpon>
+    <Compile Include="WholeSellerCheckoutCC\WholeSellerCheckoutCC.xaml.cs">
+      <DependentUpon>WholeSellerCheckoutCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml.cs">
       <DependentUpon>WholeSellerOrderSummary.xaml</DependentUpon>
@@ -386,11 +386,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSellerCheckoutCC\WholeSellerPurchasedCheckoutCC.xaml">
+    <Page Include="WholeSellerCheckoutCC\WholeSellerCheckoutCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSalerOrder.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSalerOrderListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -438,7 +438,9 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="WholeSellerPaymentScenario\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

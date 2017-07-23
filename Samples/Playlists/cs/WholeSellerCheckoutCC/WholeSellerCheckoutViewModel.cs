@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-   public class WholeSellerPurchaseCheckoutViewModel : INotifyPropertyChanged
+    public class WholeSellerCheckoutViewModel : INotifyPropertyChanged
     {
         private float _amountToBePaid;
         public float AmountToBePaid { get { return this._amountToBePaid; } set { this._amountToBePaid = value; } }
+
         private float _paidAmount;
         public float PaidAmount
         {
@@ -20,12 +21,12 @@ namespace SDKTemplate
             {
                 if (value < 0)
                 {
-                    MainPage.Current.NotifyUser("Paid Amount must be greater than zero", NotifyType.ErrorMessage);
+                    MainPage.Current.NotifyUser(string.Format("Paid Amount {0} must be greater than zero", this._paidAmount), NotifyType.ErrorMessage);
                     value = 0;
                 }
                 else if (value > this._amountToBePaid)
                 {
-                    MainPage.Current.NotifyUser("Paid Amount must be lesser or equal to billing amount", NotifyType.ErrorMessage);
+                    MainPage.Current.NotifyUser(string.Format("Paid Amount {0} must be lesser or equal to billing amount {1}", this._paidAmount, this._amountToBePaid), NotifyType.ErrorMessage);
                     value = 0;
                 }
                 this._paidAmount = value;
@@ -33,7 +34,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(RemainingAmount));
             }
         }
-        public float RemainingAmount { get { return this._amountToBePaid - this._paidAmount; } }
+
         private float _intrestRate;
         public float IntrestRate
         {
@@ -44,16 +45,20 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(IntrestRate));
             }
         }
+
         private DateTime _dueDate;
         public DateTime DueDate { get { return this._dueDate; } set { this._dueDate = value; } }
 
-        public WholeSellerPurchaseCheckoutViewModel(float amountToBePaid)
+        public float RemainingAmount { get { return this._amountToBePaid - this._paidAmount; } }
+
+        public WholeSellerCheckoutViewModel(float amountToBePaid)
         {
             this._amountToBePaid = amountToBePaid;
             this._paidAmount = 0;
             this._intrestRate = 0;
-            this._dueDate=DateTime.Now.AddDays(15);
+            this._dueDate = DateTime.Now.AddDays(15);
         }
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

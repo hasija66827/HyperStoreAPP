@@ -13,12 +13,24 @@ namespace SDKTemplate
         private static List<WholeSellerOrderViewModel> _Orders;
         public static List<WholeSellerOrderViewModel> Orders { get { return _Orders; } }
 
-        public WholeSellerOrderDataSource()
-        {
+        public WholeSellerOrderDataSource(){
         }
 
-        //Retrieves all the wholeSaler orders.
-        public static void RetrieveOrdersAsync()
+        #region Create
+        private static Guid CreateWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerCheckoutNavigationParameter navigationParameter)
+        {
+            var wholeSellerOrder = new DatabaseModel.WholeSellerOrder(navigationParameter);
+            // Creating Entity Record in customerOrder.
+            db.WholeSellersOrders.Add(wholeSellerOrder);
+            return wholeSellerOrder.WholeSellerOrderId;
+        }
+        #endregion
+
+        #region Read
+        /// <summary>
+        /// Retrieves all the wholeSaler orders.
+        /// </summary>
+        public static void RetrieveOrders()
         {
             List<DatabaseModel.WholeSellerOrder> _wholeSellerOrders;
             List<DatabaseModel.WholeSeller> _wholeSellers;
@@ -40,11 +52,11 @@ namespace SDKTemplate
         {
             if (db == null)
                 db = new DatabaseModel.RetailerContext();
-            var list=db.WholeSellersOrders.Where(wo => wo.WholeSellerOrderId == wholeSellerOrderId).ToList();
+            var list = db.WholeSellersOrders.Where(wo => wo.WholeSellerOrderId == wholeSellerOrderId).ToList();
             if (list.Count != 1)
                 throw new Exception(String.Format("{0} wholesellerOrderId found in wholesellerorder entity", list.Count));
-            var wholeSellerOrderDB=list.ElementAt(0);
-            var wholeSellerOrderViewModel=new WholeSellerOrderViewModel(wholeSellerOrderDB);
+            var wholeSellerOrderDB = list.ElementAt(0);
+            var wholeSellerOrderViewModel = new WholeSellerOrderViewModel(wholeSellerOrderDB);
             return wholeSellerOrderViewModel;
         }
 
@@ -77,9 +89,43 @@ namespace SDKTemplate
             }
         }
 
-        public static bool PlaceOrder(WholeSellerPurchaseNavigationParameter pageNavigationParameter)
+        /// <summary>
+        /// Read only transaction
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <param name="wholeSeller"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static float RetrieveSettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db = null)
         {
-            //TODO: See how can you make whole transaction atomic.
+            if (db == null)
+                db = new DatabaseModel.RetailerContext();
+            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId
+                                                                        && wo.BillAmount - wo.PaidAmount > 0)
+                                                            .OrderBy(wo => wo.OrderDate);
+            var creditAmount = transaction.CreditAmount;
+            foreach (var partiallyPaidOrder in partiallyPaidOrders)
+            {
+                if (creditAmount < 0)
+                    break;
+                var remainingAmount = partiallyPaidOrder.BillAmount - partiallyPaidOrder.PaidAmount;
+                if (remainingAmount < 0)
+                    throw new Exception(string.Format("remaining amount {0} cannot be less than zero", remainingAmount));
+                float payingAmountForOrder = remainingAmount <= creditAmount ? remainingAmount : creditAmount;
+                creditAmount -= payingAmountForOrder;
+            }
+            return creditAmount;
+        }
+        #endregion
+
+        #region Create Update
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageNavigationParameter"></param>
+        /// <returns></returns>
+        public static bool PlaceOrder(WholeSellerCheckoutNavigationParameter pageNavigationParameter)
+        {
             var productViewModelList = pageNavigationParameter.productViewModelList;
             var wholeSellerViewModel = pageNavigationParameter.WholeSellerViewModel;
             var payingAmount = pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.PaidAmount;
@@ -131,35 +177,6 @@ namespace SDKTemplate
         }
 
         /// <summary>
-        /// Read only transaction
-        /// </summary>
-        /// <param name="transaction"></param>
-        /// <param name="wholeSeller"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public static float RetrieveSettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db = null)
-        {
-            if (db == null)
-                db = new DatabaseModel.RetailerContext();
-            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId
-                                                                        && wo.BillAmount - wo.PaidAmount > 0)
-                                                            .OrderBy(wo => wo.OrderDate);
-            var creditAmount = transaction.CreditAmount;
-            foreach (var partiallyPaidOrder in partiallyPaidOrders)
-            {
-                if (creditAmount < 0)
-                    break;
-                var remainingAmount = partiallyPaidOrder.BillAmount - partiallyPaidOrder.PaidAmount;
-                if (remainingAmount < 0)
-                    throw new Exception(string.Format("remaining amount {0} cannot be less than zero", remainingAmount));
-                float payingAmountForOrder = remainingAmount <= creditAmount ? remainingAmount : creditAmount;
-                creditAmount -= payingAmountForOrder;
-            }
-            return creditAmount;
-        }
-
-
-        /// <summary>
         /// Used to settle up the order with required credit amount.
         /// </summary>
         /// <param name="transaction"></param>
@@ -178,16 +195,6 @@ namespace SDKTemplate
                 return true;
             return false;
         }
-
-
-        // Step 3:
-        private static Guid CreateWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerPurchaseNavigationParameter navigationParameter)
-        {
-            var wholeSellerOrder = new DatabaseModel.WholeSellerOrder(navigationParameter);
-            // Creating Entity Record in customerOrder.
-            db.WholeSellersOrders.Add(wholeSellerOrder);
-            return wholeSellerOrder.WholeSellerOrderId;
-        }
-
+        #endregion
     }
 }

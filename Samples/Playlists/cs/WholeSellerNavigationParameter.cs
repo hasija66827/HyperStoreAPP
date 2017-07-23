@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class WholeSellerPurchaseNavigationParameter
+    public class WholeSellerCheckoutNavigationParameter
     {
         public WholeSellerViewModel WholeSellerViewModel { get; set; }
-        public WholeSellerBillingSummaryViewModel WholeSellerBillingViewModel { get; set; }
-        public WholeSellerPurchaseCheckoutViewModel WholeSellerPurchaseCheckoutViewModel { get; set; }
+        public WholeSellerBillingSummaryViewModel WholeSellerBillingSummaryViewModel { get; set; }
+        public WholeSellerCheckoutViewModel WholeSellerPurchaseCheckoutViewModel { get; set; }
         public List<WholeSellerProductVieModel> productViewModelList;
-        public WholeSellerPurchaseNavigationParameter()
+        public WholeSellerCheckoutNavigationParameter()
         { }
     }
 }

@@ -160,12 +160,12 @@ namespace DatabaseModel
             this.WholeSellerId = wholeSellerId;
         }
 
-        public WholeSellerOrder(WholeSellerPurchaseNavigationParameter wholeSellerPurchaseNavigationParameter)
+        public WholeSellerOrder(WholeSellerCheckoutNavigationParameter wholeSellerPurchaseNavigationParameter)
         {
             this.WholeSellerOrderId = Guid.NewGuid();
             this.OrderDate = DateTime.Now;
             this.DueDate = wholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel.DueDate;
-            this.BillAmount = wholeSellerPurchaseNavigationParameter.WholeSellerBillingViewModel.BillAmount;
+            this.BillAmount = wholeSellerPurchaseNavigationParameter.WholeSellerBillingSummaryViewModel.BillAmount;
             this.PaidAmount = wholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel.PaidAmount;
             this.WholeSellerId = wholeSellerPurchaseNavigationParameter.WholeSellerViewModel.WholeSellerId;
         }
