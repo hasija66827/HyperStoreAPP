@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SDKTemplate.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,8 +44,9 @@ namespace SDKTemplate.Migrations
                 {
                     CustomerOrderId = table.Column<Guid>(nullable: false),
                     AddingMoneyToWallet = table.Column<float>(nullable: false),
+                    BillAmount = table.Column<float>(nullable: false),
                     CustomerId = table.Column<Guid>(nullable: false),
-                    CustomerOrderNo = table.Column<long>(nullable: false),
+                    CustomerOrderNo = table.Column<string>(nullable: true),
                     DiscountedAmount = table.Column<float>(nullable: false),
                     IsPaidNow = table.Column<bool>(nullable: false),
                     IsUseWallet = table.Column<bool>(nullable: false),
@@ -53,7 +54,6 @@ namespace SDKTemplate.Migrations
                     PartiallyPaid = table.Column<float>(nullable: false),
                     PayingLater = table.Column<float>(nullable: false),
                     PayingNow = table.Column<float>(nullable: false),
-                    TotalBillAmount = table.Column<float>(nullable: false),
                     UsingWalletAmount = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
@@ -126,7 +126,7 @@ namespace SDKTemplate.Migrations
                     OrderDate = table.Column<DateTime>(nullable: false),
                     PaidAmount = table.Column<float>(nullable: false),
                     WholeSellerId = table.Column<Guid>(nullable: false),
-                    WholeSellerOrderNo = table.Column<long>(nullable: false)
+                    WholeSellerOrderNo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

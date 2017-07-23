@@ -56,7 +56,7 @@ namespace SDKTemplate
         /// <param name="wholeSellerId"></param>
         /// <param name="filterWholeSellerCriteria"></param>
         /// <returns></returns>
-        public static List<WholeSellerViewModel> GetFilteredWholeSeller(Guid? wholeSellerId, FilterPersonViewModel filterWholeSellerCriteria)
+        public static List<WholeSellerViewModel> GetFilteredWholeSeller(Guid? wholeSellerId, FilterPersonCriteria filterWholeSellerCriteria)
         {
             List<WholeSellerViewModel> result = new List<WholeSellerViewModel>();
             if (wholeSellerId == null)

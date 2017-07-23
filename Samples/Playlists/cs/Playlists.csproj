@@ -125,9 +125,9 @@
       <DependentUpon>SettledOrdersOfTransactionCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\SettledOrderOfTransactionViewModel.cs" />
-    <Compile Include="Migrations\20170723082453_initial.cs" />
-    <Compile Include="Migrations\20170723082453_initial.designer.cs">
-      <DependentUpon>20170723082453_initial.cs</DependentUpon>
+    <Compile Include="Migrations\20170723115944_Initial.cs" />
+    <Compile Include="Migrations\20170723115944_Initial.designer.cs">
+      <DependentUpon>20170723115944_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />

@@ -8,8 +8,8 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170723082453_initial")]
-    partial class initial
+    [Migration("20170723115944_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,10 +47,12 @@ namespace SDKTemplate.Migrations
 
                     b.Property<float>("AddingMoneyToWallet");
 
+                    b.Property<float>("BillAmount");
+
                     b.Property<Guid?>("CustomerId")
                         .IsRequired();
 
-                    b.Property<long>("CustomerOrderNo");
+                    b.Property<string>("CustomerOrderNo");
 
                     b.Property<float>("DiscountedAmount");
 
@@ -65,8 +67,6 @@ namespace SDKTemplate.Migrations
                     b.Property<float>("PayingLater");
 
                     b.Property<float>("PayingNow");
-
-                    b.Property<float>("TotalBillAmount");
 
                     b.Property<float>("UsingWalletAmount");
 
@@ -204,7 +204,7 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid?>("WholeSellerId")
                         .IsRequired();
 
-                    b.Property<long>("WholeSellerOrderNo");
+                    b.Property<string>("WholeSellerOrderNo");
 
                     b.HasKey("WholeSellerOrderId");
 

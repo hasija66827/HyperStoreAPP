@@ -21,7 +21,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers20.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers21.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

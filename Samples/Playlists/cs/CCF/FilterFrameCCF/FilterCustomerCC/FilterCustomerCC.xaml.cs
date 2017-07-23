@@ -23,14 +23,14 @@ namespace SDKTemplate
     public sealed partial class FilterPersonCC : Page
     {
         public event FilterPersonChangedDelegate FilterPersonChangedEvent;
-        public FilterPersonViewModel FilterPersonCriteria;
+        public FilterPersonCriteria FilterPersonCriteria;
         public static FilterPersonCC Current;
 
         public FilterPersonCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.FilterPersonCriteria = new FilterPersonViewModel();
+            this.FilterPersonCriteria = new FilterPersonCriteria();
             WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
             
         }

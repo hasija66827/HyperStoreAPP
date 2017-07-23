@@ -8,13 +8,13 @@ namespace SDKTemplate
 { 
     public delegate void FilterPersonChangedDelegate();
 
-    public class FilterPersonViewModel
+    public class FilterPersonCriteria
     {
         public IRange<float> WalletBalance { get; set; }
-        public FilterPersonViewModel(IRange<float> walletBalance)
+        public FilterPersonCriteria(IRange<float> walletBalance)
         {
             this.WalletBalance = walletBalance;
         }
-        public FilterPersonViewModel() { }
+        public FilterPersonCriteria() { }
     }
 }

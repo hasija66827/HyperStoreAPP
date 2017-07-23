@@ -130,7 +130,7 @@ namespace SDKTemplate
         /// <param name="customerId"></param>
         /// <param name="filterCustomerCriteria"></param>
         /// <returns></returns>
-        public static List<CustomerViewModel> GetFilteredCustomer(Guid? customerId, FilterPersonViewModel filterCustomerCriteria)
+        public static List<CustomerViewModel> GetFilteredCustomer(Guid? customerId, FilterPersonCriteria filterCustomerCriteria)
         {
             List<CustomerViewModel> result = new List<CustomerViewModel>();
             if (customerId == null)
