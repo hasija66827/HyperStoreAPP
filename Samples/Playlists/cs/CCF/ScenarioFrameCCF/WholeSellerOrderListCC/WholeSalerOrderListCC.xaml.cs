@@ -41,7 +41,7 @@ namespace SDKTemplate
         {
             var wholeSellerId = WholeSellerASBCC.Current.SelectedWholeSellerInASB?.WholeSellerId;
             var filterWholeSalerOrderCriteria = FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteria;
-            this.WholeSellerOrdersViewModel = WholeSellerOrderDataSource.GetFilteredOrder(filterWholeSalerOrderCriteria, wholeSellerId);
+            this.WholeSellerOrdersViewModel = WholeSellerOrderDataSource.GetFilteredOrders(filterWholeSalerOrderCriteria, wholeSellerId);
             MasterListView.ItemsSource = this.WholeSellerOrdersViewModel;
             var totalResults = this.WholeSellerOrdersViewModel.Count;
             OrderCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerOrderDataSource.Orders.Count.ToString() + ")";

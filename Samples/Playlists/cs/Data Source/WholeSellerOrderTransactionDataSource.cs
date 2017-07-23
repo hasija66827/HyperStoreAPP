@@ -15,7 +15,7 @@ namespace SDKTemplate.Data_Source
         /// <param name="transactionId"></param>
         /// <param name="wholeSellerOrderId"></param>
         /// <returns></returns>
-        public static bool CreateWholeSellerOrderTransaction(Guid transactionId, Guid wholeSellerOrderId, float paidAmount, bool isPaymentComplete, DatabaseModel.RetailerContext db)
+        public static bool CreateNewWholeSellerOrderTransaction(Guid transactionId, Guid wholeSellerOrderId, float paidAmount, bool isPaymentComplete, DatabaseModel.RetailerContext db)
         {
             db.WholeSellerOrderTransactions.Add(new DatabaseModel.WholeSellerOrderTransaction(transactionId, wholeSellerOrderId, paidAmount, isPaymentComplete));
             return true;

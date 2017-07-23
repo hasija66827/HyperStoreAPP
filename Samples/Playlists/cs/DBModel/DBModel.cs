@@ -164,9 +164,9 @@ namespace DatabaseModel
         {
             this.WholeSellerOrderId = Guid.NewGuid();
             this.OrderDate = DateTime.Now;
-            this.DueDate = wholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel.DueDate;
+            this.DueDate = wholeSellerPurchaseNavigationParameter.WholeSellerCheckoutViewModel.DueDate;
             this.BillAmount = wholeSellerPurchaseNavigationParameter.WholeSellerBillingSummaryViewModel.BillAmount;
-            this.PaidAmount = wholeSellerPurchaseNavigationParameter.WholeSellerPurchaseCheckoutViewModel.PaidAmount;
+            this.PaidAmount = wholeSellerPurchaseNavigationParameter.WholeSellerCheckoutViewModel.PaidAmount;
             this.WholeSellerId = wholeSellerPurchaseNavigationParameter.WholeSellerViewModel.WholeSellerId;
         }
 

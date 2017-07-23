@@ -39,7 +39,7 @@ namespace SDKTemplate
 
         private void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.WholeSellerCheckoutNavigationParameter.WholeSellerPurchaseCheckoutViewModel = this.wholeSellerPurchaseCheckoutViewModel;
+            this.WholeSellerCheckoutNavigationParameter.WholeSellerCheckoutViewModel = this.wholeSellerPurchaseCheckoutViewModel;
             WholeSellerOrderDataSource.PlaceOrder(this.WholeSellerCheckoutNavigationParameter);
             this.Frame.Navigate(typeof(WholeSellerPurchasedProductListCC));
         }

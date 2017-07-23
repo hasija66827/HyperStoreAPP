@@ -13,11 +13,12 @@ namespace SDKTemplate
         private static List<WholeSellerOrderViewModel> _Orders;
         public static List<WholeSellerOrderViewModel> Orders { get { return _Orders; } }
 
-        public WholeSellerOrderDataSource(){
+        public WholeSellerOrderDataSource()
+        {
         }
 
         #region Create
-        private static Guid CreateWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerCheckoutNavigationParameter navigationParameter)
+        private static Guid CreateNewWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerCheckoutNavigationParameter navigationParameter)
         {
             var wholeSellerOrder = new DatabaseModel.WholeSellerOrder(navigationParameter);
             // Creating Entity Record in customerOrder.
@@ -48,25 +49,13 @@ namespace SDKTemplate
             _Orders = query.ToList();
         }
 
-        public static WholeSellerOrderViewModel RetrieveWholeSellerOrder(Guid? wholeSellerOrderId, DatabaseModel.RetailerContext db)
-        {
-            if (db == null)
-                db = new DatabaseModel.RetailerContext();
-            var list = db.WholeSellersOrders.Where(wo => wo.WholeSellerOrderId == wholeSellerOrderId).ToList();
-            if (list.Count != 1)
-                throw new Exception(String.Format("{0} wholesellerOrderId found in wholesellerorder entity", list.Count));
-            var wholeSellerOrderDB = list.ElementAt(0);
-            var wholeSellerOrderViewModel = new WholeSellerOrderViewModel(wholeSellerOrderDB);
-            return wholeSellerOrderViewModel;
-        }
-
         /// <summary>
-        /// Return the ordered filtered by filter criteria and the wholesellerId.
+        /// Return the orders filtered by filter criteria and the wholesellerId.
         /// </summary>
         /// <param name="filterWholeSalerOrderCriteria"></param>
         /// <param name="wholesellerId"></param>
         /// <returns></returns>
-        public static List<WholeSellerOrderViewModel> GetFilteredOrder(FilterWholeSalerOrderCriteria filterWholeSalerOrderCriteria, Guid? wholesellerId)
+        public static List<WholeSellerOrderViewModel> GetFilteredOrders(FilterWholeSalerOrderCriteria filterWholeSalerOrderCriteria, Guid? wholesellerId)
         {
             List<WholeSellerOrderViewModel> result = new List<WholeSellerOrderViewModel>();
             if (wholesellerId == null)
@@ -88,66 +77,46 @@ namespace SDKTemplate
                 return ret.ToList();
             }
         }
-
-        /// <summary>
-        /// Read only transaction
-        /// </summary>
-        /// <param name="transaction"></param>
-        /// <param name="wholeSeller"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public static float RetrieveSettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db = null)
-        {
-            if (db == null)
-                db = new DatabaseModel.RetailerContext();
-            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId
-                                                                        && wo.BillAmount - wo.PaidAmount > 0)
-                                                            .OrderBy(wo => wo.OrderDate);
-            var creditAmount = transaction.CreditAmount;
-            foreach (var partiallyPaidOrder in partiallyPaidOrders)
-            {
-                if (creditAmount < 0)
-                    break;
-                var remainingAmount = partiallyPaidOrder.BillAmount - partiallyPaidOrder.PaidAmount;
-                if (remainingAmount < 0)
-                    throw new Exception(string.Format("remaining amount {0} cannot be less than zero", remainingAmount));
-                float payingAmountForOrder = remainingAmount <= creditAmount ? remainingAmount : creditAmount;
-                creditAmount -= payingAmountForOrder;
-            }
-            return creditAmount;
-        }
         #endregion
 
         #region Create Update
         /// <summary>
-        /// 
+        /// It update following entities
+        /// a)Transaction: Create new Transaction.
+        /// b)WholeSellerOrder: Create new WholeSellerOrder.
+        /// c)WholeSellerOrderTransaction: Create new WholeSellerOrderTransaction on completion of a) & b).
+        /// d)Wholeseller: Update the wallet balance.
+        /// e)WholeSellerOrderProductDataSource: Create wop for all the products purchased from the wholeseller.
+        /// f)ProductDataSource: Update the stock of the product.
         /// </summary>
         /// <param name="pageNavigationParameter"></param>
         /// <returns></returns>
         public static bool PlaceOrder(WholeSellerCheckoutNavigationParameter pageNavigationParameter)
         {
-            var productViewModelList = pageNavigationParameter.productViewModelList;
-            var wholeSellerViewModel = pageNavigationParameter.WholeSellerViewModel;
-            var payingAmount = pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.PaidAmount;
-            var remainingAmount = pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount;
+            var productList = pageNavigationParameter.productViewModelList;
+            var wholeSeller = pageNavigationParameter.WholeSellerViewModel;
+            var payingAmount = pageNavigationParameter.WholeSellerCheckoutViewModel.PaidAmount;
+            var remainingAmount = pageNavigationParameter.WholeSellerCheckoutViewModel.RemainingAmount;
             var IsOrderSettleUp = remainingAmount == 0 ? true : false;
-            var transaction = new TransactionViewModel(-remainingAmount, DateTime.Now, wholeSellerViewModel);
-
+            var transaction = new TransactionViewModel(-remainingAmount, DateTime.Now, wholeSeller);
             var db = new DatabaseModel.RetailerContext();
-            // Six entities updated
+
             TransactionDataSource.CreateTransaction(transaction, db);
-            var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSellerViewModel,
-                                                                                                            pageNavigationParameter.WholeSellerPurchaseCheckoutViewModel.RemainingAmount);
-            var wholeSellerOrderId = CreateWholeSellerOrder(db, pageNavigationParameter);
-            WholeSellerOrderTransactionDataSource.CreateWholeSellerOrderTransaction(transaction.TransactionId, wholeSellerOrderId, -remainingAmount, IsOrderSettleUp, db);
-            WholeSellerOrderProductDataSource.CreateWholeSellerOrderProduct(db, productViewModelList, wholeSellerOrderId);
-            ProductDataSource.UpdateProductStockByWholeSeller(db, productViewModelList);
+            var wholeSellerOrderId = CreateNewWholeSellerOrder(db, pageNavigationParameter);
+
+            WholeSellerOrderTransactionDataSource.CreateNewWholeSellerOrderTransaction(transaction.TransactionId, wholeSellerOrderId, -remainingAmount, IsOrderSettleUp, db);
+            var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller,
+                                                                                                            pageNavigationParameter.WholeSellerCheckoutViewModel.RemainingAmount);
+
+            WholeSellerOrderProductDataSource.CreateWholeSellerOrderProduct(db, productList, wholeSellerOrderId);
+            ProductDataSource.UpdateProductStockByWholeSeller(db, productList);
             return true;
         }
 
         /// <summary>
-        /// settle up the orders of the wholeseller with the credit amount.
-        /// It starts with the oldest order and settle up the order till the credit amount is reduced to zero or all the orders are completly paid.
+        /// Settle up the orders of the wholeseller with the credit amount.
+        /// It starts with the oldest order and settle up the order till the credit amount is reduced to zero 
+        /// or all the orders are completly paid.
         /// </summary>
         /// <param name="transaction"></param>
         /// <param name="wholeSeller"></param>
@@ -156,8 +125,8 @@ namespace SDKTemplate
         {
             if (db == null)
                 db = new DatabaseModel.RetailerContext();
-            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId
-                                                                        && wo.BillAmount - wo.PaidAmount > 0)
+            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId &&
+                                                                        wo.BillAmount - wo.PaidAmount > 0)
                                                             .OrderBy(wo => wo.OrderDate);
             var creditAmount = transaction.CreditAmount;
             foreach (var partiallyPaidOrder in partiallyPaidOrders)
@@ -169,7 +138,7 @@ namespace SDKTemplate
                     throw new Exception(string.Format("remaining amount {0} cannot be less than zero", remainingAmount));
                 float payingAmountForOrder = remainingAmount <= creditAmount ? remainingAmount : creditAmount;
                 var IsOrderSettleUp = SettleUpOrder(transaction, partiallyPaidOrder, payingAmountForOrder, db);
-                WholeSellerOrderTransactionDataSource.CreateWholeSellerOrderTransaction(transaction.TransactionId, partiallyPaidOrder.WholeSellerOrderId, payingAmountForOrder, IsOrderSettleUp, db);
+                WholeSellerOrderTransactionDataSource.CreateNewWholeSellerOrderTransaction(transaction.TransactionId, partiallyPaidOrder.WholeSellerOrderId, payingAmountForOrder, IsOrderSettleUp, db);
                 creditAmount -= payingAmountForOrder;
             }
             db.SaveChanges();
