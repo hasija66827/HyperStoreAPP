@@ -10,12 +10,16 @@ namespace SDKTemplate
     {
         private Guid _wholeSellerId;
         public virtual Guid WholeSellerId { get { return this._wholeSellerId; } set { this._wholeSellerId = value; } }
+
         private string _address;
         public virtual string Address { get { return this._address; } set { this._address = value; } }
+
         private string _mobileNo;
         public virtual string MobileNo { get { return this._mobileNo; } set { this._mobileNo = value; } }
+
         private string _name;
         public virtual string Name { get { return this._name; } set { this._name = value; } }
+
         private float _walletBalance;
         public virtual float WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
 
@@ -29,13 +33,22 @@ namespace SDKTemplate
         }
 
         public WholeSellerViewModel(Guid WholeSellerId, string name,
-            string mobileNo, string address, float walletBalance)
+                                        string mobileNo, string address, float walletBalance)
         {
             this.WholeSellerId = WholeSellerId;
-            this.Name = name;
-            this.MobileNo = mobileNo;
             this.Address = address;
+            this.MobileNo = mobileNo;
+            this.Name = name;
             this.WalletBalance = walletBalance;
+        }
+
+        public WholeSellerViewModel(DatabaseModel.WholeSeller wholeSeller)
+        {
+            this._wholeSellerId = wholeSeller.WholeSellerId;
+            this._address = wholeSeller.Address;
+            this._mobileNo = wholeSeller.MobileNo;
+            this._name = wholeSeller.Name;
+            this._walletBalance = wholeSeller.WalletBalance;
         }
 
         public string WholeSeller_MobileNo_Address

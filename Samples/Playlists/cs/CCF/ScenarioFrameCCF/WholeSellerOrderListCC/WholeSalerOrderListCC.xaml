@@ -16,24 +16,21 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="11*" />
+                    <ColumnDefinition Width="13*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind WholeSeller.MobileNo}"
                            Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBlock Text="{x:Bind FormattedOrderDate}"
                            Grid.Column="1"
-                           Margin="12,1,0,0"
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind FormattedDueDate}"
-                           Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="12,1,0,0"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock Text="{x:Bind FormattedPaidBillAmount}"
                            Grid.Column="0"
                            Grid.Row="1"
-                           Margin="12,1,0,0"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                <TextBlock Text="{x:Bind WholeSellerOrderNo}"
+                           Grid.Row="1"
+                           Grid.Column="1"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </Grid>
         </DataTemplate>

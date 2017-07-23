@@ -97,7 +97,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BillingSummaryCC));
                 }
-                else if (s.ClassType == typeof(OrderListCCF))
+                else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterOrderCC));

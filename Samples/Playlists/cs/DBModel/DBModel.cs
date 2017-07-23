@@ -21,7 +21,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers21.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers22.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -152,7 +152,7 @@ namespace DatabaseModel
         public WholeSellerOrder(Guid wholeSellerId)
         {
             this.WholeSellerOrderId = Guid.NewGuid();
-            this.WholeSellerOrderNo = Utility.GenerateRandom();
+            this.WholeSellerOrderNo = Utility.GenerateWholeSellerOrderNo();
             this.OrderDate = DateTime.Now;
             this.DueDate = DateTime.Now;
             this.BillAmount = 0;
@@ -163,6 +163,7 @@ namespace DatabaseModel
         public WholeSellerOrder(WholeSellerCheckoutNavigationParameter wholeSellerPurchaseNavigationParameter)
         {
             this.WholeSellerOrderId = Guid.NewGuid();
+            this.WholeSellerOrderNo = Utility.GenerateWholeSellerOrderNo();
             this.OrderDate = DateTime.Now;
             this.DueDate = wholeSellerPurchaseNavigationParameter.WholeSellerCheckoutViewModel.DueDate;
             this.BillAmount = wholeSellerPurchaseNavigationParameter.WholeSellerBillingSummaryViewModel.BillAmount;
@@ -306,7 +307,7 @@ namespace DatabaseModel
         public CustomerOrder(PageNavigationParameter pageNavigationParameter)
         {
             this.CustomerOrderId = Guid.NewGuid();
-            this.CustomerOrderNo = Utility.GenerateRandom();
+            this.CustomerOrderNo = Utility.GenerateCustomerOrderNo();
             this.OrderDate = DateTime.Now;
             this.BillAmount = pageNavigationParameter.BillingSummaryViewModel.TotalBillAmount;
             this.DiscountedAmount = pageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount;

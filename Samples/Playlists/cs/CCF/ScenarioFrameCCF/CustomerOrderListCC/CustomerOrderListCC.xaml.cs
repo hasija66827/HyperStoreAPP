@@ -19,13 +19,13 @@ using SDKTemp.Data;
 
 namespace SDKTemplate
 {
-    public delegate void OrderListChangedDelegate(OrderListCCF sender);
-    public sealed partial class OrderListCCF : Page
+    public delegate void CustomerOrderListChangedDelegate(CustomerOrderListCCF sender);
+    public sealed partial class CustomerOrderListCCF : Page
     {
-        public static OrderListCCF Current;
+        public static CustomerOrderListCCF Current;
         public List<CustomerOrderViewModel> orderList;
-        public event OrderListChangedDelegate OrderListChangedEvent;
-        public OrderListCCF()
+        public event CustomerOrderListChangedDelegate OrderListChangedEvent;
+        public CustomerOrderListCCF()
         {
             Current = this;
             this.InitializeComponent();
@@ -55,7 +55,7 @@ namespace SDKTemplate
             }
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             Current.orderList = CustomerOrderDataSource.GetFilteredOrders(selectedCustomer, selectedDateRange);
-            OrderListCCF.Current.OrderListChangedEvent?.Invoke(OrderListCCF.Current);
+            CustomerOrderListCCF.Current.OrderListChangedEvent?.Invoke(CustomerOrderListCCF.Current);
             MasterListView.ItemsSource = Current.orderList;
             OrderCountTB.Text = "(" + Current.orderList.Count.ToString() + "/" + CustomerOrderDataSource.Orders.Count.ToString() + ")";
         }

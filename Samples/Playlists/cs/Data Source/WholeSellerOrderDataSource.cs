@@ -13,8 +13,7 @@ namespace SDKTemplate
         private static List<WholeSellerOrderViewModel> _Orders;
         public static List<WholeSellerOrderViewModel> Orders { get { return _Orders; } }
 
-        public WholeSellerOrderDataSource()
-        {
+        public WholeSellerOrderDataSource(){
         }
 
         #region Create
@@ -44,7 +43,7 @@ namespace SDKTemplate
                         .Join(_wholeSellerOrders,
                                 wholeSeller => wholeSeller.WholeSellerId,
                                 wholeSellerOrder => wholeSellerOrder.WholeSellerId,
-                                (wholeseller, wholeSellerOrder) => new WholeSellerOrderViewModel(wholeSellerOrder))
+                                (wholeseller, wholeSellerOrder) => new WholeSellerOrderViewModel(wholeSellerOrder, wholeseller))
                         .OrderByDescending(order => order.OrderDate);
             _Orders = query.ToList();
         }

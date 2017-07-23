@@ -62,7 +62,7 @@ namespace SDKTemplate
         public CustomerOrderViewModel()
         {
             this._customerOrderId = Guid.NewGuid();
-            this._customerOrderNo = Utility.GenerateRandom();
+            this._customerOrderNo = Utility.GenerateCustomerOrderNo();
             this._billAmount = 0;
             this._discountedBillAmount = 0;
             this._customerMobileNo = "";

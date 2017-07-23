@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.OrderListCCF"
+﻿<Page x:Class="SDKTemplate.CustomerOrderListCCF"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate" 
@@ -22,19 +22,21 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="11*" />
+                    <ColumnDefinition Width="13*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind CustomerMobileNo}"
                            Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBlock Text="{x:Bind FormattedOrderDate}"
                            Grid.Column="1"
-                           Margin="12,1,0,0"
                            Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBlock Text="{x:Bind FormattedPaidBillAmount}"
                            Grid.Column="0"
                            Grid.Row="2"
-                           Margin="12,1,0,0"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                <TextBlock Text="{x:Bind CustomerOrderNo}"
+                           Grid.Column="1"
+                           Grid.Row="2"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </Grid>
         </DataTemplate>
@@ -123,7 +125,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid x:Name="LayoutRoot"
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="LayoutRoot"
           Loaded="LayoutRoot_Loaded"
           >
         <VisualStateManager.VisualStateGroups>

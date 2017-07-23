@@ -20,6 +20,7 @@ namespace SDKTemplate
             this.Transaction = new TransactionViewModel(transaction);
             this.CreditedAmountFromTransaction = creditedAmountFromTransaction;
         }
+
         public SettledOrderOfTransactionViewModel(DatabaseModel.WholeSellerOrder wholsellerOrder, float creditedAmountFromTransaction)
         {
             this.WholeSellerOrder = new WholeSellerOrderViewModel(wholsellerOrder);

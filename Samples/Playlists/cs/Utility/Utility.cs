@@ -355,17 +355,30 @@ namespace SDKTemplate
      
             return true;
         }
-
-        public static string GenerateRandom(int? length=null)
+        public static string GenerateCustomerOrderNo(int? length = null)
         {
             if (length == null)
                 length = 7;
             var random = new Random();
-            string s = string.Empty;
+            string s = "CORD";
+            s = String.Concat(s, random.Next(1, 10).ToString());
+            for (int i = 1; i < length; i++)
+                s = String.Concat(s, random.Next(10).ToString());
+            return s;
+        }
+
+
+        public static string GenerateWholeSellerOrderNo(int? length=null)
+        {
+            if (length == null)
+                length = 7;
+            var random = new Random();
+            string s = "SORD";
             s = String.Concat(s, random.Next(1,10).ToString());
             for (int i = 1; i < length; i++)
                 s = String.Concat(s, random.Next(10).ToString());
             return s;
         }
+
     }
 }

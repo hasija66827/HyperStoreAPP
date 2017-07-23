@@ -19,28 +19,25 @@ namespace SDKTemplate
         public Guid WholeSellerOrderId { get { return this._wholeSellerOrderId; } }
 
         private string _wholeSellerOrderNo;
-        public string WholeSellerOrderNo { get { return this.WholeSellerOrderNo; } }
-
-        public DateTime OrderDate { get { return this._orderDate; } }
-        private DateTime _orderDate;
-
-        public DateTime DueDate { get { return this._dueDate; } }
-        private DateTime _dueDate;
+        public string WholeSellerOrderNo { get { return this._wholeSellerOrderNo; } }
 
         private float _billAmount;
         public float BillAmount { get { return this._billAmount; } }
 
-        private float _paidAmount;
-        public float PaidAmount { get { return this._paidAmount; } }
+        private DateTime _dueDate;
+        public DateTime DueDate { get { return this._dueDate; } }
 
         private float _intrestRate;
         public float IntrestRate { get { return this._intrestRate; } }
 
+        private DateTime _orderDate;
+        public DateTime OrderDate { get { return this._orderDate; } }
+
+        private float _paidAmount;
+        public float PaidAmount { get { return this._paidAmount; } }
+
         private WholeSellerViewModel _wholeSeller;
         public WholeSellerViewModel WholeSeller { get { return this._wholeSeller; } }
-
-        private Guid? _wholeSellerId;
-        public Guid? WholesellerId { get { return this._wholeSellerId; } }
 
         private List<WholeSellerOrderDetailViewModel> _wholeSellerOrderDetails;
         public List<WholeSellerOrderDetailViewModel> WholeSellerOrderDetails
@@ -88,34 +85,18 @@ namespace SDKTemplate
             get { return this.PaidAmount.ToString() + "\u20b9" + "/" + this.BillAmount.ToString() + "\u20b9"; }
         }
 
-        public WholeSellerOrderViewModel(DatabaseModel.WholeSellerOrder wo)
+        public WholeSellerOrderViewModel(DatabaseModel.WholeSellerOrder wo, DatabaseModel.WholeSeller wholeSeller = null)
         {
             this._wholeSellerOrderId = wo.WholeSellerOrderId;
             this._wholeSellerOrderNo = wo.WholeSellerOrderNo;
             this._wholeSellerOrderDetails = new List<WholeSellerOrderDetailViewModel>();
-            this._transactions = new List<SettledOrderOfTransactionViewModel>();
-            this._orderDate = wo.OrderDate;
-            this._dueDate = wo.DueDate;
             this._billAmount = wo.BillAmount;
+            this._dueDate = wo.DueDate;
+            this._intrestRate = 0;//TODO: need to updated
+            this._orderDate = wo.OrderDate;
             this._paidAmount = wo.PaidAmount;
-            this._wholeSellerId = wo.WholeSellerId;
-            this._wholeSeller = null;
-        }
-
-        public WholeSellerOrderViewModel(Guid wholeSellerOrderId, string wholeSellerOrderNo, DateTime orderDate, DateTime dueDate, float billAmount,
-            float paidAmount, Guid wholeSellerId)
-        {
-
-            this._wholeSellerOrderId = wholeSellerOrderId;
-            this._wholeSellerOrderNo = wholeSellerOrderNo;
-            this._wholeSellerOrderDetails = new List<WholeSellerOrderDetailViewModel>();
             this._transactions = new List<SettledOrderOfTransactionViewModel>();
-            this._orderDate = orderDate;
-            this._dueDate = dueDate;
-            this._billAmount = billAmount;
-            this._paidAmount = paidAmount;
-            this._wholeSellerId = wholeSellerId;
-            this._wholeSeller = WholeSellerDataSource.GetWholeSellerById(wholeSellerId);
+            this._wholeSeller = (wholeSeller != null) ? new WholeSellerViewModel(wholeSeller) : null;
         }
     }
 

@@ -28,7 +28,7 @@ namespace SDKTemplate
         {
             Current = this;
             this.OrderSummaryViewModel = new OrderSummaryViewModel();
-            this.OrderSummaryViewModel.ComputeSales(OrderListCCF.Current);
+            this.OrderSummaryViewModel.ComputeSales(CustomerOrderListCCF.Current);
             this.InitializeComponent();
         }
     }
