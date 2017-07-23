@@ -229,7 +229,7 @@
     <Compile Include="CCF\SearchBoxCCF\WholeSellerASBCC\WholeSellerASBCC.xaml.cs">
       <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerPurchasedProductListCC\WholeSellerPurcahsedProductListVieModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerPurchasedProductListCC\WholeSellerProductVieModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerPurchasedProductListCC\WholeSellerPurchasedProductList.xaml.cs">
       <DependentUpon>WholeSellerPurchasedProductList.xaml</DependentUpon>
     </Compile>
