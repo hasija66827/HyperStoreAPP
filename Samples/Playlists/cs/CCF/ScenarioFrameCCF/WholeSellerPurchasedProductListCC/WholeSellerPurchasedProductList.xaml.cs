@@ -18,15 +18,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void WholeSellerProductListUpdatedDelegate(ObservableCollection<WholeSellerProductListVieModel> products);
+    public delegate void WholeSellerProductListUpdatedDelegate(ObservableCollection<WholeSellerProductVieModel> products);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class WholeSellerPurchasedProductListCC : Page
     {
         public event WholeSellerProductListUpdatedDelegate WholeSellerProductListUpdatedEvent;
-        private ObservableCollection<WholeSellerProductListVieModel> _products = new ObservableCollection<WholeSellerProductListVieModel>();
-        public ObservableCollection<WholeSellerProductListVieModel> Products { get { return this._products; } }
+        private ObservableCollection<WholeSellerProductVieModel> _products = new ObservableCollection<WholeSellerProductVieModel>();
+        public ObservableCollection<WholeSellerProductVieModel> Products { get { return this._products; } }
         public static WholeSellerPurchasedProductListCC Current;
         public WholeSellerPurchasedProductListCC()
         {
@@ -58,7 +58,7 @@ namespace SDKTemplate
             // If product does not exist
             if (existingProduct.Count() == 0)
             {
-                WholeSellerProductListVieModel w = new WholeSellerProductListVieModel(selectedProduct.ProductId, selectedProduct.BarCode,
+                WholeSellerProductVieModel w = new WholeSellerProductVieModel(selectedProduct.ProductId, selectedProduct.BarCode,
                     selectedProduct.Name, 0, 1, selectedProduct.SellingPrice);
                 this._products.Add(w);
                 InvokeProductListChangeEvent();

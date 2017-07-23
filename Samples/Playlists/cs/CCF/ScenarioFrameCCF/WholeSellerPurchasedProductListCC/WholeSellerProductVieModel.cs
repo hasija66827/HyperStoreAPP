@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class WholeSellerProductListVieModel : INotifyPropertyChanged
+    public class WholeSellerProductVieModel : INotifyPropertyChanged
     {
         private Guid _productId;
         public Guid ProductId { get { return this._productId; } }
@@ -19,12 +19,14 @@ namespace SDKTemplate
             get { return this._barCode; }
             set { this._barCode = value; }
         }
+
         private string _name;
         public string Name
         {
             get { return this._name; }
             set { this._name = value; }
         }
+
         private float _purchasePrice;
         public float PurchasePrice
         {
@@ -36,6 +38,7 @@ namespace SDKTemplate
                 WholeSellerPurchasedProductListCC.InvokeProductListChangeEvent();
             }
         }
+
         private Int32 _quantityPurchased;
         public Int32 QuantityPurchased
         {
@@ -48,6 +51,7 @@ namespace SDKTemplate
                 WholeSellerPurchasedProductListCC.InvokeProductListChangeEvent();
             }
         }
+
         public float NetValue
         {
             get { return this._quantityPurchased * this._purchasePrice; }
@@ -55,7 +59,7 @@ namespace SDKTemplate
 
         private float _sellingPrice;
         public float SellingPrice { get { return this._sellingPrice; } }
-        public WholeSellerProductListVieModel(Guid productId, string barCode, string name, 
+        public WholeSellerProductVieModel(Guid productId, string barCode, string name, 
             float purchasePrice, Int32 quantityPurchased, float sellingPrice)
         {
             this._productId = productId;

@@ -9,16 +9,13 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public delegate void ProductListChangedDelegate(object sender);
+    public delegate void ProductListChangedDelegate();
     public class ProductListViewModel
     {
         public event ProductListChangedDelegate ProductListViewModelChangedEvent;
         private ObservableCollection<ProductViewModel> _products = new ObservableCollection<ProductViewModel>();
         public ObservableCollection<ProductViewModel> Products { get { return this._products; } }
-        public ProductListViewModel()
-        {
-
-        }
+        public ProductListViewModel(){}
 
         public Int32 AddToBillingList(ProductViewModel product)
         {
@@ -33,9 +30,9 @@ namespace SDKTemplate
             {
                 this._products.Add(product);
                 index = this._products.IndexOf(product);
-                //if new product is added, subscrbing to the Quantity Changed event.
+                // If new product is added, subscrbing to the Quantity Changed event.
                 this._products[index].QuantityChangedEvent += new QuantityChangedDelegate
-                ((sender, quantity) => { this.ProductListViewModelChangedEvent?.Invoke(this); });
+                ((sender, quantity) => { this.ProductListViewModelChangedEvent?.Invoke(); });
                 this._products[index].QuantityPurchased = 1;
             }
             return index;

@@ -54,7 +54,7 @@ namespace SDKTemplate
                     && Utility.CheckIfUniqueProductCode(ProductCodeTB.Text)
                     )
                 {
-                    if (ProductDataSource.AddProduct(AddProductViewModel) == true)
+                    if (ProductDataSource.CreateNewProduct(AddProductViewModel) == true)
                     {
                         MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
                         this.Frame.Navigate(typeof(BlankPage));

@@ -11,7 +11,7 @@ namespace SDKTemplate
         public WholeSellerViewModel WholeSellerViewModel { get; set; }
         public WholeSellerBillingSummaryViewModel WholeSellerBillingViewModel { get; set; }
         public WholeSellerPurchaseCheckoutViewModel WholeSellerPurchaseCheckoutViewModel { get; set; }
-        public List<WholeSellerProductListVieModel> productViewModelList;
+        public List<WholeSellerProductVieModel> productViewModelList;
         public WholeSellerPurchaseNavigationParameter()
         { }
     }

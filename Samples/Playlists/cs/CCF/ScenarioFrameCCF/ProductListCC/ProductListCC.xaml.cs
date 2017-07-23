@@ -37,40 +37,40 @@ namespace SDKTemplate
             this.InitializeComponent();
             this.ProductListViewModel = new ProductListViewModel();
             this.ProductListViewModel.ProductListViewModelChangedEvent += ProductListViewModel_ProductListChangedEvent;
-            Checkout.Click += Checkout_Click;
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this.AddProductToCart);
+            Checkout.Click += Checkout_Click;
         }
 
-        private void ProductListViewModel_ProductListChangedEvent(object sender)
+        private void ProductListViewModel_ProductListChangedEvent()
         {
             this.ProductListCCUpdatedEvent?.Invoke(this.ProductListViewModel.Products);
         }
 
-        // Will be invoked on an event in ProductASBCC
+        /// <summary>
+        /// Adds the product in product Billing list.
+        /// Method is function on event triggered from ProductASB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="product"></param>
         public void AddProductToCart(object sender, ProductViewModel product)
         {
             var index = this.ProductListViewModel.AddToBillingList(product);
-            //ListView.SelectedIndex = index;
         }
+
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: need to changed
             if (CustomerASBCC.Current.SelectedCustomerInASB== null)
             {
-                MainPage.Current.NotifyUser("Customer not added, add the customer by clicking on Add Customer", NotifyType.ErrorMessage);
+                MainPage.Current.NotifyUser("Customer not selected in search box", NotifyType.ErrorMessage);
                 return;
             }
-            if (!Utility.IsMobileNumber(CustomerASBCC.Current.SelectedCustomerInASB.MobileNo))
-            {
-                MainPage.Current.NotifyUser("Mobile Number is required", NotifyType.ErrorMessage);
-         
-                return;
-            }
-            PageNavigationParameter pageNavigationParameter = new PageNavigationParameter(
-               this.ProductListViewModel,
-               CustomerASBCC.Current.SelectedCustomerInASB,
-               BillingSummaryCC.Current.BillingSummaryViewModel);
-            this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
+            
+            PageNavigationParameter pageNavigationParameter = 
+                new PageNavigationParameter(
+                                             this.ProductListViewModel,
+                                             CustomerASBCC.Current.SelectedCustomerInASB,
+                                             BillingSummaryCC.Current.BillingSummaryViewModel);
+                                             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace SDKTemplate
     {
         private static List<ProductViewModelBase> _products = new List<ProductViewModelBase>();
         public static List<ProductViewModelBase> Products { get { return _products; } }
+
+        #region Read
         public static void RetrieveProductDataAsync()
         {
             using (var db = new DatabaseModel.RetailerContext())
@@ -104,8 +106,10 @@ namespace SDKTemplate
                 return false;
             return true;
         }
+        #endregion
 
-        public static bool AddProduct(AddProductViewModel productViewModelBase)
+        #region Create
+        public static bool CreateNewProduct(AddProductViewModel productViewModelBase)
         {
             var db = new DatabaseModel.RetailerContext();
             db.Products.Add(new DatabaseModel.Product(
@@ -123,29 +127,6 @@ namespace SDKTemplate
             _products.Add(productViewModelBase);
             return true;
         }
-
-
-        public static bool UpdateProductDetails(AddProductViewModel addProductViewModel)
-        {
-            var db = new DatabaseModel.RetailerContext();
-            var products = db.Products.Where(p => p.ProductId == addProductViewModel.ProductId).ToList();
-            var product = products.FirstOrDefault();
-            if (product == null)
-                return false;
-            product.Threshold = addProductViewModel.Threshold;
-            product.RefillTime = addProductViewModel.RefillTime;
-            product.DiscountPer = addProductViewModel.DiscountPer;
-            product.DisplayPrice = addProductViewModel.DisplayPrice;
-            db.Update(product);
-            db.SaveChanges();
-            ProductDataSource._products.Add(new ProductViewModelBase(product));
-
-            var prd =_products.Where(p => p.ProductId == addProductViewModel.ProductId).FirstOrDefault();
-            ProductDataSource._products.Remove(prd);
-            return true;
-        }
-
-
         public static List<ProductListToPurchaseViewModel> RetreiveProductListToPurchaseByRespectiveWholeSellers()
         {
             var items = new List<ProductListToPurchaseViewModel>();
@@ -165,7 +146,40 @@ namespace SDKTemplate
             }
             return items;
         }
+        #endregion
 
+        #region Update
+        /// <summary>
+        /// Update the detail of the product in product entity.
+        /// </summary>
+        /// <param name="addProductViewModel"></param>
+        /// <returns></returns>
+        public static bool UpdateProductDetails(AddProductViewModel addProductViewModel)
+        {
+            var db = new DatabaseModel.RetailerContext();
+            var products = db.Products.Where(p => p.ProductId == addProductViewModel.ProductId).ToList();
+            var product = products.FirstOrDefault();
+            if (product == null)
+                return false;
+            product.Threshold = addProductViewModel.Threshold;
+            product.RefillTime = addProductViewModel.RefillTime;
+            product.DiscountPer = addProductViewModel.DiscountPer;
+            product.DisplayPrice = addProductViewModel.DisplayPrice;
+            db.Update(product);
+            db.SaveChanges();
+            ProductDataSource._products.Add(new ProductViewModelBase(product));
+
+            var prd = _products.Where(p => p.ProductId == addProductViewModel.ProductId).FirstOrDefault();
+            ProductDataSource._products.Remove(prd);
+            return true;
+        }
+
+        /// <summary>
+        /// Reduces the number of products from the product entity during purchase of product by Customer.
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="billingViewModel"></param>
+        /// <returns></returns>
         public static bool UpdateProductStock(DatabaseModel.RetailerContext db, ProductListViewModel billingViewModel)
         {
             //#perf: You can query whole list in where clause.
@@ -183,35 +197,48 @@ namespace SDKTemplate
         }
 
 
-        // Step 2:
-        public static bool UpdateProductStockByWholeSeller(DatabaseModel.RetailerContext db, List<WholeSellerProductListVieModel> purchasedProducts)
+        /// <summary>
+        /// Adds the quantity in product present in product entity, during purchase of product by wholeseller.
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="purchasedProducts"></param>
+        /// <returns></returns>
+        public static bool UpdateProductStockByWholeSeller(DatabaseModel.RetailerContext db, List<WholeSellerProductVieModel> purchasedProducts)
         {
             //#perf: You can query whole list in where clause.
             foreach (var purchasedProduct in purchasedProducts)
             {
                 //TODO: check where clouse whether threough id or bar code.
-                var products = db.Products.Where(p => p.BarCode == purchasedProduct.BarCode).ToList();
+                var products = db.Products
+                                .Where(p => p.ProductId == purchasedProduct.ProductId).ToList();
                 var product = products.FirstOrDefault();
                 if (product == null)
-                    return false;
+                    throw new Exception(string.Format("Product {0} not found while updating the product", product.Name));
                 product.TotalQuantity += purchasedProduct.QuantityPurchased;
                 db.Update(product);
             }
             db.SaveChanges();
             return true;
         }
-
+        
+        /// <summary>
+        /// Updates the product with the wholeseller from which we have to purchase the product.
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="wholeSellerId"></param>
+        /// <returns></returns>
         public static bool UpdateWholSellerIdForProduct(Guid productId, Guid? wholeSellerId)
         {
             var db = new DatabaseModel.RetailerContext();
             var products = db.Products.Where(p => p.ProductId == productId).ToList();
             var product = products.FirstOrDefault();
             if (product == null)
-                return false;
+                throw new Exception(string.Format("Product {0} not found while updating the product", product.Name));
             product.WholeSellerId = wholeSellerId;
             db.Update(product);
             db.SaveChanges();
             return true;
         }
+        #endregion
     }
 }

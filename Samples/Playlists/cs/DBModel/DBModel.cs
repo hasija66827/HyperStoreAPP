@@ -133,7 +133,6 @@ namespace DatabaseModel
         public WholeSellerOrder WholeSellerOrder;
     }
 
-
     public class WholeSellerOrder
     {
         public Guid WholeSellerOrderId { get; set; }
