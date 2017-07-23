@@ -37,6 +37,8 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="10,0,10,0">
+                    <TextBlock Text="Txn No"
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Date"
                                Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Balance"
@@ -55,6 +57,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodel:TransactionViewModel">
                             <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="TransactionNo"
+                                           Text="{x:Bind TransactionNo, Mode=OneWay}"
+                                           Style="{StaticResource ListTBStyle}" />
                                 <TextBlock x:Name="TransactionDate"
                                            Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
                                            Style="{StaticResource ListTBStyle}" />

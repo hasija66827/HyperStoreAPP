@@ -103,6 +103,11 @@
                     <StackPanel x:Name="StaticLabelsForTransactionList"
                                 Margin="0,0,0,10"
                                 Orientation="Horizontal">
+                        <TextBlock Text="Txn No"
+                                   Width="80"
+                                   Margin="40,0,0,0"
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         <TextBlock Text="Transaction Date"
                                    Width="80"
                                    Margin="40,0,0,0"
@@ -131,6 +136,9 @@
                         <DataTemplate x:DataType="local:SettledOrderOfTransactionViewModel">
                             <StackPanel Orientation="Horizontal">
                                 <SymbolIcon Symbol="Accept" />
+                                <TextBlock x:Name="TransactionNo"
+                                           Text="{x:Bind Transaction.TransactionNo, Mode=OneWay}"
+                                           Style="{StaticResource ListTBStyle}" />
                                 <TextBlock x:Name="TransactionDate"
                                            Text="{x:Bind Transaction.FormattedTransactionDate, Mode=OneWay}"
                                            Style="{StaticResource ListTBStyle}" />

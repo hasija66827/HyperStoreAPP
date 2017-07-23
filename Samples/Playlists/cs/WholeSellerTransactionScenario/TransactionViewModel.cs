@@ -12,6 +12,9 @@ namespace SDKTemplate.View_Models
         private Guid _transactionId;
         public Guid TransactionId { get { return this._transactionId; } }
 
+        private string _transactionNo;
+        public string TransactionNo { get { return this._transactionNo; } }
+
         //Amount credited into the account of the wholeseller.
         private float _creditAmount;
         public float CreditAmount { get { return this._creditAmount; } }
@@ -27,11 +30,11 @@ namespace SDKTemplate.View_Models
             }
         }
 
-
         private float _walletSnapShot;
         public float WalletSnapshot { get { return this._walletSnapShot; } }
 
         public float UpdatedWalletSnapshot { get { return this._walletSnapShot - this._creditAmount; } }
+
         private Guid? _wholeSellerId;
         public Guid? WholeSellerId { get { return this._wholeSellerId; } }
 
@@ -39,6 +42,7 @@ namespace SDKTemplate.View_Models
                    WholeSellerViewModel wholeSellerViewModel)
         { 
             this._transactionId = Guid.NewGuid();
+            this._transactionNo = Utility.GenerateWholeSellerTransactionNo();
             this._creditAmount = creditAmount;
             this._transactionDate = transactionDate;
             this._walletSnapShot = wholeSellerViewModel.WalletBalance;
@@ -48,16 +52,19 @@ namespace SDKTemplate.View_Models
         public TransactionViewModel(DatabaseModel.Transaction transaction)
         {
             this._transactionId = transaction.TransactionId;
+            this._transactionNo = transaction.TransactionNo;
             this._transactionDate = transaction.TransactionDate;
             this._walletSnapShot = transaction.WalletSnapshot;
             this._creditAmount = transaction.CreditAmount;
             this._wholeSellerId = transaction.WholeSellerId;
         }
     }
+
     public class TransactionHistoryOfWholeSellerCollection {
         public List<TransactionViewModel> Transactions { get; set; }
         public TransactionHistoryOfWholeSellerCollection() { }
     }
+
     public class TransactionHistoryOfWholeSellerOrderCollection {
 
         public List<TransactionViewModel> Transactions { get; set; }
