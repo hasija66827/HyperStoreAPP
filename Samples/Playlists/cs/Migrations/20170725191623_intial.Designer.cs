@@ -8,8 +8,8 @@ using DatabaseModel;
 namespace SDKTemplate.Migrations
 {
     [DbContext(typeof(RetailerContext))]
-    [Migration("20170723144836_initial")]
-    partial class initial
+    [Migration("20170725191623_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,6 +144,38 @@ namespace SDKTemplate.Migrations
                     b.HasIndex("WholeSellerId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("DatabaseModel.ProductTag", b =>
+                {
+                    b.Property<Guid>("ProductTagId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("ProductId")
+                        .IsRequired();
+
+                    b.Property<Guid?>("TagId")
+                        .IsRequired();
+
+                    b.HasKey("ProductTagId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ProductTags");
+                });
+
+            modelBuilder.Entity("DatabaseModel.Tag", b =>
+                {
+                    b.Property<Guid>("TagId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("TagName");
+
+                    b.HasKey("TagId");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("DatabaseModel.Transaction", b =>
@@ -293,6 +325,19 @@ namespace SDKTemplate.Migrations
                     b.HasOne("DatabaseModel.WholeSeller")
                         .WithMany("Products")
                         .HasForeignKey("WholeSellerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DatabaseModel.ProductTag", b =>
+                {
+                    b.HasOne("DatabaseModel.Product")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DatabaseModel.Tag")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

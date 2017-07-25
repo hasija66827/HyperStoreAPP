@@ -125,6 +125,7 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
                     SummaryFrame.Navigate(typeof(BlankPage));
+                    NewsFeedFrame.Navigate(typeof(BlankPage1));
                 }
                 else if (s.ClassType == typeof(WholeSellerOrderCC))
                 {

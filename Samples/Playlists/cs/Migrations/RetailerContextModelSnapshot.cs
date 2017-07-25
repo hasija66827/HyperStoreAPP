@@ -145,6 +145,38 @@ namespace SDKTemplate.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("DatabaseModel.ProductTag", b =>
+                {
+                    b.Property<Guid>("ProductTagId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("ProductId")
+                        .IsRequired();
+
+                    b.Property<Guid?>("TagId")
+                        .IsRequired();
+
+                    b.HasKey("ProductTagId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ProductTags");
+                });
+
+            modelBuilder.Entity("DatabaseModel.Tag", b =>
+                {
+                    b.Property<Guid>("TagId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("TagName");
+
+                    b.HasKey("TagId");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("DatabaseModel.Transaction", b =>
                 {
                     b.Property<Guid>("TransactionId")
@@ -292,6 +324,19 @@ namespace SDKTemplate.Migrations
                     b.HasOne("DatabaseModel.WholeSeller")
                         .WithMany("Products")
                         .HasForeignKey("WholeSellerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DatabaseModel.ProductTag", b =>
+                {
+                    b.HasOne("DatabaseModel.Product")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DatabaseModel.Tag")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

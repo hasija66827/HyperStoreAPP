@@ -13,6 +13,8 @@ namespace DatabaseModel
         public DbSet<CustomerOrder> CustomerOrders { get; set; }
         public DbSet<CustomerOrderProduct> CustomerOrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductTag> ProductTags { get; set; }
+        public DbSet<Tag> Tags { get; set; }
         public DbSet<WholeSeller> WholeSellers { get; set; }
         public DbSet<WholeSellerOrder> WholeSellersOrders { get; set; }
         public DbSet<WholeSellerOrderProduct> WholeSellersOrderProducts { get; set; }
@@ -21,7 +23,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers24.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers25.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -173,7 +175,6 @@ namespace DatabaseModel
 
         public WholeSellerOrder() { }
     }
-
     public class WholeSellerOrderProduct
     {
         public Guid WholeSellerOrderProductId { get; set; }
@@ -198,6 +199,26 @@ namespace DatabaseModel
         }
     }
 
+    public class Tag
+    {
+        public Guid TagId { get; set; }
+        public string TagName { get; set; }
+        public List<ProductTag> ProductTags { get; set; }
+    }
+
+    public class ProductTag
+    {
+        public Guid ProductTagId { get; set; }
+
+        [Required]
+        public Nullable<Guid> ProductId { get; set; }
+        public Product Product;
+
+        [Required]
+        public Nullable<Guid> TagId { get; set; }
+        public Tag Tag;
+    }
+
     public class Product
     {
         public Guid ProductId { get; set; }
@@ -215,6 +236,7 @@ namespace DatabaseModel
 
         public List<WholeSellerOrderProduct> WholeSellerOrderProducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
+        public List<ProductTag> ProductTags { get; set; }
 
         //This is used by Retailer to mark the product to be prurchased from Wholeseller.
         [Required]

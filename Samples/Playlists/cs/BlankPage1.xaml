@@ -6,8 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.DataContext>
+            <local:ViewModel />
+        </Grid.DataContext>
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBox Width="200"
+                     FontSize="24"
+                     Text="{Binding Header, Mode=TwoWay}"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     MaxHeight="200" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          MaxHeight="200"
+                          Width="200"
+                          Background="White">
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Text}"
+                                      FontSize="24"
+                                      Foreground="Black"
+                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"
+                                      IsThreeState="False" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Page>
