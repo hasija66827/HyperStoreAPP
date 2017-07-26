@@ -1,32 +1,43 @@
 ﻿<Page
-    x:Class="SDKTemplate.BlankPage1"
+    x:Class="SDKTemplate.TagCC"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SDKTemplate"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid >
         <Grid.DataContext>
-            <local:ViewModel />
+            <local:TagCCF />
         </Grid.DataContext>
+
         <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            <TextBox Width="200"
-                     FontSize="24"
+                    HorizontalAlignment="Left">
+            <CommandBar>
+                <CommandBar.PrimaryCommands>
+                    <AppBarButton Name="NewTag"
+                                  Icon="Add"
+                                  Label="New Tag"
+                                  Click="NewTag_Click"></AppBarButton>
+                </CommandBar.PrimaryCommands>
+            </CommandBar>
+            <TextBlock Text="Add Tag"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBox Width="300"
+                     FontSize="16"
+                     Margin="0,10,0,10"
                      Text="{Binding Header, Mode=TwoWay}"
                      IsReadOnly="True"
                      TextWrapping="Wrap"
                      MaxHeight="200" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
-                          MaxHeight="200"
-                          Width="200"
-                          Background="White">
-                <ItemsControl ItemsSource="{Binding Items}">
+                          MaxHeight="300"
+                          Width="300"
+                          >
+                <ItemsControl ItemsSource="{Binding Tags}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Content="{Binding Text}"
+                            <CheckBox Content="{Binding TagName}"
                                       FontSize="24"
                                       Foreground="Black"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"

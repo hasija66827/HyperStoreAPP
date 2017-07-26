@@ -93,7 +93,7 @@ namespace DatabaseModel
         public float CreditAmount { get; set; }
         public DateTime TransactionDate { get; set; }
         public float WalletSnapshot { get; set; }
-        
+
         [Required]
         public Nullable<Guid> WholeSellerId;
         public WholeSeller WholeSeller;
@@ -108,7 +108,7 @@ namespace DatabaseModel
             this.CreditAmount = transactionViewModel.CreditAmount;
             this.TransactionDate = transactionViewModel.TransactionDate;
             this.WholeSellerId = transactionViewModel.WholeSellerId;
-            this.WalletSnapshot =transactionViewModel.WalletSnapshot;
+            this.WalletSnapshot = transactionViewModel.WalletSnapshot;
         }
     }
 
@@ -123,7 +123,7 @@ namespace DatabaseModel
             this.WholeSellerOrderTransactionId = Guid.NewGuid();
             this.TransactionId = transactionId;
             this.WholeSellerOrderId = wholeSellerOrderId;
-            this.PaidAmount =paidAmount;
+            this.PaidAmount = paidAmount;
             this.IsPaymentComplete = isPaymentComplete;
         }
         [Required]
@@ -204,6 +204,14 @@ namespace DatabaseModel
         public Guid TagId { get; set; }
         public string TagName { get; set; }
         public List<ProductTag> ProductTags { get; set; }
+
+        public Tag()
+        { }
+        public Tag(TagViewModel tag)
+        {
+            this.TagId = new Guid();
+            this.TagName = tag.TagName;
+        }
     }
 
     public class ProductTag
@@ -243,7 +251,7 @@ namespace DatabaseModel
         public Guid? WholeSellerId;
         public WholeSeller WholeSeller;
 
-        public Product() {   }
+        public Product() { }
 
         public Product(ProductViewModelBase productViewModel)
         {
@@ -358,7 +366,7 @@ namespace DatabaseModel
         public Nullable<Guid> CustomerId;
         public Customer Customer;
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
-        
+
     }
 
     public class CustomerOrderProduct

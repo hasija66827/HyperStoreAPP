@@ -102,8 +102,8 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="BlankPage1.xaml.cs">
-      <DependentUpon>BlankPage1.xaml</DependentUpon>
+    <Compile Include="TagCC.xaml.cs">
+      <DependentUpon>TagCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddWholesellerCC\AddWholeSellerCC.xaml.cs">
       <DependentUpon>AddWholeSellerCC.xaml</DependentUpon>
@@ -130,6 +130,7 @@
       <DependentUpon>20170725191623_intial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
+    <Compile Include="TagDataSource.cs" />
     <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
@@ -270,7 +271,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="BlankPage1.xaml">
+    <Page Include="TagCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

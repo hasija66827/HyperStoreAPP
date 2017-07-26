@@ -22,52 +22,65 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public class Item : BindableBases
+    public class TagViewModel : BindableBases
     {
-        public string Text { get; set; }
+        private string _tagName;
+        public string TagName { get { return this._tagName; } set { this._tagName = value; } }
 
         bool _IsChecked = default(bool);
         public bool IsChecked { get { return _IsChecked; } set { SetProperty(ref _IsChecked, value); } }
+
+        public TagViewModel()        {
+        }
+
+        public TagViewModel(string tagName, bool isChecked=false) {
+            this._tagName = tagName;
+            this._IsChecked = isChecked;
+        }
+
     }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class BlankPage1 : Page
+    public sealed partial class TagCC : Page
     {
-        public BlankPage1()
+        public TagCC()
         {
             this.InitializeComponent();
+            
+        }
+
+        private void NewTag_Click(object sender, RoutedEventArgs e)
+        {
+            TagDataSource.CreateTag(new TagViewModel("hasija"));
         }
     }
-    public class ViewModel : BindableBases
+
+    public class TagCCF : BindableBases
     {
-        public ViewModel()
+        public TagCCF()
         {
-            _Items = new ObservableCollection<Item>(Enumerable.Range(1, 10)
-                .Select(x => new Item()
-                {
-                    Text = string.Format("Item {0}", x),
-                    IsChecked = (x < 4) ? true : false,
-                }));
-            foreach (var item in this.Items)
-                item.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
+            _Tags = new ObservableCollection<TagViewModel> (TagDataSource.RetrieveTags());
+            foreach (var tag in this.Tags)
+                tag.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
         }
 
         public string Header
         {
             get
             {
-                var array = this.Items
+                var array = this.Tags
                     .Where(x => x.IsChecked)
-                    .Select(x => x.Text).ToArray();
+                    .Select(x => x.TagName).ToArray();
                 if (!array.Any())
                     return "None";
                 return string.Join("; ", array);
             }
         }
 
-        ObservableCollection<Item> _Items;
-        public ObservableCollection<Item> Items { get { return _Items; } }
+        ObservableCollection<TagViewModel> _Tags;
+        public ObservableCollection<TagViewModel> Tags { get { return _Tags; } }
     }
 
     public abstract class BindableBases : INotifyPropertyChanged
