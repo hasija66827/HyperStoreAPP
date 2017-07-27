@@ -37,17 +37,8 @@ namespace SDKTemplate
             using (var db = new DatabaseModel.RetailerContext())
             {
                 // Retrieving data from the database synchronously.
-                _products = db.Products.Select(product => new ProductViewModelBase(
-                      product.ProductId,
-                      product.BarCode,
-                      product.CGSTPer,
-                      product.DisplayPrice,
-                      product.DiscountPer,
-                      product.Name,
-                      product.SGSTPer,
-                      product.Threshold,
-                      product.TotalQuantity,
-                      product.WholeSellerId)).ToList();
+                var dbProduct=db.Products.ToList();
+                _products = dbProduct.Select(product => new ProductViewModelBase(product)).ToList();
             }
         }
 

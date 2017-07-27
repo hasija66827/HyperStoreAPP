@@ -71,7 +71,8 @@ namespace SDKTemplate
             object parameter, string language)
         {
             // value is the data from the source object.
-            float price = System.Convert.ToSingle(value);
+            var price = Math.Round(System.Convert.ToDouble(value),2);
+            
             // Return the value to pass to the target.
             return price.ToString() + "\u20B9";
         }

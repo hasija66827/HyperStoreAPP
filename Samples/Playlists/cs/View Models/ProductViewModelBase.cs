@@ -31,17 +31,7 @@ namespace SDKTemplate
             set { this._CGSTPer = value; }
         }
 
-        protected float _discountAmount;
-        public virtual float DiscountAmount
-        {
-            get { return this._discountAmount; }
-            set
-            {
-                this._discountAmount = value;
-                this._discountPer = (this._discountAmount * 100) / this._displayPrice;
-            }
-        }
-
+     
         protected float _discountPer;
         public virtual float DiscountPer
         {
@@ -49,7 +39,7 @@ namespace SDKTemplate
             set
             {
                 this._discountPer = value;
-                this._discountAmount = this._displayPrice * (100 - this._discountPer) / 100;
+                this.DiscountAmount = this._displayPrice * (this._discountPer) / 100;
             }
         }
 
@@ -74,19 +64,13 @@ namespace SDKTemplate
             set { this._refillTime = value; }
         }
 
-        protected float _sellingPrice;
-        public virtual float SellingPrice
-        {
-            get { return Utility.RoundInt32(this._sellingPrice); }
-            set { this._sellingPrice = value; }
-        }
-
         protected float _SGSTPer;
         public virtual float SGSTPer
         {
             get { return this._SGSTPer; }
             set { this._SGSTPer = value; }
         }
+
 
         protected Int32 _threshold;
         public virtual Int32 Threshold
@@ -108,7 +92,32 @@ namespace SDKTemplate
             get { return this._wholeSellerId; }
             set { this._wholeSellerId = value; }
         }
-        
+
+        public virtual float DiscountAmount
+        {
+            get { return this._displayPrice * (this._discountPer) / 100; }
+            set
+            {
+                this._discountPer = (value * 100) / this._displayPrice;
+            }
+        }
+
+        public virtual float SubTotal
+        {
+            get { return this._displayPrice - this.DiscountAmount; }
+        }
+
+        public virtual float SellingPrice
+        {
+            get { return this.SubTotal * (100 + this._CGSTPer + this._SGSTPer) / 100; }
+        }
+
+        public virtual float TotalGSTPer
+        {
+            get { return this._CGSTPer + this._SGSTPer; }
+        }
+    
+
         public ProductViewModelBase(DatabaseModel.Product product)
         {
             _productId = product.ProductId;
@@ -117,8 +126,6 @@ namespace SDKTemplate
             _name = product.Name;
             _displayPrice = product.DisplayPrice;
             _discountPer = product.DiscountPer;
-            _discountAmount = (_displayPrice * _discountPer) / 100;
-            _sellingPrice = _displayPrice - _discountAmount;
             _SGSTPer = product.SGSTPer;
             _threshold = product.Threshold;
             _totalQuantity = product.TotalQuantity;
@@ -131,11 +138,9 @@ namespace SDKTemplate
             this._barCode = "";
             this._CGSTPer = 0;
             this._displayPrice = 0;
-            this._discountAmount = 0;
             this._discountPer = 0;
             this._name = "";
             this._refillTime = 0;
-            this._sellingPrice = 0;
             this._SGSTPer = 0;
             this._threshold = 0;
             this._totalQuantity = 0;
@@ -151,8 +156,6 @@ namespace SDKTemplate
             this._name = name;
             this._displayPrice = displayPrice;
             this._discountPer = discountPer;
-            this._discountAmount = (this._displayPrice * this._discountPer) / 100;
-            this._sellingPrice = this._displayPrice - this._discountAmount;
             this._SGSTPer = sgstPer;
             this._threshold = threshold;
             this._totalQuantity = totalQuantity;

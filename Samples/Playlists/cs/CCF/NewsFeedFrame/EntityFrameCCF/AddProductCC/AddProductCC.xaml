@@ -8,6 +8,7 @@
     <UserControl.Resources>
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
     <Grid Margin="10,20,0,0"
@@ -21,7 +22,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical"
                     Grid.Column="0"
-                    local:MarginSetter.Margin="11">
+                    local:MarginSetter.Margin="9">
             <TextBlock Text="Code"
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Name"
@@ -30,7 +31,9 @@
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Discount(%)"
                        Style="{ThemeResource BaseTextBlockStyle}" />
-            <TextBlock Text="Discount Amt"
+            <TextBlock Text="Discount Price"
+                       Style="{ThemeResource BaseTextBlockStyle}" />
+            <TextBlock Text="Sub Total"
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="CGST %"
                        Style="{ThemeResource BaseTextBlockStyle}" />
@@ -48,7 +51,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical"
                     Grid.Column="1"
-                    local:MarginSetter.Margin="5">
+                    local:MarginSetter.Margin="4">
             <TextBox x:Name="ProductCodeTB"
                      Text="{x:Bind ProductDetailViewModel.BarCode, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"
@@ -66,6 +69,9 @@
             <TextBox x:Name="DiscountAmount"
                      Text="{x:Bind ProductDetailViewModel.DiscountAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                      ToolTipService.ToolTip="Discount in INR on the Display Price, given to the Customer" />
+            <TextBlock x:Name="SubTotal"
+                       Text="{x:Bind ProductDetailViewModel.SubTotal,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                       ToolTipService.ToolTip="Discount in INR on the Display Price, given to the Customer" />
             <TextBox x:Name="CGSTPer"
                      Text="{x:Bind ProductDetailViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                      ToolTipService.ToolTip="CGST Percentage on the Discounted Price" />

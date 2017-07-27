@@ -146,8 +146,8 @@ namespace SDKTemplate
                 ProductDetails.Visibility = Visibility.Visible;
                 ProductId.Text = product.BarCode;
                 ProductName.Text = product.Name;
-                ProductSellingPrice.Text = "\u20B9" + product.DisplayPrice * (100 - product.DiscountPer) / 100;
-                ProductCostPrice.Text = "\u20B9" + product.DisplayPrice;
+                ProductSellingPrice.Text = Math.Round(product.DisplayPrice * (100 - product.DiscountPer) / 100,2) + "\u20B9";
+                ProductCostPrice.Text = Math.Round(product.DisplayPrice,2) + "\u20B9";
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
                 ProductGlyph.Text = Utility.GetGlyphValue(product.Name);
             }

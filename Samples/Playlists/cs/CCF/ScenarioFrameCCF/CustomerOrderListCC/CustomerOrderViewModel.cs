@@ -102,7 +102,7 @@ namespace SDKTemplate
             : base(productId, barCode, cgstPer, displayPriceSnapshot, discountPerSnapShot, name, sgstPer, 0, 0, null)
         {
             this._quantityPurchased = qtyPurchased;
-            this._netValue = this._sellingPrice * this._quantityPurchased;
+            this._netValue = this.SellingPrice * this._quantityPurchased;
         }
     }
 }

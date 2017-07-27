@@ -22,8 +22,8 @@ namespace SDKTemplate
             this.DisplayPrice = product.DisplayPrice;
             this.DiscountAmount = product.DiscountAmount;
             this.Name = product.Name;
-            this.RefillTime = product.RefillTime;
-            this._SGSTPer = product.SGSTPer;
+            this.RefillTime = product.RefillTime;      
+            this._SGSTPer = product.SGSTPer;   
             this.Threshold = product.Threshold;
         }
 
@@ -33,13 +33,9 @@ namespace SDKTemplate
             set
             {
                 this._displayPrice = value;
-                this._discountPer = 0;
-                this._discountAmount = 0;
-                this._sellingPrice = this._displayPrice - this._discountAmount;
-                this.OnPropertyChanged(nameof(DisplayPrice));
                 this.OnPropertyChanged(nameof(DiscountAmount));
+                this.OnPropertyChanged(nameof(SubTotal));
                 this.OnPropertyChanged(nameof(SellingPrice));
-                this.OnPropertyChanged(nameof(DiscountPer));
             }
         }
 
@@ -48,61 +44,57 @@ namespace SDKTemplate
             get { return Utility.RoundInt32(this._discountPer); }
             set
             {
+                this._discountPer = value;
                 float f = (float)Convert.ToDouble(value);
-                // Resetting discountPer to zero if it is greater than 100.
-                this._discountPer = (f >= 0 && f <= 100) ? f : 0;
-
-                this._discountAmount = (this._displayPrice * this._discountPer) / 100;
-                this._sellingPrice = this._displayPrice - this._discountAmount;
+                this.DiscountAmount = (this._displayPrice * this._discountPer) / 100;
                 this.OnPropertyChanged(nameof(DiscountAmount));
+                this.OnPropertyChanged(nameof(SubTotal));
                 this.OnPropertyChanged(nameof(SellingPrice));
-                this.OnPropertyChanged(nameof(DiscountPer));
             }
         }
 
         public override float DiscountAmount
         {
-            get { return this._discountAmount; }
+            get => base.DiscountAmount;
             set
             {
                 float f = (float)Convert.ToDouble(value);
                 // Resetting discountAmt to zero if it is greater than displayPrice.
                 if (f >= 0 && f <= this._displayPrice)
-                    this._discountAmount = f;
+                    this.DiscountAmount = f;
                 else
                 {
-                    this._discountAmount = 0;
+                    this.DiscountAmount = 0;
                     MainPage.Current.NotifyUser("Discount Amount cannot be greater than the Display Price, resetting Discount Amount to zero", NotifyType.ErrorMessage);
                 }
-                this._discountPer = this._displayPrice != 0 ? (this._discountAmount / this._displayPrice) * 100 : 0;
-                this._sellingPrice = this._displayPrice - this._discountAmount;
-                this.OnPropertyChanged(nameof(DiscountAmount));
-                this.OnPropertyChanged(nameof(SellingPrice));
+                this._discountPer = this._displayPrice != 0 ? (this.DiscountAmount / this._displayPrice) * 100 : 0;
                 this.OnPropertyChanged(nameof(DiscountPer));
+                this.OnPropertyChanged(nameof(SubTotal));
+                this.OnPropertyChanged(nameof(SellingPrice));
+                this.OnPropertyChanged(nameof(DiscountAmount));
             }
         }
 
-        public override int RefillTime
+        public override float CGSTPer
         {
-            get => base.RefillTime;
+            get => base.CGSTPer;
             set
             {
-                this._refillTime = value;
-                this.OnPropertyChanged(nameof(RefillTime));
+                this._CGSTPer = value;
+                this.OnPropertyChanged(nameof(SellingPrice));
             }
         }
 
-        public override int Threshold
+        public override float SGSTPer
         {
-            get => base.Threshold;
+            get => base.SGSTPer;
             set
             {
-                this._threshold = value;
-                this.OnPropertyChanged(nameof(Threshold));
+                this._SGSTPer = value;
+                this.OnPropertyChanged(nameof(SellingPrice));
             }
         }
 
-        //TODO: #feature: consider weight parameter for non inventory items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

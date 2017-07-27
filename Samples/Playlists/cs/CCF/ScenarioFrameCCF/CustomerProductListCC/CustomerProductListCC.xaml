@@ -23,7 +23,7 @@
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
     </UserControl.Resources>
-    <Grid >
+    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid x:Name="RootGrid"
               Margin="12,10,12,12">
             <ScrollViewer VerticalScrollMode="Auto"
@@ -88,7 +88,7 @@
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Product Name"
-                                       Width="140"
+                                       Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -103,6 +103,16 @@
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                             <TextBlock Text="Discount Amount"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="SubTotal"
+                                       Width="80"
+                                       Margin="0,0,10,0"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            <TextBlock Text="Total GST %"
                                        Width="80"
                                        Margin="0,0,10,0"
                                        Style="{StaticResource BaseTextBlockStyle}"
@@ -134,12 +144,11 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="local:CustomerProductViewModel">
                                     <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Symbol="Accept" />
                                         <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"
                                                    Width="60"
                                                    Margin="10,0,0,0" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Width="140"
+                                                   Width="80"
                                                    TextWrapping="Wrap"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="DisplayPrice"
@@ -152,6 +161,14 @@
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="DiscountAmount"
                                                    Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                        <TextBlock x:Name="SubTotal"
+                                                   Text="{x:Bind SubTotal, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                                   Width="80"
+                                                   Margin="0,0,10,0" />
+                                        <TextBlock x:Name="TotalGSTPer"
+                                                   Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}"
                                                    Width="80"
                                                    Margin="0,0,10,0" />
                                         <TextBlock x:Name="SellingPrice"
