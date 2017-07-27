@@ -1,14 +1,13 @@
-﻿<Page
-    x:Class="SDKTemplate.AddWholeSellerCC"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SDKTemplate"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="SDKTemplate.AddWholeSellerCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
     <RelativePanel Margin="10,0,0,0">
         <TextBlock x:Name="Header"
-                   Text="WholeSeller"
+                   Text="Supplier"
                    Margin="0,0,0,10"
                    Style="{StaticResource SampleHeaderTextStyle}" />
         <StackPanel RelativePanel.Below="Header"
@@ -18,24 +17,32 @@
                            Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBox x:Name="NameTB"
                          Text="{x:Bind addWholeSellerViewModel.Name, Mode=TwoWay}"
-                         ToolTipService.ToolTip="The name of the wholeseller"
-                         PlaceholderText="Deshant Kumar" />
+                         ToolTipService.ToolTip="The name of the supplier"
+                         PlaceholderText="Nitin Hasija" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Address"
                            Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBox x:Name="AddressTB"
                          Text="{x:Bind addWholeSellerViewModel.Address, Mode=TwoWay}"
-                         ToolTipService.ToolTip="Address by which you can search the wholeseller"
-                         PlaceholderText="Gachibowli" />
+                         ToolTipService.ToolTip="Address by which you can search the supplier"
+                         PlaceholderText="Pune Chinchwad" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Mobile Number"
                            Style="{ThemeResource BaseTextBlockStyle}" />
                 <TextBox x:Name="MobileNoTB"
                          Text="{x:Bind addWholeSellerViewModel.MobileNo, Mode=TwoWay}"
-                         ToolTipService.ToolTip="Mobile Number by which you can search the wholeseller"
-                         PlaceholderText="7987421819" />
+                         ToolTipService.ToolTip="Mobile Number by which you can search the supplier"
+                         PlaceholderText="9970377274" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="GSTIN"
+                           Style="{ThemeResource BaseTextBlockStyle}" />
+                <TextBox x:Name="GSTINTB"
+                         Text="{x:Bind addWholeSellerViewModel.GSTIN, Mode=TwoWay}"
+                         ToolTipService.ToolTip="GSTIN No. For e.g. 23ABCDE1234F1ZH"
+                         PlaceholderText="15 Charecters" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Save"

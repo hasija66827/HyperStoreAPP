@@ -55,32 +55,25 @@ namespace DatabaseModel
     {
         public Guid WholeSellerId { get; set; }
         public string Address { get; set; }
+        public string GSTIN { get; set; }
         public string MobileNo { get; set; }
         public string Name { get; set; }
-        public string GSTIN { get; set; }
         public float WalletBalance { get; set; }
         public List<WholeSellerOrder> WholeSellerOrders { get; set; }
         //This is used by Retailer to mark the product to be prurchased from Wholeseller.
         public List<Product> Products { get; set; }
         public List<Transaction> Transactions { get; set; }
 
-        public WholeSeller(string address, string mobileNo, string name, float walletBalance)
-        {
-            this.WholeSellerId = Guid.NewGuid();
-            this.Address = address;
-            this.MobileNo = mobileNo;
-            this.Name = name;
-            this.WalletBalance = walletBalance;
-        }
         public WholeSeller() { }
 
         public static explicit operator WholeSeller(WholeSellerViewModel v)
         {
             WholeSeller w = new WholeSeller();
             w.WholeSellerId = v.WholeSellerId;
+            w.Address = v.Address;
+            w.GSTIN = v.GSTIN;
             w.MobileNo = v.MobileNo;
             w.Name = v.Name;
-            w.Address = v.Address;
             w.WalletBalance = v.WalletBalance;
             return w;
         }

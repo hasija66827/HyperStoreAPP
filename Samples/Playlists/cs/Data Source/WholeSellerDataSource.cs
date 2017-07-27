@@ -38,13 +38,9 @@ namespace SDKTemplate
             using (var db = new DatabaseModel.RetailerContext())
             {
                 // Retrieving data from the database synchronously.
-                _wholeSellers = db.WholeSellers.Select(w => new WholeSellerViewModel(
-                    w.WholeSellerId,
-                    w.Name,
-                    w.MobileNo,
-                    w.Address,
-                    w.WalletBalance
-                    )).ToList();
+                var dbWholeSeller = db.WholeSellers.ToList();
+                _wholeSellers = dbWholeSeller
+                    .Select(w => new WholeSellerViewModel(w)).ToList();
             }
         }
 
@@ -91,8 +87,8 @@ namespace SDKTemplate
         {
             if (wholeSellerId == null)
                 return null;
-                return _wholeSellers
-                     .Where(w => w.WholeSellerId.Equals(wholeSellerId)).FirstOrDefault();
+            return _wholeSellers
+                 .Where(w => w.WholeSellerId.Equals(wholeSellerId)).FirstOrDefault();
         }
 
         public static bool IsNameExist(string name)

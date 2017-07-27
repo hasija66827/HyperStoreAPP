@@ -14,6 +14,9 @@ namespace SDKTemplate
         private string _address;
         public virtual string Address { get { return this._address; } set { this._address = value; } }
 
+        private string _gstin;
+        public string GSTIN { get { return this._gstin; } set { this._gstin = value; } }
+
         private string _mobileNo;
         public virtual string MobileNo { get { return this._mobileNo; } set { this._mobileNo = value; } }
 
@@ -32,20 +35,11 @@ namespace SDKTemplate
             this._walletBalance = 0;
         }
 
-        public WholeSellerViewModel(Guid WholeSellerId, string name,
-                                        string mobileNo, string address, float walletBalance)
-        {
-            this.WholeSellerId = WholeSellerId;
-            this.Address = address;
-            this.MobileNo = mobileNo;
-            this.Name = name;
-            this.WalletBalance = walletBalance;
-        }
-
         public WholeSellerViewModel(DatabaseModel.WholeSeller wholeSeller)
         {
             this._wholeSellerId = wholeSeller.WholeSellerId;
             this._address = wholeSeller.Address;
+            this._gstin = wholeSeller.GSTIN;
             this._mobileNo = wholeSeller.MobileNo;
             this._name = wholeSeller.Name;
             this._walletBalance = wholeSeller.WalletBalance;

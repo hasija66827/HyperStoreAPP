@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemp.ViewModel
 {
-   public class AddWholeSellerViewModel:WholeSellerViewModel
+    public class AddWholeSellerViewModel : WholeSellerViewModel
     {
         public AddWholeSellerViewModel() : base() { }
     }

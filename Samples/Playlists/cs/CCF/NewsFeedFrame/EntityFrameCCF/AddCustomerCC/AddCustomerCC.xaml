@@ -73,7 +73,7 @@
             <TextBox x:Name="GSTINTB"
                      Text="{x:Bind addCustomerViewModel.GSTIN, Mode=TwoWay}"
                      ToolTipService.ToolTip="GSTIN No. For e.g. 23ABCDE1234F1ZH"
-                     PlaceholderText="15 Charecter"
+                     PlaceholderText="15 Charecters"
                      Grid.Row="5"
                      Grid.Column="1" />
             <Button Content="Save"
@@ -84,7 +84,7 @@
             <Button x:Name="CancelBtn"
                     Content="Cancel"
                     Click="CancelBtn_Click"
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="6" />
         </Grid>
     </Grid>

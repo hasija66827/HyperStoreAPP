@@ -35,6 +35,7 @@ namespace SDKTemplate
             NameTB.LostFocus += NameTB_LostFocus;
             MobileNoTB.LostFocus += MobileNoTB_LostFocus;
         }
+
         private void NameTB_LostFocus(object sender, RoutedEventArgs e)
         {
             Utility.CheckIfValidName(NameTB.Text, Person.WholeSeller);
@@ -44,6 +45,7 @@ namespace SDKTemplate
         {
             Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.WholeSeller);
         }
+
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             if (Utility.CheckIfValidName(NameTB.Text, Person.WholeSeller) && Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.WholeSeller))
