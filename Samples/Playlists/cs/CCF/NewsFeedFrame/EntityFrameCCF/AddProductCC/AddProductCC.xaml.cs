@@ -15,10 +15,13 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class ProductDetailsCC : Page
     {
-        public AddProductViewModel AddProductViewModel;
-        private Mode _Mode { get; set; }
+        public static ProductDetailsCC Current;
+        public ProductDetailViewModel ProductDetailViewModel;
+        private Mode _mode;
+        public Mode Mode { get { return this._mode; } }
         public ProductDetailsCC()
         {
+            Current = this;
             this.InitializeComponent();
         }
 
@@ -33,48 +36,32 @@ namespace SDKTemplate
             var product = (ProductViewModelBase)e.Parameter;
             if (product == null)
             {
-                this.AddProductViewModel = new AddProductViewModel();
-                this._Mode = Mode.Create;
+                this.ProductDetailViewModel = new ProductDetailViewModel();
+                this._mode = Mode.Create;
             }
             else
             {
-                this.AddProductViewModel = new AddProductViewModel(product);
+                this.ProductDetailViewModel = new ProductDetailViewModel(product);
                 ProductCodeTB.IsReadOnly = true;
                 ProductNameTB.IsReadOnly = true;
-                this._Mode = Mode.Update;
-            }
-        }
-
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (this._Mode == Mode.Create)
-            {
-                if (Utility.CheckIfValidProductCode(ProductCodeTB.Text)
-                    && Utility.CheckIfUniqueProductName(ProductNameTB.Text)
-                    && Utility.CheckIfUniqueProductCode(ProductCodeTB.Text)
-                    )
-                {
-                    if (ProductDataSource.CreateNewProduct(AddProductViewModel) == true)
-                    {
-                        MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
-                        this.Frame.Navigate(typeof(BlankPage));
-                    }
-                }
-            }
-            else if (this._Mode == Mode.Update)
-            {
-
-                if (ProductDataSource.UpdateProductDetails(this.AddProductViewModel) == true)
-                {
-                    MainPage.Current.NotifyUser("The Product was updated scuccesfully", NotifyType.StatusMessage);
-                    this.Frame.Navigate(typeof(BlankPage));
-                }
+                this._mode = Mode.Update;
             }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(BlankPage));
+        }
+
+        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text)
+                && Utility.CheckIfUniqueProductName(ProductNameTB.Text)
+                && Utility.CheckIfUniqueProductCode(ProductCodeTB.Text)
+                )
+            {
+                this.Frame.Navigate(typeof(TagCC), this._mode);
+            }
         }
     }
 }

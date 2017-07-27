@@ -11,10 +11,10 @@ namespace SDKTemplate
 {
     /*InotifyProperty changed ensures that whenever a property of the object changes 
     we can notify that other dependent propoerty of object had been changed.*/
-    public class AddProductViewModel : ProductViewModelBase, INotifyPropertyChanged
+    public class ProductDetailViewModel : ProductViewModelBase, INotifyPropertyChanged
     {
-        public AddProductViewModel() { }
-        public AddProductViewModel(ProductViewModelBase product)
+        public ProductDetailViewModel() { }
+        public ProductDetailViewModel(ProductViewModelBase product)
         {
             this.ProductId = product.ProductId;
             this._barCode = product.BarCode;

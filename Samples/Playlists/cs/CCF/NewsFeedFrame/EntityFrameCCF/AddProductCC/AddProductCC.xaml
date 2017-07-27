@@ -10,7 +10,8 @@
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid Margin="10,20,0,0">
+    <Grid Margin="10,20,0,0"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120" />
             <ColumnDefinition Width="140" />
@@ -21,7 +22,6 @@
         <StackPanel Orientation="Vertical"
                     Grid.Column="0"
                     local:MarginSetter.Margin="11">
-            
             <TextBlock Text="Code"
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Name"
@@ -42,44 +42,43 @@
                        Style="{ThemeResource BaseTextBlockStyle}" />
             <TextBlock Text="Refill Time"
                        Style="{ThemeResource BaseTextBlockStyle}" />
-            <Button Content="Save"
-                    x:Name="SaveBtn"
-                    Click="SaveBtn_Click" />
+            <Button Content="Next"
+                    x:Name="NextBtn"
+                    Click="NextBtn_Click" />
         </StackPanel>
         <StackPanel Orientation="Vertical"
                     Grid.Column="1"
                     local:MarginSetter.Margin="5">
             <TextBox x:Name="ProductCodeTB"
-                     Text="{x:Bind AddProductViewModel.BarCode, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.BarCode, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"
-                     PlaceholderText="Four digit product code" 
-                     LostFocus="ProductCodeTB_LostFocus"/>
+                     PlaceholderText="Four digit product code"
+                     LostFocus="ProductCodeTB_LostFocus" />
             <TextBox x:Name="ProductNameTB"
-                     Text="{x:Bind AddProductViewModel.Name, Mode=TwoWay}"
-                     ToolTipService.ToolTip="Product Name for e.g. Maggi"
-      />
+                     Text="{x:Bind ProductDetailViewModel.Name, Mode=TwoWay}"
+                     ToolTipService.ToolTip="Product Name for e.g. Maggi" />
             <TextBox x:Name="DisplayPrice"
-                     Text="{x:Bind AddProductViewModel.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
+                     Text="{x:Bind ProductDetailViewModel.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
                      ToolTipService.ToolTip="Price of the product to be sold to the Customer" />
             <TextBox x:Name="DiscountPer"
-                     Text="{x:Bind AddProductViewModel.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
                      ToolTipService.ToolTip="Discount % on Display Price, given to the Customer" />
             <TextBox x:Name="DiscountAmount"
-                     Text="{x:Bind AddProductViewModel.DiscountAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.DiscountAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                      ToolTipService.ToolTip="Discount in INR on the Display Price, given to the Customer" />
             <TextBox x:Name="CGSTPer"
-                     Text="{x:Bind AddProductViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                      ToolTipService.ToolTip="CGST Percentage on the Discounted Price" />
             <TextBox x:Name="SGSTPer"
-                     Text="{x:Bind AddProductViewModel.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                      ToolTipService.ToolTip="SGSTPer on the Discounted Price" />
-            <TextBlock Text="{x:Bind AddProductViewModel.SellingPrice, Mode=OneWay}" />
+            <TextBlock Text="{x:Bind ProductDetailViewModel.SellingPrice, Mode=OneWay}" />
             <TextBox x:Name="Threshold"
-                     Text="{x:Bind AddProductViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
                      PlaceholderText=""
                      ToolTipService.ToolTip="The number of units of product below which you want get notified" />
             <TextBox x:Name="RefillTime"
-                     Text="{x:Bind AddProductViewModel.RefillTime,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.RefillTime,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
                      PlaceholderText=""
                      ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller" />
             <Button x:Name="CancelBtn"

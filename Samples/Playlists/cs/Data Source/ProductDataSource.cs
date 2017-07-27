@@ -111,7 +111,7 @@ namespace SDKTemplate
         #endregion
 
         #region Create
-        public static bool CreateNewProduct(AddProductViewModel productViewModel)
+        public static bool CreateNewProduct(ProductDetailViewModel productViewModel)
         {
             var db = new DatabaseModel.RetailerContext();
             db.Products.Add(new DatabaseModel.Product(productViewModel));
@@ -119,6 +119,7 @@ namespace SDKTemplate
             _products.Add(productViewModel);
             return true;
         }
+
         public static List<ProductListToPurchaseViewModel> RetreiveProductListToPurchaseByRespectiveWholeSellers()
         {
             var items = new List<ProductListToPurchaseViewModel>();
@@ -146,7 +147,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="addProductViewModel"></param>
         /// <returns></returns>
-        public static bool UpdateProductDetails(AddProductViewModel addProductViewModel)
+        public static bool UpdateProductDetails(ProductDetailViewModel addProductViewModel)
         {
             var db = new DatabaseModel.RetailerContext();
             var products = db.Products.Where(p => p.ProductId == addProductViewModel.ProductId).ToList();

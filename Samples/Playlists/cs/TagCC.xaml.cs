@@ -30,10 +30,12 @@ namespace SDKTemplate
         bool _IsChecked = default(bool);
         public bool IsChecked { get { return _IsChecked; } set { SetProperty(ref _IsChecked, value); } }
 
-        public TagViewModel()        {
+        public TagViewModel()
+        {
         }
 
-        public TagViewModel(string tagName, bool isChecked=false) {
+        public TagViewModel(string tagName, bool isChecked = false)
+        {
             this._tagName = tagName;
             this._IsChecked = isChecked;
         }
@@ -48,12 +50,42 @@ namespace SDKTemplate
         public TagCC()
         {
             this.InitializeComponent();
-            
+
         }
 
         private void NewTag_Click(object sender, RoutedEventArgs e)
         {
             TagDataSource.CreateTag(new TagViewModel("hasija"));
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var Mode = ProductDetailsCC.Current.Mode;
+            var ProductDetailViewModel = ProductDetailsCC.Current.ProductDetailViewModel;
+            if (Mode == Mode.Create)
+            {
+
+                if (ProductDataSource.CreateNewProduct(ProductDetailViewModel) == true)
+                {
+                    
+                    MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
+                    this.Frame.Navigate(typeof(BlankPage));
+                }
+
+            }
+            else if (Mode == Mode.Update)
+            {
+                if (ProductDataSource.UpdateProductDetails(ProductDetailViewModel) == true)
+                {
+                    MainPage.Current.NotifyUser("The Product was updated scuccesfully", NotifyType.StatusMessage);
+                    this.Frame.Navigate(typeof(BlankPage));
+                }
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
         }
     }
 
@@ -61,7 +93,7 @@ namespace SDKTemplate
     {
         public TagCCF()
         {
-            _Tags = new ObservableCollection<TagViewModel> (TagDataSource.RetrieveTags());
+            _Tags = new ObservableCollection<TagViewModel>(TagDataSource.RetrieveTags());
             foreach (var tag in this.Tags)
                 tag.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
         }

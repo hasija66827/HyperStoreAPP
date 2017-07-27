@@ -46,6 +46,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
+            <Button Content="Save"
+                    x:Name="SaveBtn"
+                    Click="SaveBtn_Click" />
         </StackPanel>
     </Grid>
 </Page>
