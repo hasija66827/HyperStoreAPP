@@ -33,6 +33,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            TagCCF.Current.TagListChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             UpdateMasterListViewItemSourceByFilterCriteria();
             AddToCartBtn.Click += AddToCartBtn_Click;
             GoToCartBtn.Click += GoToCartBtn_Click;
@@ -44,7 +45,8 @@ namespace SDKTemplate
             var selectedProduct = ProductASBCC.Current.SelectedProductInASB;
             var productId = selectedProduct?.ProductId;
             var filterProductCriteria = FilterProductCC.Current.FilterProductCriteria;
-            var items = ProductDataSource.GetFilteredProducts(filterProductCriteria, productId);
+            var selectedTagIds = TagCCF.Current.SelectedTagIds;
+            var items = ProductDataSource.GetFilteredProducts(filterProductCriteria, productId, selectedTagIds);
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
             ProductCountTB.Text = "(" + totalResults.ToString() + "/" + ProductDataSource.Products.Count.ToString() + ")";
@@ -135,9 +137,9 @@ namespace SDKTemplate
                 new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
             DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
             MainPage.Current.NavigateNewsFeedFrame(typeof(ProductDetailsCC), clickedItem);
-            
+
             this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
-            
+
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }

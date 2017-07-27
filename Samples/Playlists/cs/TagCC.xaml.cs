@@ -24,20 +24,20 @@ namespace SDKTemplate
     /// </summary>
     public class TagViewModel : BindableBases
     {
-        private Guid _tagId;
-        public Guid TagId { get { return this._tagId; } }
+        private Guid? _tagId;
+        public Guid? TagId { get { return this._tagId; } }
 
         private string _tagName;
         public string TagName { get { return this._tagName; } set { this._tagName = value; } }
 
         bool _IsChecked = default(bool);
-        public bool IsChecked { get { return _IsChecked; } set { SetProperty(ref _IsChecked, value); } }
+        public bool IsChecked { get { return _IsChecked; } set { SetProperty(ref _IsChecked, value); TagCCF.Current.InvokeTagListchangedEvent(); } }
 
         public TagViewModel()
         {
         }
 
-        public TagViewModel(Guid tagId,string tagName, bool isChecked)
+        public TagViewModel(Guid tagId, string tagName, bool isChecked)
         {
             this._tagId = tagId;
             this._tagName = tagName;
@@ -60,8 +60,7 @@ namespace SDKTemplate
         {
             var Mode = ProductDetailsCC.Current.Mode;
             var productDetail = ProductDetailsCC.Current.ProductDetailViewModel;
-            var tags = TagCCF.Current.Tags.ToList();
-            var selectedTagIds = tags.Where(t => t.IsChecked == true).Select(t=>t.TagId).ToList();
+            var selectedTagIds = TagCCF.Current.SelectedTagIds;
 
             if (Mode == Mode.Create)
             {
@@ -73,6 +72,7 @@ namespace SDKTemplate
                 }
 
             }
+
             else if (Mode == Mode.Update)
             {
                 if (ProductDataSource.UpdateProductDetails(productDetail) == true)
@@ -88,14 +88,16 @@ namespace SDKTemplate
 
         }
     }
-
+    public delegate void TagListChangedDelegate();
     public class TagCCF : BindableBases
     {
+
+        public event TagListChangedDelegate TagListChangedEvent;
         public static TagCCF Current;
         public TagCCF()
         {
             Current = this;
-            _Tags = new ObservableCollection<TagViewModel>(TagDataSource.Tags);
+            _tags = new ObservableCollection<TagViewModel>(TagDataSource.Tags);
             foreach (var tag in this.Tags)
                 tag.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
         }
@@ -113,8 +115,15 @@ namespace SDKTemplate
             }
         }
 
-        ObservableCollection<TagViewModel> _Tags;
-        public ObservableCollection<TagViewModel> Tags { get { return _Tags; } }
+        public void InvokeTagListchangedEvent()
+        {
+            this.TagListChangedEvent?.Invoke();
+        }
+
+        ObservableCollection<TagViewModel> _tags;
+        public ObservableCollection<TagViewModel> Tags { get { return _tags; } }
+
+        public List<Guid?> SelectedTagIds { get { return _tags.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
     }
 
     public abstract class BindableBases : INotifyPropertyChanged

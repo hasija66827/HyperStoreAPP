@@ -218,7 +218,7 @@ namespace DatabaseModel
     {
         public Guid ProductTagId { get; set; }
 
-        public ProductTag(Guid productId, Guid tagId)
+        public ProductTag(Guid productId, Guid? tagId)
         {
             this.ProductTagId = new Guid();
             this.ProductId = productId;

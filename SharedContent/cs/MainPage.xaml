@@ -93,17 +93,24 @@
                 <Frame x:Name="HeaderFrame"
                        Margin="10,10,0,0"
                        Background="AliceBlue"
-                       MinHeight="250"
-                       Height="250"
+                       MinHeight="230"
+                       Height="230"
                        MinWidth="300"
-                       Width="300"
-                       />
+                       Width="300" />
                 <Frame x:Name="SearchBoxFrame"
                        Background="AliceBlue"
                        Margin="10,10,0,0"
                        RelativePanel.Below="HeaderFrame"
-                       MinHeight="350"
-                       Height="350"
+                       MinHeight="260"
+                       Height="260"
+                       MinWidth="300"
+                       Width="300" />
+                <Frame x:Name="LeftBottomFrame"
+                       Background="AliceBlue"
+                       Margin="10,10,0,0"
+                       RelativePanel.Below="SearchBoxFrame"
+                       MinHeight="200"
+                       Height="200"
                        MinWidth="300"
                        Width="300" />
                 <Frame x:Name="ScenarioFrame"
@@ -111,8 +118,8 @@
                        Margin="10,10,10,0"
                        MinWidth="830"
                        Width="830"
-                       MinHeight="700"
-                       Height="700"
+                       MinHeight="710"
+                       Height="710"
                        RelativePanel.RightOf="SearchBoxFrame" />
                 <Frame x:Name="NewsFeedFrame"
                        Background="AliceBlue"
@@ -129,15 +136,14 @@
                        RelativePanel.Below="NewsFeedFrame"
                        MinWidth="350"
                        Width="350"
-                       MinHeight="200"
-                       Height="200"
+                       MinHeight="210"
+                       Height="210"
                        Margin="0,10,10,0" />
                 <StackPanel x:Name="StatusPanel"
                             Orientation="Vertical"
                             RelativePanel.AlignLeftWith="ScenarioFrame"
                             RelativePanel.AlignBottomWithPanel="True"
-                            RelativePanel.AlignRightWithPanel="True"
-                            >
+                            RelativePanel.AlignRightWithPanel="True">
                     <Border x:Name="StatusBorder"
                             Margin="0,0,0,0">
                         <ScrollViewer VerticalScrollMode="Auto"
@@ -187,10 +193,9 @@
                           Icon="Add"
                           Label="Tag"
                           VerticalAlignment="Top" />
-            <AppBarButton 
-                x:Name="AddWholeSellerBtn"
-                HorizontalAlignment="Center"
-                          Icon="AddFriend"  
+            <AppBarButton x:Name="AddWholeSellerBtn"
+                          HorizontalAlignment="Center"
+                          Icon="AddFriend"
                           Label="WholeSeller"
                           VerticalAlignment="Top"
                           Click="AddWholeSellerBtn_Click" />

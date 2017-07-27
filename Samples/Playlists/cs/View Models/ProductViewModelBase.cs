@@ -108,7 +108,7 @@ namespace SDKTemplate
             get { return this._wholeSellerId; }
             set { this._wholeSellerId = value; }
         }
-
+        
         public ProductViewModelBase(DatabaseModel.Product product)
         {
             _productId = product.ProductId;

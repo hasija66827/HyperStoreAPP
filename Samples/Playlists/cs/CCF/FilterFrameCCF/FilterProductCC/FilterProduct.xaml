@@ -6,14 +6,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControl="using:UWP"
       mc:Ignorable="d">
-    <Grid  >
+    <Grid>
         <StackPanel x:Name="FilterPanel"
                     Margin="10,10,0,0"
                     Orientation="Vertical">
-            <TextBlock x:Name="Header"
-                       Text="Filter Products"
-                       Style="{StaticResource SampleHeaderTextStyle}"
-                       Margin="0,0,0,30" />
             <RelativePanel x:Name="DiscountPer">
                 <TextBlock Text="Discount %"
                            x:Name="DiscountPerTB" />
@@ -30,15 +26,15 @@
                             HorizontalAlignment="Center">
                     <TextBlock x:Name="DiscountPerLB"
                                HorizontalAlignment="Left"
-                               FontSize="20"
+                               FontSize="14"
                                Width=" 40"
                                Text="{Binding RangeMin, ElementName=DiscountPerRangeSlider, Mode=TwoWay}" />
                     <TextBlock Text="to"
                                Width=" 40"
-                               FontSize="20" />
+                               FontSize="14" />
                     <TextBlock x:Name="DiscountPerUB"
                                HorizontalAlignment="Right"
-                               FontSize="20"
+                               FontSize="14"
                                Width=" 40"
                                Text="{Binding RangeMax,
                             ElementName=DiscountPerRangeSlider,
@@ -46,7 +42,7 @@
                 </StackPanel>
             </RelativePanel>
             <RelativePanel x:Name="Quantity"
-                          Margin="0,30,0,0">
+                           Margin="0,10,0,0">
                 <TextBlock x:Name="QuantityTB"
                            Text="Quantity" />
                 <customControl:RangeSlider x:Name="QuantityRangeSlider"
@@ -60,16 +56,16 @@
                             RelativePanel.AlignHorizontalCenterWith="QuantityRangeSlider">
                     <TextBlock x:Name="QuantityLB"
                                HorizontalAlignment="Left"
-                               FontSize="20"
+                               FontSize="14"
                                Width=" 40"
                                Text="{Binding RangeMin, ElementName=QuantityRangeSlider, Mode=TwoWay}" />
                     <TextBlock Text="to"
                                Width=" 40"
-                               FontSize="20" />
+                               FontSize="14" />
                     <TextBlock x:Name="QuantityUB"
                                Width=" 40"
                                HorizontalAlignment="Right"
-                               FontSize="20"
+                               FontSize="14"
                                Text="{Binding RangeMax,
                             ElementName=QuantityRangeSlider,
                             Mode=TwoWay}" />
@@ -78,8 +74,7 @@
             <CheckBox x:Name="ShowDeficientItemsOnly"
                       Content="Deficient Items Only"
                       VerticalAlignment="Top"
-                      Margin="0,30,0,0"
-                       />
+                      Margin="0,10,0,0" />
         </StackPanel>
     </Grid>
 </Page>

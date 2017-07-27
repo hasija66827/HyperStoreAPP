@@ -95,6 +95,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BillingSummaryCC));
                 }
@@ -102,6 +103,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterOrderCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
                 }
@@ -109,7 +111,8 @@ namespace SDKTemplate
                 {
                     ProductDataSource.RetrieveProductDataAsync();
                     HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
-                    SearchBoxFrame.Navigate(typeof(FilterProductCC));
+                    SearchBoxFrame.Navigate(typeof(TagCC));
+                    LeftBottomFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(ProductConsumptionPer));
                 }
@@ -117,6 +120,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(WholeSellerPurchasedProductListCC));
                     SummaryFrame.Navigate(typeof(WholeSellerBillingSummaryCC));
                 }
@@ -124,6 +128,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
                     SummaryFrame.Navigate(typeof(BlankPage));
                     NewsFeedFrame.Navigate(typeof(TagCC));
@@ -132,6 +137,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterWholeSalerOrderCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(WholeSellerOrderCC));
                     SummaryFrame.Navigate(typeof(WholeSellerOrderSummary));
                 }
@@ -139,6 +145,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(WholeSellerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(WholeSellersCCF));
                     NewsFeedFrame.Navigate(typeof(SettledOrdersOfTransactionCC));
                 }

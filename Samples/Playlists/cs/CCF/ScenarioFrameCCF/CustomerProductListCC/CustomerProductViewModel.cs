@@ -45,7 +45,7 @@ namespace SDKTemplate
                 this._netValue = this._sellingPrice * this._quantityPurchased;
                 this.OnPropertyChanged(nameof(QuantityPurchased));
                 this.OnPropertyChanged(nameof(NetValue));
-                CustomerProductListCC.Current.InvokeProductListChangedEvent();      
+                CustomerProductListCC.Current.InvokeProductListChangedEvent();
             }
         }
 

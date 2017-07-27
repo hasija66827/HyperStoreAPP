@@ -6,6 +6,26 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public class KeyEqualityComparer<T> : IEqualityComparer<T>
+    {
+        private readonly Func<T, object> keyExtractor;
+
+        public KeyEqualityComparer(Func<T, object> keyExtractor)
+        {
+            this.keyExtractor = keyExtractor;
+        }
+
+        public bool Equals(T x, T y)
+        {
+            return this.keyExtractor(x).Equals(this.keyExtractor(y));
+        }
+
+        public int GetHashCode(T obj)
+        {
+            return this.keyExtractor(obj).GetHashCode();
+        }
+    }
+
     class ProductDataSource
     {
         private static List<ProductViewModelBase> _products = new List<ProductViewModelBase>();
@@ -58,7 +78,7 @@ namespace SDKTemplate
             return ProductDataSource._products.Max(p => p.TotalQuantity);
         }
 
-        public static List<ProductViewModelBase> GetFilteredProducts(FilterProductCriteria filterProductCriteria, Guid? productId)
+        public static List<ProductViewModelBase> GetFilteredProducts(FilterProductCriteria filterProductCriteria, Guid? productId, List<Guid?> tagIds)
         {
             List<ProductViewModelBase> result;
 
@@ -67,28 +87,38 @@ namespace SDKTemplate
             else
                 result = ProductDataSource.GetProductsById(productId);
 
-            if (filterProductCriteria == null)
-                return result;
-            else
+            if (filterProductCriteria != null)
             {
                 if (filterProductCriteria.IncludeDeficientItemsOnly == true)
                 {
-                    return result
-                    .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
+                    result = result
+                            .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
                               p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
                               p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
                               p.TotalQuantity <= filterProductCriteria.QuantityRange.UB &&
-                              p.TotalQuantity <= p.Threshold).ToList();
+                              p.TotalQuantity <= p.Threshold
+                              ).ToList();
                 }
                 else
                 {
-                    return result
-                    .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
+                    result = result
+                            .Where(p => p.DiscountPer >= filterProductCriteria.DiscountPerRange.LB &&
                               p.DiscountPer <= filterProductCriteria.DiscountPerRange.UB &&
                               p.TotalQuantity >= filterProductCriteria.QuantityRange.LB &&
                               p.TotalQuantity <= filterProductCriteria.QuantityRange.UB).ToList();
                 }
             }
+       
+            if (tagIds != null)
+            {
+                var tagProductIds = TagProductDataSource.RetrieveProductId(tagIds);
+                result = result
+                    .Where(res => tagProductIds.Contains(res.ProductId))
+                    .ToList();
+            }
+
+            return result;
+
         }
 
         public static bool IsProductCodeExist(string barCode)
@@ -213,7 +243,7 @@ namespace SDKTemplate
             db.SaveChanges();
             return true;
         }
-        
+
         /// <summary>
         /// Updates the product with the wholeseller from which we have to purchase the product.
         /// </summary>
