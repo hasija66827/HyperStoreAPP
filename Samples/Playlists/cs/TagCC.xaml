@@ -13,14 +13,6 @@
 
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Left">
-            <CommandBar>
-                <CommandBar.PrimaryCommands>
-                    <AppBarButton Name="NewTag"
-                                  Icon="Add"
-                                  Label="New Tag"
-                                  Click="NewTag_Click"></AppBarButton>
-                </CommandBar.PrimaryCommands>
-            </CommandBar>
             <TextBlock Text="Add Tag"
                        Style="{StaticResource HeaderTextBlockStyle}" />
             <TextBox Width="300"

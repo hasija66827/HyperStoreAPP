@@ -24,6 +24,9 @@ namespace SDKTemplate
     /// </summary>
     public class TagViewModel : BindableBases
     {
+        private Guid _tagId;
+        public Guid TagId { get { return this._tagId; } }
+
         private string _tagName;
         public string TagName { get { return this._tagName; } set { this._tagName = value; } }
 
@@ -34,12 +37,12 @@ namespace SDKTemplate
         {
         }
 
-        public TagViewModel(string tagName, bool isChecked = false)
+        public TagViewModel(Guid tagId,string tagName, bool isChecked)
         {
+            this._tagId = tagId;
             this._tagName = tagName;
             this._IsChecked = isChecked;
         }
-
     }
 
     /// <summary>
@@ -53,21 +56,18 @@ namespace SDKTemplate
 
         }
 
-        private void NewTag_Click(object sender, RoutedEventArgs e)
-        {
-            TagDataSource.CreateTag(new TagViewModel("hasija"));
-        }
-
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var Mode = ProductDetailsCC.Current.Mode;
-            var ProductDetailViewModel = ProductDetailsCC.Current.ProductDetailViewModel;
+            var productDetail = ProductDetailsCC.Current.ProductDetailViewModel;
+            var tags = TagCCF.Current.Tags.ToList();
+            var selectedTagIds = tags.Where(t => t.IsChecked == true).Select(t=>t.TagId).ToList();
+
             if (Mode == Mode.Create)
             {
-
-                if (ProductDataSource.CreateNewProduct(ProductDetailViewModel) == true)
+                if (ProductDataSource.CreateNewProduct(productDetail) == true)
                 {
-                    
+                    TagProductDataSource.CreateTagProduct(productDetail.ProductId, selectedTagIds);
                     MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
                     this.Frame.Navigate(typeof(BlankPage));
                 }
@@ -75,7 +75,7 @@ namespace SDKTemplate
             }
             else if (Mode == Mode.Update)
             {
-                if (ProductDataSource.UpdateProductDetails(ProductDetailViewModel) == true)
+                if (ProductDataSource.UpdateProductDetails(productDetail) == true)
                 {
                     MainPage.Current.NotifyUser("The Product was updated scuccesfully", NotifyType.StatusMessage);
                     this.Frame.Navigate(typeof(BlankPage));
@@ -91,9 +91,11 @@ namespace SDKTemplate
 
     public class TagCCF : BindableBases
     {
+        public static TagCCF Current;
         public TagCCF()
         {
-            _Tags = new ObservableCollection<TagViewModel>(TagDataSource.RetrieveTags());
+            Current = this;
+            _Tags = new ObservableCollection<TagViewModel>(TagDataSource.Tags);
             foreach (var tag in this.Tags)
                 tag.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
         }

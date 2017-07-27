@@ -178,9 +178,14 @@
                           VerticalAlignment="Top"
                           Click="AddCustomer_Click" />
             <AppBarButton x:Name="AddProductBtn"
-                HorizontalAlignment="Center"
+                          HorizontalAlignment="Center"
                           Icon="Add"
                           Label="Product"
+                          VerticalAlignment="Top" />
+            <AppBarButton x:Name="AddTagBtn"
+                          HorizontalAlignment="Center"
+                          Icon="Add"
+                          Label="Tag"
                           VerticalAlignment="Top" />
             <AppBarButton 
                 x:Name="AddWholeSellerBtn"

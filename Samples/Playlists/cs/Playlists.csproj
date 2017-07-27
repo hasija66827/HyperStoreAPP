@@ -131,6 +131,7 @@
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="TagDataSource.cs" />
+    <Compile Include="TagProductDataSource.cs" />
     <Compile Include="temp.xaml.cs">
       <DependentUpon>temp.xaml</DependentUpon>
     </Compile>

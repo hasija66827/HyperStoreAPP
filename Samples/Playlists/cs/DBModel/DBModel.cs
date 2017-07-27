@@ -218,6 +218,13 @@ namespace DatabaseModel
     {
         public Guid ProductTagId { get; set; }
 
+        public ProductTag(Guid productId, Guid tagId)
+        {
+            this.ProductTagId = new Guid();
+            this.ProductId = productId;
+            this.TagId = tagId;
+        }
+
         [Required]
         public Nullable<Guid> ProductId { get; set; }
         public Product Product;
