@@ -19,35 +19,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public class TagViewModel : BindableBases
-    {
-        private Guid? _tagId;
-        public Guid? TagId { get { return this._tagId; } }
+    public delegate void TagListChangedDelegate();
 
-        private string _tagName;
-        public string TagName { get { return this._tagName; } set { this._tagName = value; } }
-
-        bool _IsChecked = default(bool);
-        public bool IsChecked { get { return _IsChecked; } set { SetProperty(ref _IsChecked, value); TagCCF.Current.InvokeTagListchangedEvent(); } }
-
-        public TagViewModel()
-        {
-        }
-
-        public TagViewModel(Guid tagId, string tagName, bool isChecked)
-        {
-            this._tagId = tagId;
-            this._tagName = tagName;
-            this._IsChecked = isChecked;
-        }
-    }
-
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class TagCC : Page
     {
         public TagCC()
@@ -55,7 +28,6 @@ namespace SDKTemplate
             this.InitializeComponent();
 
         }
-
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var Mode = ProductDetailsCC.Current.Mode;
@@ -88,7 +60,7 @@ namespace SDKTemplate
 
         }
     }
-    public delegate void TagListChangedDelegate();
+
     public class TagCCF : BindableBases
     {
 
@@ -124,24 +96,5 @@ namespace SDKTemplate
         public ObservableCollection<TagViewModel> Tags { get { return _tags; } }
 
         public List<Guid?> SelectedTagIds { get { return _tags.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
-    }
-
-    public abstract class BindableBases : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void SetProperty<T>(ref T storage, T value,
-            [System.Runtime.CompilerServices.CallerMemberName] String propertyName = null)
-        {
-            if (!object.Equals(storage, value))
-            {
-                storage = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        protected void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] String propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

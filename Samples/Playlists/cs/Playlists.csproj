@@ -102,7 +102,8 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="TagCC.xaml.cs">
+    <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagViewModel.cs" />
+    <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagCC.xaml.cs">
       <DependentUpon>TagCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddWholesellerCC\AddWholeSellerCC.xaml.cs">
@@ -130,8 +131,8 @@
       <DependentUpon>20170725191623_intial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
-    <Compile Include="TagDataSource.cs" />
-    <Compile Include="TagProductDataSource.cs" />
+    <Compile Include="Data Source\TagDataSource.cs" />
+    <Compile Include="Data Source\TagProductDataSource.cs" />
     <Compile Include="temp.xaml.cs">
       <DependentUpon>temp.xaml</DependentUpon>
     </Compile>
@@ -194,7 +195,7 @@
     <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterOrderCC.xaml.cs">
       <DependentUpon>FilterOrderCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\FilterFrameCCF\FilterProductCC\FilterProduct.xaml.cs">
+    <Compile Include="CCF\LeftBottomCC\FilterProductCC\FilterProduct.xaml.cs">
       <DependentUpon>FilterProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\OrderSummaryCC\OrderSummary.xaml.cs">
@@ -275,7 +276,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TagCC.xaml">
+    <Page Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -331,7 +332,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\FilterFrameCCF\FilterProductCC\FilterProduct.xaml">
+    <Page Include="CCF\LeftBottomCC\FilterProductCC\FilterProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
