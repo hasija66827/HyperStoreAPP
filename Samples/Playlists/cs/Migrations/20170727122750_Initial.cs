@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SDKTemplate.Migrations
 {
-    public partial class intial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,6 +14,7 @@ namespace SDKTemplate.Migrations
                 {
                     CustomerId = table.Column<Guid>(nullable: false),
                     Address = table.Column<string>(nullable: true),
+                    GSTIN = table.Column<string>(nullable: true),
                     MobileNo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     WalletBalance = table.Column<float>(nullable: false)

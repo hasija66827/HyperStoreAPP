@@ -22,6 +22,8 @@ namespace SDKTemplate.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<string>("GSTIN");
+
                     b.Property<string>("MobileNo");
 
                     b.Property<string>("Name");

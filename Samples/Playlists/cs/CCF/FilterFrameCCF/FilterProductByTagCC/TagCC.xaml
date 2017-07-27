@@ -21,13 +21,13 @@
                      TextWrapping="Wrap"
                      MaxHeight="200" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
-                          MaxHeight="300"
+                          MaxHeight="150"
                           Width="300">
                 <ItemsControl ItemsSource="{Binding Tags}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <CheckBox Content="{Binding TagName}"
-                                      FontSize="24"
+                                      FontSize="14"
                                       Foreground="Black"
                                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"
                                       IsThreeState="False" />

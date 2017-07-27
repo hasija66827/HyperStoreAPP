@@ -34,13 +34,10 @@ namespace SDKTemplate
         {
             using (var db = new DatabaseModel.RetailerContext())
             {
-                // Retrieving data from the database synchronously.
-                _customers = db.Customers.Select(customer => new CustomerViewModel(
-                    customer.CustomerId,
-                    customer.Name,
-                    customer.MobileNo,
-                    customer.Address,
-                    customer.WalletBalance)).ToList();
+                // Retrieving data from the database synchronously #combninng the statement gives the error while object creation.
+                var dbCustomer = db.Customers.ToList();
+                _customers = dbCustomer.
+                    Select(c => new CustomerViewModel(c)).ToList();
             }
         }
 

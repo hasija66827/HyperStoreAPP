@@ -126,13 +126,13 @@
       <DependentUpon>SettledOrdersOfTransactionCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\SettledOrderOfTransactionViewModel.cs" />
-    <Compile Include="Migrations\20170725191623_intial.cs" />
-    <Compile Include="Migrations\20170725191623_intial.designer.cs">
-      <DependentUpon>20170725191623_intial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="Data Source\TagDataSource.cs" />
     <Compile Include="Data Source\TagProductDataSource.cs" />
+    <Compile Include="Migrations\20170727122750_Initial.cs" />
+    <Compile Include="Migrations\20170727122750_Initial.designer.cs">
+      <DependentUpon>20170727122750_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="temp.xaml.cs">
       <DependentUpon>temp.xaml</DependentUpon>
     </Compile>

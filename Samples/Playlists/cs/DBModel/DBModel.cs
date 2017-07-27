@@ -23,7 +23,7 @@ namespace DatabaseModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Retailers25.db");
+            optionsBuilder.UseSqlite("Data Source=Retailers27.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -299,30 +299,23 @@ namespace DatabaseModel
     public class Customer
     {
         public Guid CustomerId { get; set; }
+        public string Address { get; set; }
+        public string GSTIN { get; set; }
         public string MobileNo { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
-        public string GSTIN;
         public float WalletBalance { get; set; }
         public List<CustomerOrder> CustomerOrders { get; set; }
 
-        public Customer(string name, string mobileNo)
-        {
-            this.CustomerId = Guid.NewGuid();
-            this.Address = "";
-            this.MobileNo = mobileNo;
-            this.Name = name;
-            this.WalletBalance = 0;
-        }
         public Customer()
         { }
         public static explicit operator Customer(CustomerViewModel v)
         {
             Customer c = new Customer();
             c.CustomerId = v.CustomerId;
+            c.Address = v.Address;
+            c.GSTIN = v.GSTIN;
             c.MobileNo = v.MobileNo;
             c.Name = v.Name;
-            c.Address = v.Address;
             c.WalletBalance = v.WalletBalance;
             return c;
         }

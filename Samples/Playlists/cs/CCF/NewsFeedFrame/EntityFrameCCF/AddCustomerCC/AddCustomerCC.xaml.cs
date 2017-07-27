@@ -30,6 +30,7 @@ namespace SDKTemplate
             NameTB.LostFocus += NameTB_LostFocus;
             MobileNoTB.LostFocus += MobileNoTB_LostFocus;
         }
+
         private void NameTB_LostFocus(object sender, RoutedEventArgs e)
         {
             Utility.CheckIfValidName(NameTB.Text, Person.Customer);
