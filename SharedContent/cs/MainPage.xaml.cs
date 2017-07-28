@@ -98,6 +98,7 @@ namespace SDKTemplate
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
                     SummaryFrame.Navigate(typeof(BillingSummaryCC));
+                    ScenarioFrame.Navigate(typeof(temCC));
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {

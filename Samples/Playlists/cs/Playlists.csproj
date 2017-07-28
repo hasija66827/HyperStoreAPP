@@ -116,6 +116,7 @@
       <DependentUpon>FilterWholeSalerOrderCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
+    <Compile Include="CivilizationViewModel.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
@@ -133,6 +134,17 @@
       <DependentUpon>20170727122750_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
+    <Compile Include="mvvm2\BindableBase.cs" />
+    <Compile Include="mvvm2\BindableValidator.cs" />
+    <Compile Include="mvvm2\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="mvvm2\DelegateCommand.cs" />
+    <Compile Include="mvvm2\IValidatableBindableBase.cs" />
+    <Compile Include="mvvm2\LaterThanPropertyAttribute.cs" />
+    <Compile Include="mvvm2\NumericAttribute.cs" />
+    <Compile Include="mvvm2\ValidatableBindableBase.cs" />
+    <Compile Include="temCC.xaml.cs">
+      <DependentUpon>temCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="temp.xaml.cs">
       <DependentUpon>temp.xaml</DependentUpon>
     </Compile>
@@ -392,6 +404,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="temCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="temp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -449,6 +465,7 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="NewFolder1\" />
     <Folder Include="WholeSellerPaymentScenario\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
