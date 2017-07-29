@@ -150,9 +150,30 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                         <Setter Property="Width"
-                                Value="120" />
-                        <Setter Property="Margin"
-                                Value="20,0,0,0" />
+                                Value="300" />
+                        <Setter Property="local:TextBoxAttached.AutoSelectable"
+                                Value="True" />
+                    </Style>
+                    <Style x:Key="ErrorTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="TextTrimming"
+                                Value="None" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="LineStackingStrategy"
+                                Value="MaxHeight" />
+                        <Setter Property="TextLineBounds"
+                                Value="Full" />
+                        <Setter Property="Width"
+                                Value="300" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Right" />
+                        <Setter Property="Foreground"
+                                Value="Red" />
                     </Style>
                     <Style x:Key="PositiveValueTB"
                            TargetType="TextBlock">

@@ -28,11 +28,11 @@ namespace SDKTemplate
 
         private string _mobileNo;
         [RegularExpression(@"[987]\d{9}", ErrorMessage = "{0} is Invalid.")]
-        [Required(ErrorMessage = "Mobile Number is required", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "You can't leave this empty", AllowEmptyStrings = false)]
         public virtual string MobileNo { get { return this._mobileNo; } set { SetProperty(ref _mobileNo, value); } }
 
         private string _name;
-        [Required(ErrorMessage = "Name is required.", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "You can't leave this empty", AllowEmptyStrings = false)]
         public virtual string Name
         {
             get { return this._name; }
