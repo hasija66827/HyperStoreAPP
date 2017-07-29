@@ -8,13 +8,18 @@
     <Page.DataContext>
         <local:AddWholeSellerViewModel />
     </Page.DataContext>
-    <RelativePanel Margin="10,0,0,0">
-        <TextBlock x:Name="Header"
-                   Text="Supplier"
-                   Margin="0,0,0,10"
-                   Style="{StaticResource SampleHeaderTextStyle}" />
-        <StackPanel RelativePanel.Below="Header"
-                    Orientation="Vertical">
+    <RelativePanel>
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Supplier"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        
+        <StackPanel x:Name="ContentPanel"
+                    Orientation="Vertical"
+                    RelativePanel.Below="HeaderPanel"
+                    Margin="10,0,0,0">
             <TextBox x:Name="NameTB"
                      Header="Supplier Name"
                      Text="{x:Bind addWholeSellerViewModel.Name, Mode=TwoWay}"
@@ -51,12 +56,19 @@
                           Margin="0 16 0 0"
                           ItemsSource="{Binding Errors.Errors}"
                           Foreground="MidnightBlue" />
+        </StackPanel>
+        
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True">
             <Button Content="Save"
                     Command="{Binding ValidateCommand}"
-                    x:Name="SaveBtn" />
+                    x:Name="SaveBtn"
+                    Style="{StaticResource FormButtonStyle}" />
             <Button x:Name="CancelBtn"
                     Content="Cancel"
-                    Click="CancelBtn_Click" />
+                    Click="CancelBtn_Click"
+                    Style="{StaticResource FormButtonStyle}" />
         </StackPanel>
     </RelativePanel>
 </Page>

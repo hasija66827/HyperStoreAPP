@@ -139,6 +139,38 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Right" />
                     </Style>
+                    <Style x:Key="HeaderTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontSize"
+                                Value="20" />
+                        <Setter Property="TextTrimming"
+                                Value="None" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="LineStackingStrategy"
+                                Value="MaxHeight" />
+                        <Setter Property="TextLineBounds"
+                                Value="Full" />
+                        <Setter Property="Width"
+                                Value="300" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                    </Style>
+                    <Style x:Key="HeaderBorder"
+                           TargetType="Border">
+                        <Setter Property="Height"
+                                Value="36"></Setter>
+                        <Setter Property="Background"
+                                Value="#FF6488A6" />
+                        <Setter Property="Margin"
+                                Value="0,0,0,10" />
+                    </Style>
                     <Style x:Key="FormTextBoxStyle"
                            TargetType="TextBox">
                         <Setter Property="FontFamily"
@@ -150,9 +182,13 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                         <Setter Property="Width"
-                                Value="300" />
+                            Value="290" />
                         <Setter Property="local:TextBoxAttached.AutoSelectable"
                                 Value="True" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Left" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
                     </Style>
                     <Style x:Key="ErrorTextBlockStyle"
                            TargetType="TextBlock">
@@ -160,20 +196,25 @@
                                 Value="Segoe UI" />
                         <Setter Property="FontWeight"
                                 Value="Normal" />
-                        <Setter Property="TextTrimming"
-                                Value="None" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="LineStackingStrategy"
-                                Value="MaxHeight" />
-                        <Setter Property="TextLineBounds"
-                                Value="Full" />
                         <Setter Property="Width"
-                                Value="300" />
-                        <Setter Property="HorizontalAlignment"
+                                Value="230" />
+                        <Setter Property="TextAlignment"
                                 Value="Right" />
                         <Setter Property="Foreground"
                                 Value="Red" />
+                    </Style>
+                    <Style x:Key="FormButtonStyle"
+                           TargetType="Button">
+                        <Setter Property="Foreground"
+                                Value="WhiteSmoke" />
+                        <Setter Property="FontWeight"
+                                Value="SemiLight" />
+                        <Setter Property="Width"
+                                Value="140" />
+                        <Setter Property="Background"
+                                Value="#FF238FC7" />
+                        <Setter Property="Margin"
+                                Value="5" />
                     </Style>
                     <Style x:Key="PositiveValueTB"
                            TargetType="TextBlock">
