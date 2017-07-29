@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using SDKTemp.ViewModel;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -27,36 +26,18 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             addCustomerViewModel = new AddCustomerViewModel();
-            NameTB.LostFocus += NameTB_LostFocus;
-            MobileNoTB.LostFocus += MobileNoTB_LostFocus;
+            Loaded += AddCustomerCCPage_Loaded;
         }
 
-        private void NameTB_LostFocus(object sender, RoutedEventArgs e)
+        private void AddCustomerCCPage_Loaded(object sender, RoutedEventArgs e)
         {
-            Utility.CheckIfValidName(NameTB.Text, Person.Customer);
+            addCustomerViewModel = DataContext as AddCustomerViewModel;
+            addCustomerViewModel.ErrorsChanged += AddCustomerViewModel_ErrorsChanged;
         }
 
-        private void MobileNoTB_LostFocus(object sender, RoutedEventArgs e)
+        private void AddCustomerViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
         {
-            Utility.CheckIfUniqueMobileNumber(MobileNoTB.Text, Person.Customer);
-        }
-
-
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (Utility.CheckIfValidName(NameTB.Text, Person.Customer) && Utility.CheckIfUniqueMobileNumber(MobileNoTB.Text, Person.Customer))
-            {
-                try
-                {
-                    CustomerDataSource.CreateNewCustomer((CustomerViewModel)addCustomerViewModel);
-                    MainPage.Current.NotifyUser("New customer was added succesfully ", NotifyType.StatusMessage);
-                }
-                catch
-                {
-                    MainPage.Current.NotifyUser("New customer was not added succesfully ", NotifyType.ErrorMessage);
-                }
-            }
-            this.Frame.Navigate(typeof(BlankPage));
+            //ErrorList.ItemsSource = addWholeSellerViewModel.Errors.Errors.Values.SelectMany(x => x);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

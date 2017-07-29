@@ -6,34 +6,58 @@ using System.Threading.Tasks;
 using DatabaseModel;
 using Windows.Globalization.DateTimeFormatting;
 using SDKTemp.Data;
-namespace SDKTemp.ViewModel
+using Mvvm;
+using System.ComponentModel.DataAnnotations;
+using System.Windows.Input;
+
+namespace SDKTemplate
 {
-    public class CustomerViewModel
+    public class CustomerViewModel : ValidatableBindableBase
     {
+        private DelegateCommand validateCommand;
+
         public Guid CustomerId;
-        public virtual string Address { get; set; }
-        public string GSTIN { get; set; }
-        public virtual string MobileNo { get; set; }
-        public virtual string Name { get; set; }
-        public virtual float WalletBalance { get; set; }
+        private string _address;
+        public virtual string Address { get { return this._address; } set { this._address = value; } }
+
+        private string _gstin;
+        [RegularExpression(@"\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z]{1}\d{1}[zZ][a-zA-Z0-9]", ErrorMessage = "{0} is Invalid.")]
+        public string GSTIN { get { return this._gstin; } set { SetProperty(ref _gstin, value); } }
+
+        private string _mobileNo;
+        [RegularExpression(@"[987]\d{9}", ErrorMessage = "{0} is Invalid.")]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public virtual string MobileNo { get { return this._mobileNo; } set { SetProperty(ref _mobileNo, value); } }
+
+        private string _name;
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public virtual string Name
+        {
+            get { return this._name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private float _walletBalance;
+        public virtual float WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
         public CustomerViewModel()
         {
+            validateCommand = new DelegateCommand(ValidateAndSave_Executed);
             this.CustomerId = Guid.NewGuid();
-            this.Address = "";
-            this.MobileNo = "";
-            this.Name = "";
-            this.GSTIN = "";
-            this.WalletBalance = 0;
+            this._address = "";
+            this._mobileNo = "";
+            this._name = "";
+            this._gstin = "";
+            this._walletBalance = 0;
         }
 
         public CustomerViewModel(DatabaseModel.Customer customer)
         {
+            validateCommand = new DelegateCommand(ValidateAndSave_Executed);
             this.CustomerId = customer.CustomerId;
-            this.Address = customer.Address;
-            this.GSTIN = customer.GSTIN;
-            this.MobileNo = customer.MobileNo;
-            this.Name = customer.Name;
-            this.WalletBalance = customer.WalletBalance;
+            this._address = customer.Address;
+            this._gstin = customer.GSTIN;
+            this._mobileNo = customer.MobileNo;
+            this._name = customer.Name;
+            this._walletBalance = customer.WalletBalance;
         }
 
         /// <summary>
@@ -45,5 +69,19 @@ namespace SDKTemp.ViewModel
             { return string.Format("{0}({1})", this.MobileNo, this.Address); }
         }
 
+        public ICommand ValidateCommand
+        {
+            get { return validateCommand; }
+        }
+
+        private void ValidateAndSave_Executed()
+        {
+            var IsValid = ValidateProperties();
+            if (IsValid && Utility.CheckIfUniqueMobileNumber(this._mobileNo, Person.Customer))
+            {
+                CustomerDataSource.CreateNewCustomer(this);
+                MainPage.Current.NotifyUser("New customer was added succesfully ", NotifyType.StatusMessage);
+            }
+        }
     }
 }

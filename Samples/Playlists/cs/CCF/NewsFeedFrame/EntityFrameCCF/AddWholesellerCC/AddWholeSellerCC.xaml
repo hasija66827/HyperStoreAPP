@@ -52,10 +52,6 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[GSTIN][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <ItemsControl x:Name="ErrorList"
-                          Margin="0 16 0 0"
-                          ItemsSource="{Binding Errors.Errors}"
-                          Foreground="MidnightBlue" />
         </StackPanel>
         
         <StackPanel x:Name="CommandPanel"

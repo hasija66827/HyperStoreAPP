@@ -19,7 +19,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DatabaseModel;
-using SDKTemp.ViewModel;
 using SDKTemp.Data;
 using System.Collections.ObjectModel;
 
