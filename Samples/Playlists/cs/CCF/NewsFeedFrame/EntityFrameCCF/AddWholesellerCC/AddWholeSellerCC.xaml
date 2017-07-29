@@ -35,9 +35,8 @@
                          PlaceholderText="Pune Chinchwad" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox 
-                    Header="Mobile Number"
-                    x:Name="MobileNoTB"
+                <TextBox Header="Mobile Number"
+                         x:Name="MobileNoTB"
                          Text="{x:Bind addWholeSellerViewModel.MobileNo, Mode=TwoWay}"
                          ToolTipService.ToolTip="Mobile Number by which you can search the supplier"
                          PlaceholderText="9970377274" />
@@ -46,14 +45,12 @@
                            HorizontalAlignment="Left" />
             </StackPanel>
             <StackPanel Orientation="Vertical">
-                <TextBox 
-                    Header="GSTIN"
-                    x:Name="GSTINTB"
+                <TextBox Header="GSTIN"
+                         x:Name="GSTINTB"
                          Text="{x:Bind addWholeSellerViewModel.GSTIN, Mode=TwoWay}"
                          ToolTipService.ToolTip="GSTIN No. For e.g. 23ABCDE1234F1ZH"
                          PlaceholderText="15 Charecters"
-                    GotFocus="GSTINTB_GotFocus"
-                    />
+                         local:TextBoxAttached.AutoSelectable="True" />
                 <TextBlock Text="{Binding Errors[GSTIN][0]}"
                            Foreground="Red"
                            HorizontalAlignment="Right" />
@@ -65,8 +62,7 @@
                               Foreground="MidnightBlue" />
                 <Button Content="Save"
                         Command="{Binding ValidateCommand}"
-                        x:Name="SaveBtn"
-                        />
+                        x:Name="SaveBtn" />
                 <Button x:Name="CancelBtn"
                         Content="Cancel"
                         Click="CancelBtn_Click" />
