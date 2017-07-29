@@ -15,8 +15,9 @@ namespace SDKTemplate
     public class CustomerViewModel : ValidatableBindableBase
     {
         private DelegateCommand validateCommand;
+        private Guid _customerId;
+        public Guid CustomerId { get { return this._customerId; } }
 
-        public Guid CustomerId;
         private string _address;
         public virtual string Address { get { return this._address; } set { this._address = value; } }
 
@@ -36,28 +37,42 @@ namespace SDKTemplate
             get { return this._name; }
             set { SetProperty(ref _name, value); }
         }
+
         private float _walletBalance;
         public virtual float WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
+
+        private string _walletBalanceString;
+
+        [Numeric(ErrorMessage ="Wallet Amount must be numeric.")]
+        public virtual string WalletBalanceString {
+            get { return this._walletBalanceString; }
+            set { SetProperty(ref _walletBalanceString, value);
+                this._walletBalance = Utility.TryToConvertToFloat(_walletBalanceString);
+            }
+        }
+
         public CustomerViewModel()
         {
             validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this.CustomerId = Guid.NewGuid();
+            this._customerId = Guid.NewGuid();
             this._address = "";
             this._mobileNo = "";
             this._name = "";
             this._gstin = "";
             this._walletBalance = 0;
+            this._walletBalanceString = "";
         }
 
         public CustomerViewModel(DatabaseModel.Customer customer)
         {
             validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this.CustomerId = customer.CustomerId;
+            this._customerId = customer.CustomerId;
             this._address = customer.Address;
             this._gstin = customer.GSTIN;
             this._mobileNo = customer.MobileNo;
             this._name = customer.Name;
             this._walletBalance = customer.WalletBalance;
+            this._walletBalanceString = "";
         }
 
         /// <summary>

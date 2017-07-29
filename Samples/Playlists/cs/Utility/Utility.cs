@@ -392,5 +392,23 @@ namespace SDKTemplate
             return s;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>returns float is object can be converted, o.w. 0</returns>
+        public static float TryToConvertToFloat(object value)
+        {
+            float result = 0;
+            try
+            {
+                result = Convert.ToSingle(value);
+            }
+            catch
+            {
+                result = 0;
+            }
+            return result;
+        }
     }
 }

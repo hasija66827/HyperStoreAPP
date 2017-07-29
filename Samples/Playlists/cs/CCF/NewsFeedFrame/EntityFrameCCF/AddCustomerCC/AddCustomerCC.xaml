@@ -40,11 +40,11 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="WalletAmountTB"
                      Header="Wallet Amount"
-                     Text="{x:Bind addCustomerViewModel.WalletBalance, Mode=TwoWay}"
+                     Text="{x:Bind addCustomerViewModel.WalletBalanceString, Mode=TwoWay}"
                      PlaceholderText="Amount"
                      ToolTipService.ToolTip="Initial wallet amount of the customer"
-                     />
-            <TextBlock Text=""
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[WalletBalanceString][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="MobileNoTB"
                      Header="Mobile Number"
