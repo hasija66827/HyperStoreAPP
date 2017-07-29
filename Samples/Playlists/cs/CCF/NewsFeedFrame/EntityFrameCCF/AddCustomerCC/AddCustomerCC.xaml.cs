@@ -38,13 +38,13 @@ namespace SDKTemplate
 
         private void MobileNoTB_LostFocus(object sender, RoutedEventArgs e)
         {
-            Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.Customer);
+            Utility.CheckIfUniqueMobileNumber(MobileNoTB.Text, Person.Customer);
         }
 
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Utility.CheckIfValidName(NameTB.Text, Person.Customer) && Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.Customer))
+            if (Utility.CheckIfValidName(NameTB.Text, Person.Customer) && Utility.CheckIfUniqueMobileNumber(MobileNoTB.Text, Person.Customer))
             {
                 try
                 {

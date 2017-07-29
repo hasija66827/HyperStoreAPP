@@ -80,6 +80,7 @@ namespace SDKTemplate
         private void Validate_Executed()
         {
             ValidateProperties();
+           
         }
     }
 }

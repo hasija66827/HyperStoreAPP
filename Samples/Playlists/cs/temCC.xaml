@@ -100,6 +100,7 @@
         </StackPanel>
         <Button Content="Validate"
                 Command="{Binding ValidateCommand}"
+                
                 Grid.Column="1"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"

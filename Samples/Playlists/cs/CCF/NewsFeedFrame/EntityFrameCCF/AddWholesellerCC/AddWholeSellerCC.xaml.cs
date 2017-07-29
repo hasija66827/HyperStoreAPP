@@ -32,40 +32,28 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             addWholeSellerViewModel = new AddWholeSellerViewModel();
-            NameTB.LostFocus += NameTB_LostFocus;
-            MobileNoTB.LostFocus += MobileNoTB_LostFocus;
+            Loaded += MainPage_Loaded;
         }
 
-        private void NameTB_LostFocus(object sender, RoutedEventArgs e)
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            Utility.CheckIfValidName(NameTB.Text, Person.WholeSeller);
+            addWholeSellerViewModel = DataContext as AddWholeSellerViewModel;
+            addWholeSellerViewModel.ErrorsChanged += AddWholeSellerViewModel_ErrorsChanged; ;
         }
 
-        private void MobileNoTB_LostFocus(object sender, RoutedEventArgs e)
+        private void AddWholeSellerViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
         {
-            Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.WholeSeller);
-        }
-
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (Utility.CheckIfValidName(NameTB.Text, Person.WholeSeller) && Utility.CheckIfValidMobileNumber(MobileNoTB.Text, Person.WholeSeller))
-            {
-                try
-                {
-                    WholeSellerDataSource.CreateWholeSeller(addWholeSellerViewModel);
-                    MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
-                }
-                catch
-                {
-                    MainPage.Current.NotifyUser("New wholeseller was not added succesfully ", NotifyType.ErrorMessage);
-                }
-            }
-            this.Frame.Navigate(typeof(BlankPage));
+           ErrorList.ItemsSource = addWholeSellerViewModel.Errors.Errors.Values.SelectMany(x => x);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(BlankPage));
+        }
+
+        private void GSTINTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).SelectAll();
         }
     }
 }

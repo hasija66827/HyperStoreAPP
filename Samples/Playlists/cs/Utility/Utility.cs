@@ -268,7 +268,7 @@ namespace SDKTemplate
             return true;
         }
 
-        public static bool CheckIfValidMobileNumber(string mobileNo, Person person)
+        public static bool CheckIfUniqueMobileNumber(string mobileNo, Person person)
         {
             if (IsMobileNumber(mobileNo) == false)
             {
