@@ -31,16 +31,12 @@ namespace SDKTemplate
             set { this._CGSTPer = value; }
         }
 
-     
+
         protected float _discountPer;
         public virtual float DiscountPer
         {
             get { return Utility.RoundInt32(this._discountPer); }
-            set
-            {
-                this._discountPer = value;
-                this.DiscountAmount = this._displayPrice * (this._discountPer) / 100;
-            }
+            set { this._discountPer = value; }
         }
 
         protected float _displayPrice;
@@ -71,7 +67,6 @@ namespace SDKTemplate
             set { this._SGSTPer = value; }
         }
 
-
         protected Int32 _threshold;
         public virtual Int32 Threshold
         {
@@ -96,10 +91,7 @@ namespace SDKTemplate
         public virtual float DiscountAmount
         {
             get { return this._displayPrice * (this._discountPer) / 100; }
-            set
-            {
-                this._discountPer = (value * 100) / this._displayPrice;
-            }
+
         }
 
         public virtual float SubTotal
@@ -109,14 +101,18 @@ namespace SDKTemplate
 
         public virtual float SellingPrice
         {
-            get { return this.SubTotal * (100 + this._CGSTPer + this._SGSTPer) / 100; }
+            get { return this.SubTotal + this.TotalGSTAmount; }
         }
 
         public virtual float TotalGSTPer
         {
             get { return this._CGSTPer + this._SGSTPer; }
         }
-    
+
+        public virtual float TotalGSTAmount
+        {
+            get { return this.SubTotal * (this.TotalGSTPer) / 100; }
+        }
 
         public ProductViewModelBase(DatabaseModel.Product product)
         {

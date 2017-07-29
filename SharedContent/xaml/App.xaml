@@ -190,6 +190,49 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>
+                    <Style x:Key="MediumFormTextBoxStyle"
+                           TargetType="TextBox">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="Width"
+                                Value="80" />
+                        <Setter Property="Margin"
+                                Value="0,0,5,0" />
+                        <Setter Property="local:TextBoxAttached.AutoSelectable"
+                                Value="True" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Left" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                    </Style>
+                    <Style x:Key="SmallFormTextBoxStyle"
+                           TargetType="TextBox">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="Width"
+                                Value="65" />
+                        <Setter Property="Margin"
+                                Value="0,0,5,0" />
+                        <Setter Property="local:TextBoxAttached.AutoSelectable"
+                                Value="True" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Left" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                    </Style>
+                    
                     <Style x:Key="ErrorTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -203,6 +246,7 @@
                         <Setter Property="Foreground"
                                 Value="Red" />
                     </Style>
+                    
                     <Style x:Key="FormButtonStyle"
                            TargetType="Button">
                         <Setter Property="Foreground"
@@ -216,6 +260,7 @@
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
+                    
                     <Style x:Key="PositiveValueTB"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -233,9 +278,9 @@
                         <Setter Property="TextLineBounds"
                                 Value="Full" />
                         <Setter Property="Width"
-                                Value="150" />
-                        <Setter Property="Margin"
-                                Value="20,0,0,0" />
+                                Value="80" />
+                        <Setter Property="TextAlignment"
+                                Value="Right" />
                         <Setter Property="Foreground"
                                 Value="LimeGreen" />
                     </Style>
