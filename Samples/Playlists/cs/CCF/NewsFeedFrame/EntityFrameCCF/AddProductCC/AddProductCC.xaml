@@ -37,15 +37,30 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text=""
                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="Threshold"
+                         Header="Threshold"
+                         Text="{x:Bind ProductDetailViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                         PlaceholderText=""
+                         ToolTipService.ToolTip="The number of units of product below which you want get notified"
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                <TextBox x:Name="RefillTime"
+                         Header="Refill Time"
+                         Text="{x:Bind ProductDetailViewModel.RefillTime,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                         PlaceholderText=""
+                         ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller"
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
+            </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
                 <TextBox x:Name="DisplayPrice"
                          Header="DisplayPrice"
                          Text="{x:Bind ProductDetailViewModel.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
                          ToolTipService.ToolTip="Price of the product to be sold to the Customer"
-                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                         Style="{StaticResource MediumFormTextBoxStyle}"
+                         Width="80"/>
                 <TextBox x:Name="DiscountPer"
-                         Header="Discount %"
+                         Header="Dis %"
                          Text="{x:Bind ProductDetailViewModel.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
                          ToolTipService.ToolTip="Discount % on Display Price, given to the Customer"
                          Style="{StaticResource SmallFormTextBoxStyle}" />
@@ -85,20 +100,7 @@
                        Style="{StaticResource PositiveValueTB}"
                        HorizontalAlignment="Right"/>
             
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="Threshold"
-                         Header="Threshold"
-                         Text="{x:Bind ProductDetailViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="The number of units of product below which you want get notified"
-                         Style="{StaticResource SmallFormTextBoxStyle}" />
-                <TextBox x:Name="RefillTime"
-                         Header="Refill Time"
-                         Text="{x:Bind ProductDetailViewModel.RefillTime,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller"
-                         Style="{StaticResource SmallFormTextBoxStyle}" />
-            </StackPanel>
+          
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
