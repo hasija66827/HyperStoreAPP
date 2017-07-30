@@ -106,10 +106,10 @@
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagCC.xaml.cs">
       <DependentUpon>TagCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddWholesellerCC\AddWholeSellerCC.xaml.cs">
+    <Compile Include="CCF\EntityFrameCCF\AddWholesellerCC\AddWholeSellerCC.xaml.cs">
       <DependentUpon>AddWholeSellerCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddCustomerCC\AddCustomerCC.xaml.cs">
+    <Compile Include="CCF\EntityFrameCCF\AddCustomerCC\AddCustomerCC.xaml.cs">
       <DependentUpon>AddCustomerCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderCC.xaml.cs">
@@ -155,7 +155,7 @@
     </Compile>
     <Compile Include="Data Source\AnalyticsDataSource.cs" />
     <Compile Include="Data Source\WholeSellerDataSource.cs" />
-    <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
+    <Compile Include="CCF\EntityFrameCCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
     <Compile Include="Data Source\WholeSellerOrderDataSource.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterCustomerCC\FilterCustomerCC.xaml.cs">
       <DependentUpon>FilterCustomerCC.xaml</DependentUpon>
@@ -183,8 +183,8 @@
     <Compile Include="WholeSellerNavigationParameter.cs" />
     <Compile Include="WholeSellerCheckoutCC\WholeSellerCheckoutViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSellerViewModel.cs" />
-    <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddCustomerCC\AddCustomeViewModel.cs" />
-    <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddProductCC\AddProductCC.xaml.cs">
+    <Compile Include="CCF\EntityFrameCCF\AddCustomerCC\AddCustomeViewModel.cs" />
+    <Compile Include="CCF\EntityFrameCCF\AddProductCC\AddProductCC.xaml.cs">
       <DependentUpon>AddProductCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerPaymentScenario\PageNavigationParameter.cs" />
@@ -218,7 +218,7 @@
     <Compile Include="CCF\ScenarioFrameCCF\ProductInStock\ProductInStock.xaml.cs">
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\NewsFeedFrame\EntityFrameCCF\AddProductCC\AddProductViewModel.cs" />
+    <Compile Include="CCF\EntityFrameCCF\AddProductCC\AddProductViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
     <Compile Include="CustomerPaymentScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml.cs">
       <DependentUpon>UseWalletOTPVerification.xaml</DependentUpon>
@@ -293,15 +293,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\NewsFeedFrame\EntityFrameCCF\AddWholesellerCC\AddWholeSellerCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\AddWholesellerCC\AddWholeSellerCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\NewsFeedFrame\EntityFrameCCF\AddCustomerCC\AddCustomerCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\AddCustomerCC\AddCustomerCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\NewsFeedFrame\EntityFrameCCF\AddProductCC\AddProductCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\AddProductCC\AddProductCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

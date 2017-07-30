@@ -96,7 +96,9 @@
                        MinHeight="230"
                        Height="230"
                        MinWidth="300"
-                       Width="300" />
+                       Width="300"
+                       BorderBrush="LightGray"
+                       BorderThickness="1" />
                 <Frame x:Name="SearchBoxFrame"
                        Background="AliceBlue"
                        Margin="10,10,0,0"
@@ -104,7 +106,9 @@
                        MinHeight="260"
                        Height="260"
                        MinWidth="300"
-                       Width="300" />
+                       Width="300"
+                       BorderBrush="LightGray"
+                       BorderThickness="1" />
                 <Frame x:Name="LeftBottomFrame"
                        Background="AliceBlue"
                        Margin="10,10,0,0"
@@ -112,16 +116,19 @@
                        MinHeight="200"
                        Height="200"
                        MinWidth="300"
-                       Width="300" />
+                       Width="300"
+                       BorderBrush="LightGray"
+                       BorderThickness="1" />
                 <Frame x:Name="ScenarioFrame"
                        Background="AliceBlue"
                        Margin="10,10,10,0"
                        MinWidth="830"
                        Width="830"
                        MinHeight="710"
-                      
                        Height="710"
-                       RelativePanel.RightOf="SearchBoxFrame" />
+                       RelativePanel.RightOf="SearchBoxFrame"
+                       BorderBrush="LightGray"
+                       BorderThickness="1" />
                 <Frame x:Name="NewsFeedFrame"
                        Background="AliceBlue"
                        RelativePanel.RightOf="ScenarioFrame"
@@ -132,9 +139,7 @@
                        BorderBrush="LightGray"
                        BorderThickness="1"
                        RelativePanel.AlignTopWith="HeaderFrame"
-                       Margin="0,10,10,0" 
-                       
-                       />
+                       Margin="0,10,10,0" />
                 <Frame x:Name="SummaryFrame"
                        Background="AliceBlue"
                        RelativePanel.RightOf="ScenarioFrame"

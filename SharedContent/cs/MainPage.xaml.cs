@@ -97,8 +97,8 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(BillingSummaryCC));
-                    ScenarioFrame.Navigate(typeof(temCC));
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
@@ -106,24 +106,8 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(FilterOrderCC));
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
-                }
-                else if (s.ClassType == typeof(ProductInStock))
-                {
-                    ProductDataSource.RetrieveProductDataAsync();
-                    HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
-                    SearchBoxFrame.Navigate(typeof(TagCC));
-                    LeftBottomFrame.Navigate(typeof(FilterProductCC));
-                    ScenarioFrame.Navigate(s.ClassType);
-                    SummaryFrame.Navigate(typeof(ProductConsumptionPer));
-                }
-                else if (s.ClassType == typeof(WholeSellerPurchasedProductListCC))
-                {
-                    HeaderFrame.Navigate(typeof(WholeSellerASBCC));
-                    SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
-                    ScenarioFrame.Navigate(typeof(WholeSellerPurchasedProductListCC));
-                    SummaryFrame.Navigate(typeof(WholeSellerBillingSummaryCC));
                 }
                 else if (s.ClassType == typeof(CustomersCCF))
                 {
@@ -131,16 +115,17 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
-                    SummaryFrame.Navigate(typeof(BlankPage));
                     NewsFeedFrame.Navigate(typeof(TagCC));
+                    SummaryFrame.Navigate(typeof(BlankPage));
                 }
-                else if (s.ClassType == typeof(WholeSellerOrderCC))
+                else if (s.ClassType == typeof(ProductInStock))
                 {
-                    HeaderFrame.Navigate(typeof(WholeSellerASBCC));
-                    SearchBoxFrame.Navigate(typeof(FilterWholeSalerOrderCC));
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
-                    ScenarioFrame.Navigate(typeof(WholeSellerOrderCC));
-                    SummaryFrame.Navigate(typeof(WholeSellerOrderSummary));
+                    HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
+                    SearchBoxFrame.Navigate(typeof(TagCC));
+                    LeftBottomFrame.Navigate(typeof(FilterProductCC));
+                    ScenarioFrame.Navigate(s.ClassType);
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
+                    SummaryFrame.Navigate(typeof(ProductConsumptionPer));
                 }
                 else if (s.ClassType == typeof(WholeSellersCCF))
                 {
@@ -149,7 +134,27 @@ namespace SDKTemplate
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(WholeSellersCCF));
                     NewsFeedFrame.Navigate(typeof(SettledOrdersOfTransactionCC));
+                    SummaryFrame.Navigate(typeof(BlankPage));
                 }
+                else if (s.ClassType == typeof(WholeSellerPurchasedProductListCC))
+                {
+                    HeaderFrame.Navigate(typeof(WholeSellerASBCC));
+                    SearchBoxFrame.Navigate(typeof(ProductASBCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
+                    ScenarioFrame.Navigate(typeof(WholeSellerPurchasedProductListCC));
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
+                    SummaryFrame.Navigate(typeof(WholeSellerBillingSummaryCC));
+                }
+             
+                else if (s.ClassType == typeof(WholeSellerOrderCC))
+                {
+                    HeaderFrame.Navigate(typeof(WholeSellerASBCC));
+                    SearchBoxFrame.Navigate(typeof(FilterWholeSalerOrderCC));
+                    LeftBottomFrame.Navigate(typeof(BlankPage));
+                    ScenarioFrame.Navigate(typeof(WholeSellerOrderCC));
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
+                    SummaryFrame.Navigate(typeof(WholeSellerOrderSummary));
+                }        
                 else
                 {
                     ScenarioFrame.Navigate(s.ClassType);

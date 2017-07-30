@@ -63,12 +63,10 @@ namespace SDKTemplate
                 var pageType = (ProductPage)e.Parameter;
                 if (pageType == ProductPage.SearchTheProduct)
                 {
-                    Header.Text = "Search by Product";
                     AddToCartBtn.Visibility = Visibility.Collapsed;
                 }
                 else if (pageType == ProductPage.AddTheProduct)
                 {
-                    Header.Text = "Add the Product";
                     AddToCartBtn.Visibility = Visibility.Visible;
                 }
             }
