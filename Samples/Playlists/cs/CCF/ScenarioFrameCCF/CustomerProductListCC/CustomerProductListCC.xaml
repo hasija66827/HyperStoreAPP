@@ -23,19 +23,22 @@
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
     </UserControl.Resources>
-    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid >
         <Grid x:Name="RootGrid"
-              Margin="12,10,12,12">
+             >
             <ScrollViewer VerticalScrollMode="Auto"
                           VerticalScrollBarVisibility="Auto">
-                <StackPanel
-                    Height="700">
-                    <TextBlock x:Name="Header"
-                               Text="Price List"
-                               Style="{StaticResource SampleHeaderTextStyle}"
-                               Margin="0,0,0,20 " />
-                    <RelativePanel x:Name="HeaderRad"
-                                   HorizontalAlignment="Center">
+                <RelativePanel  Background="AliceBlue">
+                    <Border  x:Name="HeaderPanel"
+                             RelativePanel.AlignTopWithPanel="True"
+                             Style="{StaticResource HeaderBorder}">
+                        <TextBlock Text="Price List"
+                                   Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+                    </Border>
+                    <RelativePanel x:Name="RadContentPanel"
+                                   HorizontalAlignment="Center"
+                                   RelativePanel.Below="HeaderPanel"
+                                   Margin="10,0,0,0">
                         <RadioButton x:Name="BillingRadBtn"
                                      IsChecked="True"
                                      GroupName="Billing"
@@ -78,7 +81,8 @@
                     <RelativePanel x:Name="BillingView"
                                    Grid.Row="2"
                                    HorizontalAlignment="Left"
-                                   Visibility="Visible">
+                                   Visibility="Visible"
+                                   RelativePanel.Below="RadContentPanel">
                         <StackPanel x:Name="StaticLabelsForList"
                                     Margin="0,20,0,10"
                                     Orientation="Horizontal">
@@ -188,15 +192,15 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </RelativePanel>
-                    <StackPanel x:Name="Footer"
+                    <StackPanel x:Name="CommandPanel"
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                Margin="40,20,0,0">
+                                RelativePanel.AlignBottomWithPanel="True"
+                                >
                         <Button x:Name="Checkout"
                                 Content="Checkout"
-                                Width="830 " />
+                                Style="{StaticResource ScenarioButtonStyle}" />
                     </StackPanel>
-                </StackPanel>
+                </RelativePanel>
             </ScrollViewer>
         </Grid>
     </Grid>

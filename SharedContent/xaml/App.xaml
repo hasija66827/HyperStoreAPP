@@ -162,6 +162,29 @@
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
+                    <Style x:Key="ScenarioHeaderTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontSize"
+                                Value="20" />
+                        <Setter Property="TextTrimming"
+                                Value="None" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="LineStackingStrategy"
+                                Value="MaxHeight" />
+                        <Setter Property="TextLineBounds"
+                                Value="Full" />
+                        <Setter Property="Width"
+                                Value="820" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                    </Style>
                     <Style x:Key="HeaderBorder"
                            TargetType="Border">
                         <Setter Property="Height"
@@ -260,7 +283,19 @@
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
-                    
+                    <Style x:Key="ScenarioButtonStyle"
+                           TargetType="Button">
+                        <Setter Property="Foreground"
+                                Value="WhiteSmoke" />
+                        <Setter Property="FontWeight"
+                                Value="SemiLight" />
+                        <Setter Property="Width"
+                                Value="800" />
+                        <Setter Property="Background"
+                                Value="#FF238FC7" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                    </Style>
                     <Style x:Key="PositiveValueTB"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

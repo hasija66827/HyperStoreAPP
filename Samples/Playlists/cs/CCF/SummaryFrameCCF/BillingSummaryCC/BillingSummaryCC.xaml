@@ -12,18 +12,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="TransactionInformation"
-                    Width="300"
-                    Margin="10,10,10,10"
-                    Grid.Column="0"
-                    HorizontalAlignment="Left"
-                    Orientation="Vertical">
-            <TextBlock x:Name="HeaderForBillingSummary"
-                       Text="Billing Summary"
-                       Margin="0,0,0,10"
-                       Style="{StaticResource SampleHeaderTextStyle}"  />
-
-            <StackPanel Orientation="Horizontal">
+        <RelativePanel Background="AliceBlue">
+            <Border  x:Name="HeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Billing Summary"
+                           Style="{StaticResource HeaderTextBlockStyle}" />
+            </Border>
+            <StackPanel x:Name="ContentPanel"
+                        RelativePanel.Below="HeaderPanel"
+                        Orientation="Vertical"
+                        Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Quantity: "
                            Style="{StaticResource BaseTextBlockStyle}"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
@@ -62,5 +62,6 @@
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
             </StackPanel>
         </StackPanel>
+        </RelativePanel>
     </Grid>
 </Page>
