@@ -23,12 +23,6 @@ namespace SDKTemplate
         {
             Current = this;
             this.InitializeComponent();
-            Loaded += ProductDetailsCC_Loaded;
-        }
-
-        private void ProductDetailsCC_Loaded(object sender, RoutedEventArgs e)
-        {
-            ProductDetailViewModel = DataContext as ProductDetailViewModel;
         }
 
         private void ProductCodeTB_LostFocus(object sender, RoutedEventArgs e)

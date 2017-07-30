@@ -52,6 +52,7 @@ namespace SDKTemplate
             }
         }
 
+
         public override float CGSTPer
         {
             get => base.CGSTPer;

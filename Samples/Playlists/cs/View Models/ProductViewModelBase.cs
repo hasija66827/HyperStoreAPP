@@ -1,8 +1,6 @@
-﻿using Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class ProductViewModelBase : ValidatableBindableBase
+    public class ProductViewModelBase
     {
         protected Guid _productId;
         public virtual Guid ProductId
@@ -20,11 +18,10 @@ namespace SDKTemplate
         }
 
         protected string _barCode;
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public virtual string BarCode
         {
             get { return this._barCode; }
-            set { SetProperty(ref _barCode, value); }
+            set { this._barCode = value; }
         }
 
         protected float _CGSTPer;
@@ -33,6 +30,7 @@ namespace SDKTemplate
             get { return this._CGSTPer; }
             set { this._CGSTPer = value; }
         }
+
 
         protected float _discountPer;
         public virtual float DiscountPer
@@ -49,11 +47,10 @@ namespace SDKTemplate
         }
 
         protected string _name;
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public virtual string Name
         {
             get { return this._name; }
-            set { SetProperty(ref _name, value); }
+            set { this._name = value; }
         }
 
         protected Int32 _refillTime;
