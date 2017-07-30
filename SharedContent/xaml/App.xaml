@@ -201,9 +201,9 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                         <Setter Property="Width"
-                                Value="80" />
+                                Value="140" />
                         <Setter Property="Margin"
-                                Value="0,0,5,0" />
+                                Value="0,0,10,0" />
                         <Setter Property="local:TextBoxAttached.AutoSelectable"
                                 Value="True" />
                         <Setter Property="HorizontalContentAlignment"
@@ -222,7 +222,7 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                         <Setter Property="Width"
-                                Value="65" />
+                                Value="50" />
                         <Setter Property="Margin"
                                 Value="0,0,5,0" />
                         <Setter Property="local:TextBoxAttached.AutoSelectable"
@@ -278,7 +278,7 @@
                         <Setter Property="TextLineBounds"
                                 Value="Full" />
                         <Setter Property="Width"
-                                Value="80" />
+                                Value="70" />
                         <Setter Property="TextAlignment"
                                 Value="Right" />
                         <Setter Property="Foreground"
