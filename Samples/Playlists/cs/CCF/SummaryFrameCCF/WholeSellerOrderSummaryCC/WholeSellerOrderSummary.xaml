@@ -1,19 +1,26 @@
-﻿<Page
-    x:Class="SDKTemplate.WholeSellerOrderSummary"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SDKTemplate"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="SDKTemplate.WholeSellerOrderSummary"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <Grid >
-        <Grid  Margin="10,10,0,0">
+    <RelativePanel Background="AliceBlue">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Order Summary"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <Grid x:Name="ContentPanel"
+              RelativePanel.Below="HeaderPanel"
+              Margin="10,0,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -21,16 +28,12 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="HeaderForOrderStatistics"
-                       Text="Order Summary"
-                       Margin="0,0,0,10"
-                       Style="{StaticResource SampleHeaderTextStyle}" />
             <TextBlock Text="Bill Amount"
                        Style="{StaticResource BaseTextBlockStyle}"
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        Grid.Row="1" />
             <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                       Text="{x:Bind WholeSelleOrderSummaryViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"                       
+                       Text="{x:Bind WholeSelleOrderSummaryViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        Grid.Row="1"
                        Grid.Column="1" />
@@ -40,7 +43,7 @@
                        Grid.Row="2" />
             <TextBlock Style="{StaticResource BaseTextBlockStyle}"
                        Text="{x:Bind WholeSelleOrderSummaryViewModel.TotalPaidAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" 
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        Grid.Row="2"
                        Grid.Column="1" />
             <TextBlock Text="Remaining Amount"
@@ -53,5 +56,5 @@
                        Grid.Row="3"
                        Grid.Column="1" />
         </Grid>
-    </Grid>
+    </RelativePanel>
 </Page>

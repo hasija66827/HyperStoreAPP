@@ -8,32 +8,25 @@
     <UserControl.Resources>
         <local:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
     </UserControl.Resources>
-    <Grid >
-        <RelativePanel Margin="10,10,0,0">
-            <TextBlock x:Name="Header"
-                       Text="Filter Orders"
-                       Style="{StaticResource SampleHeaderTextStyle}" 
-                       Margin="0,0,0,30"/>
-            <TextBlock Text="Start Date"
-                       RelativePanel.Below="Header"
-                       Margin="0,0,20,0"
-                       x:Name="startDateLabel"
-                       />
+    <RelativePanel Background="AliceBlue">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Filter Orders"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <RelativePanel x:Name="ContentPanel"
+                       RelativePanel.AlignRightWith="HeaderPanel"
+                       RelativePanel.AlignLeftWith="HeaderPanel"                       
+                       RelativePanel.Below="HeaderPanel"                   
+                       Margin="10,0,0,0">
             <CalendarDatePicker x:Name="startDateCP"
-                                Date="{x:Bind SelectedDateRange.StartDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"           
-                                RelativePanel.AlignBottomWith="startDateLabel"
-                                RelativePanel.RightOf="startDateLabel"
-                                />
-            <TextBlock Text="End Date"
-                       Margin="0,30,0,0"
-                       RelativePanel.Below="startDateCP"
-                       RelativePanel.AlignLeftWith="startDateLabel"
-                       x:Name="endDateLabel" />
+                                Header="Start Date"
+                                Date="{x:Bind SelectedDateRange.StartDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
             <CalendarDatePicker x:Name="endDateCP"
-                                Date="{x:Bind SelectedDateRange.EndDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
-                                RelativePanel.AlignLeftWith="startDateCP"
-                                RelativePanel.AlignBottomWith="endDateLabel"
-                                RelativePanel.RightOf="endDateLabel" />
+                                Header="End Date"
+                                RelativePanel.AlignRightWithPanel="True"
+                                Date="{x:Bind SelectedDateRange.EndDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
         </RelativePanel>
-    </Grid>
+    </RelativePanel>
 </Page>

@@ -9,27 +9,25 @@
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <Grid >
-       
-        <RelativePanel x:Name="WalletAmount"
-                       Margin="10,10,0,0">
-            <TextBlock x:Name="Header"
-                       Text="Filter Customers"
-                       Style="{StaticResource SampleHeaderTextStyle}"
-                       Margin="0,0,0,30"/>
+    <RelativePanel Background="AliceBlue">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Filter Customers"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <RelativePanel x:Name="ContentPanel"
+                       Margin="10,0,0,0"
+                       RelativePanel.Below="HeaderPanel">
+            <TextBlock x:Name="WalletTB"
+                       Text="Wallet Balance" />
             <customControl:RangeSlider x:Name="WalletRangeSlider"
                                        Width="250"
                                        Minimum="-100000"
                                        RangeMin="-100000"
                                        Maximum="100000"
-                                       RangeMax="100000"
-                                       RelativePanel.Below="Header"
-                                       />
-            <TextBlock x:Name="WalletTB"
-                       Text="Wallet Balance"
-                       RelativePanel.Above="WalletRangeSlider"
-                       
-                       />
+                                       RangeMax="100000" 
+                                       RelativePanel.Below="WalletTB"/>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         RelativePanel.Below="WalletRangeSlider"
@@ -55,5 +53,5 @@
                     }" />
             </StackPanel>
         </RelativePanel>
-    </Grid>
+    </RelativePanel>
 </Page>
