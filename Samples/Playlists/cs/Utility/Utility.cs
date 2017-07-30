@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,9 +73,10 @@ namespace SDKTemplate
         {
             // value is the data from the source object.
             var price = Math.Round(System.Convert.ToDouble(value),2);
-            
+            CultureInfo hindi = new CultureInfo("hi-IN");
+            string text = string.Format(hindi, "{0:c}", price);
             // Return the value to pass to the target.
-            return price.ToString() + "\u20B9";
+            return text;
         }
 
         // ConvertBack is not implemented for a OneWay binding.

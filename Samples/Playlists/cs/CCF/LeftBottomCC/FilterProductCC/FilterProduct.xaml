@@ -6,13 +6,21 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControl="using:UWP"
       mc:Ignorable="d">
-    <Grid>
-        <StackPanel x:Name="FilterPanel"
-                    Margin="10,10,0,0"
+        <RelativePanel Background="AliceBlue">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Filter Product"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+            <StackPanel x:Name="ContentPanel"
+                        RelativePanel.Below="HeaderPanel"
+                    Margin="10,0,0,0"
                     Orientation="Vertical">
             <RelativePanel x:Name="DiscountPer">
                 <TextBlock Text="Discount %"
-                           x:Name="DiscountPerTB" />
+                           x:Name="DiscountPerTB" 
+                           />
                 <customControl:RangeSlider x:Name="DiscountPerRangeSlider"
                                            Maximum="100"
                                            Minimum="0"
@@ -20,8 +28,8 @@
                                            RangeMin="0"
                                            Width="250"
                                            RelativePanel.Below="DiscountPerTB" />
-                <StackPanel RelativePanel.Below="DiscountPerRangeSlider"
-                            RelativePanel.AlignHorizontalCenterWith="DiscountPerRangeSlider"
+                <StackPanel RelativePanel.RightOf="DiscountPerTB"
+                            RelativePanel.AlignRightWith="DiscountPerRangeSlider"
                             Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <TextBlock x:Name="DiscountPerLB"
@@ -52,8 +60,9 @@
                                            RelativePanel.Below="QuantityTB" />
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
-                            RelativePanel.Below="QuantityRangeSlider"
-                            RelativePanel.AlignHorizontalCenterWith="QuantityRangeSlider">
+                            RelativePanel.RightOf="QuantityTB"
+                            RelativePanel.AlignRightWith="QuantityRangeSlider"
+                           >
                     <TextBlock x:Name="QuantityLB"
                                HorizontalAlignment="Left"
                                FontSize="14"
@@ -76,5 +85,5 @@
                       VerticalAlignment="Top"
                       Margin="0,10,0,0" />
         </StackPanel>
-    </Grid>
+    </RelativePanel>
 </Page>
