@@ -49,7 +49,7 @@
                                RelativePanel.AlignHorizontalCenterWith="ProductBackground"
                                RelativePanel.AlignVerticalCenterWith="ProductBackground"
                                Foreground="#FFFCFCFC"
-                               SelectionHighlightColor="#FFE8EEEE" />
+                               SelectionHighlightColor="#FFD8FF2F" />
                     <TextBlock x:Name="ProductId"
                                Style="{StaticResource BaseTextBlockStyle}"
                                Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"

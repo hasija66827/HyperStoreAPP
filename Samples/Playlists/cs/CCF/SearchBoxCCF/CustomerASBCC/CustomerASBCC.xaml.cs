@@ -84,7 +84,7 @@ namespace SDKTemplate
                 CustomerMobNo.Text = customer.MobileNo;
                 CustomerName.Text = customer.Name;
                 CustomerAddress.Text = customer.Address;
-                CustomerWalletBalance.Text = customer.WalletBalance.ToString() + "\u20B9";
+                CustomerWalletBalance.Text = Utility.FloatToRupeeConverter(customer.WalletBalance);
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
             }
             else

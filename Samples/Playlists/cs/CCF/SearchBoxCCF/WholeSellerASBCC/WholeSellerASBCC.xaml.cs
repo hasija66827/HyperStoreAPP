@@ -87,7 +87,7 @@ namespace SDKTemplate
                 WholeSellerMobNo.Text = WholeSeller.MobileNo;
                 WholeSellerName.Text = WholeSeller.Name;
                 WholeSellerAddress.Text = WholeSeller.Address;
-                WholeSellerWalletBalance.Text = WholeSeller.WalletBalance.ToString() + "\u20B9";
+                WholeSellerWalletBalance.Text = Utility.FloatToRupeeConverter(WholeSeller.WalletBalance);
                 WholeSellerGlyph.Text = Utility.GetGlyphValue(WholeSeller.Name);
             }
             else
