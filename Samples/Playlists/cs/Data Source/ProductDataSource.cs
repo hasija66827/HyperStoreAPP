@@ -100,7 +100,7 @@ namespace SDKTemplate
                 }
             }
        
-            if (tagIds != null)
+            if (tagIds != null && tagIds.Count!=0)
             {
                 var tagProductIds = TagProductDataSource.RetrieveProductId(tagIds);
                 result = result

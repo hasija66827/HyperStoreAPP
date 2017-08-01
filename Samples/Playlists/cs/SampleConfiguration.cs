@@ -21,7 +21,7 @@ namespace SDKTemplate
 {
     public partial class MainPage : Page
     {
-        public const string FEATURE_NAME = "HyperS";
+        public const string FEATURE_NAME = "Hyper Store";
 
         List<Scenario> scenarios = new List<Scenario>
         {

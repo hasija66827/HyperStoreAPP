@@ -21,9 +21,11 @@
                        RelativePanel.Below="HeaderPanel"                   
                        Margin="10,0,0,0">
             <CalendarDatePicker x:Name="startDateCP"
+                                Padding="10"
                                 Header="Start Date"
                                 Date="{x:Bind SelectedDateRange.StartDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
             <CalendarDatePicker x:Name="endDateCP"
+                                Padding="10"
                                 Header="End Date"
                                 RelativePanel.AlignRightWithPanel="True"
                                 Date="{x:Bind SelectedDateRange.EndDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
