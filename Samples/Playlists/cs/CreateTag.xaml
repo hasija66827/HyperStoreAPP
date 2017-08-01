@@ -1,0 +1,46 @@
+﻿<Page x:Class="SDKTemplate.CreateTag"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Page.DataContext>
+        <local:TagViewModel />
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel>
+            <Border  x:Name="HeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Create Tag"
+                           Style="{StaticResource HeaderTextBlockStyle}" />
+            </Border>
+            <StackPanel x:Name="ContentPanel"
+                        RelativePanel.Below="HeaderPanel"
+                        Orientation="Vertical"
+                        Margin="10,0,0,0">
+                <TextBox x:Name="TagName"
+                         Header="Tag Name"
+                         Text="{x:Bind tag.TagName, Mode=TwoWay}"
+                         ToolTipService.ToolTip="Tag Name which can be assigned to product"
+                         PlaceholderText="Enter Tag Name For e.g. Cotton"
+                         Style="{StaticResource FormTextBoxStyle}" />
+                <TextBlock Text="{Binding Errors[TagName][0]}"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
+            <StackPanel x:Name="CommandPanel"
+                        Orientation="Horizontal"
+                        RelativePanel.AlignBottomWithPanel="True">
+                <Button Content="Save"
+                        x:Name="SaveBtn"
+                        Command="{Binding ValidateCommand}"
+                        Style="{StaticResource FormButtonStyle}" />
+                <Button x:Name="CancelBtn"
+                        Content="Cancel"
+                        Click="CancelBtn_Click"
+                        Style="{StaticResource FormButtonStyle}" />
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</Page>

@@ -204,6 +204,7 @@
                           HorizontalAlignment="Center"
                           Icon="Add"
                           Label="Tag"
+                          Click="AddTagBtn_Click"
                           VerticalAlignment="Top" />
             <AppBarButton x:Name="AddWholeSellerBtn"
                           HorizontalAlignment="Center"

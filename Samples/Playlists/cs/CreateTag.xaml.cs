@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -19,25 +20,18 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddCustomerCC : Page
+    public sealed partial class CreateTag : Page
     {
-        private AddCustomerViewModel addCustomerViewModel;
-        public AddCustomerCC()
+        private TagViewModel tag;
+        public CreateTag()
         {
             this.InitializeComponent();
-            addCustomerViewModel = new AddCustomerViewModel();// TODO: uncomment line, as it value changes when below reload fucntion is called.
-            Loaded += AddCustomerCCPage_Loaded;
+            Loaded += CreateTag_Loaded;
         }
 
-        private void AddCustomerCCPage_Loaded(object sender, RoutedEventArgs e)
+        private void CreateTag_Loaded(object sender, RoutedEventArgs e)
         {
-            addCustomerViewModel = DataContext as AddCustomerViewModel;
-            addCustomerViewModel.ErrorsChanged += AddCustomerViewModel_ErrorsChanged;
-        }
-
-        private void AddCustomerViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
-        {
-            //ErrorList.ItemsSource = addWholeSellerViewModel.Errors.Errors.Values.SelectMany(x => x);
+            tag = DataContext as TagViewModel;
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

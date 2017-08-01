@@ -14,7 +14,7 @@ namespace SDKTemplate
 {
     public class CustomerViewModel : ValidatableBindableBase
     {
-        private DelegateCommand validateCommand;
+        private DelegateCommand _validateCommand;
         private Guid _customerId;
         public Guid CustomerId { get { return this._customerId; } }
 
@@ -53,7 +53,7 @@ namespace SDKTemplate
 
         public CustomerViewModel()
         {
-            validateCommand = new DelegateCommand(ValidateAndSave_Executed);
+            _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
             this._customerId = Guid.NewGuid();
             this._address = "";
             this._mobileNo = "";
@@ -65,7 +65,7 @@ namespace SDKTemplate
 
         public CustomerViewModel(DatabaseModel.Customer customer)
         {
-            validateCommand = new DelegateCommand(ValidateAndSave_Executed);
+            _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
             this._customerId = customer.CustomerId;
             this._address = customer.Address;
             this._gstin = customer.GSTIN;
@@ -86,7 +86,7 @@ namespace SDKTemplate
 
         public ICommand ValidateCommand
         {
-            get { return validateCommand; }
+            get { return _validateCommand; }
         }
 
         private void ValidateAndSave_Executed()

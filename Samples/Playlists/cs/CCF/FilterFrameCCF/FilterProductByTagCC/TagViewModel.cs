@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Mvvm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SDKTemplate
 {
@@ -12,10 +15,12 @@ namespace SDKTemplate
     /// </summary>
     public class TagViewModel : BindableBases
     {
+        private DelegateCommand _validateCommand;
         private Guid? _tagId;
         public Guid? TagId { get { return this._tagId; } }
 
         private string _tagName;
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public string TagName { get { return this._tagName; } set { this._tagName = value; } }
 
         bool _IsChecked = default(bool);
@@ -23,13 +28,30 @@ namespace SDKTemplate
 
         public TagViewModel()
         {
+            _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
+            this._tagId = Guid.NewGuid();
+            this._tagName = "";
+            this._IsChecked = false;
         }
 
         public TagViewModel(Guid tagId, string tagName, bool isChecked)
         {
+            _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
             this._tagId = tagId;
             this._tagName = tagName;
             this._IsChecked = isChecked;
+        }
+
+        public ICommand ValidateCommand
+        {
+            get { return _validateCommand; }
+        }
+
+        private void ValidateAndSave_Executed()
+        {
+            var IsValid = true;//ValidateProperties();
+            TagDataSource.CreateTag(this);
+                MainPage.Current.NotifyUser("New Tag was created succesfully ", NotifyType.StatusMessage);     
         }
     }
 

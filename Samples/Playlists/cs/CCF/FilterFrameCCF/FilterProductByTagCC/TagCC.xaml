@@ -13,16 +13,17 @@
             <Border  x:Name="HeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Tag"
+                <TextBlock Text="Add Tag"
                            Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
             <StackPanel x:Name="ContentPanel"
                         Orientation="Vertical"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWith="HeaderPanel"
                         RelativePanel.Below="HeaderPanel"
-                        Margin="10,0,0,0">
-                <TextBox Width="300"
+                        Padding="10">
+                <TextBox 
                          FontSize="16"
-                         Margin="0,10,0,10"
                          Text="{Binding Header, Mode=TwoWay}"
                          IsReadOnly="True"
                          TextWrapping="Wrap"

@@ -202,7 +202,7 @@ namespace DatabaseModel
         { }
         public Tag(TagViewModel tag)
         {
-            this.TagId = new Guid();
+            this.TagId = tag.TagId ?? Guid.NewGuid();
             this.TagName = tag.TagName;
         }
     }
@@ -213,7 +213,7 @@ namespace DatabaseModel
 
         public ProductTag(Guid productId, Guid? tagId)
         {
-            this.ProductTagId = new Guid();
+            this.ProductTagId = Guid.NewGuid();
             this.ProductId = productId;
             this.TagId = tagId;
         }
@@ -261,7 +261,6 @@ namespace DatabaseModel
             CGSTPer = productViewModel.CGSTPer;
             DisplayPrice = productViewModel.DisplayPrice;
             DiscountPer = productViewModel.DiscountPer;
-            //IsInventoryItem = productViewModel.IsInventoryItem;
             RefillTime = productViewModel.RefillTime;
             SGSTPer = productViewModel.SGSTPer;
             Threshold = productViewModel.Threshold;

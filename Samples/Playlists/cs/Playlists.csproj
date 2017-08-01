@@ -117,6 +117,9 @@
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterWholeSalerOrderCC\FilterWholeSalerOrderViewModel.cs" />
     <Compile Include="CivilizationViewModel.cs" />
+    <Compile Include="CreateTag.xaml.cs">
+      <DependentUpon>CreateTag.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
@@ -302,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\EntityFrameCCF\AddProductCC\AddProductCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateTag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
