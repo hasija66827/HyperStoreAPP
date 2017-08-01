@@ -1,32 +1,31 @@
-﻿<Page
-    x:Class="SDKTemplate.WholeSellerPurchasedProductListCC"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SDKTemplate"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="SDKTemplate.WholeSellerPurchasedProductListCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid>
-        <Grid x:Name="RootGrid"
-              Margin="12,10,12,12">
+    <Grid Background="White">
+        <Grid x:Name="RootGrid">
             <ScrollViewer VerticalScrollMode="Auto"
                           VerticalScrollBarVisibility="Auto">
-                <StackPanel Height="700">
-                    <TextBlock x:Name="Header"
-                               Text="Price List"
-                               Style="{StaticResource SampleHeaderTextStyle}"
-                               Margin="0,0,0,20 " />
+                <RelativePanel  Background="White">
+                    <Border  x:Name="HeaderPanel"
+                             RelativePanel.AlignTopWithPanel="True"
+                             Style="{StaticResource HeaderBorder}">
+                        <TextBlock Text="Price List"
+                                   Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+                    </Border>
                     <RelativePanel x:Name="BillingView"
-                                   Grid.Row="2"
-                                   HorizontalAlignment="Left"
+                                   RelativePanel.Below="HeaderPanel"
                                    Visibility="Visible">
                         <StackPanel x:Name="StaticLabelsForList"
-                                    Margin="0,0,0,10"
+                                    Margin="0,10,0,10"
                                     Orientation="Horizontal">
                             <TextBlock Text="Id"
                                        Width="80"
@@ -79,9 +78,9 @@
                                                    TextWrapping="Wrap"
                                                    Margin="0,0,10,0" />
                                         <TextBox x:Name="PurchasePrice"
-                                                   Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
-                                                   Width="120"
-                                                   Margin="0,0,10,0" />
+                                                 Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
+                                                 Width="120"
+                                                 Margin="0,0,10,0" />
                                         <TextBlock x:Name="SellingPrice"
                                                    Text="{x:Bind SellingPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                                    Width="120"
@@ -99,15 +98,15 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </RelativePanel>
-                    <StackPanel x:Name="Footer"
+                    <StackPanel x:Name="CommandPanel"
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Center"
+                                RelativePanel.AlignBottomWithPanel="True"
                                 Margin="40,20,0,0">
                         <Button x:Name="CheckoutBtn"
                                 Content="Checkout"
-                                Width="830 " />
+                                Style="{StaticResource ScenarioButtonStyle}" />
                     </StackPanel>
-                </StackPanel>
+                </RelativePanel>
             </ScrollViewer>
         </Grid>
     </Grid>

@@ -12,7 +12,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <RelativePanel Background="AliceBlue">
+        <RelativePanel Background="White">
             <Border  x:Name="HeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">

@@ -49,12 +49,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            // value is the data from the source object.
-            float price =(float)value;
-            if (price < 0)
-                return "+" + Math.Abs(price).ToString() + "\u20B9";
-            else
-                return "-" + Math.Abs(price).ToString() + "\u20B9";
+            return Utility.FloatToInverseRupeeConverter(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -71,12 +66,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            // value is the data from the source object.
-            var price = Math.Round(System.Convert.ToDouble(value),2);
-            CultureInfo hindi = new CultureInfo("hi-IN");
-            string text = string.Format(hindi, "{0:c}", price);
-            // Return the value to pass to the target.
-            return text;
+            return Utility.FloatToRupeeConverter(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -93,15 +83,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            // value is the data from the source object.
-            float price = System.Convert.ToSingle(value);
-            // Return the value to pass to the target.
-            string sign="";
-            
-           if (price > 0)
-                sign = "+";
-                
-            return sign+price.ToString() + "\u20B9";
+            return Utility.FloatToRupeeConverter(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -248,6 +230,29 @@ namespace SDKTemplate
             }
             return false;
         }
+
+        public static string FloatToRupeeConverter(object value)
+        {
+            // value is the data from the source object.
+            var price = Math.Round(System.Convert.ToDouble(value), 2);
+            CultureInfo hindi = new CultureInfo("hi-IN");
+            string text = string.Format(hindi, "{0:c}", price);
+            // Return the value to pass to the target.
+            return text;
+
+        }
+        public static string FloatToInverseRupeeConverter(object value)
+        {
+            // value is the data from the source object.
+            var price = Math.Round(System.Convert.ToDouble(value), 2);
+            price = -price;
+            CultureInfo hindi = new CultureInfo("hi-IN");
+            string text = string.Format(hindi, "{0:c}", price);
+            // Return the value to pass to the target.
+            return text;
+
+        }
+
 
         public static string GetGlyphValue(String productName)
         {

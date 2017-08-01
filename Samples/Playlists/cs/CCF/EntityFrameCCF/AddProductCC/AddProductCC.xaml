@@ -11,7 +11,7 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <RelativePanel Background="AliceBlue">
+    <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">

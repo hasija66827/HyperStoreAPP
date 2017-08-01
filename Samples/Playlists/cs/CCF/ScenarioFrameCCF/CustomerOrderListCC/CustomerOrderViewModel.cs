@@ -34,7 +34,7 @@ namespace SDKTemplate
 
         public string FormattedPaidBillAmount
         {
-            get { return this.PaidAmount.ToString() + "\u20b9" + "/" + this.DiscountedBillAmount.ToString() + "\u20b9"; }
+            get { return Utility.FloatToRupeeConverter(this.PaidAmount) + "/" + Utility.FloatToRupeeConverter(this.DiscountedBillAmount); }
         }
 
         public string FormattedOrderDate

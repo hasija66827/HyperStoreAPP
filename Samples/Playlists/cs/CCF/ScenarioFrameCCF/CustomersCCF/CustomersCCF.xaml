@@ -9,30 +9,24 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:CustomerViewModel">
-            <Grid Margin="0,11,0,13">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="3*"
-                                     />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{x:Bind Name}"
+            <RelativePanel>
+                <TextBlock x:Name="MobileNo"
+                           Text="{x:Bind MobileNo}"
+                           Padding="10,10,10,5"
                            Style="{ThemeResource BaseTextBlockStyle}"
-                           TextWrapping="Wrap" />
-                <TextBlock Text="{x:Bind MobileNo}"
-                           Grid.Row="1"
-                           Grid.Column="0"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
                            />
-                <TextBlock Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
-                           Grid.Column="2"
-                           Style="{ThemeResource BaseMessageStyle}" />
-            </Grid>
+                <TextBlock x:Name="WalletBalance"
+                           Padding="10,10,10,5"
+                           RelativePanel.AlignRightWithPanel="True"
+                           Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
+                           Style="{ThemeResource BaseTextBlockStyle}" />
+                <TextBlock x:Name="Name"
+                           Text="{x:Bind Name}"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                           Padding="10,0,10,10"
+                           RelativePanel.Below="MobileNo"
+                           TextWrapping="Wrap" />
+            </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerPurchaseHistoryCollection">
@@ -42,8 +36,7 @@
                     <TextBlock Text="BarCode"
                                Width="130"
                                Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                                />
+                               Style="{StaticResource BaseTextBlockStyle}" />
                     <TextBlock Text="Name"
                                Width="130"
                                Margin="0,0,10,0"
@@ -81,7 +74,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition MinHeight="400" Height="650" />
+            <RowDefinition MinHeight="400"
+                           Height="650" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
@@ -90,14 +84,16 @@
                               MinWidth="200"
                               Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    Margin="12,10,0,0">
-            <TextBlock Text="Customers"
-                       Grid.Row="0"
-                       Style="{ThemeResource TitleTextBlockStyle}" />
-            <TextBlock x:Name="CustomerCountTB"
-                       MinWidth="100" />
-        </StackPanel>
+        <Border  x:Name="MasterHeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Customers"
+                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                <TextBlock x:Name="CustomerCountTB"
+                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
+            </StackPanel>
+        </Border>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"
@@ -112,10 +108,13 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <TextBlock Text="Purchase History"
-                   Margin="50,10,0,0"
-                   Style="{ThemeResource TitleTextBlockStyle}"
-                   Grid.Column="1" />
+        <Border  x:Name="DetailHeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}"
+                 Grid.Column="1">
+            <TextBlock Text="Purchase History"
+                       Style="{StaticResource MasterHeaderTextBlockStyle}" />
+        </Border>
         <ContentPresenter x:Name="DetailContentPresenter"
                           Grid.Row="1"
                           Grid.Column="1"

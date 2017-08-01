@@ -10,29 +10,29 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:WholeSellerOrderViewModel">
-            <Grid  Margin="12,10,12,12">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="11*" />
-                    <ColumnDefinition Width="13*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{x:Bind WholeSeller.MobileNo}"
+            <RelativePanel>
+                <TextBlock x:Name="MobileNo"
+                           Text="{x:Bind WholeSeller.MobileNo}"
+                           Padding="10,10,10,5"
                            Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind FormattedOrderDate}"
-                           Grid.Column="1"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock Text="{x:Bind FormattedPaidBillAmount}"
-                           Grid.Column="0"
-                           Grid.Row="1"
+                <TextBlock x:Name="FormattedOrderDate"
+                           Text="{x:Bind FormattedOrderDate}"
+                           Padding="10,10,10,5"
+                           Style="{ThemeResource BaseTextBlockStyle}"
+                           RelativePanel.AlignRightWithPanel="True" />
+                <TextBlock x:Name="FormattedPaidBillAmount"
+                           Text="{x:Bind FormattedPaidBillAmount}"
+                           TextWrapping="Wrap"
+                           Padding="10,0,10,10"
+                           RelativePanel.Below="MobileNo"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock Text="{x:Bind WholeSellerOrderNo}"
-                           Grid.Row="1"
-                           Grid.Column="1"
+                <TextBlock x:Name="WholeSellerOrderNo"
+                           RelativePanel.AlignRightWithPanel="True"
+                           RelativePanel.AlignBottomWith="FormattedPaidBillAmount"
+                           Text="{x:Bind WholeSellerOrderNo}"
+                           Padding="10,0,10,10"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-            </Grid>
+            </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:WholeSellerOrderViewModel">
@@ -155,7 +155,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -166,19 +166,23 @@
             <ColumnDefinition x:Name="DetailColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    Margin="12,10,12,12">
-            <TextBlock Text="Orders"
-                       Style="{ThemeResource TitleTextBlockStyle}" />
-            <TextBlock x:Name="OrderCountTB"
-                       MinWidth="100" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal"
-                    Margin="12,10,12,12"
-                    Grid.Column="1">
+        <Border  x:Name="MasterHeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Supplier Orders"
+                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                <TextBlock x:Name="OrderCountTB"
+                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
+            </StackPanel>
+        </Border>
+        <Border  x:Name="DetailHeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}"
+                 Grid.Column="1">
             <TextBlock Text="Order Details"
-                       Style="{ThemeResource TitleTextBlockStyle}" />
-        </StackPanel>
+                       Style="{StaticResource MasterHeaderTextBlockStyle}" />
+        </Border>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"

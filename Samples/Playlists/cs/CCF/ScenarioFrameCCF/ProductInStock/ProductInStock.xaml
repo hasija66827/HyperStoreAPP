@@ -15,7 +15,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:customControl="using:UWP"
       xmlns:common="using:SDKTemplate"
-      xmlns:data="using:SDKTemp.ViewModel"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
@@ -119,6 +118,7 @@
     </Page.Resources>
     <Grid x:Name="LayoutRoot"
           Loaded="LayoutRoot_Loaded"
+          Background="White"
         >
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates"
@@ -155,18 +155,23 @@
             <ColumnDefinition x:Name="DetailColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    Margin="12,10,12,12">
-        <TextBlock Text="Products"
-                   Grid.Row="0"
-                   Style="{ThemeResource TitleTextBlockStyle}" />
-        <TextBlock x:Name="ProductCountTB"
-                   MinWidth="100" />
-        </StackPanel>
-        <TextBlock Text="Wholesalers"
-                   Margin="50,10,0,0"
-                   Style="{ThemeResource TitleTextBlockStyle}"
-                   Grid.Column="1" />
+        <Border  x:Name="MasterHeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Products"
+                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                <TextBlock x:Name="ProductCountTB"
+                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
+            </StackPanel>
+        </Border>
+        <Border  x:Name="DetailHeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}"
+                 Grid.Column="1">
+            <TextBlock Text="Purchase History"
+                       Style="{StaticResource MasterHeaderTextBlockStyle}" />
+        </Border>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"

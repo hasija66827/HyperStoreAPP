@@ -11,7 +11,7 @@
     <Page.DataContext>
         <local:AddCustomerViewModel />
     </Page.DataContext>
-    <RelativePanel Background="AliceBlue">
+    <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">

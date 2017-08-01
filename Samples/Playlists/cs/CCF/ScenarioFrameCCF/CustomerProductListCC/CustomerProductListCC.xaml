@@ -23,12 +23,11 @@
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
     </UserControl.Resources>
-    <Grid >
-        <Grid x:Name="RootGrid"
-             >
+    <Grid>
+        <Grid x:Name="RootGrid">
             <ScrollViewer VerticalScrollMode="Auto"
                           VerticalScrollBarVisibility="Auto">
-                <RelativePanel  Background="AliceBlue">
+                <RelativePanel  Background="White">
                     <Border  x:Name="HeaderPanel"
                              RelativePanel.AlignTopWithPanel="True"
                              Style="{StaticResource HeaderBorder}">
@@ -194,8 +193,7 @@
                     </RelativePanel>
                     <StackPanel x:Name="CommandPanel"
                                 Orientation="Horizontal"
-                                RelativePanel.AlignBottomWithPanel="True"
-                                >
+                                RelativePanel.AlignBottomWithPanel="True">
                         <Button x:Name="Checkout"
                                 Content="Checkout"
                                 Style="{StaticResource ScenarioButtonStyle}" />

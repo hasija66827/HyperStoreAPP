@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControl="using:UWP"
       mc:Ignorable="d">
-        <RelativePanel Background="AliceBlue">
+        <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">

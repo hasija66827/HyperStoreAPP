@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <RelativePanel Background="AliceBlue">
+    <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
