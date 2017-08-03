@@ -15,106 +15,85 @@
         <local:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:CustomerOrderViewModel">
-            <RelativePanel>
+            <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind CustomerMobileNo}"
                            Padding="10,10,10,5"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock x:Name="FormattedOrderDate"
+                           Style="{StaticResource MasterListTextBlockStyle}" 
+                            />
+                <TextBlock x:Name="FormattedCustomerOrderNo"
                            Padding="10,10,10,5"
                            RelativePanel.AlignRightWithPanel="True"
-                           Text="{x:Bind FormattedOrderDate}"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           Text="{x:Bind CustomerOrderNo}"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}"/>
                 <TextBlock x:Name="FormatterPaidBillAmount"
                            Padding="10,0,10,10"
                            RelativePanel.Below="MobileNo"
                            Text="{x:Bind FormattedPaidBillAmount}"
+                          
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock x:Name="FormattedCustomerOrderNo"
+                <TextBlock x:Name="FormattedOrderDate" 
                            RelativePanel.AlignBottomWith="FormatterPaidBillAmount"
                            RelativePanel.AlignRightWithPanel="True"
                            Padding="10,0,10,10"
-                           Text="{x:Bind CustomerOrderNo}"
+                           Text="{x:Bind FormattedOrderDate}"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerOrderViewModel">
-            <StackPanel Margin="10,10">
+            <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
-                            Orientation="Horizontal"
-                            Margin="0,10,0,0">
+                            Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Id"
-                               Width="60"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Name"
-                               Width="60"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Display Price"
-                               Width="80"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Discount %"
-                               Width="80"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Selling Price"
-                               Width="80"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Quantity"
-                               Width="60"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Net Value"
-                               Width="70"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="OrderDetailListView"
                           ItemsSource="{x:Bind OrderDetails}"
                           RelativePanel.Below="StaticLabelsForList"
-                          Height="300"
-                          CanReorderItems="False"
-                          SelectedIndex="-1">
+                          RelativePanel.AlignRightWith="StaticLabelsForList"
+                          RelativePanel.AlignLeftWith="StaticLabelsForList"
+                          Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:CustomerOrderDetailViewModel">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock Text="{x:Bind BarCode,Mode=OneTime}"
-                                           Width="60"
-                                           Margin="0,0,0,0" />
+                                           Foreground="Black"
+                                           Style="{StaticResource ListTextBlockStyle}" />
                                 <TextBlock Text="{x:Bind Name, Mode=OneTime}"
-                                           Width="60"
-                                           TextWrapping="Wrap"
-                                           Margin="0,0,10,0" />
+                                           Style="{StaticResource ListTextBlockStyle}"
+                                           TextWrapping="Wrap" />
                                 <TextBlock x:Name="DisplayPrice"
-                                           Text="{x:Bind DisplayPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Width="80"
-                                           Margin="0,0,10,0" />
+                                           Style="{StaticResource ListTextBlockStyle}"
+                                           Foreground="Black"
+                                           Text="{x:Bind DisplayPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBlock x:Name="DiscountPer"
-                                           Text="{x:Bind DiscountPer, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}"
-                                           Width="80"
-                                           Margin="0,0,10,0" />
+                                           Style="{StaticResource ListTextBlockStyle}"
+                                           Text="{x:Bind DiscountPer, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}" />
                                 <TextBlock x:Name="SellingPrice"
-                                           Text="{x:Bind SellingPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Width="80"
-                                           Margin="0,0,10,0" />
+                                           Foreground="Black"
+                                           Style="{StaticResource ListTextBlockStyle}"
+                                           Text="{x:Bind SellingPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBlock x:Name="Quantity"
-                                           Text="{x:Bind QuantityPurchased, Mode=OneTime}"
-                                           Width="60"
-                                           Margin="0,0,10,0" />
+                                           Style="{StaticResource ListTextBlockStyle}"
+                                           Text="{x:Bind QuantityPurchased, Mode=OneTime}" />
                                 <TextBlock x:Name="NetValue"
-                                           Text="{x:Bind NetValue, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Width="70"
-                                           Margin="0,0,10,0" />
+                                           FontSize="16"
+                                           Foreground="#FFFF2FAE"
+                                           Style="{StaticResource LargeListTextBlockStyle}"
+                                           Text="{x:Bind NetValue, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -194,7 +173,6 @@
                           Grid.Column="1"
                           Grid.RowSpan="2"
                           BorderThickness="10,0,0,0"
-                          Padding="24,0"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
                           Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
                           ContentTemplate="{StaticResource DetailContentTemplate}">

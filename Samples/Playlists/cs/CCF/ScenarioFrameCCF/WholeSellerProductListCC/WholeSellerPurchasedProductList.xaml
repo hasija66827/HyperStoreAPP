@@ -71,8 +71,9 @@
                                                  Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
                                                  Style="{StaticResource LargeListTextBoxStyle}"/>
                                         <TextBlock x:Name="NetValue"
-                                                   Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" 
-                                                   Foreground="Black"
+                                                   Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                                   FontSize="16"
+                                                   Foreground="#FFFF2FAE"
                                                    Style="{StaticResource VeryLargeListTextBlockStyle}"/>
                                     </StackPanel>
                                 </DataTemplate>
