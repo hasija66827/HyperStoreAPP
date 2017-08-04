@@ -27,88 +27,69 @@
     <Page.Resources>
         <common:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <common:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
+        
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="common:ProductViewModelBase">
-            <Grid Margin="0,11,0,13">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition MinWidth="75"
-                                      Width="Auto" />
-                    <ColumnDefinition MinWidth="75"
-                                      Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{x:Bind Name}"
-                           Style="{ThemeResource BaseTextBlockStyle}"
+            <RelativePanel Style="{StaticResource MasterListRelativePanel}">
+                <TextBlock 
+                    x:Name="ProductName"
+                    Text="{x:Bind Name}"
+                           Style="{ThemeResource MasterListTextBlockStyle}"
                            TextWrapping="Wrap" />
                 <TextBlock Text="{x:Bind TotalQuantity}"
-                           Grid.Column="2"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           RelativePanel.AlignRightWithPanel="True"
+                           Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock Text="{x:Bind DisplayPrice, Converter={StaticResource FloatToRupeeConverter} }"
-                           Grid.Column="0"
-                           Grid.Row="2"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           RelativePanel.Below="ProductName"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"
-                           Grid.Column="1"
-                           Grid.Row="2"
+                           RelativePanel.Below="ProductName"
+                           RelativePanel.RightOf="ProductName"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock Text="{x:Bind SellingPrice, Converter={StaticResource FloatToRupeeConverter}}"
-                           Grid.Column="2"
-                           Grid.Row="2"
+                           RelativePanel.Below="ProductName"
+                           RelativePanel.AlignRightWithPanel="True"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-            </Grid>
+            </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="common:PriceQuotedByWholeSellerCollection">
             <StackPanel>
-                <StackPanel Orientation="Horizontal"
-                            Margin="10,0,0,0">
+                <StackPanel x:Name="StaticLabelsForList"
+                            Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Name"
-                               Width="100"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Margin="30,0,10,0"/>
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Mobile No"
-                               Width="130"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Margin="0,0,10,0"/>
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Last Order Date"
-                               Width="130"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Margin="0,0,10,0"/>
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                     <TextBlock Text="Purchase Price"
-                               Width="130"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Margin="0,0,10,0" />
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="PriceListByWholeSellersListView"
                           ItemsSource="{x:Bind PriceQuotedByWholeSellers}"
-                          Height="300"
-                          CanReorderItems="False"
-                          SelectedIndex="-1">
+                          RelativePanel.Below="StaticLabelsForList"
+                          RelativePanel.AlignRightWith="StaticLabelsForList"
+                          RelativePanel.AlignLeftWith="StaticLabelsForList"
+                          Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="common:PriceQuotedByWholeSellerViewModel">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <RadioButton GroupName="xxx"
                                              IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
                                              Content="{x:Bind WholeSellerName, Mode=OneWay}"
-                                             Width="130"
-                                             Margin="0,0,10,0" />
+                                             Width="150" />
                                 <TextBlock x:Name="WholeSellerMobileNo"
                                            Text="{x:Bind WholeSellerMobileNo, Mode=OneWay}"
-                                           Width="130"
-                                           Margin="0,5,10,0" />
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="OrderDate"
                                            Text="{x:Bind FormattedOrderDate, Mode=OneWay}"
-                                           Width="130"
-                                           Margin="0,5,10,0" />
+                                           Style="{StaticResource LargeListTextBlockStyle}"
+                                           />
                                 <TextBlock x:Name="PurchasePrice"
-                                           Text="{x:Bind PurchasePrice, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter}}"
-                                           Width="130"
-                                           Margin="0,5,10,0" />
+                                           Foreground="Black"
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
+                                           Text="{x:Bind PurchasePrice, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -118,8 +99,7 @@
     </Page.Resources>
     <Grid x:Name="LayoutRoot"
           Loaded="LayoutRoot_Loaded"
-          Background="White"
-        >
+          Background="White">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates"
                               CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
@@ -150,8 +130,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              Width="270"
-                              />
+                              Width="270" />
             <ColumnDefinition x:Name="DetailColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
@@ -191,7 +170,6 @@
                           Grid.Column="1"
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
-                          Padding="24,0"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
                           ContentTemplate="{StaticResource DetailContentTemplate}">
             <ContentPresenter.ContentTransitions>
