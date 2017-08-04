@@ -19,20 +19,18 @@
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind CustomerMobileNo}"
                            Padding="10,10,10,5"
-                           Style="{StaticResource MasterListTextBlockStyle}" 
-                            />
+                           Style="{StaticResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="FormattedCustomerOrderNo"
                            Padding="10,10,10,5"
                            RelativePanel.AlignRightWithPanel="True"
                            Text="{x:Bind CustomerOrderNo}"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}"/>
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock x:Name="FormatterPaidBillAmount"
                            Padding="10,0,10,10"
                            RelativePanel.Below="MobileNo"
                            Text="{x:Bind FormattedPaidBillAmount}"
-                          
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock x:Name="FormattedOrderDate" 
+                <TextBlock x:Name="FormattedOrderDate"
                            RelativePanel.AlignBottomWith="FormatterPaidBillAmount"
                            RelativePanel.AlignRightWithPanel="True"
                            Padding="10,0,10,10"

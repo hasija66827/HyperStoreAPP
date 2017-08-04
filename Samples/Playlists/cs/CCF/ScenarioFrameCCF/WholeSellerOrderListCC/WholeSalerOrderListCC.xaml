@@ -14,141 +14,111 @@
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind WholeSeller.MobileNo}"
                            Padding="10,10,10,5"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
-                <TextBlock x:Name="FormattedOrderDate"
-                           Text="{x:Bind FormattedOrderDate}"
+                           Style="{ThemeResource MasterListTextBlockStyle}" />
+                <TextBlock x:Name="WholeSellerOrderNo"
+                           RelativePanel.AlignRightWithPanel="True"
+                           Text="{x:Bind WholeSellerOrderNo}"
                            Padding="10,10,10,5"
-                           Style="{ThemeResource BaseTextBlockStyle}"
-                           RelativePanel.AlignRightWithPanel="True" />
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock x:Name="FormattedPaidBillAmount"
                            Text="{x:Bind FormattedPaidBillAmount}"
-                           TextWrapping="Wrap"
                            Padding="10,0,10,10"
                            RelativePanel.Below="MobileNo"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock x:Name="WholeSellerOrderNo"
-                           RelativePanel.AlignRightWithPanel="True"
+                <TextBlock x:Name="FormattedOrderDate"
+                           Text="{x:Bind FormattedOrderDate}"
                            RelativePanel.AlignBottomWith="FormattedPaidBillAmount"
-                           Text="{x:Bind WholeSellerOrderNo}"
                            Padding="10,0,10,10"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                           RelativePanel.AlignRightWithPanel="True" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:WholeSellerOrderViewModel">
             <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
-                            Margin="0,0,0,10"
-                            Orientation="Horizontal">
+                            Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Id"
-                               Width="80"
-                               Margin="40,0,0,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                     <TextBlock Text="Product Name"
-                               Width="140"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                     <TextBlock Text="Purchase Price"
-                               Width="110"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Quantity"
-                               Width="80"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Net Value"
-                               Width="80"
-                               Margin="0,0,10,0"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="OrderDetailListView"
                           ItemsSource="{x:Bind WholeSellerOrderDetails}"
-                          Height="250"
-                          MaxHeight="250"
-                          CanReorderItems="False"
-                          SelectedIndex="-1">
+                          RelativePanel.Below="StaticLabelsForList"
+                          RelativePanel.AlignRightWith="StaticLabelsForList"
+                          RelativePanel.AlignLeftWith="StaticLabelsForList"
+                          Height="300"
+                          Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:WholeSellerOrderDetailViewModel">
-                            <StackPanel Orientation="Horizontal">
-                                <SymbolIcon Symbol="Accept" />
+                            <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"
-                                           Width="80"
-                                           Margin="10,0,0,0" />
+                                           Foreground="Black"
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                           Width="140"
-                                           TextWrapping="Wrap"
-                                           Margin="0,0,10,0" />
+                                           Style="{StaticResource LargeListTextBlockStyle}"
+                                           TextWrapping="Wrap" />
                                 <TextBlock x:Name="PurchasePrice"
                                            Text="{x:Bind PurchasePrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
-                                           Width="120"
-                                           Margin="0,0,10,0" />
+                                           Foreground="Black"
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="Quantity"
                                            Text="{x:Bind QuantityPurchased, Mode=OneWay}"
-                                           Width="80"
-                                           Margin="0,0,10,0" />
+                                           Style="{StaticResource ListTextBlockStyle}" />
                                 <TextBlock x:Name="NetValue"
-                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Width="80"
-                                           Margin="0,0,10,0" />
+                                           Foreground="#FFFF2FAE"
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
+                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <StackPanel>
                     <StackPanel x:Name="StaticLabelsForTransactionList"
-                                Margin="0,0,0,10"
-                                Orientation="Horizontal">
+                                Style="{StaticResource ListHeaderStackPanel}">
                         <TextBlock Text="Txn No"
-                                   Width="80"
-                                   Margin="40,0,0,0"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                        <TextBlock Text="Transaction Date"
-                                   Width="80"
-                                   Margin="40,0,0,0"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                        <TextBlock Text="Txn Date"
+                                   Style="{StaticResource LargeListTextBlockStyle}" />
+                        <TextBlock Text="Txn Amount"
+                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
                         <TextBlock Text="Credit Amount"
-                                   Width="80"
-                                   Margin="0,0,10,0"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                        <TextBlock Text="Transaction Amount"
-                                   Width="80"
-                                   Margin="0,0,10,0"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     </StackPanel>
                 </StackPanel>
                 <ListView x:Name="TransactionHistoriesOfWholeSellers"
                           ItemsSource="{x:Bind Transactions}"
-                          Height="250"
-                          MaxHeight="250"
-                          CanReorderItems="False"
-                          SelectedIndex="-1"
-                          IsItemClickEnabled="False">
+                          RelativePanel.Below="TransactionHistoriesOfWholeSellers"
+                          RelativePanel.AlignRightWith="StaticLabelsForList"
+                          RelativePanel.AlignLeftWith="StaticLabelsForList"
+                          Height="300"
+                          Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:SettledOrderOfTransactionViewModel">
-                            <StackPanel Orientation="Horizontal">
-                                <SymbolIcon Symbol="Accept" />
+                            <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock x:Name="TransactionNo"
+                                           Foreground="Black"
                                            Text="{x:Bind Transaction.TransactionNo, Mode=OneWay}"
-                                           Style="{StaticResource ListTBStyle}" />
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="TransactionDate"
                                            Text="{x:Bind Transaction.FormattedTransactionDate, Mode=OneWay}"
-                                           Style="{StaticResource ListTBStyle}" />
-                                <TextBlock x:Name="CreditAmount"
-                                           Text="{x:Bind CreditedAmountFromTransaction, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{ThemeResource PositiveValueTB}" />
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="TransactionAmount"
+                                           Foreground="Black"
                                            Text="{x:Bind Transaction.CreditAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource ListTBStyle}" />
-                            </StackPanel>
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                <TextBlock x:Name="CreditAmount"
+                                           Foreground="Black"
+                                           Text="{x:Bind CreditedAmountFromTransaction, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{ThemeResource VeryLargeListTextBlockStyle}" />
+                                </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -201,7 +171,6 @@
                           Grid.Column="1"
                           Grid.RowSpan="2"
                           BorderThickness="10,0,0,0"
-                          Padding="24,0"
                           ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
                           Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">

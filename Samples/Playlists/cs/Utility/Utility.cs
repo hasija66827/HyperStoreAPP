@@ -235,12 +235,15 @@ namespace SDKTemplate
         {
             // value is the data from the source object.
             var price = Math.Round(System.Convert.ToDouble(value), 2);
+            var absPrice = Math.Abs(price);
             CultureInfo hindi = new CultureInfo("hi-IN");
-            string text = string.Format(hindi, "{0:c}", price);
+            string text = string.Format(hindi, "{0:c}", absPrice);
             // Return the value to pass to the target.
-            return text;
-
+            if (price >= 0)
+                return text;
+            return "-" + text; 
         }
+
         public static string FloatToInverseRupeeConverter(object value)
         {
             // value is the data from the source object.

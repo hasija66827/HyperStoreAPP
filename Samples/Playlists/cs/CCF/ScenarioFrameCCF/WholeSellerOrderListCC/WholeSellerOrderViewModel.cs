@@ -66,7 +66,7 @@ namespace SDKTemplate
         {
             get
             {
-                var formatter = new DateTimeFormatter("day month hour minute");
+                var formatter = new DateTimeFormatter("day month");
                 return formatter.Format(this._orderDate);
             }
         }
