@@ -13,7 +13,6 @@
             <RelativePanel>
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind WholeSeller.MobileNo}"
-                           Padding="10,10,10,5"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="WholeSellerOrderNo"
                            RelativePanel.AlignRightWithPanel="True"
@@ -150,8 +149,8 @@
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}"
                  Grid.Column="1">
-            <TextBlock Text="Order Details"
-                       Style="{StaticResource MasterHeaderTextBlockStyle}" />
+            <TextBlock Text="Supplier Order Details"
+                       Style="{StaticResource DetailHeaderTextBlockStyle}" />
         </Border>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"

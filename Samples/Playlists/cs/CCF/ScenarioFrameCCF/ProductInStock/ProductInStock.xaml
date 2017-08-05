@@ -27,13 +27,11 @@
     <Page.Resources>
         <common:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <common:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
-        
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="common:ProductViewModelBase">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
-                <TextBlock 
-                    x:Name="ProductName"
-                    Text="{x:Bind Name}"
+                <TextBlock x:Name="ProductName"
+                           Text="{x:Bind Name}"
                            Style="{ThemeResource MasterListTextBlockStyle}"
                            TextWrapping="Wrap" />
                 <TextBlock Text="{x:Bind TotalQuantity}"
@@ -84,8 +82,7 @@
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="OrderDate"
                                            Text="{x:Bind FormattedOrderDate, Mode=OneWay}"
-                                           Style="{StaticResource LargeListTextBlockStyle}"
-                                           />
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="PurchasePrice"
                                            Foreground="Black"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}"
@@ -148,8 +145,8 @@
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}"
                  Grid.Column="1">
-            <TextBlock Text="Purchase History"
-                       Style="{StaticResource MasterHeaderTextBlockStyle}" />
+            <TextBlock Text="Purchase History of Product"
+                       Style="{StaticResource DetailHeaderTextBlockStyle}" />
         </Border>
         <ListView x:Name="MasterListView"
                   Grid.Row="1"

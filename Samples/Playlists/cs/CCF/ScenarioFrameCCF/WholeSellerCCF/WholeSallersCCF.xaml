@@ -31,43 +31,46 @@
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="viewmodel:TransactionHistoryOfWholeSellerCollection">
             <StackPanel>
-                <StackPanel Orientation="Horizontal"
-                            Margin="10,0,10,0">
+                <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Txn No"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Date"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Balance"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                     <TextBlock Text="Credit"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Updated Balance"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="TransactionHistoriesOfWholeSellers"
                           ItemsSource="{x:Bind Transactions}"
-                          CanReorderItems="False"
-                          SelectedIndex="-1"
+                          Style="{StaticResource ListViewStyle}"
                           IsItemClickEnabled="True"
                           ItemClick="TransactionHistoriesOfWholeSellers_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodel:TransactionViewModel">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock x:Name="TransactionNo"
+                                           Foreground="Black"
                                            Text="{x:Bind TransactionNo, Mode=OneWay}"
-                                           Style="{StaticResource ListTBStyle}" />
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="TransactionDate"
                                            Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
-                                           Style="{StaticResource ListTBStyle}" />
+                                           Style="{StaticResource ListTextBlockStyle}" />
                                 <TextBlock x:Name="WalletSnapshot"
+                                           Foreground="Black"
                                            Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource ListTBStyle}" />
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="CreditAmount"
+                                           FontSize="16"
+                                           Foreground="#FFFF2FAE"
                                            Text="{x:Bind CreditAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{ThemeResource PositiveValueTB}" />
+                                           Style="{ThemeResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="updatedWalletBalance"
+                                           Foreground="Black"
                                            Text="{x:Bind UpdatedWalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource ListTBStyle}" />
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -86,7 +89,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              Width="270" />
+                              Width="240" />
             <ColumnDefinition x:Name="DetailColumn"
                               MinWidth="200"
                               Width="*" />
@@ -119,15 +122,15 @@
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}"
                  Grid.Column="1">
-            <TextBlock Text="Transaction History"
-                       Style="{StaticResource MasterHeaderTextBlockStyle}" />
+            <TextBlock Text="Transaction History With Supplier"
+                       Style="{StaticResource DetailHeaderTextBlockStyle}" />
         </Border>
         <ContentPresenter x:Name="DetailContentPresenter"
                           Grid.Row="1"
                           Grid.Column="1"
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
-                          Padding="24,0"
+                          
                           ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter.ContentTransitions>
