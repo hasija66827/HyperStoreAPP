@@ -188,6 +188,7 @@ namespace SDKTemplate
             return true;
         }
 
+///#remove
         /// <summary>
         /// Reduces the number of products from the product entity during purchase of product by Customer.
         /// </summary>

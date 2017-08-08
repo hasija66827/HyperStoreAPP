@@ -34,13 +34,13 @@
                 <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Txn No"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    <TextBlock Text="Date"
+                    <TextBlock Text="Txn Date"
                                Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Balance"
+                    <TextBlock Text="Supplier Wallet Balance"
                                Style="{StaticResource LargeListTextBlockStyle}" />
-                    <TextBlock Text="Credit"
+                    <TextBlock Text="Txn Credit Amount"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    <TextBlock Text="Updated Balance"
+                    <TextBlock Text="Supplier Updated Balance"
                                Style="{StaticResource LargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="TransactionHistoriesOfWholeSellers"
@@ -75,9 +75,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button x:Name="AddMoney"
-                        Content="Add Money"
-                        Click="AddMoney_Click" />
+                <StackPanel x:Name="CommandPanel"
+                            Orientation="Horizontal"
+                            RelativePanel.AlignBottomWithPanel="True">
+                    <Button x:Name="AddMoney"
+                            Content="New Transaction"
+                            Click="AddMoney_Click"
+                            Style="{StaticResource ScenarioButtonStyle}" />
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -122,7 +127,7 @@
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}"
                  Grid.Column="1">
-            <TextBlock Text="Transaction History With Supplier"
+            <TextBlock Text="Transaction History of Supplier"
                        Style="{StaticResource DetailHeaderTextBlockStyle}" />
         </Border>
         <ContentPresenter x:Name="DetailContentPresenter"
@@ -130,7 +135,6 @@
                           Grid.Column="1"
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
-                          
                           ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter.ContentTransitions>

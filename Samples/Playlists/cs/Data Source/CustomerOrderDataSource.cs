@@ -85,6 +85,7 @@ namespace SDKTemp.Data
             return orderDetails;
         }
 
+//#remove
         /// <summary>
         /// Returns the updated wallet balance of the customer
         /// </summary>
