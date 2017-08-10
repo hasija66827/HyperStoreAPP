@@ -42,9 +42,9 @@
             <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
-                    <TextBlock Text="Id"
+                    <TextBlock Text="Product Id"
                                Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Name"
+                    <TextBlock Text="Product Name"
                                Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Display Price"
                                Style="{StaticResource ListTextBlockStyle}" />
@@ -52,7 +52,7 @@
                                Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Selling Price"
                                Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Quantity"
+                    <TextBlock Text="Quantity Purchase"
                                Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Net Value"
                                Style="{StaticResource LargeListTextBlockStyle}" />

@@ -113,7 +113,25 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
+    // Append the float value with %Off
+    public class FloatToPercentageGSTConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            // value is the data from the source object.
+            float price = (float)value;
+            // Return the value to pass to the target.
+            return price.ToString() + "% GST";
+        }
 
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
     // Tries to convert value into positive integer, if it fails then reset the value to one.
     public class CheckIfPositiveInteger : IValueConverter
     {

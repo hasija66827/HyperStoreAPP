@@ -143,10 +143,11 @@ namespace SDKTemplate
                 NoResults.Visibility = Visibility.Collapsed;
                 ProductDetails.Visibility = Visibility.Visible;
                 ProductId.Text = product.BarCode;
-                ProductName.Text = product.Name;
-                ProductSellingPrice.Text = Utility.FloatToRupeeConverter(product.SubTotal);
+                ProductName.Text = product.FormattedNameQuantity;
+                ProductSellingPrice.Text = Utility.FloatToRupeeConverter(product.SellingPrice);
                 ProductCostPrice.Text = Utility.FloatToRupeeConverter(product.DisplayPrice);
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
+                ProductGSTPer.Text = product.TotalGSTPer + "%GST";
                 ProductGlyph.Text = Utility.GetGlyphValue(product.Name);
             }
             else

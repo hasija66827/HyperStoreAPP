@@ -53,6 +53,11 @@ namespace SDKTemplate
             set { this._name = value; }
         }
 
+        public virtual string FormattedNameQuantity
+        {
+            get { return this._name + " ("+this._totalQuantity+")"; }
+        }
+
         protected Int32 _refillTime;
         public virtual Int32 RefillTime
         {

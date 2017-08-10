@@ -27,24 +27,27 @@
     <Page.Resources>
         <common:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <common:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
+        <common:FloatToPercentageGSTConverter x:Key="FloatToPercentageGSTConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="common:ProductViewModelBase">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="ProductName"
-                           Text="{x:Bind Name}"
+                           Text="{x:Bind FormattedNameQuantity}"
                            Style="{ThemeResource MasterListTextBlockStyle}"
                            TextWrapping="Wrap" />
-                <TextBlock Text="{x:Bind TotalQuantity}"
+                <TextBlock Text="{x:Bind SellingPrice, Converter={StaticResource FloatToRupeeConverter}}"
                            RelativePanel.AlignRightWithPanel="True"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
-                <TextBlock Text="{x:Bind DisplayPrice, Converter={StaticResource FloatToRupeeConverter} }"
+                <TextBlock x:Name="DisplayPrice"
+                           Text="{x:Bind DisplayPrice, Converter={StaticResource FloatToRupeeConverter} }"
                            RelativePanel.Below="ProductName"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"
                            RelativePanel.Below="ProductName"
-                           RelativePanel.RightOf="ProductName"
+                           RelativePanel.RightOf="DisplayPrice"
+                           Margin="10,0,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock Text="{x:Bind SellingPrice, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind TotalGSTPer, Converter={StaticResource FloatToPercentageGSTConverter}}"
                            RelativePanel.Below="ProductName"
                            RelativePanel.AlignRightWithPanel="True"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
@@ -55,13 +58,13 @@
             <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
-                    <TextBlock Text="Name"
+                    <TextBlock Text="Supplier Name"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    <TextBlock Text="Mobile No"
+                    <TextBlock Text="Supplier Mobile No"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Last Order Date"
                                Style="{StaticResource LargeListTextBlockStyle}" />
-                    <TextBlock Text="Purchase Price"
+                    <TextBlock Text="Latest Purchase Price"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="PriceListByWholeSellersListView"
