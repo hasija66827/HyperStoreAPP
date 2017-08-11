@@ -9,111 +9,121 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid>
-        <StackPanel Orientation="Vertical">
-            <RelativePanel HorizontalAlignment="Center">
-                <RadioButton x:Name="BillingRadBtn"
-                             IsChecked="True"
-                             GroupName="Billing"
-                             Width="200" />
-                <RadioButton x:Name="PaymentModRadBtn"
-                             IsChecked="True"
-                             GroupName="SelectPaymentMode"
-                             Width="200"
-                             RelativePanel.RightOf="BillingRadBtn" />
-                <RadioButton x:Name="OTPVerificationBtn"
-                             IsChecked="True"
-                             GroupName="OTPVerification"
-                             Width="200"
-                             RelativePanel.RightOf="PaymentModRadBtn" />
-                <RadioButton x:Name="MakePaymentRadBtn"
-                             IsChecked="False"
-                             GroupName="MakePayment"
-                             IsEnabled="False"
-                             Width="200"
-                             RelativePanel.RightOf="OTPVerificationBtn" />
-                <TextBlock RelativePanel.Below="BillingRadBtn"
-                           Style="{StaticResource CaptionTextBlockStyle}"
-                           RelativePanel.AlignLeftWith="BillingRadBtn"
-                           Text="Billing" />
-                <TextBlock  Text="Payment Mode"
-                            Style="{StaticResource CaptionTextBlockStyle}"
-                            RelativePanel.Below="PaymentModRadBtn"
-                            RelativePanel.AlignLeftWith="PaymentModRadBtn" />
-                <TextBlock  Text="OTP Verify"
-                            RelativePanel.Below="OTPVerificationBtn"
-                            Style="{StaticResource CaptionTextBlockStyle}"
-                            RelativePanel.AlignLeftWith="OTPVerificationBtn" />
-                <TextBlock  Text="Make Payment"
-                            Style="{StaticResource CaptionTextBlockStyle}"
-                            RelativePanel.Below="MakePaymentRadBtn"
-                            RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
-            </RelativePanel>
-            <Grid Margin="10,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400" />
-                    <ColumnDefinition Width="140" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Text="Total Balance"
-                           Style="{StaticResource SubtitleTextBlockStyle}" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Converter={StaticResource FloatToRupeeConverter}}"
-                           Grid.Column="1"
-                           HorizontalAlignment="Right"
-                           Style="{StaticResource SubtitleTextBlockStyle}" />
-                <TextBlock Text="Partially Paying"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           Grid.Row="1" />
-                <TextBox Text="{x:Bind PageNavigationParameter.PartiallyPaid, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}"
-                         Grid.Row="1"
-                         Width="120"
-                         HorizontalAlignment="Right"
-                         HorizontalContentAlignment="Right"
-                         Grid.Column="1"
-                         Foreground="#FFED2314" />
-                <TextBlock Text="Pay Later"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           Grid.Row="2"
-                           Grid.Column="0" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBePaidLater,  Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           HorizontalAlignment="Right"
-                           Grid.Row="2"
-                           Grid.Column="1" />
-            </Grid>
-            <StackPanel Orientation="Vertical"
-                        Margin="0,80">
-                <TextBlock Text="Enter OTP"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource SampleHeaderTextStyle}" />
-                <TextBlock x:Name="MobNoTB"
-                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
-                           Foreground="#FF08BFC2"
-                           HorizontalAlignment="Center" />
-                <TextBox x:Name="OTPTB"
-                         Width="120"
-                         PlaceholderText="6 digit"
-                         Grid.Row="3"
-                         Grid.Column="1"
-                         HorizontalContentAlignment="Right" />
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Margin="0,20">
-                    <Button x:Name="SubmitBtn"
-                            Content="Verify" />
-                    <Button x:Name="ResendBtn"
-                            Margin="40,0,0,0"
-                            Content="Resend" />
-                </StackPanel>
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Pay Later OTP Verification"
+                       Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+        </Border>
+        <RelativePanel x:Name="RadContentPanel"
+                       HorizontalAlignment="Center"
+                       RelativePanel.Below="HeaderPanel"
+                       Margin="10,0,0,0">
+            <RadioButton x:Name="BillingRadBtn"
+                         IsChecked="True"
+                         GroupName="Billing"
+                         Width="200" />
+            <RadioButton x:Name="PaymentModRadBtn"
+                         IsChecked="True"
+                         GroupName="SelectPaymentMode"
+                         Width="200"
+                         RelativePanel.RightOf="BillingRadBtn" />
+            <RadioButton x:Name="OTPVerificationBtn"
+                         IsChecked="True"
+                         GroupName="OTPVerification"
+                         Width="200"
+                         RelativePanel.RightOf="PaymentModRadBtn" />
+            <RadioButton x:Name="MakePaymentRadBtn"
+                         IsChecked="False"
+                         GroupName="MakePayment"
+                         IsEnabled="False"
+                         Width="200"
+                         RelativePanel.RightOf="OTPVerificationBtn" />
+            <TextBlock RelativePanel.Below="BillingRadBtn"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       RelativePanel.AlignLeftWith="BillingRadBtn"
+                       Text="Billing" />
+            <TextBlock  Text="Payment Mode"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        RelativePanel.Below="PaymentModRadBtn"
+                        RelativePanel.AlignLeftWith="PaymentModRadBtn" />
+            <TextBlock  Text="OTP Verify"
+                        RelativePanel.Below="OTPVerificationBtn"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        RelativePanel.AlignLeftWith="OTPVerificationBtn" />
+            <TextBlock  Text="Make Payment"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        RelativePanel.Below="MakePaymentRadBtn"
+                        RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
+        </RelativePanel>
+        <Grid Margin="10,20,0,0"
+              x:Name="DetailContentPanel"
+              RelativePanel.Below="RadContentPanel">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="140" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Total Balance"
+                       Style="{StaticResource SubtitleTextBlockStyle}" />
+            <TextBlock Text="{x:Bind PageNavigationParameter.ToBePaid, Converter={StaticResource FloatToRupeeConverter}}"
+                       Grid.Column="1"
+                       HorizontalAlignment="Right"
+                       Style="{StaticResource SubtitleTextBlockStyle}" />
+            <TextBlock Text="Partially Paying"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="1" />
+            <TextBox Text="{x:Bind PageNavigationParameter.PartiallyPaid, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}"
+                     Grid.Row="1"
+                     Width="120"
+                     HorizontalAlignment="Right"
+                     HorizontalContentAlignment="Right"
+                     Grid.Column="1"
+                     Foreground="#FFED2314" />
+            <TextBlock Text="Pay Later"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Grid.Row="2"
+                       Grid.Column="0" />
+            <TextBlock Text="{x:Bind PageNavigationParameter.WalletAmountToBePaidLater,  Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       HorizontalAlignment="Right"
+                       Grid.Row="2"
+                       Grid.Column="1" />
+        </Grid>
+        <StackPanel Orientation="Vertical"
+                    RelativePanel.Below="DetailContentPanel"
+                    Margin="0,80">
+            <TextBlock Text="Enter OTP"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource SampleHeaderTextStyle}" />
+            <TextBlock x:Name="MobNoTB"
+                       Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
+                       Foreground="#FF08BFC2"
+                       HorizontalAlignment="Center" />
+            <TextBox x:Name="OTPTB"
+                     Width="120"
+                     PlaceholderText="6 digit"
+                     Grid.Row="3"
+                     Grid.Column="1"
+                     HorizontalContentAlignment="Right" />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,20">
+                <Button x:Name="SubmitBtn"
+                        Content="Verify" />
+                <Button x:Name="ResendBtn"
+                        Margin="40,0,0,0"
+                        Content="Resend" />
             </StackPanel>
-            <TextBlock x:Name="InvalidOTPNotifyTB"
-                       Visibility="Collapsed" />
         </StackPanel>
-    </Grid>
+        <TextBlock x:Name="InvalidOTPNotifyTB"
+                   Visibility="Collapsed" />
+    </RelativePanel>
 </Page>

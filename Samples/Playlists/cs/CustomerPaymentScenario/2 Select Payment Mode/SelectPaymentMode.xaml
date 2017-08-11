@@ -11,9 +11,17 @@
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Left">
-            <RelativePanel HorizontalAlignment="Center">
+        <RelativePanel>
+            <Border  x:Name="HeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Select Payment Mode"
+                           Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+            </Border>
+            <RelativePanel  x:Name="RadContentPanel"
+                            HorizontalAlignment="Center"
+                            RelativePanel.Below="HeaderPanel"
+                            Margin="10,0,0,0">
                 <RadioButton x:Name="BillingRadBtn"
                              IsChecked="True"
                              GroupName="Billing"
@@ -52,10 +60,12 @@
                             Style="{StaticResource CaptionTextBlockStyle}"
                             RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
             </RelativePanel>
-            <Grid Margin="10,20,0,0">
+            <Grid x:Name="PaymentDetailsPanel"
+                  Margin="10,20,0,0"
+                  RelativePanel.Below="RadContentPanel">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="400" />
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="160" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -88,7 +98,9 @@
                            Grid.Row="1"
                            HorizontalAlignment="Right" />
             </Grid>
-            <StackPanel Orientation="Vertical"
+            <StackPanel x:Name="SelectPaymentModePanel"
+                        Orientation="Vertical"
+                        RelativePanel.Below="PaymentDetailsPanel"
                         Margin="10,20,0,0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock TextWrapping="Wrap"
@@ -109,10 +121,14 @@
                              Content="Pay Later"
                              GroupName="paymentMode" />
             </StackPanel>
-            <Button x:Name="ProceedToPayment"
-                    Margin="0,40,0,0"
-                    Content="Proceed"
-                    HorizontalAlignment="Center" />
-        </StackPanel>
+            <StackPanel x:Name="CommandPanel"
+                        Orientation="Horizontal"
+                        RelativePanel.AlignBottomWithPanel="True">
+                <Button x:Name="ProceedToPayment"
+                        Content="Proceed"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource ScenarioButtonStyle}" />
+            </StackPanel>
+        </RelativePanel>
     </Grid>
 </Page>

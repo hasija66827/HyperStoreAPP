@@ -8,9 +8,19 @@
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <Grid>
-        <StackPanel Orientation="Vertical">
-            <RelativePanel HorizontalAlignment="Center">
+    <Grid Background="White">
+        <RelativePanel>
+            <Border  x:Name="HeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="OTP Verification"
+                           Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+            </Border>
+            <RelativePanel x:Name="RadContentPanel"
+                           HorizontalAlignment="Center"
+                           RelativePanel.Below="HeaderPanel"
+                           Margin="10,0,0,0"
+                           >
                 <RadioButton x:Name="BillingRadBtn"
                              IsChecked="True"
                              GroupName="Billing"
@@ -48,7 +58,9 @@
                             RelativePanel.Below="MakePaymentRadBtn"
                             RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
             </RelativePanel>
-            <Grid  Margin="10,20,0,0">
+            <Grid  Margin="10,20,0,0"
+                   x:Name="DetailsPanel"
+                   RelativePanel.Below="RadContentPanel">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="400" />
                     <ColumnDefinition Width="180" />
@@ -74,6 +86,7 @@
                            Grid.Column="1" />
             </Grid>
             <StackPanel Orientation="Vertical"
+                        RelativePanel.Below="DetailsPanel"
                         Margin="0,80">
                 <TextBlock Text="Enter OTP"
                            HorizontalAlignment="Center"
@@ -98,6 +111,6 @@
                             Content="Resend" />
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </RelativePanel>
     </Grid>
 </Page>
