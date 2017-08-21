@@ -13,7 +13,7 @@ namespace SDKTemplate
     {
         private DelegateCommand validateCommand;
         private Guid _wholeSellerId;
-        public virtual Guid WholeSellerId { get { return this._wholeSellerId; } set { this._wholeSellerId = value; } }
+        public virtual Guid SupplierId { get { return this._wholeSellerId; } set { this._wholeSellerId = value; } }
 
         private string _address;
         public virtual string Address

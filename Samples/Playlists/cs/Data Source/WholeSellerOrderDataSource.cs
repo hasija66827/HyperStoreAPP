@@ -60,7 +60,7 @@ namespace SDKTemplate
             if (wholesellerId == null)
                 result = WholeSellerOrderDataSource.Orders;
             else
-                result = WholeSellerOrderDataSource.Orders.Where(o => o.WholeSeller.WholeSellerId == wholesellerId).ToList();
+                result = WholeSellerOrderDataSource.Orders.Where(o => o.WholeSeller.SupplierId == wholesellerId).ToList();
             if (filterWholeSalerOrderCriteria == null)
                 return result;
             else
@@ -124,7 +124,7 @@ namespace SDKTemplate
         {
             if (db == null)
                 db = new DatabaseModel.RetailerContext();
-            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.WholeSellerId &&
+            var partiallyPaidOrders = db.WholeSellersOrders.Where(wo => wo.WholeSellerId == wholeSeller.SupplierId &&
                                                                         wo.BillAmount - wo.PaidAmount > 0)
                                                             .OrderBy(wo => wo.OrderDate);
             var creditAmount = transaction.CreditAmount;

@@ -69,7 +69,7 @@ namespace DatabaseModel
         public static explicit operator WholeSeller(WholeSellerViewModel v)
         {
             WholeSeller w = new WholeSeller();
-            w.WholeSellerId = v.WholeSellerId;
+            w.WholeSellerId = v.SupplierId;
             w.Address = v.Address;
             w.GSTIN = v.GSTIN;
             w.MobileNo = v.MobileNo;
@@ -163,7 +163,7 @@ namespace DatabaseModel
             this.DueDate = wholeSellerPurchaseNavigationParameter.WholeSellerCheckoutViewModel.DueDate;
             this.BillAmount = wholeSellerPurchaseNavigationParameter.WholeSellerBillingSummaryViewModel.BillAmount;
             this.PaidAmount = wholeSellerPurchaseNavigationParameter.WholeSellerCheckoutViewModel.PaidAmount;
-            this.WholeSellerId = wholeSellerPurchaseNavigationParameter.WholeSellerViewModel.WholeSellerId;
+            this.WholeSellerId = wholeSellerPurchaseNavigationParameter.WholeSellerViewModel.SupplierId;
         }
 
         public WholeSellerOrder() { }

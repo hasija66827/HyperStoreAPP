@@ -1,4 +1,5 @@
-﻿ 
+﻿
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,9 @@ namespace SDKTemplate
 {
     class WholeSellerDataSource
     {
-        private static List<WholeSellerViewModel> _wholeSellers = new List<WholeSellerViewModel>();
-        public static List<WholeSellerViewModel> WholeSellers { get { return _wholeSellers; } }
-        public WholeSellerDataSource()
-        {
-
-        }
-
+        private static List<WholeSellerViewModel> _suppliers = new List<WholeSellerViewModel>();
+        public static List<WholeSellerViewModel> WholeSellers { get { return _suppliers; } }
+//#remove
         #region Create
         /// <summary>
         /// Adds The WholeSeller into WholeSeller Data source as well as in sqllte database.
@@ -28,19 +25,28 @@ namespace SDKTemplate
                 db.WholeSellers.Add((DatabaseModel.WholeSeller)newWholeSeller);
                 db.SaveChanges();
             }
-            _wholeSellers.Add(newWholeSeller);
+            _suppliers.Add(newWholeSeller);
         }
         #endregion
 
         #region Read
-        public static void RetrieveWholeSellers()
+        public static async Task RetrieveWholeSellersAsync()
         {
-            using (var db = new DatabaseModel.RetailerContext())
+            string actionURI = "suppliers";
+            string httpResponseBody = "";
+            try
             {
-                // Retrieving data from the database synchronously.
-                var dbWholeSeller = db.WholeSellers.ToList();
-                _wholeSellers = dbWholeSeller
-                    .Select(w => new WholeSellerViewModel(w)).ToList();
+                var response = await Utility.HttpGet(actionURI);
+                if (response.IsSuccessStatusCode)
+                {
+                    httpResponseBody = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<List<WholeSellerViewModel>>(httpResponseBody);
+                    _suppliers = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -56,7 +62,7 @@ namespace SDKTemplate
         {
             List<WholeSellerViewModel> result = new List<WholeSellerViewModel>();
             if (wholeSellerId == null)
-                result = WholeSellerDataSource._wholeSellers;
+                result = WholeSellerDataSource._suppliers;
             else
                 result.Add(GetWholeSellerById(wholeSellerId));
 
@@ -77,7 +83,7 @@ namespace SDKTemplate
         /// <returns>An ordered list of mobileNumber that matches the query</returns>
         public static IEnumerable<WholeSellerViewModel> GetMatchingWholeSellers(string query)
         {
-            return _wholeSellers
+            return _suppliers
                 .Where(item => item.MobileNo.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1
                             || item.Address.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
@@ -87,13 +93,13 @@ namespace SDKTemplate
         {
             if (wholeSellerId == null)
                 return null;
-            return _wholeSellers
-                 .Where(w => w.WholeSellerId.Equals(wholeSellerId)).FirstOrDefault();
+            return _suppliers
+                 .Where(w => w.SupplierId.Equals(wholeSellerId)).FirstOrDefault();
         }
 
         public static bool IsNameExist(string name)
         {
-            var WholeSellers = WholeSellerDataSource._wholeSellers
+            var WholeSellers = WholeSellerDataSource._suppliers
              .Where(c => c.Name.ToLower() == name.ToLower());
             if (WholeSellers.Count() == 0)
                 return false;
@@ -102,7 +108,7 @@ namespace SDKTemplate
 
         public static bool IsMobileNumberExist(string mobileNumber)
         {
-            var WholeSellers = WholeSellerDataSource._wholeSellers
+            var WholeSellers = WholeSellerDataSource._suppliers
              .Where(c => c.MobileNo == mobileNumber);
             if (WholeSellers.Count() == 0)
                 return false;
@@ -111,19 +117,20 @@ namespace SDKTemplate
 
         public static float GetMinimumWalletBalance()
         {
-            if (_wholeSellers.Count == 0)
+            if (_suppliers.Count == 0)
                 return 0;
-            return _wholeSellers.Min(c => c.WalletBalance);
+            return _suppliers.Min(c => c.WalletBalance);
         }
 
         public static float GetMaximumWalletBalance()
         {
-            if (_wholeSellers.Count == 0)
+            if (_suppliers.Count == 0)
                 return 0;
-            return _wholeSellers.Max(c => c.WalletBalance);
+            return _suppliers.Max(c => c.WalletBalance);
         }
         #endregion
 
+        //#remove
         #region Update
         public static float UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
         float walletBalanceToBeAdded)
@@ -134,16 +141,16 @@ namespace SDKTemplate
             var memberEntry = entityEntry.Member(nameof(DatabaseModel.WholeSeller.WalletBalance));
             memberEntry.IsModified = true;
             db.SaveChanges();
-            UpdateWalletBalanceOfWholeSellerInMemory(wholeSellerViewModel.WholeSellerId, wholeSeller.WalletBalance);
+            UpdateWalletBalanceOfWholeSellerInMemory(wholeSellerViewModel.SupplierId, wholeSeller.WalletBalance);
             return wholeSeller.WalletBalance;
         }
 
         private static void UpdateWalletBalanceOfWholeSellerInMemory(Guid wholeSellerId, float newWalletBalance)
         {
-            int index = _wholeSellers.FindIndex(c => c.WholeSellerId == wholeSellerId);
-            if (index < 0 || index >= _wholeSellers.Count())
+            int index = _suppliers.FindIndex(c => c.SupplierId == wholeSellerId);
+            if (index < 0 || index >= _suppliers.Count())
                 throw new Exception("Assert: WholeSeller should be present in wholeSeller data source");
-            _wholeSellers[index].WalletBalance = newWalletBalance;
+            _suppliers[index].WalletBalance = newWalletBalance;
         }
         #endregion
     }

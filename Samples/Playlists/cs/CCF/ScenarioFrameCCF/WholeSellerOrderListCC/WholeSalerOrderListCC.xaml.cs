@@ -39,7 +39,7 @@ namespace SDKTemplate
 
         private void UpdateMasterListView()
         {
-            var wholeSellerId = WholeSellerASBCC.Current.SelectedWholeSellerInASB?.WholeSellerId;
+            var wholeSellerId = WholeSellerASBCC.Current.SelectedWholeSellerInASB?.SupplierId;
             var filterWholeSalerOrderCriteria = FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteria;
             this.WholeSellerOrdersViewModel = WholeSellerOrderDataSource.GetFilteredOrders(filterWholeSalerOrderCriteria, wholeSellerId);
             MasterListView.ItemsSource = this.WholeSellerOrdersViewModel;

@@ -46,7 +46,7 @@ namespace SDKTemplate.View_Models
             this._creditAmount = creditAmount;
             this._transactionDate = transactionDate;
             this._walletSnapShot = wholeSellerViewModel.WalletBalance;
-            this._wholeSellerId = wholeSellerViewModel.WholeSellerId;
+            this._wholeSellerId = wholeSellerViewModel.SupplierId;
         }
 
         public TransactionViewModel(DatabaseModel.Transaction transaction)

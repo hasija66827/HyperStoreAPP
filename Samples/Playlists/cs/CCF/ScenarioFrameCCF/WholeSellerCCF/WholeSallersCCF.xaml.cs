@@ -50,7 +50,7 @@ namespace SDKTemplate
         private void UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
-            var wholeSalerId = selectedWholesaler?.WholeSellerId;
+            var wholeSalerId = selectedWholesaler?.SupplierId;
             var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
             var items = WholeSellerDataSource.GetFilteredWholeSeller(wholeSalerId, filterWholeSalerCriteria);
             MasterListView.ItemsSource = items;
@@ -66,7 +66,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.SelectedWholeSeller = (WholeSellerViewModel)e.ClickedItem;
-            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionWholeSellerId(SelectedWholeSeller.WholeSellerId);
+            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionWholeSellerId(SelectedWholeSeller.SupplierId);
             DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
         }
 
