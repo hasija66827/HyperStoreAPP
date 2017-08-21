@@ -4,10 +4,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.Cryptography.Certificates;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using Windows.Web.Http;
+using Windows.Web.Http.Filters;
 
 namespace SDKTemplate
 {
@@ -230,6 +233,27 @@ namespace SDKTemplate
             if (str == null || str == "")
                 return false;
             return true;
+        }
+
+        public static async Task<HttpResponseMessage> HttpGet(string actionURI)
+        {
+            string absoluteURI = "https://localhost:44346/api/";
+            string uri = string.Concat(absoluteURI, actionURI);
+
+            HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
+            httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
+            HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(uri));
+            try
+            {
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                throw new Exception(x);
+            }
         }
 
         public static bool IsMobileNumber(string text)
