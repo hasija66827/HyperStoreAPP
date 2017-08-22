@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -16,20 +17,22 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void SelectedWholeSellerChangedDelegate();
+    public delegate Task SelectedWholeSellerChangedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class WholeSellerASBCC : Page
     {
         public static WholeSellerASBCC Current;
+        private List<WholeSellerViewModel> _Suppliers { get; set; }
         public WholeSellerViewModel SelectedWholeSellerInASB { get { return this._selectedWholeSellerInASB; } }
         private WholeSellerViewModel _selectedWholeSellerInASB;
         public event SelectedWholeSellerChangedDelegate SelectedWholeSellerChangedEvent;
         public WholeSellerASBCC()
         {
-            this.InitializeComponent();
             Current = this;
+            this.InitializeComponent();
+            this._Suppliers = null;
         }
 
         /// <summary>
@@ -38,14 +41,16 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
         /// <param name="args">The event arguments.</param>
-        private void WholeSellerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private async void WholeSellerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
+            if (this._Suppliers == null)
+                this._Suppliers = await WholeSellerDataSource.RetrieveWholeSellersAsync();
             // We only want to get results when it was a user typing, 
             // otherwise we assume the value got filled in by TextMemberPath 
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var matchingWholeSellers = WholeSellerDataSource.GetMatchingWholeSellers(sender.Text);
+                var matchingWholeSellers = GetMatchingWholeSellers(sender.Text);
                 sender.ItemsSource = matchingWholeSellers.ToList();
             }
         }
@@ -59,8 +64,11 @@ namespace SDKTemplate
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void WholeSellerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private async void WholeSellerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
+            if (this._Suppliers == null)
+                this._Suppliers = await WholeSellerDataSource.RetrieveWholeSellersAsync();
+
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item, take an action on it here
@@ -72,7 +80,7 @@ namespace SDKTemplate
                 WholeSellerViewModel matchingWholeSeller = null;
                 // if a text is present, find best possible match.
                 if (args.QueryText != "")
-                    matchingWholeSeller = WholeSellerDataSource.GetMatchingWholeSellers(args.QueryText).FirstOrDefault();
+                    matchingWholeSeller = (GetMatchingWholeSellers(args.QueryText)).FirstOrDefault();
                 SelectWholeSeller(matchingWholeSeller);
             }
         }
@@ -86,7 +94,7 @@ namespace SDKTemplate
                 WholeSellerDetails.Visibility = Visibility.Visible;
                 WholeSellerMobNo.Text = WholeSeller.MobileNo;
                 WholeSellerName.Text = WholeSeller.Name;
-                WholeSellerAddress.Text = WholeSeller.Address;
+                WholeSellerAddress.Text = WholeSeller.Address != null ? WholeSeller.Address : "";
                 WholeSellerWalletBalance.Text = Utility.FloatToRupeeConverter(WholeSeller.WalletBalance);
                 WholeSellerGlyph.Text = Utility.GetGlyphValue(WholeSeller.Name);
             }
@@ -98,5 +106,19 @@ namespace SDKTemplate
             }
             SelectedWholeSellerChangedEvent?.Invoke();
         }
+
+        /// <summary>
+        /// Do a fuzzy search on all Product and order results based on a pre-defined rule set
+        /// </summary>
+        /// <param name="query">The part of the name or company to look for</param>
+        /// <returns>An ordered list of mobileNumber that matches the query</returns>
+        private List<WholeSellerViewModel> GetMatchingWholeSellers(string query)
+        {
+            return this._Suppliers
+                .Where(item => item.MobileNo.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1
+                            || item.Name?.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
+                .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase)).ToList();
+        }
+
     }
 }

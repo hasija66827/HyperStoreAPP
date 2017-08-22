@@ -53,12 +53,14 @@ namespace SDKTemplate
         }
         public PriceQuotedByWholeSellerViewModel(PriceQuotedByWholeSeller p)
         {
+            /*
             var wholeSellerViewModel = WholeSellerDataSource.GetWholeSellerById(p.wholeSellerId);
             this._wholeSellerId = wholeSellerViewModel?.SupplierId;
             this._wholeSellerName = wholeSellerViewModel != null ? wholeSellerViewModel.Name : "xxxxx";
             this._wholeSellerMobileNo = wholeSellerViewModel != null ? wholeSellerViewModel.MobileNo : "99xxx88xxx";
             this._purchasePrice = p.purchasePrice;
             this._orderDate = p.orderDate;
+            */
         }
     }
     /// <summary>

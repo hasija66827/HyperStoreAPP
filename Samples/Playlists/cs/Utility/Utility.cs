@@ -235,6 +235,27 @@ namespace SDKTemplate
             return true;
         }
 
+        public static async Task<HttpResponseMessage> HttpPost(string actionURI, string content)
+        {
+            string absoluteURI = "https://localhost:44346/api/";
+            string uri = string.Concat(absoluteURI, actionURI);
+            HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
+            httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
+            HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(uri));
+            request.Content = new HttpStringContent(content,Windows.Storage.Streams.UnicodeEncoding.Utf8 , "application/json");
+            try
+            {
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                throw new Exception(x);
+            }
+        }
+
         public static async Task<HttpResponseMessage> HttpGet(string actionURI)
         {
             string absoluteURI = "https://localhost:44346/api/";
@@ -337,11 +358,7 @@ namespace SDKTemplate
             }
             else if (person == Person.WholeSeller)
             {
-                if (WholeSellerDataSource.IsMobileNumberExist(mobileNo))
-                {
-                    MainPage.Current.NotifyUser("Mobile Number already exist", NotifyType.ErrorMessage);
-                    return false;
-                }
+                
             }
             return true;
         }
@@ -363,11 +380,7 @@ namespace SDKTemplate
             }
             else if (person == Person.WholeSeller)
             {
-                if (WholeSellerDataSource.IsNameExist(name))
-                {
-                    MainPage.Current.NotifyUser("Name already exist", NotifyType.ErrorMessage);
-                    return false;
-                }
+              
             }
             return true;
         }

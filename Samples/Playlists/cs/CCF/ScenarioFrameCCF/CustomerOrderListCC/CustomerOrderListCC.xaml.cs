@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
 using SDKTemp.Data;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -44,7 +45,7 @@ namespace SDKTemplate
             UpdateMasterListViewItemSource();
         }
 
-        private void UpdateMasterListViewItemSource()
+        private async Task UpdateMasterListViewItemSource()
         {
             var selectedDateRange = FilterOrderCC.Current.SelectedDateRange;
             if (selectedDateRange.StartDate.Date > selectedDateRange.EndDate.Date)

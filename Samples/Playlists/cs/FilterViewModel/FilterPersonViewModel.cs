@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 { 
-    public delegate void FilterPersonChangedDelegate();
+    public delegate Task FilterPersonChangedDelegate();
 
     public class FilterPersonCriteria
     {

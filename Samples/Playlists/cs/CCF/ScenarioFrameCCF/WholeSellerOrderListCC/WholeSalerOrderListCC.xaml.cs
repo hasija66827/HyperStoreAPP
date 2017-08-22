@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -37,7 +38,7 @@ namespace SDKTemplate
             UpdateMasterListView();
         }
 
-        private void UpdateMasterListView()
+        private async Task UpdateMasterListView()
         {
             var wholeSellerId = WholeSellerASBCC.Current.SelectedWholeSellerInASB?.SupplierId;
             var filterWholeSalerOrderCriteria = FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteria;

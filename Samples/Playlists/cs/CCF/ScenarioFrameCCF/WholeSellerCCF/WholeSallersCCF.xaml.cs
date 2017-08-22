@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SDKTemplate.View_Models;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -47,15 +48,16 @@ namespace SDKTemplate
         /// a) Initialization of the class
         /// b) FilterWholesellerCC or WholesellerASBCC triggers the event.
         /// </summary>
-        private void UpdateMasterListViewItemSourceByFilterCriteria()
+        private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
             var wholeSalerId = selectedWholesaler?.SupplierId;
             var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
-            var items = WholeSellerDataSource.GetFilteredWholeSeller(wholeSalerId, filterWholeSalerCriteria);
+            var items = await WholeSellerDataSource.GetFilteredWholeSeller(wholeSalerId, filterWholeSalerCriteria);
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
-            WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerDataSource.WholeSellers.Count.ToString() + ")";
+            WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
+
         }
 
         /// <summary>

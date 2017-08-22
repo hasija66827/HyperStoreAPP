@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -43,7 +44,7 @@ namespace SDKTemplate
         /// a) Initialization of the class
         /// b) FilterCustomerCC or CustomerASBCC triggers the event.
         /// </summary>
-        private void UpdateMasterListViewItemSourceByFilterCriteria()
+        private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             var customerId = selectedCustomer?.CustomerId;

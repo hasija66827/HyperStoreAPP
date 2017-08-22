@@ -12,8 +12,8 @@ namespace SDKTemplate
     public class WholeSellerViewModel : ValidatableBindableBase
     {
         private DelegateCommand validateCommand;
-        private Guid _wholeSellerId;
-        public virtual Guid SupplierId { get { return this._wholeSellerId; } set { this._wholeSellerId = value; } }
+        private Guid _supplierId;
+        public virtual Guid SupplierId { get { return this._supplierId; } set { this._supplierId = value; } }
 
         private string _address;
         public virtual string Address
@@ -45,17 +45,17 @@ namespace SDKTemplate
         public WholeSellerViewModel()
         {
             validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this._wholeSellerId = Guid.NewGuid();
-            this._address = "";
-            this._mobileNo = "";
-            this._name = "";
+            this._supplierId =Guid.Empty;
+            this._address = null;
+            this._mobileNo = null;
+            this._name = null;
             this._walletBalance = 0;
         }
 
         public WholeSellerViewModel(DatabaseModel.WholeSeller wholeSeller)
         {
             validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this._wholeSellerId = wholeSeller.WholeSellerId;
+            this._supplierId = wholeSeller.WholeSellerId;
             this._address = wholeSeller.Address;
             this._gstin = wholeSeller.GSTIN;
             this._mobileNo = wholeSeller.MobileNo;
@@ -70,7 +70,7 @@ namespace SDKTemplate
 
         public string WholeSeller_Name_MobileNo
         {
-            get { return string.Format("{0}\n{1}", this.Name, this.MobileNo); }
+            get { return string.Format("{0} ({1})", this.MobileNo, this.Name); }
         }
 
         public ICommand ValidateCommand

@@ -61,13 +61,12 @@ namespace SDKTemplate
         {
             NewsFeedFrame.Navigate(typeof(CreateTag));
         }
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
             ProductDataSource.RetrieveProductDataAsync();
             TagDataSource.RetreiveTags();
             CustomerDataSource.RetrieveCustomersAsync();
-            WholeSellerDataSource.RetrieveWholeSellersAsync();
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {

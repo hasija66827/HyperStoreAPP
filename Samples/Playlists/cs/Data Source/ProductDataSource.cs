@@ -144,6 +144,7 @@ namespace SDKTemplate
         public static List<ProductListToPurchaseViewModel> RetreiveProductListToPurchaseByRespectiveWholeSellers()
         {
             var items = new List<ProductListToPurchaseViewModel>();
+            /*
             var db = new DatabaseModel.RetailerContext();
             var groups = db.Products.GroupBy(p => p.WholeSellerId);
             foreach (var group in groups)
@@ -157,7 +158,7 @@ namespace SDKTemplate
                 }
                 item.Products = group.Select(p => new ProductViewModelBase(p)).ToList();
                 items.Add(item);
-            }
+            }*/
             return items;
         }
         #endregion
