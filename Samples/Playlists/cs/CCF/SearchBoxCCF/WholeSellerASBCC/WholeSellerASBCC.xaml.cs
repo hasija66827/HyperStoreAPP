@@ -44,7 +44,7 @@ namespace SDKTemplate
         private async void WholeSellerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (this._Suppliers == null)
-                this._Suppliers = await WholeSellerDataSource.RetrieveWholeSellersAsync();
+                this._Suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
             // We only want to get results when it was a user typing, 
             // otherwise we assume the value got filled in by TextMemberPath 
             // or the handler for SuggestionChosen
@@ -67,7 +67,7 @@ namespace SDKTemplate
         private async void WholeSellerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (this._Suppliers == null)
-                this._Suppliers = await WholeSellerDataSource.RetrieveWholeSellersAsync();
+                this._Suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
 
             if (args.ChosenSuggestion != null)
             {

@@ -12,8 +12,8 @@ namespace SDKTemplate
     public class OrderSummaryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        private float _totalSales;
-        public float TotalSales
+        private decimal _totalSales;
+        public decimal TotalSales
         {
             get { return this._totalSales; }
             set
@@ -22,8 +22,8 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(TotalSales));
             }
         }
-        private float _totalSalesWithDiscount;
-        public float TotalSalesWithDiscount
+        private decimal _totalSalesWithDiscount;
+        public decimal TotalSalesWithDiscount
         {
             get { return this._totalSalesWithDiscount; }
             set
@@ -32,8 +32,8 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(TotalSalesWithDiscount));
             }
         }
-        private float _receivedNow;
-        public float ReceivedNow
+        private decimal _receivedNow;
+        public decimal ReceivedNow
         {
             get { return this._receivedNow; }
             set
@@ -42,8 +42,8 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(ReceivedNow));
             }
         }
-        private float _receivedLater;
-        public float ReceivedLater { get { return this._receivedLater; } set { this._receivedLater = value; } }
+        private decimal _receivedLater;
+        public decimal ReceivedLater { get { return this._receivedLater; } set { this._receivedLater = value; } }
         public OrderSummaryViewModel()
         {
             this._totalSales = 0;
@@ -61,9 +61,9 @@ namespace SDKTemplate
             ReceivedNow = CalculatedReceivedNow(orderListCC.orderList);
             ReceivedLater = CalculatedReceivedNow(orderListCC.orderList);
         }
-        private float CalculatedReceivedNow(List<CustomerOrderViewModel> orderList)
+        private decimal CalculatedReceivedNow(List<CustomerOrderViewModel> orderList)
         {
-            float f = 2;
+            decimal f = 2;
             return f;
             //TODO:
         }

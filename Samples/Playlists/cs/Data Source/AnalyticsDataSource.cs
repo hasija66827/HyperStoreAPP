@@ -11,9 +11,9 @@ namespace SDKTemplate
         public Guid? wholeSellerId;
         public DateTime orderDate;
         public Guid? productId;
-        public float purchasePrice;
+        public decimal purchasePrice;
 
-        public PriceQuotedByWholeSeller(Guid? wholeSellerId, DateTime orderDate, Guid? productId, float purchasePrice)
+        public PriceQuotedByWholeSeller(Guid? wholeSellerId, DateTime orderDate, Guid? productId, decimal purchasePrice)
         {
             this.wholeSellerId = wholeSellerId;
             this.orderDate = orderDate;

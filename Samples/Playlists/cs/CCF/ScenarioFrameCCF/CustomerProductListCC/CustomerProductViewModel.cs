@@ -12,8 +12,8 @@ namespace SDKTemplate
     public delegate void QuantityChangedDelegate(object sender, Int32 Quantity);
     public class CustomerProductViewModel : ProductViewModelBase, INotifyPropertyChanged
     {
-        private float _netValue;
-        public float NetValue { get { return Utility.RoundInt32(this._netValue); } }
+        private decimal _netValue;
+        public decimal NetValue { get { return Utility.RoundInt32(this._netValue); } }
 
         private Int32 _quantityPurchased;
         public Int32 QuantityPurchased

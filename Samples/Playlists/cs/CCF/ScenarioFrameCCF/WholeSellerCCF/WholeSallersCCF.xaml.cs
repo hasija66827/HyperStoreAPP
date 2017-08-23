@@ -39,8 +39,11 @@ namespace SDKTemplate
             this.SelectedWholeSeller = null;
             WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
-            FilterPersonCC.Current.InitializeRangeSlider(WholeSellerDataSource.GetMinimumWalletBalance(), WholeSellerDataSource.GetMaximumWalletBalance());
-            UpdateMasterListViewItemSourceByFilterCriteria();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
         /// <summary>
@@ -53,7 +56,10 @@ namespace SDKTemplate
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
             var wholeSalerId = selectedWholesaler?.SupplierId;
             var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
-            var items = await WholeSellerDataSource.GetFilteredWholeSeller(wholeSalerId, filterWholeSalerCriteria);
+            var items = await SupplierDataSource.RetrieveSuppliersAsync(new SupplierFilterCriteria() {
+                SupplierId = wholeSalerId,
+                WalletAmount = filterWholeSalerCriteria.WalletBalance
+            });
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
             WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
@@ -68,7 +74,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.SelectedWholeSeller = (WholeSellerViewModel)e.ClickedItem;
-            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionWholeSellerId(SelectedWholeSeller.SupplierId);
+            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionWholeSellerId((Guid)SelectedWholeSeller.SupplierId);
             DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
         }
 

@@ -10,8 +10,8 @@ namespace SDKTemplate
 
     public class FilterPersonCriteria
     {
-        public IRange<float> WalletBalance { get; set; }
-        public FilterPersonCriteria(IRange<float> walletBalance)
+        public IRange<decimal> WalletBalance { get; set; }
+        public FilterPersonCriteria(IRange<decimal> walletBalance)
         {
             this.WalletBalance = walletBalance;
         }

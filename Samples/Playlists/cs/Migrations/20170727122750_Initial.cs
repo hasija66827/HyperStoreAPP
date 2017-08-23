@@ -17,7 +17,7 @@ namespace SDKTemplate.Migrations
                     GSTIN = table.Column<string>(nullable: true),
                     MobileNo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    WalletBalance = table.Column<float>(nullable: false)
+                    WalletBalance = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace SDKTemplate.Migrations
                     GSTIN = table.Column<string>(nullable: true),
                     MobileNo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    WalletBalance = table.Column<float>(nullable: false)
+                    WalletBalance = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,18 +57,18 @@ namespace SDKTemplate.Migrations
                 columns: table => new
                 {
                     CustomerOrderId = table.Column<Guid>(nullable: false),
-                    AddingMoneyToWallet = table.Column<float>(nullable: false),
-                    BillAmount = table.Column<float>(nullable: false),
+                    AddingMoneyToWallet = table.Column<decimal>(nullable: false),
+                    BillAmount = table.Column<decimal>(nullable: false),
                     CustomerId = table.Column<Guid>(nullable: false),
                     CustomerOrderNo = table.Column<string>(nullable: true),
-                    DiscountedAmount = table.Column<float>(nullable: false),
+                    DiscountedAmount = table.Column<decimal>(nullable: false),
                     IsPaidNow = table.Column<bool>(nullable: false),
                     IsUseWallet = table.Column<bool>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false),
-                    PartiallyPaid = table.Column<float>(nullable: false),
-                    PayingLater = table.Column<float>(nullable: false),
-                    PayingNow = table.Column<float>(nullable: false),
-                    UsingWalletAmount = table.Column<float>(nullable: false)
+                    PartiallyPaid = table.Column<decimal>(nullable: false),
+                    PayingLater = table.Column<decimal>(nullable: false),
+                    PayingNow = table.Column<decimal>(nullable: false),
+                    UsingWalletAmount = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,13 +87,13 @@ namespace SDKTemplate.Migrations
                 {
                     ProductId = table.Column<Guid>(nullable: false),
                     BarCode = table.Column<string>(nullable: true),
-                    CGSTPer = table.Column<float>(nullable: false),
-                    DiscountPer = table.Column<float>(nullable: false),
-                    DisplayPrice = table.Column<float>(nullable: false),
+                    CGSTPer = table.Column<decimal>(nullable: false),
+                    DiscountPer = table.Column<decimal>(nullable: false),
+                    DisplayPrice = table.Column<decimal>(nullable: false),
                     IsInventoryItem = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     RefillTime = table.Column<int>(nullable: false),
-                    SGSTPer = table.Column<float>(nullable: false),
+                    SGSTPer = table.Column<decimal>(nullable: false),
                     Threshold = table.Column<int>(nullable: false),
                     TotalQuantity = table.Column<int>(nullable: false),
                     UserDefinedCode = table.Column<string>(nullable: true),
@@ -115,10 +115,10 @@ namespace SDKTemplate.Migrations
                 columns: table => new
                 {
                     TransactionId = table.Column<Guid>(nullable: false),
-                    CreditAmount = table.Column<float>(nullable: false),
+                    CreditAmount = table.Column<decimal>(nullable: false),
                     TransactionDate = table.Column<DateTime>(nullable: false),
                     TransactionNo = table.Column<string>(nullable: true),
-                    WalletSnapshot = table.Column<float>(nullable: false),
+                    WalletSnapshot = table.Column<decimal>(nullable: false),
                     WholeSellerId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -137,10 +137,10 @@ namespace SDKTemplate.Migrations
                 columns: table => new
                 {
                     WholeSellerOrderId = table.Column<Guid>(nullable: false),
-                    BillAmount = table.Column<float>(nullable: false),
+                    BillAmount = table.Column<decimal>(nullable: false),
                     DueDate = table.Column<DateTime>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false),
-                    PaidAmount = table.Column<float>(nullable: false),
+                    PaidAmount = table.Column<decimal>(nullable: false),
                     WholeSellerId = table.Column<Guid>(nullable: false),
                     WholeSellerOrderNo = table.Column<string>(nullable: true)
                 },
@@ -161,8 +161,8 @@ namespace SDKTemplate.Migrations
                 {
                     CustomerOrderProductId = table.Column<Guid>(nullable: false),
                     CustomerOrderId = table.Column<Guid>(nullable: false),
-                    DiscountPerSnapShot = table.Column<float>(nullable: false),
-                    DisplayCostSnapShot = table.Column<float>(nullable: false),
+                    DiscountPerSnapShot = table.Column<decimal>(nullable: false),
+                    DisplayCostSnapShot = table.Column<decimal>(nullable: false),
                     ProductId = table.Column<Guid>(nullable: false),
                     QuantityPurchased = table.Column<int>(nullable: false)
                 },
@@ -214,7 +214,7 @@ namespace SDKTemplate.Migrations
                 {
                     WholeSellerOrderProductId = table.Column<Guid>(nullable: false),
                     ProductId = table.Column<Guid>(nullable: false),
-                    PurchasePrice = table.Column<float>(nullable: false),
+                    PurchasePrice = table.Column<decimal>(nullable: false),
                     QuantityPurchased = table.Column<int>(nullable: false),
                     WholeSellerOrderId = table.Column<Guid>(nullable: false)
                 },
@@ -241,7 +241,7 @@ namespace SDKTemplate.Migrations
                 {
                     WholeSellerOrderTransactionId = table.Column<Guid>(nullable: false),
                     IsPaymentComplete = table.Column<bool>(nullable: false),
-                    PaidAmount = table.Column<float>(nullable: false),
+                    PaidAmount = table.Column<decimal>(nullable: false),
                     TransactionId = table.Column<Guid>(nullable: false),
                     WholeSellerOrderId = table.Column<Guid>(nullable: false)
                 },

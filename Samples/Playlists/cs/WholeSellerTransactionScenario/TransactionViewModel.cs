@@ -16,8 +16,8 @@ namespace SDKTemplate.View_Models
         public string TransactionNo { get { return this._transactionNo; } }
 
         //Amount credited into the account of the wholeseller.
-        private float _creditAmount;
-        public float CreditAmount { get { return this._creditAmount; } }
+        private decimal _creditAmount;
+        public decimal CreditAmount { get { return this._creditAmount; } }
 
         private DateTime _transactionDate;
         public DateTime TransactionDate { get { return this._transactionDate; } }
@@ -30,15 +30,15 @@ namespace SDKTemplate.View_Models
             }
         }
 
-        private float _walletSnapShot;
-        public float WalletSnapshot { get { return this._walletSnapShot; } }
+        private decimal _walletSnapShot;
+        public decimal WalletSnapshot { get { return this._walletSnapShot; } }
 
-        public float UpdatedWalletSnapshot { get { return this._walletSnapShot - this._creditAmount; } }
+        public decimal UpdatedWalletSnapshot { get { return this._walletSnapShot - this._creditAmount; } }
 
         private Guid? _wholeSellerId;
         public Guid? WholeSellerId { get { return this._wholeSellerId; } }
 
-        public TransactionViewModel(float creditAmount, DateTime transactionDate,
+        public TransactionViewModel(decimal creditAmount, DateTime transactionDate,
                    WholeSellerViewModel wholeSellerViewModel)
         { 
             this._transactionId = Guid.NewGuid();

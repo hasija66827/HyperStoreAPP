@@ -3,7 +3,7 @@
 namespace Mvvm
 {
     /// <summary>
-    /// Sample custom validation for float values.
+    /// Sample custom validation for decimal values.
     /// </summary>
     public class NumericAttribute: ValidationAttribute
     {
@@ -15,8 +15,8 @@ namespace Mvvm
                 return true;
             }
 
-            float result;
-            return float.TryParse(value.ToString(), out result);
+            decimal result;
+            return decimal.TryParse(value.ToString(), out result);
         }
     }
 }

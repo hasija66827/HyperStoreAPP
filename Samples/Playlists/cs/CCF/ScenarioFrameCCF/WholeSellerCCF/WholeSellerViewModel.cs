@@ -12,8 +12,8 @@ namespace SDKTemplate
     public class WholeSellerViewModel : ValidatableBindableBase
     {
         private DelegateCommand validateCommand;
-        private Guid _supplierId;
-        public virtual Guid SupplierId { get { return this._supplierId; } set { this._supplierId = value; } }
+        private Guid? _supplierId;
+        public virtual Guid? SupplierId { get { return this._supplierId; } set { this._supplierId = value; } }
 
         private string _address;
         public virtual string Address
@@ -39,13 +39,13 @@ namespace SDKTemplate
             set { SetProperty(ref _name, value); }
         }
 
-        private float _walletBalance;
-        public virtual float WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
+        private decimal _walletBalance;
+        public virtual decimal WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
 
         public WholeSellerViewModel()
         {
             validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this._supplierId =Guid.Empty;
+            this._supplierId =null;
             this._address = null;
             this._mobileNo = null;
             this._name = null;
@@ -83,7 +83,7 @@ namespace SDKTemplate
             var IsValid = ValidateProperties();
             if (IsValid && Utility.CheckIfUniqueMobileNumber(this.MobileNo, Person.WholeSeller))
             {
-                WholeSellerDataSource.CreateWholeSeller(this);
+                SupplierDataSource.CreateNewSupplier(this);
                 MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
             }
         }

@@ -53,12 +53,12 @@ namespace DatabaseModel
 
     public class WholeSeller
     {
-        public Guid WholeSellerId { get; set; }
+        public Guid? WholeSellerId { get; set; }
         public string Address { get; set; }
         public string GSTIN { get; set; }
         public string MobileNo { get; set; }
         public string Name { get; set; }
-        public float WalletBalance { get; set; }
+        public decimal WalletBalance { get; set; }
         public List<WholeSellerOrder> WholeSellerOrders { get; set; }
         //This is used by Retailer to mark the product to be prurchased from Wholeseller.
         public List<Product> Products { get; set; }
@@ -83,9 +83,9 @@ namespace DatabaseModel
     {
         public Guid TransactionId { get; set; }
         public string TransactionNo { get; set; }
-        public float CreditAmount { get; set; }
+        public decimal CreditAmount { get; set; }
         public DateTime TransactionDate { get; set; }
-        public float WalletSnapshot { get; set; }
+        public decimal WalletSnapshot { get; set; }
 
         [Required]
         public Nullable<Guid> WholeSellerId;
@@ -108,10 +108,10 @@ namespace DatabaseModel
     public class WholeSellerOrderTransaction
     {
         public Guid WholeSellerOrderTransactionId { get; set; }
-        public float PaidAmount { get; set; }//#remove it.
+        public decimal PaidAmount { get; set; }//#remove it.
         public bool IsPaymentComplete { get; set; }// # remove it.
         public WholeSellerOrderTransaction() { }
-        public WholeSellerOrderTransaction(Guid transactionId, Guid wholeSellerOrderId, float paidAmount, bool isPaymentComplete)
+        public WholeSellerOrderTransaction(Guid transactionId, Guid wholeSellerOrderId, decimal paidAmount, bool isPaymentComplete)
         {
             this.WholeSellerOrderTransactionId = Guid.NewGuid();
             this.TransactionId = transactionId;
@@ -134,8 +134,8 @@ namespace DatabaseModel
         public string WholeSellerOrderNo { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DueDate { get; set; }
-        public float BillAmount { get; set; }
-        public float PaidAmount { get; set; }
+        public decimal BillAmount { get; set; }
+        public decimal PaidAmount { get; set; }
 
         [Required]
         public Nullable<Guid> WholeSellerId;
@@ -172,7 +172,7 @@ namespace DatabaseModel
     {
         public Guid WholeSellerOrderProductId { get; set; }
         public int QuantityPurchased { get; set; }
-        public float PurchasePrice { get; set; }
+        public decimal PurchasePrice { get; set; }
 
         [Required]
         public Nullable<Guid> WholeSellerOrderId;
@@ -182,7 +182,7 @@ namespace DatabaseModel
         public Nullable<Guid> ProductId;
         public virtual Product Product { get; set; }
         public WholeSellerOrderProduct() { }
-        public WholeSellerOrderProduct(Guid productId, Guid wholeSellerOrderId, int quantityPurchased, float purchasePrice)
+        public WholeSellerOrderProduct(Guid productId, Guid wholeSellerOrderId, int quantityPurchased, decimal purchasePrice)
         {
             this.WholeSellerOrderProductId = Guid.NewGuid();
             this.ProductId = productId;
@@ -236,11 +236,11 @@ namespace DatabaseModel
         public bool IsInventoryItem { get; set; }
         public Int32 Threshold { get; set; }
         public Int32 RefillTime { get; set; }
-        public float DisplayPrice { get; set; }
-        public float DiscountPer { get; set; }
+        public decimal DisplayPrice { get; set; }
+        public decimal DiscountPer { get; set; }
         public Int32 TotalQuantity { get; set; }
-        public float SGSTPer { get; set; }
-        public float CGSTPer { get; set; }
+        public decimal SGSTPer { get; set; }
+        public decimal CGSTPer { get; set; }
 
         public List<WholeSellerOrderProduct> WholeSellerOrderProducts { get; set; }
         public List<CustomerOrderProduct> CustomerOrderProducts { get; set; }
@@ -295,7 +295,7 @@ namespace DatabaseModel
         public string GSTIN { get; set; }
         public string MobileNo { get; set; }
         public string Name { get; set; }
-        public float WalletBalance { get; set; }
+        public decimal WalletBalance { get; set; }
         public List<CustomerOrder> CustomerOrders { get; set; }
 
         public Customer()
@@ -319,20 +319,20 @@ namespace DatabaseModel
         public string CustomerOrderNo { get; set; }
         public DateTime OrderDate { get; set; }
 
-        public float BillAmount { get; set; }
-        public float DiscountedAmount { get; set; }
+        public decimal BillAmount { get; set; }
+        public decimal DiscountedAmount { get; set; }
 
         // PayingNow = DiscountedBillAmount + AddingMoneyToWallet - UsingWalletAmount
         public bool IsPaidNow { get; set; }
-        public float PayingNow { get; set; }
-        public float AddingMoneyToWallet { get; set; }
+        public decimal PayingNow { get; set; }
+        public decimal AddingMoneyToWallet { get; set; }
 
         public bool IsUseWallet { get; set; }
-        public float UsingWalletAmount { get; set; }
+        public decimal UsingWalletAmount { get; set; }
 
         // DiscountedBillAmt = PartiallyPaid + PayingLater
-        public float PartiallyPaid { get; set; }
-        public float PayingLater { get; set; }
+        public decimal PartiallyPaid { get; set; }
+        public decimal PayingLater { get; set; }
         public CustomerOrder() { }
         public CustomerOrder(PageNavigationParameter pageNavigationParameter)
         {
@@ -364,12 +364,12 @@ namespace DatabaseModel
     public class CustomerOrderProduct
     {
         public Guid CustomerOrderProductId { get; set; }
-        public float DiscountPerSnapShot { get; set; }
-        public float DisplayCostSnapShot { get; set; }
+        public decimal DiscountPerSnapShot { get; set; }
+        public decimal DisplayCostSnapShot { get; set; }
         public int QuantityPurchased { get; set; }
 
         public CustomerOrderProduct(Guid customerOrderId, Guid productId,
-            float discountPerSnapshot, float displayCostSnapshot, int quantityPurchased)
+            decimal discountPerSnapshot, decimal displayCostSnapshot, int quantityPurchased)
         {
             this.CustomerOrderProductId = Guid.NewGuid();
             this.CustomerOrderId = customerOrderId;

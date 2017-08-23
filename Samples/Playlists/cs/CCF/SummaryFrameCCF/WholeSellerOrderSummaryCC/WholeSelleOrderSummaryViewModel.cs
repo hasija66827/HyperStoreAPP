@@ -11,8 +11,8 @@ namespace SDKTemplate
     public class WholeSelleOrderSummaryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        private float _totalBillAmount;
-        public float TotalBillAmount
+        private decimal _totalBillAmount;
+        public decimal TotalBillAmount
         {
             get { return this._totalBillAmount; }
             set
@@ -23,8 +23,8 @@ namespace SDKTemplate
             }
         }
 
-        private float _totalPaidAmount;
-        public float TotalPaidAmount
+        private decimal _totalPaidAmount;
+        public decimal TotalPaidAmount
         {
             get { return this._totalPaidAmount; }
             set
@@ -34,7 +34,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(TotalRemaiingAmount));
             }
         }
-        public float TotalRemaiingAmount
+        public decimal TotalRemaiingAmount
         {
             get { return this._totalBillAmount - this._totalPaidAmount; }
         }

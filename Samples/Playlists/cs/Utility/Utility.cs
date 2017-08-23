@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace SDKTemplate
         }
     }
 
-    // Append the float value with Rupee symbol.
+    // Append the decimal value with Rupee symbol.
     public class FloatToInverseRupeeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType,
@@ -63,7 +64,7 @@ namespace SDKTemplate
         }
     }
 
-    // Append the float value with Rupee symbol.
+    // Append the decimal value with Rupee symbol.
     public class FloatToRupeeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType,
@@ -80,7 +81,7 @@ namespace SDKTemplate
         }
     }
 
-    // Append the float value with Rupee symbol and (+ve or -ve sign).
+    // Append the decimal value with Rupee symbol and (+ve or -ve sign).
     public class FloatToRupeeConverterWithSign : IValueConverter
     {
         public object Convert(object value, Type targetType,
@@ -97,14 +98,14 @@ namespace SDKTemplate
         }
     }
 
-    // Append the float value with %Off
+    // Append the decimal value with %Off
     public class FloatToPercentageOFFConverter : IValueConverter
     {
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
             // value is the data from the source object.
-            float price = (float)value;
+            decimal price = (decimal)value;
             // Return the value to pass to the target.
             return price.ToString() + "% Off";
         }
@@ -116,14 +117,14 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
-    // Append the float value with %Off
+    // Append the decimal value with %Off
     public class FloatToPercentageGSTConverter : IValueConverter
     {
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
             // value is the data from the source object.
-            float price = (float)value;
+            decimal price = (decimal)value;
             // Return the value to pass to the target.
             return price.ToString() + "% GST";
         }
@@ -162,7 +163,7 @@ namespace SDKTemplate
         }
     }
 
-    // Tries to convert value into positive float, if it fails then reset the value to one.
+    // Tries to convert value into positive decimal, if it fails then reset the value to one.
     public class CheckIfPositiveFloat : IValueConverter
     {
         public object Convert(object value, Type targetType,
@@ -176,7 +177,7 @@ namespace SDKTemplate
         {
             try
             {
-                var v = (float)(System.Convert.ToDouble(value));
+                var v = (decimal)(System.Convert.ToDouble(value));
                 if (v < 0)
                     throw new Exception();
             }
@@ -186,7 +187,7 @@ namespace SDKTemplate
                 value = 0;
                 MainPage.Current.NotifyUser("Invalid value entered, resetting it to zero", NotifyType.ErrorMessage);
             }
-            return (float)System.Convert.ToDouble(value);
+            return (decimal)System.Convert.ToDouble(value);
         }
     }
     
@@ -222,9 +223,9 @@ namespace SDKTemplate
     {
         public static string DEFAULT_CUSTOMER_GUID { get { return "cccccccc-cccc-cccc-cccc-cccccccccccc"; } }
 
-        public static float RoundInt32(float f)
+        public static decimal RoundInt32(decimal f)
         {
-            return (float)(Math.Round((decimal)f, 2));
+            return (decimal)(Math.Round((decimal)f, 2));
         }
 
         public static bool CheckIfStringIsNumber(string str)
@@ -256,7 +257,7 @@ namespace SDKTemplate
             }
         }
 
-        public static async Task<HttpResponseMessage> HttpGet(string actionURI)
+        public static async Task<HttpResponseMessage> HttpGet(string actionURI, object content)
         {
             string absoluteURI = "https://localhost:44346/api/";
             string uri = string.Concat(absoluteURI, actionURI);
@@ -265,6 +266,9 @@ namespace SDKTemplate
             httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
             HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(uri));
+
+            if(content!=null)
+            request.Content = new HttpStringContent(JsonConvert.SerializeObject(content), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
             try
             {
                 HttpResponseMessage response = await httpClient.SendRequestAsync(request);
@@ -461,13 +465,13 @@ namespace SDKTemplate
         /// 
         /// </summary>
         /// <param name="value"></param>
-        /// <returns>returns float is object can be converted, o.w. 0</returns>
-        public static float TryToConvertToFloat(object value)
+        /// <returns>returns decimal is object can be converted, o.w. 0</returns>
+        public static decimal TryToConvertToFloat(object value)
         {
-            float result = 0;
+            decimal result = 0;
             try
             {
-                result = Convert.ToSingle(value);
+                result = Convert.ToDecimal(value);
             }
             catch
             {

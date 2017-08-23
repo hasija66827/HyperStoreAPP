@@ -72,7 +72,7 @@ namespace SDKTemplate
         /// Used by Filter box for its range control
         /// </summary>
         /// <returns></returns>
-        public static float GetMinimumWalletBalance()
+        public static decimal GetMinimumWalletBalance()
         {
             if (_customers.Count == 0)
                 return 0;
@@ -84,7 +84,7 @@ namespace SDKTemplate
         /// Used by Filter box for its range control
         /// </summary>
         /// <returns></returns>
-        public static float GetMaximumWalletBalance()
+        public static decimal GetMaximumWalletBalance()
         {
             if (_customers.Count == 0)
                 return 0;
@@ -156,8 +156,8 @@ namespace SDKTemplate
         /// <param name="walletBalanceToBeDeducted"></param>
         /// <param name="walletBalanceToBeAdded"></param>
         /// <returns>Return the updated wallet balance of the customer.</returns>
-        public static float UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, CustomerViewModel customerViewModel,
-            float walletBalanceToBeDeducted, float walletBalanceToBeAdded)
+        public static decimal UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, CustomerViewModel customerViewModel,
+            decimal walletBalanceToBeDeducted, decimal walletBalanceToBeAdded)
         {
             var billingCustomer = (DatabaseModel.Customer)customerViewModel;
             var entityEntry = db.Attach(billingCustomer);
@@ -166,7 +166,7 @@ namespace SDKTemplate
             var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
             memberEntry.IsModified = true;
             db.SaveChanges();
-            _UpdateWalletBalanceOfCustomerInMemory(customerViewModel, billingCustomer.WalletBalance);
+            _UpdateWalletBalanceOfCustomerInMemory(customerViewModel, (decimal)billingCustomer.WalletBalance);
             return billingCustomer.WalletBalance;
         }
 
@@ -175,7 +175,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="customerViewModel"></param>
         /// <param name="walletBalance"></param>
-        private static void _UpdateWalletBalanceOfCustomerInMemory(CustomerViewModel customerViewModel, float walletBalance)
+        private static void _UpdateWalletBalanceOfCustomerInMemory(CustomerViewModel customerViewModel, decimal walletBalance)
         {
             int index = _customers.FindIndex(c => c.CustomerId == customerViewModel.CustomerId);
             if (index < 0 || index >= _customers.Count())

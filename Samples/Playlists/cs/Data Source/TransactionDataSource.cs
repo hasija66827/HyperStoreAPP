@@ -36,11 +36,11 @@ namespace SDKTemplate
         }
 
 
-        public static float MakeTransaction(TransactionViewModel transactionViewModel, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db)
+        public static decimal MakeTransaction(TransactionViewModel transactionViewModel, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db)
         {
             var creditAmount = transactionViewModel.CreditAmount;
             TransactionDataSource.CreateTransaction(transactionViewModel, db);
-            var updatedWholeSellerWalletBalance = WholeSellerDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -creditAmount);
+            var updatedWholeSellerWalletBalance = SupplierDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -creditAmount);
             WholeSellerOrderDataSource.SettleUpOrders(transactionViewModel, wholeSeller, db);
             return updatedWholeSellerWalletBalance;
         }

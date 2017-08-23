@@ -42,7 +42,7 @@ namespace SDKTemplate
     public class WholeSellerTransactionViewModel
     {
         public WholeSellerViewModel WholeSellerViewModel { get; set; }
-        public float CreditAmount { get; set; }
+        public decimal CreditAmount { get; set; }
         public WholeSellerTransactionViewModel(WholeSellerViewModel w)
         {
             this.WholeSellerViewModel = w;

@@ -10,11 +10,11 @@ namespace SDKTemplate
 {
     public class WholeSellerCheckoutViewModel : INotifyPropertyChanged
     {
-        private float _amountToBePaid;
-        public float AmountToBePaid { get { return this._amountToBePaid; } set { this._amountToBePaid = value; } }
+        private decimal _amountToBePaid;
+        public decimal AmountToBePaid { get { return this._amountToBePaid; } set { this._amountToBePaid = value; } }
 
-        private float _paidAmount;
-        public float PaidAmount
+        private decimal _paidAmount;
+        public decimal PaidAmount
         {
             get { return this._paidAmount; }
             set
@@ -35,8 +35,8 @@ namespace SDKTemplate
             }
         }
 
-        private float _intrestRate;
-        public float IntrestRate
+        private decimal _intrestRate;
+        public decimal IntrestRate
         {
             get { return this._intrestRate; }
             set
@@ -49,9 +49,9 @@ namespace SDKTemplate
         private DateTime _dueDate;
         public DateTime DueDate { get { return this._dueDate; } set { this._dueDate = value; } }
 
-        public float RemainingAmount { get { return this._amountToBePaid - this._paidAmount; } }
+        public decimal RemainingAmount { get { return this._amountToBePaid - this._paidAmount; } }
 
-        public WholeSellerCheckoutViewModel(float amountToBePaid)
+        public WholeSellerCheckoutViewModel(decimal amountToBePaid)
         {
             this._amountToBePaid = amountToBePaid;
             this._paidAmount = 0;

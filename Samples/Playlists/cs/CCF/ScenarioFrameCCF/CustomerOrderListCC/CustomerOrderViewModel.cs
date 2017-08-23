@@ -13,14 +13,14 @@ namespace SDKTemplate
         private Guid _customerOrderId;
         public Guid CustomerOrderId { get { return this._customerOrderId; } }
 
-        private float _billAmount;
-        public float BillAmount { get { return this._billAmount; } }
+        private decimal _billAmount;
+        public decimal BillAmount { get { return this._billAmount; } }
 
         private string _customerOrderNo;
         public string CustomerOrderNo { get { return this._customerOrderNo; } }
 
-        private float _discountedBillAmount;
-        public float DiscountedBillAmount { get { return this._discountedBillAmount; } }
+        private decimal _discountedBillAmount;
+        public decimal DiscountedBillAmount { get { return this._discountedBillAmount; } }
 
         private string _customerMobileNo;
         public string CustomerMobileNo { get { return this._customerMobileNo; } }
@@ -29,8 +29,8 @@ namespace SDKTemplate
         public DateTime OrderDate
         { get { return this._orderDate; } }
 
-        private float _paidAmount;
-        public float PaidAmount { get { return this._paidAmount; } }
+        private decimal _paidAmount;
+        public decimal PaidAmount { get { return this._paidAmount; } }
 
         public string FormattedPaidBillAmount
         {
@@ -89,16 +89,16 @@ namespace SDKTemplate
         private Int32 _quantityPurchased;
         public Int32 QuantityPurchased { get { return this._quantityPurchased; } }
 
-        private float _netValue;
-        public float NetValue { get { return Utility.RoundInt32(this._netValue); } }
+        private decimal _netValue;
+        public decimal NetValue { get { return Utility.RoundInt32(this._netValue); } }
 
         public CustomerOrderDetailViewModel() : base()
         {
             this._quantityPurchased = 0;
         }
 
-        public CustomerOrderDetailViewModel(Guid productId, string barCode, float cgstPer, float discountPerSnapShot,
-            float displayPriceSnapshot, string name, float sgstPer, int qtyPurchased)
+        public CustomerOrderDetailViewModel(Guid productId, string barCode, decimal cgstPer, decimal discountPerSnapShot,
+            decimal displayPriceSnapshot, string name, decimal sgstPer, int qtyPurchased)
             : base(productId, barCode, cgstPer, displayPriceSnapshot, discountPerSnapShot, name, sgstPer, 0, 0, null)
         {
             this._quantityPurchased = qtyPurchased;

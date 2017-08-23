@@ -28,7 +28,7 @@ namespace SDKTemplate.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<float>("WalletBalance");
+                    b.Property<decimal>("WalletBalance");
 
                     b.HasKey("CustomerId");
 
@@ -46,16 +46,16 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("CustomerOrderId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("AddingMoneyToWallet");
+                    b.Property<decimal>("AddingMoneyToWallet");
 
-                    b.Property<float>("BillAmount");
+                    b.Property<decimal>("BillAmount");
 
                     b.Property<Guid?>("CustomerId")
                         .IsRequired();
 
                     b.Property<string>("CustomerOrderNo");
 
-                    b.Property<float>("DiscountedAmount");
+                    b.Property<decimal>("DiscountedAmount");
 
                     b.Property<bool>("IsPaidNow");
 
@@ -63,13 +63,13 @@ namespace SDKTemplate.Migrations
 
                     b.Property<DateTime>("OrderDate");
 
-                    b.Property<float>("PartiallyPaid");
+                    b.Property<decimal>("PartiallyPaid");
 
-                    b.Property<float>("PayingLater");
+                    b.Property<decimal>("PayingLater");
 
-                    b.Property<float>("PayingNow");
+                    b.Property<decimal>("PayingNow");
 
-                    b.Property<float>("UsingWalletAmount");
+                    b.Property<decimal>("UsingWalletAmount");
 
                     b.HasKey("CustomerOrderId");
 
@@ -86,9 +86,9 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid?>("CustomerOrderId")
                         .IsRequired();
 
-                    b.Property<float>("DiscountPerSnapShot");
+                    b.Property<decimal>("DiscountPerSnapShot");
 
-                    b.Property<float>("DisplayCostSnapShot");
+                    b.Property<decimal>("DisplayCostSnapShot");
 
                     b.Property<Guid?>("ProductId")
                         .IsRequired();
@@ -111,11 +111,11 @@ namespace SDKTemplate.Migrations
 
                     b.Property<string>("BarCode");
 
-                    b.Property<float>("CGSTPer");
+                    b.Property<decimal>("CGSTPer");
 
-                    b.Property<float>("DiscountPer");
+                    b.Property<decimal>("DiscountPer");
 
-                    b.Property<float>("DisplayPrice");
+                    b.Property<decimal>("DisplayPrice");
 
                     b.Property<bool>("IsInventoryItem");
 
@@ -123,7 +123,7 @@ namespace SDKTemplate.Migrations
 
                     b.Property<int>("RefillTime");
 
-                    b.Property<float>("SGSTPer");
+                    b.Property<decimal>("SGSTPer");
 
                     b.Property<int>("Threshold");
 
@@ -184,13 +184,13 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("TransactionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("CreditAmount");
+                    b.Property<decimal>("CreditAmount");
 
                     b.Property<DateTime>("TransactionDate");
 
                     b.Property<string>("TransactionNo");
 
-                    b.Property<float>("WalletSnapshot");
+                    b.Property<decimal>("WalletSnapshot");
 
                     b.Property<Guid?>("WholeSellerId")
                         .IsRequired();
@@ -215,7 +215,7 @@ namespace SDKTemplate.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<float>("WalletBalance");
+                    b.Property<decimal>("WalletBalance");
 
                     b.HasKey("WholeSellerId");
 
@@ -232,13 +232,13 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid>("WholeSellerOrderId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("BillAmount");
+                    b.Property<decimal>("BillAmount");
 
                     b.Property<DateTime>("DueDate");
 
                     b.Property<DateTime>("OrderDate");
 
-                    b.Property<float>("PaidAmount");
+                    b.Property<decimal>("PaidAmount");
 
                     b.Property<Guid?>("WholeSellerId")
                         .IsRequired();
@@ -260,7 +260,7 @@ namespace SDKTemplate.Migrations
                     b.Property<Guid?>("ProductId")
                         .IsRequired();
 
-                    b.Property<float>("PurchasePrice");
+                    b.Property<decimal>("PurchasePrice");
 
                     b.Property<int>("QuantityPurchased");
 
@@ -283,7 +283,7 @@ namespace SDKTemplate.Migrations
 
                     b.Property<bool>("IsPaymentComplete");
 
-                    b.Property<float>("PaidAmount");
+                    b.Property<decimal>("PaidAmount");
 
                     b.Property<Guid?>("TransactionId")
                         .IsRequired();

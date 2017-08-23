@@ -10,18 +10,18 @@ namespace SDKTemplate
     public class SettledOrderOfTransactionViewModel
     {
         public WholeSellerOrderViewModel WholeSellerOrder { get; set; }
-        public float CreditedAmountFromTransaction { get; set; }
+        public decimal CreditedAmountFromTransaction { get; set; }
         public TransactionViewModel Transaction { get; set; }
         public SettledOrderOfTransactionViewModel() { }
         
-        public SettledOrderOfTransactionViewModel(float creditedAmountFromTransaction, DatabaseModel.Transaction transaction)
+        public SettledOrderOfTransactionViewModel(decimal creditedAmountFromTransaction, DatabaseModel.Transaction transaction)
         {
             this.WholeSellerOrder =null;
             this.Transaction = new TransactionViewModel(transaction);
             this.CreditedAmountFromTransaction = creditedAmountFromTransaction;
         }
 
-        public SettledOrderOfTransactionViewModel(DatabaseModel.WholeSellerOrder wholsellerOrder, float creditedAmountFromTransaction)
+        public SettledOrderOfTransactionViewModel(DatabaseModel.WholeSellerOrder wholsellerOrder, decimal creditedAmountFromTransaction)
         {
             this.WholeSellerOrder = new WholeSellerOrderViewModel(wholsellerOrder);
             this.Transaction = null;

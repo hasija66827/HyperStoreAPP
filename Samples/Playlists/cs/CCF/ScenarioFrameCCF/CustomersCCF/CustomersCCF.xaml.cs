@@ -35,8 +35,11 @@ namespace SDKTemplate
             this.CustomerPurchaseHistoryCollection = new CustomerPurchaseHistoryCollection();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
-            FilterPersonCC.Current.InitializeRangeSlider(CustomerDataSource.GetMinimumWalletBalance(), CustomerDataSource.GetMaximumWalletBalance());
-            UpdateMasterListViewItemSourceByFilterCriteria();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
         /// <summary>

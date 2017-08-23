@@ -29,8 +29,8 @@ namespace SDKTemplate
         public string WholeSellerName { get { return this._wholeSellerName; } }
         private string _wholeSellerMobileNo;
         public string WholeSellerMobileNo { get { return this._wholeSellerMobileNo; } }
-        private float _purchasePrice;
-        public float PurchasePrice { get { return this._purchasePrice; } }
+        private decimal _purchasePrice;
+        public decimal PurchasePrice { get { return this._purchasePrice; } }
         private DateTime _orderDate;
         public DateTime OrderDate { get { return this._orderDate; } }
         public string FormattedOrderDate

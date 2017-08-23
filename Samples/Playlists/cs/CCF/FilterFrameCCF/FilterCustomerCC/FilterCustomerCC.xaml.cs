@@ -31,21 +31,21 @@ namespace SDKTemplate
             Current = this;
             this.InitializeComponent();
             this.FilterPersonCriteria = new FilterPersonCriteria();
-            WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
-            
+            WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;            
         }
 
-        public void InitializeRangeSlider(float min, float max)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            WalletRangeSlider.RangeMin = min - 10;
-            WalletRangeSlider.RangeMax = max + 10;
+            //TODO: Need to change Supplier/ Cusomer according to parameter e
+            WalletRangeSlider.RangeMin = (double)(SupplierDataSource.GetMinimumWalletBalance() - 10);
+            WalletRangeSlider.RangeMax = (double)(SupplierDataSource.GetMaximumWalletBalance() + 10);
             WalletRangeSlider.Minimum = WalletRangeSlider.RangeMin;
             WalletRangeSlider.Maximum = WalletRangeSlider.RangeMax;
         }
 
         private void WalletRangeSlider_DragCompletedEvent(object sender)
         {
-            IRange<float> walletBalance = new IRange<float>(Convert.ToSingle(WalletRangeSlider.RangeMin), Convert.ToSingle(WalletRangeSlider.RangeMax));
+            var walletBalance = new IRange<decimal>(Convert.ToDecimal(WalletRangeSlider.RangeMin), Convert.ToDecimal(WalletRangeSlider.RangeMax));
             this.FilterPersonCriteria.WalletBalance = walletBalance;
             FilterPersonChangedEvent?.Invoke();
         }

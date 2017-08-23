@@ -26,7 +26,7 @@ namespace SDKTemplate
             this.Threshold = product.Threshold;
         }
 
-        public override float DisplayPrice
+        public override decimal DisplayPrice
         {
             get => base.DisplayPrice;
             set
@@ -38,13 +38,13 @@ namespace SDKTemplate
             }
         }
 
-        public override float DiscountPer
+        public override decimal DiscountPer
         {
             get { return Utility.RoundInt32(this._discountPer); }
             set
             {
                 this._discountPer = value;
-                float f = (float)Convert.ToDouble(value);
+                decimal f = (decimal)Convert.ToDouble(value);
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SubTotal));
                 this.OnPropertyChanged(nameof(TotalGSTAmount));
@@ -53,7 +53,7 @@ namespace SDKTemplate
         }
 
 
-        public override float CGSTPer
+        public override decimal CGSTPer
         {
             get => base.CGSTPer;
             set
@@ -65,7 +65,7 @@ namespace SDKTemplate
             }
         }
 
-        public override float SGSTPer
+        public override decimal SGSTPer
         {
             get => base.SGSTPer;
             set

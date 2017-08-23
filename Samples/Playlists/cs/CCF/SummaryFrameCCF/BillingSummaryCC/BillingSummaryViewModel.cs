@@ -12,8 +12,8 @@ namespace SDKTemplate
     public class BillingSummaryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        private float _totalBillAmount;
-        public float TotalBillAmount
+        private decimal _totalBillAmount;
+        public decimal TotalBillAmount
         {
             get
             {
@@ -39,8 +39,8 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(TotalProducts));
             }
         }
-        private float _additionalDiscountPer;
-        public float AdditionalDiscountPer
+        private decimal _additionalDiscountPer;
+        public decimal AdditionalDiscountPer
         {
             get { return this._additionalDiscountPer; }
             set
@@ -51,7 +51,7 @@ namespace SDKTemplate
             }
         }
 
-        public float DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this._totalBillAmount) / 100; } }
+        public decimal DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this._totalBillAmount) / 100; } }
 
         public BillingSummaryViewModel()
         {

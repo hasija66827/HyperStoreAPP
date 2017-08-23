@@ -27,8 +27,8 @@ namespace SDKTemplate
             set { this._name = value; }
         }
 
-        private float _purchasePrice;
-        public float PurchasePrice
+        private decimal _purchasePrice;
+        public decimal PurchasePrice
         {
             get { return this._purchasePrice; }
             set
@@ -52,15 +52,15 @@ namespace SDKTemplate
             }
         }
 
-        public float NetValue
+        public decimal NetValue
         {
             get { return this._quantityPurchased * this._purchasePrice; }
         }
 
-        private float _sellingPrice;
-        public float SellingPrice { get { return this._sellingPrice; } }
+        private decimal _sellingPrice;
+        public decimal SellingPrice { get { return this._sellingPrice; } }
         public WholeSellerProductVieModel(Guid productId, string barCode, string name, 
-            float purchasePrice, Int32 quantityPurchased, float sellingPrice)
+            decimal purchasePrice, Int32 quantityPurchased, decimal sellingPrice)
         {
             this._productId = productId;
             this._barCode = barCode;

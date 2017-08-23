@@ -2,32 +2,45 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    class WholeSellerDataSource
+    public class SupplierFilterCriteria
+    {
+        [Required]
+        public IRange<decimal> WalletAmount { get; set; }
+        public Guid? SupplierId { get; set; }
+    }
+
+    class SupplierDataSource
     {   
         #region Create
-        public static async void CreateWholeSeller(WholeSellerViewModel newWholeSeller)
+        public static async void CreateNewSupplier(WholeSellerViewModel newWholeSeller)
         {
-            string actionURI = "suppliers";
-            var content = JsonConvert.SerializeObject(newWholeSeller);
-            var response = await Utility.HttpPost(actionURI, content);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                string actionURI = "suppliers";
+                var content = JsonConvert.SerializeObject(newWholeSeller);
+                var response = await Utility.HttpPost(actionURI, content);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            { throw ex; }
         }
         #endregion
 
         #region Read
-        public static async Task<List<WholeSellerViewModel>> RetrieveWholeSellersAsync()
+        public static async Task<List<WholeSellerViewModel>> RetrieveSuppliersAsync(SupplierFilterCriteria sfc)
         {
             string actionURI = "suppliers";
             string httpResponseBody = "";
             try
             {
-                var response = await Utility.HttpGet(actionURI);
+                var response = await Utility.HttpGet(actionURI, sfc);
                 response.EnsureSuccessStatusCode();
                 if (response.IsSuccessStatusCode)
                 {
@@ -43,37 +56,23 @@ namespace SDKTemplate
             }
         }
 
-        /// <summary>
-        /// Retrieves the list of wholesellers with the given wholesellerId AND filterPersonCriteria.
-        /// If wholesellerId is null, then no wholesellers are retrieved on the bases of filterPersonCriteria only.
-        /// Used by FilterwholesellerCC
-        /// </summary>
-        /// <param name="wholeSellerId"></param>
-        /// <param name="filterWholeSellerCriteria"></param>
-        /// <returns></returns>
-        public static async Task<List<WholeSellerViewModel>> GetFilteredWholeSeller(Guid? wholeSellerId, FilterPersonCriteria filterWholeSellerCriteria)
-        {
-            return await RetrieveWholeSellersAsync();
-        }
-
-
-        public static float GetMinimumWalletBalance()
+        public static decimal GetMinimumWalletBalance()
         {
            
-            return 100;
+            return -10000;
         }
 
-        public static float GetMaximumWalletBalance()
+        public static decimal GetMaximumWalletBalance()
         {
            
-            return 2000;
+            return 20000;
         }
         #endregion
 
         //#remove
         #region Update
-        public static float UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
-        float walletBalanceToBeAdded)
+        public static decimal UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
+        decimal walletBalanceToBeAdded)
         {
             /* var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;
              var entityEntry = db.Attach(wholeSeller);
@@ -85,8 +84,6 @@ namespace SDKTemplate
              return wholeSeller.WalletBalance;*/
             return 0;
         }
-
-     
         #endregion
     }
 }

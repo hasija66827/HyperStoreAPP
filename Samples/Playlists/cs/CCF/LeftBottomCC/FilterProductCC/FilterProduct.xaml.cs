@@ -47,7 +47,7 @@ namespace SDKTemplate
         {
             try
             {
-                IRange<float> discounPerRange = new IRange<float>(Convert.ToSingle(DiscountPerLB.Text), Convert.ToSingle(DiscountPerUB.Text));
+                IRange<decimal> discounPerRange = new IRange<decimal>(Convert.ToDecimal(DiscountPerLB.Text), Convert.ToDecimal(DiscountPerUB.Text));
                 IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
                 this.FilterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
                 FilterProductCriteriaChangedEvent?.Invoke();

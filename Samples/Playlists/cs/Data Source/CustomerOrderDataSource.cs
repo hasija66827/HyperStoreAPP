@@ -91,7 +91,7 @@ namespace SDKTemp.Data
         /// </summary>
         /// <param name="pageNavigationParameter"></param>
         /// <returns></returns>
-        public static float PlaceOrder(PageNavigationParameter pageNavigationParameter,
+        public static decimal PlaceOrder(PageNavigationParameter pageNavigationParameter,
             SDKTemp.Data.PaymentMode paymentMode)
         {
             if (pageNavigationParameter.UseWallet == false && pageNavigationParameter.WalletBalanceToBeDeducted != 0)
@@ -101,7 +101,7 @@ namespace SDKTemp.Data
             var productListTobePurchased = pageNavigationParameter.ProductsToBePurchased;
             var customerViewModel = pageNavigationParameter.CustomerViewModel;
             var db = new DatabaseModel.RetailerContext();
-            float updatedCustomerWalletBalance = 0;
+            decimal updatedCustomerWalletBalance = 0;
             if (paymentMode.Equals(PaymentMode.payNow))
             {
                 updatedCustomerWalletBalance = CustomerDataSource.UpdateWalletBalanceOfCustomer(db, customerViewModel,

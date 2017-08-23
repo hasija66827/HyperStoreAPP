@@ -16,8 +16,8 @@ namespace SDKTemplate
         public List<CustomerProductViewModel> ProductsToBePurchased{ get; set; }
         public CustomerViewModel CustomerViewModel { get; set; }
         public BillingSummaryViewModel BillingSummaryViewModel { get; set; }
-        private float _toBePaid;
-        public float ToBePaid
+        private decimal _toBePaid;
+        public decimal ToBePaid
         {
             get { return this._toBePaid; }
             set
@@ -53,7 +53,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(OverPaid));
             }
         }
-        public float WalletBalanceToBeDeducted { get; set; }
+        public decimal WalletBalanceToBeDeducted { get; set; }
 
         #region PayNow
         // Step 3: If Pay Now Option is selected in the Step 2:
@@ -64,14 +64,14 @@ namespace SDKTemplate
             set { this._isPaidNow = value; }
         }
         // Extra money to be added into the wallet now
-        private float _walletAmountToBeAddedNow;
-        public float WalletAmountToBeAddedNow
+        private decimal _walletAmountToBeAddedNow;
+        public decimal WalletAmountToBeAddedNow
         {
             get { return this._walletAmountToBeAddedNow; }
             set { this._walletAmountToBeAddedNow = value; }
         }
-        private float _overPaid;
-        public float OverPaid
+        private decimal _overPaid;
+        public decimal OverPaid
         {
             get { return this._overPaid; }
             set
@@ -94,15 +94,15 @@ namespace SDKTemplate
         #region PayLater
         // Step 3: If Pay later option is selected in step 2 
         // Partial billing payment to be paid later
-        private float _walletAmountToBePaidLater;
-        public float WalletAmountToBePaidLater
+        private decimal _walletAmountToBePaidLater;
+        public decimal WalletAmountToBePaidLater
         {
             get { return this._walletAmountToBePaidLater; }
         }
 
         // Partial payment paid by the customer
-        private float _partiallyPaid;
-        public float PartiallyPaid
+        private decimal _partiallyPaid;
+        public decimal PartiallyPaid
         {
             get { return this._partiallyPaid; }
             set

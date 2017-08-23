@@ -21,20 +21,20 @@ namespace SDKTemplate
         private string _wholeSellerOrderNo;
         public string WholeSellerOrderNo { get { return this._wholeSellerOrderNo; } }
 
-        private float _billAmount;
-        public float BillAmount { get { return this._billAmount; } }
+        private decimal _billAmount;
+        public decimal BillAmount { get { return this._billAmount; } }
 
         private DateTime _dueDate;
         public DateTime DueDate { get { return this._dueDate; } }
 
-        private float _intrestRate;
-        public float IntrestRate { get { return this._intrestRate; } }
+        private decimal _intrestRate;
+        public decimal IntrestRate { get { return this._intrestRate; } }
 
         private DateTime _orderDate;
         public DateTime OrderDate { get { return this._orderDate; } }
 
-        private float _paidAmount;
-        public float PaidAmount { get { return this._paidAmount; } }
+        private decimal _paidAmount;
+        public decimal PaidAmount { get { return this._paidAmount; } }
 
         private WholeSellerViewModel _wholeSeller;
         public WholeSellerViewModel WholeSeller { get { return this._wholeSeller; } }
@@ -116,8 +116,8 @@ namespace SDKTemplate
             set { this._name = value; }
         }
 
-        private float _purchasePrice;
-        public float PurchasePrice
+        private decimal _purchasePrice;
+        public decimal PurchasePrice
         {
             get { return this._purchasePrice; }
             set
@@ -136,13 +136,13 @@ namespace SDKTemplate
             }
         }
 
-        public float NetValue
+        public decimal NetValue
         {
             get { return this._quantityPurchased * this._purchasePrice; }
         }
 
         public WholeSellerOrderDetailViewModel(string barcode, string name,
-            float purchasePrice, Int32 quantityPurchased)
+            decimal purchasePrice, Int32 quantityPurchased)
         {
             this._barCode = barcode;
             this._name = name;

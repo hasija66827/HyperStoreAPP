@@ -10,8 +10,8 @@ namespace SDKTemplate
 {
     public class WholeSellerBillingSummaryViewModel : INotifyPropertyChanged
     {
-        private float _billAmount;
-        public float BillAmount
+        private decimal _billAmount;
+        public decimal BillAmount
         {
             get { return this._billAmount; }
             set

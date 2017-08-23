@@ -38,8 +38,8 @@ namespace SDKTemplate
             set { SetProperty(ref _name, value); }
         }
 
-        private float _walletBalance;
-        public virtual float WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
+        private decimal _walletBalance;
+        public virtual decimal WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
 
         private string _walletBalanceString;
 
@@ -71,7 +71,7 @@ namespace SDKTemplate
             this._gstin = customer.GSTIN;
             this._mobileNo = customer.MobileNo;
             this._name = customer.Name;
-            this._walletBalance = customer.WalletBalance;
+            this._walletBalance =(decimal) customer.WalletBalance;
             this._walletBalanceString = "";
         }
 
