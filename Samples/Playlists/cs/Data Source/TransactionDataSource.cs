@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SDKTemplate.View_Models;
+using Models;
+
 namespace SDKTemplate
 {
     public class TransactionDataSource
@@ -36,7 +38,7 @@ namespace SDKTemplate
         }
 
 
-        public static decimal MakeTransaction(TransactionViewModel transactionViewModel, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db)
+        public static decimal MakeTransaction(TransactionViewModel transactionViewModel, TSupplier wholeSeller, DatabaseModel.RetailerContext db)
         {
             var creditAmount = transactionViewModel.CreditAmount;
             TransactionDataSource.CreateTransaction(transactionViewModel, db);

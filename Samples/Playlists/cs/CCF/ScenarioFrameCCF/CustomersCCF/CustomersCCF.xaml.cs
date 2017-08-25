@@ -13,7 +13,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
- 
+using static SDKTemplate.CustomerDataSource;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -52,10 +53,15 @@ namespace SDKTemplate
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             var customerId = selectedCustomer?.CustomerId;
             var filterCustomerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
-            var items = CustomerDataSource.GetFilteredCustomer(customerId, filterCustomerCriteria);
+            CustomerFilterCriteriaDTO cfc = new CustomerFilterCriteriaDTO()
+            {
+                CustomerId = customerId,
+                WalletAmount = filterCustomerCriteria.WalletBalance
+            };
+            var items = await CustomerDataSource.RetrieveCustomersAsync(cfc);
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
-            CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + CustomerDataSource.Customers.Count.ToString() + ")";
+            CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
         }
 
         /// <summary>

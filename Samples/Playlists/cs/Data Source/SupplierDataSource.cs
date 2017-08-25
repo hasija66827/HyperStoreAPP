@@ -1,4 +1,5 @@
 ﻿
+using Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class SupplierFilterCriteria
+    public class SupplierFilterCriteriaDTO
     {
         [Required]
         public IRange<decimal> WalletAmount { get; set; }
@@ -19,12 +20,12 @@ namespace SDKTemplate
     class SupplierDataSource
     {   
         #region Create
-        public static async void CreateNewSupplier(WholeSellerViewModel newWholeSeller)
+        public static async void CreateNewSupplier(SupplierDTO supplier)
         {
             try
             {
                 string actionURI = "suppliers";
-                var content = JsonConvert.SerializeObject(newWholeSeller);
+                var content = JsonConvert.SerializeObject(supplier);
                 var response = await Utility.HttpPost(actionURI, content);
                 response.EnsureSuccessStatusCode();
             }
@@ -34,7 +35,7 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<WholeSellerViewModel>> RetrieveSuppliersAsync(SupplierFilterCriteria sfc)
+        public static async Task<List<TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
         {
             string actionURI = "suppliers";
             string httpResponseBody = "";
@@ -45,7 +46,7 @@ namespace SDKTemplate
                 if (response.IsSuccessStatusCode)
                 {
                     httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var suppliers = JsonConvert.DeserializeObject<List<WholeSellerViewModel>>(httpResponseBody);
+                    var suppliers = JsonConvert.DeserializeObject<List<TSupplier>>(httpResponseBody);
                     return suppliers;
                 }
                 return null;
@@ -56,12 +57,14 @@ namespace SDKTemplate
             }
         }
 
+        //TODO
         public static decimal GetMinimumWalletBalance()
         {
            
             return -10000;
         }
 
+        //TODO
         public static decimal GetMaximumWalletBalance()
         {
            
@@ -71,7 +74,7 @@ namespace SDKTemplate
 
         //#remove
         #region Update
-        public static decimal UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, WholeSellerViewModel wholeSellerViewModel,
+        public static decimal UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, TSupplier wholeSellerViewModel,
         decimal walletBalanceToBeAdded)
         {
             /* var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;

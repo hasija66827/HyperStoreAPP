@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Mvvm;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
+using Models;
 
 namespace SDKTemplate
 {
@@ -45,7 +46,7 @@ namespace SDKTemplate
         public WholeSellerViewModel()
         {
             validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this._supplierId =null;
+            this._supplierId = null;
             this._address = null;
             this._mobileNo = null;
             this._name = null;
@@ -83,7 +84,15 @@ namespace SDKTemplate
             var IsValid = ValidateProperties();
             if (IsValid && Utility.CheckIfUniqueMobileNumber(this.MobileNo, Person.WholeSeller))
             {
-                SupplierDataSource.CreateNewSupplier(this);
+                SupplierDTO supplierDTO = new SupplierDTO()
+                {
+                    Address = this.Address,
+                    GSTIN = this.GSTIN,
+                    MobileNo = this.MobileNo,
+                    Name = this.Name
+                };
+
+                SupplierDataSource.CreateNewSupplier(supplierDTO);
                 MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
             }
         }

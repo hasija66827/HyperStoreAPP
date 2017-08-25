@@ -66,7 +66,6 @@ namespace SDKTemplate
             // Populate the scenario list from the SampleConfiguration.cs file
             ProductDataSource.RetrieveProductDataAsync();
             TagDataSource.RetreiveTags();
-            CustomerDataSource.RetrieveCustomersAsync();
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {

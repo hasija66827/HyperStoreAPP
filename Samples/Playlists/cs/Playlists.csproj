@@ -120,6 +120,7 @@
     <Compile Include="CreateTag.xaml.cs">
       <DependentUpon>CreateTag.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
@@ -137,6 +138,17 @@
       <DependentUpon>20170727122750_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerOrder.cs" />
+    <Compile Include="Models\CustomerOrderProduct.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductTag.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\SupplierOrder.cs" />
+    <Compile Include="Models\SupplierOrderProduct.cs" />
+    <Compile Include="Models\SupplierOrderTransaction.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="mvvm2\BindableBase.cs" />
     <Compile Include="mvvm2\BindableValidator.cs" />
     <Compile Include="mvvm2\DateTimeToDateTimeOffsetConverter.cs" />
@@ -157,7 +169,7 @@
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data Source\AnalyticsDataSource.cs" />
-    <Compile Include="Data Source\WholeSellerDataSource.cs" />
+    <Compile Include="Data Source\SupplierDataSource.cs" />
     <Compile Include="CCF\EntityFrameCCF\AddWholesellerCC\AddWholeSellerViewModel.cs" />
     <Compile Include="Data Source\WholeSellerOrderDataSource.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterCustomerCC\FilterCustomerCC.xaml.cs">

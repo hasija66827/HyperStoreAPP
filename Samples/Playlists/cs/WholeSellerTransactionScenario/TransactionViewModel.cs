@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace SDKTemplate.View_Models
         public Guid? WholeSellerId { get { return this._wholeSellerId; } }
 
         public TransactionViewModel(decimal creditAmount, DateTime transactionDate,
-                   WholeSellerViewModel wholeSellerViewModel)
+                   TSupplier wholeSellerViewModel)
         { 
             this._transactionId = Guid.NewGuid();
             this._transactionNo = Utility.GenerateWholeSellerTransactionNo();

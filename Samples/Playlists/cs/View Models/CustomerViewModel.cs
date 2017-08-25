@@ -9,6 +9,7 @@ using SDKTemp.Data;
 using Mvvm;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
+using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
@@ -94,7 +95,15 @@ namespace SDKTemplate
             var IsValid = ValidateProperties();
             if (IsValid && Utility.CheckIfUniqueMobileNumber(this._mobileNo, Person.Customer))
             {
-                CustomerDataSource.CreateNewCustomer(this);
+                CustomerDTO customerDTO = new CustomerDTO()
+                {
+                    Address = this.Address,
+                    GSTIN = this.GSTIN,
+                    MobileNo = this.MobileNo,
+                    Name = this.Name,
+                    WalletBalance = this.WalletBalance
+                };
+                CustomerDataSource.CreateNewCustomer(customerDTO);
                 MainPage.Current.NotifyUser("New customer was added succesfully ", NotifyType.StatusMessage);
             }
         }

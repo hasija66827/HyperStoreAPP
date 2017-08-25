@@ -347,7 +347,7 @@ namespace DatabaseModel
             this.AddingMoneyToWallet = pageNavigationParameter.WalletAmountToBeAddedNow;
 
             this.IsUseWallet = pageNavigationParameter.UseWallet.Value;
-            this.UsingWalletAmount = pageNavigationParameter.CustomerViewModel.WalletBalance;
+            this.UsingWalletAmount = (decimal)pageNavigationParameter.CustomerViewModel.WalletBalance;
 
             this.PartiallyPaid = pageNavigationParameter.PartiallyPaid;
             this.PayingLater = pageNavigationParameter.WalletAmountToBePaidLater;
@@ -388,5 +388,24 @@ namespace DatabaseModel
         public Nullable<Guid> ProductId;
         public Product Product;
     }
+
+    public class CustomerPurchaseTrend
+    {
+        public int TotalQuantityPurchased { get; set; }
+        public Product Product { get; set; }
+        public decimal NetValue { get; set; }
+        public CustomerPurchaseTrend() { }
+    }
+    public class ProductTrend
+    {
+        public DayOfWeek Day { get; set; }
+        public float Quantity { get; set; }
+        public ProductTrend(DayOfWeek day, float quantity)
+        {
+            this.Day = day;
+            this.Quantity = quantity;
+        }
+    }
+
 }
 

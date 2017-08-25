@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Navigation;
  
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Models;
 
 namespace SDKTemplate
 {
@@ -14,7 +15,7 @@ namespace SDKTemplate
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public List<CustomerProductViewModel> ProductsToBePurchased{ get; set; }
-        public CustomerViewModel CustomerViewModel { get; set; }
+        public TCustomer CustomerViewModel { get; set; }
         public BillingSummaryViewModel BillingSummaryViewModel { get; set; }
         private decimal _toBePaid;
         public decimal ToBePaid
@@ -39,7 +40,7 @@ namespace SDKTemplate
                 this._useWallet = value;
                 if (value == true)
                 {
-                    var walletBalance = this.CustomerViewModel.WalletBalance;
+                    var walletBalance = (decimal)this.CustomerViewModel.WalletBalance;
                     var discountedBillAmount = this.BillingSummaryViewModel.DiscountedBillAmount;
                     this.WalletBalanceToBeDeducted = (walletBalance <= discountedBillAmount) ? walletBalance : discountedBillAmount;
                 }
@@ -123,7 +124,7 @@ namespace SDKTemplate
         }
         #endregion
 
-        public PageNavigationParameter(List<CustomerProductViewModel> productsToBePurchased, CustomerViewModel customerViewModel, BillingSummaryViewModel billingSummaryViewModel)
+        public PageNavigationParameter(List<CustomerProductViewModel> productsToBePurchased, TCustomer customerViewModel, BillingSummaryViewModel billingSummaryViewModel)
         {
             this.ProductsToBePurchased = productsToBePurchased;
             this.CustomerViewModel = customerViewModel;

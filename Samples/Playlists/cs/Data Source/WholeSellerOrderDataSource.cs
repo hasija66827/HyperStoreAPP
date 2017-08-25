@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SDKTemplate.View_Models;
 using SDKTemplate.Data_Source;
+using Models;
 
 namespace SDKTemplate
 {
@@ -120,7 +121,7 @@ namespace SDKTemplate
         /// <param name="transaction"></param>
         /// <param name="wholeSeller"></param>
         /// <returns>returns the credit amount remaining after completing the payements of order.</returns>
-        public static decimal SettleUpOrders(TransactionViewModel transaction, WholeSellerViewModel wholeSeller, DatabaseModel.RetailerContext db = null)
+        public static decimal SettleUpOrders(TransactionViewModel transaction, TSupplier wholeSeller, DatabaseModel.RetailerContext db = null)
         {
             if (db == null)
                 db = new DatabaseModel.RetailerContext();

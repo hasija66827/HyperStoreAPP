@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SDKTemplate;
- 
+using SDKTemplate.Data_Source;
+using Models;
+
 namespace SDKTemp.Data
 {
     public enum PaymentMode
@@ -40,7 +42,7 @@ namespace SDKTemp.Data
             _Orders = query.ToList();
         }
 
-        public static List<CustomerOrderViewModel> GetFilteredOrders(CustomerViewModel selectedCustomer, FilterOrderViewModel selectedDateRange)
+        public static List<CustomerOrderViewModel> GetFilteredOrders(TCustomer selectedCustomer, FilterOrderViewModel selectedDateRange)
         {
             if (selectedDateRange == null)
                 throw new Exception("A Date Range cannot be null");

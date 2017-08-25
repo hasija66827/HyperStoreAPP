@@ -56,14 +56,13 @@ namespace SDKTemplate
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
             var wholeSalerId = selectedWholesaler?.SupplierId;
             var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
-            var items = await SupplierDataSource.RetrieveSuppliersAsync(new SupplierFilterCriteria() {
+            var items = await SupplierDataSource.RetrieveSuppliersAsync(new SupplierFilterCriteriaDTO() {
                 SupplierId = wholeSalerId,
                 WalletAmount = filterWholeSalerCriteria.WalletBalance
             });
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
             WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
-
         }
 
         /// <summary>

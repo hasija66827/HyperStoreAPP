@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -24,9 +26,23 @@ namespace SDKTemplate
     public sealed partial class WholeSellerASBCC : Page
     {
         public static WholeSellerASBCC Current;
-        private List<WholeSellerViewModel> _Suppliers { get; set; }
-        public WholeSellerViewModel SelectedWholeSellerInASB { get { return this._selectedWholeSellerInASB; } }
-        private WholeSellerViewModel _selectedWholeSellerInASB;
+        public TSupplier SelectedWholeSellerInASB { get { return this._selectedWholeSellerInASB; } }
+
+        private class SupplierASBViewModel : TSupplier
+        {
+            public string Supplier_MobileNo_Name
+            {
+                get { return string.Format("{0}({1})", MobileNo, Name); }
+            }
+            public SupplierASBViewModel(TSupplier parent)
+            {
+                foreach (PropertyInfo prop in parent.GetType().GetProperties())
+                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
+            }
+        }
+
+        private List<SupplierASBViewModel> _Suppliers { get; set; }
+        private SupplierASBViewModel _selectedWholeSellerInASB;
         public event SelectedWholeSellerChangedDelegate SelectedWholeSellerChangedEvent;
         public WholeSellerASBCC()
         {
@@ -35,22 +51,28 @@ namespace SDKTemplate
             this._Suppliers = null;
         }
 
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
+            this._Suppliers = suppliers.Select(s => new SupplierASBViewModel(s)).ToList();
+        }
+
         /// <summary>
         /// This event gets fired anytime the text in the TextBox gets updated.
         /// It is recommended to check the reason for the text changing by checking against args.Reason
         /// </summary>
         /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
         /// <param name="args">The event arguments.</param>
-        private async void WholeSellerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void WholeSellerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (this._Suppliers == null)
-                this._Suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
+                return;
             // We only want to get results when it was a user typing, 
             // otherwise we assume the value got filled in by TextMemberPath 
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var matchingWholeSellers = GetMatchingWholeSellers(sender.Text);
+                var matchingWholeSellers = GetMatchingSuppliers(sender.Text);
                 sender.ItemsSource = matchingWholeSellers.ToList();
             }
         }
@@ -64,28 +86,28 @@ namespace SDKTemplate
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private async void WholeSellerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void WholeSellerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (this._Suppliers == null)
-                this._Suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
+                return;
 
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item, take an action on it here
                 var choosenWholeSeller = args.ChosenSuggestion;
-                SelectWholeSeller((WholeSellerViewModel)choosenWholeSeller);
+                SelectSupplier((SupplierASBViewModel)choosenWholeSeller);
             }
             else
             {
-                WholeSellerViewModel matchingWholeSeller = null;
+                SupplierASBViewModel matchingWholeSeller = null;
                 // if a text is present, find best possible match.
                 if (args.QueryText != "")
-                    matchingWholeSeller = (GetMatchingWholeSellers(args.QueryText)).FirstOrDefault();
-                SelectWholeSeller(matchingWholeSeller);
+                    matchingWholeSeller = (GetMatchingSuppliers(args.QueryText)).FirstOrDefault();
+                SelectSupplier(matchingWholeSeller);
             }
         }
 
-        private void SelectWholeSeller(WholeSellerViewModel WholeSeller)
+        private void SelectSupplier(SupplierASBViewModel WholeSeller)
         {
             if (WholeSeller != null)
             {
@@ -112,13 +134,14 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="query">The part of the name or company to look for</param>
         /// <returns>An ordered list of mobileNumber that matches the query</returns>
-        private List<WholeSellerViewModel> GetMatchingWholeSellers(string query)
+        private List<SupplierASBViewModel> GetMatchingSuppliers(string query)
         {
+            if (this._Suppliers == null)
+                return null;
             return this._Suppliers
                 .Where(item => item.MobileNo.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1
                             || item.Name?.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
-
     }
 }

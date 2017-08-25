@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.WholeSellerTransactionViewModel = new WholeSellerTransactionViewModel((WholeSellerViewModel)e.Parameter);
+            this.WholeSellerTransactionViewModel = new WholeSellerTransactionViewModel((TSupplier)e.Parameter);
         }
 
         private void AddMoney_Click(object sender, RoutedEventArgs e)
@@ -41,16 +42,16 @@ namespace SDKTemplate
 
     public class WholeSellerTransactionViewModel
     {
-        public WholeSellerViewModel WholeSellerViewModel { get; set; }
+        public TSupplier WholeSellerViewModel { get; set; }
         public decimal CreditAmount { get; set; }
-        public WholeSellerTransactionViewModel(WholeSellerViewModel w)
+        public WholeSellerTransactionViewModel(TSupplier w)
         {
             this.WholeSellerViewModel = w;
             this.CreditAmount = 0;
         }
         public WholeSellerTransactionViewModel()
         {
-            this.WholeSellerViewModel = new WholeSellerViewModel();
+            this.WholeSellerViewModel = new TSupplier   ();
             this.CreditAmount = 0;
         }
     }
