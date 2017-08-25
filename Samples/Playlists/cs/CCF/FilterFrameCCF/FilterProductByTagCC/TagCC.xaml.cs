@@ -40,7 +40,15 @@ namespace SDKTemplate
             {
                 var productDTO = new ProductDTO()
                 {
-
+                    TagIds = selectedTagIds,
+                    CGSTPer = productDetail.CGSTPer,
+                    Code = productDetail.Code,
+                    DiscountPer = productDetail.DiscountPer,
+                    DisplayPrice = productDetail.DisplayPrice,
+                    Name = productDetail.Name,
+                    RefillTime = productDetail.RefillTime,
+                    SGSTPer = productDetail.SGSTPer,
+                    Threshold = productDetail.Threshold
                 };
                 if (await ProductDataSource.CreateNewProductAsync(productDTO))
                     MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);

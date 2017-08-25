@@ -40,13 +40,13 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="Threshold"
                          Header="Threshold"
-                         Text="{x:Bind ProductDetailViewModel.Threshold,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                         Text="{x:Bind ProductDetailViewModel.Threshold,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                          PlaceholderText=""
                          ToolTipService.ToolTip="The number of units of product below which you want get notified"
                          Style="{StaticResource MediumFormTextBoxStyle}" />
                 <TextBox x:Name="RefillTime"
                          Header="Refill Time"
-                         Text="{x:Bind ProductDetailViewModel.RefillTime,Converter={StaticResource CheckIfPositiveInteger}, Mode=TwoWay}"
+                         Text="{x:Bind ProductDetailViewModel.RefillTime, Mode=TwoWay}"
                          PlaceholderText=""
                          ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller"
                          Style="{StaticResource MediumFormTextBoxStyle}" />
