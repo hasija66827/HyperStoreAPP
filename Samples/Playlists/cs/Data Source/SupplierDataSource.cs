@@ -1,6 +1,7 @@
 ﻿
 using Models;
 using Newtonsoft.Json;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +21,7 @@ namespace SDKTemplate
     class SupplierDataSource
     {   
         #region Create
-        public static async void CreateNewSupplier(SupplierDTO supplier)
+        public static async Task<bool> CreateNewSupplier(SupplierDTO supplier)
         {
             try
             {
@@ -28,6 +29,7 @@ namespace SDKTemplate
                 var content = JsonConvert.SerializeObject(supplier);
                 var response = await Utility.HttpPost(actionURI, content);
                 response.EnsureSuccessStatusCode();
+                return true;
             }
             catch (Exception ex)
             { throw ex; }

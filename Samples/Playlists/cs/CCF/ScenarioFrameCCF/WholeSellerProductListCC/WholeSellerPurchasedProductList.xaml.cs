@@ -59,7 +59,7 @@ namespace SDKTemplate
         /// <returns></returns>
         private int _AddProductToCart(CustomerProductViewModel selectedProduct)
         {
-            Int32 index = 0;
+            int index = 0;
             var existingProduct = this._products.Where(p => p.ProductId == selectedProduct.ProductId).FirstOrDefault();
             if (existingProduct != null)
             {
@@ -68,7 +68,7 @@ namespace SDKTemplate
             }
             else
             {
-                WholeSellerProductVieModel w = new WholeSellerProductVieModel(selectedProduct.ProductId, selectedProduct.BarCode,
+                WholeSellerProductVieModel w = new WholeSellerProductVieModel(selectedProduct.ProductId, selectedProduct.Code,
                    selectedProduct.Name, 0, 1, selectedProduct.SellingPrice);
                 this._products.Add(w);
                 index = this._products.IndexOf(w);

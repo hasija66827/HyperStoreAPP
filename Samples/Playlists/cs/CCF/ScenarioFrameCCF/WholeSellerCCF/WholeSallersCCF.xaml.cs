@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SDKTemplate.View_Models;
 using System.Threading.Tasks;
+using Models;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -54,15 +55,17 @@ namespace SDKTemplate
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
-            var wholeSalerId = selectedWholesaler?.SupplierId;
             var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
-            var items = await SupplierDataSource.RetrieveSuppliersAsync(new SupplierFilterCriteriaDTO() {
-                SupplierId = wholeSalerId,
+            var sfc = new SupplierFilterCriteriaDTO()
+            {
+                SupplierId = selectedWholesaler?.SupplierId,
                 WalletAmount = filterWholeSalerCriteria.WalletBalance
-            });
+            };
+            var items = await SupplierDataSource.RetrieveSuppliersAsync(sfc);
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
-            WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
+            ///TODO:
+            WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
         }
 
         /// <summary>

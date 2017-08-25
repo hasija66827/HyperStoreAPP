@@ -24,6 +24,10 @@ namespace SDKTemplate
     public delegate Task SelectedCustomerChangedDelegate();
     public sealed partial class CustomerASBCC : Page
     {
+        public static CustomerASBCC Current;
+        public TCustomer SelectedCustomerInASB { get { return this._selectedCustomerInASB; } }
+        public event SelectedCustomerChangedDelegate SelectedCustomerChangedEvent;
+
         private class CustomerASBViewModel : TCustomer
         {
             public string Customer_MobileNo_Name
@@ -36,12 +40,8 @@ namespace SDKTemplate
                     GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
             }
         }
-
-        public static CustomerASBCC Current;
-        private List<CustomerASBViewModel> _Customers { get; set; }
-        public TCustomer SelectedCustomerInASB { get { return this._selectedCustomerInASB; } }
         private CustomerASBViewModel _selectedCustomerInASB;
-        public event SelectedCustomerChangedDelegate SelectedCustomerChangedEvent;
+        private List<CustomerASBViewModel> _Customers { get; set; }
         public CustomerASBCC()
         {
             this.InitializeComponent();

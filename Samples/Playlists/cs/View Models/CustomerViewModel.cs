@@ -90,7 +90,7 @@ namespace SDKTemplate
             get { return _validateCommand; }
         }
 
-        private void ValidateAndSave_Executed()
+        private async void ValidateAndSave_Executed()
         {
             var IsValid = ValidateProperties();
             if (IsValid && Utility.CheckIfUniqueMobileNumber(this._mobileNo, Person.Customer))
@@ -103,7 +103,7 @@ namespace SDKTemplate
                     Name = this.Name,
                     WalletBalance = this.WalletBalance
                 };
-                CustomerDataSource.CreateNewCustomer(customerDTO);
+                await CustomerDataSource.CreateNewCustomerAsync(customerDTO);
                 MainPage.Current.NotifyUser("New customer was added succesfully ", NotifyType.StatusMessage);
             }
         }

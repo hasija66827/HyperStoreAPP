@@ -26,8 +26,8 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(DiscountedBillAmount));
             }
         }
-        private Int32 _totalProducts;
-        public Int32 TotalProducts
+        private decimal _totalProducts;
+        public decimal TotalProducts
         {
             get
             {

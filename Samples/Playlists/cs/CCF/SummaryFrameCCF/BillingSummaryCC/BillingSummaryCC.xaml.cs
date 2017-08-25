@@ -28,8 +28,8 @@ namespace SDKTemplate
                 () =>
                 {
                     var products = CustomerProductListCC.Current.Products;
-                    this.BillingSummaryViewModel.TotalProducts = products.Sum(p=>p.QuantityPurchased);
-                    this.BillingSummaryViewModel.TotalBillAmount = products.Sum(p => p.NetValue);
+                    this.BillingSummaryViewModel.TotalProducts =(decimal) products.Sum(p=>p.QuantityPurchased);
+                    this.BillingSummaryViewModel.TotalBillAmount =(decimal) products.Sum(p => p.NetValue);
                     
                 });
             CustomerProductListCC.Current.ProductListCCUpdatedEvent += d;

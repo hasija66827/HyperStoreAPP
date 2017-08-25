@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -17,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void FilterProductCriteriaChangedDelegate();
+    public delegate Task FilterProductCriteriaChangedDelegate();
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -26,16 +28,22 @@ namespace SDKTemplate
     {
         public event FilterProductCriteriaChangedDelegate FilterProductCriteriaChangedEvent;
         public static FilterProductCC Current;
-        public FilterProductCriteria FilterProductCriteria;
+        public ProductFilterQDTDTO ProductFilterQDT;
         public FilterProductCC()
         {
             Current = this;
             this.InitializeComponent();
+            this.ProductFilterQDT = null;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
             DiscountPerRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             ShowDeficientItemsOnly.Click += ShowDeficientItemsOnly_Click;
             QuantityRangeSlider.Maximum = ProductDataSource.GetMaximumQuantity();
             QuantityRangeSlider.RangeMax = QuantityRangeSlider.Maximum;
+            this.ProductFilterQDT = GetCurrentState();
         }
 
         private void ShowDeficientItemsOnly_Click(object sender, RoutedEventArgs e)
@@ -43,13 +51,24 @@ namespace SDKTemplate
             InvokeFilterProductCriteriaChangedEvent(sender);
         }
 
+        private ProductFilterQDTDTO GetCurrentState()
+        {
+            IRange<decimal?> discounPerRange = new IRange<decimal?>(Convert.ToDecimal(DiscountPerRangeSlider.RangeMin), Convert.ToDecimal(DiscountPerRangeSlider.RangeMax));
+            IRange<decimal?> quantityRange = new IRange<decimal?>(Convert.ToDecimal(QuantityRangeSlider.RangeMin), Convert.ToDecimal(QuantityRangeSlider.RangeMax));
+           var productFilterQDT = new ProductFilterQDTDTO()
+            {
+                DiscountPerRange = discounPerRange,
+                QuantityRange = quantityRange,
+                IncludeDeficientItemsOnly = ShowDeficientItemsOnly.IsChecked
+            };
+            return productFilterQDT;
+        }
+
         private void InvokeFilterProductCriteriaChangedEvent(object sender)
         {
             try
             {
-                IRange<decimal> discounPerRange = new IRange<decimal>(Convert.ToDecimal(DiscountPerLB.Text), Convert.ToDecimal(DiscountPerUB.Text));
-                IRange<Int32> quantityRange = new IRange<Int32>(Convert.ToInt32(QuantityLB.Text), Convert.ToInt32(QuantityUB.Text));
-                this.FilterProductCriteria = new FilterProductCriteria(discounPerRange, quantityRange, ShowDeficientItemsOnly.IsChecked);
+                this.ProductFilterQDT = GetCurrentState();
                 FilterProductCriteriaChangedEvent?.Invoke();
             }
             catch (Exception e)

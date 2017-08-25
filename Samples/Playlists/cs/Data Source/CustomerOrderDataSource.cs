@@ -142,11 +142,7 @@ namespace SDKTemp.Data
             foreach (var product in productsToBePurchased)
             {
                 // Adding each product purchased in the order into the Entity CustomerOrderProduct.
-                var customerOrderProduct = new DatabaseModel.CustomerOrderProduct(customerOrderId,
-                    product.ProductId,
-                    product.DiscountPer,
-                    product.DisplayPrice,
-                    product.QuantityPurchased);
+                var customerOrderProduct = new DatabaseModel.CustomerOrderProduct();
                 db.CustomerOrderProducts.Add(customerOrderProduct);
             }
             // Saving the order.

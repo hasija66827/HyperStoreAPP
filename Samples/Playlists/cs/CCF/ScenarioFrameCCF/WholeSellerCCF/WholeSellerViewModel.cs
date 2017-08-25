@@ -7,6 +7,7 @@ using Mvvm;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using Models;
+using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
@@ -79,7 +80,7 @@ namespace SDKTemplate
             get { return validateCommand; }
         }
 
-        private void ValidateAndSave_Executed()
+        private async void ValidateAndSave_Executed()
         {
             var IsValid = ValidateProperties();
             if (IsValid && Utility.CheckIfUniqueMobileNumber(this.MobileNo, Person.WholeSeller))
@@ -92,7 +93,7 @@ namespace SDKTemplate
                     Name = this.Name
                 };
 
-                SupplierDataSource.CreateNewSupplier(supplierDTO);
+                await SupplierDataSource.CreateNewSupplier(supplierDTO);
                 MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
             }
         }

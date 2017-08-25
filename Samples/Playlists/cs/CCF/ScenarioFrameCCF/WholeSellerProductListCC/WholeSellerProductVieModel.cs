@@ -39,8 +39,8 @@ namespace SDKTemplate
             }
         }
 
-        private Int32 _quantityPurchased;
-        public Int32 QuantityPurchased
+        private decimal _quantityPurchased;
+        public decimal QuantityPurchased
         {
             get { return this._quantityPurchased; }
             set
@@ -60,14 +60,9 @@ namespace SDKTemplate
         private decimal _sellingPrice;
         public decimal SellingPrice { get { return this._sellingPrice; } }
         public WholeSellerProductVieModel(Guid productId, string barCode, string name, 
-            decimal purchasePrice, Int32 quantityPurchased, decimal sellingPrice)
+            decimal purchasePrice, decimal quantityPurchased, decimal? sellingPrice)
         {
-            this._productId = productId;
-            this._barCode = barCode;
-            this._name = name;
-            this._purchasePrice = purchasePrice;
-            this._quantityPurchased = quantityPurchased;
-            this._sellingPrice = sellingPrice;
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

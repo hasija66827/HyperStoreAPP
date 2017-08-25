@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,19 +17,12 @@ namespace SDKTemplate
         public ProductDetailViewModel() { }
         public ProductDetailViewModel(ProductViewModelBase product)
         {
-            this.ProductId = product.ProductId;
-            this._barCode = product.BarCode;
-            this._CGSTPer = product.CGSTPer;
-            this.DisplayPrice = product.DisplayPrice;
-            this.Name = product.Name;
-            this.RefillTime = product.RefillTime;      
-            this._SGSTPer = product.SGSTPer;   
-            this.Threshold = product.Threshold;
         }
 
-        public override decimal DisplayPrice
+        private decimal? _displayPrice;
+        public override decimal? DisplayPrice
         {
-            get => base.DisplayPrice;
+            get { return this._displayPrice; }
             set
             {
                 this._displayPrice = value;
@@ -38,9 +32,10 @@ namespace SDKTemplate
             }
         }
 
-        public override decimal DiscountPer
+        private decimal? _discountPer;
+        public override decimal? DiscountPer
         {
-            get { return Utility.RoundInt32(this._discountPer); }
+            get { return this._discountPer; }
             set
             {
                 this._discountPer = value;
@@ -52,10 +47,10 @@ namespace SDKTemplate
             }
         }
 
-
-        public override decimal CGSTPer
+        private decimal? _CGSTPer;
+        public override decimal? CGSTPer
         {
-            get => base.CGSTPer;
+            get { return this._CGSTPer; }
             set
             {
                 this._CGSTPer = value;
@@ -65,9 +60,10 @@ namespace SDKTemplate
             }
         }
 
-        public override decimal SGSTPer
+        private decimal? _SGSTPer;
+        public override decimal? SGSTPer
         {
-            get => base.SGSTPer;
+            get { return this._SGSTPer; }
             set
             {
                 this._SGSTPer = value;

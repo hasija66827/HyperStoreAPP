@@ -1,10 +1,12 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -19,7 +21,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void TagListChangedDelegate();
+    public delegate Task TagListChangedDelegate();
 
     public sealed partial class TagCC : Page
     {
@@ -28,7 +30,7 @@ namespace SDKTemplate
             this.InitializeComponent();
 
         }
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var Mode = ProductDetailsCC.Current.Mode;
             var productDetail = ProductDetailsCC.Current.ProductDetailViewModel;
@@ -36,13 +38,13 @@ namespace SDKTemplate
 
             if (Mode == Mode.Create)
             {
-                if (ProductDataSource.CreateNewProduct(productDetail) == true)
+                var productDTO = new ProductDTO()
                 {
-                    TagProductDataSource.CreateTagProduct(productDetail.ProductId, selectedTagIds);
-                    MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
-                    this.Frame.Navigate(typeof(BlankPage));
-                }
 
+                };
+                if (await ProductDataSource.CreateNewProductAsync(productDTO))
+                    MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
+                this.Frame.Navigate(typeof(BlankPage));
             }
 
             else if (Mode == Mode.Update)
@@ -63,7 +65,6 @@ namespace SDKTemplate
 
     public class TagCCF : BindableBases
     {
-
         public event TagListChangedDelegate TagListChangedEvent;
         public static TagCCF Current;
         public TagCCF()

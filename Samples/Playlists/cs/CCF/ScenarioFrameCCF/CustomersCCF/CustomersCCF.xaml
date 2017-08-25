@@ -45,7 +45,7 @@
                                 <TextBlock x:Name="BarCode"
                                            Foreground="Black"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind ProductViewModelBase.BarCode, Mode=OneWay}"
+                                           Text="{x:Bind ProductViewModelBase.Code, Mode=OneWay}"
                                            />
                                 <TextBlock x:Name="ProductName"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}"

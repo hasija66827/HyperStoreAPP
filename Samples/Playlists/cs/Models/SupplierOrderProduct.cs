@@ -10,7 +10,7 @@ namespace Models
     {
         public Guid SupplierOrderProductId { get; set; }
         public decimal PurchasePrice { get; set; }
-        public float QuantityPurchased { get; set; }
+        public decimal QuantityPurchased { get; set; }
 
         public TSupplierOrderProduct() {
         }

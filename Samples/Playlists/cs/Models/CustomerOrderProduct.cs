@@ -11,10 +11,10 @@ namespace Models
         public Guid CustomerOrderProductId { get; set; }
 
         public decimal DisplayCostSnapShot { get; set; }
-        public float DiscountPerSnapShot { get; set; }
-        public float CGSTPerSnapShot { get; set; }
-        public float SGSTPerSnapshot { get; set; }
-        public float QuantityConsumed { get; set; }
+        public decimal DiscountPerSnapShot { get; set; }
+        public decimal CGSTPerSnapShot { get; set; }
+        public decimal SGSTPerSnapshot { get; set; }
+        public decimal QuantityConsumed { get; set; }
         public decimal NetValue { get; set; }
         /*
          * cop.DisplayCostSnapShot

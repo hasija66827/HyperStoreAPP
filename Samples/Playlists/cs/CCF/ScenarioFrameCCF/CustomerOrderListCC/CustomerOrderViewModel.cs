@@ -86,11 +86,11 @@ namespace SDKTemplate
 
     public class CustomerOrderDetailViewModel : SDKTemplate.ProductViewModelBase
     {
-        private Int32 _quantityPurchased;
-        public Int32 QuantityPurchased { get { return this._quantityPurchased; } }
+        private decimal? _quantityPurchased;
+        public decimal? QuantityPurchased { get { return this._quantityPurchased; } }
 
-        private decimal _netValue;
-        public decimal NetValue { get { return Utility.RoundInt32(this._netValue); } }
+        private decimal? _netValue;
+        public decimal? NetValue { get { return (this._netValue); } }
 
         public CustomerOrderDetailViewModel() : base()
         {

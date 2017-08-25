@@ -20,15 +20,4 @@ namespace Models
         public TSupplier() {
         }
     }
-
-    public class SupplierDTO
-    {
-        public string Address { get; set; }
-        public string GSTIN { get; set; }
-        [Required]
-        [RegularExpression(@"[987]\d{9}")]
-        public string MobileNo { get; set; }
-        [Required]
-        public string Name { get; set; }
-    }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public delegate void QuantityChangedDelegate(object sender, Int32 Quantity);
+    public delegate void QuantityChangedDelegate(object sender, decimal Quantity);
     public class CustomerProductViewModel : ProductViewModelBase, INotifyPropertyChanged
     {
-        private decimal _netValue;
-        public decimal NetValue { get { return Utility.RoundInt32(this._netValue); } }
+        private decimal? _netValue;
+        public decimal? NetValue { get { return this._netValue; } }
 
-        private Int32 _quantityPurchased;
-        public Int32 QuantityPurchased
+        private decimal? _quantityPurchased;
+        public decimal? QuantityPurchased
         {
             get { return this._quantityPurchased; }
             set
             {
                 this._quantityPurchased = (value >= 0) ? value : 0;
-                this._netValue = this.SellingPrice * this._quantityPurchased;
+                this._netValue = this.SellingPrice * this.QuantityPurchased;
                 this.OnPropertyChanged(nameof(QuantityPurchased));
                 this.OnPropertyChanged(nameof(NetValue));
                 CustomerProductListCC.Current.InvokeProductListChangedEvent();
@@ -30,7 +31,7 @@ namespace SDKTemplate
         }
 
         // Constructor to convert parent obect to child object.
-        public CustomerProductViewModel(ProductViewModelBase parent)
+        public CustomerProductViewModel(TProduct parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())
             {

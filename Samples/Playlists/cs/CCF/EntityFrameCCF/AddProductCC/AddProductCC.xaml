@@ -24,7 +24,7 @@
                     Margin="10,0,0,0">
             <TextBox x:Name="ProductCodeTB"
                      Header="Product Code"
-                     Text="{x:Bind ProductDetailViewModel.BarCode, Mode=TwoWay}"
+                     Text="{x:Bind ProductDetailViewModel.Code, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"
                      PlaceholderText="Four digit product code"
                      Style="{StaticResource FormTextBoxStyle}" />

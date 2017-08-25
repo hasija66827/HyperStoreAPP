@@ -234,11 +234,11 @@ namespace DatabaseModel
         public string BarCode { get; set; }
         public string UserDefinedCode { get; set; }
         public bool IsInventoryItem { get; set; }
-        public Int32 Threshold { get; set; }
-        public Int32 RefillTime { get; set; }
+        public decimal Threshold { get; set; }
+        public decimal RefillTime { get; set; }
         public decimal DisplayPrice { get; set; }
         public decimal DiscountPer { get; set; }
-        public Int32 TotalQuantity { get; set; }
+        public decimal TotalQuantity { get; set; }
         public decimal SGSTPer { get; set; }
         public decimal CGSTPer { get; set; }
 
@@ -255,35 +255,12 @@ namespace DatabaseModel
 
         public Product(ProductViewModelBase productViewModel)
         {
-            ProductId = productViewModel.ProductId;
-            Name = productViewModel.Name;
-            BarCode = productViewModel.BarCode;
-            CGSTPer = productViewModel.CGSTPer;
-            DisplayPrice = productViewModel.DisplayPrice;
-            DiscountPer = productViewModel.DiscountPer;
-            RefillTime = productViewModel.RefillTime;
-            SGSTPer = productViewModel.SGSTPer;
-            Threshold = productViewModel.Threshold;
-            TotalQuantity = productViewModel.TotalQuantity;
-            WholeSellerId = null;
         }
 
         public static explicit operator Product(CustomerProductViewModel customerProductViewModel)
         {
             Product p = new Product();
-            p.ProductId = customerProductViewModel.ProductId;
-            p.Name = customerProductViewModel.Name;
-            p.BarCode = customerProductViewModel.BarCode;
-            p.CGSTPer = customerProductViewModel.CGSTPer;
-            p.Threshold = customerProductViewModel.Threshold;
-            p.DisplayPrice = customerProductViewModel.DisplayPrice;
-            p.DiscountPer = customerProductViewModel.DiscountPer;
-            p.SGSTPer = customerProductViewModel.SGSTPer;
-            p.TotalQuantity = customerProductViewModel.TotalQuantity;
-
-            //TODO: add below propery in product view model 
-            p.IsInventoryItem = false;
-            p.RefillTime = 0;
+            
             return p;
         }
     }
@@ -399,8 +376,8 @@ namespace DatabaseModel
     public class ProductTrend
     {
         public DayOfWeek Day { get; set; }
-        public float Quantity { get; set; }
-        public ProductTrend(DayOfWeek day, float quantity)
+        public decimal Quantity { get; set; }
+        public ProductTrend(DayOfWeek day, decimal quantity)
         {
             this.Day = day;
             this.Quantity = quantity;

@@ -9,8 +9,12 @@
 //
 //*********************************************************
 
+using Models;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.Media.Playlists;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -34,78 +38,37 @@ namespace SDKTemplate
             ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             TagCCF.Current.TagListChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
-            UpdateMasterListViewItemSourceByFilterCriteria();
-            AddToCartBtn.Click += AddToCartBtn_Click;
-            GoToCartBtn.Click += GoToCartBtn_Click;
+          
         }
 
-        //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
-        private void UpdateMasterListViewItemSourceByFilterCriteria()
-        {
-            var selectedProduct = ProductASBCC.Current.SelectedProductInASB;
-            var productId = selectedProduct?.ProductId;
-            var filterProductCriteria = FilterProductCC.Current.FilterProductCriteria;
-            var selectedTagIds = TagCCF.Current.SelectedTagIds;
-            var items = ProductDataSource.GetFilteredProducts(filterProductCriteria, productId, selectedTagIds);
-            MasterListView.ItemsSource = items;
-            var totalResults = items.Count;
-            ProductCountTB.Text = "(" + totalResults.ToString() + "/" + ProductDataSource.Products.Count.ToString() + ")";
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             UpdateForVisualState(AdaptiveStates.CurrentState);
-            // Don't play a content transition for first item load.
-            // Sometimes, this content will be animated as part of the page transition.
+            await UpdateMasterListViewItemSourceByFilterCriteria();
             DisableContentTransitions();
         }
 
-        private void GoToCartBtn_Click(object sender, RoutedEventArgs e)
+        //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
+        private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
-            var selectedProduct = (ProductViewModelBase)MasterListView.SelectedItem;
-            try
+            var selectedProduct = ProductASBCC.Current.SelectedProductInASB;
+            ProductFilterCriteriaDTO pfc = new ProductFilterCriteriaDTO()
             {
-                //If product has not been added to cart already
-                if (selectedProduct.WholeSellerId == null)
-                    throw new Exception("Go To Cart Button should have been disabled");
-                this.Frame.Navigate(typeof(ProductListToPurhcaseCC));
-            }
-            catch (Exception exception)
-            {
-
-            }
+                ProductId = selectedProduct?.ProductId,
+                TagIds = TagCCF.Current.SelectedTagIds,
+                FilterProductQDT = FilterProductCC.Current.ProductFilterQDT
+            };
+            var products = await ProductDataSource.RetrieveProductDataAsync(pfc);
+            var items = products.Select(p => new ProductViewModelBase(p)).ToList();
+            MasterListView.ItemsSource = items;
+            var totalResults = items;
+            //TODO: get total quantity
+            ProductCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
         }
 
-        private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedProduct = (ProductViewModelBase)MasterListView.SelectedItem;
-            if (selectedProduct == null)
-            {
-                MainPage.Current.NotifyUser("Please select the product", NotifyType.ErrorMessage);
-                return;
-            }
-            var selectedWholeSeller = PriceQuotedByWholeSellerViewModel.selectedWholeSeller;
-            if (selectedWholeSeller == null)
-            {
-                MainPage.Current.NotifyUser("Please select the whole seller", NotifyType.ErrorMessage);
-                return;
-            }
-            try
-            {
-                //if Product has been added to cart already.
-                if (selectedProduct.WholeSellerId != null)
-                    throw new Exception("AddToCart Button should have been disabled");
-                ProductDataSource.UpdateWholSellerIdForProduct(selectedProduct.ProductId, selectedWholeSeller.WholeSellerId);
-                ((ProductViewModelBase)MasterListView.SelectedItem).WholeSellerId = selectedWholeSeller.WholeSellerId;
-                AddToCartBtn.IsEnabled = false;
-            }
-            catch (Exception exception)
-            {
-
-            }
-        }
-
+      
+     
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
             UpdateForVisualState(e.NewState, e.OldState);
@@ -128,10 +91,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-            if (clickedItem.WholeSellerId != null)
-                AddToCartBtnVisibility(false);
-            else
-                AddToCartBtnVisibility(true);
+            
 
             this.PriceQuotedByWholeSellerCollection =
                 new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));

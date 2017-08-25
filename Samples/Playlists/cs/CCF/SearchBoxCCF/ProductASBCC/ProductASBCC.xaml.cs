@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,23 +24,8 @@ namespace SDKTemplate
     }
 
     public delegate int OnAddProductClickedDelegate(CustomerProductViewModel productViewModel);
-    public delegate void SelectedProductChangedDelegate();
-    public class ProductASBViewModel : ProductViewModelBase
-    {
-        // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
-        public string Product_Id_Name { get { return string.Format("{0} ({1})", BarCode, Name); } }
-        //Constructor to convert parent obect to child object.
-        public ProductASBViewModel(ProductViewModelBase parent)
-        {
-            if (parent != null)
-                foreach (PropertyInfo prop in parent.GetType().GetProperties())
-                {
-                    //If Property can be set then only we will set it.
-                    if (prop.CanWrite)
-                        GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
-                }
-        }
-    }
+    public delegate Task SelectedProductChangedDelegate();
+
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -46,9 +33,28 @@ namespace SDKTemplate
     public sealed partial class ProductASBCC : Page
     {
         public static ProductASBCC Current;
+        public TProduct SelectedProductInASB { get { return this._selectedProductInASB; } }
         public event OnAddProductClickedDelegate OnAddProductClickedEvent;
         public event SelectedProductChangedDelegate SelectedProductChangedEvent;
-        public ProductASBViewModel SelectedProductInASB;
+
+        private class ProductASBViewModel : TProduct
+        {
+            // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
+            public string Product_Id_Name { get { return string.Format("{0} ({1})", Code, Name); } }
+            public string FormattedNameQuantity
+            {
+                get { return this.Name + " (" + this.TotalQuantity + ")"; }
+            }
+
+            //Constructor to convert parent obect to child object.
+            public ProductASBViewModel(TProduct parent)
+            {
+                foreach (PropertyInfo prop in parent.GetType().GetProperties())
+                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
+            }
+        }
+        private ProductASBViewModel _selectedProductInASB;
+        private List<ProductASBViewModel> _Products { get; set; }
         public ProductASBCC()
         {
             Current = this;
@@ -56,7 +62,7 @@ namespace SDKTemplate
             AddToCartBtn.Click += AddToCartBtn_Click;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
             {
@@ -70,12 +76,13 @@ namespace SDKTemplate
                     AddToCartBtn.Visibility = Visibility.Visible;
                 }
             }
+            var products = await ProductDataSource.RetrieveProductDataAsync(null);
+            this._Products = products.Select(p => new ProductASBViewModel(p)).ToList();
         }
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
             this.OnAddProductClickedEvent?.Invoke(new CustomerProductViewModel(this.SelectedProductInASB));
-            this.ProductASB.Text = "";
         }
 
         /// <summary>
@@ -91,9 +98,7 @@ namespace SDKTemplate
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var matchingProducts = ProductDataSource.GetMatchingProducts(sender.Text);
-                List<ProductASBViewModel> lstChild = matchingProducts.Select(product => new ProductASBViewModel(product)).ToList();
-                sender.ItemsSource = lstChild;
+                sender.ItemsSource = GetMatchingProducts(sender.Text);
             }
         }
 
@@ -119,7 +124,7 @@ namespace SDKTemplate
             }
             else
             {
-                var matchingProducts = ProductDataSource.GetMatchingProducts(args.QueryText);
+                var matchingProducts = GetMatchingProducts(args.QueryText);
                 // Choose the first match, or clear the selection if there are no matches.
                 var product = matchingProducts.FirstOrDefault();
                 if (product == null)
@@ -137,17 +142,17 @@ namespace SDKTemplate
         /// <param name="Product"></param>
         private void SelectProduct(ProductASBViewModel product)
         {
-            this.SelectedProductInASB = product;
+            this._selectedProductInASB = product;
             if (product != null)
             {
                 NoResults.Visibility = Visibility.Collapsed;
                 ProductDetails.Visibility = Visibility.Visible;
-                ProductId.Text = product.BarCode;
+                ProductId.Text = product.Code;
                 ProductName.Text = product.FormattedNameQuantity;
-                ProductSellingPrice.Text = Utility.FloatToRupeeConverter(product.SellingPrice);
+                ProductSellingPrice.Text = "xxxx";//Utility.FloatToRupeeConverter(product.SellingPrice);
                 ProductCostPrice.Text = Utility.FloatToRupeeConverter(product.DisplayPrice);
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
-                ProductGSTPer.Text = product.TotalGSTPer + "%GST";
+                ProductGSTPer.Text = product.SGSTPer + product.CGSTPer + "%GST";
                 ProductGlyph.Text = Utility.GetGlyphValue(product.Name);
             }
             else
@@ -155,6 +160,20 @@ namespace SDKTemplate
                 NoResults.Visibility = Visibility.Visible;
                 ProductDetails.Visibility = Visibility.Collapsed;
             }
+        }
+
+        /// <summary>
+        /// Do a fuzzy search on all Product and order results based on product name or barcode
+        /// </summary>
+        /// <param name="query">The part of the name or company to look for</param>
+        /// <returns>An ordered list of Product that matches the query</returns>
+        private List<ProductASBViewModel> GetMatchingProducts(string query)
+        {
+            return _Products
+                .Where(p => p.Code.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1 ||
+                            p.Name.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
+                .OrderByDescending(c => c.Code.StartsWith(query, StringComparison.CurrentCultureIgnoreCase))
+                .ThenByDescending(c => c.Name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
     }
 }

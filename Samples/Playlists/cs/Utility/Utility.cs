@@ -123,6 +123,9 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
+            //TODO: Remove
+            if (value == null)
+                return "null";
             // value is the data from the source object.
             decimal price = (decimal)value;
             // Return the value to pass to the target.
@@ -150,7 +153,7 @@ namespace SDKTemplate
         {
             try
             {
-                var v = System.Convert.ToInt32(value);
+                var v = System.Convert.ToDecimal(value);
                 if (v < 0)
                     throw new Exception();
             }
@@ -159,7 +162,7 @@ namespace SDKTemplate
                 value = 1;
                 MainPage.Current.NotifyUser("Invalid value entered, resetting it to one", NotifyType.ErrorMessage);
             }
-            return System.Convert.ToInt32(value);
+            return System.Convert.ToDecimal(value);
         }
     }
 
@@ -215,7 +218,7 @@ namespace SDKTemplate
                 MainPage.Current.NotifyUser("Percentage should be between 0 to 100, resetting it to zero", NotifyType.ErrorMessage);
             }
 
-            return System.Convert.ToSingle(value);
+            return System.Convert.ToDecimal(value);
         }
     }
 
@@ -223,7 +226,7 @@ namespace SDKTemplate
     {
         public static string DEFAULT_CUSTOMER_GUID { get { return "cccccccc-cccc-cccc-cccc-cccccccccccc"; } }
 
-        public static decimal RoundInt32(decimal f)
+        public static decimal Rounddecimal(decimal f)
         {
             return (decimal)(Math.Round((decimal)f, 2));
         }

@@ -88,7 +88,7 @@ namespace SDKTemplate
 
             [Required]
             [Range(0, float.MaxValue)]
-            public float? QuantityConsumed { get; set; }
+            public decimal? QuantityConsumed { get; set; }
         }
 
         public class CustomerOrderDTO
@@ -119,17 +119,17 @@ namespace SDKTemplate
         #region Product Controller
         public class ProductDTO
         {
-            public float? CGSTPer { get; set; }
+            public decimal? CGSTPer { get; set; }
             [Required]
             public string Code { get; set; }
             [Required]
             public decimal? DisplayPrice { get; set; }
-            public float DiscountPer { get; set; }
+            public decimal DiscountPer { get; set; }
             [Required]
             public string Name { get; set; }
-            public Int32 RefillTime { get; set; }
-            public float? SGSTPer { get; set; }
-            public Int32 Threshold { get; set; }
+            public decimal RefillTime { get; set; }
+            public decimal? SGSTPer { get; set; }
+            public decimal Threshold { get; set; }
             public List<Guid?> TagIds { get; set; }
         }
 
@@ -149,7 +149,7 @@ namespace SDKTemplate
         {
             public override bool IsValid(object value)
             {
-                var quantityRange = value as IRange<float?>;
+                var quantityRange = value as IRange<decimal?>;
                 return (quantityRange.LB >= 0 && quantityRange.LB <= quantityRange.UB);
             }
         }
@@ -158,29 +158,29 @@ namespace SDKTemplate
         {
             public override bool IsValid(object value)
             {
-                var discountPerRange = value as IRange<float?>;
+                var discountPerRange = value as IRange<decimal?>;
                 bool valid = (discountPerRange.LB <= discountPerRange.UB && discountPerRange.LB >= 0 && discountPerRange.UB <= 100);
                 return valid;
             }
         }
 
-        public class FilterProductCriteriaDTO
+        public class ProductFilterCriteriaDTO
         {
             public Guid? ProductId { get; set; }
             public List<Guid?> TagIds { get; set; }
             [Required]
-            public FilterProductQDTDTO FilterProductQDT { get; set; }
+            public ProductFilterQDTDTO FilterProductQDT { get; set; }
         }
 
-        public class FilterProductQDTDTO
+        public class ProductFilterQDTDTO
         {
             [Required]
             [DiscountPerRange]
-            public IRange<float?> DiscountPerRange { get; set; }
+            public IRange<decimal?> DiscountPerRange { get; set; }
 
             [Required]
             [QuantityRange]
-            public IRange<float?> QuantityRange { get; set; }
+            public IRange<decimal?> QuantityRange { get; set; }
 
             [Required]
             public bool? IncludeDeficientItemsOnly { get; set; }
@@ -195,7 +195,7 @@ namespace SDKTemplate
 
             [Required]
             [Range(0, float.MaxValue)]
-            public float? QuantityPurchased { get; set; }
+            public decimal? QuantityPurchased { get; set; }
 
             [Required]
             public decimal? PurchasePricePerUnit { get; set; }
@@ -220,7 +220,7 @@ namespace SDKTemplate
 
             [Required]
             [Range(0, 100)]
-            public float IntrestRate { get; set; }
+            public decimal IntrestRate { get; set; }
         }
 
         public class SupplierOrderFilterCriteriaDTO

@@ -20,8 +20,8 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(BillAmount));
             }
         }
-        private Int32 _totalQuantity;
-        public Int32 TotalQuantity
+        private decimal _totalQuantity;
+        public decimal TotalQuantity
         {
             get { return this._totalQuantity; }
             set

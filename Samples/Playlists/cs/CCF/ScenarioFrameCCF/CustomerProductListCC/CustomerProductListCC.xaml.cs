@@ -47,7 +47,7 @@ namespace SDKTemplate
         /// <returns></returns>
         private int _AddProductToCart(CustomerProductViewModel product)
         {
-            Int32 index = 0;
+            int index = 0;
             var existingProduct = this._products.Where(p => p.ProductId == product.ProductId).FirstOrDefault();
             if (existingProduct != null)
             {

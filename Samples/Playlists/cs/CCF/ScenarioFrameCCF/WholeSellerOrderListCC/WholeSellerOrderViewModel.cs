@@ -126,8 +126,8 @@ namespace SDKTemplate
             }
         }
 
-        private Int32 _quantityPurchased;
-        public Int32 QuantityPurchased
+        private decimal _quantityPurchased;
+        public decimal QuantityPurchased
         {
             get { return this._quantityPurchased; }
             set
@@ -142,7 +142,7 @@ namespace SDKTemplate
         }
 
         public WholeSellerOrderDetailViewModel(string barcode, string name,
-            decimal purchasePrice, Int32 quantityPurchased)
+            decimal purchasePrice, decimal quantityPurchased)
         {
             this._barCode = barcode;
             this._name = name;

@@ -25,10 +25,7 @@ namespace SDKTemplate
             {
                 // Adding each product purchased in the order into the Entity WholeSellerOrderProduct.
                 var wholeSellerOrderProduct = new DatabaseModel.WholeSellerOrderProduct(
-                    purchasedProduct.ProductId,
-                    wholeSellerOrderId,
-                    purchasedProduct.QuantityPurchased,
-                    purchasedProduct.PurchasePrice
+                    
                     );
                 db.WholeSellersOrderProducts.Add(wholeSellerOrderProduct);
             }

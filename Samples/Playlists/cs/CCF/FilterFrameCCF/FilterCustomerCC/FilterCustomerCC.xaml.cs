@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,6 @@ namespace SDKTemplate
             Current = this;
             this.InitializeComponent();
             this.FilterPersonCriteria = new FilterPersonCriteria();
-            WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;            
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -41,6 +41,7 @@ namespace SDKTemplate
             WalletRangeSlider.RangeMax = (double)(SupplierDataSource.GetMaximumWalletBalance() + 10);
             WalletRangeSlider.Minimum = WalletRangeSlider.RangeMin;
             WalletRangeSlider.Maximum = WalletRangeSlider.RangeMax;
+            WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
         }
 
         private void WalletRangeSlider_DragCompletedEvent(object sender)

@@ -10,8 +10,8 @@ namespace SDKTemplate
     {
         public Guid? ProductId;
         public ProductViewModelBase ProductViewModelBase { get; set; }
-        public Int32 TotalQuantity { get; set; }
-        public CustomerPurchaseHistoryViewModel(Guid? productId, Int32 totalQuantity) {
+        public decimal TotalQuantity { get; set; }
+        public CustomerPurchaseHistoryViewModel(Guid? productId, decimal totalQuantity) {
             this.ProductId = productId;
             this.ProductViewModelBase = ProductDataSource.GetProductsById(productId).FirstOrDefault();
             this.TotalQuantity = totalQuantity;
