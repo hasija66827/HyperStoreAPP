@@ -19,7 +19,7 @@ namespace SDKTemplate
     }
 
     class SupplierDataSource
-    {   
+    {
         #region Create
         public static async Task<bool> CreateNewSupplier(SupplierDTO supplier)
         {
@@ -37,39 +37,24 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<Models.TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
+        public static async Task<List<TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
         {
             string actionURI = "suppliers";
-            string httpResponseBody = "";
-            try
-            {
-                var response = await Utility.HttpGet(actionURI, sfc);
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var suppliers = JsonConvert.DeserializeObject<List<Models.TSupplier>>(httpResponseBody);
-                    return suppliers;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            List<TSupplier> suppliers = await Utility.Retrieve<TSupplier>(actionURI, sfc);
+            return suppliers;
         }
 
         //TODO
         public static decimal GetMinimumWalletBalance()
         {
-           
+
             return -10000;
         }
 
         //TODO
         public static decimal GetMaximumWalletBalance()
         {
-           
+
             return 20000;
         }
         #endregion

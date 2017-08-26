@@ -44,23 +44,8 @@ namespace SDKTemplate
         public static async Task<List<TCustomer>> RetrieveCustomersAsync(CustomerFilterCriteriaDTO cfc)
         {
             string actionURI = "customers";
-            string httpResponseBody = "";
-            try
-            {
-                var response = await Utility.HttpGet(actionURI, cfc);
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var customers = JsonConvert.DeserializeObject<List<TCustomer>>(httpResponseBody);
-                    return customers;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            List < TCustomer > customers= await Utility.Retrieve<TCustomer>(actionURI,cfc);
+            return customers;
         }
 
 

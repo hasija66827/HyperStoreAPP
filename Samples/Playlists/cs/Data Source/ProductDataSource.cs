@@ -31,23 +31,8 @@ namespace SDKTemplate
         public static async Task<List<TProduct>> RetrieveProductDataAsync(ProductFilterCriteriaDTO pfc)
         {
             string actionURI = "products";
-            string httpResponseBody = "";
-            try
-            {
-                var response = await Utility.HttpGet(actionURI, pfc);
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var products = JsonConvert.DeserializeObject<List<TProduct>>(httpResponseBody);
-                    return products;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            List<TProduct> products = await Utility.Retrieve<TProduct>(actionURI, pfc);
+            return products;
         }
 
         public static List<ProductViewModelBase> GetProductsById(Guid? productId)

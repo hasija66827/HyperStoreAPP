@@ -241,6 +241,29 @@ namespace SDKTemplate
             return true;
         }
 
+        public static async Task<List<T>> Retrieve<T>(string actionURI, object content)
+        {
+            string httpResponseBody = "";
+            try
+            {
+                var response = await Utility.HttpGet(actionURI, content);
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    httpResponseBody = await response.Content.ReadAsStringAsync();
+                    var suppliers = JsonConvert.DeserializeObject<List<T>>(httpResponseBody);
+                    return suppliers;
+                }
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;//TODO: notifications
+                return null;
+            }
+        }
+
         public static async Task<HttpResponseMessage> HttpPost(string actionURI, string content)
         {
             string absoluteURI = "https://localhost:44346/api/";

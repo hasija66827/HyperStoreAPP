@@ -21,45 +21,15 @@ namespace SDKTemp.Data
         public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
         {
             string actionURI = "customerorders";
-            string httpResponseBody = "";
-            try
-            {
-                var response = await Utility.HttpGet(actionURI, cofc);
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var customerOrders = JsonConvert.DeserializeObject<List<TCustomerOrder>>(httpResponseBody);
-                    return customerOrders;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            List<TCustomerOrder> customerOrders = await Utility.Retrieve<TCustomerOrder>(actionURI, cofc);
+            return customerOrders;
         }
 
         public static async Task<List<TCustomerOrderProduct>> RetrieveOrderDetailsAsync(Guid customerOrderId)
         {
             string actionURI = "customerorderproducts/" + customerOrderId.ToString();
-            string httpResponseBody = "";
-            try
-            {
-                var response = await Utility.HttpGet(actionURI, null);
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var customerOrderProduct = JsonConvert.DeserializeObject<List<TCustomerOrderProduct>>(httpResponseBody);
-                    return customerOrderProduct;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            List<TCustomerOrderProduct> orderDetails = await Utility.Retrieve<TCustomerOrderProduct>(actionURI, null);
+            return orderDetails;
         }
 
         //#remove
