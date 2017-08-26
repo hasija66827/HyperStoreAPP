@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -16,18 +19,14 @@ namespace SDKTemplate
     public sealed partial class ProductDetailsCC : Page
     {
         public static ProductDetailsCC Current;
-        public ProductDetailViewModel ProductDetailViewModel;
-        private Mode _mode;
+        public ProductViewModelBase ProductViewModelBase { get { return this._PFV; } }
         public Mode Mode { get { return this._mode; } }
+        private ProductFormViewModel _PFV;
+        private Mode _mode;
         public ProductDetailsCC()
         {
             Current = this;
             this.InitializeComponent();
-        }
-
-        private void ProductCodeTB_LostFocus(object sender, RoutedEventArgs e)
-        {
-            Utility.CheckIfValidProductCode(ProductCodeTB.Text);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -36,12 +35,12 @@ namespace SDKTemplate
             var product = (ProductViewModelBase)e.Parameter;
             if (product == null)
             {
-                this.ProductDetailViewModel = new ProductDetailViewModel();
+                this._PFV = new ProductFormViewModel();
                 this._mode = Mode.Create;
             }
             else
             {
-                this.ProductDetailViewModel = new ProductDetailViewModel(product);
+                this._PFV = new ProductFormViewModel(product);
                 ProductCodeTB.IsReadOnly = true;
                 ProductNameTB.IsReadOnly = true;
                 this._mode = Mode.Update;

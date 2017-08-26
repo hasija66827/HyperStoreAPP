@@ -33,7 +33,7 @@ namespace SDKTemplate
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var Mode = ProductDetailsCC.Current.Mode;
-            var productDetail = ProductDetailsCC.Current.ProductDetailViewModel;
+            var productDetail = ProductDetailsCC.Current.ProductViewModelBase;
             var selectedTagIds = TagCCF.Current.SelectedTagIds;
 
             if (Mode == Mode.Create)

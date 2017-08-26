@@ -104,7 +104,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="addProductViewModel"></param>
         /// <returns></returns>
-        public static bool UpdateProductDetails(ProductDetailViewModel addProductViewModel)
+        public static bool UpdateProductDetails(object addProductViewModel)
         {
             /*
             var db = new DatabaseModel.RetailerContext();

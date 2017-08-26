@@ -24,7 +24,7 @@
                     Margin="10,0,0,0">
             <TextBox x:Name="ProductCodeTB"
                      Header="Product Code"
-                     Text="{x:Bind ProductDetailViewModel.Code, Mode=TwoWay}"
+                     Text="{x:Bind _PFV.Code, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"
                      PlaceholderText="Four digit product code"
                      Style="{StaticResource FormTextBoxStyle}" />
@@ -32,7 +32,7 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="ProductNameTB"
                      Header="Product Name"
-                     Text="{x:Bind ProductDetailViewModel.Name, Mode=TwoWay}"
+                     Text="{x:Bind _PFV.Name, Mode=TwoWay}"
                      ToolTipService.ToolTip="Product Name for e.g. Maggi"
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text=""
@@ -40,13 +40,13 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="Threshold"
                          Header="Threshold"
-                         Text="{x:Bind ProductDetailViewModel.Threshold,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         Text="{x:Bind _PFV.Threshold,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                          PlaceholderText=""
                          ToolTipService.ToolTip="The number of units of product below which you want get notified"
                          Style="{StaticResource MediumFormTextBoxStyle}" />
                 <TextBox x:Name="RefillTime"
                          Header="Refill Time"
-                         Text="{x:Bind ProductDetailViewModel.RefillTime, Mode=TwoWay}"
+                         Text="{x:Bind _PFV.RefillTime, Mode=TwoWay}"
                          PlaceholderText=""
                          ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller"
                          Style="{StaticResource MediumFormTextBoxStyle}" />
@@ -55,22 +55,22 @@
                         HorizontalAlignment="Right">
                 <TextBox x:Name="DisplayPrice"
                          Header="DisplayPrice"
-                         Text="{x:Bind ProductDetailViewModel.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
+                         Text="{x:Bind _PFV.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
                          ToolTipService.ToolTip="Price of the product to be sold to the Customer"
                          Style="{StaticResource MediumFormTextBoxStyle}"
                          Width="80"/>
                 <TextBox x:Name="DiscountPer"
                          Header="Dis %"
-                         Text="{x:Bind ProductDetailViewModel.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
+                         Text="{x:Bind _PFV.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
                          ToolTipService.ToolTip="Discount % on Display Price, given to the Customer"
                          Style="{StaticResource SmallFormTextBoxStyle}" />
                 <TextBlock x:Name="DiscountAmount"
                            Width="60"
                            TextAlignment="Right"
-                           Text="{x:Bind ProductDetailViewModel.DiscountAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                           Text="{x:Bind _PFV.DiscountAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
                            ToolTipService.ToolTip="Discount on the Display Price, given to the Customer" />
                 <TextBlock x:Name="SubTotal"
-                           Text="{x:Bind ProductDetailViewModel.SubTotal,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                           Text="{x:Bind _PFV.SubTotal,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
                            ToolTipService.ToolTip="Subtotal"
                            Style="{StaticResource PositiveValueTB}" />
             </StackPanel>
@@ -78,25 +78,25 @@
                         HorizontalAlignment="Right">
                 <TextBox x:Name="CGSTPer"
                          Header="CGST %"
-                         Text="{x:Bind ProductDetailViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         Text="{x:Bind _PFV.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                          ToolTipService.ToolTip="CGST Percentage on the Subtotal"
                          Style="{StaticResource SmallFormTextBoxStyle}" />
                 <TextBox x:Name="SGSTPer"
                          Header="SGST %"
-                         Text="{x:Bind ProductDetailViewModel.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         Text="{x:Bind _PFV.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                          ToolTipService.ToolTip="SGSTPer on the Subtotal"
                          Style="{StaticResource SmallFormTextBoxStyle}" />
                 <TextBlock x:Name="TotalGSTPer"
                            Width="60"
                            TextAlignment="Right"
-                           Text="{x:Bind ProductDetailViewModel.TotalGSTPer, Mode=OneWay}"
+                           Text="{x:Bind _PFV.TotalGSTPer, Mode=OneWay}"
                            ToolTipService.ToolTip="Total GST Percentage on Subtotal" />
                 <TextBlock x:Name="TotalGSTAmount"
-                           Text="{x:Bind ProductDetailViewModel.TotalGSTAmount, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                           Text="{x:Bind _PFV.TotalGSTAmount, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
                            ToolTipService.ToolTip="Total GST Amount"
                            Style="{StaticResource PositiveValueTB}" />
             </StackPanel>
-            <TextBlock Text="{x:Bind ProductDetailViewModel.SellingPrice, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+            <TextBlock Text="{x:Bind _PFV.SellingPrice, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
                        Style="{StaticResource PositiveValueTB}"
                        HorizontalAlignment="Right"/>
             

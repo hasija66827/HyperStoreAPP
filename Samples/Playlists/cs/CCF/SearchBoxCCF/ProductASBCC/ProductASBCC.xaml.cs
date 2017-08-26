@@ -169,6 +169,8 @@ namespace SDKTemplate
         /// <returns>An ordered list of Product that matches the query</returns>
         private List<ProductASBViewModel> GetMatchingProducts(string query)
         {
+            if (_Products == null)
+                return null;
             return _Products
                 .Where(p => p.Code.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1 ||
                             p.Name.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
