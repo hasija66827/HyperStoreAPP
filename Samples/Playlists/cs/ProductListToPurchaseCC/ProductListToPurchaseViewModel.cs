@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -33,7 +34,7 @@ namespace SDKTemplate
 
     public class ProductListToPurchaseViewModel
     {
-        public WholeSellerViewModel WholeSellerViewModel { get; set; }
+        public TSupplier WholeSellerViewModel { get; set; }
         public List<ProductViewModelBase> Products { get; set; }
     }
 

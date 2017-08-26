@@ -37,7 +37,7 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
+        public static async Task<List<Models.TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
         {
             string actionURI = "suppliers";
             string httpResponseBody = "";
@@ -48,7 +48,7 @@ namespace SDKTemplate
                 if (response.IsSuccessStatusCode)
                 {
                     httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var suppliers = JsonConvert.DeserializeObject<List<TSupplier>>(httpResponseBody);
+                    var suppliers = JsonConvert.DeserializeObject<List<Models.TSupplier>>(httpResponseBody);
                     return suppliers;
                 }
                 return null;
@@ -76,7 +76,7 @@ namespace SDKTemplate
 
         //#remove
         #region Update
-        public static decimal UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, TSupplier wholeSellerViewModel,
+        public static decimal UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, Models.TSupplier wholeSellerViewModel,
         decimal walletBalanceToBeAdded)
         {
             /* var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;

@@ -7,10 +7,98 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Mvvm;
+using System.ComponentModel.DataAnnotations;
+using System.Windows.Input;
+using SDKTemplate.DTO;
+using Models;
+
 namespace SDKTemplate
 {
-    public class AddWholeSellerViewModel : WholeSellerViewModel
+    public class SupplierFormViewModel : ValidatableBindableBase, supplierInterface
     {
-        public AddWholeSellerViewModel() : base() { }
+        private DelegateCommand validateCommand;
+        private Guid? _supplierId;
+        public virtual Guid? SupplierId { get { return this._supplierId; } set { this._supplierId = value; } }
+
+        private string _address;
+        public virtual string Address
+        {
+            get { return this._address; }
+            set { SetProperty(ref _address, value); }
+        }
+
+        private string _gstin;
+        [RegularExpression(@"\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z]{1}\d{1}[zZ][a-zA-Z0-9]", ErrorMessage = "{0} is Invalid.")]
+        public string GSTIN { get { return this._gstin; } set { SetProperty(ref _gstin, value); } }
+
+        private string _mobileNo;
+        [RegularExpression(@"[987]\d{9}", ErrorMessage = "{0} is Invalid.")]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public virtual string MobileNo { get { return this._mobileNo; } set { SetProperty(ref _mobileNo, value); } }
+
+        private string _name;
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public virtual string Name
+        {
+            get { return this._name; }
+            set { SetProperty(ref _name, value); }
+        }
+
+        private decimal _walletBalance;
+        public virtual decimal WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
+
+        public SupplierFormViewModel()
+        {
+            validateCommand = new DelegateCommand(ValidateAndSave_Executed);
+            this._supplierId = null;
+            this._address = null;
+            this._mobileNo = null;
+            this._name = null;
+            this._walletBalance = 0;
+        }
+
+        public SupplierFormViewModel(DatabaseModel.WholeSeller wholeSeller)
+        {
+            validateCommand = new DelegateCommand(ValidateAndSave_Executed);
+            this._supplierId = wholeSeller.WholeSellerId;
+            this._address = wholeSeller.Address;
+            this._gstin = wholeSeller.GSTIN;
+            this._mobileNo = wholeSeller.MobileNo;
+            this._name = wholeSeller.Name;
+            this._walletBalance = wholeSeller.WalletBalance;
+        }
+
+        public string WholeSeller_MobileNo_Address
+        {
+            get { return string.Format("{0}({1})", this.MobileNo, this.Address); }
+        }
+
+        public string WholeSeller_Name_MobileNo
+        {
+            get { return string.Format("{0} ({1})", this.MobileNo, this.Name); }
+        }
+
+        public ICommand ValidateCommand
+        {
+            get { return validateCommand; }
+        }
+
+        private async void ValidateAndSave_Executed()
+        {
+            var IsValid = ValidateProperties();
+            if (IsValid && Utility.CheckIfUniqueMobileNumber(this.MobileNo, Person.WholeSeller))
+            {
+                SupplierDTO supplierDTO = new SupplierDTO()
+                {
+                    Address = this.Address,
+                    GSTIN = this.GSTIN,
+                    MobileNo = this.MobileNo,
+                    Name = this.Name
+                };
+
+                await SupplierDataSource.CreateNewSupplier(supplierDTO);
+                MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
+            }
+        }
     }
 }

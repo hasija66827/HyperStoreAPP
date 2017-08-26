@@ -9,7 +9,7 @@
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
-                      x:DataType="local:WholeSellerViewModel">
+                      x:DataType="local:SupplierFormViewModel">
             <RelativePanel>
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind MobileNo}"

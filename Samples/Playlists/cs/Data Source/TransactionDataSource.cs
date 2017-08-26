@@ -38,7 +38,7 @@ namespace SDKTemplate
         }
 
 
-        public static decimal MakeTransaction(TransactionViewModel transactionViewModel, TSupplier wholeSeller, DatabaseModel.RetailerContext db)
+        public static decimal MakeTransaction(TransactionViewModel transactionViewModel, Models.TSupplier wholeSeller, DatabaseModel.RetailerContext db)
         {
             var creditAmount = transactionViewModel.CreditAmount;
             TransactionDataSource.CreateTransaction(transactionViewModel, db);

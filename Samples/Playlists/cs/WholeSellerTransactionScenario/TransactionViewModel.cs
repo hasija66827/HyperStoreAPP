@@ -40,7 +40,7 @@ namespace SDKTemplate.View_Models
         public Guid? WholeSellerId { get { return this._wholeSellerId; } }
 
         public TransactionViewModel(decimal creditAmount, DateTime transactionDate,
-                   TSupplier wholeSellerViewModel)
+                   Models.TSupplier wholeSellerViewModel)
         { 
             this._transactionId = Guid.NewGuid();
             this._transactionNo = Utility.GenerateWholeSellerTransactionNo();

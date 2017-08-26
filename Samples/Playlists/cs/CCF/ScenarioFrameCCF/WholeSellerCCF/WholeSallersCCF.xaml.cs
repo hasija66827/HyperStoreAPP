@@ -30,7 +30,7 @@ namespace SDKTemplate
         public static WholeSellersCCF Current;
         public TransactionHistoryOfWholeSellerCollection TransactionHistoryOfWholeSellerCollection { get; set; }
         public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
-        public WholeSellerViewModel SelectedWholeSeller { get; set; }
+        public TSupplier SelectedWholeSeller { get; set; }
         public TransactionViewModel SelectedTransaction { get; set; }
         public WholeSellersCCF()
         {
@@ -75,7 +75,7 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.SelectedWholeSeller = (WholeSellerViewModel)e.ClickedItem;
+            this.SelectedWholeSeller = (TSupplier)e.ClickedItem;
             this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionWholeSellerId((Guid)SelectedWholeSeller.SupplierId);
             DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
         }

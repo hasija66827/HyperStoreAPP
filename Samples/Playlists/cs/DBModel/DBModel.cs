@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
  
 using SDKTemplate;
 using SDKTemplate.View_Models;
+using Models;
+
 namespace DatabaseModel
 {
     public class RetailerContext : DbContext
@@ -66,7 +68,7 @@ namespace DatabaseModel
 
         public WholeSeller() { }
 
-        public static explicit operator WholeSeller(WholeSellerViewModel v)
+        public static explicit operator WholeSeller(TSupplier v)
         {
             WholeSeller w = new WholeSeller();
             w.WholeSellerId = v.SupplierId;

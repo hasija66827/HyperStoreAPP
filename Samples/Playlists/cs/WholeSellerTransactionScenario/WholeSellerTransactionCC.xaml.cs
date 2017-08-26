@@ -31,7 +31,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.WholeSellerTransactionViewModel = new WholeSellerTransactionViewModel((TSupplier)e.Parameter);
+            this.WholeSellerTransactionViewModel = new WholeSellerTransactionViewModel((Models.TSupplier)e.Parameter);
         }
 
         private void AddMoney_Click(object sender, RoutedEventArgs e)
@@ -44,14 +44,14 @@ namespace SDKTemplate
     {
         public TSupplier WholeSellerViewModel { get; set; }
         public decimal CreditAmount { get; set; }
-        public WholeSellerTransactionViewModel(TSupplier w)
+        public WholeSellerTransactionViewModel(Models.TSupplier w)
         {
             this.WholeSellerViewModel = w;
             this.CreditAmount = 0;
         }
         public WholeSellerTransactionViewModel()
         {
-            this.WholeSellerViewModel = new TSupplier   ();
+            this.WholeSellerViewModel = new Models.TSupplier   ();
             this.CreditAmount = 0;
         }
     }

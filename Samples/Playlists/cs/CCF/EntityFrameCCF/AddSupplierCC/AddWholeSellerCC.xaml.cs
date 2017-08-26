@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,18 +27,18 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class AddWholeSellerCC : Page
     {
-        public AddWholeSellerViewModel addWholeSellerViewModel;
+        private SupplierFormViewModel _SFV;
         public AddWholeSellerCC()
         {
             this.InitializeComponent();
-            addWholeSellerViewModel = new AddWholeSellerViewModel();
+            _SFV = new SupplierFormViewModel();
             Loaded += MainPage_Loaded;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            addWholeSellerViewModel = DataContext as AddWholeSellerViewModel;
-            addWholeSellerViewModel.ErrorsChanged += AddWholeSellerViewModel_ErrorsChanged; ;
+            _SFV = DataContext as SupplierFormViewModel;
+            _SFV.ErrorsChanged += AddWholeSellerViewModel_ErrorsChanged; ;
         }
 
         private void AddWholeSellerViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)

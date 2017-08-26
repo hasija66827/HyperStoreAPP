@@ -1,4 +1,5 @@
-﻿using SDKTemplate.Data_Source;
+﻿using Models;
+using SDKTemplate.Data_Source;
 using SDKTemplate.View_Models;
 using System;
 using System.Collections.Generic;
@@ -36,8 +37,8 @@ namespace SDKTemplate
         private decimal _paidAmount;
         public decimal PaidAmount { get { return this._paidAmount; } }
 
-        private WholeSellerViewModel _wholeSeller;
-        public WholeSellerViewModel WholeSeller { get { return this._wholeSeller; } }
+        private TSupplier _wholeSeller;
+        public TSupplier WholeSeller { get { return this._wholeSeller; } }
 
         private List<WholeSellerOrderDetailViewModel> _wholeSellerOrderDetails;
         public List<WholeSellerOrderDetailViewModel> WholeSellerOrderDetails
@@ -96,7 +97,7 @@ namespace SDKTemplate
             this._orderDate = wo.OrderDate;
             this._paidAmount = wo.PaidAmount;
             this._transactions = new List<SettledOrderOfTransactionViewModel>();
-            this._wholeSeller = (wholeSeller != null) ? new WholeSellerViewModel(wholeSeller) : null;
+            this._wholeSeller = null;
         }
     }
 

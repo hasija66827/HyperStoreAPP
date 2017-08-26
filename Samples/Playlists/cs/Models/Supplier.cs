@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Models
 {
-    public class TSupplier
+    public class TSupplier: supplierInterface
     {
         public Guid? SupplierId { get; set; }
         public string Address { get; set; }
@@ -20,4 +20,16 @@ namespace Models
         public TSupplier() {
         }
     }
+    public interface supplierInterface
+    {
+         Guid? SupplierId { get; set; }
+         string Address { get; set; }
+         string GSTIN { get; set; }
+        [Required]
+         string MobileNo { get; set; }
+        [Required]
+         string Name { get; set; }
+         decimal WalletBalance { get; set; }
+    }
+
 }
