@@ -6,35 +6,18 @@ using System.Threading.Tasks;
 using DatabaseModel;
 using Windows.Globalization.DateTimeFormatting;
 using SDKTemp.Data;
+using Models;
+using System.Reflection;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 namespace SDKTemplate
 {
-    public class CustomerOrderViewModel
+    public class CustomerOrderViewModel : TCustomerOrder
     {
-        private Guid _customerOrderId;
-        public Guid CustomerOrderId { get { return this._customerOrderId; } }
-
-        private decimal _billAmount;
-        public decimal BillAmount { get { return this._billAmount; } }
-
-        private string _customerOrderNo;
-        public string CustomerOrderNo { get { return this._customerOrderNo; } }
-
-        private decimal _discountedBillAmount;
-        public decimal DiscountedBillAmount { get { return this._discountedBillAmount; } }
-
-        private string _customerMobileNo;
-        public string CustomerMobileNo { get { return this._customerMobileNo; } }
-
-        private DateTime _orderDate;
-        public DateTime OrderDate
-        { get { return this._orderDate; } }
-
-        private decimal _paidAmount;
-        public decimal PaidAmount { get { return this._paidAmount; } }
-
         public string FormattedPaidBillAmount
         {
-            get { return Utility.FloatToRupeeConverter(this.PaidAmount) + "/" + Utility.FloatToRupeeConverter(this.DiscountedBillAmount); }
+            get { return Utility.ConvertToRupee(this.PayingAmount) + "/" + Utility.ConvertToRupee(this.DiscountedAmount); }
         }
 
         public string FormattedOrderDate
@@ -42,67 +25,26 @@ namespace SDKTemplate
             get
             {
                 var formatter = new DateTimeFormatter("day month");
-                return formatter.Format(this._orderDate);
+                return formatter.Format(this.OrderDate);
             }
         }
 
-        private List<CustomerOrderDetailViewModel> _orderDetails;
-        public List<CustomerOrderDetailViewModel> OrderDetails
-        {
-            get
-            {
-                if (this._orderDetails.Count == 0)
-                {
-                    this._orderDetails = CustomerOrderDataSource.RetrieveOrderDetails(this.CustomerOrderId);
-                }
-                return this._orderDetails;
-            }
-        }
+        public List<CustomerOrderProductViewModel> OrderDetails { get; set; }
 
-        public CustomerOrderViewModel()
+        public CustomerOrderViewModel(TCustomerOrder parent)
         {
-            this._customerOrderId = Guid.NewGuid();
-            this._customerOrderNo = Utility.GenerateCustomerOrderNo();
-            this._billAmount = 0;
-            this._discountedBillAmount = 0;
-            this._customerMobileNo = "";
-            this._orderDate = DateTime.Now;
-            this._orderDetails = new List<CustomerOrderDetailViewModel>();
-            this._paidAmount = 0;
-        }
-
-        public CustomerOrderViewModel(DatabaseModel.Customer c, DatabaseModel.CustomerOrder co)
-        {
-            this._customerOrderId = co.CustomerOrderId;
-            this._customerOrderNo = co.CustomerOrderNo;
-            this._billAmount = co.BillAmount;
-            this._discountedBillAmount = co.DiscountedAmount;
-            this._customerMobileNo = c.MobileNo;
-            this._orderDate = co.OrderDate;
-            this._paidAmount = co.PayingNow;
-            this._orderDetails = new List<CustomerOrderDetailViewModel>();
+            this.OrderDetails = new List<CustomerOrderProductViewModel>();
+            foreach (PropertyInfo prop in parent.GetType().GetProperties())
+                GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }
     }
 
-    public class CustomerOrderDetailViewModel : SDKTemplate.ProductViewModelBase
+    public class CustomerOrderProductViewModel : TCustomerOrderProduct
     {
-        private decimal? _quantityPurchased;
-        public decimal? QuantityPurchased { get { return this._quantityPurchased; } }
-
-        private decimal? _netValue;
-        public decimal? NetValue { get { return (this._netValue); } }
-
-        public CustomerOrderDetailViewModel() : base()
+        public CustomerOrderProductViewModel(TCustomerOrderProduct parent)
         {
-            this._quantityPurchased = 0;
-        }
-
-        public CustomerOrderDetailViewModel(Guid productId, string barCode, decimal cgstPer, decimal discountPerSnapShot,
-            decimal displayPriceSnapshot, string name, decimal sgstPer, int qtyPurchased)
-            : base(productId, barCode, cgstPer, displayPriceSnapshot, discountPerSnapShot, name, sgstPer, 0, 0, null)
-        {
-            this._quantityPurchased = qtyPurchased;
-            this._netValue = this.SellingPrice * this._quantityPurchased;
+            foreach (PropertyInfo prop in parent.GetType().GetProperties())
+                GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }
     }
 }

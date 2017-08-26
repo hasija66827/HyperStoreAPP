@@ -150,7 +150,7 @@ namespace SDKTemplate
                 ProductId.Text = product.Code;
                 ProductName.Text = product.FormattedNameQuantity;
                 ProductSellingPrice.Text = "xxxx";//Utility.FloatToRupeeConverter(product.SellingPrice);
-                ProductCostPrice.Text = Utility.FloatToRupeeConverter(product.DisplayPrice);
+                ProductCostPrice.Text = Utility.ConvertToRupee(product.DisplayPrice);
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
                 ProductGSTPer.Text = product.SGSTPer + product.CGSTPer + "%GST";
                 ProductGlyph.Text = Utility.GetGlyphValue(product.Name);

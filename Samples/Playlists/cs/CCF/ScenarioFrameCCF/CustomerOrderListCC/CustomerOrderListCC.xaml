@@ -17,7 +17,7 @@
                       x:DataType="local:CustomerOrderViewModel">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
-                           Text="{x:Bind CustomerMobileNo}"
+                           Text="{x:Bind Customer.MobileNo}"
                            Style="{StaticResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="FormattedCustomerOrderNo"
                            Padding="10,10,10,5"
@@ -64,28 +64,28 @@
                           RelativePanel.AlignLeftWith="StaticLabelsForList"
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:CustomerOrderDetailViewModel">
+                        <DataTemplate x:DataType="local:CustomerOrderProductViewModel">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
-                                <TextBlock Text="{x:Bind Code,Mode=OneTime}"
+                                <TextBlock Text="{x:Bind Product.Code,Mode=OneTime}"
                                            Foreground="Black"
                                            Style="{StaticResource ListTextBlockStyle}" />
-                                <TextBlock Text="{x:Bind Name, Mode=OneTime}"
+                                <TextBlock Text="{x:Bind Product.Name, Mode=OneTime}"
                                            Style="{StaticResource ListTextBlockStyle}"
                                            TextWrapping="Wrap" />
                                 <TextBlock x:Name="DisplayPrice"
                                            Style="{StaticResource ListTextBlockStyle}"
                                            Foreground="Black"
-                                           Text="{x:Bind DisplayPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                           Text="{x:Bind Product.DisplayPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBlock x:Name="DiscountPer"
                                            Style="{StaticResource ListTextBlockStyle}"
-                                           Text="{x:Bind DiscountPer, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}" />
+                                           Text="{x:Bind Product.DiscountPer, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}" />
                                 <TextBlock x:Name="SellingPrice"
                                            Foreground="Black"
                                            Style="{StaticResource ListTextBlockStyle}"
-                                           Text="{x:Bind SellingPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                           Text="{x:Bind Product.DisplayPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBlock x:Name="Quantity"
                                            Style="{StaticResource ListTextBlockStyle}"
-                                           Text="{x:Bind QuantityPurchased, Mode=OneTime}" />
+                                           Text="{x:Bind QuantityConsumed, Mode=OneTime}" />
                                 <TextBlock x:Name="NetValue"
                                            FontSize="16"
                                            Foreground="#FFFF2FAE"

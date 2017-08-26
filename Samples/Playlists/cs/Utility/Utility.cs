@@ -26,6 +26,8 @@ namespace SDKTemplate
         public object ConvertBack(object value, Type targetType,
             object parameter, string language)
         {
+            if (value == null)
+                return null;
             return ((DateTimeOffset)value).Date;
         }
     }
@@ -70,7 +72,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            return Utility.FloatToRupeeConverter(value);
+            return Utility.ConvertToRupee(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -87,7 +89,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            return Utility.FloatToRupeeConverter(value);
+            return Utility.ConvertToRupee(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -301,7 +303,7 @@ namespace SDKTemplate
             return false;
         }
 
-        public static string FloatToRupeeConverter(object value)
+        public static string ConvertToRupee(object value)
         {
             // value is the data from the source object.
             var price = Math.Round(System.Convert.ToDouble(value), 2);

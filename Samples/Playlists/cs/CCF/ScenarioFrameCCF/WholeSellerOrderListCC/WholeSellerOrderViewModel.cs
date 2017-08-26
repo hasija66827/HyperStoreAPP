@@ -83,7 +83,7 @@ namespace SDKTemplate
 
         public string FormattedPaidBillAmount
         {
-            get { return Utility.FloatToRupeeConverter(this.PaidAmount) + "/" + Utility.FloatToRupeeConverter(this.BillAmount); }
+            get { return Utility.ConvertToRupee(this.PaidAmount) + "/" + Utility.ConvertToRupee(this.BillAmount); }
         }
 
         public WholeSellerOrderViewModel(DatabaseModel.WholeSellerOrder wo, DatabaseModel.WholeSeller wholeSeller = null)

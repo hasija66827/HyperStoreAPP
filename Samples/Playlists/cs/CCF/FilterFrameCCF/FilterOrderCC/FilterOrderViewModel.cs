@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,24 +10,12 @@ namespace SDKTemplate
 {
     public class FilterOrderViewModel
     {
-        private DateTime _startDate;
-        public DateTime StartDate
-        {
-            get { return this._startDate; }
-            set { this._startDate = value; }
-        }
-
-        private DateTime _endDate;
-        public DateTime EndDate
-        {
-            get { return this._endDate; }
-            set { this._endDate = value;}
-        }
-
+        [Required]
+        [DateRange(ErrorMessage = "{0} is invalid, lb>ub")]
+        public IRange<DateTime> OrderDateRange { get; set; }
         public FilterOrderViewModel()
         {
-            _startDate = DateTime.Now.AddMonths(-2);
-            _endDate = DateTime.Now;
+            OrderDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-15), DateTime.Now);
         }
     }
 }

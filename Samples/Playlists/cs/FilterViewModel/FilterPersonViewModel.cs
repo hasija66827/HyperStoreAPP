@@ -9,13 +9,13 @@ namespace SDKTemplate
 { 
     public delegate Task FilterPersonChangedDelegate();
 
-    public class FilterPersonCriteria
+    public class FilterPersonCriteriaViewModel
     {
         public IRange<decimal> WalletBalance { get; set; }
-        public FilterPersonCriteria(IRange<decimal> walletBalance)
+        public FilterPersonCriteriaViewModel(IRange<decimal> walletBalance)
         {
             this.WalletBalance = walletBalance;
         }
-        public FilterPersonCriteria() { }
+        public FilterPersonCriteriaViewModel() { }
     }
 }

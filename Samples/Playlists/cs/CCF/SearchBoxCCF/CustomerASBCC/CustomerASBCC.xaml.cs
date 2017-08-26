@@ -113,7 +113,7 @@ namespace SDKTemplate
                 CustomerMobNo.Text = customer.MobileNo;
                 CustomerName.Text = customer.Name;
                 CustomerAddress.Text = customer.Address;
-                CustomerWalletBalance.Text = Utility.FloatToRupeeConverter(customer.WalletBalance);
+                CustomerWalletBalance.Text = Utility.ConvertToRupee(customer.WalletBalance);
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
             }
             else

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SDKTemplate;
 using SDKTemplate.Data_Source;
 using Models;
+using SDKTemplate.DTO;
+using Newtonsoft.Json;
 
 namespace SDKTemp.Data
 {
@@ -16,78 +18,51 @@ namespace SDKTemp.Data
     }
     public class CustomerOrderDataSource
     {
-        private static List<CustomerOrderViewModel> _Orders;
-        public static List<CustomerOrderViewModel> Orders { get { return _Orders; } }
-        public CustomerOrderDataSource()
+        public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
         {
-            // Initializing member variable all orders.
-            RetrieveOrders();
-        }
-        // Retrieves all the orders.
-        public static void RetrieveOrders()
-        {
-            List<DatabaseModel.CustomerOrder> _customerOrders;
-            List<DatabaseModel.Customer> _customers;
-            using (var db = new DatabaseModel.RetailerContext())
+            string actionURI = "customerorders";
+            string httpResponseBody = "";
+            try
             {
-                _customerOrders = db.CustomerOrders.ToList();
-                _customers = db.Customers.ToList();
+                var response = await Utility.HttpGet(actionURI, cofc);
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    httpResponseBody = await response.Content.ReadAsStringAsync();
+                    var customerOrders = JsonConvert.DeserializeObject<List<TCustomerOrder>>(httpResponseBody);
+                    return customerOrders;
+                }
+                return null;
             }
-            var query = _customers
-                        .Join(_customerOrders,
-                                customer => customer.CustomerId,
-                                customerOrder => customerOrder.CustomerId,
-                                (customer, customerOrder) => new CustomerOrderViewModel(customer,customerOrder))
-                        .OrderByDescending(order => order.OrderDate);
-            _Orders = query.ToList();
-        }
-
-        public static List<CustomerOrderViewModel> GetFilteredOrders(TCustomer selectedCustomer, FilterOrderViewModel selectedDateRange)
-        {
-            if (selectedDateRange == null)
-                throw new Exception("A Date Range cannot be null");
-
-            if (selectedCustomer == null && selectedDateRange != null)
+            catch (Exception ex)
             {
-                var orderByDateRange = _Orders.
-                    Where(order => order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
-                                   order.OrderDate.Date <= selectedDateRange.EndDate.Date);
-                return orderByDateRange.ToList();
-            }
-            else
-            {
-                var orderByMobNoDateRange = _Orders.Where(order =>
-                                                            order.CustomerMobileNo == selectedCustomer.MobileNo &&
-                                                            order.OrderDate.Date >= selectedDateRange.StartDate.Date &&
-                                                            order.OrderDate.Date <= selectedDateRange.EndDate.Date);
-                return orderByMobNoDateRange.ToList();
+                throw ex;
             }
         }
 
-        // #perf if possible merge the three query into one.
-        //Retrieving specific order Details from customerOrderProducts using customerOrderID as an input.
-        public static List<CustomerOrderDetailViewModel> RetrieveOrderDetails(Guid customerOrderId)
+        public static async Task<List<TCustomerOrderProduct>> RetrieveOrderDetailsAsync(Guid customerOrderId)
         {
-            var db = new DatabaseModel.RetailerContext();
-            var customerOrderProducts = db.CustomerOrderProducts
-                    .Where(customerOrderProduct => customerOrderProduct.CustomerOrderId == customerOrderId).ToList();
-            var products = db.Products.ToList();
-            var orderDetails = customerOrderProducts.Join(products,
-                                                       customerOrderProduct => customerOrderProduct.ProductId,
-                                                       product => product.ProductId,
-                                                       (customerOrderProduct, product) => new CustomerOrderDetailViewModel(
-                                                                       product.ProductId,
-                                                                       product.BarCode,
-                                                                       product.CGSTPer,
-                                                                       customerOrderProduct.DiscountPerSnapShot,
-                                                                       customerOrderProduct.DisplayCostSnapShot,
-                                                                       product.Name,
-                                                                       product.SGSTPer,
-                                                                       customerOrderProduct.QuantityPurchased)).ToList();
-            return orderDetails;
+            string actionURI = "customerorderproducts/" + customerOrderId.ToString();
+            string httpResponseBody = "";
+            try
+            {
+                var response = await Utility.HttpGet(actionURI, null);
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    httpResponseBody = await response.Content.ReadAsStringAsync();
+                    var customerOrderProduct = JsonConvert.DeserializeObject<List<TCustomerOrderProduct>>(httpResponseBody);
+                    return customerOrderProduct;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-//#remove
+        //#remove
         /// <summary>
         /// Returns the updated wallet balance of the customer
         /// </summary>

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
 using SDKTemp.Data;
 using System.Threading.Tasks;
+using SDKTemplate.DTO;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -23,7 +24,6 @@ namespace SDKTemplate
     public sealed partial class CustomerOrderListCCF : Page
     {
         public static CustomerOrderListCCF Current;
-        public List<CustomerOrderViewModel> orderList;
         public event CustomerOrderListChangedDelegate OrderListChangedEvent;
         public CustomerOrderListCCF()
         {
@@ -33,36 +33,48 @@ namespace SDKTemplate
             if (CustomerASBCC.Current == null)
                 throw new Exception("CustomerASBCC should be loaded before OrderListCCF");
             CustomerASBCC.Current.SelectedCustomerChangedEvent +=
-                new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSource);
+                new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSourceByFilterCriteria);
 
             if (FilterOrderCC.Current == null)
                 throw new Exception("FilterOrderCC should be loaded before OrderListCCF");
-            FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSource;
-
-            // Getting a refresh list from the database.
-            CustomerOrderDataSource.RetrieveOrders();
-            // Rendering the refresh list on the UI.
-            UpdateMasterListViewItemSource();
+            FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
 
-        private async Task UpdateMasterListViewItemSource()
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            var selectedDateRange = FilterOrderCC.Current.SelectedDateRange;
-            if (selectedDateRange.StartDate.Date > selectedDateRange.EndDate.Date)
+            UpdateForVisualState(AdaptiveStates.CurrentState);
+            // Don't play a content transition for first item load.
+            // Sometimes, this content will be animated as part of the page transition.
+            await UpdateMasterListViewItemSourceByFilterCriteria();
+            DisableContentTransitions();
+        }
+
+        private async Task UpdateMasterListViewItemSourceByFilterCriteria()
+        {
+            var selectedDateRange = FilterOrderCC.Current.filterOrderViewModel?.OrderDateRange;
+            var selectedCustomerId = CustomerASBCC.Current.SelectedCustomerInASB?.CustomerId;
+            var cofc = new CustomerOrderFilterCriteriaDTO()
             {
-                MainPage.Current.NotifyUser("Date range is invalid", NotifyType.ErrorMessage);
-                return;
-            }
-            var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
-            Current.orderList = CustomerOrderDataSource.GetFilteredOrders(selectedCustomer, selectedDateRange);
-            CustomerOrderListCCF.Current.OrderListChangedEvent?.Invoke(CustomerOrderListCCF.Current);
-            MasterListView.ItemsSource = Current.orderList;
-            OrderCountTB.Text = "(" + Current.orderList.Count.ToString() + "/" + CustomerOrderDataSource.Orders.Count.ToString() + ")";
+                CustomerId = selectedCustomerId,
+                CustomerOrderNo = null,
+                OrderDateRange = selectedDateRange
+            };
+            var customerOrderList = await CustomerOrderDataSource.RetrieveCustomerOrdersAsync(cofc);
+            var items = customerOrderList.Select(co => new CustomerOrderViewModel(co));
+            MasterListView.ItemsSource = items;
+            OrderCountTB.Text = "(" + items.Count().ToString() + "/" + "xxxx" + ")";
+            OrderListChangedEvent?.Invoke(CustomerOrderListCCF.Current);
         }
 
-        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = (CustomerOrderViewModel)e.ClickedItem;
+            var selectedOrder = (CustomerOrderViewModel)e.ClickedItem;
+            if (selectedOrder.OrderDetails.Count == 0)
+            {
+                var customerOrderDetails = await CustomerOrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.CustomerOrderId);
+                selectedOrder.OrderDetails = customerOrderDetails.Select(cod => new CustomerOrderProductViewModel(cod)).ToList();
+                DetailContentPresenter.Content = MasterListView.SelectedItem;
+            }
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }
@@ -72,16 +84,6 @@ namespace SDKTemplate
             DetailContentPresenter.ContentTransitions.Clear();
             // just for adding the transition on the content selection.
             //DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            MasterListView.ItemsSource = CustomerOrderDataSource.Orders;
-            UpdateForVisualState(AdaptiveStates.CurrentState);
-            // Don't play a content transition for first item load.
-            // Sometimes, this content will be animated as part of the page transition.
-            DisableContentTransitions();
         }
 
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)

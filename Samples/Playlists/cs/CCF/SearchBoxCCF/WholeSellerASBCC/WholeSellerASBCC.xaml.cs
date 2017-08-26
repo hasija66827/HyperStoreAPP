@@ -117,7 +117,7 @@ namespace SDKTemplate
                 WholeSellerMobNo.Text = WholeSeller.MobileNo;
                 WholeSellerName.Text = WholeSeller.Name;
                 WholeSellerAddress.Text = WholeSeller.Address != null ? WholeSeller.Address : "";
-                WholeSellerWalletBalance.Text = Utility.FloatToRupeeConverter(WholeSeller.WalletBalance);
+                WholeSellerWalletBalance.Text = Utility.ConvertToRupee(WholeSeller.WalletBalance);
                 WholeSellerGlyph.Text = Utility.GetGlyphValue(WholeSeller.Name);
             }
             else

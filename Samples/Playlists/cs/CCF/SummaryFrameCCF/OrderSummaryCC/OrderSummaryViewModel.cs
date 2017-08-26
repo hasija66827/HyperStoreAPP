@@ -55,18 +55,13 @@ namespace SDKTemplate
             CustomerOrderListCCF.Current.OrderListChangedEvent += new CustomerOrderListChangedDelegate(ComputeSales);
         }
         public void ComputeSales(CustomerOrderListCCF orderListCC)
-        {
-            TotalSales = orderListCC.orderList.Sum(s => s.BillAmount);
-            TotalSalesWithDiscount = orderListCC.orderList.Sum(ds => ds.DiscountedBillAmount);
-            ReceivedNow = CalculatedReceivedNow(orderListCC.orderList);
-            ReceivedLater = CalculatedReceivedNow(orderListCC.orderList);
+        {/*
+            TotalSales = orderListCC.CustomerOrderList.Sum(s => s.BillAmount);
+            TotalSalesWithDiscount = orderListCC.CustomerOrderList.Sum(ds => ds.DiscountedAmount);
+            ReceivedNow = CalculatedReceivedNow(orderListCC.CustomerOrderList);
+            ReceivedLater = CalculatedReceivedNow(orderListCC.CustomerOrderList);*/
         }
-        private decimal CalculatedReceivedNow(List<CustomerOrderViewModel> orderList)
-        {
-            decimal f = 2;
-            return f;
-            //TODO:
-        }
+   
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
