@@ -27,7 +27,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class AddWholeSellerCC : Page
     {
-        private SupplierFormViewModel _SFV;
+        private SupplierFormViewModel _SFV { get; set; }
         public AddWholeSellerCC()
         {
             this.InitializeComponent();
