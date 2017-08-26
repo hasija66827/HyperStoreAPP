@@ -21,17 +21,17 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class AddCustomerCC : Page
     {
-        private AddCustomerViewModel addCustomerViewModel;
+        private CustomerFormViewModel addCustomerViewModel;
         public AddCustomerCC()
         {
             this.InitializeComponent();
-            addCustomerViewModel = new AddCustomerViewModel();// TODO: uncomment line, as it value changes when below reload fucntion is called.
+            addCustomerViewModel = new CustomerFormViewModel();// TODO: uncomment line, as it value changes when below reload fucntion is called.
             Loaded += AddCustomerCCPage_Loaded;
         }
 
         private void AddCustomerCCPage_Loaded(object sender, RoutedEventArgs e)
         {
-            addCustomerViewModel = DataContext as AddCustomerViewModel;
+            addCustomerViewModel = DataContext as CustomerFormViewModel;
             addCustomerViewModel.ErrorsChanged += AddCustomerViewModel_ErrorsChanged;
         }
 

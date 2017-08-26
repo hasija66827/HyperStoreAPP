@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Models
 {
-    public class TCustomer
+    public class TCustomer:customerInterface
     {
         public Guid? CustomerId { get; set; }
         public string Address { get; set; }
@@ -16,7 +16,19 @@ namespace Models
         public string Name { get; set; }
         [Required]
         public decimal? WalletBalance { get; set; }
+    }
 
-     //TODO: #DB, Name and MobileNo should be unique, customerId should not be null in database, although in model it can be null
+    public interface customerInterface
+    {       
+         string Address { get; set; }
+         string GSTIN { get; set; }
+        [Required]
+         string MobileNo { get; set; }
+        [Required]
+         string Name { get; set; }
+        [Required]
+         decimal? WalletBalance { get; set; }
+
+        //TODO: #DB, Name and MobileNo should be unique, customerId should not be null in database, although in model it can be null
     }
 }

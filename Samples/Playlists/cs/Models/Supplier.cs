@@ -20,9 +20,9 @@ namespace Models
         public TSupplier() {
         }
     }
+
     public interface supplierInterface
     {
-         Guid? SupplierId { get; set; }
          string Address { get; set; }
          string GSTIN { get; set; }
         [Required]
