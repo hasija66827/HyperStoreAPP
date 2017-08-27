@@ -12,18 +12,11 @@ namespace SDKTemplate
     class ProductDataSource
     {
         #region Create
-        public static async Task<bool> CreateNewProductAsync(ProductDTO productDTO)
-        {
-            try
-            {
-                string actionURI = "products";
-                var content = JsonConvert.SerializeObject(productDTO);
-                var response = await Utility.HttpPost(actionURI, content);
-                response.EnsureSuccessStatusCode();
-                return true;
-            }
-            catch (Exception ex)
-            { throw ex; }
+        public static async Task<TProduct> CreateNewProductAsync(ProductDTO productDTO)
+        {  
+            string actionURI = "products";
+            var x = await Utility.CreateAsync<TProduct>(actionURI, productDTO);
+            return x;
         }
         #endregion
 

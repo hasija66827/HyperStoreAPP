@@ -209,7 +209,7 @@
             <AppBarButton x:Name="AddWholeSellerBtn"
                           HorizontalAlignment="Center"
                           Icon="AddFriend"
-                          Label="WholeSeller"
+                          Label="Supplier"
                           VerticalAlignment="Top"
                           Click="AddWholeSellerBtn_Click" />
         </StackPanel>

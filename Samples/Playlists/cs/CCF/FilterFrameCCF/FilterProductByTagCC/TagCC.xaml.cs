@@ -50,7 +50,7 @@ namespace SDKTemplate
                     SGSTPer = productDetail.SGSTPer,
                     Threshold = productDetail.Threshold
                 };
-                if (await ProductDataSource.CreateNewProductAsync(productDTO))
+                if (await ProductDataSource.CreateNewProductAsync(productDTO)!=null)
                     MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
                 this.Frame.Navigate(typeof(BlankPage));
             }
@@ -77,6 +77,7 @@ namespace SDKTemplate
         public static TagCCF Current;
         public TagCCF()
         {
+            TagDataSource.RetreiveTags();
             Current = this;
             _tags = new ObservableCollection<TagViewModel>(TagDataSource.Tags);
             foreach (var tag in this.Tags)

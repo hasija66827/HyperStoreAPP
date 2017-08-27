@@ -25,18 +25,11 @@ namespace SDKTemplate
         /// Adds The customer into customer Data source as well as in sqllte database.
         /// </summary>
         /// <param name="newCustomer"></param>
-        public static async Task<bool> CreateNewCustomerAsync(CustomerDTO customerDTO)
+        public static async Task<TCustomer> CreateNewCustomerAsync(CustomerDTO customerDTO)
         {
-            try
-            {
-                string actionURI = "customers";
-                var content = JsonConvert.SerializeObject(customerDTO);
-                var response = await Utility.HttpPost(actionURI, content);
-                response.EnsureSuccessStatusCode();
-                return true;
-            }
-            catch (Exception ex)
-            { throw ex; }
+            string actionURI = "customers";
+            var x = await Utility.CreateAsync<TCustomer>(actionURI, customerDTO);
+            return x;
         }
         #endregion
 

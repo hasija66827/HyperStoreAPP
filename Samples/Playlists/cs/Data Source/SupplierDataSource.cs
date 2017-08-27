@@ -21,18 +21,11 @@ namespace SDKTemplate
     class SupplierDataSource
     {
         #region Create
-        public static async Task<bool> CreateNewSupplier(SupplierDTO supplier)
+        public static async Task<TSupplier> CreateNewSupplier(SupplierDTO supplierDTO)
         {
-            try
-            {
-                string actionURI = "suppliers";
-                var content = JsonConvert.SerializeObject(supplier);
-                var response = await Utility.HttpPost(actionURI, content);
-                response.EnsureSuccessStatusCode();
-                return true;
-            }
-            catch (Exception ex)
-            { throw ex; }
+            string actionURI = "suppliers";
+            var x = await Utility.CreateAsync<TSupplier>(actionURI, supplierDTO);
+            return x;
         }
         #endregion
 
