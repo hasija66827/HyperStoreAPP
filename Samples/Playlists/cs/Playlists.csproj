@@ -199,14 +199,14 @@
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSallersCCF.xaml.cs">
       <DependentUpon>WholeSallersCCF.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WholeSellerNavigationParameter.cs" />
-    <Compile Include="WholeSellerCheckoutCC\WholeSellerCheckoutViewModel.cs" />
+    <Compile Include="SupplierBillingScenario\SupplierPageNavigationParameter.cs" />
+    <Compile Include="SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerCCF\WholeSellerViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\CustomerFormCC\CustomerFormViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormCC.xaml.cs">
       <DependentUpon>ProductFormCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerBillingScenario\PageNavigationParameter.cs" />
+    <Compile Include="CustomerBillingScenario\CustomerPageNavigationParameter.cs" />
     <Compile Include="BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
@@ -266,16 +266,16 @@
     <Compile Include="CCF\SearchBoxCCF\WholeSellerASBCC\WholeSellerASBCC.xaml.cs">
       <DependentUpon>WholeSellerASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerProductListCC\WholeSellerProductVieModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\WholeSellerProductListCC\WholeSellerPurchasedProductList.xaml.cs">
-      <DependentUpon>WholeSellerPurchasedProductList.xaml</DependentUpon>
+    <Compile Include="SupplierBillingScenario\1 SupplierProductListCC\SupplierOrderProductVieModel.cs" />
+    <Compile Include="SupplierBillingScenario\1 SupplierProductListCC\SupplierProductList.xaml.cs">
+      <DependentUpon>SupplierProductList.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryCC.xaml.cs">
       <DependentUpon>WholeSellerBillingSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryViewModel.cs" />
-    <Compile Include="WholeSellerCheckoutCC\WholeSellerCheckoutCC.xaml.cs">
-      <DependentUpon>WholeSellerCheckoutCC.xaml</DependentUpon>
+    <Compile Include="SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutCC.xaml.cs">
+      <DependentUpon>SupplierCheckoutCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml.cs">
       <DependentUpon>WholeSellerOrderSummary.xaml</DependentUpon>
@@ -412,7 +412,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\WholeSellerProductListCC\WholeSellerPurchasedProductList.xaml">
+    <Page Include="SupplierBillingScenario\1 SupplierProductListCC\SupplierProductList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -436,7 +436,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WholeSellerCheckoutCC\WholeSellerCheckoutCC.xaml">
+    <Page Include="SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

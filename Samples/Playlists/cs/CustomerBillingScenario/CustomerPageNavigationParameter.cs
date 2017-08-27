@@ -11,11 +11,11 @@ using Models;
 
 namespace SDKTemplate
 {
-    public class PageNavigationParameter
+    public class CustomerPageNavigationParameter
     {
         public List<CustomerOrderProductViewModelBase> ProductsConsumed { get; set; }
         public TCustomer SelectedCustomer { get; set; }
-        public BillingSummaryViewModel BillingSummaryViewModel { get; set; }
+        public CustomerBillingSummaryViewModel BillingSummaryViewModel { get; set; }
         public SelectPaymentModeViewModelBase SelectPaymentModeViewModelBase { get; set; }
     }
 }

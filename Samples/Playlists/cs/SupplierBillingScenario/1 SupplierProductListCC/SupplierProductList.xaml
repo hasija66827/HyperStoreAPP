@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.WholeSellerPurchasedProductListCC"
+﻿<Page x:Class="SDKTemplate.SupplierPurchasedProductListCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -42,7 +42,7 @@
                                        Style="{StaticResource VeryLargeListTextBlockStyle}" />
                         </StackPanel>
                         <ListView x:Name="ListView"
-                                  ItemsSource="{x:Bind Products}"
+                                  ItemsSource="{x:Bind _Products}"
                                   RelativePanel.Below="StaticLabelsForList"
                                   RelativePanel.AlignRightWith="StaticLabelsForList"
                                   RelativePanel.AlignLeftWith="StaticLabelsForList"
@@ -50,7 +50,7 @@
                                   Margin="-12,0,0,0"
                                   SelectedIndex="-1">
                             <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="local:WholeSellerProductVieModel">
+                                <DataTemplate x:DataType="local:SupplierOrderProductViewModel">
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,5,0,0"
                                                 Background="LightGray">

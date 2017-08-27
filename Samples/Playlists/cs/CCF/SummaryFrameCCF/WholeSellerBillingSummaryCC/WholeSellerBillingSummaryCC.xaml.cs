@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -24,18 +25,18 @@ namespace SDKTemplate
     public sealed partial class WholeSellerBillingSummaryCC : Page
     {
         public static WholeSellerBillingSummaryCC Current;
-        public WholeSellerBillingSummaryViewModel wholeSellerBillingSummaryViewModel;
+        public SupplierBillingSummaryViewModel wholeSellerBillingSummaryViewModel;
         public WholeSellerBillingSummaryCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.wholeSellerBillingSummaryViewModel = new WholeSellerBillingSummaryViewModel();
-            WholeSellerPurchasedProductListCC.Current.WholeSellerProductListUpdatedEvent += ComputeBillSummary;
+            this.wholeSellerBillingSummaryViewModel = new SupplierBillingSummaryViewModel();
+            SupplierPurchasedProductListCC.Current.SupplierProductListUpdatedEvent += ComputeBillSummary;
         }
-        public void ComputeBillSummary(ObservableCollection<WholeSellerProductVieModel> products)
+        public void ComputeBillSummary(List<SupplierOrderProductViewModelBase>products)
         {
-            //this.wholeSellerBillingSummaryViewModel.BillAmount = products.Sum(p => p.NetValue);
-            //this.wholeSellerBillingSummaryViewModel.TotalQuantity = products.Sum(p => p.QuantityPurchased);
+            this.wholeSellerBillingSummaryViewModel.BillAmount = products.Sum(p => (decimal)p.NetValue);
+            this.wholeSellerBillingSummaryViewModel.TotalQuantity = products.Sum(p => (decimal)p.QuantityPurchased);
         }
     }
 }

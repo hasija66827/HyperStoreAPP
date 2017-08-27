@@ -14,7 +14,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class PayNow : Page
     {
-        private PageNavigationParameter _PageNavigationParameter { get; set; }
+        private CustomerPageNavigationParameter _PageNavigationParameter { get; set; }
         private PayNowViewModel PayNowViewModel { get; set; }
         public PayNow()
         {
@@ -24,7 +24,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+            this._PageNavigationParameter = (CustomerPageNavigationParameter)e.Parameter;
             var p = this._PageNavigationParameter;
             this.PayNowViewModel = new PayNowViewModel()
             {

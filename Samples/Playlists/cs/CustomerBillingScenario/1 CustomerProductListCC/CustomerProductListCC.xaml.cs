@@ -81,7 +81,7 @@ namespace SDKTemplate
             }
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             var billSummary = BillingSummaryCC.Current.BillingSummaryViewModel;
-            PageNavigationParameter pageNavigationParameter = new PageNavigationParameter()
+            CustomerPageNavigationParameter pageNavigationParameter = new CustomerPageNavigationParameter()
             {
                 ProductsConsumed = Products,
                 SelectedCustomer = selectedCustomer,

@@ -34,7 +34,7 @@ namespace SDKTemplate
             this.WholeSellerOrdersViewModel = new List<WholeSellerOrderViewModel>();
             WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListView;
             FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteriaChangedEvent += UpdateMasterListView;
-            WholeSellerOrderDataSource.RetrieveOrders();
+            SupplierOrderDataSource.RetrieveOrders();
             UpdateMasterListView();
         }
 
@@ -42,10 +42,10 @@ namespace SDKTemplate
         {
             var wholeSellerId = WholeSellerASBCC.Current.SelectedWholeSellerInASB?.SupplierId;
             var filterWholeSalerOrderCriteria = FilterWholeSalerOrderCC.Current.FilterWholeSalerOrderCriteria;
-            this.WholeSellerOrdersViewModel = WholeSellerOrderDataSource.GetFilteredOrders(filterWholeSalerOrderCriteria, wholeSellerId);
+            this.WholeSellerOrdersViewModel = SupplierOrderDataSource.GetFilteredOrders(filterWholeSalerOrderCriteria, wholeSellerId);
             MasterListView.ItemsSource = this.WholeSellerOrdersViewModel;
             var totalResults = this.WholeSellerOrdersViewModel.Count;
-            OrderCountTB.Text = "(" + totalResults.ToString() + "/" + WholeSellerOrderDataSource.Orders.Count.ToString() + ")";
+            OrderCountTB.Text = "(" + totalResults.ToString() + "/" + SupplierOrderDataSource.Orders.Count.ToString() + ")";
             this.WholeSellerProductListUpdatedEvent?.Invoke();
         }
     }

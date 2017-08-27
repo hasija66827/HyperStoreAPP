@@ -157,15 +157,15 @@ namespace DatabaseModel
             this.WholeSellerId = wholeSellerId;
         }
 
-        public WholeSellerOrder(WholeSellerCheckoutNavigationParameter wholeSellerPurchaseNavigationParameter)
-        {
+        public WholeSellerOrder(SupplierPageNavigationParameter wholeSellerPurchaseNavigationParameter)
+        {/*
             this.WholeSellerOrderId = Guid.NewGuid();
             this.WholeSellerOrderNo = Utility.GenerateWholeSellerOrderNo();
             this.OrderDate = DateTime.Now;
-            this.DueDate = wholeSellerPurchaseNavigationParameter.WholeSellerCheckoutViewModel.DueDate;
+            this.DueDate = wholeSellerPurchaseNavigationParameter.SupplierCheckoutViewModel.DueDate;
             this.BillAmount = wholeSellerPurchaseNavigationParameter.WholeSellerBillingSummaryViewModel.BillAmount;
-            this.PaidAmount = wholeSellerPurchaseNavigationParameter.WholeSellerCheckoutViewModel.PaidAmount;
-            this.WholeSellerId = wholeSellerPurchaseNavigationParameter.WholeSellerViewModel.SupplierId;
+            this.PaidAmount = wholeSellerPurchaseNavigationParameter.SupplierCheckoutViewModel.PaidAmount;
+            this.WholeSellerId = wholeSellerPurchaseNavigationParameter.SelectedSupplier.SupplierId;*/
         }
 
         public WholeSellerOrder() { }
@@ -313,7 +313,7 @@ namespace DatabaseModel
         public decimal PartiallyPaid { get; set; }
         public decimal PayingLater { get; set; }
         public CustomerOrder() { }
-        public CustomerOrder(PageNavigationParameter pageNavigationParameter)
+        public CustomerOrder(CustomerPageNavigationParameter pageNavigationParameter)
         {
             
         }

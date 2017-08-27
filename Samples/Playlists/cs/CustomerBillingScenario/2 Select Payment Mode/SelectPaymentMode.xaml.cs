@@ -24,7 +24,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class SelectPaymentMode : Page
     {
-        private PageNavigationParameter _PageNavigationParameter { get; set; }
+        private CustomerPageNavigationParameter _PageNavigationParameter { get; set; }
         private SelectPaymentModeViewModel _SelectPaymentModeViewModel { get; set; }
         public SelectPaymentMode()
         {
@@ -55,7 +55,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+            this._PageNavigationParameter = (CustomerPageNavigationParameter)e.Parameter;
             var p = this._PageNavigationParameter;
             this._SelectPaymentModeViewModel = new SelectPaymentModeViewModel()
             {

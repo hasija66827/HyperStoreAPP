@@ -30,7 +30,7 @@ namespace SDKTemplate
             new Scenario() { Title = "Customers", ClassType = typeof(CustomersCCF) },
             new Scenario() { Title = "Products", ClassType = typeof(ProductInStock) },
             new Scenario() { Title = "Suppliers", ClassType = typeof(WholeSellersCCF) },
-            new Scenario() { Title = "Supplier Billing", ClassType = typeof(WholeSellerPurchasedProductListCC) },
+            new Scenario() { Title = "Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
             new Scenario() { Title = "Supplier Orders", ClassType = typeof(WholeSellerOrderCC) },
         };
     }

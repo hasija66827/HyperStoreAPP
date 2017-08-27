@@ -26,7 +26,7 @@ namespace SDKTemplate
     public sealed partial class PayLaterOTPVerification : Page
     {
         private PayLaterModeViewModel _PayLaterModeViewModel { get; set; }
-        private PageNavigationParameter _PageNavigationParameter { get; set; }
+        private CustomerPageNavigationParameter _PageNavigationParameter { get; set; }
         public PayLaterOTPVerification()
         {
             this.InitializeComponent();
@@ -35,7 +35,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+            this._PageNavigationParameter = (CustomerPageNavigationParameter)e.Parameter;
             var p = this._PageNavigationParameter;
             this._PayLaterModeViewModel = new PayLaterModeViewModel()
             {

@@ -13,13 +13,14 @@ namespace SDKTemp.Data
 {
     public class CustomerOrderDataSource
     {
-        public static async Task<decimal> PlaceOrderAsync(PageNavigationParameter PNP, decimal payingAmount)
+        public static async Task<decimal> PlaceOrderAsync(CustomerPageNavigationParameter PNP, decimal payingAmount)
         {
             var productsConsumed = PNP.ProductsConsumed.Select(p => new ProductConsumedDTO()
             {
                 ProductId = p.ProductId,
                 QuantityConsumed = p.QuantityConsumed
             }).ToList();
+
             var customerOrderDTO = new CustomerOrderDTO()
             {
                 ProductsConsumed = productsConsumed,
@@ -30,6 +31,7 @@ namespace SDKTemp.Data
                 IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,
                 PayingAmount = payingAmount
             };
+
             return await CreateCustomerOrderAsync(customerOrderDTO);
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class WholeSellerBillingSummaryViewModel : INotifyPropertyChanged
+    public class SupplierBillingSummaryViewModel : INotifyPropertyChanged
     {
         private decimal _billAmount;
         public decimal BillAmount
@@ -30,7 +30,7 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(TotalQuantity));
             }
         }
-        public WholeSellerBillingSummaryViewModel()
+        public SupplierBillingSummaryViewModel()
         {
             _billAmount = 0;
             _totalQuantity = 0;

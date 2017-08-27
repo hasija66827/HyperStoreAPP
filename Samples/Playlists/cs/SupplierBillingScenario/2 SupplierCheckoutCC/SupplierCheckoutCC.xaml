@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SDKTemplate.WholeSellerCheckoutCC"
+    x:Class="SDKTemplate.SupplierCheckoutCC"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SDKTemplate"
@@ -12,7 +12,7 @@
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <Grid
+    <Grid Background="White"
           Margin="10,10,12,12">
         <TextBlock x:Name="Header"
                    Text="Update Stock"
@@ -34,34 +34,34 @@
             <TextBlock Text="Amount to be Paid"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0" />
-            <TextBlock Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+            <TextBlock Text="{x:Bind _SupplierCheckoutViewModel.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0"
                        Grid.Column="1" />
             <TextBlock Text="Paid Amount"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="1" />
-            <TextBox Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.PaidAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
+            <TextBox Text="{x:Bind _SupplierCheckoutViewModel.PaidAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
                      Grid.Row="1"
                      Grid.Column="1"
                      Foreground="#FFDC0F0F" />
             <TextBlock Text="Remaining Amount"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2" />
-            <TextBlock Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.RemainingAmount, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"
+            <TextBlock Text="{x:Bind _SupplierCheckoutViewModel.RemainingAmount, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2"
                        Grid.Column="1" />
             <TextBlock Text="Interest Rate (%)"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="3" />
-            <TextBox Text="{x:Bind wholeSellerPurchaseCheckoutViewModel.IntrestRate, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
+            <TextBox Text="{x:Bind _SupplierCheckoutViewModel.IntrestRate, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
                      Grid.Row="3"
                      Grid.Column="1" />
             <TextBlock Text="Due date"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="4" />
-            <CalendarDatePicker Date="{x:Bind wholeSellerPurchaseCheckoutViewModel.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
+            <CalendarDatePicker Date="{x:Bind _SupplierCheckoutViewModel.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
                                 Grid.Row="4"
                                 Grid.Column="1" />
             <Button x:Name="PlaceOrderBtn"

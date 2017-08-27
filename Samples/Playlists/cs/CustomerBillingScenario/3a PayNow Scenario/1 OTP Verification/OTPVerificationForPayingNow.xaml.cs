@@ -24,7 +24,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class OTPVerificationForPayingNow : Page
     {
-        private PageNavigationParameter _PageNavigationParameter { get; set; }
+        private CustomerPageNavigationParameter _PageNavigationParameter { get; set; }
         private OTPVerificationForPayingNowViewModel _OTPVerificationForPayingNow { get; set; }
         public OTPVerificationForPayingNow()
         {
@@ -34,7 +34,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._PageNavigationParameter = (PageNavigationParameter)e.Parameter;
+            this._PageNavigationParameter = (CustomerPageNavigationParameter)e.Parameter;
             var p = this._PageNavigationParameter;
             this._OTPVerificationForPayingNow = new OTPVerificationForPayingNowViewModel()
             {

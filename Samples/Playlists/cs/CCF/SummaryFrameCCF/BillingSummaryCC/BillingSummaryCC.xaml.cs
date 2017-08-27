@@ -17,12 +17,12 @@ namespace SDKTemplate
     public sealed partial class BillingSummaryCC : Page
     {
         public static BillingSummaryCC Current;
-        public BillingSummaryViewModel BillingSummaryViewModel;
+        public CustomerBillingSummaryViewModel BillingSummaryViewModel;
         public BillingSummaryCC()
         {
             Current = this;
             this.InitializeComponent();
-            BillingSummaryViewModel = new BillingSummaryViewModel();
+            BillingSummaryViewModel = new CustomerBillingSummaryViewModel();
             //Subscribing to product list changed event of ProductListCC
             ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
                 () =>

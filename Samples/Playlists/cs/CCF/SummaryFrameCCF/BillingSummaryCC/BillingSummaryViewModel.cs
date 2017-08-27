@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class BillingSummaryViewModel : INotifyPropertyChanged
+    public class CustomerBillingSummaryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private decimal _totalBillAmount;
@@ -53,7 +53,7 @@ namespace SDKTemplate
 
         public decimal DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this._totalBillAmount) / 100; } }
 
-        public BillingSummaryViewModel()
+        public CustomerBillingSummaryViewModel()
         {
             _totalProducts = 0;
             _totalBillAmount = 0;

@@ -6,24 +6,21 @@ using System.Threading.Tasks;
 using SDKTemplate.View_Models;
 using SDKTemplate.Data_Source;
 using Models;
+using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
-    public class WholeSellerOrderDataSource
+    public class SupplierOrderDataSource
     {
         private static List<WholeSellerOrderViewModel> _Orders;
         public static List<WholeSellerOrderViewModel> Orders { get { return _Orders; } }
 
-        public WholeSellerOrderDataSource(){
-        }
 
         #region Create
-        private static Guid CreateNewWholeSellerOrder(DatabaseModel.RetailerContext db, WholeSellerCheckoutNavigationParameter navigationParameter)
+        public static async Task<decimal> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
-            var wholeSellerOrder = new DatabaseModel.WholeSellerOrder(navigationParameter);
-            // Creating Entity Record in customerOrder.
-            db.WholeSellersOrders.Add(wholeSellerOrder);
-            return wholeSellerOrder.WholeSellerOrderId;
+            string actionURI = "supplierorders";
+            return await Utility.CreateAsync<decimal>(actionURI, supplierOrderDTO);
         }
         #endregion
 
@@ -59,9 +56,9 @@ namespace SDKTemplate
         {
             List<WholeSellerOrderViewModel> result = new List<WholeSellerOrderViewModel>();
             if (wholesellerId == null)
-                result = WholeSellerOrderDataSource.Orders;
+                result = SupplierOrderDataSource.Orders;
             else
-                result = WholeSellerOrderDataSource.Orders.Where(o => o.WholeSeller.SupplierId == wholesellerId).ToList();
+                result = SupplierOrderDataSource.Orders.Where(o => o.WholeSeller.SupplierId == wholesellerId).ToList();
             if (filterWholeSalerOrderCriteria == null)
                 return result;
             else
@@ -91,10 +88,11 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="pageNavigationParameter"></param>
         /// <returns></returns>
-        public static bool PlaceOrder(WholeSellerCheckoutNavigationParameter pageNavigationParameter)
+        public static bool PlaceOrder(SupplierPageNavigationParameter pageNavigationParameter)
         {
+            /*
             var productList = pageNavigationParameter.productViewModelList;
-            var wholeSeller = pageNavigationParameter.WholeSellerViewModel;
+            var wholeSeller = pageNavigationParameter.SelectedSupplier;
             var payingAmount = pageNavigationParameter.WholeSellerCheckoutViewModel.PaidAmount;
             var remainingAmount = pageNavigationParameter.WholeSellerCheckoutViewModel.RemainingAmount;
             var IsOrderSettleUp = remainingAmount == 0 ? true : false;
@@ -110,7 +108,7 @@ namespace SDKTemplate
 
             WholeSellerOrderProductDataSource.CreateWholeSellerOrderProduct(db, productList, wholeSellerOrderId);
             ProductDataSource.UpdateProductStockByWholeSeller(db, productList);
-            return true;
+        */    return true;
         }
 
         /// <summary>

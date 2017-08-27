@@ -18,12 +18,13 @@ namespace SDKTemplate
         public SupplierOrderProductViewModelBase(TProduct parent) : base(parent)
         {
             this.QuantityPurchased = 0;
+            this.PurchasePrice = 0;
         }
     }
 
-    public class WholeSellerProductVieModel :SupplierOrderProductViewModelBase, INotifyPropertyChanged
+    public class SupplierOrderProductViewModel : SupplierOrderProductViewModelBase, INotifyPropertyChanged
     {
-        
+
         private decimal? _purchasePrice;
         public override decimal? PurchasePrice
         {
@@ -32,16 +33,11 @@ namespace SDKTemplate
             {
                 this._purchasePrice = value;
                 this.OnPropertyChanged(nameof(NetValue));
-                WholeSellerPurchasedProductListCC.Current.InvokeProductListChangeEvent(); 
+                SupplierPurchasedProductListCC.Current.InvokeProductListChangeEvent();
             }
         }
 
         private decimal? _quantityPurchased;
-
-        public WholeSellerProductVieModel(TProduct parent) : base(parent)
-        {
-        }
-
         public override decimal? QuantityPurchased
         {
             get { return this._quantityPurchased; }
@@ -50,10 +46,13 @@ namespace SDKTemplate
                 this._quantityPurchased = value;
                 this.OnPropertyChanged(nameof(QuantityPurchased));// This is done because quantity is updated by addItemtoBillingList method.
                 this.OnPropertyChanged(nameof(NetValue));
-                WholeSellerPurchasedProductListCC.Current.InvokeProductListChangeEvent();
+                SupplierPurchasedProductListCC.Current.InvokeProductListChangeEvent();
             }
         }
 
+        public SupplierOrderProductViewModel(TProduct parent) : base(parent)
+        {
+        }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
