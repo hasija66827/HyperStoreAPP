@@ -44,7 +44,7 @@ namespace SDKTemplate
         public static async Task<List<TCustomer>> RetrieveCustomersAsync(CustomerFilterCriteriaDTO cfc)
         {
             string actionURI = "customers";
-            List < TCustomer > customers= await Utility.Retrieve<TCustomer>(actionURI,cfc);
+            List < TCustomer > customers= await Utility.RetrieveAsync<TCustomer>(actionURI,cfc);
             return customers;
         }
 
@@ -88,41 +88,6 @@ namespace SDKTemplate
         {
             return false;
         }
-        #endregion
-
-        #region UpdateTransaction
-        //#remove
-        /// <summary>
-        /// Update the wallet balance of the customer in memory and in database.
-        /// </summary>
-        /// <param name="db"></param>
-        /// <param name="customerViewModel"></param>
-        /// <param name="walletBalanceToBeDeducted"></param>
-        /// <param name="walletBalanceToBeAdded"></param>
-        /// <returns>Return the updated wallet balance of the customer.</returns>
-        public static decimal UpdateWalletBalanceOfCustomer(DatabaseModel.RetailerContext db, TCustomer customerViewModel,
-            decimal walletBalanceToBeDeducted, decimal walletBalanceToBeAdded)
-        {
-            /*
-            var billingCustomer = (DatabaseModel.Customer)customerViewModel;
-            var entityEntry = db.Attach(billingCustomer);
-            billingCustomer.WalletBalance -= walletBalanceToBeDeducted;
-            billingCustomer.WalletBalance += walletBalanceToBeAdded;
-            var memberEntry = entityEntry.Member(nameof(DatabaseModel.Customer.WalletBalance));
-            memberEntry.IsModified = true;
-            db.SaveChanges();
-            _UpdateWalletBalanceOfCustomerInMemory(customerViewModel, (decimal)billingCustomer.WalletBalance);
-            return billingCustomer.WalletBalance;*/
-            return 100;
-        }
-
-        /// <summary>
-        /// Updates the wallet balance of the given customer in memory.
-        /// </summary>
-        /// <param name="customerViewModel"></param>
-        /// <param name="walletBalance"></param>
-        private static void _UpdateWalletBalanceOfCustomerInMemory(CustomerViewModel customerViewModel, decimal walletBalance)
-        { }
         #endregion
     }
 }

@@ -31,16 +31,11 @@ namespace SDKTemplate
         }
 
         // Constructor to convert parent obect to child object.
-        public CustomerProductViewModel(TProduct parent)
+        public CustomerProductViewModel(ProductViewModelBase parent)
         {
-            foreach (PropertyInfo prop in parent.GetType().GetProperties())
-            {
-                //If Property can be set then only we will set it.
-                if (prop.CanWrite)
-                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent));
-            }
-            this._quantityPurchased = 0;
-            this._netValue = this.SellingPrice * this._quantityPurchased;
+                foreach (PropertyInfo prop in parent.GetType().GetProperties())
+                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

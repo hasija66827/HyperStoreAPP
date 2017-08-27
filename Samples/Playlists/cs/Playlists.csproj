@@ -219,8 +219,8 @@
     <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBCC.xaml.cs">
       <DependentUpon>CustomerASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterOrderViewModel.cs" />
-    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterOrderCC.xaml.cs">
+    <Compile Include="CCF\FilterFrameCCF\FilterCustomerOrderCC\FilterOrderViewModel.cs" />
+    <Compile Include="CCF\FilterFrameCCF\FilterCustomerOrderCC\FilterOrderCC.xaml.cs">
       <DependentUpon>FilterOrderCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\LeftBottomCC\FilterProductCC\FilterProduct.xaml.cs">
@@ -360,7 +360,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\FilterFrameCCF\FilterOrderCC\FilterOrderCC.xaml">
+    <Page Include="CCF\FilterFrameCCF\FilterCustomerOrderCC\FilterOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

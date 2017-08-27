@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -57,7 +58,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="selectedProduct"></param>
         /// <returns></returns>
-        private int _AddProductToCart(CustomerProductViewModel selectedProduct)
+        private int _AddProductToCart(TProduct selectedProduct)
         {
             int index = 0;
             var existingProduct = this._products.Where(p => p.ProductId == selectedProduct.ProductId).FirstOrDefault();

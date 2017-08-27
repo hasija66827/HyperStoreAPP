@@ -23,7 +23,7 @@ namespace SDKTemplate
         SearchTheProduct
     }
 
-    public delegate int OnAddProductClickedDelegate(CustomerProductViewModel productViewModel);
+    public delegate int OnAddProductClickedDelegate(TProduct product);
     public delegate Task SelectedProductChangedDelegate();
 
 
@@ -82,7 +82,7 @@ namespace SDKTemplate
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.OnAddProductClickedEvent?.Invoke(new CustomerProductViewModel(this.SelectedProductInASB));
+            this.OnAddProductClickedEvent?.Invoke(this.SelectedProductInASB);
         }
 
         /// <summary>

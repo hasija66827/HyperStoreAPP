@@ -40,7 +40,7 @@ namespace SDKTemplate
         public static async Task<List<TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
         {
             string actionURI = "suppliers";
-            List<TSupplier> suppliers = await Utility.Retrieve<TSupplier>(actionURI, sfc);
+            List<TSupplier> suppliers = await Utility.RetrieveAsync<TSupplier>(actionURI, sfc);
             return suppliers;
         }
 

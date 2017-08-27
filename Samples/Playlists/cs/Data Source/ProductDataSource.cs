@@ -31,7 +31,7 @@ namespace SDKTemplate
         public static async Task<List<TProduct>> RetrieveProductDataAsync(ProductFilterCriteriaDTO pfc)
         {
             string actionURI = "products";
-            List<TProduct> products = await Utility.Retrieve<TProduct>(actionURI, pfc);
+            List<TProduct> products = await Utility.RetrieveAsync<TProduct>(actionURI, pfc);
             return products;
         }
 
@@ -110,29 +110,7 @@ namespace SDKTemplate
             return true;
         }
 
-        ///#remove
-        /// <summary>
-        /// Reduces the number of products from the product entity during purchase of product by Customer.
-        /// </summary>
-        /// <param name="db"></param>
-        /// <param name="productListToBePurchased"></param>
-        /// <returns></returns>
-        public static bool UpdateProductStock(DatabaseModel.RetailerContext db, List<CustomerProductViewModel> productListToBePurchased)
-        {
-            //#perf: You can query whole list in where clause.
-            foreach (var productViewModel in productListToBePurchased)
-            {
-                var products = db.Products.Where(p => p.ProductId == productViewModel.ProductId).ToList();
-                var product = products.FirstOrDefault();
-                if (product == null)
-                    return false;
-               
-                db.Update(product);
-            }
-            db.SaveChanges();
-            return true;
-        }
-
+       
 
         /// <summary>
         /// Adds the quantity in product present in product entity, during purchase of product by wholeseller.

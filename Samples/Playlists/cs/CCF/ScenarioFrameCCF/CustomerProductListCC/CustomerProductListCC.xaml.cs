@@ -21,6 +21,8 @@ using Windows.UI.Xaml.Navigation;
 using DatabaseModel;
 using SDKTemp.Data;
 using System.Collections.ObjectModel;
+using SDKTemplate.DTO;
+using Models;
 
 namespace SDKTemplate
 {
@@ -31,7 +33,7 @@ namespace SDKTemplate
         public event ProductListCCUpdatedDelegate ProductListCCUpdatedEvent;
         private ObservableCollection<CustomerProductViewModel> _products = new ObservableCollection<CustomerProductViewModel>();
         public ObservableCollection<CustomerProductViewModel> Products { get { return this._products; } }
-       
+
         public CustomerProductListCC()
         {
             Current = this;
@@ -45,7 +47,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        private int _AddProductToCart(CustomerProductViewModel product)
+        private int _AddProductToCart(TProduct product)
         {
             int index = 0;
             var existingProduct = this._products.Where(p => p.ProductId == product.ProductId).FirstOrDefault();
@@ -70,18 +72,29 @@ namespace SDKTemplate
 
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            if (CustomerASBCC.Current.SelectedCustomerInASB== null)
+            if (CustomerASBCC.Current.SelectedCustomerInASB == null)
             {
                 MainPage.Current.NotifyUser("Customer not selected in search box", NotifyType.ErrorMessage);
                 return;
             }
-            
-            PageNavigationParameter pageNavigationParameter = 
-                new PageNavigationParameter(
-                                             Products.ToList(),
-                                             CustomerASBCC.Current.SelectedCustomerInASB,
-                                             BillingSummaryCC.Current.BillingSummaryViewModel);
-                                             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
+            var productsConsumed = Products.Select(p => new ProductConsumedDTO()
+            {
+                ProductId = p.ProductId,
+                QuantityConsumed = p.QuantityPurchased
+            }).ToList();
+            var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
+            var billSummary = BillingSummaryCC.Current.BillingSummaryViewModel;
+            PageNavigationParameter pageNavigationParameter = new PageNavigationParameter()
+            {
+                ProductsConsumed = productsConsumed,
+                CustomerId = selectedCustomer?.CustomerId,
+                BillAmount = billSummary.TotalBillAmount,
+                DiscountedAmount = billSummary?.DiscountedBillAmount,
+                IsUsingWallet = selectedCustomer?.WalletBalance == 0 ? false : true,
+                IsPayingNow = false,
+                PayingAmount= billSummary?.DiscountedBillAmount,
+            };
+            this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }
     }
 }

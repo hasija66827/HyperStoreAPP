@@ -241,7 +241,7 @@ namespace SDKTemplate
             return true;
         }
 
-        public static async Task<List<T>> Retrieve<T>(string actionURI, object content)
+        public static async Task<List<T>> RetrieveAsync<T>(string actionURI, object content)
         {
             string httpResponseBody = "";
             try
@@ -262,6 +262,22 @@ namespace SDKTemplate
                 throw ex;//TODO: notifications
                 return null;
             }
+        }
+
+        public static async Task<T> CreateAsync<T>(string actionURI, object content)
+        {
+            try
+            {
+                var serializeContent = JsonConvert.SerializeObject(content);
+                var response = await Utility.HttpPost(actionURI, serializeContent);
+                response.EnsureSuccessStatusCode();
+                return (T)response.Content;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public static async Task<HttpResponseMessage> HttpPost(string actionURI, string content)
