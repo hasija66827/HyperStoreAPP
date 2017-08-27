@@ -40,6 +40,12 @@ namespace SDKTemplate
             return await Utility.RetrieveAsync<TCustomerPurchaseTrend>(actionURI, customerPurchaseTrendDTO);
         }
 
+        public static async Task<List<TProductConsumptionTrend>> RetrieveProductConsumptionTrend(ProductConsumptionTrendDTO productConsumptionTrendDTO)
+        {
+            string actionURI = "ProductConsumptionTrend";
+            return await Utility.RetrieveAsync<TProductConsumptionTrend>(actionURI, productConsumptionTrendDTO);
+        }
+
         /// <summary>
         /// Returns the wholeseller with the latest purchase price quoted by each of the Wholeseller
         /// for the given productID.

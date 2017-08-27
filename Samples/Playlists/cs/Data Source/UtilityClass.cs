@@ -50,7 +50,7 @@ namespace SDKTemplate
         #endregion
 
         #region ProductConsumption Trend
-        public class ProductTrendDTO
+        public class ProductConsumptionTrendDTO
         {
             [Required]
             public Guid? ProductId { get; set; }

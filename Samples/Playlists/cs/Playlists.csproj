@@ -189,8 +189,8 @@
     <Compile Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderListCC.xaml.cs">
       <DependentUpon>CustomerOrderListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProductConsumptionPer.xaml.cs">
-      <DependentUpon>ProductConsumptionPer.xaml</DependentUpon>
+    <Compile Include="ProductConsumptionTrendBar.xaml.cs">
+      <DependentUpon>ProductConsumptionTrendBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="WholeSellerTransactionScenario\TransactionViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\WholeSellerOrderListCC\WholeSellerOrderViewModel.cs" />
@@ -398,7 +398,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductConsumptionPer.xaml">
+    <Page Include="ProductConsumptionTrendBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,14 +14,11 @@
         <Charting:Chart x:Name="ColumnChart"
                         HorizontalAlignment="Left"
                         Margin="0"
-                        Width="350"
-                        
-                        >
+                        Width="350">
             <Charting:ColumnSeries IndependentValuePath="Day"
                                    DependentValuePath="Quantity"
                                    CharacterSpacing="4"
-                                   IsSelectionEnabled="True" 
-                                   />
+                                   IsSelectionEnabled="True" />
         </Charting:Chart>
     </Grid>
 </Page>

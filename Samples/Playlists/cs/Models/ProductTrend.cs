@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace HyperStoreService.Models
+namespace Models
 {
-    public class ProductTrend
+    public class TProductConsumptionTrend
     {
         public DayOfWeek Day { get; set; }
         public float Quantity { get; set; }
-        public ProductTrend(DayOfWeek day, float quantity)
+        public TProductConsumptionTrend(DayOfWeek day, float quantity)
         {
             this.Day = day;
             this.Quantity = quantity;
