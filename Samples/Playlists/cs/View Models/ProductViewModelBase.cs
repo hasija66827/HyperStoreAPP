@@ -42,6 +42,8 @@ namespace SDKTemplate
             get { return this.Name + " (" + this.TotalQuantity + ")"; }
         }
 
+        public ProductViewModelBase() { }
+
         public ProductViewModelBase(TProduct parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())

@@ -120,6 +120,7 @@ namespace SDKTemplate
         /// <returns></returns>
         public static bool UpdateProductStockByWholeSeller(DatabaseModel.RetailerContext db, List<WholeSellerProductVieModel> purchasedProducts)
         {
+            /*
             //#perf: You can query whole list in where clause.
             foreach (var purchasedProduct in purchasedProducts)
             {
@@ -133,7 +134,7 @@ namespace SDKTemplate
                 db.Update(product);
             }
             db.SaveChanges();
-            return true;
+            */return true;
         }
 
         /// <summary>

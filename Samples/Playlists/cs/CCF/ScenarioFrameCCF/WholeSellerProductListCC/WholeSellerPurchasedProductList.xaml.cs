@@ -69,8 +69,7 @@ namespace SDKTemplate
             }
             else
             {
-                WholeSellerProductVieModel w = new WholeSellerProductVieModel(selectedProduct.ProductId, selectedProduct.Code,
-                   selectedProduct.Name, 0, 1, selectedProduct.SellingPrice);
+                WholeSellerProductVieModel w = new WholeSellerProductVieModel(selectedProduct);
                 this._products.Add(w);
                 index = this._products.IndexOf(w);
                 InvokeProductListChangeEvent();

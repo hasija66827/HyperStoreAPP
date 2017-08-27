@@ -31,14 +31,15 @@ namespace SDKTemplate
     {
         public static CustomerProductListCC Current;
         public event ProductListCCUpdatedDelegate ProductListCCUpdatedEvent;
-        private ObservableCollection<CustomerProductViewModel> _products = new ObservableCollection<CustomerProductViewModel>();
-        public ObservableCollection<CustomerProductViewModel> Products { get { return this._products; } }
+        public List<CustomerOrderProductViewModelBase> Products { get { return this._products.Cast<CustomerOrderProductViewModelBase>().ToList(); } }
+        private ObservableCollection<CustomerProductViewModel> _products;
 
         public CustomerProductListCC()
         {
             Current = this;
             this.InitializeComponent();
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this._AddProductToCart);
+            _products = new ObservableCollection<CustomerProductViewModel>();
             Checkout.Click += Checkout_Click;
         }
 
@@ -49,18 +50,19 @@ namespace SDKTemplate
         /// <returns></returns>
         private int _AddProductToCart(TProduct product)
         {
+            var customerProduct = new CustomerProductViewModel(product);
             int index = 0;
             var existingProduct = this._products.Where(p => p.ProductId == product.ProductId).FirstOrDefault();
             if (existingProduct != null)
             {
                 index = this._products.IndexOf(existingProduct);
-                this._products[index].QuantityPurchased += 1;//Event will be triggered.
+                this._products[index].QuantityConsumed += 1;//Event will be triggered.
             }
             else
             {
-                this._products.Add(product);
-                index = this._products.IndexOf(product);
-                this._products[index].QuantityPurchased = 1;//Event will be triggered.
+                this._products.Add(customerProduct);
+                index = this._products.IndexOf(customerProduct);
+                this._products[index].QuantityConsumed = 1;//Event will be triggered.
             }
             return index;
         }
@@ -77,22 +79,15 @@ namespace SDKTemplate
                 MainPage.Current.NotifyUser("Customer not selected in search box", NotifyType.ErrorMessage);
                 return;
             }
-            var productsConsumed = Products.Select(p => new ProductConsumedDTO()
-            {
-                ProductId = p.ProductId,
-                QuantityConsumed = p.QuantityPurchased
-            }).ToList();
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             var billSummary = BillingSummaryCC.Current.BillingSummaryViewModel;
             PageNavigationParameter pageNavigationParameter = new PageNavigationParameter()
             {
-                ProductsConsumed = productsConsumed,
-                CustomerId = selectedCustomer?.CustomerId,
-                BillAmount = billSummary.TotalBillAmount,
-                DiscountedAmount = billSummary?.DiscountedBillAmount,
-                IsUsingWallet = selectedCustomer?.WalletBalance == 0 ? false : true,
-                IsPayingNow = false,
-                PayingAmount= billSummary?.DiscountedBillAmount,
+                ProductsConsumed = Products,
+                SelectedCustomer = selectedCustomer,
+                BillingSummaryViewModel = billSummary,
+                UseWallet = selectedCustomer?.WalletBalance == 0 ? false : true,
+                WalletAmountToBePaidLater = billSummary.DiscountedBillAmount
             };
             this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
         }

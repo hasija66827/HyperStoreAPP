@@ -104,7 +104,7 @@
                        HorizontalAlignment="Center"
                        Style="{StaticResource SampleHeaderTextStyle}" />
             <TextBlock x:Name="MobNoTB"
-                       Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
+                       Text="{x:Bind PageNavigationParameter.SelectedCustomer.MobileNo}"
                        Foreground="#FF08BFC2"
                        HorizontalAlignment="Center" />
             <TextBox x:Name="OTPTB"

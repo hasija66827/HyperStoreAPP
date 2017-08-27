@@ -28,7 +28,7 @@ namespace SDKTemplate
                 () =>
                 {
                     var products = CustomerProductListCC.Current.Products;
-                    this.BillingSummaryViewModel.TotalProducts =(decimal) products.Sum(p=>p.QuantityPurchased);
+                    this.BillingSummaryViewModel.TotalProducts =(decimal) products.Sum(p=>p.QuantityConsumed);
                     this.BillingSummaryViewModel.TotalBillAmount =(decimal) products.Sum(p => p.NetValue);
                     
                 });

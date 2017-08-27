@@ -37,8 +37,8 @@ namespace SDKTemplate
             // TODO: verify OTP
             if (OTPTB.Text == "123456")
             {
-                var updatedCustomerWalletBalance = CustomerOrderDataSource.PlaceOrder(PageNavigationParameter,PaymentMode.payLater);
-                MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the customer is \u20b9" + updatedCustomerWalletBalance, NotifyType.StatusMessage);
+                //var updatedCustomerWalletBalance = CustomerOrderDataSource.PlaceOrder(PageNavigationParameter,PaymentMode.payLater);
+                //MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the customer is \u20b9" + updatedCustomerWalletBalance, NotifyType.StatusMessage);
                 this.Frame.Navigate(typeof(CustomerProductListCC));
             }
             else

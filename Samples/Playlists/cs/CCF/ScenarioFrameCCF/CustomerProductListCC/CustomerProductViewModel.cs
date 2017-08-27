@@ -10,33 +10,34 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public delegate void QuantityChangedDelegate(object sender, decimal Quantity);
-    public class CustomerProductViewModel : ProductViewModelBase, INotifyPropertyChanged
+    public class CustomerOrderProductViewModelBase : ProductViewModelBase
     {
-        private decimal? _netValue;
-        public decimal? NetValue { get { return this._netValue; } }
+        public decimal? NetValue { get { return this.QuantityConsumed * this.SubTotal; } }
+        public virtual decimal? QuantityConsumed { get; set; }
 
+        public CustomerOrderProductViewModelBase(TProduct parent) : base(parent)
+        {
+            this.QuantityConsumed = 0;
+        }
+    }
+
+    public delegate void QuantityChangedDelegate(object sender, decimal Quantity);
+    public sealed class CustomerProductViewModel : CustomerOrderProductViewModelBase, INotifyPropertyChanged
+    {
         private decimal? _quantityPurchased;
-        public decimal? QuantityPurchased
+        public override decimal? QuantityConsumed
         {
             get { return this._quantityPurchased; }
             set
             {
                 this._quantityPurchased = (value >= 0) ? value : 0;
-                this._netValue = this.SellingPrice * this.QuantityPurchased;
-                this.OnPropertyChanged(nameof(QuantityPurchased));
+                this.OnPropertyChanged(nameof(QuantityConsumed));
                 this.OnPropertyChanged(nameof(NetValue));
                 CustomerProductListCC.Current.InvokeProductListChangedEvent();
             }
         }
 
-        // Constructor to convert parent obect to child object.
-        public CustomerProductViewModel(ProductViewModelBase parent)
-        {
-                foreach (PropertyInfo prop in parent.GetType().GetProperties())
-                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
-            
-        }
+        public CustomerProductViewModel(TProduct parent) : base(parent) { }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

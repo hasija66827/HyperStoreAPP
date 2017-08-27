@@ -73,7 +73,7 @@
                 <TextBlock Text="Wallet Balance"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="0" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind PageNavigationParameter.SelectedCustomer.WalletBalance, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="0"
                            Grid.Column="1" />
@@ -92,7 +92,7 @@
                            HorizontalAlignment="Center"
                            Style="{StaticResource SampleHeaderTextStyle}" />
                 <TextBlock x:Name="MobNoTB"
-                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.MobileNo}"
+                           Text="{x:Bind PageNavigationParameter.SelectedCustomer.MobileNo}"
                            Foreground="#FF08BFC2"
                            HorizontalAlignment="Center" />
                 <TextBox x:Name="OTPTB"

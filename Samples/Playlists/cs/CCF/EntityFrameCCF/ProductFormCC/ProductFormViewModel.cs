@@ -14,11 +14,6 @@ namespace SDKTemplate
     {
         private class ProductFormViewModel : ProductViewModelBase, INotifyPropertyChanged
         {
-            public ProductFormViewModel() { }
-            public ProductFormViewModel(ProductViewModelBase product)
-            {
-            }
-
             private decimal? _displayPrice;
             public override decimal? DisplayPrice
             {
@@ -72,6 +67,8 @@ namespace SDKTemplate
                     this.OnPropertyChanged(nameof(SellingPrice));
                 }
             }
+            public ProductFormViewModel() : base() { }
+            public ProductFormViewModel(TProduct parent) : base(parent) { }
 
             public event PropertyChangedEventHandler PropertyChanged = delegate { };
             public void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -89,7 +89,7 @@
                           IsChecked="{x:Bind PageNavigationParameter.UseWallet, Mode=TwoWay}"
                           IsEnabled="{x:Bind PayLaterRadBtn.IsChecked, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}" />
                 <TextBlock x:Name="CurrentWalletBalance"
-                           Text="{x:Bind PageNavigationParameter.CustomerViewModel.WalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Text="{x:Bind PageNavigationParameter.SelectedCustomer.WalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Grid.Column="0"
                            Grid.Row="2" />
                 <TextBlock x:Name="WalletBalanceToBeDeductedTB"

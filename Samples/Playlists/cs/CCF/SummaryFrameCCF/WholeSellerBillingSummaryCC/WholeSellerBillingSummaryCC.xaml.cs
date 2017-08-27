@@ -34,8 +34,8 @@ namespace SDKTemplate
         }
         public void ComputeBillSummary(ObservableCollection<WholeSellerProductVieModel> products)
         {
-            this.wholeSellerBillingSummaryViewModel.BillAmount = products.Sum(p => p.NetValue);
-            this.wholeSellerBillingSummaryViewModel.TotalQuantity = products.Sum(p => p.QuantityPurchased);
+            //this.wholeSellerBillingSummaryViewModel.BillAmount = products.Sum(p => p.NetValue);
+            //this.wholeSellerBillingSummaryViewModel.TotalQuantity = products.Sum(p => p.QuantityPurchased);
         }
     }
 }

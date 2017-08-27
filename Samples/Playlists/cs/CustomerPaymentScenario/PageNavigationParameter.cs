@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
- 
+
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Models;
@@ -14,8 +14,8 @@ namespace SDKTemplate
     public class PageNavigationParameter : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public List<CustomerProductViewModel> ProductsToBePurchased{ get; set; }
-        public TCustomer CustomerViewModel { get; set; }
+        public List<CustomerOrderProductViewModelBase> ProductsConsumed { get; set; }
+        public TCustomer SelectedCustomer { get; set; }
         public BillingSummaryViewModel BillingSummaryViewModel { get; set; }
         private decimal _toBePaid;
         public decimal ToBePaid
@@ -40,7 +40,7 @@ namespace SDKTemplate
                 this._useWallet = value;
                 if (value == true)
                 {
-                    var walletBalance = (decimal)this.CustomerViewModel.WalletBalance;
+                    var walletBalance = (decimal)this.SelectedCustomer.WalletBalance;
                     var discountedBillAmount = this.BillingSummaryViewModel.DiscountedBillAmount;
                     this.WalletBalanceToBeDeducted = (walletBalance <= discountedBillAmount) ? walletBalance : discountedBillAmount;
                 }
@@ -99,6 +99,7 @@ namespace SDKTemplate
         public decimal WalletAmountToBePaidLater
         {
             get { return this._walletAmountToBePaidLater; }
+            set { this._walletAmountToBePaidLater = value; }
         }
 
         // Partial payment paid by the customer
@@ -124,18 +125,8 @@ namespace SDKTemplate
         }
         #endregion
 
-        public PageNavigationParameter(List<CustomerProductViewModel> productsToBePurchased, TCustomer customerViewModel, BillingSummaryViewModel billingSummaryViewModel)
-        {
-            this.ProductsToBePurchased = productsToBePurchased;
-            this.CustomerViewModel = customerViewModel;
-            this.BillingSummaryViewModel = billingSummaryViewModel;
-            // uncheck the use wallet chkbox, if wallet balance is zero.
-            if (this.CustomerViewModel.WalletBalance == 0)
-                this.UseWallet = false;
-            else
-                this.UseWallet = true;
-            this._walletAmountToBePaidLater = this.BillingSummaryViewModel.DiscountedBillAmount;
-        }
+        public PageNavigationParameter() { }
+
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.

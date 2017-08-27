@@ -149,7 +149,7 @@
                                                    Text="{x:Bind SellingPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBox x:Name="Quantity"
                                                  Style="{StaticResource ListTextBoxStyle}"
-                                                 Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
+                                                 Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
                                         <TextBlock x:Name="NetValue"
                                                    FontSize="16"
                                                    Foreground="#FFFF2FAE"

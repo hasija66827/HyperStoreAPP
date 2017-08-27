@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,27 +9,23 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class WholeSellerProductVieModel : INotifyPropertyChanged
+    public class SupplierOrderProductViewModelBase : ProductViewModelBase
     {
-        private Guid _productId;
-        public Guid ProductId { get { return this._productId; } }
+        public decimal? NetValue { get { return this.QuantityPurchased * this.PurchasePrice; } }
+        public virtual decimal? QuantityPurchased { get; set; }
+        public virtual decimal? PurchasePrice { get; set; }
 
-        private string _barCode;
-        public string BarCode
+        public SupplierOrderProductViewModelBase(TProduct parent) : base(parent)
         {
-            get { return this._barCode; }
-            set { this._barCode = value; }
+            this.QuantityPurchased = 0;
         }
+    }
 
-        private string _name;
-        public string Name
-        {
-            get { return this._name; }
-            set { this._name = value; }
-        }
-
-        private decimal _purchasePrice;
-        public decimal PurchasePrice
+    public class WholeSellerProductVieModel :SupplierOrderProductViewModelBase, INotifyPropertyChanged
+    {
+        
+        private decimal? _purchasePrice;
+        public override decimal? PurchasePrice
         {
             get { return this._purchasePrice; }
             set
@@ -39,8 +36,13 @@ namespace SDKTemplate
             }
         }
 
-        private decimal _quantityPurchased;
-        public decimal QuantityPurchased
+        private decimal? _quantityPurchased;
+
+        public WholeSellerProductVieModel(TProduct parent) : base(parent)
+        {
+        }
+
+        public override decimal? QuantityPurchased
         {
             get { return this._quantityPurchased; }
             set
@@ -50,19 +52,6 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(NetValue));
                 WholeSellerPurchasedProductListCC.Current.InvokeProductListChangeEvent();
             }
-        }
-
-        public decimal NetValue
-        {
-            get { return this._quantityPurchased * this._purchasePrice; }
-        }
-
-        private decimal _sellingPrice;
-        public decimal SellingPrice { get { return this._sellingPrice; } }
-        public WholeSellerProductVieModel(Guid productId, string barCode, string name, 
-            decimal purchasePrice, decimal quantityPurchased, decimal? sellingPrice)
-        {
-            
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

@@ -326,12 +326,12 @@ namespace DatabaseModel
             this.AddingMoneyToWallet = pageNavigationParameter.WalletAmountToBeAddedNow;
 
             this.IsUseWallet = pageNavigationParameter.UseWallet.Value;
-            this.UsingWalletAmount = (decimal)pageNavigationParameter.CustomerViewModel.WalletBalance;
+            this.UsingWalletAmount = (decimal)pageNavigationParameter.SelectedCustomer.WalletBalance;
 
             this.PartiallyPaid = pageNavigationParameter.PartiallyPaid;
             this.PayingLater = pageNavigationParameter.WalletAmountToBePaidLater;
 
-            this.CustomerId = pageNavigationParameter.CustomerViewModel.CustomerId;
+            this.CustomerId = pageNavigationParameter.SelectedCustomer.CustomerId;
         }
         [Required]
         public Nullable<Guid> CustomerId;
