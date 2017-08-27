@@ -43,7 +43,7 @@ namespace SDKTemplate
             var creditAmount = transactionViewModel.CreditAmount;
             TransactionDataSource.CreateTransaction(transactionViewModel, db);
             var updatedWholeSellerWalletBalance = SupplierDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -creditAmount);
-            SupplierOrderDataSource.SettleUpOrders(transactionViewModel, wholeSeller, db);
+            //SupplierOrderDataSource.SettleUpOrders(transactionViewModel, wholeSeller, db);
             return updatedWholeSellerWalletBalance;
         }
     }
