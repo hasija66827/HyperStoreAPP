@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Models;
+using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,14 +28,14 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class CustomersCCF : Page
     {
-        public CustomerPurchaseHistoryCollection CustomerPurchaseHistoryCollection { get; set; }
+        public CustomerPurchaseTrendCollection CustomerPurchaseTrendCollection { get; set; }
         public static CustomersCCF Current;
-        public CustomerViewModel SelectedCustomer { get; set; }
+        public TCustomer SelectedCustomer { get; set; }
         public CustomersCCF()
         {
             Current = this;
             this.InitializeComponent();
-            this.CustomerPurchaseHistoryCollection = new CustomerPurchaseHistoryCollection();
+            this.CustomerPurchaseTrendCollection = new CustomerPurchaseTrendCollection();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
@@ -69,11 +71,17 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.SelectedCustomer = (CustomerViewModel)e.ClickedItem;
-            this.CustomerPurchaseHistoryCollection.CustomerPurchaseHistories = AnalyticsDataSource.GetPurchasedProductForCustomer(this.SelectedCustomer.CustomerId, 4);
-            DetailContentPresenter.Content = this.CustomerPurchaseHistoryCollection;
+            this.SelectedCustomer = (TCustomer)e.ClickedItem;
+            var customerPurchaseTrendDTO = new CustomerPurchaseTrendDTO()
+            {
+                CustomerId = SelectedCustomer?.CustomerId,
+                MonthsCount = 3,
+            };
+            //TODO: Remove HardCoding 3
+            this.CustomerPurchaseTrendCollection.CustomerPurchaseTrends = await AnalyticsDataSource.RetrieveCustomerPurchaseTrend(customerPurchaseTrendDTO);
+            DetailContentPresenter.Content = this.CustomerPurchaseTrendCollection;
         }
     }
 }

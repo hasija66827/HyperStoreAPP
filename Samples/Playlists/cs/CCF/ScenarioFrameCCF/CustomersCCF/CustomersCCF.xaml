@@ -27,7 +27,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="local:CustomerPurchaseHistoryCollection">
+                      x:DataType="local:CustomerPurchaseTrendCollection">
             <StackPanel Background="White">
                 <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="BarCode"
@@ -38,24 +38,24 @@
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="PurchaseHistoriesOfCustomer"
-                          ItemsSource="{x:Bind CustomerPurchaseHistories}"
+                          ItemsSource="{x:Bind CustomerPurchaseTrends}"
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:CustomerPurchaseHistoryViewModel">
+                        <DataTemplate x:DataType="model:TCustomerPurchaseTrend">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock x:Name="BarCode"
                                            Foreground="Black"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind ProductViewModelBase.Code, Mode=OneWay}"
+                                           Text="{x:Bind Product.Code, Mode=OneWay}"
                                            />
                                 <TextBlock x:Name="ProductName"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind ProductViewModelBase.Name, Mode=OneWay}"
+                                           Text="{x:Bind Product.Name, Mode=OneWay}"
                                            />
                                 <TextBlock x:Name="TotalQuantity"
                                            Foreground="Black"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind TotalQuantity, Mode=OneWay}"
+                                           Text="{x:Bind TotalQuantityPurchased, Mode=OneWay}"
                                            />
                             </StackPanel>
                         </DataTemplate>
@@ -113,7 +113,6 @@
                           Grid.Column="1"
                           Grid.RowSpan="3"
                           BorderThickness="10,0,0,0"
-                         
                           ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter.ContentTransitions>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SDKTemplate.DTO;
+using Models;
 
 namespace SDKTemplate
 {
@@ -32,32 +34,10 @@ namespace SDKTemplate
 
     public class AnalyticsDataSource
     {
-        /// <summary>
-        /// Computes the distinct products purchased by the customer from all the orders in last months
-        /// </summary>
-        /// <param name="CustomerId">The id of the customer</param>
-        /// <param name="months">History in number of months</param>
-        /// <returns>returns the ordered list on the TotalQuantity </returns>
-        public static List<CustomerPurchaseHistoryViewModel> GetPurchasedProductForCustomer(Guid CustomerId, int months)
+        public static async Task<List<TCustomerPurchaseTrend>> RetrieveCustomerPurchaseTrend(CustomerPurchaseTrendDTO customerPurchaseTrendDTO)
         {
-            var db = new DatabaseModel.RetailerContext();
-            var customerOrders = db.CustomerOrders
-                                .Where(co => co.CustomerId == CustomerId &&
-                                        co.OrderDate >= DateTime.Now.AddMonths(-months)).ToList();
-            var customerOrderProduct = db.CustomerOrderProducts.ToList();
-            var joinRes = customerOrderProduct
-                    .Join(customerOrders,
-                            cop => cop.CustomerOrderId,
-                            co => co.CustomerOrderId,
-                            (cop, co) => new CustomerPurchaseHistoryViewModel(cop.ProductId, cop.QuantityPurchased));
-            var products_quantities = joinRes.GroupBy(cphv => cphv.ProductId);
-            var product_totalQuantity = products_quantities.Select(cphv => AggregateQuantity(cphv)).ToList();
-            return product_totalQuantity;
-        }
-
-        private static CustomerPurchaseHistoryViewModel AggregateQuantity(IGrouping<Guid?, CustomerPurchaseHistoryViewModel> items)
-        {
-            return new CustomerPurchaseHistoryViewModel(items.Key, items.Sum(p => p.TotalQuantity));
+            string actionURI = "CustomerPurchaseTrend";
+            return await Utility.RetrieveAsync<TCustomerPurchaseTrend>(actionURI, customerPurchaseTrendDTO);
         }
 
         /// <summary>

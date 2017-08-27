@@ -145,8 +145,10 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerOrderProduct.cs" />
+    <Compile Include="Models\CustomerPurchaseTrend.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductTag.cs" />
+    <Compile Include="Models\ProductTrend.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\SupplierOrder.cs" />
     <Compile Include="Models\SupplierOrderProduct.cs" />

@@ -1,34 +1,23 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SDKTemplate
-{
-    public class CustomerPurchaseHistoryViewModel
-    {
-        public Guid? ProductId;
-        public ProductViewModelBase ProductViewModelBase { get; set; }
-        public decimal TotalQuantity { get; set; }
-        public CustomerPurchaseHistoryViewModel(Guid? productId, decimal totalQuantity) {
-            this.ProductId = productId;
-            this.ProductViewModelBase = ProductDataSource.GetProductsById(productId).FirstOrDefault();
-            this.TotalQuantity = totalQuantity;
-        }
-    }
-
+{ 
     /// <summary>
     /// This class is used by Detail Page of Customer CCF.
     /// </summary>
-    public class CustomerPurchaseHistoryCollection
+    public class CustomerPurchaseTrendCollection
     {
-        private List<CustomerPurchaseHistoryViewModel> _customerPurchaseHistories;
-        public List<CustomerPurchaseHistoryViewModel> CustomerPurchaseHistories
+        private List<TCustomerPurchaseTrend> _customerPurchaseTrends;
+        public List<TCustomerPurchaseTrend> CustomerPurchaseTrends
         {
-            get { return this._customerPurchaseHistories; }
-            set { this._customerPurchaseHistories = value; }
+            get { return this._customerPurchaseTrends; }
+            set { this._customerPurchaseTrends = value; }
         }
-        public CustomerPurchaseHistoryCollection() { }
+        public CustomerPurchaseTrendCollection() { }
     }
 }
