@@ -11,17 +11,33 @@ using Newtonsoft.Json;
 
 namespace SDKTemp.Data
 {
-    public enum PaymentMode
-    {
-        payNow = 1,
-        payLater = 2
-    }
     public class CustomerOrderDataSource
     {
-        public static async void PlaceOrder(CustomerOrderDTO customerOrderDTO)
+        public static async Task<decimal> PlaceOrderAsync(PageNavigationParameter PNP, decimal payingAmount)
+        {
+            var productsConsumed = PNP.ProductsConsumed.Select(p => new ProductConsumedDTO()
+            {
+                ProductId = p.ProductId,
+                QuantityConsumed = p.QuantityConsumed
+            }).ToList();
+            var customerOrderDTO = new CustomerOrderDTO()
+            {
+                ProductsConsumed = productsConsumed,
+                CustomerId = PNP.SelectedCustomer?.CustomerId,
+                BillAmount = PNP.BillingSummaryViewModel.TotalBillAmount,
+                DiscountedAmount = PNP.BillingSummaryViewModel.DiscountedBillAmount,
+                IsPayingNow = PNP.SelectPaymentModeViewModelBase.IsPayingNow,
+                IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,
+                PayingAmount = payingAmount
+            };
+            return await CreateCustomerOrderAsync(customerOrderDTO);
+        }
+
+        private static async Task<decimal> CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
         {
             string actionURI = "customerorders";
-            var x = await Utility.CreateAsync<bool>(actionURI, customerOrderDTO);
+            var x = await Utility.CreateAsync<decimal>(actionURI, customerOrderDTO);
+            return x;
         }
 
         public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)

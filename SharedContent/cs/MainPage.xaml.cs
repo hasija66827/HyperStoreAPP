@@ -64,7 +64,7 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
-            TagDataSource.RetreiveTags();
+            
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {
@@ -208,8 +208,8 @@ namespace SDKTemplate
             StatusBorder.Visibility = (StatusBlock.Text != String.Empty) ? Visibility.Visible : Visibility.Collapsed;
             if (StatusBlock.Text != String.Empty)
             {
-                StatusBorder.Visibility = Visibility.Visible;
-                StatusPanel.Visibility = Visibility.Visible;
+                StatusBorder.Visibility = Visibility.Collapsed;
+                StatusPanel.Visibility = Visibility.Collapsed;
             }
             else
             {

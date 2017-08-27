@@ -22,5 +22,6 @@ namespace Models
         public virtual decimal? SGSTPer { get; set; }
         public decimal Threshold { get; set; }
         public decimal TotalQuantity { get; set; }
+        public TProduct() { }
     }
 }

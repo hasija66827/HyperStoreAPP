@@ -120,6 +120,10 @@
     <Compile Include="CreateTag.xaml.cs">
       <DependentUpon>CreateTag.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerBillingScenario\2 Select Payment Mode\SelectPaymentModeViewModel.cs" />
+    <Compile Include="CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNowViewModel.cs" />
+    <Compile Include="CustomerBillingScenario\3a PayNow Scenario\2 PayNow\PayNowViewModel.cs" />
+    <Compile Include="CustomerBillingScenario\3b Pay Later Scenario\PayLaterModeViewModel.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
@@ -202,7 +206,7 @@
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormCC.xaml.cs">
       <DependentUpon>ProductFormCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerPaymentScenario\PageNavigationParameter.cs" />
+    <Compile Include="CustomerBillingScenario\PageNavigationParameter.cs" />
     <Compile Include="BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
@@ -213,7 +217,7 @@
       <DependentUpon>ProductASBCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\BillingSummaryCC\BillingSummaryViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerProductListCC\CustomerProductListCC.xaml.cs">
+    <Compile Include="CustomerBillingScenario\1 CustomerProductListCC\CustomerProductListCC.xaml.cs">
       <DependentUpon>CustomerProductListCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBCC.xaml.cs">
@@ -235,13 +239,13 @@
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormViewModel.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
-    <Compile Include="CustomerPaymentScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml.cs">
-      <DependentUpon>UseWalletOTPVerification.xaml</DependentUpon>
+    <Compile Include="CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNow.xaml.cs">
+      <DependentUpon>OTPVerificationForPayingNow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerPaymentScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml.cs">
+    <Compile Include="CustomerBillingScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml.cs">
       <DependentUpon>PayLaterOTPVerification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerPaymentScenario\3a PayNow Scenario\PayNow.xaml.cs">
+    <Compile Include="CustomerBillingScenario\3a PayNow Scenario\2 PayNow\PayNow.xaml.cs">
       <DependentUpon>PayNow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
@@ -253,8 +257,8 @@
     <Compile Include="Data Source\CustomerOrderDataSource.cs" />
     <Compile Include="DBModel\DBModel.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerProductListCC\CustomerProductViewModel.cs" />
-    <Compile Include="CustomerPaymentScenario\2 Select Payment Mode\SelectPaymentMode.xaml.cs">
+    <Compile Include="CustomerBillingScenario\1 CustomerProductListCC\CustomerProductViewModel.cs" />
+    <Compile Include="CustomerBillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml.cs">
       <DependentUpon>SelectPaymentMode.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\Utility.cs" />
@@ -324,15 +328,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerPaymentScenario\3a PayNow Scenario\UseWalletOTPVerification.xaml">
+    <Page Include="CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerPaymentScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml">
+    <Page Include="CustomerBillingScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerPaymentScenario\3a PayNow Scenario\PayNow.xaml">
+    <Page Include="CustomerBillingScenario\3a PayNow Scenario\2 PayNow\PayNow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -348,7 +352,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomerProductListCC\CustomerProductListCC.xaml">
+    <Page Include="CustomerBillingScenario\1 CustomerProductListCC\CustomerProductListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -400,7 +404,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerPaymentScenario\2 Select Payment Mode\SelectPaymentMode.xaml">
+    <Page Include="CustomerBillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

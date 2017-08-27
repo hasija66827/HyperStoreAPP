@@ -106,6 +106,8 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
+            if (value == null)
+                return "fckoff";
             // value is the data from the source object.
             decimal price = (decimal)value;
             // Return the value to pass to the target.
@@ -195,7 +197,7 @@ namespace SDKTemplate
             return (decimal)System.Convert.ToDouble(value);
         }
     }
-    
+
     // Tries to convert value into positive integer, if it fails then reset the value to one.
     public class CheckIfValidPercentage : IValueConverter
     {
@@ -270,11 +272,16 @@ namespace SDKTemplate
             {
                 var serializeContent = JsonConvert.SerializeObject(content);
                 var response = await Utility.HttpPost(actionURI, serializeContent);
+                if (response.StatusCode == HttpStatusCode.BadRequest)
+                    throw new Exception(response.Content.ToString());
                 response.EnsureSuccessStatusCode();
-                return (T)response.Content;
+                var httpResponseBody = await response.Content.ReadAsStringAsync();
+                var result=JsonConvert.DeserializeObject<T>(httpResponseBody);
+                return result;
             }
             catch (Exception ex)
             {
+                //TODO: handle different types of exception
                 throw ex;
             }
 
@@ -288,7 +295,7 @@ namespace SDKTemplate
             httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
             HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(uri));
-            request.Content = new HttpStringContent(content,Windows.Storage.Streams.UnicodeEncoding.Utf8 , "application/json");
+            request.Content = new HttpStringContent(content, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
             try
             {
                 HttpResponseMessage response = await httpClient.SendRequestAsync(request);
@@ -311,8 +318,8 @@ namespace SDKTemplate
             HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(uri));
 
-            if(content!=null)
-            request.Content = new HttpStringContent(JsonConvert.SerializeObject(content), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+            if (content != null)
+                request.Content = new HttpStringContent(JsonConvert.SerializeObject(content), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
             try
             {
                 HttpResponseMessage response = await httpClient.SendRequestAsync(request);
@@ -352,7 +359,7 @@ namespace SDKTemplate
             // Return the value to pass to the target.
             if (price >= 0)
                 return text;
-            return "-" + text; 
+            return "-" + text;
         }
 
         public static string FloatToInverseRupeeConverter(object value)
@@ -406,7 +413,7 @@ namespace SDKTemplate
             }
             else if (person == Person.WholeSeller)
             {
-                
+
             }
             return true;
         }
@@ -428,7 +435,7 @@ namespace SDKTemplate
             }
             else if (person == Person.WholeSeller)
             {
-              
+
             }
             return true;
         }
@@ -466,7 +473,7 @@ namespace SDKTemplate
                 return false;
             }
 
-     
+
             return true;
         }
         public static string GenerateCustomerOrderNo(int? length = null)
@@ -493,13 +500,13 @@ namespace SDKTemplate
             return s;
         }
 
-        public static string GenerateWholeSellerOrderNo(int? length=null)
+        public static string GenerateWholeSellerOrderNo(int? length = null)
         {
             if (length == null)
                 length = 7;
             var random = new Random();
             string s = "SORD";
-            s = String.Concat(s, random.Next(1,10).ToString());
+            s = String.Concat(s, random.Next(1, 10).ToString());
             for (int i = 1; i < length; i++)
                 s = String.Concat(s, random.Next(10).ToString());
             return s;

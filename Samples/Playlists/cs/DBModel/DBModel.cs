@@ -315,23 +315,7 @@ namespace DatabaseModel
         public CustomerOrder() { }
         public CustomerOrder(PageNavigationParameter pageNavigationParameter)
         {
-            this.CustomerOrderId = Guid.NewGuid();
-            this.CustomerOrderNo = Utility.GenerateCustomerOrderNo();
-            this.OrderDate = DateTime.Now;
-            this.BillAmount = pageNavigationParameter.BillingSummaryViewModel.TotalBillAmount;
-            this.DiscountedAmount = pageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount;
-
-            this.IsPaidNow = pageNavigationParameter.IsPaidNow;
-            this.PayingNow = pageNavigationParameter.OverPaid;
-            this.AddingMoneyToWallet = pageNavigationParameter.WalletAmountToBeAddedNow;
-
-            this.IsUseWallet = pageNavigationParameter.UseWallet.Value;
-            this.UsingWalletAmount = (decimal)pageNavigationParameter.SelectedCustomer.WalletBalance;
-
-            this.PartiallyPaid = pageNavigationParameter.PartiallyPaid;
-            this.PayingLater = pageNavigationParameter.WalletAmountToBePaidLater;
-
-            this.CustomerId = pageNavigationParameter.SelectedCustomer.CustomerId;
+            
         }
         [Required]
         public Nullable<Guid> CustomerId;

@@ -15,7 +15,7 @@ namespace SDKTemplate
         public IRange<DateTime> OrderDateRange { get; set; }
         public FilterOrderViewModel()
         {
-            OrderDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-15), DateTime.Now);
+            OrderDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-15), DateTime.Now.AddDays(1));
         }
     }
 }

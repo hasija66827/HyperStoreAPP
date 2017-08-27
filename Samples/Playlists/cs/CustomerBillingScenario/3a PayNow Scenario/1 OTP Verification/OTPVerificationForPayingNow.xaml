@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.UseWalletOTPVerification"
+﻿<Page x:Class="SDKTemplate.OTPVerificationForPayingNow"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -19,8 +19,7 @@
             <RelativePanel x:Name="RadContentPanel"
                            HorizontalAlignment="Center"
                            RelativePanel.Below="HeaderPanel"
-                           Margin="10,0,0,0"
-                           >
+                           Margin="10,0,0,0">
                 <RadioButton x:Name="BillingRadBtn"
                              IsChecked="True"
                              GroupName="Billing"
@@ -73,14 +72,14 @@
                 <TextBlock Text="Wallet Balance"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="0" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.SelectedCustomer.WalletBalance, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind _OTPVerificationForPayingNow.Customer.WalletBalance, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="0"
                            Grid.Column="1" />
                 <TextBlock Text="To Deduct Wallet amount"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="1" />
-                <TextBlock Text="{x:Bind PageNavigationParameter.WalletBalanceToBeDeducted, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind _OTPVerificationForPayingNow.WalletAmountToBeDeducted, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Row="1"
                            Grid.Column="1" />
@@ -92,7 +91,7 @@
                            HorizontalAlignment="Center"
                            Style="{StaticResource SampleHeaderTextStyle}" />
                 <TextBlock x:Name="MobNoTB"
-                           Text="{x:Bind PageNavigationParameter.SelectedCustomer.MobileNo}"
+                           Text="{x:Bind _OTPVerificationForPayingNow.Customer.MobileNo}"
                            Foreground="#FF08BFC2"
                            HorizontalAlignment="Center" />
                 <TextBox x:Name="OTPTB"

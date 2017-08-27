@@ -24,13 +24,13 @@ namespace SDKTemplate
     public delegate void QuantityChangedDelegate(object sender, decimal Quantity);
     public sealed class CustomerProductViewModel : CustomerOrderProductViewModelBase, INotifyPropertyChanged
     {
-        private decimal? _quantityPurchased;
+        private decimal? _quantityConsumed;
         public override decimal? QuantityConsumed
         {
-            get { return this._quantityPurchased; }
+            get { return this._quantityConsumed; }
             set
             {
-                this._quantityPurchased = (value >= 0) ? value : 0;
+                this._quantityConsumed = (value >= 0) ? value : 0;
                 this.OnPropertyChanged(nameof(QuantityConsumed));
                 this.OnPropertyChanged(nameof(NetValue));
                 CustomerProductListCC.Current.InvokeProductListChangedEvent();

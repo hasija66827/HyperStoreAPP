@@ -78,7 +78,7 @@
                            Grid.Row="0"
                            Style="{StaticResource SubtitleTextBlockStyle}" />
                 <TextBlock x:Name="TotalAmountToBePaidTB"
-                           Text="{x:Bind PageNavigationParameter.BillingSummaryViewModel.DiscountedBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Text="{x:Bind _SelectPaymentModeViewModel.DiscountedBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Column="1"
                            HorizontalAlignment="Right" />
@@ -86,14 +86,14 @@
                           Content="Use wallet"
                           Grid.Column="0"
                           Grid.Row="1"
-                          IsChecked="{x:Bind PageNavigationParameter.UseWallet, Mode=TwoWay}"
+                          IsChecked="{x:Bind _SelectPaymentModeViewModel.IsUsingWallet, Mode=TwoWay}"
                           IsEnabled="{x:Bind PayLaterRadBtn.IsChecked, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}" />
                 <TextBlock x:Name="CurrentWalletBalance"
-                           Text="{x:Bind PageNavigationParameter.SelectedCustomer.WalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Text="{x:Bind _SelectPaymentModeViewModel.CurrentWalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Grid.Column="0"
                            Grid.Row="2" />
                 <TextBlock x:Name="WalletBalanceToBeDeductedTB"
-                           Text="{x:Bind PageNavigationParameter.WalletBalanceToBeDeducted,Converter={StaticResource FloatToInverseRupeeConverter}, Mode=OneWay}"
+                           Text="{x:Bind _SelectPaymentModeViewModel.WalletAmountToBeDeducted,Converter={StaticResource FloatToInverseRupeeConverter}, Mode=OneWay}"
                            Grid.Column="1"
                            Grid.Row="1"
                            HorizontalAlignment="Right" />
@@ -110,7 +110,7 @@
                     <TextBlock x:Name="ToBePaidTB"
                                Width="500"
                                Style="{StaticResource SubtitleTextBlockStyle}"
-                               Text="{x:Bind PageNavigationParameter.ToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Text="{x:Bind _SelectPaymentModeViewModel.ToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                HorizontalAlignment="Right" />
                 </StackPanel>
                 <RadioButton x:Name="PayNowRadBtn"

@@ -108,7 +108,7 @@
                                        Style="{StaticResource LargeListTextBlockStyle}" />
                         </StackPanel>
                         <ListView x:Name="ListView"
-                                  ItemsSource="{x:Bind Products}"
+                                  ItemsSource="{x:Bind _Products}"
                                   RelativePanel.Below="StaticLabelsForList"
                                   RelativePanel.AlignRightWith="StaticLabelsForList"
                                   RelativePanel.AlignLeftWith="StaticLabelsForList"                                 
