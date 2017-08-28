@@ -250,7 +250,7 @@ namespace SDKTemplate
             public Guid? SupplierId { get; set; }
         }
 
-        public class TransactionDTO
+        public class SupplierTransactionDTO
         {
             [Required]
             public bool? IsCredit { get; set; }

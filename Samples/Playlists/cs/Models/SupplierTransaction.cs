@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace Models
 {
-    public class TTransaction
+    public class TSupplierTransaction
     {
-        public Guid TransactionId { get; set; }
+        public Guid SupplierTransactionId { get; set; }
         public bool IsCredit { get; set; }
         [Required]
         public string TransactionNo { get; set; }
@@ -16,7 +16,7 @@ namespace Models
         public decimal WalletSnapshot { get; set; }
         public Guid SupplierId { get; set; }
         public TSupplier Supplier { get; set; }
-        public TTransaction() {
+        public TSupplierTransaction() {
         }
     }
 }

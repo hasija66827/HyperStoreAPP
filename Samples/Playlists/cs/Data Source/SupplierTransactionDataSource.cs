@@ -16,10 +16,10 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="transactionViewModel"></param>
         /// <returns></returns>
-        public static async Task<TTransaction> CreateNewTransactionAsync(TransactionDTO transactionDTO)
+        public static async Task<TSupplierTransaction> CreateNewTransactionAsync(SupplierTransactionDTO transactionDTO)
         {
-            string actionURI = "transactions";
-            var transaction = await Utility.CreateAsync<TTransaction>(actionURI, transactionDTO);
+            string actionURI = "SupplierTransactions";
+            var transaction = await Utility.CreateAsync<TSupplierTransaction>(actionURI, transactionDTO);
             return transaction;
         }
         #endregion
@@ -30,10 +30,10 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="wholeSellerId"></param>
         /// <returns></returns>
-        public static async Task<List<TTransaction>> RetrieveTransactionsAsync(TransactionFilterCriteriaDTO tfc)
+        public static async Task<List<TSupplierTransaction>> RetrieveTransactionsAsync(TransactionFilterCriteriaDTO tfc)
         {
-            string actionURI = "transactions";
-            List<TTransaction> transactions = await Utility.RetrieveAsync<TTransaction>(actionURI, tfc);
+            string actionURI = "SupplierTransactions";
+            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<TSupplierTransaction>(actionURI, tfc);
             return transactions;
         }
         #endregion

@@ -38,7 +38,7 @@ namespace SDKTemplate
             // TODO: verify OTP
             if (OTPTB.Text == "123456")
             {
-                var transactionDTO = new TransactionDTO()
+                var transactionDTO = new SupplierTransactionDTO()
                 {
                     SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.SupplierId,
                     IsCredit = false,

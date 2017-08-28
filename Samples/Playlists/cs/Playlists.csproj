@@ -157,7 +157,7 @@
     <Compile Include="Models\SupplierOrderProduct.cs" />
     <Compile Include="Models\SupplierOrderTransaction.cs" />
     <Compile Include="Models\Tag.cs" />
-    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\SupplierTransaction.cs" />
     <Compile Include="mvvm2\BindableBase.cs" />
     <Compile Include="mvvm2\BindableValidator.cs" />
     <Compile Include="mvvm2\DateTimeToDateTimeOffsetConverter.cs" />

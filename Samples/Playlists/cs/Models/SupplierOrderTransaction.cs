@@ -20,7 +20,7 @@ namespace Models
         }
 
         public Guid TransactionId { get; set; }
-        public TTransaction Transaction { get; set; }
+        public TSupplierTransaction Transaction { get; set; }
 
         public Guid SupplierOrderId { get; set; }
         public TSupplierOrder SupplierOrder { get; set; }
