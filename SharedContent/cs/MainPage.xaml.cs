@@ -127,12 +127,12 @@ namespace SDKTemplate
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(ProductConsumptionPer));
                 }
-                else if (s.ClassType == typeof(WholeSellersCCF))
+                else if (s.ClassType == typeof(SupplierCCF))
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
                     LeftBottomFrame.Navigate(typeof(BlankPage));
-                    ScenarioFrame.Navigate(typeof(WholeSellersCCF));
+                    ScenarioFrame.Navigate(typeof(SupplierCCF));
                     NewsFeedFrame.Navigate(typeof(SettledOrdersOfTransactionCC));
                     SummaryFrame.Navigate(typeof(BlankPage));
                 }

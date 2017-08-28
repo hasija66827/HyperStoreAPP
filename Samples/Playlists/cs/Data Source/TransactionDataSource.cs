@@ -5,46 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using SDKTemplate.View_Models;
 using Models;
+using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
     public class TransactionDataSource
     {
-        /// <summary>
-        /// Retrieves all the transaction corresponding to a wholeseller.
-        /// </summary>
-        /// <param name="wholeSellerId"></param>
-        /// <returns></returns>
-        public static List<TransactionViewModel> RetreiveTransactionWholeSellerId(Guid wholeSellerId)
-        {
-            var db = new DatabaseModel.RetailerContext();
-            var transactions = db.Transactions.Where(t => t.WholeSellerId == wholeSellerId).ToList();
-            var res = transactions.Select(trans => new TransactionViewModel(trans));
-            return res.ToList();
-        }
-
+        #region create
         /// <summary>
         /// Creates a new transaction in database corresponding to the wholeseller.
         /// </summary>
         /// <param name="transactionViewModel"></param>
         /// <returns></returns>
-        public static bool CreateTransaction(TransactionViewModel transactionViewModel, DatabaseModel.RetailerContext db=null)
+        public static async Task<TTransaction> CreateNewTransactionAsync(TransactionDTO transactionDTO)
         {
-            if(db ==null)
-               db= new DatabaseModel.RetailerContext();
-            db.Transactions.Add(new DatabaseModel.Transaction(transactionViewModel));
-            db.SaveChanges();
-            return true;
+            string actionURI = "transactions";
+            var transaction = await Utility.CreateAsync<TTransaction>(actionURI, transactionDTO);
+            return transaction;
+
         }
+        #endregion
 
-
-        public static decimal MakeTransaction(TransactionViewModel transactionViewModel, Models.TSupplier wholeSeller, DatabaseModel.RetailerContext db)
+        #region Read
+        /// <summary>
+        /// Retrieves all the transaction corresponding to a wholeseller.
+        /// </summary>
+        /// <param name="wholeSellerId"></param>
+        /// <returns></returns>
+        public static async Task<List<TTransaction>> RetrieveTransactionsAsync(TransactionFilterCriteriaDTO tfc)
         {
-            var creditAmount = transactionViewModel.CreditAmount;
-            TransactionDataSource.CreateTransaction(transactionViewModel, db);
-            var updatedWholeSellerWalletBalance = SupplierDataSource.UpdateWalletBalanceOfWholeSeller(db, wholeSeller, -creditAmount);
-            //SupplierOrderDataSource.SettleUpOrders(transactionViewModel, wholeSeller, db);
-            return updatedWholeSellerWalletBalance;
+            string actionURI = "transactions";
+            List<TTransaction> transactions = await Utility.RetrieveAsync<TTransaction>(actionURI, tfc);
+            return transactions;
         }
+        #endregion
     }
 }

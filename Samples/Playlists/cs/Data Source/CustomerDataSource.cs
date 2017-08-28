@@ -41,7 +41,6 @@ namespace SDKTemplate
             return customers;
         }
 
-
         /// <summary>
         /// Gets the minimum wallet balance from the list of customers.
         /// Used by Filter box for its range control

@@ -76,59 +76,6 @@ namespace SDKTemplate
             return items;
         }
 
-        #region Update
-        /// <summary>
-        /// Update the detail of the product in product entity.
-        /// </summary>
-        /// <param name="addProductViewModel"></param>
-        /// <returns></returns>
-        public static bool UpdateProductDetails(object addProductViewModel)
-        {
-            /*
-            var db = new DatabaseModel.RetailerContext();
-            var products = db.Products.Where(p => p.ProductId == addProductViewModel.ProductId).ToList();
-            var product = products.FirstOrDefault();
-            if (product == null)
-                return false;
-            product.Threshold = addProductViewModel.Threshold;
-            product.RefillTime = addProductViewModel.RefillTime;
-            product.DiscountPer = addProductViewModel.DiscountPer;
-            product.DisplayPrice = addProductViewModel.DisplayPrice;
-            db.Update(product);
-            db.SaveChanges();
-            ProductDataSource._products.Add(new ProductViewModelBase(product));
-
-            var prd = _products.Where(p => p.ProductId == addProductViewModel.ProductId).FirstOrDefault();
-            ProductDataSource._products.Remove(prd);*/
-            return true;
-        }
-
-       
-
-        /// <summary>
-        /// Adds the quantity in product present in product entity, during purchase of product by wholeseller.
-        /// </summary>
-        /// <param name="db"></param>
-        /// <param name="purchasedProducts"></param>
-        /// <returns></returns>
-        public static bool UpdateProductStockByWholeSeller(DatabaseModel.RetailerContext db, List<SupplierBillingProductViewModel> purchasedProducts)
-        {
-            /*
-            //#perf: You can query whole list in where clause.
-            foreach (var purchasedProduct in purchasedProducts)
-            {
-                //TODO: check where clouse whether threough id or bar code.
-                var products = db.Products
-                                .Where(p => p.ProductId == purchasedProduct.ProductId).ToList();
-                var product = products.FirstOrDefault();
-                if (product == null)
-                    throw new Exception(string.Format("Product {0} not found while updating the product", product.Name));
-                product.TotalQuantity += purchasedProduct.QuantityPurchased;
-                db.Update(product);
-            }
-            db.SaveChanges();
-            */return true;
-        }
 
         /// <summary>
         /// Updates the product with the wholeseller from which we have to purchase the product.
@@ -148,6 +95,5 @@ namespace SDKTemplate
             db.SaveChanges();
             return true;
         }
-        #endregion
-    }
+            }
 }

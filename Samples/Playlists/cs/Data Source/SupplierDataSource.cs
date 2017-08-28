@@ -52,21 +52,6 @@ namespace SDKTemplate
         }
         #endregion
 
-        //#remove
-        #region Update
-        public static decimal UpdateWalletBalanceOfWholeSeller(DatabaseModel.RetailerContext db, Models.TSupplier wholeSellerViewModel,
-        decimal walletBalanceToBeAdded)
-        {
-            /* var wholeSeller = (DatabaseModel.WholeSeller)wholeSellerViewModel;
-             var entityEntry = db.Attach(wholeSeller);
-             wholeSeller.WalletBalance += walletBalanceToBeAdded;
-             var memberEntry = entityEntry.Member(nameof(DatabaseModel.WholeSeller.WalletBalance));
-             memberEntry.IsModified = true;
-             db.SaveChanges();
-             UpdateWalletBalanceOfWholeSellerInMemory(wholeSellerViewModel.SupplierId, wholeSeller.WalletBalance);
-             return wholeSeller.WalletBalance;*/
-            return 0;
-        }
-        #endregion
+  
     }
 }

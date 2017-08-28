@@ -25,14 +25,14 @@ namespace SDKTemplate
     /// Master shows the list of wholeseller and 
     /// Detail shows list of transaction done with the wholeseller.
     /// </summary>
-    public sealed partial class WholeSellersCCF : Page
+    public sealed partial class SupplierCCF : Page
     {
-        public static WholeSellersCCF Current;
+        public static SupplierCCF Current;
         public TransactionHistoryOfWholeSellerCollection TransactionHistoryOfWholeSellerCollection { get; set; }
         public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
         public TSupplier SelectedWholeSeller { get; set; }
         public TransactionViewModel SelectedTransaction { get; set; }
-        public WholeSellersCCF()
+        public SupplierCCF()
         {
             Current = this;
             this.InitializeComponent();
@@ -76,7 +76,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.SelectedWholeSeller = (TSupplier)e.ClickedItem;
-            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionWholeSellerId((Guid)SelectedWholeSeller.SupplierId);
+            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionsAsync((Guid)SelectedWholeSeller.SupplierId);
             DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
         }
 
