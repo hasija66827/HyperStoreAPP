@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
  
 using SDKTemplate;
-using SDKTemplate.View_Models;
 using Models;
 
 namespace DatabaseModel
@@ -96,14 +95,9 @@ namespace DatabaseModel
         public List<WholeSellerOrderTransaction> WholeSellerOrderTransactions { get; set; }
 
         public Transaction() { }
-        public Transaction(TransactionViewModel transactionViewModel)
+        public Transaction(SupplierTransactionViewModel transactionViewModel)
         {
-            this.TransactionId = transactionViewModel.TransactionId;
-            this.TransactionNo = Utility.GenerateWholeSellerTransactionNo();
-            this.CreditAmount = transactionViewModel.CreditAmount;
-            this.TransactionDate = transactionViewModel.TransactionDate;
-            this.WholeSellerId = transactionViewModel.WholeSellerId;
-            this.WalletSnapshot = transactionViewModel.WalletSnapshot;
+            
         }
     }
 

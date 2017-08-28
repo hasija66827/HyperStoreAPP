@@ -12,9 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using SDKTemplate.View_Models;
 using System.Threading.Tasks;
 using Models;
+using SDKTemplate.DTO;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -28,16 +28,17 @@ namespace SDKTemplate
     public sealed partial class SupplierCCF : Page
     {
         public static SupplierCCF Current;
-        public TransactionHistoryOfWholeSellerCollection TransactionHistoryOfWholeSellerCollection { get; set; }
+        //TODO: make it private o.w public getter
+        public SupplierTransactionCollection TransactionHistoryOfWholeSellerCollection { get; set; }
         public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
-        public TSupplier SelectedWholeSeller { get; set; }
-        public TransactionViewModel SelectedTransaction { get; set; }
+        private TSupplier _SelectedSupplier { get; set; }
+        private SupplierTransactionViewModel _SelectedTransaction { get; set; }
         public SupplierCCF()
         {
             Current = this;
             this.InitializeComponent();
-            this.TransactionHistoryOfWholeSellerCollection = new TransactionHistoryOfWholeSellerCollection();
-            this.SelectedWholeSeller = null;
+            this.TransactionHistoryOfWholeSellerCollection = new SupplierTransactionCollection();
+            this._SelectedSupplier = null;
             SupplierASBCC.Current.SelectedSupplierChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
@@ -54,17 +55,17 @@ namespace SDKTemplate
         /// </summary>
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
-            var selectedWholesaler = SupplierASBCC.Current.SelectedSupplierInASB;
-            var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
+            var selectedSupplier = SupplierASBCC.Current.SelectedSupplierInASB;
+            var filterSupplierCriteria = FilterPersonCC.Current.FilterPersonCriteria;
             var sfc = new SupplierFilterCriteriaDTO()
             {
-                SupplierId = selectedWholesaler?.SupplierId,
-                WalletAmount = filterWholeSalerCriteria.WalletBalance
+                SupplierId = selectedSupplier?.SupplierId,
+                WalletAmount = filterSupplierCriteria?.WalletBalance
             };
             var items = await SupplierDataSource.RetrieveSuppliersAsync(sfc);
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
-            ///TODO:
+            ///TODO:remove xxxxx
             WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
         }
 
@@ -73,21 +74,26 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.SelectedWholeSeller = (TSupplier)e.ClickedItem;
-            this.TransactionHistoryOfWholeSellerCollection.Transactions = TransactionDataSource.RetreiveTransactionsAsync((Guid)SelectedWholeSeller.SupplierId);
+            this._SelectedSupplier = (TSupplier)e.ClickedItem;
+            var tfc = new TransactionFilterCriteriaDTO()
+            {
+                SupplierId = _SelectedSupplier?.SupplierId
+            };
+            var transactions = await SupplierTransactionDataSource.RetrieveTransactionsAsync(tfc);
+            this.TransactionHistoryOfWholeSellerCollection.Transactions = transactions.Select(t => new SupplierTransactionViewModel(t)).ToList();
             DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
         }
 
         private void AddMoney_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(WholeSellerTransactionCC), SelectedWholeSeller);
+            this.Frame.Navigate(typeof(SupplierNewTransactionCC), _SelectedSupplier);
         }
 
         private void TransactionHistoriesOfWholeSellers_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.SelectedTransaction = (TransactionViewModel)e.ClickedItem;
+            this._SelectedTransaction = (SupplierTransactionViewModel)e.ClickedItem;
             this.SelectedTransactionChangedEvent?.Invoke();
         }
     }

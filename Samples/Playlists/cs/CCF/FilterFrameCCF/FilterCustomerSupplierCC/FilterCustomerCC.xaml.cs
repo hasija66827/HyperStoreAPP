@@ -24,14 +24,16 @@ namespace SDKTemplate
     public sealed partial class FilterPersonCC : Page
     {
         public event FilterPersonChangedDelegate FilterPersonChangedEvent;
-        public FilterPersonCriteriaViewModel FilterPersonCriteria;
+
+        public FilterPersonCriteriaViewModel FilterPersonCriteria { get { return this._FilterPersonCriteria; } }
+        private FilterPersonCriteriaViewModel _FilterPersonCriteria;
         public static FilterPersonCC Current;
 
         public FilterPersonCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.FilterPersonCriteria = new FilterPersonCriteriaViewModel();
+            this._FilterPersonCriteria = new FilterPersonCriteriaViewModel();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

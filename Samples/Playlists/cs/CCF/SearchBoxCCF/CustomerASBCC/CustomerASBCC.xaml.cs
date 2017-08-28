@@ -27,19 +27,6 @@ namespace SDKTemplate
         public static CustomerASBCC Current;
         public TCustomer SelectedCustomerInASB { get { return this._selectedCustomerInASB; } }
         public event SelectedCustomerChangedDelegate SelectedCustomerChangedEvent;
-
-        private class CustomerASBViewModel : TCustomer
-        {
-            public string Customer_MobileNo_Name
-            {
-                get { return string.Format("{0}({1})", MobileNo, Name); }
-            }
-            public CustomerASBViewModel(TCustomer parent)
-            {
-                foreach (PropertyInfo prop in parent.GetType().GetProperties())
-                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
-            }
-        }
         private CustomerASBViewModel _selectedCustomerInASB;
         private List<CustomerASBViewModel> _Customers { get; set; }
         public CustomerASBCC()

@@ -36,23 +36,6 @@ namespace SDKTemplate
         public TProduct SelectedProductInASB { get { return this._selectedProductInASB; } }
         public event OnAddProductClickedDelegate OnAddProductClickedEvent;
         public event SelectedProductChangedDelegate SelectedProductChangedEvent;
-
-        private class ProductASBViewModel : TProduct
-        {
-            // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
-            public string Product_Id_Name { get { return string.Format("{0} ({1})", Code, Name); } }
-            public string FormattedNameQuantity
-            {
-                get { return this.Name + " (" + this.TotalQuantity + ")"; }
-            }
-
-            //Constructor to convert parent obect to child object.
-            public ProductASBViewModel(TProduct parent)
-            {
-                foreach (PropertyInfo prop in parent.GetType().GetProperties())
-                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
-            }
-        }
         private ProductASBViewModel _selectedProductInASB;
         private List<ProductASBViewModel> _Products { get; set; }
         public ProductASBCC()

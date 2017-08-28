@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SDKTemplate.View_Models;
 using Models;
 using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
-    public class TransactionDataSource
+    public class SupplierTransactionDataSource
     {
         #region create
         /// <summary>
@@ -22,7 +21,6 @@ namespace SDKTemplate
             string actionURI = "transactions";
             var transaction = await Utility.CreateAsync<TTransaction>(actionURI, transactionDTO);
             return transaction;
-
         }
         #endregion
 

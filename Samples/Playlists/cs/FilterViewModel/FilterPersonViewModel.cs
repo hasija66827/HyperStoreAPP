@@ -12,10 +12,6 @@ namespace SDKTemplate
     public class FilterPersonCriteriaViewModel
     {
         public IRange<decimal> WalletBalance { get; set; }
-        public FilterPersonCriteriaViewModel(IRange<decimal> walletBalance)
-        {
-            this.WalletBalance = walletBalance;
-        }
         public FilterPersonCriteriaViewModel() { }
     }
 }

@@ -57,11 +57,12 @@ namespace SDKTemplate
 
             else if (Mode == Mode.Update)
             {
+                /*
                 if (ProductDataSource.UpdateProductDetails(productDetail) == true)
                 {
                     MainPage.Current.NotifyUser("The Product was updated scuccesfully", NotifyType.StatusMessage);
                     this.Frame.Navigate(typeof(BlankPage));
-                }
+                }*/
             }
             else
             {

@@ -1,5 +1,4 @@
-﻿using SDKTemplate.View_Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +10,15 @@ namespace SDKTemplate
     {
         public SupplierOrderViewModel WholeSellerOrder { get; set; }
         public decimal CreditedAmountFromTransaction { get; set; }
-        public TransactionViewModel Transaction { get; set; }
+        public SupplierTransactionViewModel Transaction { get; set; }
         public SettledOrderOfTransactionViewModel() { }
         
         public SettledOrderOfTransactionViewModel(decimal creditedAmountFromTransaction, DatabaseModel.Transaction transaction)
         {
+            /*
             this.WholeSellerOrder =null;
-            this.Transaction = new TransactionViewModel(transaction);
-            this.CreditedAmountFromTransaction = creditedAmountFromTransaction;
+            this.Transaction = new SupplierTransactionViewModel(transaction);
+            this.CreditedAmountFromTransaction = creditedAmountFromTransaction;*/
         }
 
         public SettledOrderOfTransactionViewModel(DatabaseModel.WholeSellerOrder wholsellerOrder, decimal creditedAmountFromTransaction)

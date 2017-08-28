@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
       xmlns:model="using:Models"
-      xmlns:viewmodel="using:SDKTemplate.View_Models"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
@@ -30,7 +29,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="viewmodel:TransactionHistoryOfWholeSellerCollection">
+                      x:DataType="local:SupplierTransactionCollection">
             <StackPanel>
                 <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Txn No"
@@ -50,7 +49,7 @@
                           IsItemClickEnabled="True"
                           ItemClick="TransactionHistoriesOfWholeSellers_ItemClick">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="viewmodel:TransactionViewModel">
+                        <DataTemplate x:DataType="local:SupplierTransactionViewModel">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock x:Name="TransactionNo"
                                            Foreground="Black"
@@ -66,7 +65,7 @@
                                 <TextBlock x:Name="CreditAmount"
                                            FontSize="16"
                                            Foreground="#FFFF2FAE"
-                                           Text="{x:Bind CreditAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                            Style="{ThemeResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="updatedWalletBalance"
                                            Foreground="Black"

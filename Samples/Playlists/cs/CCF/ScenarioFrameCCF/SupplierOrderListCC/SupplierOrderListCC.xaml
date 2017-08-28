@@ -111,7 +111,7 @@
                                            Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="TransactionAmount"
                                            Foreground="Black"
-                                           Text="{x:Bind Transaction.CreditAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Text="{x:Bind Transaction.TransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="CreditAmount"
                                            Foreground="Black"

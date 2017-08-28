@@ -1,6 +1,5 @@
 ﻿using Models;
 using SDKTemplate.Data_Source;
-using SDKTemplate.View_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

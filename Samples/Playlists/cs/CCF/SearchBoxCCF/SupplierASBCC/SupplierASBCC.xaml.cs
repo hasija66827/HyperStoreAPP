@@ -27,20 +27,6 @@ namespace SDKTemplate
     {
         public static SupplierASBCC Current;
         public TSupplier SelectedSupplierInASB { get { return this._selectedWholeSellerInASB; } }
-
-        private class SupplierASBViewModel : Models.TSupplier
-        {
-            public string Supplier_MobileNo_Name
-            {
-                get { return string.Format("{0}({1})", MobileNo, Name); }
-            }
-            public SupplierASBViewModel(Models.TSupplier parent)
-            {
-                foreach (PropertyInfo prop in parent.GetType().GetProperties())
-                    GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
-            }
-        }
-
         private List<SupplierASBViewModel> _Suppliers { get; set; }
         private SupplierASBViewModel _selectedWholeSellerInASB;
         public event SelectedWholeSellerChangedDelegate SelectedSupplierChangedEvent;
