@@ -99,7 +99,7 @@ namespace SDKTemplate
                 CustomerDetails.Visibility = Visibility.Visible;
                 CustomerMobNo.Text = customer.MobileNo;
                 CustomerName.Text = customer.Name;
-                CustomerAddress.Text = customer.Address;
+                CustomerAddress.Text = customer.Address!=null?customer.Address:"";
                 CustomerWalletBalance.Text = Utility.ConvertToRupee(customer.WalletBalance);
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
             }
