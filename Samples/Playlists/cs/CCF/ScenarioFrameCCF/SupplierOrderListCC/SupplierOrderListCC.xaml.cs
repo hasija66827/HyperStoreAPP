@@ -59,5 +59,18 @@ namespace SDKTemplate
             OrderCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxxx" + ")";
             this.SupplierOrderListUpdatedEvent?.Invoke();
         }
+
+        private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var selectedOrder = (SupplierOrderViewModel)e.ClickedItem;
+            if (selectedOrder.OrderDetails.Count == 0)
+            {
+                var supplierOrderDetails = await SupplierOrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.SupplierOrderId);
+                selectedOrder.OrderDetails = supplierOrderDetails.Select(sod => new SupplierOrderProductViewModel(sod)).ToList();
+                //Bug: what if he clicks first item which requires database call then second, then you are setting the response to the first order
+                DetailContentPresenter.Content = MasterListView.SelectedItem;
+            }
+        }
+
     }
 }

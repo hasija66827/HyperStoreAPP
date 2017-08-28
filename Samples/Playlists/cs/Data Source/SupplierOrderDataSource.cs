@@ -27,6 +27,13 @@ namespace SDKTemplate
                 List<TSupplierOrder> supplierOrders = await Utility.RetrieveAsync<TSupplierOrder>(actionURI, sofc);
                 return supplierOrders;            
         }
+
+        public static async Task<List<TSupplierOrderProduct>> RetrieveOrderDetailsAsync(Guid supplierOrderId)
+        {
+            string actionURI = "SupplierOrderProducts/" + supplierOrderId.ToString();
+            List<TSupplierOrderProduct> orderDetails = await Utility.RetrieveAsync<TSupplierOrderProduct>(actionURI, null);
+            return orderDetails;
+        }
         #endregion
     }
 }

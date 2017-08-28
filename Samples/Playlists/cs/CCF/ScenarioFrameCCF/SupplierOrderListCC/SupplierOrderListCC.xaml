@@ -156,6 +156,7 @@
                   Grid.Row="1"
                   ItemContainerTransitions="{x:Null}"
                   ItemTemplate="{StaticResource MasterListViewItemTemplate}"
+                  ItemClick="MasterListView_ItemClick"
                   IsItemClickEnabled="True"
                   Visibility="Visible">
             <ListView.ItemContainerStyle>

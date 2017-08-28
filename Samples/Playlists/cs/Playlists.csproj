@@ -130,7 +130,6 @@
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
     <Compile Include="FilterViewModel\FilterProductCriteria.cs" />
     <Compile Include="MarginSetter.cs" />
-    <Compile Include="Data Source\SupplierOrderProductDataSource.cs" />
     <Compile Include="CCF\NewsFeedFrame\SettledOrdersOfTransactionCC.xaml.cs">
       <DependentUpon>SettledOrdersOfTransactionCC.xaml</DependentUpon>
     </Compile>
