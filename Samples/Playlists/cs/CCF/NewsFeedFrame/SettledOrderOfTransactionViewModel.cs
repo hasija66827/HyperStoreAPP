@@ -9,7 +9,7 @@ namespace SDKTemplate
 {
     public class SettledOrderOfTransactionViewModel
     {
-        public WholeSellerOrderViewModel WholeSellerOrder { get; set; }
+        public SupplierOrderViewModel WholeSellerOrder { get; set; }
         public decimal CreditedAmountFromTransaction { get; set; }
         public TransactionViewModel Transaction { get; set; }
         public SettledOrderOfTransactionViewModel() { }
@@ -23,9 +23,10 @@ namespace SDKTemplate
 
         public SettledOrderOfTransactionViewModel(DatabaseModel.WholeSellerOrder wholsellerOrder, decimal creditedAmountFromTransaction)
         {
-            this.WholeSellerOrder = new WholeSellerOrderViewModel(wholsellerOrder);
+            /*
+            this.WholeSellerOrder = new SupplierOrderViewModel(wholsellerOrder);
             this.Transaction = null;
-            this.CreditedAmountFromTransaction = creditedAmountFromTransaction;
+            this.CreditedAmountFromTransaction = creditedAmountFromTransaction;*/
         }
 
     }

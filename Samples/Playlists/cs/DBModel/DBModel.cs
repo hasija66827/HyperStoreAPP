@@ -259,7 +259,7 @@ namespace DatabaseModel
         {
         }
 
-        public static explicit operator Product(CustomerProductViewModel customerProductViewModel)
+        public static explicit operator Product(CustomerBillingProductViewModel customerProductViewModel)
         {
             Product p = new Product();
             

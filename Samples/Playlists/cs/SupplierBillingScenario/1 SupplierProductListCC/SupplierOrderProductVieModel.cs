@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class SupplierOrderProductViewModelBase : ProductViewModelBase
+    public class SupplierBillingProductViewModelBase : ProductViewModelBase
     {
         public decimal? NetValue { get { return this.QuantityPurchased * this.PurchasePrice; } }
         public virtual decimal? QuantityPurchased { get; set; }
         public virtual decimal? PurchasePrice { get; set; }
 
-        public SupplierOrderProductViewModelBase(TProduct parent) : base(parent)
+        public SupplierBillingProductViewModelBase(TProduct parent) : base(parent)
         {
             this.QuantityPurchased = 0;
             this.PurchasePrice = 0;
         }
     }
 
-    public class SupplierOrderProductViewModel : SupplierOrderProductViewModelBase, INotifyPropertyChanged
+    public sealed class SupplierBillingProductViewModel : SupplierBillingProductViewModelBase, INotifyPropertyChanged
     {
 
         private decimal? _purchasePrice;
@@ -50,7 +50,7 @@ namespace SDKTemplate
             }
         }
 
-        public SupplierOrderProductViewModel(TProduct parent) : base(parent)
+        public SupplierBillingProductViewModel(TProduct parent) : base(parent)
         {
         }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

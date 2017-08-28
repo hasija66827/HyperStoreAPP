@@ -39,7 +39,7 @@ namespace SDKTemplate
         }
     }
 
-    public class CustomerOrderProductViewModel : TCustomerOrderProduct
+    public sealed class CustomerOrderProductViewModel : TCustomerOrderProduct
     {
         public CustomerOrderProductViewModel(TCustomerOrderProduct parent)
         {

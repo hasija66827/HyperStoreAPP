@@ -111,7 +111,7 @@ namespace SDKTemplate
         /// <param name="db"></param>
         /// <param name="purchasedProducts"></param>
         /// <returns></returns>
-        public static bool UpdateProductStockByWholeSeller(DatabaseModel.RetailerContext db, List<SupplierOrderProductViewModel> purchasedProducts)
+        public static bool UpdateProductStockByWholeSeller(DatabaseModel.RetailerContext db, List<SupplierBillingProductViewModel> purchasedProducts)
         {
             /*
             //#perf: You can query whole list in where clause.

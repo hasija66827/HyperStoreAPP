@@ -1,0 +1,49 @@
+﻿<Page x:Class="SDKTemplate.FilterSupplierOrderCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
+    </UserControl.Resources>
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Filter Orders"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <RelativePanel x:Name="ContentPanel"
+                       Margin="10,0,0,0"
+                       RelativePanel.AlignLeftWith="HeaderPanel"
+                       RelativePanel.AlignRightWith="HeaderPanel"
+                       RelativePanel.Below="HeaderPanel">
+            <CalendarDatePicker x:Name="OrderDateLBCP"
+                                Header="from"
+                                Date="{x:Bind _FilterSupplierOrderViewModel.OrderDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+            <CalendarDatePicker x:Name="OrderDateUBCP"
+                                Header="to"
+                                RelativePanel.AlignRightWithPanel="True"
+                                Date="{x:Bind _FilterSupplierOrderViewModel.OrderDateRange.UB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+            <CalendarDatePicker x:Name="DueDateLBCP"
+                                Header="From"
+                                Margin="0,10,0,0"
+                                RelativePanel.Below="OrderDateLBCP"
+                                Date="{x:Bind _FilterSupplierOrderViewModel.DueDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+            <CalendarDatePicker x:Name="DueDateUBCP"
+                                Header="To"
+                                Margin="0,10,0,0"
+                                RelativePanel.Below="OrderDateLBCP"
+                                RelativePanel.AlignRightWithPanel="True"
+                                Date="{x:Bind _FilterSupplierOrderViewModel.DueDateRange.UB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+            
+            <CheckBox x:Name="PartialOrderOnlyCB"
+                      Margin="0,10,0,0"
+                      Content="Partially Paid Orders Only"
+                      RelativePanel.Below="DueDateLBCP"
+                      IsChecked="{x:Bind _FilterSupplierOrderViewModel.IncludePartiallyPaidOrdersOnly, Mode=TwoWay}"></CheckBox>
+        </RelativePanel>
+    </RelativePanel>
+</Page>

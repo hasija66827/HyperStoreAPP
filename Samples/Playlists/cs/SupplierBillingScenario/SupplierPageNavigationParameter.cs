@@ -9,7 +9,7 @@ namespace SDKTemplate
 {
     public class SupplierPageNavigationParameter
     {
-        public List<SupplierOrderProductViewModelBase> ProductPurchased { get; set; }
+        public List<SupplierBillingProductViewModelBase> ProductPurchased { get; set; }
         public TSupplier SelectedSupplier { get; set; }
         public SupplierBillingSummaryViewModel WholeSellerBillingSummaryViewModel { get; set; }
         public SupplierPageNavigationParameter()

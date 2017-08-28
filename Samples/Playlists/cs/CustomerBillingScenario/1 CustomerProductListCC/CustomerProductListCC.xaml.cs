@@ -31,15 +31,15 @@ namespace SDKTemplate
     {
         public static CustomerProductListCC Current;
         public event ProductListCCUpdatedDelegate ProductListCCUpdatedEvent;
-        public List<CustomerOrderProductViewModelBase> Products { get { return this._Products.Cast<CustomerOrderProductViewModelBase>().ToList(); } }
-        private ObservableCollection<CustomerProductViewModel> _Products { get; set; }
+        public List<CustomerBillingProductViewModelBase> Products { get { return this._Products.Cast<CustomerBillingProductViewModelBase>().ToList(); } }
+        private ObservableCollection<CustomerBillingProductViewModel> _Products { get; set; }
 
         public CustomerProductListCC()
         {
             Current = this;
             this.InitializeComponent();
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this._AddProductToCart);
-            _Products = new ObservableCollection<CustomerProductViewModel>();
+            _Products = new ObservableCollection<CustomerBillingProductViewModel>();
             Checkout.Click += Checkout_Click;
         }
 
@@ -50,7 +50,7 @@ namespace SDKTemplate
         /// <returns></returns>
         private int _AddProductToCart(TProduct product)
         {
-            var customerProduct = new CustomerProductViewModel(product);
+            var customerProduct = new CustomerBillingProductViewModel(product);
             int index = 0;
             var existingProduct = this._Products.Where(p => p.ProductId == product.ProductId).FirstOrDefault();
             if (existingProduct != null)

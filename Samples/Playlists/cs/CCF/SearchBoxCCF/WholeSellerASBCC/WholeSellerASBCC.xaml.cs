@@ -23,10 +23,10 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class WholeSellerASBCC : Page
+    public sealed partial class SupplierASBCC : Page
     {
-        public static WholeSellerASBCC Current;
-        public TSupplier SelectedWholeSellerInASB { get { return this._selectedWholeSellerInASB; } }
+        public static SupplierASBCC Current;
+        public TSupplier SelectedSupplierInASB { get { return this._selectedWholeSellerInASB; } }
 
         private class SupplierASBViewModel : Models.TSupplier
         {
@@ -43,8 +43,8 @@ namespace SDKTemplate
 
         private List<SupplierASBViewModel> _Suppliers { get; set; }
         private SupplierASBViewModel _selectedWholeSellerInASB;
-        public event SelectedWholeSellerChangedDelegate SelectedWholeSellerChangedEvent;
-        public WholeSellerASBCC()
+        public event SelectedWholeSellerChangedDelegate SelectedSupplierChangedEvent;
+        public SupplierASBCC()
         {
             Current = this;
             this.InitializeComponent();
@@ -126,7 +126,7 @@ namespace SDKTemplate
                 NoResults.Visibility = Visibility.Visible;
                 WholeSellerDetails.Visibility = Visibility.Collapsed;
             }
-            SelectedWholeSellerChangedEvent?.Invoke();
+            SelectedSupplierChangedEvent?.Invoke();
         }
 
         /// <summary>

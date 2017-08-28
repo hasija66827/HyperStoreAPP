@@ -8,18 +8,20 @@ namespace SDKTemplate
 {
     public class WholeSellerOrderProductDataSource
     {
-        public static List<WholeSellerOrderDetailViewModel> RetrieveOrderDetails(Guid? wholeSellerOrderId)
+        public static List<SupplierOrderProductViewModel> RetrieveOrderDetails(Guid? wholeSellerOrderId)
         {
+            /*
             var db = new DatabaseModel.RetailerContext();
             var ret = db.WholeSellersOrderProducts
                         .Where(wop => wop.WholeSellerOrderId == wholeSellerOrderId);
             var product_wop = ret.Include(p => p.Product);
             var wholeSellerOrderDetails=
-                product_wop.Select(wop => new WholeSellerOrderDetailViewModel(wop.Product.BarCode, wop.Product.Name, wop.PurchasePrice, wop.QuantityPurchased));
-            return wholeSellerOrderDetails.ToList();
+                product_wop.Select(wop => new SupplierOrderProductViewModel(wop.Product.BarCode, wop.Product.Name, wop.PurchasePrice, wop.QuantityPurchased));
+                */
+            return null;
         }
         // Step4:
-        public static void CreateWholeSellerOrderProduct(DatabaseModel.RetailerContext db, List<SupplierOrderProductViewModel> purchasedProducts, Guid wholeSellerOrderId)
+        public static void CreateWholeSellerOrderProduct(DatabaseModel.RetailerContext db, List<SupplierBillingProductViewModel> purchasedProducts, Guid wholeSellerOrderId)
         {
             foreach (var purchasedProduct in purchasedProducts)
             {

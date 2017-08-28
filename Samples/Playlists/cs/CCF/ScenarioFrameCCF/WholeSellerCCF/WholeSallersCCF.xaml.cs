@@ -38,7 +38,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             this.TransactionHistoryOfWholeSellerCollection = new TransactionHistoryOfWholeSellerCollection();
             this.SelectedWholeSeller = null;
-            WholeSellerASBCC.Current.SelectedWholeSellerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            SupplierASBCC.Current.SelectedSupplierChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
 
@@ -54,7 +54,7 @@ namespace SDKTemplate
         /// </summary>
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
-            var selectedWholesaler = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
+            var selectedWholesaler = SupplierASBCC.Current.SelectedSupplierInASB;
             var filterWholeSalerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
             var sfc = new SupplierFilterCriteriaDTO()
             {

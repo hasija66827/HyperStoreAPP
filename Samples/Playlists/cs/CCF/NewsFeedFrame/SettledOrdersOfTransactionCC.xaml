@@ -11,7 +11,7 @@
                       x:DataType="local:SettledOrderOfTransactionViewModel">
             <RelativePanel >
                 <TextBlock x:Name="WholeSellerOrderNo"
-                           Text="{x:Bind WholeSellerOrder.WholeSellerOrderNo}"
+                           Text="{x:Bind WholeSellerOrder.SupplierOrderNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock Text="{x:Bind WholeSellerOrder.FormattedOrderDate}"
                            RelativePanel.AlignBottomWith="WholeSellerOrderNo"

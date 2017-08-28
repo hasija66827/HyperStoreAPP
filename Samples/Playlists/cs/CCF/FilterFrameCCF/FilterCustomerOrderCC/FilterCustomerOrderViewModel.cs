@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class FilterOrderViewModel
+    public sealed class FilterCustomerOrderViewModel
     {
         [Required]
         [DateRange(ErrorMessage = "{0} is invalid, lb>ub")]
         public IRange<DateTime> OrderDateRange { get; set; }
-        public FilterOrderViewModel()
+        public FilterCustomerOrderViewModel()
         {
             OrderDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-15), DateTime.Now.AddDays(1));
         }

@@ -18,29 +18,31 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate Task FilterWholeSalerOrderCriteriaChangedDelegate();
+    public delegate Task FilterSupplierOrderCriteriaChangedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class FilterWholeSalerOrderCC : Page
+    public sealed partial class FilterSupplierOrderCC : Page
     {
-        public FilterWholeSalerOrderCriteriaChangedDelegate FilterWholeSalerOrderCriteriaChangedEvent;
-        public FilterWholeSalerOrderCriteria FilterWholeSalerOrderCriteria { get; set; }
-        public  static FilterWholeSalerOrderCC Current;
-        public FilterWholeSalerOrderCC()
+        public static FilterSupplierOrderCC Current;
+        public FilterSupplierOrderViewModel FilterSupplierOrderCriteria { get { return this._FilterSupplierOrderViewModel; } }
+        public FilterSupplierOrderCriteriaChangedDelegate FilterSupplierOrderCriteriaChangedEvent;
+        private FilterSupplierOrderViewModel _FilterSupplierOrderViewModel;
+        public FilterSupplierOrderCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.FilterWholeSalerOrderCriteria = new FilterWholeSalerOrderCriteria();
-            startDateCP.Closed += FilterCriteriaChanged;
-            endDateCP.Closed += FilterCriteriaChanged;
-            dueDateCP.Closed += FilterCriteriaChanged;
+            this._FilterSupplierOrderViewModel = new FilterSupplierOrderViewModel();
+            OrderDateLBCP.Closed += FilterCriteriaChanged;
+            OrderDateUBCP.Closed += FilterCriteriaChanged;
+            DueDateLBCP.Closed += FilterCriteriaChanged;
+            DueDateUBCP.Closed += FilterCriteriaChanged;
             PartialOrderOnlyCB.Click += FilterCriteriaChanged;
         }
 
         private void FilterCriteriaChanged(object sender, object e)
         {
-            FilterWholeSalerOrderCriteriaChangedEvent?.Invoke();
+            FilterSupplierOrderCriteriaChangedEvent?.Invoke();
         }
     }
 }

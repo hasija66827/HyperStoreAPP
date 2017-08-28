@@ -27,13 +27,15 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this.WholeSelleOrderSummaryViewModel = new WholeSelleOrderSummaryViewModel();
-            WholeSellerOrderCC.Current.WholeSellerProductListUpdatedEvent += UpdateSummary;
+            WholeSellerOrderCC.Current.SupplierOrderListUpdatedEvent += UpdateSummary;
             UpdateSummary(); //To compute the values for the first time.
         }
         private void UpdateSummary()
         {
-            this.WholeSelleOrderSummaryViewModel.TotalBillAmount = WholeSellerOrderCC.Current.WholeSellerOrdersViewModel.Sum(wo => wo.BillAmount);
-            this.WholeSelleOrderSummaryViewModel.TotalPaidAmount = WholeSellerOrderCC.Current.WholeSellerOrdersViewModel.Sum(wo => wo.PaidAmount);
+            /*
+            this.WholeSelleOrderSummaryViewModel.TotalBillAmount = WholeSellerOrderCC.Current.SupplierOrdersViewModel.Sum(wo => wo.BillAmount);
+            this.WholeSelleOrderSummaryViewModel.TotalPaidAmount = WholeSellerOrderCC.Current.SupplierOrdersViewModel.Sum(wo => wo.PaidAmount);
+            */
         }
     }
 }

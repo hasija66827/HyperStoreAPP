@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void SupplierProductListUpdatedDelegate(List<SupplierOrderProductViewModelBase> Products);
+    public delegate void SupplierProductListUpdatedDelegate(List<SupplierBillingProductViewModelBase> Products);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -27,20 +27,20 @@ namespace SDKTemplate
     {
         public static SupplierPurchasedProductListCC Current;
         public event SupplierProductListUpdatedDelegate SupplierProductListUpdatedEvent;
-        private ObservableCollection<SupplierOrderProductViewModel> _Products { get; set; }
-        public List<SupplierOrderProductViewModelBase> Products { get { return this._Products.Cast<SupplierOrderProductViewModelBase>().ToList(); } }
+        private ObservableCollection<SupplierBillingProductViewModel> _Products { get; set; }
+        public List<SupplierBillingProductViewModelBase> Products { get { return this._Products.Cast<SupplierBillingProductViewModelBase>().ToList(); } }
         public SupplierPurchasedProductListCC()
         {
             Current = this;
             this.InitializeComponent();
-            this._Products = new ObservableCollection<SupplierOrderProductViewModel>();
+            this._Products = new ObservableCollection<SupplierBillingProductViewModel>();
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this._AddProductToCart);
             CheckoutBtn.Click += CheckoutBtn_Click;
         }
 
         private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedSupplierInASB = WholeSellerASBCC.Current.SelectedWholeSellerInASB;
+            var selectedSupplierInASB = SupplierASBCC.Current.SelectedSupplierInASB;
             if (selectedSupplierInASB == null)
             {
                 MainPage.Current.NotifyUser("Select the Wholeseller", NotifyType.ErrorMessage);
@@ -71,7 +71,7 @@ namespace SDKTemplate
             }
             else
             {
-                SupplierOrderProductViewModel w = new SupplierOrderProductViewModel(selectedProduct);
+                SupplierBillingProductViewModel w = new SupplierBillingProductViewModel(selectedProduct);
                 this._Products.Add(w);
                 index = this._Products.IndexOf(w);
                 InvokeProductListChangeEvent();

@@ -24,13 +24,14 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class FilterOrderCC : Page
     {
-        public FilterOrderViewModel filterOrderViewModel;
+        public FilterCustomerOrderViewModel FilterCustomerOrderViewModel { get { return this._FilterCustomerOrderViewModel; } }
+        private FilterCustomerOrderViewModel _FilterCustomerOrderViewModel;
         public static FilterOrderCC Current;
         public event DateChangedDelegate DateChangedEvent;
         public FilterOrderCC()
         {
             Current = this;
-            this.filterOrderViewModel = new FilterOrderViewModel();
+            this._FilterCustomerOrderViewModel = new FilterCustomerOrderViewModel();
             this.InitializeComponent();
             startDateCP.Closed += DateCP_Closed;
             endDateCP.Closed += DateCP_Closed;

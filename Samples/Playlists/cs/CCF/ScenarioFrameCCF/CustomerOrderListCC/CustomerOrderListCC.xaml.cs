@@ -24,7 +24,7 @@ namespace SDKTemplate
     public sealed partial class CustomerOrderListCCF : Page
     {
         public static CustomerOrderListCCF Current;
-        public event CustomerOrderListChangedDelegate OrderListChangedEvent;
+        public event CustomerOrderListChangedDelegate CustomerOrderListUpdatedEvent;
         public CustomerOrderListCCF()
         {
             Current = this;
@@ -51,7 +51,7 @@ namespace SDKTemplate
 
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
-            var selectedDateRange = FilterOrderCC.Current.filterOrderViewModel?.OrderDateRange;
+            var selectedDateRange = FilterOrderCC.Current.FilterCustomerOrderViewModel?.OrderDateRange;
             var selectedCustomerId = CustomerASBCC.Current.SelectedCustomerInASB?.CustomerId;
             var cofc = new CustomerOrderFilterCriteriaDTO()
             {
@@ -63,7 +63,7 @@ namespace SDKTemplate
             var items = customerOrderList.Select(co => new CustomerOrderViewModel(co));
             MasterListView.ItemsSource = items;
             OrderCountTB.Text = "(" + items.Count().ToString() + "/" + "xxxx" + ")";
-            OrderListChangedEvent?.Invoke(CustomerOrderListCCF.Current);
+            CustomerOrderListUpdatedEvent?.Invoke(CustomerOrderListCCF.Current);
         }
 
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)

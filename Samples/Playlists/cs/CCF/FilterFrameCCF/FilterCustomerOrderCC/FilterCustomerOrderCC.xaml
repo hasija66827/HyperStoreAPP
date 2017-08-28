@@ -22,13 +22,13 @@
                        Margin="10,0,0,0">
             <CalendarDatePicker x:Name="startDateCP"
                                 Padding="10"
-                                Header="Start Date"
-                                Date="{x:Bind filterOrderViewModel.OrderDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+                                Header="from"
+                                Date="{x:Bind _FilterCustomerOrderViewModel.OrderDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
             <CalendarDatePicker x:Name="endDateCP"
                                 Padding="10"
-                                Header="End Date"
+                                Header="To"
                                 RelativePanel.AlignRightWithPanel="True"
-                                Date="{x:Bind filterOrderViewModel.OrderDateRange.UB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+                                Date="{x:Bind _FilterCustomerOrderViewModel.OrderDateRange.UB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
         </RelativePanel>
     </RelativePanel>
 </Page>

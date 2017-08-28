@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class CustomerOrderProductViewModelBase : ProductViewModelBase
+    public class CustomerBillingProductViewModelBase : ProductViewModelBase
     {
         public decimal? NetValue { get { return this.QuantityConsumed * this.SubTotal; } }
         public virtual decimal? QuantityConsumed { get; set; }
 
-        public CustomerOrderProductViewModelBase(TProduct parent) : base(parent)
+        public CustomerBillingProductViewModelBase(TProduct parent) : base(parent)
         {
             this.QuantityConsumed = 0;
         }
     }
 
     public delegate void QuantityChangedDelegate(object sender, decimal Quantity);
-    public sealed class CustomerProductViewModel : CustomerOrderProductViewModelBase, INotifyPropertyChanged
+    public sealed class CustomerBillingProductViewModel : CustomerBillingProductViewModelBase, INotifyPropertyChanged
     {
         private decimal? _quantityConsumed;
         public override decimal? QuantityConsumed
@@ -37,7 +37,7 @@ namespace SDKTemplate
             }
         }
 
-        public CustomerProductViewModel(TProduct parent) : base(parent) { }
+        public CustomerBillingProductViewModel(TProduct parent) : base(parent) { }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

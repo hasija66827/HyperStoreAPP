@@ -9,14 +9,14 @@
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
-                      x:DataType="local:WholeSellerOrderViewModel">
+                      x:DataType="local:SupplierOrderViewModel">
             <RelativePanel>
                 <TextBlock x:Name="MobileNo"
-                           Text="{x:Bind WholeSeller.MobileNo}"
+                           Text="{x:Bind Supplier.MobileNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="WholeSellerOrderNo"
                            RelativePanel.AlignRightWithPanel="True"
-                           Text="{x:Bind WholeSellerOrderNo}"
+                           Text="{x:Bind SupplierOrderNo}"
                            Padding="10,10,10,5"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock x:Name="FormattedPaidBillAmount"
@@ -33,7 +33,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="local:WholeSellerOrderViewModel">
+                      x:DataType="local:SupplierOrderViewModel">
             <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
@@ -49,19 +49,19 @@
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="OrderDetailListView"
-                          ItemsSource="{x:Bind WholeSellerOrderDetails}"
+                          ItemsSource="{x:Bind OrderDetails}"
                           RelativePanel.Below="StaticLabelsForList"
                           RelativePanel.AlignRightWith="StaticLabelsForList"
                           RelativePanel.AlignLeftWith="StaticLabelsForList"
                           Height="300"
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:WholeSellerOrderDetailViewModel">
+                        <DataTemplate x:DataType="local:SupplierOrderProductViewModel">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
-                                <TextBlock Text="{x:Bind BarCode, Mode=OneWay}"
+                                <TextBlock Text="{x:Bind Product.Code, Mode=OneWay}"
                                            Foreground="Black"
                                            Style="{StaticResource LargeListTextBlockStyle}" />
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                <TextBlock Text="{x:Bind Product.Name, Mode=OneWay}"
                                            Style="{StaticResource LargeListTextBlockStyle}"
                                            TextWrapping="Wrap" />
                                 <TextBlock x:Name="PurchasePrice"

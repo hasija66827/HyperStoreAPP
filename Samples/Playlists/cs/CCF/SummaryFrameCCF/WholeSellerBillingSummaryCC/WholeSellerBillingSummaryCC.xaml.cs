@@ -33,7 +33,7 @@ namespace SDKTemplate
             this.wholeSellerBillingSummaryViewModel = new SupplierBillingSummaryViewModel();
             SupplierPurchasedProductListCC.Current.SupplierProductListUpdatedEvent += ComputeBillSummary;
         }
-        public void ComputeBillSummary(List<SupplierOrderProductViewModelBase>products)
+        public void ComputeBillSummary(List<SupplierBillingProductViewModelBase>products)
         {
             this.wholeSellerBillingSummaryViewModel.BillAmount = products.Sum(p => (decimal)p.NetValue);
             this.wholeSellerBillingSummaryViewModel.TotalQuantity = products.Sum(p => (decimal)p.QuantityPurchased);
