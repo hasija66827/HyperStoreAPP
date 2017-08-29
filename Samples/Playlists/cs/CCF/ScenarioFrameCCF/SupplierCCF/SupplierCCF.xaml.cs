@@ -29,12 +29,10 @@ namespace SDKTemplate
     {
         public static SupplierCCF Current;
         public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
-        private TSupplier _SelectedSupplier { get; set; }
         public SupplierCCF()
         {
             Current = this;
             this.InitializeComponent();
-             this._SelectedSupplier = null;
             SupplierASBCC.Current.SelectedSupplierChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
@@ -72,20 +70,22 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this._SelectedSupplier = (TSupplier)e.ClickedItem;
+            var selectedSupplier = (TSupplier)e.ClickedItem;
             var tfc = new SupplierTransactionFilterCriteriaDTO()
             {
-                SupplierId = _SelectedSupplier?.SupplierId
+                SupplierId = selectedSupplier?.SupplierId
             };
             var transactions = await SupplierTransactionDataSource.RetrieveTransactionsAsync(tfc);
             var supplierTransactionCollection = new SupplierTransactionCollection();
             supplierTransactionCollection.Transactions = transactions.Select(t => new SupplierTransactionViewModel(t)).ToList();
+            supplierTransactionCollection.SupplierName = selectedSupplier.Name;
             DetailContentPresenter.Content = supplierTransactionCollection;
         }
 
-        private void AddMoney_Click(object sender, RoutedEventArgs e)
+        private void SendMoney_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SupplierNewTransactionCC), _SelectedSupplier);
+            var selectedSupplier = (TSupplier)MasterListView.SelectedItem;
+            this.Frame.Navigate(typeof(SupplierNewTransactionCC), selectedSupplier);
         }
 
         private void TransactionHistoriesOfWholeSellers_ItemClick(object sender, ItemClickEventArgs e)

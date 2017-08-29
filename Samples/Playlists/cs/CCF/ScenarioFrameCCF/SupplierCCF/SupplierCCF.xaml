@@ -78,9 +78,9 @@
                 <StackPanel x:Name="CommandPanel"
                             Orientation="Horizontal"
                             RelativePanel.AlignBottomWithPanel="True">
-                    <Button x:Name="AddMoney"
-                            Content="New Transaction"
-                            Click="AddMoney_Click"
+                    <Button x:Name="SendMoney"
+                            Content="{x:Bind SendMoneyToSupplier}"
+                            Click="SendMoney_Click"
                             Style="{StaticResource ScenarioButtonStyle}" />
                 </StackPanel>
             </StackPanel>
