@@ -35,13 +35,13 @@
                     <TextBlock Text="Txn No"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Txn Date"
-                               Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Supplier Wallet Balance"
                                Style="{StaticResource LargeListTextBlockStyle}" />
+                    <TextBlock Text="Supplier Wallet Balance"
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Txn Amount"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    <TextBlock Text="Supplier Updated Balance"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
+                    <TextBlock Text="OrderNo"
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="TransactionHistoriesOfWholeSellers"
                           ItemsSource="{x:Bind Transactions}"
@@ -57,11 +57,11 @@
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="TransactionDate"
                                            Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
-                                           Style="{StaticResource ListTextBlockStyle}" />
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="WalletSnapshot"
                                            Foreground="Black"
                                            Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource LargeListTextBlockStyle}" />
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="CreditAmount"
                                            FontSize="16"
                                            Foreground="#FFFF2FAE"
@@ -69,8 +69,8 @@
                                            Style="{ThemeResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="updatedWalletBalance"
                                            Foreground="Black"
-                                           Text="{x:Bind UpdatedWalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource LargeListTextBlockStyle}" />
+                                           Text="{x:Bind SupplierOrderNo, Mode=OneWay}"
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

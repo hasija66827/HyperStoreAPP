@@ -19,21 +19,15 @@ namespace SDKTemplate
                 return formatter.Format(this.TransactionDate);
             }
         }
-        public decimal UpdatedWalletSnapshot
+        public decimal SignedTransactionAmount
         {
             get
             {
                 if (IsCredit == false)
-                    return this.WalletSnapshot - this.TransactionAmount;
-                else return this.WalletSnapshot + this.TransactionAmount;
-            }
-        }
-        public decimal SignedTransactionAmount {
-            get {
-                if (IsCredit == false)
                     return -TransactionAmount;
                 return TransactionAmount;
-            } }
+            }
+        }
 
         public SupplierTransactionViewModel(TSupplierTransaction parent)
         {

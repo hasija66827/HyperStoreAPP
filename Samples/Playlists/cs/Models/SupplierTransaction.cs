@@ -11,6 +11,7 @@ namespace Models
         public bool IsCredit { get; set; }
         [Required]
         public string TransactionNo { get; set; }
+        public string SupplierOrderNo { get; set; }
         public DateTime TransactionDate { get; set; }
         public decimal TransactionAmount { get; set; }
         public decimal WalletSnapshot { get; set; }
