@@ -22,7 +22,7 @@ namespace SDKTemplate
         public FilterSupplierOrderViewModel()
         {
             OrderDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-15), DateTime.Now.AddDays(1));
-            DueDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-15), DateTime.Now.AddDays(15));
+            DueDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-15), DateTime.Now.AddDays(45));
             IncludePartiallyPaidOrdersOnly = true;
         }
     }

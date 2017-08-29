@@ -27,10 +27,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <SplitView x:Name="Splitter"
-                   IsPaneOpen="True"
+                   IsPaneOpen="False"
                    Grid.Column="1"
                    DisplayMode="CompactOverlay"
-                   Grid.Row="1">
+                   Grid.Row="1"
+                   Opacity="0.95"
+                   Foreground="Gold"
+                   PaneBackground="#F202090B">
             <SplitView.Pane>
                 <RelativePanel Margin="10,0,0,0">
                     <TextBlock x:Name="SampleTitle"
@@ -43,6 +46,7 @@
                              SelectionMode="Single"
                              HorizontalAlignment="Left"
                              Background="Transparent"
+                             RequestedTheme="Dark"
                              BorderThickness="0"
                              VerticalAlignment="Top"
                              RelativePanel.Below="SampleTitle"
@@ -50,7 +54,8 @@
                              RelativePanel.Above="FooterPanel">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource ScenarioConverter}}" />
+                                <TextBlock Text="{Binding Converter={StaticResource ScenarioConverter}}" 
+                                          />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

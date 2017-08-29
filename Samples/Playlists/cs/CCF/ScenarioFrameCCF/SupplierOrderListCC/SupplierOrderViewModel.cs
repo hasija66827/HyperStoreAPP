@@ -15,19 +15,7 @@ namespace SDKTemplate
     /// Detail view show detail of the order and the trnasactions which completed the payment of the order.
     /// </summary>
     public class SupplierOrderViewModel : TSupplierOrder
-    {
-        //TODO: Remove
-        public List<SettledOrderOfTransactionViewModel> _transactions;
-        public List<SettledOrderOfTransactionViewModel> Transactions
-        {
-            get
-            {
-                if (this._transactions.Count == 0)
-                    this._transactions = WholeSellerOrderTransactionDataSource.RetrieveWholeSellerOrderTransactions(null, this.SupplierOrderId);
-                return this._transactions;
-            }
-        }
-
+    {  
         public string FormattedOrderDate
         {
             get
@@ -55,8 +43,6 @@ namespace SDKTemplate
 
         public SupplierOrderViewModel(TSupplierOrder parent)
         {
-            //Remove
-            this._transactions = new List<SettledOrderOfTransactionViewModel>();
             this.OrderDetails = new List<SupplierOrderProductViewModel>();
             foreach (PropertyInfo prop in typeof(TSupplierOrder).GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);

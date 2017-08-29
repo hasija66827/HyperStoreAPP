@@ -79,48 +79,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackPanel>
-                    <StackPanel x:Name="StaticLabelsForTransactionList"
-                                Style="{StaticResource ListHeaderStackPanel}">
-                        <TextBlock Text="Txn No"
-                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                        <TextBlock Text="Txn Date"
-                                   Style="{StaticResource LargeListTextBlockStyle}" />
-                        <TextBlock Text="Txn Amount"
-                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                        <TextBlock Text="Credit Amount"
-                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    </StackPanel>
-                </StackPanel>
-                <ListView x:Name="TransactionHistoriesOfWholeSellers"
-                          ItemsSource="{x:Bind Transactions}"
-                          RelativePanel.Below="TransactionHistoriesOfWholeSellers"
-                          RelativePanel.AlignRightWith="StaticLabelsForList"
-                          RelativePanel.AlignLeftWith="StaticLabelsForList"
-                          Height="300"
-                          Style="{StaticResource ListViewStyle}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:SettledOrderOfTransactionViewModel">
-                            <StackPanel Style="{StaticResource ListItemStackPanel}">
-                                <TextBlock x:Name="TransactionNo"
-                                           Foreground="Black"
-                                           Text="{x:Bind Transaction.TransactionNo, Mode=OneWay}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                                <TextBlock x:Name="TransactionDate"
-                                           Text="{x:Bind Transaction.FormattedTransactionDate, Mode=OneWay}"
-                                           Style="{StaticResource LargeListTextBlockStyle}" />
-                                <TextBlock x:Name="TransactionAmount"
-                                           Foreground="Black"
-                                           Text="{x:Bind Transaction.TransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                                <TextBlock x:Name="CreditAmount"
-                                           Foreground="Black"
-                                           Text="{x:Bind CreditedAmountFromTransaction, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{ThemeResource VeryLargeListTextBlockStyle}" />
-                                </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>

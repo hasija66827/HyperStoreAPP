@@ -50,8 +50,6 @@ namespace SDKTemplate
 
             return 20000;
         }
-        #endregion
-
-  
+        #endregion 
     }
 }
