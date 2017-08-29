@@ -19,6 +19,15 @@ namespace SDKTemplate
                 return formatter.Format(this.TransactionDate);
             }
         }
+        public decimal SignedTransactionAmount
+        {
+            get
+            {
+                if (IsCredit == true)
+                    return -TransactionAmount;
+                return TransactionAmount;
+            }
+        }
         public CustomerTransactionViewModel(TCustomerTransaction parent)
         {
             foreach (PropertyInfo prop in typeof(TCustomerTransaction).GetProperties())

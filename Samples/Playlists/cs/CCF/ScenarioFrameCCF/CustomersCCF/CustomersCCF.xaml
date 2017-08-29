@@ -58,10 +58,10 @@
                                            Foreground="Black"
                                            Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                            Style="{StaticResource LargeListTextBlockStyle}" />
-                                <TextBlock x:Name="CreditAmount"
+                                <TextBlock x:Name="TxnAmount"
                                            FontSize="16"
                                            Foreground="#FFFF2FAE"
-                                           Text="{x:Bind TransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                            Style="{ThemeResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="OrderNo"
                                            Foreground="Black"
