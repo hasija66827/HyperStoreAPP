@@ -21,6 +21,7 @@ using static SDKTemplate.CustomerDataSource;
 
 namespace SDKTemplate
 {
+    public delegate void CustomerSelectionChangeDelegate(TCustomer customer);
     /// <summary>
     /// Master Detail View where 
     /// Master shows the list of the customer and
@@ -28,14 +29,14 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class CustomersCCF : Page
     {
-        public CustomerPurchaseTrendCollection CustomerPurchaseTrendCollection { get; set; }
+        public CustomerPurchaseTrendCollectionViewModel CustomerPurchaseTrendCollection { get; set; }
         public static CustomersCCF Current;
-        public TCustomer SelectedCustomer { get; set; }
+        public event CustomerSelectionChangeDelegate CustomerSelectionChangeEvent;
         public CustomersCCF()
         {
             Current = this;
             this.InitializeComponent();
-            this.CustomerPurchaseTrendCollection = new CustomerPurchaseTrendCollection();
+            this.CustomerPurchaseTrendCollection = new CustomerPurchaseTrendCollectionViewModel();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
@@ -73,13 +74,14 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.SelectedCustomer = (TCustomer)e.ClickedItem;
+            var selectedCustomer = (TCustomer)e.ClickedItem;
             var customerPurchaseTrendDTO = new CustomerPurchaseTrendDTO()
             {
-                CustomerId = SelectedCustomer?.CustomerId,
+                CustomerId = selectedCustomer?.CustomerId,
                 MonthsCount = 3,
             };
             //TODO: Remove HardCoding 3
+            this.CustomerSelectionChangeEvent?.Invoke(selectedCustomer);
             this.CustomerPurchaseTrendCollection.CustomerPurchaseTrends = await AnalyticsDataSource.RetrieveCustomerPurchaseTrend(customerPurchaseTrendDTO);
             DetailContentPresenter.Content = this.CustomerPurchaseTrendCollection;
         }

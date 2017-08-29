@@ -128,6 +128,9 @@
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNowViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\2 PayNow\PayNowViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3b Pay Later Scenario\PayLaterModeViewModel.cs" />
+    <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerTrendCC.xaml.cs">
+      <DependentUpon>CustomerTrendCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
@@ -173,7 +176,7 @@
       <DependentUpon>temp.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextBoxAttached.cs" />
-    <Compile Include="View Models\CustomerPurchaseHistoryViewModel.cs" />
+    <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerPurchaseTrendViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
       <DependentUpon>CustomersCCF.xaml</DependentUpon>
     </Compile>
@@ -377,6 +380,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\ScenarioFrameCCF\ProductCCF\ProductInStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\NewsFeedFrame\CustomerTrend\CustomerTrendCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

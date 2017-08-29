@@ -27,7 +27,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="local:CustomerPurchaseTrendCollection">
+                      x:DataType="local:CustomerPurchaseTrendCollectionViewModel">
             <StackPanel Background="White">
                 <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="BarCode"
