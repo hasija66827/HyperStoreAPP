@@ -38,7 +38,7 @@
                                Style="{StaticResource ListTextBlockStyle}" />
                     <TextBlock Text="Supplier Wallet Balance"
                                Style="{StaticResource LargeListTextBlockStyle}" />
-                    <TextBlock Text="Txn Credit Amount"
+                    <TextBlock Text="Txn Amount"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Supplier Updated Balance"
                                Style="{StaticResource LargeListTextBlockStyle}" />

@@ -131,6 +131,8 @@
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerTrendCC.xaml.cs">
       <DependentUpon>CustomerTrendCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerTransactionViewModel.cs" />
+    <Compile Include="Data Source\CustomerTransactionDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
     <Compile Include="Data Source\WholeSellerOrderTransactionDataSource.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerOrderProduct.cs" />
     <Compile Include="Models\CustomerPurchaseTrend.cs" />
+    <Compile Include="Models\CustomerTransaction.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\ProductTrend.cs" />

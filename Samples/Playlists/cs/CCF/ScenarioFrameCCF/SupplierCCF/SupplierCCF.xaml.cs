@@ -19,7 +19,7 @@ using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
-    public delegate void SelectedTransactionChangedDelegate();
+    public delegate void SelectedTransactionChangedDelegate(TSupplierTransaction transaction);
     /// <summary>
     /// Master Detail View where 
     /// Master shows the list of wholeseller and 
@@ -28,17 +28,13 @@ namespace SDKTemplate
     public sealed partial class SupplierCCF : Page
     {
         public static SupplierCCF Current;
-        //TODO: make it private o.w public getter
-        public SupplierTransactionCollection TransactionHistoryOfWholeSellerCollection { get; set; }
         public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
         private TSupplier _SelectedSupplier { get; set; }
-        private SupplierTransactionViewModel _SelectedTransaction { get; set; }
         public SupplierCCF()
         {
             Current = this;
             this.InitializeComponent();
-            this.TransactionHistoryOfWholeSellerCollection = new SupplierTransactionCollection();
-            this._SelectedSupplier = null;
+             this._SelectedSupplier = null;
             SupplierASBCC.Current.SelectedSupplierChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
@@ -77,13 +73,14 @@ namespace SDKTemplate
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             this._SelectedSupplier = (TSupplier)e.ClickedItem;
-            var tfc = new TransactionFilterCriteriaDTO()
+            var tfc = new SupplierTransactionFilterCriteriaDTO()
             {
                 SupplierId = _SelectedSupplier?.SupplierId
             };
             var transactions = await SupplierTransactionDataSource.RetrieveTransactionsAsync(tfc);
-            this.TransactionHistoryOfWholeSellerCollection.Transactions = transactions.Select(t => new SupplierTransactionViewModel(t)).ToList();
-            DetailContentPresenter.Content = this.TransactionHistoryOfWholeSellerCollection;
+            var supplierTransactionCollection = new SupplierTransactionCollection();
+            supplierTransactionCollection.Transactions = transactions.Select(t => new SupplierTransactionViewModel(t)).ToList();
+            DetailContentPresenter.Content = supplierTransactionCollection;
         }
 
         private void AddMoney_Click(object sender, RoutedEventArgs e)
@@ -93,8 +90,8 @@ namespace SDKTemplate
 
         private void TransactionHistoriesOfWholeSellers_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this._SelectedTransaction = (SupplierTransactionViewModel)e.ClickedItem;
-            this.SelectedTransactionChangedEvent?.Invoke();
+            var selectedTransaction = (SupplierTransactionViewModel)e.ClickedItem;
+            this.SelectedTransactionChangedEvent?.Invoke(selectedTransaction);
         }
     }
 }

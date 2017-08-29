@@ -243,8 +243,25 @@ namespace SDKTemplate
         }
         #endregion
 
-        #region Transaction
-        public class TransactionFilterCriteriaDTO
+        #region CustomerTransactionDTO
+        public class CustomerTransactionFilterCriteriaDTO
+        {
+            [Required]
+            public Guid? CustomerId { get; set; }
+        }
+
+        public class CustomerTransactionDTO
+        {
+            [Required]
+            public Guid? CustomerId { get; set; }
+
+            [Required]
+            [Range(0, 98765432198765)]
+            public decimal? TransactionAmount { get; set; }
+        }
+        #endregion
+        #region SupplierTransaction
+        public class SupplierTransactionFilterCriteriaDTO
         {
             [Required]
             public Guid? SupplierId { get; set; }
@@ -257,6 +274,7 @@ namespace SDKTemplate
             [Required]
             public Guid? SupplierId { get; set; }
             [Required]
+            [Range(0, 98765432198765)]
             public decimal? TransactionAmount { get; set; }
         }
         #endregion

@@ -27,36 +27,46 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="local:CustomerPurchaseTrendCollectionViewModel">
+                      x:DataType="local:CustomerTransactionCollection">
             <StackPanel Background="White">
                 <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
-                    <TextBlock Text="BarCode"
+                    <TextBlock Text="Txn No"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    <TextBlock Text="Name"
+                    <TextBlock Text="Txn Date"
+                               Style="{StaticResource ListTextBlockStyle}" />
+                    <TextBlock Text="Customer Wallet Balance"
+                               Style="{StaticResource LargeListTextBlockStyle}" />
+                    <TextBlock Text="Txn Amount"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    <TextBlock Text="Total Quantity"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                    <TextBlock Text="Customer Updated Balance"
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="PurchaseHistoriesOfCustomer"
-                          ItemsSource="{x:Bind CustomerPurchaseTrends}"
+                          ItemsSource="{x:Bind Transactions}"
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:TCustomerPurchaseTrend">
+                        <DataTemplate x:DataType="local:CustomerTransactionViewModel">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
-                                <TextBlock x:Name="BarCode"
+                                <TextBlock x:Name="TransactionNo"
                                            Foreground="Black"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind Product.Code, Mode=OneWay}"
-                                           />
-                                <TextBlock x:Name="ProductName"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind Product.Name, Mode=OneWay}"
-                                           />
-                                <TextBlock x:Name="TotalQuantity"
+                                           Text="{x:Bind TransactionNo, Mode=OneWay}"
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                <TextBlock x:Name="TransactionDate"
+                                           Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
+                                           Style="{StaticResource ListTextBlockStyle}" />
+                                <TextBlock x:Name="WalletSnapshot"
                                            Foreground="Black"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind TotalQuantityPurchased, Mode=OneWay}"
-                                           />
+                                           Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
+                                <TextBlock x:Name="CreditAmount"
+                                           FontSize="16"
+                                           Foreground="#FFFF2FAE"
+                                           Text="{x:Bind TransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{ThemeResource VeryLargeListTextBlockStyle}" />
+                                <TextBlock x:Name="updatedWalletBalance"
+                                           Foreground="Black"
+                                           Text="{x:Bind TransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

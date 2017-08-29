@@ -29,14 +29,12 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class CustomersCCF : Page
     {
-        public CustomerPurchaseTrendCollectionViewModel CustomerPurchaseTrendCollection { get; set; }
         public static CustomersCCF Current;
         public event CustomerSelectionChangeDelegate CustomerSelectionChangeEvent;
         public CustomersCCF()
         {
             Current = this;
             this.InitializeComponent();
-            this.CustomerPurchaseTrendCollection = new CustomerPurchaseTrendCollectionViewModel();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
@@ -75,15 +73,15 @@ namespace SDKTemplate
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedCustomer = (TCustomer)e.ClickedItem;
-            var customerPurchaseTrendDTO = new CustomerPurchaseTrendDTO()
-            {
-                CustomerId = selectedCustomer?.CustomerId,
-                MonthsCount = 3,
-            };
-            //TODO: Remove HardCoding 3
             this.CustomerSelectionChangeEvent?.Invoke(selectedCustomer);
-            this.CustomerPurchaseTrendCollection.CustomerPurchaseTrends = await AnalyticsDataSource.RetrieveCustomerPurchaseTrend(customerPurchaseTrendDTO);
-            DetailContentPresenter.Content = this.CustomerPurchaseTrendCollection;
+            var tfc = new CustomerTransactionFilterCriteriaDTO()
+            {
+                CustomerId = selectedCustomer?.CustomerId
+            };
+            var transactions = await CustomerTransactionDataSource.RetrieveTransactionsAsync(tfc);
+            var customerTransactionCollection = new CustomerTransactionCollection();
+            customerTransactionCollection.Transactions = transactions.Select(t => new CustomerTransactionViewModel(t)).ToList();
+            DetailContentPresenter.Content = customerTransactionCollection;
         }
     }
 }
