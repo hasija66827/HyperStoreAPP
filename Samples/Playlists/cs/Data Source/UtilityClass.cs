@@ -256,6 +256,9 @@ namespace SDKTemplate
             public Guid? CustomerId { get; set; }
 
             [Required]
+            public bool? IsCredit { get; set; }
+
+            [Required]
             [Range(0, 98765432198765)]
             public decimal? TransactionAmount { get; set; }
         }
