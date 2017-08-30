@@ -20,10 +20,10 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CreateTag : Page
+    public sealed partial class TagFormCC : Page
     {
-        private TagViewModel tag;
-        public CreateTag()
+        private TagFormViewModel _Tag { get; set; }
+        public TagFormCC()
         {
             this.InitializeComponent();
             Loaded += CreateTag_Loaded;
@@ -31,7 +31,13 @@ namespace SDKTemplate
 
         private void CreateTag_Loaded(object sender, RoutedEventArgs e)
         {
-            tag = DataContext as TagViewModel;
+            _Tag = DataContext as TagFormViewModel;
+            _Tag.ErrorsChanged += _Tag_ErrorsChanged;
+        }
+
+        private void _Tag_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+            
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

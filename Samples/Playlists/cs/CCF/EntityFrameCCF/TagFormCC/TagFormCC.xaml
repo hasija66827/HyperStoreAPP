@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.CreateTag"
+﻿<Page x:Class="SDKTemplate.TagFormCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -6,14 +6,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <Page.DataContext>
-        <local:TagViewModel />
+        <local:TagFormViewModel />
     </Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
             <Border  x:Name="HeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Create Tag"
+                <TextBlock Text="Create New Tag"
                            Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
             <StackPanel x:Name="ContentPanel"
@@ -22,7 +22,7 @@
                         Margin="10,0,0,0">
                 <TextBox x:Name="TagName"
                          Header="Tag Name"
-                         Text="{x:Bind tag.TagName, Mode=TwoWay}"
+                         Text="{x:Bind _Tag.TagName, Mode=TwoWay}"
                          ToolTipService.ToolTip="Tag Name which can be assigned to product"
                          PlaceholderText="Enter Tag Name For e.g. Cotton"
                          Style="{StaticResource FormTextBoxStyle}" />

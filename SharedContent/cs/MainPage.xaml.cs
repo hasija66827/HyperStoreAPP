@@ -59,7 +59,7 @@ namespace SDKTemplate
         }
         private void AddTagBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewsFeedFrame.Navigate(typeof(CreateTag));
+            NewsFeedFrame.Navigate(typeof(TagFormCC));
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

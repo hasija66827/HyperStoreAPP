@@ -6,12 +6,18 @@ using System.Linq;
 
 namespace Models
 {
-    public class TTag
+    public class TTag : ITag
     {
         public Guid? TagId { get; set; }
         [Required]
         public string TagName { get; set; }
 
         public TTag() { }
+    }
+
+    public interface ITag
+    {
+       [Required]
+        string TagName { get; set; }
     }
 }

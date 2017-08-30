@@ -102,6 +102,7 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagCC.xaml.cs">
       <DependentUpon>TagCC.xaml</DependentUpon>
@@ -121,8 +122,8 @@
     <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
     <Compile Include="CivilizationViewModel.cs" />
-    <Compile Include="CreateTag.xaml.cs">
-      <DependentUpon>CreateTag.xaml</DependentUpon>
+    <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormCC.xaml.cs">
+      <DependentUpon>TagFormCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\2 Select Payment Mode\SelectPaymentModeViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNowViewModel.cs" />
@@ -341,7 +342,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateTag.xaml">
+    <Page Include="CCF\EntityFrameCCF\TagFormCC\TagFormCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
