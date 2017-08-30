@@ -19,6 +19,7 @@ namespace SDKTemplate
     {
         private DelegateCommand _validateCommand;
 
+        public Guid? TagId{ get; set; }
         private string _tagName;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public string TagName { get { return this._tagName; } set { SetProperty(ref _tagName, value); } }

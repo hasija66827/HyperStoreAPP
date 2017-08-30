@@ -17,7 +17,8 @@ namespace Models
 
     public interface ITag
     {
-       [Required]
+        Guid? TagId { get; set; }
+        [Required]
         string TagName { get; set; }
     }
 }

@@ -23,10 +23,11 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static void RetreiveTags()
+        public static async Task<List<TTag>> RetreiveTagsAsync()
         {
-            var db = new DatabaseModel.RetailerContext();
-            _tags= db.Tags.Select(t => new TagViewModel(t.TagId, t.TagName, false)).ToList();
+            string actionURI = "tags";
+            List<TTag> tags = await Utility.RetrieveAsync<TTag>(actionURI, null);
+            return tags;
         }
         #endregion
     }

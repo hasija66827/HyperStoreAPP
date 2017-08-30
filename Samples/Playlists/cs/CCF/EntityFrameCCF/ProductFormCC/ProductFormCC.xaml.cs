@@ -59,7 +59,7 @@ namespace SDKTemplate
                 && Utility.CheckIfUniqueProductCode(ProductCodeTB.Text)
                 )
             {
-                this.Frame.Navigate(typeof(TagCC), this._mode);
+                this.Frame.Navigate(typeof(FilterProductByTagCC), this._mode);
             }
         }
     }

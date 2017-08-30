@@ -23,18 +23,44 @@ namespace SDKTemplate
 {
     public delegate Task TagListChangedDelegate();
 
-    public sealed partial class TagCC : Page
+    public sealed partial class FilterProductByTagCC : Page
     {
-        public TagCC()
-        {
-            this.InitializeComponent();
+        private TagCollection _TagCollection { get; set; }
+        public event TagListChangedDelegate TagListChangedEvent;
 
+        public List<Guid?> SelectedTagIds { get { return _TagCollection?.Tags?.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
+        public static FilterProductByTagCC Current;
+        public FilterProductByTagCC()
+        {
+            Current = this;
+            this.InitializeComponent();
+            this._TagCollection = new TagCollection();
         }
+
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var tags = await TagDataSource.RetreiveTagsAsync();
+            var Items = tags.Select(t => new TagViewModel()
+            {
+                TagId = t.TagId,
+                TagName = t.TagName,
+                IsChecked = false,
+            }).ToList();
+            this._TagCollection = new TagCollection(Items);
+            TagItemControl.ItemsSource = this._TagCollection.Tags;
+        }
+
+        public void InvokeTagListchangedEvent()
+        {
+            TagHeader.Text = _TagCollection.Header;
+            this.TagListChangedEvent?.Invoke();
+        }
+
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var Mode = ProductDetailsCC.Current.Mode;
             var productDetail = ProductDetailsCC.Current.ProductViewModelBase;
-            var selectedTagIds = TagCCF.Current.SelectedTagIds;
+            var selectedTagIds = FilterProductByTagCC.Current.SelectedTagIds;
 
             if (Mode == Mode.Create)
             {
@@ -50,7 +76,7 @@ namespace SDKTemplate
                     SGSTPer = productDetail.SGSTPer,
                     Threshold = productDetail.Threshold
                 };
-                if (await ProductDataSource.CreateNewProductAsync(productDTO)!=null)
+                if (await ProductDataSource.CreateNewProductAsync(productDTO) != null)
                     MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
                 this.Frame.Navigate(typeof(BlankPage));
             }
@@ -72,40 +98,5 @@ namespace SDKTemplate
         }
     }
 
-    public class TagCCF : BindableBases
-    {
-        public event TagListChangedDelegate TagListChangedEvent;
-        public static TagCCF Current;
-        public TagCCF()
-        {
-            TagDataSource.RetreiveTags();
-            Current = this;
-            _tags = new ObservableCollection<TagViewModel>(TagDataSource.Tags);
-            foreach (var tag in this.Tags)
-                tag.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
-        }
-
-        public string Header
-        {
-            get
-            {
-                var array = this.Tags
-                    .Where(x => x.IsChecked)
-                    .Select(x => x.TagName).ToArray();
-                if (!array.Any())
-                    return "None";
-                return string.Join("; ", array);
-            }
-        }
-
-        public void InvokeTagListchangedEvent()
-        {
-            this.TagListChangedEvent?.Invoke();
-        }
-
-        ObservableCollection<TagViewModel> _tags;
-        public ObservableCollection<TagViewModel> Tags { get { return _tags; } }
-
-        public List<Guid?> SelectedTagIds { get { return _tags.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
-    }
+    
 }

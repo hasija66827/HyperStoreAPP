@@ -121,7 +121,7 @@ namespace SDKTemplate
                 else if (s.ClassType == typeof(ProductInStock))
                 {
                     HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
-                    SearchBoxFrame.Navigate(typeof(TagCC));
+                    SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
                     LeftBottomFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(BlankPage));

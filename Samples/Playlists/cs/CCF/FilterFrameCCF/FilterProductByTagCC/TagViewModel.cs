@@ -1,4 +1,5 @@
-﻿using Mvvm;
+﻿using Models;
+using Mvvm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,47 +14,56 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public class TagViewModel : BindableBases
+    public sealed class TagViewModel : BindableBases, ITag
     {
-        private DelegateCommand _validateCommand;
-        private Guid? _tagId;
-        public Guid? TagId { get { return this._tagId; } }
-
-        private string _tagName;
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        public string TagName { get { return this._tagName; } set { this._tagName = value; } }
+        public Guid? TagId { get; set; }
+        public string TagName { get; set; }
 
         bool _IsChecked = default(bool);
-        public bool IsChecked { get { return _IsChecked; } set { SetProperty(ref _IsChecked, value); TagCCF.Current.InvokeTagListchangedEvent(); } }
+        public bool IsChecked
+        {
+            get { return _IsChecked; }
+            set
+            {
+                SetProperty(ref _IsChecked, value); FilterProductByTagCC.Current.InvokeTagListchangedEvent();
+            }
+        }
 
         public TagViewModel()
         {
-            _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this._tagId = Guid.NewGuid();
-            this._tagName = "";
-            this._IsChecked = false;
-        }
-
-        public TagViewModel(Guid tagId, string tagName, bool isChecked)
-        {
-            _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
-            this._tagId = tagId;
-            this._tagName = tagName;
-            this._IsChecked = isChecked;
-        }
-
-        public ICommand ValidateCommand
-        {
-            get { return _validateCommand; }
-        }
-
-        private void ValidateAndSave_Executed()
-        {
-            var IsValid = true;//ValidateProperties();
-            TagDataSource.CreateTag(this);
-                MainPage.Current.NotifyUser("New Tag was created succesfully ", NotifyType.StatusMessage);     
         }
     }
+
+
+    public class TagCollection : BindableBases
+    {
+
+        public List<TagViewModel> Tags { get; set; }
+        public string Header
+        {
+            get
+            {
+                var array = this.Tags
+                    .Where(x => x.IsChecked)
+                    .Select(x => x.TagName).ToArray();
+                if (!array.Any())
+                    return "None";
+                return string.Join("; ", array);
+            }
+        }
+
+        public TagCollection()
+        {
+            this.Tags = new List<TagViewModel>();
+        }
+        public TagCollection(List<TagViewModel> tags)
+        {
+            this.Tags = tags;
+            foreach (var tag in this.Tags)
+                tag.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
+        }
+    }
+
 
     public abstract class BindableBases : INotifyPropertyChanged
     {

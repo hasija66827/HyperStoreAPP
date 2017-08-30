@@ -37,8 +37,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             ProductASBCC.Current.SelectedProductChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterProductCC.Current.FilterProductCriteriaChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
-            TagCCF.Current.TagListChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
-          
+            FilterProductByTagCC.Current.TagListChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -56,7 +55,7 @@ namespace SDKTemplate
             ProductFilterCriteriaDTO pfc = new ProductFilterCriteriaDTO()
             {
                 ProductId = selectedProduct?.ProductId,
-                TagIds = TagCCF.Current.SelectedTagIds,
+                TagIds = FilterProductByTagCC.Current.SelectedTagIds,
                 FilterProductQDT = FilterProductCC.Current.ProductFilterQDT
             };
             var products = await ProductDataSource.RetrieveProductDataAsync(pfc);
@@ -67,8 +66,8 @@ namespace SDKTemplate
             ProductCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
         }
 
-      
-     
+
+
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
             UpdateForVisualState(e.NewState, e.OldState);
@@ -91,7 +90,7 @@ namespace SDKTemplate
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-            
+
 
             this.PriceQuotedByWholeSellerCollection =
                 new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
