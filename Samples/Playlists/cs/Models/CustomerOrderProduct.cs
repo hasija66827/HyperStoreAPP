@@ -9,7 +9,6 @@ namespace Models
     public class TCustomerOrderProduct
     {
         public Guid CustomerOrderProductId { get; set; }
-
         public decimal DisplayCostSnapShot { get; set; }
         public decimal DiscountPerSnapShot { get; set; }
         public decimal CGSTPerSnapShot { get; set; }
