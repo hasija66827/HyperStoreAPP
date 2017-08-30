@@ -95,7 +95,7 @@ namespace SDKTemplate
             this.PriceQuotedByWholeSellerCollection =
                 new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
             DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
-            MainPage.Current.NavigateNewsFeedFrame(typeof(ProductDetailsCC), clickedItem);
+            MainPage.Current.NavigateNewsFeedFrame(typeof(ProductFormCC), clickedItem);
 
             this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
 

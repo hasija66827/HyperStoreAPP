@@ -10,7 +10,7 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Create Tag"
+            <TextBlock Text="Add Tag to Product"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
@@ -19,15 +19,11 @@
                     RelativePanel.AlignRightWith="HeaderPanel"
                     RelativePanel.Below="HeaderPanel"
                     Padding="10">
-            <TextBox FontSize="16"
-                     x:Name="TagHeader"
-                     IsReadOnly="True"
-                     TextWrapping="Wrap"
-                     MaxHeight="200" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           MaxHeight="150"
                           Width="300">
-                <ItemsControl x:Name="TagItemControl">
+                <ItemsControl x:Name="TagItemControl"
+                              ItemsSource="{x:Bind _ProductTags}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="local:FilterTagViewModel">
                             <CheckBox Content="{Binding TagName}"

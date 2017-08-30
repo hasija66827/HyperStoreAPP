@@ -180,9 +180,10 @@
     <Compile Include="mvvm2\LaterThanPropertyAttribute.cs" />
     <Compile Include="mvvm2\NumericAttribute.cs" />
     <Compile Include="mvvm2\ValidatableBindableBase.cs" />
-    <Compile Include="ProductTagCC.xaml.cs">
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagCC.xaml.cs">
       <DependentUpon>ProductTagCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagViewModel.cs" />
     <Compile Include="temCC.xaml.cs">
       <DependentUpon>temCC.xaml</DependentUpon>
     </Compile>
@@ -433,7 +434,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductTagCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

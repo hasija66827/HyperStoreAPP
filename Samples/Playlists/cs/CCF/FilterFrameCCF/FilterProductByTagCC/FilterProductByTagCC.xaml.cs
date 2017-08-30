@@ -28,7 +28,7 @@ namespace SDKTemplate
         private FilterTagCollection _TagCollection { get; set; }
         public event TagListChangedDelegate TagListChangedEvent;
 
-        public List<Guid?> SelectedTagIds { get { return _TagCollection?.Tags?.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
+        public List<Guid?> SelectedTagIds { get { return _TagCollection.Tags.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
         public static FilterProductByTagCC Current;
         public FilterProductByTagCC()
         {

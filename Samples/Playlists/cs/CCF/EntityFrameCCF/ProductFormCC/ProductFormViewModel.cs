@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public sealed partial class ProductDetailsCC
+    public sealed partial class ProductFormCC
     {
         private class ProductFormViewModel : ProductViewModelBase, INotifyPropertyChanged
         {
