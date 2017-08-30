@@ -39,7 +39,7 @@
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBlock Text="Optional Description"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="Optional Description TODO"
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.OptionalDescription}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBox x:Name="OTPLabel"
                      Header="Enter OTP"

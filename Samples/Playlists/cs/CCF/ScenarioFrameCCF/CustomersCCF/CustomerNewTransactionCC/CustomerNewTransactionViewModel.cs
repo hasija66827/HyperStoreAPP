@@ -11,6 +11,7 @@ namespace SDKTemplate
     {
         public TCustomer Customer { get; set; }
         public decimal ReceivingAmount { get; set; }
+        public string OptionalDescription { get; set; }
         public decimal UpdatedWalletBalance { get { return (decimal)this.Customer.WalletBalance + this.ReceivingAmount; } }
         public string ProceedToReceive { get { return "Proceed To Receive " + Utility.ConvertToRupee(ReceivingAmount); } }
         public CustomerNewTransactionViewModel() { }

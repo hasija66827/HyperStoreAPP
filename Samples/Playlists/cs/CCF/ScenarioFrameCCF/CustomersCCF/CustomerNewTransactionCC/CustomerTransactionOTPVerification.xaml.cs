@@ -43,6 +43,7 @@ namespace SDKTemplate
                     CustomerId = this._CustomerNewTransactionViewModel?.Customer?.CustomerId,
                     IsCredit = false,
                     TransactionAmount = this._CustomerNewTransactionViewModel?.ReceivingAmount,
+                    Description=this._CustomerNewTransactionViewModel.OptionalDescription,
                 };
                 var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 this.Frame.Navigate(typeof(CustomersCCF));

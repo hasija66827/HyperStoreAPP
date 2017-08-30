@@ -38,7 +38,7 @@
                                Style="{StaticResource LargeListTextBlockStyle}" />
                     <TextBlock Text="Txn Amount"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                    <TextBlock Text="Order No"
+                    <TextBlock Text="Description"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
                 <ListView x:Name="PurchaseHistoriesOfCustomer"

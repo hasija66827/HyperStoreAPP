@@ -261,6 +261,8 @@ namespace SDKTemplate
             [Required]
             [Range(0, 98765432198765)]
             public decimal? TransactionAmount { get; set; }
+
+            public string Description { get; set; }
         }
         #endregion
         #region SupplierTransaction
@@ -274,11 +276,15 @@ namespace SDKTemplate
         {
             [Required]
             public bool? IsCredit { get; set; }
+
             [Required]
             public Guid? SupplierId { get; set; }
+
             [Required]
             [Range(0, 98765432198765)]
             public decimal? TransactionAmount { get; set; }
+
+            public string Description { get; set; }
         }
         #endregion
 

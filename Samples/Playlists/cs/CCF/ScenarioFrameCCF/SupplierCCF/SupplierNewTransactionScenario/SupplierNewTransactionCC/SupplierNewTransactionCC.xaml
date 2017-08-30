@@ -35,6 +35,7 @@
                      Text="{x:Bind _SupplierNewTransactionViewModel.PayingAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
             <TextBox Header="Optional Description"
+                     Text="{x:Bind _SupplierNewTransactionViewModel.OptionalDescription, Mode=TwoWay}"
                      PlaceholderText="Description"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
         </StackPanel>

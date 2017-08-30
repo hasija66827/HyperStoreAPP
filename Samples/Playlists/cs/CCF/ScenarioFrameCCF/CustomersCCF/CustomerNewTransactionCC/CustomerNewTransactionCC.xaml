@@ -36,6 +36,7 @@
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
             <TextBox Header="Optional Description"
                      PlaceholderText="Description"
+                     Text="{x:Bind _CustomerNewTransactionViewModel.OptionalDescription, Mode=TwoWay}"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
