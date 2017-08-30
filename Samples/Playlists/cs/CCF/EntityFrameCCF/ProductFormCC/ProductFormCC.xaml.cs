@@ -8,11 +8,7 @@ using Windows.UI.Xaml.Navigation;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 namespace SDKTemplate
 {
-    public enum Mode
-    {
-        Create,
-        Update
-    }
+    
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -20,9 +16,7 @@ namespace SDKTemplate
     {
         public static ProductDetailsCC Current;
         public ProductViewModelBase ProductViewModelBase { get { return this._PFV; } }
-        public Mode Mode { get { return this._mode; } }
         private ProductFormViewModel _PFV;
-        private Mode _mode;
         public ProductDetailsCC()
         {
             Current = this;
@@ -36,14 +30,12 @@ namespace SDKTemplate
             if (product == null)
             {
                 this._PFV = new ProductFormViewModel();
-                this._mode = Mode.Create;
             }
             else
             {
                 this._PFV = new ProductFormViewModel(product);
                 ProductCodeTB.IsReadOnly = true;
                 ProductNameTB.IsReadOnly = true;
-                this._mode = Mode.Update;
             }
         }
 
@@ -59,7 +51,7 @@ namespace SDKTemplate
                 && Utility.CheckIfUniqueProductCode(ProductCodeTB.Text)
                 )
             {
-                this.Frame.Navigate(typeof(FilterProductByTagCC), this._mode);
+                this.Frame.Navigate(typeof(ProductTagCC));
             }
         }
     }

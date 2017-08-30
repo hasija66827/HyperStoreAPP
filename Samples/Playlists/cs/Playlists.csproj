@@ -103,9 +103,9 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormViewModel.cs" />
-    <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagViewModel.cs" />
-    <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagCC.xaml.cs">
-      <DependentUpon>TagCC.xaml</DependentUpon>
+    <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterTagViewModel.cs" />
+    <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterProductByTagCC.xaml.cs">
+      <DependentUpon>FilterProductByTagCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\SupplierFormCC\SupplierFormCC.xaml.cs">
       <DependentUpon>SupplierFormCC.xaml</DependentUpon>
@@ -180,6 +180,9 @@
     <Compile Include="mvvm2\LaterThanPropertyAttribute.cs" />
     <Compile Include="mvvm2\NumericAttribute.cs" />
     <Compile Include="mvvm2\ValidatableBindableBase.cs" />
+    <Compile Include="ProductTagCC.xaml.cs">
+      <DependentUpon>ProductTagCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="temCC.xaml.cs">
       <DependentUpon>temCC.xaml</DependentUpon>
     </Compile>
@@ -326,7 +329,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CCF\FilterFrameCCF\FilterProductByTagCC\TagCC.xaml">
+    <Page Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterProductByTagCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -427,6 +430,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductConsumptionTrendBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductTagCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

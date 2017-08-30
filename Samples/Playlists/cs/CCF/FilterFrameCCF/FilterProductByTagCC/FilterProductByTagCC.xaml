@@ -10,7 +10,7 @@
             <Border  x:Name="HeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Add Tag"
+                <TextBlock Text="Filter By Tag"
                            Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
             <StackPanel x:Name="ContentPanel"
@@ -29,7 +29,7 @@
                               Width="300">
                     <ItemsControl x:Name="TagItemControl">
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="local:TagViewModel">
+                            <DataTemplate x:DataType="local:FilterTagViewModel">
                                 <CheckBox Content="{Binding TagName}"
                                           FontSize="14"
                                           Foreground="Black"
@@ -40,12 +40,6 @@
                     </ItemsControl>
                 </ScrollViewer>
             </StackPanel>
-            <Button Content="Save"
-                    x:Name="SaveBtn"
-                    Style="{StaticResource FormButtonStyle}"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    Click="SaveBtn_Click"
-                    Width="305" />
         </RelativePanel>
     </Grid>
 </Page>

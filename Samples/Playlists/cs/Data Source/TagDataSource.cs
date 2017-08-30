@@ -10,8 +10,8 @@ namespace SDKTemplate
 {
     class TagDataSource
     {
-        private static List<TagViewModel> _tags;
-        public static List<TagViewModel> Tags { get { return _tags; } }
+        private static List<FilterTagViewModel> _tags;
+        public static List<FilterTagViewModel> Tags { get { return _tags; } }
 
         #region Create
         public static async Task<TTag> CreateNewTagAsync(TagDTO tagDTO)

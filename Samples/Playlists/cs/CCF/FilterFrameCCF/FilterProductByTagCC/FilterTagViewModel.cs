@@ -14,7 +14,7 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed class TagViewModel : BindableBases, ITag
+    public sealed class FilterTagViewModel : BindableBases, ITag
     {
         public Guid? TagId { get; set; }
         public string TagName { get; set; }
@@ -29,16 +29,15 @@ namespace SDKTemplate
             }
         }
 
-        public TagViewModel()
+        public FilterTagViewModel()
         {
         }
     }
 
 
-    public class TagCollection : BindableBases
+    public class FilterTagCollection
     {
-
-        public List<TagViewModel> Tags { get; set; }
+        public List<FilterTagViewModel> Tags { get; set; }
         public string Header
         {
             get
@@ -52,15 +51,14 @@ namespace SDKTemplate
             }
         }
 
-        public TagCollection()
+        public FilterTagCollection()
         {
-            this.Tags = new List<TagViewModel>();
+            this.Tags = new List<FilterTagViewModel>();
         }
-        public TagCollection(List<TagViewModel> tags)
+        public FilterTagCollection(List<FilterTagViewModel> tags)
         {
             this.Tags = tags;
-            foreach (var tag in this.Tags)
-                tag.PropertyChanged += (s, e) => base.RaisePropertyChanged("Header");
+            
         }
     }
 

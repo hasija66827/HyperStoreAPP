@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="SDKTemplate.ProductTagCC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDKTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Create Tag"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <StackPanel x:Name="ContentPanel"
+                    Orientation="Vertical"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWith="HeaderPanel"
+                    RelativePanel.Below="HeaderPanel"
+                    Padding="10">
+            <TextBox FontSize="16"
+                     x:Name="TagHeader"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     MaxHeight="200" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          MaxHeight="150"
+                          Width="300">
+                <ItemsControl x:Name="TagItemControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="local:FilterTagViewModel">
+                            <CheckBox Content="{Binding TagName}"
+                                      FontSize="14"
+                                      Foreground="Black"
+                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"
+                                      IsThreeState="False" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+        <Button Content="Save"
+                x:Name="SaveBtn"
+                Style="{StaticResource FormButtonStyle}"
+                RelativePanel.AlignBottomWithPanel="True"
+                Click="SaveBtn_Click"
+                Width="305" />
+    </RelativePanel>
+</Page>

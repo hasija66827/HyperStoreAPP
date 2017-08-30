@@ -196,7 +196,7 @@ namespace DatabaseModel
 
         public Tag()
         { }
-        public Tag(TagViewModel tag)
+        public Tag(FilterTagViewModel tag)
         {
             this.TagId = tag.TagId ?? Guid.NewGuid();
             this.TagName = tag.TagName;
