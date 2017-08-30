@@ -8,53 +8,52 @@
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="10,20,0,0"
-                    local:MarginSetter.Margin="5">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Payee Name"
-                           Style="{ThemeResource FormTBPropStyle}" />
-                <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
-                           Style="{ThemeResource FormTBValueStyle}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Mobile Number"
-                           Style="{ThemeResource FormTBPropStyle}" />
-                <TextBlock Text="{x:Bind  _SupplierNewTransactionViewModel.Supplier.MobileNo}"
-                           Style="{ThemeResource FormTBValueStyle}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Amount"
-                           Style="{ThemeResource FormTBPropStyle}" />
-                <TextBlock Text="{x:Bind  _SupplierNewTransactionViewModel.CreditAmount, Converter={StaticResource FloatToRupeeConverter}}"
-                           Style="{ThemeResource FormTBValueStyle}" />
-            </StackPanel>
-            <StackPanel Orientation="Vertical"
-                        Margin="0,80">
-                <TextBlock Text="Enter OTP"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource SampleHeaderTextStyle}" />
-                <TextBlock x:Name="MobNoTB"
-                           Text="9632166827"
-                           Foreground="#FF08BFC2"
-                           HorizontalAlignment="Center" />
-                <TextBox x:Name="OTPTB"
-                         Width="120"
-                         PlaceholderText="6 digit"
-                         Grid.Row="3"
-                         Grid.Column="1"
-                         HorizontalContentAlignment="Right" />
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Margin="0,20">
-                    <Button x:Name="VerifyBtn"
-                            Content="Verify"
-                            Click="VerifyBtn_Click"/>
-                    <Button x:Name="ResendBtn"
-                            Margin="40,0,0,0"
-                            Content="Resend" />
-                </StackPanel>
-            </StackPanel>
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="OTP Verification"
+                       Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+        </Border>
+        <StackPanel x:Name="ContentPanel"
+                    RelativePanel.Below="HeaderPanel">
+            <TextBlock Text="Payee Name"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBlock Text="Mobile Number"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBlock Text="Wallet Balance"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBlock Text="Amount"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.CreditAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBlock Text="Updated Wallet Balance"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBlock Text="Optional Description"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="Optional Description TODO"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBox 
+                x:Name="OTPLabel"
+                Header="Enter OTP"
+                     PlaceholderText="Enter OTP"
+                     Style="{ThemeResource LargeFormTextBoxStyle}" />
         </StackPanel>
-    </Grid>
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True">
+            <Button Content="{x:Bind _SupplierNewTransactionViewModel.ProceedToPay}"
+                    x:Name="ProceedToPayBtn"
+                    Click="VerifyBtn_Click"
+                    Style="{StaticResource ScenarioButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
 </Page>

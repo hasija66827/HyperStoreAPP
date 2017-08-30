@@ -36,7 +36,7 @@ namespace SDKTemplate
         private async void VerifyBtn_Click(object sender, RoutedEventArgs e)
         {
             // TODO: verify OTP
-            if (OTPTB.Text == "123456")
+            if (OTPLabel.Text == "123456")
             {
                 var transactionDTO = new SupplierTransactionDTO()
                 {

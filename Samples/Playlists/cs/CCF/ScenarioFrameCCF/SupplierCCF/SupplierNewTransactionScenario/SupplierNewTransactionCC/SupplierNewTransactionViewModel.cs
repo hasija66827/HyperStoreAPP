@@ -11,6 +11,8 @@ namespace SDKTemplate
     {
         public TSupplier Supplier { get; set; }
         public decimal CreditAmount { get; set; }
+        public decimal UpdatedWalletBalance { get { return this.Supplier.WalletBalance - this.CreditAmount; } }
+        public string ProceedToPay { get { return "Proceed To Pay " + Utility.ConvertToRupee(CreditAmount); } }
         public SupplierNewTransactionViewModel()
         {
         }

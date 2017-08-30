@@ -7,34 +7,44 @@
       mc:Ignorable="d">
     <UserControl.Resources>
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="10,20,0,0"
-                   >
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Payee Name"
-                           Style="{ThemeResource FormTBPropStyle}" />
-                <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
-                           Style="{ThemeResource FormTBValueStyle}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Mobile Number"
-                           Style="{ThemeResource FormTBPropStyle}" />
-                <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
-                           Style="{ThemeResource FormTBValueStyle}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Amount"
-                           Style="{ThemeResource FormTBPropStyle}" />
-                <TextBox PlaceholderText="Enter Amount"
-                         Text="{x:Bind _SupplierNewTransactionViewModel.CreditAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                         Style="{ThemeResource FormTextBoxStyle}" />
-            </StackPanel>
-            <Button 
-                x:Name="AddMoney"
-                Content="Add Money"
-                Click="AddMoney_Click"
-                    />
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Send Money"
+                       Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+        </Border>
+        <StackPanel x:Name="ContentPanel"
+                    RelativePanel.Below="HeaderPanel">
+            <TextBlock Text="Payee Name"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBlock Text="Mobile Number"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBlock Text="Wallet Balance"
+                       Style="{ThemeResource LargeFormTBPropStyle}" />
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                       Style="{ThemeResource LargeFormTBValueStyle}" />
+            <TextBox Header="Enter Amount"
+                     PlaceholderText="Enter Amount"
+                     Text="{x:Bind _SupplierNewTransactionViewModel.CreditAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Style="{ThemeResource LargeFormTextBoxStyle}" />
+            <TextBox Header="Optional Description"
+                     PlaceholderText="Description"
+                     Style="{ThemeResource LargeFormTextBoxStyle}" />
         </StackPanel>
-    </Grid>
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True">
+            <Button Content="Proceed"
+                    x:Name="ProceedBtn"
+                    Click="AddMoney_Click"
+                    Style="{StaticResource ScenarioButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
 </Page>

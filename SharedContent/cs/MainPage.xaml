@@ -32,13 +32,14 @@
                    DisplayMode="CompactOverlay"
                    Grid.Row="1"
                    Opacity="0.95"
-                   Foreground="Gold"
+                  
                    PaneBackground="#F202090B">
             <SplitView.Pane>
                 <RelativePanel Margin="10,0,0,0">
                     <TextBlock x:Name="SampleTitle"
                                Text="Sample Title Here"
                                Style="{StaticResource SampleHeaderTextStyle}"
+                               Foreground="Gold"
                                TextWrapping="Wrap"
                                Margin="0,10,0,0" />
                     <ListBox x:Name="ScenarioControl"
