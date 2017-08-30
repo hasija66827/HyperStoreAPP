@@ -132,6 +132,13 @@
       <DependentUpon>CustomerTrendCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerTransactionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerNewTransactionCC.xaml.cs">
+      <DependentUpon>CustomerNewTransactionCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerNewTransactionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerTransactionOTPVerification.xaml.cs">
+      <DependentUpon>CustomerTransactionOTPVerification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data Source\CustomerTransactionDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
@@ -387,6 +394,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\NewsFeedFrame\CustomerTrend\CustomerTrendCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerNewTransactionCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerTransactionOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

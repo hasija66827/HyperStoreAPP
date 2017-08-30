@@ -79,8 +79,8 @@
                             Orientation="Horizontal"
                             RelativePanel.AlignBottomWithPanel="True">
                     <Button x:Name="SendMoney"
-                            Content="{x:Bind SendMoneyToSupplier}"
-                            Click="SendMoney_Click"
+                            Content="{x:Bind PayMoneyToSupplier}"
+                            Click="PayMoney_Click"
                             Style="{StaticResource ScenarioButtonStyle}" />
                 </StackPanel>
             </StackPanel>

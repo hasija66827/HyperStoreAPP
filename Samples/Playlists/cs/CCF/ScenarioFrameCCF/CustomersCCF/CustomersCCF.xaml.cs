@@ -81,7 +81,15 @@ namespace SDKTemplate
             var transactions = await CustomerTransactionDataSource.RetrieveTransactionsAsync(tfc);
             var customerTransactionCollection = new CustomerTransactionCollection();
             customerTransactionCollection.Transactions = transactions.Select(t => new CustomerTransactionViewModel(t)).ToList();
+            customerTransactionCollection.CustomerName = selectedCustomer.Name;
             DetailContentPresenter.Content = customerTransactionCollection;
+        }
+
+        private void ReceiveMoney_Click(object sender, RoutedEventArgs e)
+        {
+            var selecetedCustomer = (TCustomer)MasterListView.SelectedItem;
+            if (selecetedCustomer != null)
+                this.Frame.Navigate(typeof(CustomerNewTransactionCC), selecetedCustomer);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.SupplierTransactionOTPVerificationCC"
+﻿<Page x:Class="SDKTemplate.CustomerNewTransactionCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -6,52 +6,44 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
+        <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="OTP Verification"
+            <TextBlock Text="Receive Money"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
                     RelativePanel.Below="HeaderPanel">
-            <TextBlock Text="Payee Name"
+            <TextBlock Text="Payer Name"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
+            <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.Name}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBlock Text="Mobile Number"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
+            <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.MobileNo}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBlock Text="Wallet Balance"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+            <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Amount"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.PayingAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Updated Wallet Balance"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Optional Description"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="Optional Description TODO"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBox x:Name="OTPLabel"
-                     Header="Enter OTP"
-                     PlaceholderText="Enter OTP"
+            <TextBox Header="Enter Amount To Receive"
+                     PlaceholderText="Enter Amount"
+                     Text="{x:Bind _CustomerNewTransactionViewModel.ReceivingAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Style="{ThemeResource LargeFormTextBoxStyle}" />
+            <TextBox Header="Optional Description"
+                     PlaceholderText="Description"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">
-            <Button Content="{x:Bind _SupplierNewTransactionViewModel.ProceedToPay}"
-                    x:Name="ProceedToPayBtn"
-                    Click="VerifyBtn_Click"
+            <Button Content="Proceed"
+                    x:Name="ProceedBtn"
+                    Click="ProceedBtn_Click"
                     Style="{StaticResource ScenarioButtonStyle}" />
         </StackPanel>
     </RelativePanel>

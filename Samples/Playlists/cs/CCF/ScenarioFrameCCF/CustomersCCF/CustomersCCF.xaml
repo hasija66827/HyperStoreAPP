@@ -71,6 +71,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <StackPanel x:Name="CommandPanel"
+                            Orientation="Horizontal"
+                            RelativePanel.AlignBottomWithPanel="True">
+                    <Button x:Name="ReceiveMoney"
+                            Content="{x:Bind ReceiveMoneyFromCustomer}"
+                            Click="ReceiveMoney_Click"
+                            Style="{StaticResource ScenarioButtonStyle}" />
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>

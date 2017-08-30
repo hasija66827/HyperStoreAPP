@@ -39,7 +39,7 @@ namespace SDKTemplate
     public sealed class SupplierTransactionCollection
     {
         public List<SupplierTransactionViewModel> Transactions { get; set; }
-        public string SendMoneyToSupplier { get { return "Send Money to " + this.SupplierName; } }
+        public string PayMoneyToSupplier { get { return "Pay Money to " + this.SupplierName; } }
         public string SupplierName { get; set; }        
         public SupplierTransactionCollection() { }
     }

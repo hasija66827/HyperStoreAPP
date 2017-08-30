@@ -82,10 +82,11 @@ namespace SDKTemplate
             DetailContentPresenter.Content = supplierTransactionCollection;
         }
 
-        private void SendMoney_Click(object sender, RoutedEventArgs e)
+        private void PayMoney_Click(object sender, RoutedEventArgs e)
         {
             var selectedSupplier = (TSupplier)MasterListView.SelectedItem;
-            this.Frame.Navigate(typeof(SupplierNewTransactionCC), selectedSupplier);
+            if (selectedSupplier != null)
+                this.Frame.Navigate(typeof(SupplierNewTransactionCC), selectedSupplier);
         }
 
         private void TransactionHistoriesOfWholeSellers_ItemClick(object sender, ItemClickEventArgs e)

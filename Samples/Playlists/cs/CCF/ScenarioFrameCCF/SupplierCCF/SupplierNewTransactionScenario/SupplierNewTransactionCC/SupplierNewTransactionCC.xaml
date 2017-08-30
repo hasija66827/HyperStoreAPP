@@ -13,7 +13,7 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Send Money"
+            <TextBlock Text="Pay Money"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
@@ -30,9 +30,9 @@
                        Style="{ThemeResource LargeFormTBPropStyle}" />
             <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBox Header="Enter Amount"
+            <TextBox Header="Enter Amount To Pay"
                      PlaceholderText="Enter Amount"
-                     Text="{x:Bind _SupplierNewTransactionViewModel.CreditAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind _SupplierNewTransactionViewModel.PayingAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
             <TextBox Header="Optional Description"
                      PlaceholderText="Description"
@@ -43,7 +43,7 @@
                     RelativePanel.AlignBottomWithPanel="True">
             <Button Content="Proceed"
                     x:Name="ProceedBtn"
-                    Click="AddMoney_Click"
+                    Click="ProceedBtn_Click"
                     Style="{StaticResource ScenarioButtonStyle}" />
         </StackPanel>
     </RelativePanel>

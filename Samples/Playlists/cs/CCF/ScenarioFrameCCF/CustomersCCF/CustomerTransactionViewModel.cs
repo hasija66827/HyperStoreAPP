@@ -38,6 +38,8 @@ namespace SDKTemplate
     public sealed class CustomerTransactionCollection
     {
         public List<CustomerTransactionViewModel> Transactions { get; set; }
+        public string CustomerName { get; set; }
+        public string ReceiveMoneyFromCustomer { get { return "Receive Money from " + this.CustomerName; } }
         public CustomerTransactionCollection() { }
     }
 }

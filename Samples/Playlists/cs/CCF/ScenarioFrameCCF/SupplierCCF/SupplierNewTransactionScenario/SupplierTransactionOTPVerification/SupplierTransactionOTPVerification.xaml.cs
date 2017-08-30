@@ -42,7 +42,7 @@ namespace SDKTemplate
                 {
                     SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.SupplierId,
                     IsCredit = false,
-                    TransactionAmount = this._SupplierNewTransactionViewModel?.CreditAmount
+                    TransactionAmount = this._SupplierNewTransactionViewModel?.PayingAmount
                 };
                 var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
 

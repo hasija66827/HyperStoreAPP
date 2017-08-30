@@ -21,27 +21,26 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierNewTransactionCC : Page
+    public sealed partial class CustomerNewTransactionCC : Page
     {
-        private SupplierNewTransactionViewModel _SupplierNewTransactionViewModel { get; set; }
-        public SupplierNewTransactionCC()
+        private CustomerNewTransactionViewModel _CustomerNewTransactionViewModel { get; set; }
+        public CustomerNewTransactionCC()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var selectedSupplier = (TSupplier)e.Parameter;
-            this._SupplierNewTransactionViewModel = new SupplierNewTransactionViewModel()
+            var selecetedCustomer = (TCustomer)e.Parameter;
+            this._CustomerNewTransactionViewModel = new CustomerNewTransactionViewModel()
             {
-                PayingAmount = 0,
-                Supplier = selectedSupplier
+                Customer = selecetedCustomer,
+                ReceivingAmount = 0,
             };
         }
-
         private void ProceedBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SupplierTransactionOTPVerificationCC), this._SupplierNewTransactionViewModel);
+            this.Frame.Navigate(typeof(CustomerTransactionOTPVerification), this._CustomerNewTransactionViewModel);
         }
     }
 }
