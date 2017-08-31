@@ -29,7 +29,6 @@ namespace SDKTemplate
     public sealed partial class ProductInStock : Page
     {
         public event ProductStockSelectionChangedDelegate ProductStockSelectionChangedEvent;
-        public PriceQuotedByWholeSellerCollection PriceQuotedByWholeSellerCollection { get; set; }
         public static ProductInStock Current;
         public ProductInStock()
         {
@@ -66,8 +65,6 @@ namespace SDKTemplate
             ProductCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
         }
 
-
-
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
             UpdateForVisualState(e.NewState, e.OldState);
@@ -87,16 +84,15 @@ namespace SDKTemplate
             // Assure we are displaying the correct item. This is necessary in certain adaptive cases.
             //MasterListView.SelectedItem = _lastSelectedItem;
         }
-        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
 
-
-            this.PriceQuotedByWholeSellerCollection =
-                new PriceQuotedByWholeSellerCollection(AnalyticsDataSource.GetWholeSellersForProduct(clickedItem.ProductId));
-            DetailContentPresenter.Content = this.PriceQuotedByWholeSellerCollection;
+            var x = await AnalyticsDataSource.RetrieveLatestPriceQuotedBySupplierAsync(clickedItem.ProductId);
+            var priceQuotedByWholeSellerCollection = new PriceQuotedBySupplierCollection();
+            priceQuotedByWholeSellerCollection.PriceQuotedBySuppliers = x;
+            DetailContentPresenter.Content = priceQuotedByWholeSellerCollection;
             MainPage.Current.NavigateNewsFeedFrame(typeof(ProductFormCC), clickedItem);
-
             this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
 
             // Play a refresh animation when the user switches detail items.

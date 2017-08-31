@@ -15,6 +15,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:customControl="using:UWP"
       xmlns:common="using:SDKTemplate"
+      xmlns:model="using:Models"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
@@ -54,7 +55,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="common:PriceQuotedByWholeSellerCollection">
+                      x:DataType="common:PriceQuotedBySupplierCollection">
             <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
@@ -67,29 +68,28 @@
                     <TextBlock Text="Latest Purchase Price"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
-                <ListView x:Name="PriceListByWholeSellersListView"
-                          ItemsSource="{x:Bind PriceQuotedByWholeSellers}"
+                <ListView x:Name="PriceListBySuppliersListView"
+                          ItemsSource="{x:Bind PriceQuotedBySuppliers}"
                           RelativePanel.Below="StaticLabelsForList"
                           RelativePanel.AlignRightWith="StaticLabelsForList"
                           RelativePanel.AlignLeftWith="StaticLabelsForList"
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="common:PriceQuotedByWholeSellerViewModel">
+                        <DataTemplate x:DataType="model:TPriceQuotedBySupplier">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
-                                <RadioButton GroupName="xxx"
-                                             IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
-                                             Content="{x:Bind WholeSellerName, Mode=OneWay}"
-                                             Width="150" />
-                                <TextBlock x:Name="WholeSellerMobileNo"
-                                           Text="{x:Bind WholeSellerMobileNo, Mode=OneWay}"
+                                <TextBlock x:Name="SupplierName"
+                                           Text="{x:Bind Supplier.Name, Mode=OneTime}"
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                <TextBlock x:Name="SupplierMobileNo"
+                                           Text="{x:Bind Supplier.MobileNo, Mode=OneTime}"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="OrderDate"
-                                           Text="{x:Bind FormattedOrderDate, Mode=OneWay}"
+                                           Text="{x:Bind OrderDate, Mode=OneTime}"
                                            Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="PurchasePrice"
                                            Foreground="Black"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind PurchasePrice, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter}}" />
+                                           Text="{x:Bind PurchasePrice, Mode=OneTime,Converter={StaticResource FloatToRupeeConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

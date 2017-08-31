@@ -163,6 +163,7 @@
     <Compile Include="Models\CustomerOrderProduct.cs" />
     <Compile Include="Models\CustomerPurchaseTrend.cs" />
     <Compile Include="Models\CustomerTransaction.cs" />
+    <Compile Include="Models\PriceQuotedBySupplier.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\ProductTrend.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -66,25 +67,9 @@ namespace SDKTemplate
     /// <summary>
     /// This class is used by detail page of Product in stock page.
     /// </summary>
-    public class PriceQuotedByWholeSellerCollection
+    public class PriceQuotedBySupplierCollection
     {
-        private List<PriceQuotedByWholeSellerViewModel> _priceQuotedByWholeSellers;
-        public List<PriceQuotedByWholeSellerViewModel> PriceQuotedByWholeSellers
-        {
-            get { return this._priceQuotedByWholeSellers; }
-            set
-            {
-                this._priceQuotedByWholeSellers = value;
-            }
+        public List<TPriceQuotedBySupplier> PriceQuotedBySuppliers{get; set;
         }
-        public PriceQuotedByWholeSellerCollection(List<PriceQuotedByWholeSeller> items)
-        {
-            this._priceQuotedByWholeSellers = new List<PriceQuotedByWholeSellerViewModel>();
-            foreach (var item in items)
-            {
-                this._priceQuotedByWholeSellers.Add(new PriceQuotedByWholeSellerViewModel(item));
-            }
-        }
-
     }
 }
