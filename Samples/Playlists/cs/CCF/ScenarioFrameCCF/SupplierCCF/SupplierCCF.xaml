@@ -78,10 +78,10 @@
                 <StackPanel x:Name="CommandPanel"
                             Orientation="Horizontal"
                             RelativePanel.AlignBottomWithPanel="True">
-                    <Button x:Name="SendMoney"
+                    <Button x:Name="PayMoney"
                             Content="{x:Bind PayMoneyToSupplier}"
                             Click="PayMoney_Click"
-                            Style="{StaticResource ScenarioButtonStyle}" />
+                            Style="{StaticResource DetailButtonStyle}" />
                 </StackPanel>
             </StackPanel>
         </DataTemplate>

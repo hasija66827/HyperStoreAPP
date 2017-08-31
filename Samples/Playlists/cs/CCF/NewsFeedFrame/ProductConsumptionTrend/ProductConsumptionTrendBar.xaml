@@ -6,12 +6,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
       mc:Ignorable="d">
-    <Grid Background="White">
-        <TextBlock x:Name="HeaderForBillingSummary"
-                   Text="Product Consumption"
-                   Margin="0,0,0,10"
-                   Style="{StaticResource SampleHeaderTextStyle}" />
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Product Consumption Trend"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
         <Charting:Chart x:Name="ColumnChart"
+                        RelativePanel.Below="HeaderPanel"
                         HorizontalAlignment="Left"
                         Margin="0"
                         Width="350">
@@ -20,5 +23,5 @@
                                    CharacterSpacing="4"
                                    IsSelectionEnabled="True" />
         </Charting:Chart>
-    </Grid>
+    </RelativePanel>
 </Page>

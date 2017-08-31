@@ -13,13 +13,18 @@ namespace SDKTemplate
     public sealed class CustomerPurchaseTrendCollectionViewModel
     {
         public List<TCustomerPurchaseTrend> CustomerPurchaseTrends { get; set; }
-        public decimal NetWorthOfCustomer {
-            get {
+        public string CustomerName { get; set; }
+        private decimal _NetWorthOfCustomer
+        {
+            get
+            {
                 if (CustomerPurchaseTrends.Count() == 0)
                     return 0;
                 else
                     return CustomerPurchaseTrends.Sum(cpt => cpt.NetValue);
-            } }
+            }
+        }
+        public string FormattedNetWorth { get { return String.Format("Net Worth of {0} is \u20b9 {1}", CustomerName, _NetWorthOfCustomer); } }
         public CustomerPurchaseTrendCollectionViewModel() { }
     }
 }

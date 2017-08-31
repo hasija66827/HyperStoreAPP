@@ -20,48 +20,65 @@
                     <TextBlock Text="Net Value"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                 </StackPanel>
-                <ListView x:Name="PurchaseHistoriesOfCustomer"
-                          ItemsSource="{x:Bind CustomerPurchaseTrends}"
-                          Style="{StaticResource ListViewStyle}"
-                          RelativePanel.Below="HeaderPanel">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:TCustomerPurchaseTrend">
-                            <StackPanel Style="{StaticResource ListItemStackPanel}">
-                                <TextBlock x:Name="ProductName"
-                                           Style="{StaticResource LargeListTextBlockStyle}"
-                                           Text="{x:Bind Product.Name, Mode=OneWay}" />
-                                <TextBlock x:Name="TotalQuantity"
-                                           Foreground="Black"
-                                           Style="{StaticResource LargeListTextBlockStyle}"
-                                           Text="{x:Bind TotalQuantityPurchased, Mode=OneWay}" />
-                                <TextBlock x:Name="NetValue"
-                                           FontSize="16"
-                                           Foreground="#FFFF2FAE"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Width="158"
-                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <StackPanel RelativePanel.AlignBottomWithPanel="True">
-                    <TextBlock x:Name="NetWorthOfCustomer"
-                               FontSize="16"
-                               Foreground="#FFFF2FAE"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}"
-                               Width="158"
-                               Text="{x:Bind NetWorthOfCustomer, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                <ScrollViewer x:Name="ContentPanel"
+                              RelativePanel.Below="HeaderPanel"
+                              VerticalScrollBarVisibility="Auto"
+                              Height="340">
+                    <ListView x:Name="PurchaseHistoriesOfCustomer"
+                              ItemsSource="{x:Bind CustomerPurchaseTrends}"
+                              Style="{StaticResource ListViewStyle}"
+                              RelativePanel.Below="HeaderPanel">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:TCustomerPurchaseTrend">
+                                <StackPanel Style="{StaticResource ListItemStackPanel}">
+                                    <TextBlock x:Name="ProductName"
+                                               Style="{StaticResource LargeListTextBlockStyle}"
+                                               Text="{x:Bind Product.Name, Mode=OneWay}" />
+                                    <TextBlock x:Name="TotalQuantity"
+                                               Foreground="Black"
+                                               Style="{StaticResource LargeListTextBlockStyle}"
+                                               Text="{x:Bind TotalQuantityPurchased, Mode=OneWay}" />
+                                    <TextBlock x:Name="NetValue"
+                                               FontSize="16"
+                                               Foreground="#FFFF2FAE"
+                                               Style="{StaticResource VeryLargeListTextBlockStyle}"
+                                               Width="158"
+                                               Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+                <StackPanel RelativePanel.AlignBottomWithPanel="True"
+                            RelativePanel.Below="ContentPanel">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Current Monthly Usage " />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="NetWorthOfCustomer"
+                                   FontSize="16"
+                                   Style="{StaticResource VeryLargeListTextBlockStyle}"
+                                   Width="300"
+                                   Text="{x:Bind FormattedNetWorth, Mode=OneWay}" />
+                    </StackPanel>
                 </StackPanel>
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Customer Purchase Trend"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
         <ContentPresenter x:Name="CustomerTrendContentPresenter"
+                          RelativePanel.Below="HeaderPanel"
                           ContentTemplate="{StaticResource CustomerPurchaseTrend}">
             <ContentPresenter.ContentTransitions>
                 <!-- Empty by default. See MasterListView_ItemClick -->
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-    </Grid>
+    </RelativePanel>
 </Page>

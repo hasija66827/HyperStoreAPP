@@ -77,7 +77,7 @@
                     <Button x:Name="ReceiveMoney"
                             Content="{x:Bind ReceiveMoneyFromCustomer}"
                             Click="ReceiveMoney_Click"
-                            Style="{StaticResource ScenarioButtonStyle}" />
+                            Style="{StaticResource DetailButtonStyle}" />
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
