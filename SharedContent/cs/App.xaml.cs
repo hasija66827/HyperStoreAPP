@@ -15,7 +15,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using DatabaseModel;
+ 
 using Microsoft.EntityFrameworkCore;
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
@@ -33,10 +33,6 @@ namespace SDKTemplate
         public App()
         {
             this.InitializeComponent();
-            using (var db = new RetailerContext())
-            {
-                db.Database.Migrate();
-            }
             this.Construct();
         }
 

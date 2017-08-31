@@ -133,7 +133,7 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
-                    NewsFeedFrame.Navigate(typeof(SettledOrdersOfTransactionCC));
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(BlankPage));
                 }
                 else if (s.ClassType == typeof(SupplierPurchasedProductListCC))

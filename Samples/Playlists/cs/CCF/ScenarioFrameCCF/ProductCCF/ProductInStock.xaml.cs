@@ -99,19 +99,7 @@ namespace SDKTemplate
             EnableContentTransitions();
         }
 
-        private void AddToCartBtnVisibility(bool visibilty)
-        {
-            if (visibilty == true)
-            {
-                AddToCartBtn.Visibility = Visibility.Visible;
-                GoToCartBtn.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                AddToCartBtn.Visibility = Visibility.Collapsed;
-                GoToCartBtn.Visibility = Visibility.Visible;
-            }
-        }
+        
 
         private void EnableContentTransitions()
         {

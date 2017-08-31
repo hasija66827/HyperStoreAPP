@@ -13,7 +13,7 @@ namespace SDKTemplate
     {
         #region Create
         public static async Task<TProduct> CreateNewProductAsync(ProductDTO productDTO)
-        {  
+        {
             string actionURI = "products";
             var x = await Utility.CreateAsync<TProduct>(actionURI, productDTO);
             return x;
@@ -53,47 +53,5 @@ namespace SDKTemplate
 
         }
         #endregion
-
-
-        public static List<ProductListToPurchaseViewModel> RetreiveProductListToPurchaseByRespectiveWholeSellers()
-        {
-            var items = new List<ProductListToPurchaseViewModel>();
-            /*
-            var db = new DatabaseModel.RetailerContext();
-            var groups = db.Products.GroupBy(p => p.WholeSellerId);
-            foreach (var group in groups)
-            {
-                var item = new ProductListToPurchaseViewModel();
-                item.WholeSellerViewModel = WholeSellerDataSource.GetWholeSellerById(group.Key);
-                if (item.WholeSellerViewModel == null)
-                {
-                    item.WholeSellerViewModel = new WholeSellerViewModel();
-                    item.WholeSellerViewModel.Name = "Not In Cart";
-                }
-                item.Products = group.Select(p => new ProductViewModelBase(p)).ToList();
-                items.Add(item);
-            }*/
-            return items;
-        }
-
-
-        /// <summary>
-        /// Updates the product with the wholeseller from which we have to purchase the product.
-        /// </summary>
-        /// <param name="productId"></param>
-        /// <param name="wholeSellerId"></param>
-        /// <returns></returns>
-        public static bool UpdateWholSellerIdForProduct(Guid productId, Guid? wholeSellerId)
-        {
-            var db = new DatabaseModel.RetailerContext();
-            var products = db.Products.Where(p => p.ProductId == productId).ToList();
-            var product = products.FirstOrDefault();
-            if (product == null)
-                throw new Exception(string.Format("Product {0} not found while updating the product", product.Name));
-            product.WholeSellerId = wholeSellerId;
-            db.Update(product);
-            db.SaveChanges();
-            return true;
-        }
-            }
+    }
 }

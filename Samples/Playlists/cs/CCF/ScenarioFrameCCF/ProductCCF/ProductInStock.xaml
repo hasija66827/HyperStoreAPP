@@ -148,7 +148,7 @@
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}"
                  Grid.Column="1">
-            <TextBlock Text="Purchase History of Product"
+            <TextBlock Text="Price Quoted By Supplier"
                        Style="{StaticResource DetailHeaderTextBlockStyle}" />
         </Border>
         <ListView x:Name="MasterListView"
@@ -177,19 +177,5 @@
                 <TransitionCollection />
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
-        <Button Content="Add To Cart"
-                x:Name="AddToCartBtn"
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="450"
-                Visibility="Visible"
-                HorizontalAlignment="Center" />
-        <Button Content="Go To Cart"
-                x:Name="GoToCartBtn"
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="450"
-                HorizontalAlignment="Center"
-                Visibility="Collapsed" />
     </Grid>
 </Page>

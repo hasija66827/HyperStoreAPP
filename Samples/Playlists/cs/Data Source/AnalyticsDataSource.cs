@@ -8,30 +8,6 @@ using Models;
 
 namespace SDKTemplate
 {
-    public class PriceQuotedByWholeSeller
-    {
-        public Guid? wholeSellerId;
-        public DateTime orderDate;
-        public Guid? productId;
-        public decimal purchasePrice;
-
-        public PriceQuotedByWholeSeller(Guid? wholeSellerId, DateTime orderDate, Guid? productId, decimal purchasePrice)
-        {
-            this.wholeSellerId = wholeSellerId;
-            this.orderDate = orderDate;
-            this.productId = productId;
-            this.purchasePrice = purchasePrice;
-        }
-
-        public PriceQuotedByWholeSeller()
-        {
-            this.wholeSellerId = null;
-            this.orderDate = DateTime.Now.AddYears(-100);
-            this.productId = null;
-            this.purchasePrice = 0;
-        }
-    }
-
     public class AnalyticsDataSource
     {
         public static async Task<List<TCustomerPurchaseTrend>> RetrieveCustomerPurchaseTrend(CustomerPurchaseTrendDTO customerPurchaseTrendDTO)

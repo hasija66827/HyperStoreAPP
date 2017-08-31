@@ -121,7 +121,6 @@
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
-    <Compile Include="CivilizationViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormCC.xaml.cs">
       <DependentUpon>TagFormCC.xaml</DependentUpon>
     </Compile>
@@ -143,21 +142,10 @@
     <Compile Include="Data Source\CustomerTransactionDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
-    <Compile Include="Data Source\SupplieerOrderTransactionDataSource.cs" />
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
     <Compile Include="FilterViewModel\FilterProductCriteria.cs" />
     <Compile Include="MarginSetter.cs" />
-    <Compile Include="CCF\NewsFeedFrame\SettledOrdersOfTransactionCC.xaml.cs">
-      <DependentUpon>SettledOrdersOfTransactionCC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CCF\NewsFeedFrame\SettledOrderOfTransactionViewModel.cs" />
     <Compile Include="Data Source\TagDataSource.cs" />
-    <Compile Include="Data Source\TagProductDataSource.cs" />
-    <Compile Include="Migrations\20170727122750_Initial.cs" />
-    <Compile Include="Migrations\20170727122750_Initial.designer.cs">
-      <DependentUpon>20170727122750_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\RetailerContextModelSnapshot.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerOrderProduct.cs" />
@@ -185,12 +173,6 @@
       <DependentUpon>ProductTagCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagViewModel.cs" />
-    <Compile Include="temCC.xaml.cs">
-      <DependentUpon>temCC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="temp.xaml.cs">
-      <DependentUpon>temp.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TextBoxAttached.cs" />
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerPurchaseTrendViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
@@ -204,14 +186,10 @@
       <DependentUpon>FilterCustomerCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\ProductCCF\PriceQuotedByWholeSellerViewModel.cs" />
-    <Compile Include="ProductListToPurchaseCC\ProductListToPurchaseViewModel.cs" />
-    <Compile Include="ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml.cs">
-      <DependentUpon>ProductListToPurhcaseCC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderListCC.xaml.cs">
       <DependentUpon>CustomerOrderListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProductConsumptionTrendBar.xaml.cs">
+    <Compile Include="CCF\NewsFeedFrame\ProductConsumptionTrend\ProductConsumptionTrendBar.xaml.cs">
       <DependentUpon>ProductConsumptionTrendBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierTransactionViewModel.cs" />
@@ -275,10 +253,8 @@
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data Source\CustomerDataSource.cs" />
-    <Compile Include="View Models\CustomerViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderViewModel.cs" />
     <Compile Include="Data Source\CustomerOrderDataSource.cs" />
-    <Compile Include="DBModel\DBModel.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\1 CustomerProductListCC\CustomerProductViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml.cs">
@@ -411,10 +387,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductListToPurchaseCC\ProductListToPurhcaseCC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -431,7 +403,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductConsumptionTrendBar.xaml">
+    <Page Include="CCF\NewsFeedFrame\ProductConsumptionTrend\ProductConsumptionTrendBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -460,18 +432,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierCCF.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CCF\NewsFeedFrame\SettledOrdersOfTransactionCC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="temCC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="temp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

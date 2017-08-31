@@ -11,13 +11,6 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class SupplierFilterCriteriaDTO
-    {
-        [Required]
-        public IRange<decimal> WalletAmount { get; set; }
-        public Guid? SupplierId { get; set; }
-    }
-
     class SupplierDataSource
     {
         #region Create
