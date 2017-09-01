@@ -123,7 +123,7 @@
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}"
                  Grid.Column="1">
-            <TextBlock Text="Consumption History of Customer"
+            <TextBlock Text="Transactions of the Customer"
                        Style="{StaticResource DetailHeaderTextBlockStyle}" />
         </Border>
         <ContentPresenter x:Name="DetailContentPresenter"

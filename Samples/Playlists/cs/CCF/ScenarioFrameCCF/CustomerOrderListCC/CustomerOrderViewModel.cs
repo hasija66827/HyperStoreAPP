@@ -41,6 +41,7 @@ namespace SDKTemplate
 
     public sealed class CustomerOrderProductViewModel : TCustomerOrderProduct
     {
+        public decimal TGSTPerSnapShot{get { return this.CGSTPerSnapShot + this.SGSTPerSnapshot; } }
         public CustomerOrderProductViewModel(TCustomerOrderProduct parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())

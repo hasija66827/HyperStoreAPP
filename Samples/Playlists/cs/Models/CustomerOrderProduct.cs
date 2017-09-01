@@ -13,6 +13,7 @@ namespace Models
         public decimal DiscountPerSnapShot { get; set; }
         public decimal CGSTPerSnapShot { get; set; }
         public decimal SGSTPerSnapshot { get; set; }
+        public decimal SellingPrice { get; set; }
         public decimal QuantityConsumed { get; set; }
         public decimal NetValue { get; set; }
         /*
