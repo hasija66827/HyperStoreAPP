@@ -24,7 +24,7 @@ namespace SDKTemp.Data
             {
                 ProductsConsumed = productsConsumed,
                 CustomerId = PNP.SelectedCustomer?.CustomerId,
-                BillAmount = PNP.BillingSummaryViewModel.TotalBillAmount,
+                BillAmount = PNP.BillingSummaryViewModel.PayAmount,
                 DiscountedAmount = PNP.BillingSummaryViewModel.DiscountedBillAmount,
                 IsPayingNow = PNP.SelectPaymentModeViewModelBase.IsPayingNow,
                 IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,

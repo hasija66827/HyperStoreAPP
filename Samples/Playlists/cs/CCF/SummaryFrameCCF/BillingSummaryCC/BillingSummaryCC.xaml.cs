@@ -28,9 +28,14 @@ namespace SDKTemplate
                 () =>
                 {
                     var products = CustomerProductListCC.Current.Products;
-                    this.BillingSummaryViewModel.TotalProducts =(decimal) products.Sum(p=>p.QuantityConsumed);
-                    this.BillingSummaryViewModel.TotalBillAmount =(decimal) products.Sum(p => p.NetValue);
-                    
+                        
+                    this.BillingSummaryViewModel.TotalItems = (decimal)products.Count();
+                    this.BillingSummaryViewModel.TotalQuantity = (decimal)products.Sum(p => p.QuantityConsumed);
+                    this.BillingSummaryViewModel.CartAmount = (decimal)products.Sum(p => p.DisplayPrice * p.QuantityConsumed);
+                    this.BillingSummaryViewModel.DiscountAmount = (decimal)products.Sum(p => p.DiscountAmount * p.QuantityConsumed);
+                    this.BillingSummaryViewModel.Tax = (decimal)products.Sum(p => (p.SellingPrice - p.SubTotal) * p.QuantityConsumed);
+                    this.BillingSummaryViewModel.PayAmount = (decimal)products.Sum(p => p.NetValue);
+                    this.BillingSummaryViewModel.OnALLPropertyChanged();
                 });
             CustomerProductListCC.Current.ProductListCCUpdatedEvent += d;
         }

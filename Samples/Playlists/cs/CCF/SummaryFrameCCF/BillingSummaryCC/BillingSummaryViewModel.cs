@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,58 +13,32 @@ namespace SDKTemplate
     public class CustomerBillingSummaryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        private decimal _totalBillAmount;
-        public decimal TotalBillAmount
-        {
-            get
-            {
-                return this._totalBillAmount;
-            }
-            set
-            {
-                this._totalBillAmount = value;
-                this.OnPropertyChanged(nameof(TotalBillAmount));
-                this.OnPropertyChanged(nameof(DiscountedBillAmount));
-            }
-        }
-        private decimal _totalProducts;
-        public decimal TotalProducts
-        {
-            get
-            {
-                return this._totalProducts;
-            }
-            set
-            {
-                this._totalProducts = value;
-                this.OnPropertyChanged(nameof(TotalProducts));
-            }
-        }
-        private decimal _additionalDiscountPer;
-        public decimal AdditionalDiscountPer
-        {
-            get { return this._additionalDiscountPer; }
-            set
-            {
-                this._additionalDiscountPer = value;
-                this.OnPropertyChanged(nameof(AdditionalDiscountPer));
-                this.OnPropertyChanged(nameof(DiscountedBillAmount));
-            }
-        }
+        public decimal TotalQuantity { get; set; }
 
-        public decimal DiscountedBillAmount { get { return ((100 - this._additionalDiscountPer) * this._totalBillAmount) / 100; } }
+        public decimal TotalItems { get; set; }
+
+        public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }
+        public decimal CartAmount { get; set; }
+
+        private decimal _discountAmount;
+        public decimal DiscountAmount { get { return this._discountAmount; } set { this._discountAmount = value; } }
+
+        public decimal Tax { get; set; }
+        public decimal PayAmount { get; set; }
+
+        public decimal AdditionalDiscountPer { get; set; }
+
+        public decimal DiscountedBillAmount { get { return ((100 - this.AdditionalDiscountPer) * this.PayAmount) / 100; } }
 
         public CustomerBillingSummaryViewModel()
         {
-            _totalProducts = 0;
-            _totalBillAmount = 0;
-            _additionalDiscountPer = 0;
         }
 
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void OnALLPropertyChanged()
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            foreach (PropertyInfo prop in typeof(CustomerBillingSummaryViewModel).GetProperties())
+                this.PropertyChanged(this, new PropertyChangedEventArgs(prop.Name));
         }
     }
 }

@@ -7,6 +7,7 @@
       mc:Ignorable="d">
     <UserControl.Resources>
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,49 +20,36 @@
                 <TextBlock Text="Billing Summary"
                            Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
-            <StackPanel x:Name="ContentPanel"
-                        RelativePanel.Below="HeaderPanel"
-                        Orientation="Vertical"
-                        Margin="10,0,0,0">
-                <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Quantity: "
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="90" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind BillingSummaryViewModel.TotalProducts, Mode=OneWay}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Price: "
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="90" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind BillingSummaryViewModel.TotalBillAmount, Mode=OneWay}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Discount %: "
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="90" />
-                <TextBox 
-                    x:Name="AdditonalDiscountPerTB"
-                    Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                         Text="{x:Bind BillingSummaryViewModel.AdditionalDiscountPer, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
-                         MinHeight="32" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Pay: "
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="90" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind BillingSummaryViewModel.DiscountedBillAmount, Mode=OneWay}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-            </StackPanel>
-        </StackPanel>
+            <RelativePanel x:Name="ContentPanel"
+                           RelativePanel.Below="HeaderPanel"
+                           Margin="10,0,0,0"
+                           Width="300">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Items / Quantity: "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Cart Amount "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Discount Amount "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Tax "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Pay Amount "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="{x:Bind BillingSummaryViewModel.Items_Quantity, Mode=OneWay}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummaryViewModel.CartAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummaryViewModel.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummaryViewModel.Tax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummaryViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                </StackPanel>
+            </RelativePanel>
         </RelativePanel>
     </Grid>
 </Page>
