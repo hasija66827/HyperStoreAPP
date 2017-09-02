@@ -100,6 +100,7 @@ namespace SDKTemplate
                 CustomerName.Text = customer.Name;
                 CustomerAddress.Text = customer.Address != null ? customer.Address : "";
                 CustomerWalletBalance.Text = Utility.ConvertToRupee(customer.WalletBalance);
+                CustomerNetWorth.Text ="NetWorth: "+Utility.ConvertToRupee(customer.NetWorth);
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
             }
             else

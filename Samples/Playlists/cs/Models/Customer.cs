@@ -10,12 +10,18 @@ namespace Models
         public Guid? CustomerId { get; set; }
         public string Address { get; set; }
         public string GSTIN { get; set; }
+
         [Required]
         public string MobileNo { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public decimal? WalletBalance { get; set; }
+
+        [Required]
+        public decimal? NetWorth { get; set; }
     }
 
     public interface customerInterface
