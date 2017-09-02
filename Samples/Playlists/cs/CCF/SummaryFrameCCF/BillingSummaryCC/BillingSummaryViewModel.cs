@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,34 +11,19 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class CustomerBillingSummaryViewModel : INotifyPropertyChanged
+    public sealed class CustomerBillingSummaryViewModelBase : CustomerBillingSummaryDTO, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public decimal TotalQuantity { get; set; }
-
-        public decimal TotalItems { get; set; }
-
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }
-        public decimal CartAmount { get; set; }
 
-        private decimal _discountAmount;
-        public decimal DiscountAmount { get { return this._discountAmount; } set { this._discountAmount = value; } }
-
-        public decimal Tax { get; set; }
-        public decimal PayAmount { get; set; }
-
-        public decimal AdditionalDiscountPer { get; set; }
-
-        public decimal DiscountedBillAmount { get { return ((100 - this.AdditionalDiscountPer) * this.PayAmount) / 100; } }
-
-        public CustomerBillingSummaryViewModel()
+        public CustomerBillingSummaryViewModelBase()
         {
         }
 
         public void OnALLPropertyChanged()
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.
-            foreach (PropertyInfo prop in typeof(CustomerBillingSummaryViewModel).GetProperties())
+            foreach (PropertyInfo prop in typeof(CustomerBillingSummaryViewModelBase).GetProperties())
                 this.PropertyChanged(this, new PropertyChangedEventArgs(prop.Name));
         }
     }

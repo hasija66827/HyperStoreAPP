@@ -59,7 +59,7 @@ namespace SDKTemplate
             var p = this._PageNavigationParameter;
             this._SelectPaymentModeViewModel = new SelectPaymentModeViewModel()
             {
-                DiscountedBillAmount = p.BillingSummaryViewModel.DiscountedBillAmount,
+                PayAmount = p.BillingSummaryViewModel.PayAmount,
                 IsUsingWallet = p.SelectedCustomer?.WalletBalance == 0 ? false : true,
                 CurrentWalletBalance = p.SelectedCustomer?.WalletBalance,
                 IsPayingNow = true,

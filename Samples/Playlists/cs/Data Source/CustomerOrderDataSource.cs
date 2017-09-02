@@ -23,9 +23,8 @@ namespace SDKTemp.Data
             var customerOrderDTO = new CustomerOrderDTO()
             {
                 ProductsConsumed = productsConsumed,
+                CustomerBillingSummary = PNP.BillingSummaryViewModel,
                 CustomerId = PNP.SelectedCustomer?.CustomerId,
-                BillAmount = PNP.BillingSummaryViewModel.PayAmount,
-                DiscountedAmount = PNP.BillingSummaryViewModel.DiscountedBillAmount,
                 IsPayingNow = PNP.SelectPaymentModeViewModelBase.IsPayingNow,
                 IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,
                 PayingAmount = payingAmount

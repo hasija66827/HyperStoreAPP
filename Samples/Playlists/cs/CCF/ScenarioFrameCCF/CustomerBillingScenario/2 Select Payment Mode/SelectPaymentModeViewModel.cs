@@ -10,7 +10,7 @@ namespace SDKTemplate
 {
     public class SelectPaymentModeViewModelBase
     {
-        public decimal DiscountedBillAmount { get; set; }
+        public decimal PayAmount { get; set; }
         public virtual bool? IsUsingWallet { get; set; }
         public virtual bool? IsPayingNow { get; set; }
         public decimal? CurrentWalletBalance { get; set; }
@@ -19,12 +19,12 @@ namespace SDKTemplate
             get
             {
                 if (IsUsingWallet == true)
-                    return Math.Min((decimal)this.CurrentWalletBalance, (decimal)this.DiscountedBillAmount);
+                    return Math.Min((decimal)this.CurrentWalletBalance, (decimal)this.PayAmount);
                 else
                     return 0;
             }
         }
-        public decimal ToBePaid { get { return this.DiscountedBillAmount - this.WalletAmountToBeDeducted; } }
+        public decimal ToBePaid { get { return this.PayAmount - this.WalletAmountToBeDeducted; } }
 
     }
 

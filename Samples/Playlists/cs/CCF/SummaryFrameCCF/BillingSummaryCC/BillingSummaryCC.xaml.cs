@@ -17,19 +17,19 @@ namespace SDKTemplate
     public sealed partial class BillingSummaryCC : Page
     {
         public static BillingSummaryCC Current;
-        public CustomerBillingSummaryViewModel BillingSummaryViewModel;
+        public CustomerBillingSummaryViewModelBase BillingSummaryViewModel;
         public BillingSummaryCC()
         {
             Current = this;
             this.InitializeComponent();
-            BillingSummaryViewModel = new CustomerBillingSummaryViewModel();
+            BillingSummaryViewModel = new CustomerBillingSummaryViewModelBase();
             //Subscribing to product list changed event of ProductListCC
             ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
                 () =>
                 {
                     var products = CustomerProductListCC.Current.Products;
                         
-                    this.BillingSummaryViewModel.TotalItems = (decimal)products.Count();
+                    this.BillingSummaryViewModel.TotalItems = (int)products.Count();
                     this.BillingSummaryViewModel.TotalQuantity = (decimal)products.Sum(p => p.QuantityConsumed);
                     this.BillingSummaryViewModel.CartAmount = (decimal)products.Sum(p => p.DisplayPrice * p.QuantityConsumed);
                     this.BillingSummaryViewModel.DiscountAmount = (decimal)products.Sum(p => p.DiscountAmount * p.QuantityConsumed);

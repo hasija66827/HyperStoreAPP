@@ -78,7 +78,7 @@
                            Grid.Row="0"
                            Style="{StaticResource SubtitleTextBlockStyle}" />
                 <TextBlock x:Name="TotalAmountToBePaidTB"
-                           Text="{x:Bind _SelectPaymentModeViewModel.DiscountedBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Text="{x:Bind _SelectPaymentModeViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Column="1"
                            HorizontalAlignment="Right" />

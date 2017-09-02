@@ -91,19 +91,26 @@ namespace SDKTemplate
             public decimal? QuantityConsumed { get; set; }
         }
 
+        public class CustomerBillingSummaryDTO
+        {
+            public decimal TotalQuantity { get; set; }
+            public int TotalItems { get; set; }
+            public decimal CartAmount { get; set; }
+            public decimal DiscountAmount { get; set; }
+            public decimal Tax { get; set; }
+            public decimal PayAmount { get; set; }
+        }
+
         public class CustomerOrderDTO
         {
             [Required]
             public List<ProductConsumedDTO> ProductsConsumed { get; set; }
 
             [Required]
+            public CustomerBillingSummaryDTO CustomerBillingSummary { get; set; }
+
+            [Required]
             public Guid? CustomerId { get; set; }
-
-            [Required]
-            public decimal? BillAmount { get; set; }
-
-            [Required]
-            public decimal? DiscountedAmount { get; set; }
 
             [Required]
             public bool? IsPayingNow { get; set; }

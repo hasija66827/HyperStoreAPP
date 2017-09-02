@@ -15,7 +15,7 @@ namespace SDKTemplate
     {
         public List<CustomerBillingProductViewModelBase> ProductsConsumed { get; set; }
         public TCustomer SelectedCustomer { get; set; }
-        public CustomerBillingSummaryViewModel BillingSummaryViewModel { get; set; }
+        public CustomerBillingSummaryViewModelBase BillingSummaryViewModel { get; set; }
         public SelectPaymentModeViewModelBase SelectPaymentModeViewModelBase { get; set; }
     }
 }
