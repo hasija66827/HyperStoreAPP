@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
- 
+
 using Windows.Globalization.DateTimeFormatting;
 using SDKTemp.Data;
 using Models;
@@ -31,6 +31,25 @@ namespace SDKTemplate
 
         public List<CustomerOrderProductViewModel> OrderDetails { get; set; }
 
+        private CustomerBillingSummaryViewModelBase _billingSummary;
+        public CustomerBillingSummaryViewModelBase BillingSummary
+        {
+            get
+            {
+                if (this._billingSummary == null)
+                    this._billingSummary = new CustomerBillingSummaryViewModelBase()
+                    {
+                        CartAmount = this.CartAmount,
+                        DiscountAmount = this.DiscountAmount,
+                        Tax = this.Tax,
+                        PayAmount = this.PayAmount,
+                        TotalItems = this.TotalItems,
+                        TotalQuantity = this.TotalQuantity,
+                    };
+                return this._billingSummary;
+            }
+        }
+
         public CustomerOrderViewModel(TCustomerOrder parent)
         {
             this.OrderDetails = new List<CustomerOrderProductViewModel>();
@@ -41,7 +60,7 @@ namespace SDKTemplate
 
     public sealed class CustomerOrderProductViewModel : TCustomerOrderProduct
     {
-        public decimal TGSTPerSnapShot{get { return this.CGSTPerSnapShot + this.SGSTPerSnapshot; } }
+        public decimal TGSTPerSnapShot { get { return this.CGSTPerSnapShot + this.SGSTPerSnapshot; } }
         public CustomerOrderProductViewModel(TCustomerOrderProduct parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())

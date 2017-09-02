@@ -37,6 +37,36 @@
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </RelativePanel>
         </DataTemplate>
+        <DataTemplate x:Key="CustomerBillingSummaryTemplate"
+                      x:DataType="local:CustomerOrderViewModel">
+            <RelativePanel  Width="300">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Items / Quantity: "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Cart Amount "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Discount Amount "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Tax "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Pay Amount "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="{x:Bind BillingSummary.Items_Quantity, Mode=OneWay}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummary.CartAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummary.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummary.Tax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind BillingSummary.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                </StackPanel>
+            </RelativePanel>
+        </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerOrderViewModel">
             <StackPanel>
@@ -165,18 +195,23 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <ContentPresenter x:Name="DetailContentPresenter"
-                          Grid.Row="1"
-                          Grid.Column="1"
-                          Grid.RowSpan="2"
-                          BorderThickness="10,0,0,0"
-                          BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-                          Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
-                          ContentTemplate="{StaticResource DetailContentTemplate}">
-            <ContentPresenter.ContentTransitions>
-                <!-- Empty by default. See MasterListView_ItemClick -->
-                <TransitionCollection />
-            </ContentPresenter.ContentTransitions>
-        </ContentPresenter>
+        <RelativePanel Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.RowSpan="2"
+                       BorderThickness="10,0,0,0"
+                       BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
+            <ContentPresenter x:Name="DetailContentPresenter"
+                              Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
+                              ContentTemplate="{StaticResource DetailContentTemplate}">
+                <ContentPresenter.ContentTransitions>
+                    <!-- Empty by default. See MasterListView_ItemClick -->
+                    <TransitionCollection />
+                </ContentPresenter.ContentTransitions>
+            </ContentPresenter>
+            <ContentPresenter x:Name="BillingSummary"
+                              RelativePanel.AlignBottomWithPanel="True"
+                              Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
+                              ContentTemplate="{StaticResource CustomerBillingSummaryTemplate}" />
+        </RelativePanel>
     </Grid>
 </Page>
