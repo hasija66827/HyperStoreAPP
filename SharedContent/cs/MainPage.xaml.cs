@@ -99,6 +99,8 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(RecommendedProductCC));
                     SummaryFrame.Navigate(typeof(BillingSummaryCC));
+                    ChangeLayout(false);
+
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
@@ -108,24 +110,30 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
+                    ChangeLayout(true);
+
                 }
                 else if (s.ClassType == typeof(CustomersCCF))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC));
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
-                    NewsFeedFrame.Navigate(typeof(CustomerTrendCC));
+                    LeftBottomFrame.Navigate(typeof(CustomerTrendCC));
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(CustomerSummaryCC));
+                    ChangeLayout(false);
+
                 }
                 else if (s.ClassType == typeof(ProductInStock))
                 {
                     HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
                     SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
-                    LeftBottomFrame.Navigate(typeof(FilterProductCC));
+                    SummaryFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
+                    LeftBottomFrame.Navigate(typeof(ProductConsumptionPer));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-                    SummaryFrame.Navigate(typeof(ProductConsumptionPer));
+                    ChangeLayout(false);
+
                 }
                 else if (s.ClassType == typeof(SupplierCCF))
                 {
@@ -135,6 +143,8 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(BlankPage));
+                    ChangeLayout(false);
+
                 }
                 else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
                 {
@@ -144,8 +154,10 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(WholeSellerBillingSummaryCC));
+                    ChangeLayout(false);
+
                 }
-             
+
                 else if (s.ClassType == typeof(WholeSellerOrderCC))
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
@@ -154,6 +166,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(WholeSellerOrderCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(WholeSellerOrderSummary));
+                    ChangeLayout(true);
                 }        
                 else
                 {
@@ -165,6 +178,23 @@ namespace SDKTemplate
                 }
             }
         }
+
+        private void ChangeLayout(bool Expanded)
+        {
+            if (Expanded)
+            {
+                ScenarioFrame.Width = 1200;
+                NewsFeedFrame.Visibility = Visibility.Collapsed;
+                LeftBottomFrame.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ScenarioFrame.Width = 830;
+                NewsFeedFrame.Visibility = Visibility.Visible;
+                LeftBottomFrame.Visibility = Visibility.Visible;
+            }
+        }
+
 
         public List<Scenario> Scenarios
         {

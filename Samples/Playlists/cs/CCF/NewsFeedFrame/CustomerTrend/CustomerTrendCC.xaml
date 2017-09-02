@@ -11,17 +11,7 @@
         <DataTemplate x:Key="CustomerPurchaseTrend"
                       x:DataType="local:CustomerPurchaseTrendCollectionViewModel">
             <RelativePanel Background="White">
-                <StackPanel x:Name="HeaderPanel"
-                            Style="{StaticResource ListHeaderStackPanel}">
-                    <TextBlock Text="Name"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
-                    <TextBlock Text="Total Quantity"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
-                    <TextBlock Text="Net Value"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                </StackPanel>
-                <ScrollViewer x:Name="ContentPanel"
-                              RelativePanel.Below="HeaderPanel"
+                 <ScrollViewer x:Name="ContentPanel"
                               VerticalScrollBarVisibility="Auto"
                               Height="340">
                     <ListView x:Name="PurchaseHistoriesOfCustomer"
