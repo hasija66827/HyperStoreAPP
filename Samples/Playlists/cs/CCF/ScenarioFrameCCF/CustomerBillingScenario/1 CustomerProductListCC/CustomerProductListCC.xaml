@@ -20,6 +20,7 @@
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
+        <local:FloatToPercentageGSTConverter x:Key="FloatToPercentageGSTConverter" />
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
     </UserControl.Resources>
@@ -142,7 +143,7 @@
                                                    Text="{x:Bind SubTotal, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="TotalGSTPer"
                                                    Style="{StaticResource ListTextBlockStyle}"
-                                                   Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />
+                                                   Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageGSTConverter}}" />
                                         <TextBlock x:Name="SellingPrice"
                                                    Foreground="Black"
                                                    Style="{StaticResource LargeListTextBlockStyle}"

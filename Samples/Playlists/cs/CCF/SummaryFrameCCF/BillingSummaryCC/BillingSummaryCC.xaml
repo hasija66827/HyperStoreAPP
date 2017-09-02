@@ -8,6 +8,8 @@
     <UserControl.Resources>
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToNegativeRupeeConverter x:Key="FloatToNegativeRupeeConverter" />
+        <local:FloatToPositiveRupeeConverter x:Key="FloatToPositiveRupeeConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -42,9 +44,9 @@
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind BillingSummaryViewModel.CartAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind BillingSummaryViewModel.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind BillingSummaryViewModel.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToNegativeRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind BillingSummaryViewModel.Tax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind BillingSummaryViewModel.Tax, Mode=OneWay, Converter={StaticResource FloatToPositiveRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind BillingSummaryViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />

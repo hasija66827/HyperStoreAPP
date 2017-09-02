@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
-        <local:FloatToInverseRupeeConverter x:Key="FloatToInverseRupeeConverter" />
+        <local:FloatToNegativeRupeeConverter x:Key="FloatToInverseRupeeConverter" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>

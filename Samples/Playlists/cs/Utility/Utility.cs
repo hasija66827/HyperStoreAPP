@@ -50,12 +50,28 @@ namespace SDKTemplate
     }
 
     // Append the decimal value with Rupee symbol.
-    public class FloatToInverseRupeeConverter : IValueConverter
+    public class FloatToNegativeRupeeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            return Utility.FloatToInverseRupeeConverter(value);
+            return Utility.FloatToNegativeRupeeConverter(value);
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    // Append the decimal value with Rupee symbol.
+    public class FloatToPositiveRupeeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            return Utility.FloatToPositiveRupeeConverter(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -276,7 +292,7 @@ namespace SDKTemplate
                     throw new Exception(response.Content.ToString());
                 response.EnsureSuccessStatusCode();
                 var httpResponseBody = await response.Content.ReadAsStringAsync();
-                var result=JsonConvert.DeserializeObject<T>(httpResponseBody);
+                var result = JsonConvert.DeserializeObject<T>(httpResponseBody);
                 return result;
             }
             catch (Exception ex)
@@ -362,15 +378,25 @@ namespace SDKTemplate
             return "-" + text;
         }
 
-        public static string FloatToInverseRupeeConverter(object value)
+        public static string FloatToNegativeRupeeConverter(object value)
         {
             // value is the data from the source object.
-            var price = Math.Round(System.Convert.ToDouble(value), 2);
-            price = -price;
+            var price = Math.Abs(Math.Round(System.Convert.ToDouble(value), 2));
             CultureInfo hindi = new CultureInfo("hi-IN");
             string text = string.Format(hindi, "{0:c}", price);
             // Return the value to pass to the target.
-            return text;
+            return "-" + text;
+
+        }
+        public static string FloatToPositiveRupeeConverter(object value)
+        {
+            // value is the data from the source object.
+            var price = Math.Abs(Math.Round(System.Convert.ToDouble(value), 2));
+            CultureInfo hindi = new CultureInfo("hi-IN");
+            string text = string.Format(hindi, "{0:c}", price);
+            // Return the value to pass to the target.
+            return "+" + text;
+
 
         }
 
