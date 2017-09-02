@@ -139,6 +139,10 @@
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerTransactionOTPVerification.xaml.cs">
       <DependentUpon>CustomerTransactionOTPVerification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerSummaryViewModel.cs" />
+    <Compile Include="CustomerSummary.xaml.cs">
+      <DependentUpon>CustomerSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data Source\CustomerTransactionDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
@@ -408,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

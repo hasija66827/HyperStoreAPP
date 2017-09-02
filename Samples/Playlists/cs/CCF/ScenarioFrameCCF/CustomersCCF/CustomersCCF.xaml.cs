@@ -22,6 +22,8 @@ using static SDKTemplate.CustomerDataSource;
 namespace SDKTemplate
 {
     public delegate void CustomerSelectionChangeDelegate(TCustomer customer);
+    public delegate void CustomerListUpdatedDelegate(List<TCustomer> customers);
+
     /// <summary>
     /// Master Detail View where 
     /// Master shows the list of the customer and
@@ -31,6 +33,7 @@ namespace SDKTemplate
     {
         public static CustomersCCF Current;
         public event CustomerSelectionChangeDelegate CustomerSelectionChangeEvent;
+        public event CustomerListUpdatedDelegate CustomerListUpdatedEvent;
         public CustomersCCF()
         {
             Current = this;
@@ -63,6 +66,7 @@ namespace SDKTemplate
             MasterListView.ItemsSource = items;
             var totalResults = items.Count;
             CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
+            CustomerListUpdatedEvent?.Invoke(items);
         }
 
         /// <summary>

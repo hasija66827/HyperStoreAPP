@@ -13,8 +13,7 @@
             <RelativePanel>
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind MobileNo}"
-                           Style="{ThemeResource MasterListTextBlockStyle}"
-                           />
+                           Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="WalletBalance"
                            RelativePanel.AlignRightWithPanel="True"
                            Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"

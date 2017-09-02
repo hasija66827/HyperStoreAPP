@@ -116,7 +116,7 @@ namespace SDKTemplate
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
                     NewsFeedFrame.Navigate(typeof(CustomerTrendCC));
-                    SummaryFrame.Navigate(typeof(BlankPage));
+                    SummaryFrame.Navigate(typeof(CustomerSummaryCC));
                 }
                 else if (s.ClassType == typeof(ProductInStock))
                 {

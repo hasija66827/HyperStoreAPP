@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,21 +21,20 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class OrderSummaryCC : Page
+    public sealed partial class CustomerSummaryCC : Page
     {
-        private OrderSummaryViewModel _OrderSummaryViewModel;
-        public OrderSummaryCC()
+        private CustomerSummaryViewModel _CustomerSummaryViewModel { get; set; }
+        public CustomerSummaryCC()
         {
             this.InitializeComponent();
-            this._OrderSummaryViewModel = new OrderSummaryViewModel();
-            CustomerOrderListCCF.Current.CustomerOrderListUpdatedEvent += Current_CustomerOrderListUpdatedEvent; ;
+            this._CustomerSummaryViewModel = new CustomerSummaryViewModel();
+            CustomersCCF.Current.CustomerListUpdatedEvent += Current_CustomerListUpdatedEvent;
         }
 
-        private void Current_CustomerOrderListUpdatedEvent(IEnumerable<CustomerOrderViewModel> customerOrders)
+        private void Current_CustomerListUpdatedEvent(List<TCustomer> customers)
         {
-            this._OrderSummaryViewModel.TotalBillAmount = customerOrders.Sum(co => co.PayAmount);
-            this._OrderSummaryViewModel.TotalPayedAmount = customerOrders.Sum(co => co.PayingAmount);
-            this._OrderSummaryViewModel.OnAllPropertyChanged();
+            this._CustomerSummaryViewModel.TotalWalletBalance = (decimal)customers.Sum(c => c.WalletBalance);
+            this._CustomerSummaryViewModel.OnALLPropertyChanged();
         }
     }
 }
