@@ -20,7 +20,7 @@ using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
-    public delegate void CustomerOrderListChangedDelegate(CustomerOrderListCCF sender);
+    public delegate void CustomerOrderListChangedDelegate(IEnumerable<CustomerOrderViewModel> customerOrders);
     public sealed partial class CustomerOrderListCCF : Page
     {
         public static CustomerOrderListCCF Current;
@@ -30,13 +30,9 @@ namespace SDKTemplate
             Current = this;
             this.InitializeComponent();
 
-            if (CustomerASBCC.Current == null)
-                throw new Exception("CustomerASBCC should be loaded before OrderListCCF");
             CustomerASBCC.Current.SelectedCustomerChangedEvent +=
                 new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSourceByFilterCriteria);
 
-            if (FilterOrderCC.Current == null)
-                throw new Exception("FilterOrderCC should be loaded before OrderListCCF");
             FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
 
@@ -63,7 +59,7 @@ namespace SDKTemplate
             var items = customerOrderList.Select(co => new CustomerOrderViewModel(co));
             MasterListView.ItemsSource = items;
             OrderCountTB.Text = "(" + items.Count().ToString() + "/" + "xxxx" + ")";
-            CustomerOrderListUpdatedEvent?.Invoke(CustomerOrderListCCF.Current);
+            CustomerOrderListUpdatedEvent?.Invoke(items);
         }
 
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)

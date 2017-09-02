@@ -28,8 +28,15 @@ namespace SDKTemplate
         {
             Current = this;
             this.OrderSummaryViewModel = new OrderSummaryViewModel();
-            this.OrderSummaryViewModel.ComputeSales(CustomerOrderListCCF.Current);
             this.InitializeComponent();
+            CustomerOrderListCCF.Current.CustomerOrderListUpdatedEvent += Current_CustomerOrderListUpdatedEvent; ;
+        }
+
+        private void Current_CustomerOrderListUpdatedEvent(IEnumerable<CustomerOrderViewModel> customerOrders)
+        {
+            this.OrderSummaryViewModel.TotalBillAmount = customerOrders.Sum(co => co.PayAmount);
+            this.OrderSummaryViewModel.TotalPayedAmount = customerOrders.Sum(co => co.PayingAmount);
+            this.OrderSummaryViewModel.OnAllPropertyChanged();
         }
     }
 }

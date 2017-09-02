@@ -49,7 +49,9 @@
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Tax "
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Pay Amount "
+                    <TextBlock Text="Total Bill"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Payed Amount "
                                Style="{StaticResource SummaryTextBlockStyle}" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
@@ -63,6 +65,8 @@
                     <TextBlock Text="{x:Bind BillingSummary.Tax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind BillingSummary.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind PayingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                 </StackPanel>
             </RelativePanel>

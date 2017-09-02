@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+      </UserControl.Resources>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
@@ -12,45 +15,23 @@
             <TextBlock Text="Order Summary"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
-        <StackPanel x:Name="ContentPanel"
-                    Orientation="Vertical"
-                    Margin="10,0,0,0"
-                    RelativePanel.Below="HeaderPanel">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Total Sales"
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="190" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind OrderSummaryViewModel.TotalSales, Mode=OneWay}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+        <RelativePanel x:Name="ContentPanel"
+                       RelativePanel.Below="HeaderPanel"
+                       Margin="10,0,0,0"
+                       Width="300">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Total Bill Amount "
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="Total Payed Amount "
+                           Style="{StaticResource SummaryTextBlockStyle}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Total Sales with Discount "
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="190" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind OrderSummaryViewModel.TotalSalesWithDiscount, Mode=OneWay}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+            <StackPanel Orientation="Vertical"
+                        RelativePanel.AlignRightWithPanel="True">
+                <TextBlock Text="{x:Bind OrderSummaryViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="{x:Bind OrderSummaryViewModel.TotalPayedAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Received Now"
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="190" />
-                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Text="{x:Bind OrderSummaryViewModel.ReceivedNow, Mode=OneWay}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Received Later "
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           Width="190" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                           Text="{x:Bind OrderSummaryViewModel.ReceivedLater, Mode=OneWay}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-            </StackPanel>
-        </StackPanel>
+        </RelativePanel>
     </RelativePanel>
 </Page>
