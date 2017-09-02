@@ -60,7 +60,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="selectedProduct"></param>
         /// <returns></returns>
-        private int _AddProductToCart(TProduct selectedProduct)
+        private void _AddProductToCart(TProduct selectedProduct)
         {
             int index = 0;
             var existingProduct = this._Products.Where(p => p.ProductId == selectedProduct.ProductId).FirstOrDefault();
@@ -76,7 +76,7 @@ namespace SDKTemplate
                 index = this._Products.IndexOf(w);
                 InvokeProductListChangeEvent();
             }
-            return index;
+            
         }
 
         public void InvokeProductListChangeEvent()

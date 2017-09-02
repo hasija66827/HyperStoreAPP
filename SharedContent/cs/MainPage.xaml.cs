@@ -97,7 +97,7 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
+                    NewsFeedFrame.Navigate(typeof(RecommendedProductCC));
                     SummaryFrame.Navigate(typeof(BillingSummaryCC));
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))

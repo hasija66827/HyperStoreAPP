@@ -33,5 +33,12 @@ namespace SDKTemplate
             string actionURI = "PriceQuotedBySupplier/" + productId.ToString();
             return await Utility.RetrieveAsync<TPriceQuotedBySupplier>(actionURI, null);
         }
+
+        public static async Task<List<TRecommendedProduct>> RetrieveRecommendedProductAsync(Guid customerId)
+        {
+                string actionURI = "RecommendedProducts/" + customerId.ToString();
+                return await Utility.RetrieveAsync<TRecommendedProduct>(actionURI, null);
+        }
+
     }
 }

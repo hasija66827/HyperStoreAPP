@@ -48,7 +48,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        private int _AddProductToCart(TProduct product)
+        private void _AddProductToCart(TProduct product)
         {
             var customerProduct = new CustomerBillingProductViewModel(product);
             int index = 0;
@@ -64,7 +64,7 @@ namespace SDKTemplate
                 index = this._Products.IndexOf(customerProduct);
                 this._Products[index].QuantityConsumed = 1;//Event will be triggered.
             }
-            return index;
+            
         }
 
         public void InvokeProductListChangedEvent()

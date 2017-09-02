@@ -23,7 +23,7 @@ namespace SDKTemplate
         SearchTheProduct
     }
 
-    public delegate int OnAddProductClickedDelegate(TProduct product);
+    public delegate void OnAddProductClickedDelegate(TProduct product);
     public delegate Task SelectedProductChangedDelegate();
 
 
