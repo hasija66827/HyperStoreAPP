@@ -33,15 +33,22 @@ namespace SDKTemp.Data
 
             if (deductedWalletAmount != null)
             {
-                string message = "";
+                var formattedDeductedWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)deductedWalletAmount));
+                string firstMessage = "";
                 if (deductedWalletAmount > 0)
-                    message = "{0} has been Deducted from {1} Wallet\nNew Wallet Balance is {2}";
+                    firstMessage = String.Format("{0} has been Deducted from Wallet", formattedDeductedWalletAmount);
                 else if (deductedWalletAmount < 0)
-                    message = "{0} has been Added to {1} Wallet\nNew Wallet Balance is {2}";
-                var usedWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)deductedWalletAmount));
-                var updateWalletBalance = Utility.ConvertToRupee(PNP.SelectedCustomer.WalletBalance - deductedWalletAmount);
-                var formatedMessage = String.Format(message, usedWalletAmount, PNP.SelectedCustomer.Name, updateWalletBalance);
-                SuccessNotification.PopUpSuccessNotification(API.CustomerOrders, formatedMessage);
+                    firstMessage = String.Format("{0} has been Added to Wallet", formattedDeductedWalletAmount);
+
+                var updateWalletBalance = PNP.SelectedCustomer.WalletBalance - deductedWalletAmount;
+                var formattedWalletBalance = Utility.ConvertToRupee(Math.Abs((decimal)updateWalletBalance));
+                string secondMessage = "";
+                if (updateWalletBalance > 0)
+                    secondMessage = String.Format("You owe {0} to {1}", formattedWalletBalance, PNP.SelectedCustomer.Name);
+                else
+                    secondMessage = String.Format("{0} owes you {1}", PNP.SelectedCustomer.Name, formattedWalletBalance);
+
+                SuccessNotification.PopUpSuccessNotification(API.CustomerOrders, firstMessage + "\n" + secondMessage);
             }
 
             return deductedWalletAmount;

@@ -11,10 +11,10 @@ namespace SDKTemplate
     public class SupplierOrderDataSource
     {
         #region Create
-        public static async Task<decimal> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
+        public static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
-            string actionURI = API.SupplierOrders;
-            return await Utility.CreateAsync<decimal>(actionURI, supplierOrderDTO);
+            var x= await Utility.CreateAsync<decimal?>(API.SupplierOrders, supplierOrderDTO);
+            return x;
         }
         #endregion
 
