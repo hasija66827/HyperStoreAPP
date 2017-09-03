@@ -39,6 +39,7 @@ namespace SDKTemplate
                 ProductId = productViewModelBase.ProductId,
                 MonthsCount = 3,
             };
+            (ColumnChart.Series[0] as ColumnSeries).ItemsSource = null;
             this.ProductConsumptionTrend = await AnalyticsDataSource.RetrieveProductConsumptionTrend(productConsumptionTrendDTO);
             (ColumnChart.Series[0] as ColumnSeries).ItemsSource = ProductConsumptionTrend;
         }

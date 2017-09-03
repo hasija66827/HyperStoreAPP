@@ -39,6 +39,7 @@ namespace SDKTemplate
                 CustomerId = selectedCustomer?.CustomerId,
                 MonthsCount = 3,
             };
+            CustomerTrendContentPresenter.Content = null;
             this._CustomerPurchaseTrendCollection.CustomerName = selectedCustomer.Name;
             this._CustomerPurchaseTrendCollection.CustomerPurchaseTrends = await AnalyticsDataSource.RetrieveCustomerPurchaseTrend(customerPurchaseTrendDTO);
             CustomerTrendContentPresenter.Content = this._CustomerPurchaseTrendCollection;

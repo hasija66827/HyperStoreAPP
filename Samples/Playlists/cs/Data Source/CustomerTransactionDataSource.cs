@@ -13,7 +13,7 @@ namespace SDKTemplate
         #region create
         public static async Task<TCustomerTransaction> CreateNewTransactionAsync(CustomerTransactionDTO transactionDTO)
         {
-            string actionURI = "CustomerTransactions";
+            string actionURI = API.CustomerTransactions;
             var transaction = await Utility.CreateAsync<TCustomerTransaction>(actionURI, transactionDTO);
             return transaction;
         }
@@ -22,8 +22,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TCustomerTransaction>> RetrieveTransactionsAsync(CustomerTransactionFilterCriteriaDTO tfc)
         {
-            string actionURI = "CustomerTransactions";
-            List<TCustomerTransaction> transactions = await Utility.RetrieveAsync<TCustomerTransaction>(actionURI, tfc);
+            List<TCustomerTransaction> transactions = await Utility.RetrieveAsync<TCustomerTransaction>(API.CustomerTransactions, null, tfc);
             return transactions;
         }
         #endregion

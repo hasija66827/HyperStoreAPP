@@ -23,8 +23,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TProduct>> RetrieveProductDataAsync(ProductFilterCriteriaDTO pfc)
         {
-            string actionURI = "products";
-            List<TProduct> products = await Utility.RetrieveAsync<TProduct>(actionURI, pfc);
+            List<TProduct> products = await Utility.RetrieveAsync<TProduct>(API.Products, null, pfc);
             return products;
         }
 

@@ -18,7 +18,7 @@ namespace SDKTemplate
         {
             get
             {
-                if (CustomerPurchaseTrends.Count() == 0)
+                if (CustomerPurchaseTrends== null)
                     return 0;
                 else
                     return CustomerPurchaseTrends.Sum(cpt => cpt.NetValue);

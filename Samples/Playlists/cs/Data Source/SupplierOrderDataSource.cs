@@ -13,7 +13,7 @@ namespace SDKTemplate
         #region Create
         public static async Task<decimal> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
-            string actionURI = "supplierorders";
+            string actionURI = API.SupplierOrders;
             return await Utility.CreateAsync<decimal>(actionURI, supplierOrderDTO);
         }
         #endregion
@@ -21,15 +21,13 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TSupplierOrder>> RetrieveSupplierOrdersAsync(SupplierOrderFilterCriteriaDTO sofc)
         {
-                string actionURI = "SupplierOrders";
-                List<TSupplierOrder> supplierOrders = await Utility.RetrieveAsync<TSupplierOrder>(actionURI, sofc);
-                return supplierOrders;            
+            List<TSupplierOrder> supplierOrders = await Utility.RetrieveAsync<TSupplierOrder>(API.SupplierOrders, null, sofc);
+            return supplierOrders;
         }
 
         public static async Task<List<TSupplierOrderProduct>> RetrieveOrderDetailsAsync(Guid supplierOrderId)
         {
-            string actionURI = "SupplierOrderProducts/" + supplierOrderId.ToString();
-            List<TSupplierOrderProduct> orderDetails = await Utility.RetrieveAsync<TSupplierOrderProduct>(actionURI, null);
+            List<TSupplierOrderProduct> orderDetails = await Utility.RetrieveAsync<TSupplierOrderProduct>(API.SupplierOrderProducts, supplierOrderId.ToString(), null);
             return orderDetails;
         }
         #endregion

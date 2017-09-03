@@ -57,10 +57,13 @@ namespace SDKTemplate
                 WalletAmount = filterSupplierCriteria?.WalletBalance
             };
             var items = await SupplierDataSource.RetrieveSuppliersAsync(sfc);
-            MasterListView.ItemsSource = items;
-            var totalResults = items.Count;
-            ///TODO:remove xxxxx
-            WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
+            if (items != null)
+            {
+                MasterListView.ItemsSource = items;
+                var totalResults = items.Count;
+                ///TODO:remove xxxxx
+                WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
+            }
         }
 
         /// <summary>
@@ -75,11 +78,15 @@ namespace SDKTemplate
             {
                 SupplierId = selectedSupplier?.SupplierId
             };
+            DetailContentPresenter.Content = null;
             var transactions = await SupplierTransactionDataSource.RetrieveTransactionsAsync(tfc);
-            var supplierTransactionCollection = new SupplierTransactionCollection();
-            supplierTransactionCollection.Transactions = transactions.Select(t => new SupplierTransactionViewModel(t)).ToList();
-            supplierTransactionCollection.SupplierName = selectedSupplier.Name;
-            DetailContentPresenter.Content = supplierTransactionCollection;
+            if (transactions != null)
+            {
+                var supplierTransactionCollection = new SupplierTransactionCollection();
+                supplierTransactionCollection.Transactions = transactions.Select(t => new SupplierTransactionViewModel(t)).ToList();
+                supplierTransactionCollection.SupplierName = selectedSupplier.Name;
+                DetailContentPresenter.Content = supplierTransactionCollection;
+            }
         }
 
         private void PayMoney_Click(object sender, RoutedEventArgs e)

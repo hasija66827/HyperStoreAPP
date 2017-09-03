@@ -33,6 +33,7 @@ namespace SDKTemplate
         public App()
         {
             this.InitializeComponent();
+            ErrorNotification.InitializeDictionary();
             this.Construct();
         }
 

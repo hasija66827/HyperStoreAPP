@@ -56,10 +56,13 @@ namespace SDKTemplate
                 OrderDateRange = selectedDateRange
             };
             var customerOrderList = await CustomerOrderDataSource.RetrieveCustomerOrdersAsync(cofc);
-            var items = customerOrderList.Select(co => new CustomerOrderViewModel(co));
-            MasterListView.ItemsSource = items;
-            OrderCountTB.Text = "(" + items.Count().ToString() + "/" + "xxxx" + ")";
-            CustomerOrderListUpdatedEvent?.Invoke(items);
+            if (customerOrderList != null)
+            {
+                var items = customerOrderList.Select(co => new CustomerOrderViewModel(co));
+                MasterListView.ItemsSource = items;
+                OrderCountTB.Text = "(" + items.Count().ToString() + "/" + "xxxx" + ")";
+                CustomerOrderListUpdatedEvent?.Invoke(items);
+            }
         }
 
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -67,9 +70,13 @@ namespace SDKTemplate
             var selectedOrder = (CustomerOrderViewModel)e.ClickedItem;
             if (selectedOrder.OrderDetails.Count == 0)
             {
+                DetailContentPresenter.Content = null;
                 var customerOrderDetails = await CustomerOrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.CustomerOrderId);
-                selectedOrder.OrderDetails = customerOrderDetails.Select(cod => new CustomerOrderProductViewModel(cod)).ToList();
-                DetailContentPresenter.Content = MasterListView.SelectedItem;
+                if (customerOrderDetails != null)
+                {
+                    selectedOrder.OrderDetails = customerOrderDetails.Select(cod => new CustomerOrderProductViewModel(cod)).ToList();
+                    DetailContentPresenter.Content = MasterListView.SelectedItem;
+                }
             }
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();

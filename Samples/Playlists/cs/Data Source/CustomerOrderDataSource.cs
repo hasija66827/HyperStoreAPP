@@ -35,22 +35,21 @@ namespace SDKTemp.Data
 
         private static async Task<decimal> CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
         {
-            string actionURI = "customerorders";
+            string actionURI = API.CustomerOrders;
             var x = await Utility.CreateAsync<decimal>(actionURI, customerOrderDTO);
             return x;
         }
 
         public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
         {
-            string actionURI = "customerorders";
-            List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<TCustomerOrder>(actionURI, cofc);
+            string actionURI = API.CustomerOrders;
+            List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<TCustomerOrder>(API.CustomerOrders,null, cofc);
             return customerOrders;
         }
 
         public static async Task<List<TCustomerOrderProduct>> RetrieveOrderDetailsAsync(Guid customerOrderId)
         {
-            string actionURI = "customerorderproducts/" + customerOrderId.ToString();
-            List<TCustomerOrderProduct> orderDetails = await Utility.RetrieveAsync<TCustomerOrderProduct>(actionURI, null);
+            List<TCustomerOrderProduct> orderDetails = await Utility.RetrieveAsync<TCustomerOrderProduct>(API.CustomerOrderProducts, customerOrderId.ToString(), null);
             return orderDetails;
         }
     }

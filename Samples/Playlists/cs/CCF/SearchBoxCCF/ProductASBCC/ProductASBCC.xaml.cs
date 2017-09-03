@@ -60,7 +60,8 @@ namespace SDKTemplate
                 }
             }
             var products = await ProductDataSource.RetrieveProductDataAsync(null);
-            this._Products = products.Select(p => new ProductASBViewModel(p)).ToList();
+            if (products != null)
+                this._Products = products.Select(p => new ProductASBViewModel(p)).ToList();
         }
 
         private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
@@ -76,6 +77,8 @@ namespace SDKTemplate
         /// <param name="args">The event arguments.</param>
         private void ProductASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
+            if (this._Products == null)
+                return;
             // We only want to get results when it was a user typing, 
             // otherwise we assume the value got filled in by TextMemberPath 
             // or the handler for SuggestionChosen
@@ -96,6 +99,9 @@ namespace SDKTemplate
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
         private void ProductASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
+            if (this._Products == null)
+                return;
+
             ProductASBViewModel selectedProductInASB;
             if (args.ChosenSuggestion != null)
             {

@@ -248,6 +248,8 @@
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormViewModel.cs" />
+    <Compile Include="Tittle.cs" />
+    <Compile Include="CustomNotification.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNow.xaml.cs">
       <DependentUpon>OTPVerificationForPayingNow.xaml</DependentUpon>

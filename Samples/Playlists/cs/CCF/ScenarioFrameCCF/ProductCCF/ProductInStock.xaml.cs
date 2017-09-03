@@ -58,11 +58,14 @@ namespace SDKTemplate
                 FilterProductQDT = FilterProductCC.Current.ProductFilterQDT
             };
             var products = await ProductDataSource.RetrieveProductDataAsync(pfc);
-            var items = products.Select(p => new ProductViewModelBase(p)).ToList();
-            MasterListView.ItemsSource = items;
-            var totalResults = items;
-            //TODO: get total quantity
-            ProductCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
+            if (products != null)
+            {
+                var items = products.Select(p => new ProductViewModelBase(p)).ToList();
+                MasterListView.ItemsSource = items;
+                var totalResults = items;
+                //TODO: get total quantity
+                ProductCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
+            }
         }
 
         private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
@@ -87,7 +90,7 @@ namespace SDKTemplate
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
-
+            DetailContentPresenter.Content = null;
             var x = await AnalyticsDataSource.RetrieveLatestPriceQuotedBySupplierAsync(clickedItem.ProductId);
             var priceQuotedByWholeSellerCollection = new PriceQuotedBySupplierCollection();
             priceQuotedByWholeSellerCollection.PriceQuotedBySuppliers = x;

@@ -26,7 +26,7 @@ namespace SDKTemplate
         /// <param name="newCustomer"></param>
         public static async Task<TCustomer> CreateNewCustomerAsync(CustomerDTO customerDTO)
         {
-            string actionURI = "customers";
+            string actionURI = API.Customers;
             var x = await Utility.CreateAsync<TCustomer>(actionURI, customerDTO);
             return x;
         }
@@ -35,8 +35,7 @@ namespace SDKTemplate
         #region Read 
         public static async Task<List<TCustomer>> RetrieveCustomersAsync(CustomerFilterCriteriaDTO cfc)
         {
-            string actionURI = "customers";
-            List < TCustomer > customers= await Utility.RetrieveAsync<TCustomer>(actionURI,cfc);
+            List < TCustomer > customers= await Utility.RetrieveAsync<TCustomer>(API.Customers,null,cfc);
             return customers;
         }
 

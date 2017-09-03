@@ -13,7 +13,7 @@ namespace SDKTemplate
         #region create
         public static async Task<TSupplierTransaction> CreateNewTransactionAsync(SupplierTransactionDTO transactionDTO)
         {
-            string actionURI = "SupplierTransactions";
+            string actionURI = API.SupplierTransactions;
             var transaction = await Utility.CreateAsync<TSupplierTransaction>(actionURI, transactionDTO);
             return transaction;
         }
@@ -22,8 +22,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TSupplierTransaction>> RetrieveTransactionsAsync(SupplierTransactionFilterCriteriaDTO tfc)
         {
-            string actionURI = "SupplierTransactions";
-            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<TSupplierTransaction>(actionURI, tfc);
+            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<TSupplierTransaction>(API.SupplierTransactions, null, tfc);
             return transactions;
         }
         #endregion

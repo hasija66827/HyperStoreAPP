@@ -16,7 +16,7 @@ namespace SDKTemplate
         #region Create
         public static async Task<TTag> CreateNewTagAsync(TagDTO tagDTO)
         {
-            string actionURI = "tags";
+            string actionURI = API.Tags;
             var tag = await Utility.CreateAsync<TTag>(actionURI, tagDTO);
             return tag;
         }
@@ -25,8 +25,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TTag>> RetreiveTagsAsync()
         {
-            string actionURI = "tags";
-            List<TTag> tags = await Utility.RetrieveAsync<TTag>(actionURI, null);
+            List<TTag> tags = await Utility.RetrieveAsync<TTag>(API.Tags, null, null);
             return tags;
         }
         #endregion

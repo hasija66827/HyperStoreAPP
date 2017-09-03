@@ -40,7 +40,8 @@ namespace SDKTemplate
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
-            this._Suppliers = suppliers.Select(s => new SupplierASBViewModel(s)).ToList();
+            if (suppliers != null)
+                this._Suppliers = suppliers.Select(s => new SupplierASBViewModel(s)).ToList();
         }
 
         /// <summary>

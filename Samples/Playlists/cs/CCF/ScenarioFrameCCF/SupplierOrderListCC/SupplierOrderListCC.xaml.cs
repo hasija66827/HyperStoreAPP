@@ -51,13 +51,16 @@ namespace SDKTemplate
                 OrderDateRange = filterSupplierOrderCriteria?.OrderDateRange,
                 PartiallyPaidOrderOnly = filterSupplierOrderCriteria?.IncludePartiallyPaidOrdersOnly,
             };
-            var supplierOrderList = await SupplierOrderDataSource.RetrieveSupplierOrdersAsync(sofc);
-            var items = supplierOrderList.Select(so => new SupplierOrderViewModel(so));
-            MasterListView.ItemsSource = items;
-            var totalResults = items.Count();
-            //TODO: Remove xxxxx
-            OrderCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxxx" + ")";
-            this.SupplierOrderListUpdatedEvent?.Invoke();
+            var supplierOrders = await SupplierOrderDataSource.RetrieveSupplierOrdersAsync(sofc);
+            if (supplierOrders != null)
+            {
+                var items = supplierOrders.Select(so => new SupplierOrderViewModel(so));
+                MasterListView.ItemsSource = items;
+                var totalResults = items.Count();
+                //TODO: Remove xxxxx
+                OrderCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxxx" + ")";
+                this.SupplierOrderListUpdatedEvent?.Invoke();
+            }
         }
 
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -65,12 +68,15 @@ namespace SDKTemplate
             var selectedOrder = (SupplierOrderViewModel)e.ClickedItem;
             if (selectedOrder.OrderDetails.Count == 0)
             {
+                DetailContentPresenter.Content = null;
                 var supplierOrderDetails = await SupplierOrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.SupplierOrderId);
-                selectedOrder.OrderDetails = supplierOrderDetails.Select(sod => new SupplierOrderProductViewModel(sod)).ToList();
-                //Bug: what if he clicks first item which requires database call then second, then you are setting the response to the first order
-                DetailContentPresenter.Content = MasterListView.SelectedItem;
+                if (supplierOrderDetails != null)
+                {
+                    selectedOrder.OrderDetails = supplierOrderDetails.Select(sod => new SupplierOrderProductViewModel(sod)).ToList();
+                    //Bug: what if he clicks first item which requires database call then second, then you are setting the response to the first order
+                    DetailContentPresenter.Content = MasterListView.SelectedItem;
+                }
             }
         }
-
     }
 }

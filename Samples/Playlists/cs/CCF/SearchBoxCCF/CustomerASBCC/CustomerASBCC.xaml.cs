@@ -38,7 +38,8 @@ namespace SDKTemplate
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             var customers = await CustomerDataSource.RetrieveCustomersAsync(null);
-            this._Customers = customers.Select(c => new CustomerASBViewModel(c)).ToList();
+            if (customers != null)
+                this._Customers = customers.Select(c => new CustomerASBViewModel(c)).ToList();
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace SDKTemplate
                 CustomerName.Text = customer.Name;
                 CustomerAddress.Text = customer.Address != null ? customer.Address : "";
                 CustomerWalletBalance.Text = Utility.ConvertToRupee(customer.WalletBalance);
-                CustomerNetWorth.Text ="NetWorth: "+Utility.ConvertToRupee(customer.NetWorth);
+                CustomerNetWorth.Text = "NetWorth: " + Utility.ConvertToRupee(customer.NetWorth);
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
             }
             else

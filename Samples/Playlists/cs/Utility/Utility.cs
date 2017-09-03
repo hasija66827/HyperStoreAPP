@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography.Certificates;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -259,28 +260,45 @@ namespace SDKTemplate
             return true;
         }
 
-        public static async Task<List<T>> RetrieveAsync<T>(string actionURI, object content)
+        public static async Task<List<T>> RetrieveAsync<T>(string APIName, string queryString, object content)
         {
             string httpResponseBody = "";
+            string actionURI = "";
+            if (queryString != null)
+                actionURI = APIName + "/" + queryString;
+            else
+                actionURI = APIName;
+
             try
             {
                 var response = await Utility.HttpGet(actionURI, content);
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    httpResponseBody = await response.Content.ReadAsStringAsync();
-                    var suppliers = JsonConvert.DeserializeObject<List<T>>(httpResponseBody);
-                    return suppliers;
-                }
-                else
-                    return null;
+                if (response.StatusCode != HttpStatusCode.Ok)
+                    throw new Exception(response.Content.ToString());
+                httpResponseBody = await response.Content.ReadAsStringAsync();
+                var results = JsonConvert.DeserializeObject<List<T>>(httpResponseBody);
+                return results;
             }
             catch (Exception ex)
             {
-                throw ex;//TODO: notifications
-                return null;
+                var logMessage = "Error: " + ex.HResult + " Message: " + ex.Message;
+                var userMessage = ex.Message;
+
+                if (ex.HResult == -2147012867)
+                    userMessage = "Could not connect to server. \nPlease check the internet connection.";
+
+                PopUpHTTPGetErrorNotifcation(APIName, userMessage);
+                return default(List<T>);
             }
         }
+
+        public static void PopUpHTTPGetErrorNotifcation(string APIName, string userMessage)
+        {
+            ErrorTitle title;
+            ErrorNotification.Dictionary_API_Title.TryGetValue(APIName, out title);
+            ErrorNotification errorNotification = new ErrorNotification(title?.Error_HTTPGet, userMessage);
+            ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
+        }
+
 
         public static async Task<T> CreateAsync<T>(string actionURI, object content)
         {
@@ -288,19 +306,22 @@ namespace SDKTemplate
             {
                 var serializeContent = JsonConvert.SerializeObject(content);
                 var response = await Utility.HttpPost(actionURI, serializeContent);
-                if (response.StatusCode == HttpStatusCode.BadRequest)
+                if (response.StatusCode != HttpStatusCode.Ok)
                     throw new Exception(response.Content.ToString());
-                response.EnsureSuccessStatusCode();
+
                 var httpResponseBody = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<T>(httpResponseBody);
                 return result;
             }
             catch (Exception ex)
             {
+                ErrorTitle title;
+                ErrorNotification.Dictionary_API_Title.TryGetValue(actionURI, out title);
+                ErrorNotification errorNotification = new ErrorNotification(title.Error_HTTPPost, ex.Message);
+                ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
                 //TODO: handle different types of exception
-                throw ex;
+                return default(T);
             }
-
         }
 
         public static async Task<HttpResponseMessage> HttpPost(string actionURI, string content)
@@ -343,8 +364,7 @@ namespace SDKTemplate
             }
             catch (Exception ex)
             {
-                var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
-                throw new Exception(x);
+                throw ex;
             }
         }
 

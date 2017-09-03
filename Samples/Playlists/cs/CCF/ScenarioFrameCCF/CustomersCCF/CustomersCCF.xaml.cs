@@ -63,10 +63,13 @@ namespace SDKTemplate
                 WalletAmount = filterCustomerCriteria.WalletBalance
             };
             var items = await CustomerDataSource.RetrieveCustomersAsync(cfc);
-            MasterListView.ItemsSource = items;
-            var totalResults = items.Count;
-            CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
-            CustomerListUpdatedEvent?.Invoke(items);
+            if (items != null)
+            {
+                MasterListView.ItemsSource = items;
+                var totalResults = items.Count;
+                CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
+                CustomerListUpdatedEvent?.Invoke(items);
+            }
         }
 
         /// <summary>
@@ -82,11 +85,15 @@ namespace SDKTemplate
             {
                 CustomerId = selectedCustomer?.CustomerId
             };
+            DetailContentPresenter.Content = null;
             var transactions = await CustomerTransactionDataSource.RetrieveTransactionsAsync(tfc);
-            var customerTransactionCollection = new CustomerTransactionCollection();
-            customerTransactionCollection.Transactions = transactions.Select(t => new CustomerTransactionViewModel(t)).ToList();
-            customerTransactionCollection.CustomerName = selectedCustomer.Name;
-            DetailContentPresenter.Content = customerTransactionCollection;
+            if (transactions != null)
+            {
+                var customerTransactionCollection = new CustomerTransactionCollection();
+                customerTransactionCollection.Transactions = transactions.Select(t => new CustomerTransactionViewModel(t)).ToList();
+                customerTransactionCollection.CustomerName = selectedCustomer.Name;
+                DetailContentPresenter.Content = customerTransactionCollection;
+            }
         }
 
         private void ReceiveMoney_Click(object sender, RoutedEventArgs e)

@@ -40,14 +40,18 @@ namespace SDKTemplate
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             var tags = await TagDataSource.RetreiveTagsAsync();
-            var Items = tags.Select(t => new FilterTagViewModel()
+            TagItemControl.ItemsSource = null;
+            if (tags != null)
             {
-                TagId = t.TagId,
-                TagName = t.TagName,
-                IsChecked = false,
-            }).ToList();
-            this._TagCollection = new FilterTagCollection(Items);
-            TagItemControl.ItemsSource = this._TagCollection.Tags;
+                var Items = tags.Select(t => new FilterTagViewModel()
+                {
+                    TagId = t.TagId,
+                    TagName = t.TagName,
+                    IsChecked = false,
+                }).ToList();
+                this._TagCollection = new FilterTagCollection(Items);
+                TagItemControl.ItemsSource = this._TagCollection.Tags;
+            }
         }
 
         public void InvokeTagListchangedEvent()
