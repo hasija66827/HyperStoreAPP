@@ -102,6 +102,8 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="APIUtility\API.cs" />
+    <Compile Include="APIUtility\APIUtility.cs" />
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterTagViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterProductByTagCC.xaml.cs">
@@ -178,10 +180,11 @@
       <DependentUpon>ProductTagCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagViewModel.cs" />
-    <Compile Include="RecommendedProduct.xaml.cs">
+    <Compile Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProduct.xaml.cs">
       <DependentUpon>RecommendedProduct.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecommendedProductViewModel.cs" />
+    <Compile Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProductViewModel.cs" />
+    <Compile Include="Notifications\SuccessTitle.cs" />
     <Compile Include="TextBoxAttached.cs" />
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerPurchaseTrendViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
@@ -248,8 +251,8 @@
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormViewModel.cs" />
-    <Compile Include="Tittle.cs" />
-    <Compile Include="CustomNotification.cs" />
+    <Compile Include="Notifications\ErrorTittle.cs" />
+    <Compile Include="Notifications\ErrorNotification.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNow.xaml.cs">
       <DependentUpon>OTPVerificationForPayingNow.xaml</DependentUpon>
@@ -470,7 +473,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecommendedProduct.xaml">
+    <Page Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

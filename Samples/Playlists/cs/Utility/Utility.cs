@@ -243,7 +243,7 @@ namespace SDKTemplate
         }
     }
 
-    class Utility
+    partial class Utility
     {
         public static string DEFAULT_CUSTOMER_GUID { get { return "cccccccc-cccc-cccc-cccc-cccccccccccc"; } }
 
@@ -260,114 +260,7 @@ namespace SDKTemplate
             return true;
         }
 
-        public static async Task<List<T>> RetrieveAsync<T>(string APIName, string queryString, object content)
-        {
-            string httpResponseBody = "";
-            string actionURI = "";
-            if (queryString != null)
-                actionURI = APIName + "/" + queryString;
-            else
-                actionURI = APIName;
-
-            try
-            {
-                var response = await Utility.HttpGet(actionURI, content);
-                if (response.StatusCode != HttpStatusCode.Ok)
-                    throw new Exception(response.Content.ToString());
-                httpResponseBody = await response.Content.ReadAsStringAsync();
-                var results = JsonConvert.DeserializeObject<List<T>>(httpResponseBody);
-                return results;
-            }
-            catch (Exception ex)
-            {
-                var logMessage = "Error: " + ex.HResult + " Message: " + ex.Message;
-                var userMessage = ex.Message;
-
-                if (ex.HResult == -2147012867)
-                    userMessage = "Could not connect to server. \nPlease check the internet connection.";
-
-                PopUpHTTPGetErrorNotifcation(APIName, userMessage);
-                return default(List<T>);
-            }
-        }
-
-        public static void PopUpHTTPGetErrorNotifcation(string APIName, string userMessage)
-        {
-            ErrorTitle title;
-            ErrorNotification.Dictionary_API_Title.TryGetValue(APIName, out title);
-            ErrorNotification errorNotification = new ErrorNotification(title?.Error_HTTPGet, userMessage);
-            ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
-        }
-
-
-        public static async Task<T> CreateAsync<T>(string actionURI, object content)
-        {
-            try
-            {
-                var serializeContent = JsonConvert.SerializeObject(content);
-                var response = await Utility.HttpPost(actionURI, serializeContent);
-                if (response.StatusCode != HttpStatusCode.Ok)
-                    throw new Exception(response.Content.ToString());
-
-                var httpResponseBody = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<T>(httpResponseBody);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                ErrorTitle title;
-                ErrorNotification.Dictionary_API_Title.TryGetValue(actionURI, out title);
-                ErrorNotification errorNotification = new ErrorNotification(title.Error_HTTPPost, ex.Message);
-                ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
-                //TODO: handle different types of exception
-                return default(T);
-            }
-        }
-
-        public static async Task<HttpResponseMessage> HttpPost(string actionURI, string content)
-        {
-            string absoluteURI = "https://localhost:44346/api/";
-            string uri = string.Concat(absoluteURI, actionURI);
-            HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
-            httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
-            HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(uri));
-            request.Content = new HttpStringContent(content, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            try
-            {
-                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
-                return response;
-            }
-            catch (Exception ex)
-            {
-                var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
-                throw new Exception(x);
-            }
-        }
-
-        public static async Task<HttpResponseMessage> HttpGet(string actionURI, object content)
-        {
-            string absoluteURI = "https://localhost:44346/api/";
-            string uri = string.Concat(absoluteURI, actionURI);
-
-            HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
-            httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
-            HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(uri));
-
-            if (content != null)
-                request.Content = new HttpStringContent(JsonConvert.SerializeObject(content), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            try
-            {
-                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
-                return response;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
+       
         public static bool IsMobileNumber(string text)
         {
             if (text.Length == 10)
@@ -438,50 +331,6 @@ namespace SDKTemplate
             {
                 MainPage.Current.NotifyUser("The product name already exist", NotifyType.ErrorMessage);
                 return false;
-            }
-            return true;
-        }
-
-        public static bool CheckIfUniqueMobileNumber(string mobileNo, Person person)
-        {
-            if (IsMobileNumber(mobileNo) == false)
-            {
-                MainPage.Current.NotifyUser("Mobile number is not valid", NotifyType.ErrorMessage);
-                return false;
-            }
-            if (person == Person.Customer)
-            {
-                if (CustomerDataSource.IsMobileNumberExist(mobileNo))
-                {
-                    MainPage.Current.NotifyUser("Mobile Number already exist", NotifyType.ErrorMessage);
-                    return false;
-                }
-            }
-            else if (person == Person.WholeSeller)
-            {
-
-            }
-            return true;
-        }
-
-        public static bool CheckIfValidName(string name, Person person)
-        {
-            if (name == "")
-            {
-                MainPage.Current.NotifyUser("Name cannot be empty", NotifyType.ErrorMessage);
-                return false;
-            }
-            if (person == Person.Customer)
-            {
-                if (CustomerDataSource.IsNameExist(name))
-                {
-                    MainPage.Current.NotifyUser("Name already exist", NotifyType.ErrorMessage);
-                    return false;
-                }
-            }
-            else if (person == Person.WholeSeller)
-            {
-
             }
             return true;
         }
@@ -576,5 +425,6 @@ namespace SDKTemplate
             }
             return result;
         }
+
     }
 }

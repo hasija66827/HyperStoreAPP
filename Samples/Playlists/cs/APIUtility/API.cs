@@ -6,18 +6,6 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    class ErrorTitle
-    {
-        public string Error_HTTPGet { get; set; }
-        public string Error_HTTPPost { get; set; }
-    }
-
-    class SuccessTitle
-    {
-        public string Success_HTTPGet { get; set; }
-        public string Success_HTTPPost { get; set; }
-    }
-
     class API
     {
         public static string Customers { get { return "Customers"; } }

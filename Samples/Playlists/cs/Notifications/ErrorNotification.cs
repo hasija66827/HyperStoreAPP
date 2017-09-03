@@ -13,18 +13,33 @@ namespace SDKTemplate
     class ErrorNotification
     {
         // In a real app, these would be initialized with actual data
-        static string image = "https://unsplash.it/360/202?image=883";
-        static string logo = "ms-appdata:///local/Andrew.jpg";
+        private static string image = "https://unsplash.it/360/202?image=883";
+        private static string logo = "ms-appdata:///local/Andrew.jpg";
         ToastVisual visual;
         // Construct the visuals of the toast
         // Now we can construct the final toast content
-        ToastContent toastContent;
-        public ToastNotification toast;
-        public static Dictionary<string, ErrorTitle> Dictionary_API_Title { get { return _Dictionary_API_Title; } }
         private static Dictionary<string, ErrorTitle> _Dictionary_API_Title;
+        private ToastContent toastContent;
+        private ToastNotification toast;
 
         private static string RetrieveFailedForEntity = "Unable to Get {0} from Server";
         private static string CreationFailedForEntity = "{0} creation failed";
+
+        public static void PopUpHTTPGetErrorNotifcation(string APIName, string userMessage)
+        {
+            ErrorTitle title;
+            ErrorNotification._Dictionary_API_Title.TryGetValue(APIName, out title);
+            ErrorNotification errorNotification = new ErrorNotification(title?.Error_HTTPGet, userMessage);
+            ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
+        }
+
+        public static void PopUpHTTPPostErrorNotifcation(string APIName, string userMessage)
+        {
+            ErrorTitle title;
+            ErrorNotification._Dictionary_API_Title.TryGetValue(APIName, out title);
+            ErrorNotification errorNotification = new ErrorNotification(title?.Error_HTTPPost, userMessage);
+            ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
+        }
 
         public static void InitializeDictionary()
         {

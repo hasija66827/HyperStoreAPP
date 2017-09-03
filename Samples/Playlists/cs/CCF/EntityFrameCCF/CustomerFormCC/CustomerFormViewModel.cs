@@ -73,7 +73,7 @@ namespace SDKTemplate
         private async void ValidateAndSave_Executed()
         {
             var IsValid = ValidateProperties();
-            if (IsValid && Utility.CheckIfUniqueMobileNumber(this._mobileNo, Person.Customer))
+            if (IsValid)
             {
                 CustomerDTO customerDTO = new CustomerDTO()
                 {
