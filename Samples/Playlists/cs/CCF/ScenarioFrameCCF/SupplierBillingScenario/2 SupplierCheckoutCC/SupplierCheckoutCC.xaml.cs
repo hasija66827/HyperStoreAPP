@@ -71,15 +71,15 @@ namespace SDKTemplate
             if (usingWalletAmount != null)
             {
                 string formattedUsingWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)usingWalletAmount));
-                string firstMessage = String.Format("{0} has been added to wallet",formattedUsingWalletAmount);
+                string firstMessage = String.Format("{0} has been added to wallet.",formattedUsingWalletAmount);
 
                 string secondMessage = "";
                 decimal updatedWalletBalance = PNP.SelectedSupplier.WalletBalance + (decimal)usingWalletAmount;
                 var formattedWalletBalance = Utility.ConvertToRupee(Math.Abs(updatedWalletBalance));
                 if (updatedWalletBalance > 0)
-                    secondMessage = String.Format("You owe {0} to {1}", formattedWalletBalance, PNP.SelectedSupplier.Name);
+                    secondMessage = String.Format("You owe {0} to {1}.", formattedWalletBalance, PNP.SelectedSupplier.Name);
                 else
-                    secondMessage = String.Format("{0} owes you {1}", PNP.SelectedSupplier.Name, formattedWalletBalance);
+                    secondMessage = String.Format("{0} owes you {1}.", PNP.SelectedSupplier.Name, formattedWalletBalance);
 
                 SuccessNotification.PopUpSuccessNotification(API.SupplierOrders, firstMessage + "\n" + secondMessage);
             }

@@ -36,17 +36,17 @@ namespace SDKTemp.Data
                 var formattedDeductedWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)deductedWalletAmount));
                 string firstMessage = "";
                 if (deductedWalletAmount > 0)
-                    firstMessage = String.Format("{0} has been Deducted from Wallet", formattedDeductedWalletAmount);
+                    firstMessage = String.Format("{0} has been Deducted from Wallet.", formattedDeductedWalletAmount);
                 else if (deductedWalletAmount < 0)
-                    firstMessage = String.Format("{0} has been Added to Wallet", formattedDeductedWalletAmount);
+                    firstMessage = String.Format("{0} has been Added to Wallet.", formattedDeductedWalletAmount);
 
                 var updateWalletBalance = PNP.SelectedCustomer.WalletBalance - deductedWalletAmount;
                 var formattedWalletBalance = Utility.ConvertToRupee(Math.Abs((decimal)updateWalletBalance));
                 string secondMessage = "";
                 if (updateWalletBalance > 0)
-                    secondMessage = String.Format("You owe {0} to {1}", formattedWalletBalance, PNP.SelectedCustomer.Name);
+                    secondMessage = String.Format("You owe {0} to {1}.", formattedWalletBalance, PNP.SelectedCustomer.Name);
                 else
-                    secondMessage = String.Format("{0} owes you {1}", PNP.SelectedCustomer.Name, formattedWalletBalance);
+                    secondMessage = String.Format("{0} owes you {1}.", PNP.SelectedCustomer.Name, formattedWalletBalance);
 
                 SuccessNotification.PopUpSuccessNotification(API.CustomerOrders, firstMessage + "\n" + secondMessage);
             }

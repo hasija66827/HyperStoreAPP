@@ -90,6 +90,7 @@ namespace SDKTemplate
             toastContent = new ToastContent()
             {
                 Visual = visual,
+                Scenario=ToastScenario.Reminder
             };
             // And create the toast notification
             toast = new ToastNotification(toastContent.GetXml());
