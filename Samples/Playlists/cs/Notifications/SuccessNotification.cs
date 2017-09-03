@@ -14,7 +14,7 @@ namespace SDKTemplate
     {
         private static Dictionary<string, SuccessTitle> _Dictionary_API_Title;
 
-        private static string CreationSuccededForEntity = "The {0} was created Successfully";
+        private static string CreationSuccededForEntity = "The {0} was created Successfully.";
 
         public static void InitializeDictionary()
         {

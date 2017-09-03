@@ -14,9 +14,13 @@ namespace SDKTemplate
         #region Create
         public static async Task<TProduct> CreateNewProductAsync(ProductDTO productDTO)
         {
-            string actionURI = API.Products;
-            var x = await Utility.CreateAsync<TProduct>(actionURI, productDTO);
-            return x;
+            var product = await Utility.CreateAsync<TProduct>(API.Products, productDTO);
+            if (product != null)
+            {
+                var message = String.Format("Update the stock of the product\n {0} ({1}).", product.Name, product.Code);
+                SuccessNotification.PopUpSuccessNotification(API.Products, message);
+            }
+            return product;
         }
         #endregion
 

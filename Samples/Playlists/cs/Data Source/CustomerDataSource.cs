@@ -27,13 +27,13 @@ namespace SDKTemplate
         public static async Task<TCustomer> CreateNewCustomerAsync(CustomerDTO customerDTO)
         {
 
-            var x = await Utility.CreateAsync<TCustomer>(API.Customers, customerDTO);
-            if (x != null)
+            var customer = await Utility.CreateAsync<TCustomer>(API.Customers, customerDTO);
+            if (customer != null)
             {
-                var message = String.Format("{0} ({1})", customerDTO.Name, customerDTO.MobileNo);
+                var message = String.Format("You can Start taking Orders from {0} ({1})", customer.Name, customer.MobileNo);
                 SuccessNotification.PopUpSuccessNotification(API.Customers, message);
             }
-            return x;
+            return customer;
         }
         #endregion
 

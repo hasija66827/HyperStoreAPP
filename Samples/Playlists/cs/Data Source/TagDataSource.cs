@@ -16,8 +16,12 @@ namespace SDKTemplate
         #region Create
         public static async Task<TTag> CreateNewTagAsync(TagDTO tagDTO)
         {
-            string actionURI = API.Tags;
-            var tag = await Utility.CreateAsync<TTag>(actionURI, tagDTO);
+            var tag = await Utility.CreateAsync<TTag>(API.Tags, tagDTO);
+            if (tag != null)
+            {
+                var message = String.Format("You can associate {0} with any product in your store.", tag.TagName);
+                SuccessNotification.PopUpSuccessNotification(API.Tags, message);
+            }
             return tag;
         }
         #endregion

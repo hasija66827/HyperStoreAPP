@@ -16,9 +16,13 @@ namespace SDKTemplate
         #region Create
         public static async Task<TSupplier> CreateNewSupplier(SupplierDTO supplierDTO)
         {
-            string actionURI = API.Suppliers;
-            var x = await Utility.CreateAsync<TSupplier>(actionURI, supplierDTO);
-            return x;
+            var supplier = await Utility.CreateAsync<TSupplier>(API.Suppliers, supplierDTO);
+            if (supplier != null)
+            {
+                var message = String.Format("You can Start placing Ordes to {0} ({1})", supplier.Name, supplier.MobileNo);
+                SuccessNotification.PopUpSuccessNotification(API.Suppliers, message);
+            }
+            return supplier;
         }
         #endregion
 
