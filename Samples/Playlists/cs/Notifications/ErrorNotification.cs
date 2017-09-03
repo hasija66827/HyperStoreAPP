@@ -22,8 +22,8 @@ namespace SDKTemplate
         private ToastContent toastContent;
         private ToastNotification toast;
         private const int NotificationLength = 120;
-        private static string RetrieveFailedForEntity = "Unable to Get {0} from Server";
-        private static string CreationFailedForEntity = "{0} creation failed";
+        private static string RetrieveFailedForEntity = "Unfortunately!! We were unable to Get {0} from the Server";
+        private static string CreationFailedForEntity = "Unforutnately!!! {0} creation did not succeded";
 
         public static void PopUpHTTPGetErrorNotifcation(string APIName, string userMessage)
         {

@@ -17,7 +17,7 @@ namespace SDKTemplate
             var product = await Utility.CreateAsync<TProduct>(API.Products, productDTO);
             if (product != null)
             {
-                var message = String.Format("Update the stock of the product\n {0} ({1}).", product.Name, product.Code);
+                var message = String.Format("You should Update the stock of the product\n {0} ({1}) Quantity: {2}.", product.Name, product.Code, product.TotalQuantity);
                 SuccessNotification.PopUpSuccessNotification(API.Products, message);
             }
             return product;

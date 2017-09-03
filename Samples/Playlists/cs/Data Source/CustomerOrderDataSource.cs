@@ -12,7 +12,7 @@ namespace SDKTemp.Data
 {
     public class CustomerOrderDataSource
     {
-        public static async Task<decimal> PlaceOrderAsync(CustomerPageNavigationParameter PNP, decimal payingAmount)
+        public static async Task<decimal?> PlaceOrderAsync(CustomerPageNavigationParameter PNP, decimal payingAmount)
         {
             var productsConsumed = PNP.ProductsConsumed.Select(p => new ProductConsumedDTO()
             {
@@ -29,21 +29,35 @@ namespace SDKTemp.Data
                 IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,
                 PayingAmount = payingAmount
             };
+            var deductedWalletAmount = await CreateCustomerOrderAsync(customerOrderDTO);
 
-            return await CreateCustomerOrderAsync(customerOrderDTO);
+            if (deductedWalletAmount != null)
+            {
+                string message = "";
+                if (deductedWalletAmount > 0)
+                    message = "{0} has been Deducted from {1} Wallet\nNew Wallet Balance is {2}";
+                else if (deductedWalletAmount < 0)
+                    message = "{0} has been Added to {1} Wallet\nNew Wallet Balance is {2}";
+                var usedWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)deductedWalletAmount));
+                var updateWalletBalance = Utility.ConvertToRupee(PNP.SelectedCustomer.WalletBalance - deductedWalletAmount);
+                var formatedMessage = String.Format(message, usedWalletAmount, PNP.SelectedCustomer.Name, updateWalletBalance);
+                SuccessNotification.PopUpSuccessNotification(API.CustomerOrders, formatedMessage);
+            }
+
+            return deductedWalletAmount;
         }
 
-        private static async Task<decimal> CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
+        private static async Task<decimal?> CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
         {
-            string actionURI = API.CustomerOrders;
-            var x = await Utility.CreateAsync<decimal>(actionURI, customerOrderDTO);
-            return x;
+
+            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(API.CustomerOrders, customerOrderDTO);
+            return deductedWalletAmount;
         }
 
         public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
         {
             string actionURI = API.CustomerOrders;
-            List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<TCustomerOrder>(API.CustomerOrders,null, cofc);
+            List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<TCustomerOrder>(API.CustomerOrders, null, cofc);
             return customerOrders;
         }
 
