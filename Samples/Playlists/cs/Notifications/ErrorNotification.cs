@@ -21,12 +21,14 @@ namespace SDKTemplate
         private static Dictionary<string, ErrorTitle> _Dictionary_API_Title;
         private ToastContent toastContent;
         private ToastNotification toast;
-
+        private const int NotificationLength = 120;
         private static string RetrieveFailedForEntity = "Unable to Get {0} from Server";
         private static string CreationFailedForEntity = "{0} creation failed";
 
         public static void PopUpHTTPGetErrorNotifcation(string APIName, string userMessage)
         {
+            if (userMessage.Length > NotificationLength)
+                userMessage = userMessage.Substring(0, NotificationLength);
             ErrorTitle title;
             ErrorNotification._Dictionary_API_Title.TryGetValue(APIName, out title);
             ErrorNotification errorNotification = new ErrorNotification(title?.Error_HTTPGet, userMessage);
@@ -35,6 +37,8 @@ namespace SDKTemplate
 
         public static void PopUpHTTPPostErrorNotifcation(string APIName, string userMessage)
         {
+            if (userMessage.Length > NotificationLength)
+                userMessage = userMessage.Substring(0, NotificationLength);
             ErrorTitle title;
             ErrorNotification._Dictionary_API_Title.TryGetValue(APIName, out title);
             ErrorNotification errorNotification = new ErrorNotification(title?.Error_HTTPPost, userMessage);

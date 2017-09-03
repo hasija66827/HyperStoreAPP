@@ -14,7 +14,7 @@ namespace SDKTemplate
         #region Create
         public static async Task<TProduct> CreateNewProductAsync(ProductDTO productDTO)
         {
-            string actionURI = "products";
+            string actionURI = API.Products;
             var x = await Utility.CreateAsync<TProduct>(actionURI, productDTO);
             return x;
         }

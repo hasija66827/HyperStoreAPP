@@ -34,6 +34,7 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             ErrorNotification.InitializeDictionary();
+            SuccessNotification.InitializeDictionary();
             this.Construct();
         }
 

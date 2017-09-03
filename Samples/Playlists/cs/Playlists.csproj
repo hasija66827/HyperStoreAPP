@@ -184,6 +184,7 @@
       <DependentUpon>RecommendedProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProductViewModel.cs" />
+    <Compile Include="Notifications\SuccessNotification.cs" />
     <Compile Include="Notifications\SuccessTitle.cs" />
     <Compile Include="TextBoxAttached.cs" />
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerPurchaseTrendViewModel.cs" />

@@ -50,22 +50,21 @@ namespace SDKTemplate
         }
 
 
-        public static async Task<T> CreateAsync<T>(string actionURI, object content)
+        public static async Task<T> CreateAsync<T>(string APIName, object content)
         {
             try
             {
                 var serializeContent = JsonConvert.SerializeObject(content);
-                var response = await Utility.HttpPost(actionURI, serializeContent);
-                if (response.StatusCode != HttpStatusCode.Ok)
+                var response = await Utility.HttpPost(APIName, serializeContent);
+                if (response.StatusCode != HttpStatusCode.Created && response.StatusCode !=HttpStatusCode.Ok)
                     throw new Exception(response.Content.ToString());
-
                 var httpResponseBody = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<T>(httpResponseBody);
                 return result;
             }
             catch (Exception ex)
             {
-                ErrorNotification.PopUpHTTPPostErrorNotifcation(actionURI, ex.Message);
+                ErrorNotification.PopUpHTTPPostErrorNotifcation(APIName, ex.Message);
                 //TODO: handle different types of exception
                 return default(T);
             }
