@@ -19,7 +19,7 @@ namespace SDKTemplate
             var supplier = await Utility.CreateAsync<TSupplier>(API.Suppliers, supplierDTO);
             if (supplier != null)
             {
-                var message = String.Format("You can Start placing Ordes to {0} ({1})", supplier.Name, supplier.MobileNo);
+                var message = String.Format("You can Start placing Ordes to Supplier {0} ({1})", supplier.Name, supplier.MobileNo);
                 SuccessNotification.PopUpSuccessNotification(API.Suppliers, message);
             }
             return supplier;

@@ -19,7 +19,7 @@ namespace SDKTemplate
             var tag = await Utility.CreateAsync<TTag>(API.Tags, tagDTO);
             if (tag != null)
             {
-                var message = String.Format("You can associate {0} with any product in your store.", tag.TagName);
+                var message = String.Format("You can associate {0} with any product in your store.\nThis can help you to filter out the products in meaningful way.", tag.TagName);
                 SuccessNotification.PopUpSuccessNotification(API.Tags, message);
             }
             return tag;

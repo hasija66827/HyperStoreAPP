@@ -68,10 +68,17 @@ namespace SDKTemplate
 
             var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
 
+            _SendOrderCreationNotification(PNP, usingWalletAmount);
+
+            this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
+        }
+
+        private static void _SendOrderCreationNotification(SupplierPageNavigationParameter PNP, decimal? usingWalletAmount)
+        {
             if (usingWalletAmount != null)
             {
                 string formattedUsingWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)usingWalletAmount));
-                string firstMessage = String.Format("{0} has been added to wallet.",formattedUsingWalletAmount);
+                string firstMessage = String.Format("{0} has been added to wallet.", formattedUsingWalletAmount);
 
                 string secondMessage = "";
                 decimal updatedWalletBalance = PNP.SelectedSupplier.WalletBalance + (decimal)usingWalletAmount;
@@ -83,9 +90,7 @@ namespace SDKTemplate
 
                 SuccessNotification.PopUpSuccessNotification(API.SupplierOrders, firstMessage + "\n" + secondMessage);
             }
-
-
-            this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
         }
+
     }
 }

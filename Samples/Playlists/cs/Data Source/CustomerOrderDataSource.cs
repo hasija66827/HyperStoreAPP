@@ -30,7 +30,14 @@ namespace SDKTemp.Data
                 PayingAmount = payingAmount
             };
             var deductedWalletAmount = await CreateCustomerOrderAsync(customerOrderDTO);
+            _SendOrderCreationNotification(PNP, deductedWalletAmount);
 
+
+            return deductedWalletAmount;
+        }
+
+        private static void _SendOrderCreationNotification(CustomerPageNavigationParameter PNP, decimal? deductedWalletAmount)
+        {
             if (deductedWalletAmount != null)
             {
                 var formattedDeductedWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)deductedWalletAmount));
@@ -51,7 +58,6 @@ namespace SDKTemp.Data
                 SuccessNotification.PopUpSuccessNotification(API.CustomerOrders, firstMessage + "\n" + secondMessage);
             }
 
-            return deductedWalletAmount;
         }
 
         private static async Task<decimal?> CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)

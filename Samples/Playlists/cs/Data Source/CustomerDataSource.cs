@@ -30,7 +30,7 @@ namespace SDKTemplate
             var customer = await Utility.CreateAsync<TCustomer>(API.Customers, customerDTO);
             if (customer != null)
             {
-                var message = String.Format("You can Start taking Orders from {0} ({1})", customer.Name, customer.MobileNo);
+                var message = String.Format("You can Start taking Orders from Customer {0} ({1})", customer.Name, customer.MobileNo);
                 SuccessNotification.PopUpSuccessNotification(API.Customers, message);
             }
             return customer;
