@@ -41,7 +41,7 @@
                              Height="48"
                              Width="48"
                              Margin="0,16,0,8"
-                             Fill="#99797A05" />
+                             Fill="#FFA9DD13" />
                     <TextBlock x:Name="ProductGlyph"
                                Text="RH"
                                FontSize="20"

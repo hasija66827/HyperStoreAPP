@@ -17,25 +17,27 @@ namespace SDKTemplate
     public sealed partial class BillingSummaryCC : Page
     {
         public static BillingSummaryCC Current;
-        public CustomerBillingSummaryViewModelBase BillingSummaryViewModel;
+        public CustomerBillingSummaryViewModelBase BillingSummaryViewModel { get { return this._BillingSummaryViewModel; } }
+        public CustomerBillingSummaryViewModelBase _BillingSummaryViewModel;
+
         public BillingSummaryCC()
         {
             Current = this;
             this.InitializeComponent();
-            BillingSummaryViewModel = new CustomerBillingSummaryViewModelBase();
+            _BillingSummaryViewModel = new CustomerBillingSummaryViewModelBase();
             //Subscribing to product list changed event of ProductListCC
             ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
                 () =>
                 {
                     var products = CustomerProductListCC.Current.Products;
                         
-                    this.BillingSummaryViewModel.TotalItems = (int)products.Count();
-                    this.BillingSummaryViewModel.TotalQuantity = (decimal)products.Sum(p => p.QuantityConsumed);
-                    this.BillingSummaryViewModel.CartAmount = (decimal)products.Sum(p => p.DisplayPrice * p.QuantityConsumed);
-                    this.BillingSummaryViewModel.DiscountAmount = (decimal)products.Sum(p => p.DiscountAmount * p.QuantityConsumed);
-                    this.BillingSummaryViewModel.Tax = (decimal)products.Sum(p => (p.SellingPrice - p.SubTotal) * p.QuantityConsumed);
-                    this.BillingSummaryViewModel.PayAmount = (decimal)products.Sum(p => p.NetValue);
-                    this.BillingSummaryViewModel.OnALLPropertyChanged();
+                    this._BillingSummaryViewModel.TotalItems = (int)products.Count();
+                    this._BillingSummaryViewModel.TotalQuantity = (decimal)products.Sum(p => p.QuantityConsumed);
+                    this._BillingSummaryViewModel.CartAmount = (decimal)products.Sum(p => p.DisplayPrice * p.QuantityConsumed);
+                    this._BillingSummaryViewModel.DiscountAmount = (decimal)products.Sum(p => p.DiscountAmount * p.QuantityConsumed);
+                    this._BillingSummaryViewModel.Tax = (decimal)products.Sum(p => (p.SellingPrice - p.SubTotal) * p.QuantityConsumed);
+                    this._BillingSummaryViewModel.PayAmount = (decimal)products.Sum(p => p.NetValue);
+                    this._BillingSummaryViewModel.OnALLPropertyChanged();
                 });
             CustomerProductListCC.Current.ProductListCCUpdatedEvent += d;
         }

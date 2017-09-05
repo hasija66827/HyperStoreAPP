@@ -153,7 +153,7 @@ namespace SDKTemplate
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-                    SummaryFrame.Navigate(typeof(WholeSellerBillingSummaryCC));
+                    SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
                     ChangeLayout(false);
 
                 }

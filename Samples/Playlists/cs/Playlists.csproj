@@ -141,8 +141,8 @@
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerTransactionOTPVerification.xaml.cs">
       <DependentUpon>CustomerTransactionOTPVerification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerSummaryViewModel.cs" />
-    <Compile Include="CustomerSummary.xaml.cs">
+    <Compile Include="CCF\SummaryFrameCCF\CustomerSummmaryCC\CustomerSummaryViewModel.cs" />
+    <Compile Include="CCF\SummaryFrameCCF\CustomerSummmaryCC\CustomerSummary.xaml.cs">
       <DependentUpon>CustomerSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data Source\CustomerTransactionDataSource.cs" />
@@ -284,10 +284,10 @@
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\1 SupplierProductListCC\SupplierProductList.xaml.cs">
       <DependentUpon>SupplierProductList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryCC.xaml.cs">
-      <DependentUpon>WholeSellerBillingSummaryCC.xaml</DependentUpon>
+    <Compile Include="CCF\SummaryFrameCCF\SupplierBillingSummaryCC\SupplierBillingSummaryCC.xaml.cs">
+      <DependentUpon>SupplierBillingSummaryCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryViewModel.cs" />
+    <Compile Include="CCF\SummaryFrameCCF\SupplierBillingSummaryCC\SupplierBillingSummaryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutCC.xaml.cs">
       <DependentUpon>SupplierCheckoutCC.xaml</DependentUpon>
     </Compile>
@@ -426,7 +426,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerSummary.xaml">
+    <Page Include="CCF\SummaryFrameCCF\CustomerSummmaryCC\CustomerSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -446,7 +446,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\SummaryFrameCCF\WholeSellerBillingSummaryCC\WholeSellerBillingSummaryCC.xaml">
+    <Page Include="CCF\SummaryFrameCCF\SupplierBillingSummaryCC\SupplierBillingSummaryCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

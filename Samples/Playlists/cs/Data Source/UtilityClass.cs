@@ -101,6 +101,13 @@ namespace SDKTemplate
             public decimal PayAmount { get; set; }
         }
 
+        public class SupplierBillingSummaryDTO
+        {
+            public decimal TotalQuantity { get; set; }
+            public decimal TotalItems { get; set; }
+            public decimal PayAmount { get; set; }
+        }
+
         public class CustomerOrderDTO
         {
             [Required]

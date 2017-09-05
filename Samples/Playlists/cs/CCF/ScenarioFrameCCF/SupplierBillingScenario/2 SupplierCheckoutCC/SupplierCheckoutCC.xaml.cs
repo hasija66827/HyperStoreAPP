@@ -37,8 +37,8 @@ namespace SDKTemplate
             var PNP = this.SupplierPageNavigationParameter;
             this._SupplierCheckoutViewModel = new SupplierCheckoutViewModel()
             {
-                AmountToBePaid = PNP.WholeSellerBillingSummaryViewModel.BillAmount,
-                PaidAmount = PNP.WholeSellerBillingSummaryViewModel.BillAmount,
+                AmountToBePaid = PNP.SupplierBillingSummaryViewModel.PayAmount,
+                PaidAmount = PNP.SupplierBillingSummaryViewModel.PayAmount,
                 DueDate = DateTime.Now.AddDays(20),
                 IntrestRate = 0
             };
@@ -58,7 +58,7 @@ namespace SDKTemplate
 
             var supplierOrderDTO = new SupplierOrderDTO()
             {
-                BillAmount = PNP.WholeSellerBillingSummaryViewModel.BillAmount,
+                BillAmount = PNP.SupplierBillingSummaryViewModel.PayAmount,
                 ProductsPurchased = productPurchased,
                 SupplierId = PNP.SelectedSupplier?.SupplierId,
                 PaidAmount = _SupplierCheckoutViewModel.PaidAmount,

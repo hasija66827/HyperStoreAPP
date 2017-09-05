@@ -41,7 +41,7 @@
                          Height="48"
                          Width="48"
                          Margin="0,16,0,8"
-                         Fill="#FF830D0D" />
+                         Fill="#FF201BE2" />
                 <TextBlock x:Name="WholeSellerGlyph"
                            Text="RH"
                            FontSize="20"

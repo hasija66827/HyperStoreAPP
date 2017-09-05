@@ -50,7 +50,7 @@ namespace SDKTemplate
             {
                 SelectedSupplier = selectedSupplierInASB,
                 ProductPurchased = this.Products,
-                WholeSellerBillingSummaryViewModel = WholeSellerBillingSummaryCC.Current.wholeSellerBillingSummaryViewModel,
+                SupplierBillingSummaryViewModel = SupplierBillingSummaryCC.Current.BillingSummaryViewModel,
             };
             this.Frame.Navigate(typeof(SupplierCheckoutCC), navigationParameter);
         }
