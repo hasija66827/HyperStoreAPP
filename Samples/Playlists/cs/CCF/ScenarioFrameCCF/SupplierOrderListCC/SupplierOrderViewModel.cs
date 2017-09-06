@@ -38,7 +38,10 @@ namespace SDKTemplate
             get { return Utility.ConvertToRupee(this.PayingAmount) + "/" + Utility.ConvertToRupee(this.BillAmount); }
         }
 
+        public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }
+
         public List<SupplierOrderProductViewModel> OrderDetails { get; set; }
+
 
         public SupplierOrderViewModel(TSupplierOrder parent)
         {
