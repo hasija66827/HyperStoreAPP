@@ -29,7 +29,7 @@
                         RelativePanel.AlignRightWithPanel="True">
                 <TextBlock Text="{x:Bind _BillingSummaryViewModel.Items_Quantity, Mode=OneWay}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="{x:Bind _BillingSummaryViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind _BillingSummaryViewModel.BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
             </StackPanel>
         </RelativePanel>

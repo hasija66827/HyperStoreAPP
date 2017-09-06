@@ -41,7 +41,7 @@
             <TextBlock Text="Paid Amount"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="1" />
-            <TextBox Text="{x:Bind _SupplierCheckoutViewModel.PaidAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
+            <TextBox Text="{x:Bind _SupplierCheckoutViewModel.PayingAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
                      Grid.Row="1"
                      Grid.Column="1"
                      Foreground="#FFDC0F0F" />

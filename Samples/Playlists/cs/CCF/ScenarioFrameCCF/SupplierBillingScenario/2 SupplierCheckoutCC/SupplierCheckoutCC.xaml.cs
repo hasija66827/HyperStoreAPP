@@ -37,8 +37,8 @@ namespace SDKTemplate
             var PNP = this.SupplierPageNavigationParameter;
             this._SupplierCheckoutViewModel = new SupplierCheckoutViewModel()
             {
-                AmountToBePaid = PNP.SupplierBillingSummaryViewModel.PayAmount,
-                PaidAmount = PNP.SupplierBillingSummaryViewModel.PayAmount,
+                AmountToBePaid = PNP.SupplierBillingSummaryViewModel.BillAmount,
+                PayingAmount = PNP.SupplierBillingSummaryViewModel.BillAmount,
                 DueDate = DateTime.Now.AddDays(20),
                 IntrestRate = 0
             };
@@ -56,14 +56,16 @@ namespace SDKTemplate
             }
             ).ToList();
 
+
+
             var supplierOrderDTO = new SupplierOrderDTO()
             {
-                BillAmount = PNP.SupplierBillingSummaryViewModel.PayAmount,
-                ProductsPurchased = productPurchased,
-                SupplierId = PNP.SelectedSupplier?.SupplierId,
-                PaidAmount = _SupplierCheckoutViewModel.PaidAmount,
-                IntrestRate = _SupplierCheckoutViewModel.IntrestRate,
                 DueDate = _SupplierCheckoutViewModel.DueDate,
+                IntrestRate = _SupplierCheckoutViewModel.IntrestRate,
+                ProductsPurchased = productPurchased,
+                PayingAmount = _SupplierCheckoutViewModel.PayingAmount,
+                SupplierId = PNP.SelectedSupplier?.SupplierId,
+                SupplierBillingSummary = PNP.SupplierBillingSummaryViewModel
             };
 
             var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);

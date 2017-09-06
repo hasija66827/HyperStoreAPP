@@ -103,9 +103,11 @@ namespace SDKTemplate
 
         public class SupplierBillingSummaryDTO
         {
+            public decimal BillAmount { get; set; }
+
+            public int TotalItems { get; set; }
+
             public decimal TotalQuantity { get; set; }
-            public decimal TotalItems { get; set; }
-            public decimal PayAmount { get; set; }
         }
 
         public class CustomerOrderDTO
@@ -216,6 +218,7 @@ namespace SDKTemplate
             public decimal? PurchasePricePerUnit { get; set; }
         }
 
+
         public class SupplierOrderDTO
         {
             [Required]
@@ -225,13 +228,12 @@ namespace SDKTemplate
             public Guid? SupplierId { get; set; }
 
             [Required]
-            public decimal? BillAmount { get; set; }
-
-            [Required]
-            public decimal? PaidAmount { get; set; }
-
-            [Required]
             public DateTime? DueDate { get; set; }
+
+            public SupplierBillingSummaryDTO SupplierBillingSummary { get; set; }
+
+            [Required]
+            public decimal? PayingAmount { get; set; }
 
             [Required]
             [Range(0, 100)]

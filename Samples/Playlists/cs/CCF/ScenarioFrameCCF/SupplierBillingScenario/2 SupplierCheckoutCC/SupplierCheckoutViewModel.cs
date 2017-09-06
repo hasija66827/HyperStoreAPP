@@ -12,13 +12,13 @@ namespace SDKTemplate
     public class SupplierCheckoutViewModelBase
     {
         public decimal AmountToBePaid { get; set; }
-        public virtual decimal PaidAmount { get; set; }
-        public decimal RemainingAmount { get { return this.AmountToBePaid - this.PaidAmount; } }
+        public virtual decimal PayingAmount { get; set; }
+        public decimal RemainingAmount { get { return this.AmountToBePaid - this.PayingAmount; } }
         public decimal IntrestRate { get; set; }
         public DateTime DueDate { get; set; }
         public SupplierCheckoutViewModelBase() {
             this.AmountToBePaid = 0;
-            this.PaidAmount = 0;
+            this.PayingAmount = 0;
             this.IntrestRate = 0;
             this.DueDate = DateTime.Now;
         }
@@ -26,24 +26,24 @@ namespace SDKTemplate
 
     public class SupplierCheckoutViewModel : SupplierCheckoutViewModelBase, INotifyPropertyChanged
     {
-        private decimal _paidAmount;
-        public override decimal PaidAmount
+        private decimal _payingAmount;
+        public override decimal PayingAmount
         {
-            get { return this._paidAmount; }
+            get { return this._payingAmount; }
             set
             {
                 if (value < 0)
                 {
-                    MainPage.Current.NotifyUser(string.Format("Paid Amount {0} must be greater than zero", this._paidAmount), NotifyType.ErrorMessage);
+                    MainPage.Current.NotifyUser(string.Format("Paid Amount {0} must be greater than zero", this._payingAmount), NotifyType.ErrorMessage);
                     value = 0;
                 }
                 else if (value > this.AmountToBePaid)
                 {
-                    MainPage.Current.NotifyUser(string.Format("Paid Amount {0} must be lesser or equal to billing amount {1}", this._paidAmount, this.AmountToBePaid), NotifyType.ErrorMessage);
+                    MainPage.Current.NotifyUser(string.Format("Paid Amount {0} must be lesser or equal to billing amount {1}", this._payingAmount, this.AmountToBePaid), NotifyType.ErrorMessage);
                     value = 0;
                 }
-                this._paidAmount = value;
-                this.OnPropertyChanged(nameof(PaidAmount));
+                this._payingAmount = value;
+                this.OnPropertyChanged(nameof(PayingAmount));
                 this.OnPropertyChanged(nameof(RemainingAmount));
             }
         }
