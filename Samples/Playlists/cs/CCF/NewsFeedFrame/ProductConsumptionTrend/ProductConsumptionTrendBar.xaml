@@ -16,12 +16,18 @@
         <Charting:Chart x:Name="ColumnChart"
                         RelativePanel.Below="HeaderPanel"
                         HorizontalAlignment="Left"
+                         
                         Margin="0"
                         Width="350">
             <Charting:ColumnSeries IndependentValuePath="FormattedDay"
                                    DependentValuePath="AvgConsumption"
                                    CharacterSpacing="4"
                                    IsSelectionEnabled="True" />
+            <Charting:ColumnSeries IndependentValuePath="FormattedDay"
+                                   DependentValuePath="SecondSeriesHits"
+                                   CharacterSpacing="4"
+                                   IsSelectionEnabled="True" />
+            <Charting:StackedColumnSeries IndependentAxis=""
         </Charting:Chart>
     </RelativePanel>
 </Page>

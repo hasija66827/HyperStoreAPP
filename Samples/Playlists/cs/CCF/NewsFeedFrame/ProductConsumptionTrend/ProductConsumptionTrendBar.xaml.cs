@@ -42,6 +42,8 @@ namespace SDKTemplate
             (ColumnChart.Series[0] as ColumnSeries).ItemsSource = null;
             this.ProductConsumptionDeficientTrend = await AnalyticsDataSource.RetrieveProductConsumptionTrend(productConsumptionTrendDTO);
             (ColumnChart.Series[0] as ColumnSeries).ItemsSource = ProductConsumptionDeficientTrend;
+            (ColumnChart.Series[1] as ColumnSeries).ItemsSource = ProductConsumptionDeficientTrend;
+
         }
     }
 }
