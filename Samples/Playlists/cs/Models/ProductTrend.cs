@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 namespace Models
 {
-    public class TProductConsumptionTrend
+    public class TProductConsumptionDeficientTrend
     {
         public DayOfWeek Day { get; set; }
-        public float Quantity { get; set; }
-        public TProductConsumptionTrend(DayOfWeek day, float quantity)
-        {
-            this.Day = day;
-            this.Quantity = quantity;
-        }
+        public decimal AvgConsumption { get; set; }
+        [Range(0, 1)]
+        public float AvgHitRate { get; set; }
+        public string FormattedDay { get { return this.Day.ToString().Substring(0,3); } }
+        public TProductConsumptionDeficientTrend() { }
     }
 }

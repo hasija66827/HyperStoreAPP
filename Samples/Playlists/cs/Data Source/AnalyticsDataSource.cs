@@ -15,9 +15,9 @@ namespace SDKTemplate
             return await Utility.RetrieveAsync<TCustomerPurchaseTrend>(API.CustomerPurchaseTrend, null, customerPurchaseTrendDTO);
         }
 
-        public static async Task<List<TProductConsumptionTrend>> RetrieveProductConsumptionTrend(ProductConsumptionTrendDTO productConsumptionTrendDTO)
+        public static async Task<List<TProductConsumptionDeficientTrend>> RetrieveProductConsumptionTrend(ProductConsumptionTrendDTO productConsumptionTrendDTO)
         {
-            return await Utility.RetrieveAsync<TProductConsumptionTrend>(API.ProductConsumptionTrend, null, productConsumptionTrendDTO);
+            return await Utility.RetrieveAsync<TProductConsumptionDeficientTrend>(API.ProductConsumptionTrend, null, productConsumptionTrendDTO);
         }
 
         /// <summary>

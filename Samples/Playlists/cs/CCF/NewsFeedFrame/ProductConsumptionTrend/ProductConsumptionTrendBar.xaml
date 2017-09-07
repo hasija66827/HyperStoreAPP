@@ -18,8 +18,8 @@
                         HorizontalAlignment="Left"
                         Margin="0"
                         Width="350">
-            <Charting:ColumnSeries IndependentValuePath="Day"
-                                   DependentValuePath="Quantity"
+            <Charting:ColumnSeries IndependentValuePath="FormattedDay"
+                                   DependentValuePath="AvgConsumption"
                                    CharacterSpacing="4"
                                    IsSelectionEnabled="True" />
         </Charting:Chart>
