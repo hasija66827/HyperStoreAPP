@@ -14,7 +14,8 @@ namespace SDKTemplate
     /// Detail view show detail of the order and the trnasactions which completed the payment of the order.
     /// </summary>
     public class SupplierOrderViewModel : TSupplierOrder
-    {  
+    {
+        public decimal RemainingAmount{ get { return this.BillAmount - this.PayedAmountIncTx; } }
         public string FormattedOrderDate
         {
             get
@@ -35,7 +36,7 @@ namespace SDKTemplate
 
         public string FormattedPaidBillAmount
         {
-            get { return Utility.ConvertToRupee(this.PayingAmount) + "/" + Utility.ConvertToRupee(this.BillAmount); }
+            get { return Utility.ConvertToRupee(this.PayedAmountIncTx) + "/" + Utility.ConvertToRupee(this.BillAmount); }
         }
 
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }

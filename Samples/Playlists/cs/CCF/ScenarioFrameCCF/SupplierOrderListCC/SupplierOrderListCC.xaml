@@ -93,6 +93,8 @@
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Payed Amount + Tx:"
                                Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Remaining Amount:"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Interest Rate "
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Due Date "
@@ -104,13 +106,15 @@
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind PayingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind PayedAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind PayingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind PayedAmountIncTx, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind RemainingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind InterestRate, Mode=OneWay}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind DueDate, Mode=OneWay}"
+                    <TextBlock Text="{x:Bind FormattedDueDate, Mode=OneWay}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                 </StackPanel>
             </RelativePanel>

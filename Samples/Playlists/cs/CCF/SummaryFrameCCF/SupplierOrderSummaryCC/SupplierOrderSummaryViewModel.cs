@@ -13,9 +13,10 @@ namespace SDKTemplate
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public decimal TotalBillAmount { get; set; }
-        public decimal TotalPaidAmount { get; set; }
+        public decimal TotalPayedAmount { get; set; }
+        public decimal TotalPayedAmountIncTx { get; set; }
         public decimal TotalRemainingAmount
-        { get { return TotalBillAmount - TotalPaidAmount; } }
+        { get { return TotalBillAmount - TotalPayedAmountIncTx; } }
 
         public void OnAllPropertyChanged()
         {

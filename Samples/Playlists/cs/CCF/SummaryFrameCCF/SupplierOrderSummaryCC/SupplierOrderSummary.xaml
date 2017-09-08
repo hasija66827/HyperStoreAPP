@@ -34,9 +34,9 @@
                         RelativePanel.AlignRightWithPanel="True">
                 <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPaidAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPayedAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPaidAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPayedAmountIncTx, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
                 <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalRemainingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SummaryTextBlockStyle}" />

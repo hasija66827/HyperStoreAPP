@@ -34,7 +34,8 @@ namespace SDKTemplate
         private void Current_SupplierOrderListUpdatedEvent(IEnumerable<TSupplierOrder> supplierOrders)
         {
             this._OrderSummaryViewModel.TotalBillAmount = supplierOrders.Sum(so => so.BillAmount);
-            this._OrderSummaryViewModel.TotalPaidAmount = supplierOrders.Sum(so => so.PayingAmount);
+            this._OrderSummaryViewModel.TotalPayedAmount = supplierOrders.Sum(so => so.PayedAmount);
+            this._OrderSummaryViewModel.TotalPayedAmountIncTx = supplierOrders.Sum(so => so.PayedAmountIncTx);
             this._OrderSummaryViewModel.OnAllPropertyChanged();
         }
     }
