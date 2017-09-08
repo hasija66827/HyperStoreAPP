@@ -24,7 +24,8 @@
                            Style="{StaticResource SummaryTextBlockStyle}" />
                 <TextBlock Text="Total Payed Amount "
                            Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="Total Payed Amount Including Tx"
+                <TextBlock Text="Total Payed Amount +Tx"
+                           Width="175"
                            Style="{StaticResource SummaryTextBlockStyle}" />
                 <TextBlock Text="Total Remaining Amount"
                            Style="{StaticResource SummaryTextBlockStyle}" />

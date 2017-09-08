@@ -89,7 +89,9 @@
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Bill Amount "
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Paid Amount "
+                    <TextBlock Text="Payed Amount"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Payed Amount + Tx:"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Interest Rate "
                                Style="{StaticResource SummaryTextBlockStyle}" />
@@ -101,6 +103,8 @@
                     <TextBlock Text="{x:Bind Items_Quantity, Mode=OneWay}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind PayingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind PayingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
