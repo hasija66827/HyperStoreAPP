@@ -210,7 +210,7 @@
     <Compile Include="CCF\ScenarioFrameCCF\SupplierOrderListCC\SupplierOrderListCC.xaml.cs">
       <DependentUpon>SupplierOrderListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSelleOrderSummaryViewModel.cs" />
+    <Compile Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummaryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierCCF.xaml.cs">
       <DependentUpon>SupplierCCF.xaml</DependentUpon>
     </Compile>
@@ -291,8 +291,8 @@
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutCC.xaml.cs">
       <DependentUpon>SupplierCheckoutCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml.cs">
-      <DependentUpon>WholeSellerOrderSummary.xaml</DependentUpon>
+    <Compile Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummary.xaml.cs">
+      <DependentUpon>SupplierOrderSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierNewTransactionCC\SupplierNewTransactionCC.xaml.cs">
       <DependentUpon>SupplierNewTransactionCC.xaml</DependentUpon>
@@ -462,7 +462,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\SummaryFrameCCF\WholeSellerOrderSummaryCC\WholeSellerOrderSummary.xaml">
+    <Page Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,7 +27,7 @@
                                    DependentValuePath="SecondSeriesHits"
                                    CharacterSpacing="4"
                                    IsSelectionEnabled="True" />
-            <Charting:StackedColumnSeries IndependentAxis=""
+           
         </Charting:Chart>
     </RelativePanel>
 </Page>

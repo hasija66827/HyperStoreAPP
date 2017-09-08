@@ -1,4 +1,5 @@
-﻿using SDKTemplate.DTO;
+﻿using Models;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,15 +20,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void WholeSellerOrderListUpdatedDelegate();
+    public delegate void SupplierOderListUpdatedDelegate(IEnumerable<TSupplierOrder> supplierOrders);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class WholeSellerOrderCC : Page
+    public sealed partial class SupplierOrderCCF : Page
     {
-        public static WholeSellerOrderCC Current;
-        public WholeSellerOrderListUpdatedDelegate SupplierOrderListUpdatedEvent;
-        public WholeSellerOrderCC()
+        public static SupplierOrderCCF Current;
+        public SupplierOderListUpdatedDelegate SupplierOrderListUpdatedEvent;
+        public SupplierOrderCCF()
         {
             Current = this;
             this.InitializeComponent();
@@ -59,7 +60,7 @@ namespace SDKTemplate
                 var totalResults = items.Count();
                 //TODO: Remove xxxxx
                 OrderCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxxx" + ")";
-                this.SupplierOrderListUpdatedEvent?.Invoke();
+                this.SupplierOrderListUpdatedEvent?.Invoke(items);
             }
         }
 

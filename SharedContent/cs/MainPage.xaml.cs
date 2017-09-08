@@ -158,14 +158,14 @@ namespace SDKTemplate
 
                 }
 
-                else if (s.ClassType == typeof(WholeSellerOrderCC))
+                else if (s.ClassType == typeof(SupplierOrderCCF))
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
                     LeftBottomFrame.Navigate(typeof(BlankPage));
-                    ScenarioFrame.Navigate(typeof(WholeSellerOrderCC));
+                    ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-                    SummaryFrame.Navigate(typeof(WholeSellerOrderSummary));
+                    SummaryFrame.Navigate(typeof(SupplierOrderSummary));
                     ChangeLayout(true);
                 }        
                 else

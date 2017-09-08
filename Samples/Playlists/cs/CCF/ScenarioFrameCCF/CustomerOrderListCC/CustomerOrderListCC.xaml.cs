@@ -16,11 +16,12 @@ using Windows.UI.Xaml.Media.Animation;
 using SDKTemp.Data;
 using System.Threading.Tasks;
 using SDKTemplate.DTO;
+using Models;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
 {
-    public delegate void CustomerOrderListChangedDelegate(IEnumerable<CustomerOrderViewModel> customerOrders);
+    public delegate void CustomerOrderListChangedDelegate(IEnumerable<TCustomerOrder> customerOrders);
     public sealed partial class CustomerOrderListCCF : Page
     {
         public static CustomerOrderListCCF Current;

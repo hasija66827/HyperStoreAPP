@@ -1,0 +1,45 @@
+﻿<Page x:Class="SDKTemplate.SupplierOrderSummary"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+    </UserControl.Resources>
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Order Summary"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <RelativePanel x:Name="ContentPanel"
+                       RelativePanel.Below="HeaderPanel"
+                       Margin="10,0,0,0"
+                       Width="300">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Total Bill Amount "
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="Total Payed Amount "
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="Total Payed Amount Including Tx"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="Total Remaining Amount"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical"
+                        RelativePanel.AlignRightWithPanel="True">
+                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPaidAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPaidAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalRemainingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+            </StackPanel>
+        </RelativePanel>
+    </RelativePanel>
+</Page>

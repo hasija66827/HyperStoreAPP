@@ -21,20 +21,20 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class OrderSummaryCC : Page
+    public sealed partial class SupplierOrderSummary : Page
     {
-        private OrderSummaryViewModel _OrderSummaryViewModel;
-        public OrderSummaryCC()
+        private SupplierOrderSummaryViewModel _OrderSummaryViewModel { get; set; }
+        public SupplierOrderSummary()
         {
             this.InitializeComponent();
-            this._OrderSummaryViewModel = new OrderSummaryViewModel();
-            CustomerOrderListCCF.Current.CustomerOrderListUpdatedEvent += Current_CustomerOrderListUpdatedEvent;
+            this._OrderSummaryViewModel = new SupplierOrderSummaryViewModel();
+            SupplierOrderCCF.Current.SupplierOrderListUpdatedEvent += Current_SupplierOrderListUpdatedEvent;
         }
 
-        private void Current_CustomerOrderListUpdatedEvent(IEnumerable<TCustomerOrder> customerOrders)
+        private void Current_SupplierOrderListUpdatedEvent(IEnumerable<TSupplierOrder> supplierOrders)
         {
-            this._OrderSummaryViewModel.TotalBillAmount = customerOrders.Sum(co => co.PayAmount);
-            this._OrderSummaryViewModel.TotalPayedAmount = customerOrders.Sum(co => co.PayingAmount);
+            this._OrderSummaryViewModel.TotalBillAmount = supplierOrders.Sum(so => so.BillAmount);
+            this._OrderSummaryViewModel.TotalPaidAmount = supplierOrders.Sum(so => so.PayingAmount);
             this._OrderSummaryViewModel.OnAllPropertyChanged();
         }
     }
