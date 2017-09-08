@@ -57,6 +57,13 @@
                         <Setter Property="Foreground"
                                 Value="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
                     </Style>
+                    <Style x:Key="CalenderDatePickerStyle"
+                           TargetType="CalendarDatePicker">
+                        <Setter Property="DateFormat"
+                                Value="{}{year.full}/{month.integer}/{day.integer}" />
+                        <Setter Property="FontStyle"
+                                Value="Italic" />
+                    </Style>
                     <Style x:Key="LargeFormTBPropStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -242,7 +249,7 @@
                         <Setter Property="TextLineBounds"
                                 Value="Full" />
                         <Setter Property="Width"
-                                Value="300" />
+                                Value="330" />
                         <Setter Property="Foreground"
                                 Value="White" />
                         <Setter Property="HorizontalAlignment"
@@ -312,7 +319,7 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                         <Setter Property="Width"
-                            Value="290" />
+                                Value="290" />
                         <Setter Property="local:TextBoxAttached.AutoSelectable"
                                 Value="True" />
                         <Setter Property="HorizontalContentAlignment"
@@ -385,7 +392,6 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>
-                    
                     <Style x:Key="ErrorTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -399,7 +405,6 @@
                         <Setter Property="Foreground"
                                 Value="Red" />
                     </Style>
-                    
                     <Style x:Key="ListTextBoxStyle"
                            TargetType="TextBox">
                         <Setter Property="FontFamily"
@@ -481,7 +486,6 @@
                         <Setter Property="SelectedIndex"
                                 Value="-1" />
                     </Style>
-                    
                     <Style x:Key="LargeListTextBoxStyle"
                            TargetType="TextBox">
                         <Setter Property="FontFamily"
@@ -518,7 +522,6 @@
                         <Setter Property="TextAlignment"
                                 Value="Left" />
                     </Style>
-                    
                     <Style x:Key="VeryLargeListTextBoxStyle"
                            TargetType="TextBox">
                         <Setter Property="FontFamily"

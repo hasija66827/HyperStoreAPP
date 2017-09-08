@@ -17,16 +17,24 @@
         </Border>
         <RelativePanel x:Name="ContentPanel"
                        RelativePanel.AlignRightWith="HeaderPanel"
-                       RelativePanel.AlignLeftWith="HeaderPanel"                       
-                       RelativePanel.Below="HeaderPanel"                   
+                       RelativePanel.AlignLeftWith="HeaderPanel"
+                       RelativePanel.Below="HeaderPanel"
                        Margin="10,0,0,0">
+            <TextBlock x:Name="Title"
+                       Text="Order Date"
+                       Margin="0,0,0,5"
+                       Style="{StaticResource ScenarioDescriptionTextStyle}" />
             <CalendarDatePicker x:Name="startDateCP"
-                                Padding="10"
-                                Header="from"
+                                Header="From"
+                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                Style="{StaticResource CalenderDatePickerStyle}"
+                                RelativePanel.Below="Title"
                                 Date="{x:Bind _FilterCustomerOrderViewModel.OrderDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
             <CalendarDatePicker x:Name="endDateCP"
-                                Padding="10"
                                 Header="To"
+                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                Style="{StaticResource CalenderDatePickerStyle}"
+                                RelativePanel.AlignTopWith="startDateCP"
                                 RelativePanel.AlignRightWithPanel="True"
                                 Date="{x:Bind _FilterCustomerOrderViewModel.OrderDateRange.UB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
         </RelativePanel>
