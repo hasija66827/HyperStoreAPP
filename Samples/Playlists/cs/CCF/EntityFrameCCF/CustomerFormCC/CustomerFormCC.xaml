@@ -61,7 +61,7 @@
                     RelativePanel.AlignBottomWithPanel="True">
             <Button Content="Save"
                     x:Name="SaveBtn"
-                    Command="{Binding ValidateCommand}"
+                    Click="SaveBtn_Click"
                     Style="{StaticResource FormButtonStyle}" />
             <Button x:Name="CancelBtn"
                     Content="Cancel"

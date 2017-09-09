@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace SDKTemplate
 {
-    public class CustomerFormViewModel : ValidatableBindableBase, customerInterface
+    public class CustomerFormViewModel : ValidatableBindableBase, ICustomer
     {
         private DelegateCommand _validateCommand;
 
@@ -37,36 +37,15 @@ namespace SDKTemplate
             get { return this._name; }
             set { SetProperty(ref _name, value); }
         }
-
-    
         public CustomerFormViewModel()
         {
-            _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
             this._address = "";
             this._mobileNo = "";
             this._name = "";
             this._gstin = "";
         }
 
-        public ICommand ValidateCommand
-        {
-            get { return _validateCommand; }
-        }
 
-        private async void ValidateAndSave_Executed()
-        {
-            var IsValid = ValidateProperties();
-            if (IsValid)
-            {
-                CustomerDTO customerDTO = new CustomerDTO()
-                {
-                    Address = this.Address,
-                    GSTIN = this.GSTIN,
-                    MobileNo = this.MobileNo,
-                    Name = this.Name,
-                };
-                await CustomerDataSource.CreateNewCustomerAsync(customerDTO);
-            }
-        }
+
     }
 }

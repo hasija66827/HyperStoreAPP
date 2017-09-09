@@ -37,6 +37,17 @@ namespace SDKTemplate
         }
         #endregion
 
+        #region Update
+        public static async Task<TCustomer> UpdateCustomerAsync(Guid customerId, CustomerDTO customerDTO)
+        {
+            var customer = await Utility.UpdateAsync<TCustomer>(API.Customers, customerId.ToString(), customerDTO);
+            if (customer != null)
+            { }
+            return customer;
+        }
+
+        #endregion
+
         #region Read 
         public static async Task<List<TCustomer>> RetrieveCustomersAsync(CustomerFilterCriteriaDTO cfc)
         {

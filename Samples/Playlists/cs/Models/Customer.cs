@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Models
 {
-    public class TCustomer : customerInterface
+    public class TCustomer : ICustomer
     {
         public Guid? CustomerId { get; set; }
         public string Address { get; set; }
@@ -24,7 +24,7 @@ namespace Models
         public decimal? NetWorth { get; set; }
     }
 
-    public interface customerInterface
+    public interface ICustomer
     {
         string Address { get; set; }
         string GSTIN { get; set; }

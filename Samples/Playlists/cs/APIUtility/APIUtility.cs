@@ -49,6 +49,28 @@ namespace SDKTemplate
             }
         }
 
+        private static async Task<HttpResponseMessage> HttpGet(string actionURI, object content)
+        {
+            string absoluteURI = "https://localhost:44346/api/";
+            string uri = string.Concat(absoluteURI, actionURI);
+
+            HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
+            httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
+            HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(uri));
+
+            if (content != null)
+                request.Content = new HttpStringContent(JsonConvert.SerializeObject(content), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+            try
+            {
+                HttpResponseMessage response = await httpClient.SendRequestAsync(request);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public static async Task<T> CreateAsync<T>(string APIName, object content)
         {
@@ -56,7 +78,7 @@ namespace SDKTemplate
             {
                 var serializeContent = JsonConvert.SerializeObject(content);
                 var response = await Utility.HttpPost(APIName, serializeContent);
-                if (response.StatusCode != HttpStatusCode.Created && response.StatusCode !=HttpStatusCode.Ok)
+                if (response.StatusCode != HttpStatusCode.Created && response.StatusCode != HttpStatusCode.Ok)
                     throw new Exception(response.Content.ToString());
                 var httpResponseBody = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<T>(httpResponseBody);
@@ -91,18 +113,41 @@ namespace SDKTemplate
             }
         }
 
-        private static async Task<HttpResponseMessage> HttpGet(string actionURI, object content)
+
+        public static async Task<T> UpdateAsync<T>(string APIName, string queryString, object content)
+        {
+            string actionURI = "";
+            if (queryString != null)
+                actionURI = APIName + "/" + queryString;
+            else
+                actionURI = APIName;
+            try
+            {
+                var serializeContent = JsonConvert.SerializeObject(content);
+                var response = await Utility.HttpPut(actionURI, serializeContent);
+                if (response.StatusCode != HttpStatusCode.Ok)
+                    throw new Exception(response.Content.ToString());
+                var httpResponseBody = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<T>(httpResponseBody);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                //ErrorNotification.PopUpHTTPPostErrorNotifcation(APIName, ex.Message);
+                //TODO: handle different types of exception
+                return default(T);
+            }
+        }
+
+        private static async Task<HttpResponseMessage> HttpPut(string actionURI, string content)
         {
             string absoluteURI = "https://localhost:44346/api/";
             string uri = string.Concat(absoluteURI, actionURI);
-
             HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
             httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
             HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(uri));
-
-            if (content != null)
-                request.Content = new HttpStringContent(JsonConvert.SerializeObject(content), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, new Uri(uri));
+            request.Content = new HttpStringContent(content, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
             try
             {
                 HttpResponseMessage response = await httpClient.SendRequestAsync(request);
@@ -110,8 +155,9 @@ namespace SDKTemplate
             }
             catch (Exception ex)
             {
-                throw ex;
+                var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                throw new Exception(x);
             }
-        }
+        }  
     }
 }

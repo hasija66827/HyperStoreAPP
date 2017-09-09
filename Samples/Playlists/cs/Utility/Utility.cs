@@ -325,25 +325,6 @@ namespace SDKTemplate
             return productGlyph.ToUpper();
         }
 
-        public static bool CheckIfUniqueProductName(string productName)
-        {
-            if (ProductDataSource.IsProductNameExist(productName))
-            {
-                MainPage.Current.NotifyUser("The product name already exist", NotifyType.ErrorMessage);
-                return false;
-            }
-            return true;
-        }
-
-        public static bool CheckIfUniqueProductCode(string productCode)
-        {
-            if (ProductDataSource.IsProductCodeExist(productCode))
-            {
-                MainPage.Current.NotifyUser("The product code already exist", NotifyType.ErrorMessage);
-                return false;
-            }
-            return true;
-        }
 
         public static bool CheckIfValidProductCode(string productCode)
         {

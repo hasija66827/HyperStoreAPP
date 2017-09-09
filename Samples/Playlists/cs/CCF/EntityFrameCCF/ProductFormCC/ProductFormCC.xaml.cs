@@ -27,15 +27,9 @@ namespace SDKTemplate
             base.OnNavigatedTo(e);
             var product = (ProductViewModelBase)e.Parameter;
             if (product == null)
-            {
                 this._PFV = new ProductFormViewModel();
-            }
             else
-            {
                 this._PFV = new ProductFormViewModel(product);
-                ProductCodeTB.IsReadOnly = true;
-                ProductNameTB.IsReadOnly = true;
-            }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -45,10 +39,7 @@ namespace SDKTemplate
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text)
-                && Utility.CheckIfUniqueProductName(ProductNameTB.Text)
-                && Utility.CheckIfUniqueProductCode(ProductCodeTB.Text)
-                )
+            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text))
             {
                 this.Frame.Navigate(typeof(ProductTagCC), this._PFV);
             }
