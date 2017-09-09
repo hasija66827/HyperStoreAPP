@@ -48,13 +48,15 @@ namespace SDKTemplate
             if (customer != null)
             {
 
-                var recomProd = await AnalyticsDataSource.RetrieveRecommendedProductAsync((Guid)customer.CustomerId);
-                var items = recomProd.Select(rp => new RecommendedProductViewModel(rp));
-                items.OrderBy(rp => rp.LastOrderDate);
+                var TRecomProds = await AnalyticsDataSource.RetrieveRecommendedProductAsync((Guid)customer.CustomerId);
+                var recomProds = TRecomProds.Select(rp => new RecommendedProductViewModel(rp));
+                recomProds.OrderBy(rp => rp.LastOrderDate);
                 this._RecomProducts.Clear();
-                foreach (var item in items)
+                foreach (var recomProd in recomProds)
                 {
-                    this._RecomProducts.Add(item);
+                    var IsProductExistInList = CustomerProductListCC.Current.Products.Find(p => p.ProductId == recomProd.ProductId) != null;
+                    if (!IsProductExistInList)
+                        this._RecomProducts.Add(recomProd);
                 }
             }
             else
