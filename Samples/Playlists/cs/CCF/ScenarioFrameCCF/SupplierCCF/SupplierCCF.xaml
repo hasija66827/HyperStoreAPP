@@ -45,9 +45,7 @@
                 </StackPanel>
                 <ListView x:Name="TransactionHistoriesOfWholeSellers"
                           ItemsSource="{x:Bind Transactions}"
-                          Style="{StaticResource ListViewStyle}"
-                          IsItemClickEnabled="True"
-                          ItemClick="TransactionHistoriesOfWholeSellers_ItemClick">
+                          Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:SupplierTransactionViewModel">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">

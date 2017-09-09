@@ -186,6 +186,10 @@
     <Compile Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProductViewModel.cs" />
     <Compile Include="Notifications\SuccessNotification.cs" />
     <Compile Include="Notifications\SuccessTitle.cs" />
+    <Compile Include="SupplierSummaryCC.xaml.cs">
+      <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierSummaryViewModel.cs" />
     <Compile Include="TextBoxAttached.cs" />
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerPurchaseTrendViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
@@ -478,6 +482,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SupplierSummaryCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\SharedContent\cs\Default.rd.xml">
@@ -510,7 +518,9 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CCF\SummaryFrameCCF\SupplierSummary\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -19,7 +19,7 @@ using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
-    public delegate void SelectedTransactionChangedDelegate(TSupplierTransaction transaction);
+    public delegate void SupplierListUpdatedDelegate(List<TSupplier> suppliers);
     /// <summary>
     /// Master Detail View where 
     /// Master shows the list of wholeseller and 
@@ -28,7 +28,7 @@ namespace SDKTemplate
     public sealed partial class SupplierCCF : Page
     {
         public static SupplierCCF Current;
-        public event SelectedTransactionChangedDelegate SelectedTransactionChangedEvent;
+        public event SupplierListUpdatedDelegate SupplierListUpdatedEvent;
         public SupplierCCF()
         {
             Current = this;
@@ -63,6 +63,7 @@ namespace SDKTemplate
                 var totalResults = items.Count;
                 ///TODO:remove xxxxx
                 WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
+                SupplierListUpdatedEvent?.Invoke(items);
             }
         }
 
@@ -94,12 +95,6 @@ namespace SDKTemplate
             var selectedSupplier = (TSupplier)MasterListView.SelectedItem;
             if (selectedSupplier != null)
                 this.Frame.Navigate(typeof(SupplierNewTransactionCC), selectedSupplier);
-        }
-
-        private void TransactionHistoriesOfWholeSellers_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var selectedTransaction = (SupplierTransactionViewModel)e.ClickedItem;
-            this.SelectedTransactionChangedEvent?.Invoke(selectedTransaction);
         }
     }
 }
