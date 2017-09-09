@@ -55,7 +55,7 @@ namespace SDKTemplate
 
         private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewsFeedFrame.Navigate(typeof(AddWholeSellerCC));
+            NewsFeedFrame.Navigate(typeof(SupplierFormCC));
         }
         private void AddTagBtn_Click(object sender, RoutedEventArgs e)
         {

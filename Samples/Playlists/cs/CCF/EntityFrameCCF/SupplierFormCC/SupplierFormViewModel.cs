@@ -17,7 +17,7 @@ namespace SDKTemplate
 {
     public class SupplierFormViewModel : ValidatableBindableBase, supplierInterface
     {
-        private DelegateCommand validateCommand;
+        public Guid? SupplierId { get; set; }
 
         private string _address;
         public virtual string Address
@@ -48,7 +48,6 @@ namespace SDKTemplate
 
         public SupplierFormViewModel()
         {
-            validateCommand = new DelegateCommand(ValidateAndSave_Executed);
             this._address = null;
             this._mobileNo = null;
             this._name = null;
@@ -63,29 +62,6 @@ namespace SDKTemplate
         public string WholeSeller_Name_MobileNo
         {
             get { return string.Format("{0} ({1})", this.MobileNo, this.Name); }
-        }
-
-        public ICommand ValidateCommand
-        {
-            get { return validateCommand; }
-        }
-
-        private async void ValidateAndSave_Executed()
-        {
-            var IsValid = ValidateProperties();
-            if (IsValid)
-            {
-                SupplierDTO supplierDTO = new SupplierDTO()
-                {
-                    Address = this.Address,
-                    GSTIN = this.GSTIN,
-                    MobileNo = this.MobileNo,
-                    Name = this.Name
-                };
-
-                await SupplierDataSource.CreateNewSupplier(supplierDTO);
-                MainPage.Current.NotifyUser("New wholesller was added succesfully ", NotifyType.StatusMessage);
-            }
         }
     }
 }

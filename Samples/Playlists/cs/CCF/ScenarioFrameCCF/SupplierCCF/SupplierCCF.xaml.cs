@@ -75,6 +75,7 @@ namespace SDKTemplate
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedSupplier = (TSupplier)e.ClickedItem;
+            MainPage.Current.NavigateNewsFeedFrame(typeof(SupplierFormCC), selectedSupplier);
             var tfc = new SupplierTransactionFilterCriteriaDTO()
             {
                 SupplierId = selectedSupplier?.SupplierId

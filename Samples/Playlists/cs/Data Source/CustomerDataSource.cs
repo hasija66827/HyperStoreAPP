@@ -42,7 +42,9 @@ namespace SDKTemplate
         {
             var customer = await Utility.UpdateAsync<TCustomer>(API.Customers, customerId.ToString(), customerDTO);
             if (customer != null)
-            { }
+            {
+                //TODO: succes notification
+            }
             return customer;
         }
 

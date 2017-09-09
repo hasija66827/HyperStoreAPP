@@ -26,6 +26,19 @@ namespace SDKTemplate
         }
         #endregion
 
+        #region Update
+        public static async Task<TSupplier> UpdateSupplierAsync(Guid supplierId, SupplierDTO supplierDTO)
+        {
+            var supplier = await Utility.UpdateAsync<TSupplier>(API.Suppliers, supplierId.ToString(), supplierDTO);
+            if (supplier != null)
+            {
+                //TODO: Success Notification
+            }
+            return supplier;
+        }
+
+        #endregion
+
         #region Read
         public static async Task<List<TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
         {
