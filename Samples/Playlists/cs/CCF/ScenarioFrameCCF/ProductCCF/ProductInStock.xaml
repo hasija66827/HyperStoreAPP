@@ -59,10 +59,12 @@
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Supplier Name"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource LargeListTextBlockStyle}" />
                     <TextBlock Text="Supplier Mobile No"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
                     <TextBlock Text="Last Order Date"
+                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                    <TextBlock Text="Qty Purchased"
                                Style="{StaticResource LargeListTextBlockStyle}" />
                     <TextBlock Text="Latest Purchase Price"
                                Style="{StaticResource VeryLargeListTextBlockStyle}" />
@@ -78,12 +80,15 @@
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock x:Name="SupplierName"
                                            Text="{x:Bind Supplier.Name, Mode=OneTime}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                           Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="SupplierMobileNo"
                                            Text="{x:Bind Supplier.MobileNo, Mode=OneTime}"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="OrderDate"
                                            Text="{x:Bind FormattedOrderDate, Mode=OneTime}"
+                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                <TextBlock x:Name="QuantityPurchased"
+                                           Text="{x:Bind QuantityPurchased, Mode=OneTime}"
                                            Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="PurchasePrice"
                                            Foreground="Black"
