@@ -16,7 +16,6 @@
         <Charting:Chart x:Name="ColumnChart"
                         RelativePanel.Below="HeaderPanel"
                         HorizontalAlignment="Left"
-                         
                         Margin="0"
                         Width="350">
             <Charting:ColumnSeries IndependentValuePath="FormattedDay"
@@ -24,10 +23,7 @@
                                    CharacterSpacing="4"
                                    IsSelectionEnabled="True" />
             <Charting:ColumnSeries IndependentValuePath="FormattedDay"
-                                   DependentValuePath="SecondSeriesHits"
-                                   CharacterSpacing="4"
-                                   IsSelectionEnabled="True" />
-           
+                                   DependentValuePath="SecondSeriesHits" />
         </Charting:Chart>
     </RelativePanel>
 </Page>
