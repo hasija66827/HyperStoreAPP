@@ -48,10 +48,12 @@ namespace SDKTemplate
                 _CFV.MobileNo = customer.MobileNo;
                 _CFV.Name = customer.Name;
                 _FormMode = FormMode.Update;
+                SaveBtn.Content = "Update";
             }
             else
             {
                 _FormMode = FormMode.Create;
+                SaveBtn.Content = "Create";
             }
             base.OnNavigatedTo(e);
         }
