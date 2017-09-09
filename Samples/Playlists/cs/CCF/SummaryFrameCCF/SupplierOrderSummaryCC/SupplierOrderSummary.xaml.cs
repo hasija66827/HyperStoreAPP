@@ -35,7 +35,7 @@ namespace SDKTemplate
         {
             this._OrderSummaryViewModel.TotalBillAmount = supplierOrders.Sum(so => so.BillAmount);
             this._OrderSummaryViewModel.TotalPayedAmount = supplierOrders.Sum(so => so.PayedAmount);
-            this._OrderSummaryViewModel.TotalPayedAmountIncTx = supplierOrders.Sum(so => so.PayedAmountIncTx);
+            this._OrderSummaryViewModel.TotalSettledAmount = supplierOrders.Sum(so => so.SettledPayedAmount);
             this._OrderSummaryViewModel.OnAllPropertyChanged();
         }
     }

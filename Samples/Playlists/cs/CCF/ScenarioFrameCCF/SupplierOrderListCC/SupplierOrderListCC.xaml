@@ -85,36 +85,44 @@
                       x:DataType="local:SupplierOrderViewModel">
             <RelativePanel  Width="300">
                 <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Due Date "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Interest Rate "
+                               Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Items / Quantity: "
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Bill Amount "
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Payed Amount"
+                    <TextBlock Text="By Cash"
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Payed Amount + Tx:"
+                    <TextBlock Text="By Wallet"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="By Transactions"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="Settled Payed Amount:"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="Remaining Amount:"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Interest Rate "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Due Date "
                                Style="{StaticResource SummaryTextBlockStyle}" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="{x:Bind FormattedDueDate, Mode=OneWay}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind InterestRate, Mode=OneWay}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind Items_Quantity, Mode=OneWay}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind PayedAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind PayedAmountIncTx, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind PayedAmountByWallet, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind PayedAmountByTx, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{StaticResource SummaryTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind SettledPayedAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind RemainingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind InterestRate, Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind FormattedDueDate, Mode=OneWay}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                 </StackPanel>
             </RelativePanel>
@@ -167,18 +175,18 @@
                        Grid.RowSpan="2"
                        BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
                        BorderThickness="10,0,0,0">
-        <ContentPresenter x:Name="DetailContentPresenter"
-                          ContentTemplate="{StaticResource DetailContentTemplate}"
-                          Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">
-            <ContentPresenter.ContentTransitions>
-                <!-- Empty by default. See MasterListView_ItemClick -->
-                <TransitionCollection />
-            </ContentPresenter.ContentTransitions>
-        </ContentPresenter>
-        <ContentPresenter x:Name="BillingSummary"
-                          RelativePanel.AlignBottomWithPanel="True"
-                          Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
-                          ContentTemplate="{StaticResource SupplierBillingSummaryTemplate}" />
+            <ContentPresenter x:Name="DetailContentPresenter"
+                              ContentTemplate="{StaticResource DetailContentTemplate}"
+                              Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">
+                <ContentPresenter.ContentTransitions>
+                    <!-- Empty by default. See MasterListView_ItemClick -->
+                    <TransitionCollection />
+                </ContentPresenter.ContentTransitions>
+            </ContentPresenter>
+            <ContentPresenter x:Name="BillingSummary"
+                              RelativePanel.AlignBottomWithPanel="True"
+                              Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
+                              ContentTemplate="{StaticResource SupplierBillingSummaryTemplate}" />
         </RelativePanel>
     </Grid>
 </Page>

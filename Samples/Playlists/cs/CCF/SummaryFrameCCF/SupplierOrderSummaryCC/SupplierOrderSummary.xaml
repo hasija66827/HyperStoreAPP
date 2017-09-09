@@ -22,9 +22,7 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Total Bill Amount "
                            Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="Total Payed Amount "
-                           Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="Total Payed Amount +Tx"
+                <TextBlock Text="Total Settled Amount"
                            Width="175"
                            Style="{StaticResource SummaryTextBlockStyle}" />
                 <TextBlock Text="Total Remaining Amount"
@@ -34,9 +32,7 @@
                         RelativePanel.AlignRightWithPanel="True">
                 <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPayedAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                           Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPayedAmountIncTx, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalSettledAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
                 <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalRemainingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SummaryTextBlockStyle}" />

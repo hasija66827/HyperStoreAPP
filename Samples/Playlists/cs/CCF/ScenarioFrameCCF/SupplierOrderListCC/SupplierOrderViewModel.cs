@@ -15,7 +15,8 @@ namespace SDKTemplate
     /// </summary>
     public class SupplierOrderViewModel : TSupplierOrder
     {
-        public decimal RemainingAmount{ get { return this.BillAmount - this.PayedAmountIncTx; } }
+        public decimal PayedAmountByTx { get { return this.SettledPayedAmount - this.PayedAmount - this.PayedAmountByWallet; } }
+        public decimal RemainingAmount{ get { return this.BillAmount - this.SettledPayedAmount; } }
         public string FormattedOrderDate
         {
             get
@@ -36,7 +37,7 @@ namespace SDKTemplate
 
         public string FormattedPaidBillAmount
         {
-            get { return Utility.ConvertToRupee(this.PayedAmountIncTx) + "/" + Utility.ConvertToRupee(this.BillAmount); }
+            get { return Utility.ConvertToRupee(this.SettledPayedAmount) + "/" + Utility.ConvertToRupee(this.BillAmount); }
         }
 
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }
