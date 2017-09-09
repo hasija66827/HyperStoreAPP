@@ -198,7 +198,7 @@
     <Compile Include="CCF\FilterFrameCCF\FilterCustomerSupplierCC\FilterCustomerCC.xaml.cs">
       <DependentUpon>FilterCustomerCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\ProductCCF\PriceQuotedByWholeSellerViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\ProductCCF\PriceQuotedBySupplierCollectionViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderListCC.xaml.cs">
       <DependentUpon>CustomerOrderListCC.xaml</DependentUpon>
     </Compile>

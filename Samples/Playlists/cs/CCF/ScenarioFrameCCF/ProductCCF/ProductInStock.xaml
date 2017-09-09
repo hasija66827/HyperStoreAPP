@@ -15,7 +15,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:customControl="using:UWP"
       xmlns:common="using:SDKTemplate"
-      xmlns:model="using:Models"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
@@ -75,7 +74,7 @@
                           RelativePanel.AlignLeftWith="StaticLabelsForList"
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:TPriceQuotedBySupplier">
+                        <DataTemplate x:DataType="common:PriceQuotedBySupplierViewModel">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
                                 <TextBlock x:Name="SupplierName"
                                            Text="{x:Bind Supplier.Name, Mode=OneTime}"
@@ -84,7 +83,7 @@
                                            Text="{x:Bind Supplier.MobileNo, Mode=OneTime}"
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="OrderDate"
-                                           Text="{x:Bind OrderDate, Mode=OneTime}"
+                                           Text="{x:Bind FormattedOrderDate, Mode=OneTime}"
                                            Style="{StaticResource LargeListTextBlockStyle}" />
                                 <TextBlock x:Name="PurchasePrice"
                                            Foreground="Black"

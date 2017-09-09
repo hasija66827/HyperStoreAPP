@@ -91,18 +91,17 @@ namespace SDKTemplate
         {
             var clickedItem = (ProductViewModelBase)e.ClickedItem;
             DetailContentPresenter.Content = null;
-            var x = await AnalyticsDataSource.RetrieveLatestPriceQuotedBySupplierAsync(clickedItem.ProductId);
             var priceQuotedByWholeSellerCollection = new PriceQuotedBySupplierCollection();
-            priceQuotedByWholeSellerCollection.PriceQuotedBySuppliers = x;
+            var x = await AnalyticsDataSource.RetrieveLatestPriceQuotedBySupplierAsync(clickedItem.ProductId);
+            priceQuotedByWholeSellerCollection.PriceQuotedBySuppliers = x.Select(tpqs => new PriceQuotedBySupplierViewModel(tpqs)).ToList();
             DetailContentPresenter.Content = priceQuotedByWholeSellerCollection;
             MainPage.Current.NavigateNewsFeedFrame(typeof(ProductFormCC), clickedItem);
             this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
-
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }
 
-        
+
 
         private void EnableContentTransitions()
         {
