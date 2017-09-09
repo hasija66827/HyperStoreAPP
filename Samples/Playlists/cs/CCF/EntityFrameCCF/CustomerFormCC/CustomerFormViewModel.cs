@@ -38,22 +38,7 @@ namespace SDKTemplate
             set { SetProperty(ref _name, value); }
         }
 
-        private decimal? _walletBalance;
-        public virtual decimal? WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
-
-        private string _walletBalanceString;
-
-        [Numeric(ErrorMessage = "Wallet Amount must be numeric.")]
-        public virtual string WalletBalanceString
-        {
-            get { return this._walletBalanceString; }
-            set
-            {
-                SetProperty(ref _walletBalanceString, value);
-                this._walletBalance = Utility.TryToConvertToFloat(_walletBalanceString);
-            }
-        }
-
+    
         public CustomerFormViewModel()
         {
             _validateCommand = new DelegateCommand(ValidateAndSave_Executed);
@@ -61,8 +46,6 @@ namespace SDKTemplate
             this._mobileNo = "";
             this._name = "";
             this._gstin = "";
-            this._walletBalance = 0;
-            this._walletBalanceString = "";
         }
 
         public ICommand ValidateCommand
@@ -81,10 +64,8 @@ namespace SDKTemplate
                     GSTIN = this.GSTIN,
                     MobileNo = this.MobileNo,
                     Name = this.Name,
-                    WalletBalance = this.WalletBalance
                 };
                 await CustomerDataSource.CreateNewCustomerAsync(customerDTO);
-                MainPage.Current.NotifyUser("New customer was added succesfully ", NotifyType.StatusMessage);
             }
         }
     }

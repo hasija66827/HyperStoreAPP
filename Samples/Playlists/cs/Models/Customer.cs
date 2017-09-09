@@ -32,9 +32,5 @@ namespace Models
         string MobileNo { get; set; }
         [Required]
         string Name { get; set; }
-        [Required]
-        decimal? WalletBalance { get; set; }
-
-        //TODO: #DB, Name and MobileNo should be unique, customerId should not be null in database, although in model it can be null
     }
 }

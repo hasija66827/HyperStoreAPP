@@ -39,14 +39,6 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text=""
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBox x:Name="WalletAmountTB"
-                     Header="Wallet Amount"
-                     Text="{x:Bind _CFV.WalletBalanceString, Mode=TwoWay}"
-                     PlaceholderText="Amount"
-                     ToolTipService.ToolTip="Initial wallet amount of the customer"
-                     Style="{StaticResource FormTextBoxStyle}" />
-            <TextBlock Text="{Binding Errors[WalletBalanceString][0]}"
-                       Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="MobileNoTB"
                      Header="Mobile Number"
                      Text="{x:Bind _CFV.MobileNo, Mode=TwoWay}"

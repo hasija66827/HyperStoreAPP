@@ -24,8 +24,6 @@ namespace SDKTemplate
             public string MobileNo { get; set; }
             [Required]
             public string Name { get; set; }
-            [Required]
-            public decimal? WalletBalance { get; set; }
         }
 
         public class SupplierDTO
