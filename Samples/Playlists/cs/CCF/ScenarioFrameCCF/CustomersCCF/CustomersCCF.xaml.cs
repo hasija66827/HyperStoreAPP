@@ -85,6 +85,7 @@ namespace SDKTemplate
             {
                 CustomerId = selectedCustomer?.CustomerId
             };
+            MainPage.Current.NavigateNewsFeedFrame(typeof(CustomerFormCC), selectedCustomer);
             DetailContentPresenter.Content = null;
             var transactions = await CustomerTransactionDataSource.RetrieveTransactionsAsync(tfc);
             if (transactions != null)

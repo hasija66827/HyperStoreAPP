@@ -1,4 +1,5 @@
-﻿using SDKTemplate.DTO;
+﻿using Models;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,36 +26,34 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddCustomerCC : Page
+    public sealed partial class CustomerFormCC : Page
     {
         private CustomerFormViewModel _CFV { get; set; }
         private FormMode? _FormMode { get; set; }
-        public AddCustomerCC()
+        public CustomerFormCC()
         {
             this.InitializeComponent();
-            Loaded += AddCustomerCCPage_Loaded;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO Reverse
-            if (e.Parameter == null)
+            _CFV = DataContext as CustomerFormViewModel;
+            _CFV.ErrorsChanged += AddCustomerViewModel_ErrorsChanged;
+            if (e.Parameter != null)
             {
-                _CFV = new CustomerFormViewModel();
+                var customer = (TCustomer)e.Parameter;
+                _CFV.CustomerId = customer.CustomerId;
+                _CFV.Address = customer.Address;
+                _CFV.GSTIN = customer.GSTIN;
+                _CFV.MobileNo = customer.MobileNo;
+                _CFV.Name = customer.Name;
                 _FormMode = FormMode.Update;
             }
             else
             {
-                _CFV = new CustomerFormViewModel();
                 _FormMode = FormMode.Create;
             }
             base.OnNavigatedTo(e);
-        }
-
-        private void AddCustomerCCPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            _CFV = DataContext as CustomerFormViewModel;
-            _CFV.ErrorsChanged += AddCustomerViewModel_ErrorsChanged;
         }
 
         private void AddCustomerViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
@@ -85,8 +84,7 @@ namespace SDKTemplate
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    //TODO: remove hardcoding
-                    await CustomerDataSource.UpdateCustomerAsync(new Guid("1b0ddcc1-dda3-4de2-8bbc-ff978ebe52c5"), customerDTO);
+                    await CustomerDataSource.UpdateCustomerAsync((Guid)this._CFV.CustomerId, customerDTO);
                 }
                 else
                 { throw new NotImplementedException(); }

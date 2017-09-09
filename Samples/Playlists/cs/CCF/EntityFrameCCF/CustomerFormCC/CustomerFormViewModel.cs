@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace SDKTemplate
 {
     public class CustomerFormViewModel : ValidatableBindableBase, ICustomer
     {
-        private DelegateCommand _validateCommand;
-
+        public Guid? CustomerId
+        {
+            get; set;
+        }
         private string _address;
         public virtual string Address { get { return this._address; } set { this._address = value; } }
 
@@ -39,13 +42,11 @@ namespace SDKTemplate
         }
         public CustomerFormViewModel()
         {
+            this.CustomerId = null;
             this._address = "";
             this._mobileNo = "";
             this._name = "";
             this._gstin = "";
         }
-
-
-
     }
 }

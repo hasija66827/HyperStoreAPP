@@ -45,7 +45,7 @@ namespace SDKTemplate
         }
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            NewsFeedFrame.Navigate(typeof(AddCustomerCC));
+            NewsFeedFrame.Navigate(typeof(CustomerFormCC));
         }
 
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
