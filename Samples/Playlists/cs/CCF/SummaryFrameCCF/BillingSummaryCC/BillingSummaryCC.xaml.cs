@@ -26,7 +26,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             _BillingSummaryViewModel = new CustomerBillingSummaryViewModelBase();
             //Subscribing to product list changed event of ProductListCC
-            ProductListCCUpdatedDelegate d = new ProductListCCUpdatedDelegate(
+            ProductQtyUpdatedDelegate d = new ProductQtyUpdatedDelegate(
                 () =>
                 {
                     var products = CustomerProductListCC.Current.Products;
@@ -39,7 +39,7 @@ namespace SDKTemplate
                     this._BillingSummaryViewModel.PayAmount = (decimal)products.Sum(p => p.NetValue);
                     this._BillingSummaryViewModel.OnALLPropertyChanged();
                 });
-            CustomerProductListCC.Current.ProductListCCUpdatedEvent += d;
+            CustomerProductListCC.Current.ProductQtyUpdatedEvent += d;
         }
     }
 }

@@ -32,10 +32,10 @@ namespace SDKTemplate
             this.InitializeComponent();
             this._RecomProducts = new ObservableCollection<RecommendedProductViewModel>();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += Current_SelectedCustomerChangedEvent;
-            ProductASBCC.Current.OnAddProductClickedEvent += Current_OnAddProductClickedEvent;
+            CustomerProductListCC.Current.NewProductAddedIntoListEvent += Current_NewProductAddedIntoListEvent;
         }
 
-        private void Current_OnAddProductClickedEvent(TProduct product)
+        private void Current_NewProductAddedIntoListEvent(TProduct product)
         {
             var purchasedRecomProduct = this._RecomProducts.Where(rp => rp.ProductId == product.ProductId).FirstOrDefault();
             if (purchasedRecomProduct != null)

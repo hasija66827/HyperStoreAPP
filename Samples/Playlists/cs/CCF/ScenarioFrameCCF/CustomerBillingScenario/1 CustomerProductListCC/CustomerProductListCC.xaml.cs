@@ -26,11 +26,14 @@ using Models;
 
 namespace SDKTemplate
 {
-    public delegate void ProductListCCUpdatedDelegate();
+    public delegate void ProductQtyUpdatedDelegate();
+    public delegate void NewProductAddedDelegate(TProduct product);
+
     public sealed partial class CustomerProductListCC : Page
     {
         public static CustomerProductListCC Current;
-        public event ProductListCCUpdatedDelegate ProductListCCUpdatedEvent;
+        public event ProductQtyUpdatedDelegate ProductQtyUpdatedEvent;
+        public event NewProductAddedDelegate NewProductAddedIntoListEvent;
         public List<CustomerBillingProductViewModelBase> Products { get { return this._Products.Cast<CustomerBillingProductViewModelBase>().ToList(); } }
         private ObservableCollection<CustomerBillingProductViewModel> _Products { get; set; }
 
@@ -63,13 +66,13 @@ namespace SDKTemplate
                 this._Products.Add(customerProduct);
                 index = this._Products.IndexOf(customerProduct);
                 this._Products[index].QuantityConsumed = 1;//Event will be triggered.
-            }
-            
+                this.NewProductAddedIntoListEvent?.Invoke(customerProduct);
+            }   
         }
 
         public void InvokeProductListChangedEvent()
         {
-            this.ProductListCCUpdatedEvent?.Invoke();
+            this.ProductQtyUpdatedEvent?.Invoke();
         }
 
         private void Checkout_Click(object sender, RoutedEventArgs e)
