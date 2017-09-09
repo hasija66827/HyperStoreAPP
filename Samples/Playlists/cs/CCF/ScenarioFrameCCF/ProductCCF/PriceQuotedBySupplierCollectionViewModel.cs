@@ -32,6 +32,7 @@ namespace SDKTemplate
                 return formatter.Format(this.OrderDate);
             }
         }
+     
         public PriceQuotedBySupplierViewModel(TPriceQuotedBySupplier parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())

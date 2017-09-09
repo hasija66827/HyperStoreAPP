@@ -25,7 +25,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class ProductConsumptionPer : Page
     {
-        public List<TProductConsumptionDeficientTrend> ProductConsumptionDeficientTrend { get; set; }
+        public List<ProductConsumptionDeficientTrendViewModel> ProductConsumptionDeficientTrend { get; set; }
         public ProductConsumptionPer()
         {
             this.InitializeComponent();
@@ -40,7 +40,8 @@ namespace SDKTemplate
                 MonthsCount = 1,
             };
             (ColumnChart.Series[0] as ColumnSeries).ItemsSource = null;
-            this.ProductConsumptionDeficientTrend = await AnalyticsDataSource.RetrieveProductConsumptionTrend(productConsumptionTrendDTO);
+             var x= await AnalyticsDataSource.RetrieveProductConsumptionTrend(productConsumptionTrendDTO);
+            this.ProductConsumptionDeficientTrend = x.Select(pct => new ProductConsumptionDeficientTrendViewModel(pct)).ToList();
             (ColumnChart.Series[0] as ColumnSeries).ItemsSource = ProductConsumptionDeficientTrend;
             (ColumnChart.Series[1] as ColumnSeries).ItemsSource = ProductConsumptionDeficientTrend;
 

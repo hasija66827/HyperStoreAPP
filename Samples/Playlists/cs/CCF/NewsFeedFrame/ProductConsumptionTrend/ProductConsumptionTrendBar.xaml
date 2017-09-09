@@ -19,7 +19,7 @@
                         Margin="0"
                         Width="350">
             <Charting:ColumnSeries IndependentValuePath="FormattedDay"
-                                   DependentValuePath="AvgConsumption"
+                                   DependentValuePath="RoundedAvgConsumption"
                                    CharacterSpacing="4"
                                    IsSelectionEnabled="True" />
             <Charting:ColumnSeries IndependentValuePath="FormattedDay"
