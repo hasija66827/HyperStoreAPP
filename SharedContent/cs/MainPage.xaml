@@ -35,13 +35,7 @@
                    Opacity="0.95"
                    PaneBackground="#F202090B">
             <SplitView.Pane>
-                <RelativePanel Margin="10,0,0,0">
-                    <TextBlock x:Name="SampleTitle"
-                               Text="Sample Title Here"
-                               Style="{StaticResource SampleHeaderTextStyle}"
-                               Foreground="Gold"
-                               TextWrapping="Wrap"
-                               Margin="0,10,0,0" />
+                <RelativePanel Margin="5,0,0,0">
                     <ListBox x:Name="ScenarioControl"
                              SelectionChanged="ScenarioControl_SelectionChanged"
                              SelectionMode="Single"
@@ -50,8 +44,8 @@
                              RequestedTheme="Dark"
                              BorderThickness="0"
                              VerticalAlignment="Top"
-                             RelativePanel.Below="SampleTitle"
                              Margin="0,10,0,0"
+                             RelativePanel.AlignTopWithPanel="True"
                              RelativePanel.Above="FooterPanel">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -187,7 +181,7 @@
                               Click="Button_Click"
                               VerticalAlignment="Top"
                               RequestedTheme="Dark"
-                              Foreground="Gold">
+                              Foreground="#FF53D1BD">
                     <ToggleButton.Content>
                         <FontIcon x:Name="Hamburger"
                                   FontFamily="Segoe MDL2 Assets"

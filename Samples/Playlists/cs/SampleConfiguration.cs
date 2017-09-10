@@ -25,13 +25,13 @@ namespace SDKTemplate
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.Calculator), Title = "  Customer Billing", ClassType = typeof(CustomerProductListCC) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People), Title = "  Customers", ClassType = typeof(CustomersCCF) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.GoToToday),Title = "  Customer Orders", ClassType = typeof(CustomerOrderListCCF) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.Home), Title = "  Products", ClassType = typeof(ProductInStock) },
-            new Scenario() {SymbolIcon=new SymbolIcon(Symbol.Calculator), Title = "  Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People),Title = "  Suppliers", ClassType = typeof(SupplierCCF) },
-            new Scenario() {SymbolIcon=new SymbolIcon(Symbol.GoToToday), Title = "  Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
+            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.Calculator), Title = "Customer Billing", ClassType = typeof(CustomerProductListCC) },
+            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People), Title = "Customers", ClassType = typeof(CustomersCCF) },
+            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.GoToToday),Title = "Customer Orders", ClassType = typeof(CustomerOrderListCCF) },
+            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.Home), Title = "Products", ClassType = typeof(ProductInStock) },
+            new Scenario() {SymbolIcon=new SymbolIcon(Symbol.Calculator), Title = "Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
+            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People),Title = "Suppliers", ClassType = typeof(SupplierCCF) },
+            new Scenario() {SymbolIcon=new SymbolIcon(Symbol.GoToToday), Title = "Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
         };
     }
 

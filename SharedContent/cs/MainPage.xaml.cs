@@ -36,7 +36,7 @@ namespace SDKTemplate
             // This is a static public property that allows downstream pages to get a handle to the MainPage instance
             // in order to call methods that are in this class.
             Current = this;
-            SampleTitle.Text = FEATURE_NAME;
+            //SampleTitle.Text = FEATURE_NAME;
             AddProductBtn.Click += AddProductBtn_Click;
         }
         public void NavigateNewsFeedFrame(Type sourcePageType, object parameter)
@@ -271,7 +271,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             Scenario s = value as Scenario;
-            return s.Title;
+            return "   " + s.Title;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
