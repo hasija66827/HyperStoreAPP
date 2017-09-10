@@ -20,7 +20,7 @@
                     RelativePanel.Below="HeaderPanel"
                     Padding="10">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
-                          MaxHeight="150"
+                          MaxHeight="220"
                           Width="300">
                 <ItemsControl x:Name="TagItemControl"
                               ItemsSource="{x:Bind _ProductTags}">

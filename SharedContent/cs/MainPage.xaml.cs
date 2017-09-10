@@ -64,7 +64,7 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
-            
+
             ScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
             {
@@ -167,7 +167,7 @@ namespace SDKTemplate
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierOrderSummary));
                     ChangeLayout(true);
-                }        
+                }
                 else
                 {
                     ScenarioFrame.Navigate(s.ClassType);
@@ -258,7 +258,7 @@ namespace SDKTemplate
             Splitter.IsPaneOpen = !Splitter.IsPaneOpen;
         }
 
-    
+
     }
     public enum NotifyType
     {
@@ -271,7 +271,24 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             Scenario s = value as Scenario;
-            return (MainPage.Current.Scenarios.IndexOf(s) + 1) + ") " + s.Title;
+            return s.Title;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return true;
+        }
+    }
+    public class ScenarioSymbolBindingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            Scenario s = value as Scenario;
+            if (s.SymbolIcon != null)
+            {
+                return s.SymbolIcon.Symbol;
+            }
+            return Symbol.OutlineStar;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

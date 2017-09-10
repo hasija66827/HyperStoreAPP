@@ -46,7 +46,7 @@ namespace SDKTemplate
                     .Where(x => x.IsChecked)
                     .Select(x => x.TagName).ToArray();
                 if (!array.Any())
-                    return "None";
+                    return "All Tags";
                 return string.Join("; ", array);
             }
         }
@@ -61,7 +61,6 @@ namespace SDKTemplate
             
         }
     }
-
 
     public abstract class BindableBases : INotifyPropertyChanged
     {

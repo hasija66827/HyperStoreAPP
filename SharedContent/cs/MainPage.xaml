@@ -20,6 +20,7 @@
       mc:Ignorable="d">
     <Page.Resources>
         <local:ScenarioBindingConverter x:Key="ScenarioConverter"></local:ScenarioBindingConverter>
+        <local:ScenarioSymbolBindingConverter x:Key="ScenarioSymbolConverter"></local:ScenarioSymbolBindingConverter>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -54,7 +55,10 @@
                              RelativePanel.Above="FooterPanel">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource ScenarioConverter}}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="{Binding Converter={StaticResource ScenarioSymbolConverter}}" />
+                                    <TextBlock Text="{Binding Converter={StaticResource ScenarioConverter}}" />
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
