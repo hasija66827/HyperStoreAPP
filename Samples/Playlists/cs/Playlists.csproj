@@ -159,6 +159,7 @@
     <Compile Include="Models\CustomerTransaction.cs" />
     <Compile Include="Models\PriceQuotedBySupplier.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductMetadata.cs" />
     <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\ProductTrend.cs" />
     <Compile Include="Models\RecommendedProductsForCustomer.cs" />
@@ -245,7 +246,7 @@
     <Compile Include="CCF\FilterFrameCCF\FilterCustomerOrderCC\FilterCustomerOrderCC.xaml.cs">
       <DependentUpon>FilterCustomerOrderCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\LeftBottomCC\FilterProductCC\FilterProduct.xaml.cs">
+    <Compile Include="CCF\FilterFrameCCF\FilterProductCC\FilterProduct.xaml.cs">
       <DependentUpon>FilterProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\OrderSummaryCC\OrderSummary.xaml.cs">
@@ -386,7 +387,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\LeftBottomCC\FilterProductCC\FilterProduct.xaml">
+    <Page Include="CCF\FilterFrameCCF\FilterProductCC\FilterProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -518,7 +519,9 @@
       <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CCF\LeftBottomCC\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

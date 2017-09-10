@@ -36,10 +36,15 @@ namespace SDKTemplate
             return null;
         }
 
-        public static double GetMaximumQuantity()
+        public static async Task<TProductMetadata> RetrieveProductMetadataAsync()
         {
-
-            return 90000;
+            List<TProductMetadata> productMetadata = await Utility.RetrieveAsync<TProductMetadata>(API.Products, "GetProductMetadata", null);
+            if (productMetadata != null && productMetadata.Count == 1)
+               return productMetadata[0];
+            return new TProductMetadata() {
+                DiscountPerRange = new IRange<decimal?>(0, 100),
+                QuantityRange = new IRange<decimal>(0, 1000),
+            };
         }
 
         public static bool IsProductCodeExist(string barCode)

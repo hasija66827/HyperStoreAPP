@@ -36,13 +36,14 @@ namespace SDKTemplate
             this.ProductFilterQDT = null;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             DiscountPerRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             ShowDeficientItemsOnly.Click += ShowDeficientItemsOnly_Click;
-            QuantityRangeSlider.Maximum = ProductDataSource.GetMaximumQuantity();
-            QuantityRangeSlider.RangeMax = QuantityRangeSlider.Maximum;
+            var productMetadata = await ProductDataSource.RetrieveProductMetadataAsync();
+            InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
+            InitializeQuantityRangeSlider(productMetadata.QuantityRange);
             this.ProductFilterQDT = GetCurrentState();
         }
 
@@ -51,11 +52,27 @@ namespace SDKTemplate
             InvokeFilterProductCriteriaChangedEvent(sender);
         }
 
+        private void InitializeDiscountRangeSlider(IRange<decimal?> discountPerRange)
+        {
+            DiscountPerRangeSlider.Maximum = (double)discountPerRange.UB;
+            DiscountPerRangeSlider.RangeMax = DiscountPerRangeSlider.Maximum;
+            DiscountPerRangeSlider.Minimum = (double)discountPerRange.LB;
+            DiscountPerRangeSlider.RangeMin = DiscountPerRangeSlider.Minimum;
+        }
+
+        private void InitializeQuantityRangeSlider(IRange<decimal> quantityRange)
+        {
+            QuantityRangeSlider.Maximum = (double)quantityRange.UB;
+            QuantityRangeSlider.RangeMax = QuantityRangeSlider.Maximum;
+            QuantityRangeSlider.Minimum = (double)quantityRange.LB;
+            QuantityRangeSlider.RangeMin = QuantityRangeSlider.Minimum;
+        }    
+
         private ProductFilterQDTDTO GetCurrentState()
         {
             IRange<decimal?> discounPerRange = new IRange<decimal?>(Convert.ToDecimal(DiscountPerRangeSlider.RangeMin), Convert.ToDecimal(DiscountPerRangeSlider.RangeMax));
             IRange<decimal?> quantityRange = new IRange<decimal?>(Convert.ToDecimal(QuantityRangeSlider.RangeMin), Convert.ToDecimal(QuantityRangeSlider.RangeMax));
-           var productFilterQDT = new ProductFilterQDTDTO()
+            var productFilterQDT = new ProductFilterQDTDTO()
             {
                 DiscountPerRange = discounPerRange,
                 QuantityRange = quantityRange,
