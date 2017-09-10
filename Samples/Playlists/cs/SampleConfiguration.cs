@@ -11,10 +11,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Windows.Media.Playlists;
-using Windows.Storage;
-using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 
 namespace SDKTemplate
