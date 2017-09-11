@@ -57,24 +57,12 @@ namespace SDKTemplate
             return customers;
         }
 
-        /// <summary>
-        /// Gets the minimum wallet balance from the list of customers.
-        /// Used by Filter box for its range control
-        /// </summary>
-        /// <returns></returns>
-        public static decimal GetMinimumWalletBalance()
+        public static async Task<IRange<T>> RetrieveWalletRangeAsync<T>()
         {
-            return -100000;
-        }
-
-        /// <summary>
-        /// Gets the maximum wallet balance from the list of customers.
-        /// Used by Filter box for its range control
-        /// </summary>
-        /// <returns></returns>
-        public static decimal GetMaximumWalletBalance()
-        {
-            return 10000;
+            var IRanges = await Utility.RetrieveAsync<IRange<T>>(API.Customers, "GetWalletBalanceRange", null);
+            if (IRanges != null && IRanges.Count == 1)
+                return IRanges[0];
+            return null;
         }
 
         /// <summary>

@@ -46,18 +46,12 @@ namespace SDKTemplate
             return suppliers;
         }
 
-        //TODO
-        public static decimal GetMinimumWalletBalance()
+        public static async Task<IRange<T>> RetrieveWalletRangeAsync<T>()
         {
-
-            return -10000;
-        }
-
-        //TODO
-        public static decimal GetMaximumWalletBalance()
-        {
-
-            return 20000;
+            var IRanges = await Utility.RetrieveAsync<IRange<T>>(API.Suppliers, "GetWalletBalanceRange", null);
+            if (IRanges != null && IRanges.Count == 1)
+                return IRanges[0];
+            return null;
         }
         #endregion 
     }

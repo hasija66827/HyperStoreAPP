@@ -116,7 +116,7 @@ namespace SDKTemplate
                 else if (s.ClassType == typeof(CustomersCCF))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
-                    SearchBoxFrame.Navigate(typeof(FilterPersonCC));
+                    SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Customer);
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
                     LeftBottomFrame.Navigate(typeof(CustomerTrendCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
@@ -138,7 +138,7 @@ namespace SDKTemplate
                 else if (s.ClassType == typeof(SupplierCCF))
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
-                    SearchBoxFrame.Navigate(typeof(FilterPersonCC));
+                    SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Supplier);
                     LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));

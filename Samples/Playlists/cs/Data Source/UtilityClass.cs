@@ -159,6 +159,7 @@ namespace SDKTemplate
                 LB = lb;
                 UB = ub;
             }
+            
         }
         public sealed class QuantityRangeAttribute : ValidationAttribute
         {

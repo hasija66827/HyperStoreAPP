@@ -13,7 +13,8 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Filter Customers"
+            <TextBlock x:Name="HeaderTB"
+                       Text="Filter By Wallet Balance"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
         <RelativePanel x:Name="ContentPanel"
@@ -22,36 +23,25 @@
             <TextBlock x:Name="WalletTB"
                        Text="Wallet Balance" />
             <customControl:RangeSlider x:Name="WalletRangeSlider"
-                                       Width="250"
-                                       Minimum="-100000"
-                                       RangeMin="-100000"
-                                       Maximum="100000"
-                                       RangeMax="100000" 
-                                       RelativePanel.Below="WalletTB"/>
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        RelativePanel.Below="WalletRangeSlider"
-                        RelativePanel.AlignHorizontalCenterWith="WalletRangeSlider">
+                                       Width="270"
+                                       RelativePanel.Below="WalletTB" />
+            <RelativePanel Width="270"
+                           RelativePanel.Below="WalletRangeSlider"
+                           RelativePanel.AlignHorizontalCenterWith="WalletRangeSlider">
                 <TextBlock x:Name="WalletBalanceLB"
-                           HorizontalAlignment="Left"
-                           FontSize="20"
-                           Width=" 80"
+                           RelativePanel.AlignLeftWithPanel="True"
+                           FontSize="18"
                            Text="{Binding RangeMin, ElementName=WalletRangeSlider, Mode=TwoWay,
                     Converter={StaticResource FloatToRupeeConverter}}" />
-                <TextBlock Text="to"
-                           Margin="10,0,10,0"
-                           Width=" 40"
-                           FontSize="20" />
                 <TextBlock x:Name="WalletBalanceUB"
-                           Width="80"
-                           HorizontalAlignment="Right"
-                           FontSize="20"
+                           RelativePanel.AlignRightWithPanel="True"
+                           FontSize="18"
                            Text="{Binding RangeMax,
                             ElementName=WalletRangeSlider,
                             Mode=TwoWay,
                     Converter={StaticResource FloatToRupeeConverter}
                     }" />
-            </StackPanel>
+            </RelativePanel>
         </RelativePanel>
     </RelativePanel>
 </Page>

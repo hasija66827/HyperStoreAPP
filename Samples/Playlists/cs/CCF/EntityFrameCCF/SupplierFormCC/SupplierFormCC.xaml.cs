@@ -20,7 +20,7 @@ namespace SDKTemplate
 {
     enum Person
     {
-        WholeSeller,
+        Supplier,
         Customer
     }
     /// <summary>

@@ -38,12 +38,23 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: Need to change Supplier/ Cusomer according to parameter e
-            WalletRangeSlider.RangeMin = (double)(SupplierDataSource.GetMinimumWalletBalance() - 10);
-            WalletRangeSlider.RangeMax = (double)(SupplierDataSource.GetMaximumWalletBalance() + 10);
-            WalletRangeSlider.Minimum = WalletRangeSlider.RangeMin;
-            WalletRangeSlider.Maximum = WalletRangeSlider.RangeMax;
+            var person = (Person)e.Parameter;
+            IRange<double> walletBalanceRange;
+            if (person == Person.Supplier)
+                walletBalanceRange = await SupplierDataSource.RetrieveWalletRangeAsync<double>();
+            else
+                walletBalanceRange = await CustomerDataSource.RetrieveWalletRangeAsync<double>();
+
+            _IntitializeWalletRangeSlider(walletBalanceRange);
             WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
+        }
+
+        private void _IntitializeWalletRangeSlider(IRange<double> walletBalanceRange)
+        {
+            WalletRangeSlider.Minimum = (double)(walletBalanceRange.LB);
+            WalletRangeSlider.RangeMin = WalletRangeSlider.Minimum;
+            WalletRangeSlider.Maximum = (double)(walletBalanceRange.UB);
+            WalletRangeSlider.RangeMax = WalletRangeSlider.Maximum;
         }
 
         private void WalletRangeSlider_DragCompletedEvent(object sender)
