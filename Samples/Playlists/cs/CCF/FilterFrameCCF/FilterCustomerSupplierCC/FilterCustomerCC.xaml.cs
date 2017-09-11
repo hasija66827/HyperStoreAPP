@@ -51,10 +51,13 @@ namespace SDKTemplate
 
         private void _IntitializeWalletRangeSlider(IRange<double> walletBalanceRange)
         {
-            WalletRangeSlider.Minimum = (double)(walletBalanceRange.LB);
-            WalletRangeSlider.RangeMin = WalletRangeSlider.Minimum;
-            WalletRangeSlider.Maximum = (double)(walletBalanceRange.UB);
-            WalletRangeSlider.RangeMax = WalletRangeSlider.Maximum;
+            if (walletBalanceRange != null)
+            {
+                WalletRangeSlider.Minimum = (double)(walletBalanceRange.LB);
+                WalletRangeSlider.RangeMin = WalletRangeSlider.Minimum;
+                WalletRangeSlider.Maximum = (double)(walletBalanceRange.UB);
+                WalletRangeSlider.RangeMax = WalletRangeSlider.Maximum;
+            }
         }
 
         private void WalletRangeSlider_DragCompletedEvent(object sender)

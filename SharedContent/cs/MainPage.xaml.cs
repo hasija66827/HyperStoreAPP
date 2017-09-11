@@ -288,7 +288,7 @@ namespace SDKTemplate
             {
                 return s.SymbolIcon.Symbol;
             }
-            return Symbol.OutlineStar;
+            return Symbol.More;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -296,4 +296,23 @@ namespace SDKTemplate
             return true;
         }
     }
+
+    public class ScenarioFontIconBindingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            Scenario s = value as Scenario;
+            if (s.FontIcon != null)
+            {
+                return s.FontIcon.Glyph;
+            }
+            return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return true;
+        }
+    }
+
 }

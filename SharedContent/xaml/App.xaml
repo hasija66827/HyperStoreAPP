@@ -43,6 +43,11 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    <Style x:Key="FontAwesome"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="../../Samples/Playlists/cs/Assets/fontawesome-webfont.ttf" />
+                    </Style>
                     <Style x:Key="ListCaptionAltTextblockStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource CaptionTextBlockStyle}">

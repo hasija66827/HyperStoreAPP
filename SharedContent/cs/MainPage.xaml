@@ -21,6 +21,7 @@
     <Page.Resources>
         <local:ScenarioBindingConverter x:Key="ScenarioConverter"></local:ScenarioBindingConverter>
         <local:ScenarioSymbolBindingConverter x:Key="ScenarioSymbolConverter"></local:ScenarioSymbolBindingConverter>
+        <local:ScenarioFontIconBindingConverter x:Key="ScenarioFontIconConverter"></local:ScenarioFontIconBindingConverter>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -50,6 +51,9 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
+                                    <FontIcon x:Name="ScenarioFontIcon"
+                                              FontFamily="Segoe MDL2 Assets"
+                                              Glyph="{Binding Converter={StaticResource ScenarioFontIconConverter}}" />
                                     <SymbolIcon Symbol="{Binding Converter={StaticResource ScenarioSymbolConverter}}" />
                                     <TextBlock Text="{Binding Converter={StaticResource ScenarioConverter}}" />
                                 </StackPanel>

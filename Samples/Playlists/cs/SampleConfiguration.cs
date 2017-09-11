@@ -21,19 +21,20 @@ namespace SDKTemplate
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.Calculator), Title = "Customer Billing", ClassType = typeof(CustomerProductListCC) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uEB50"}, Title = "Customer Billing", ClassType = typeof(CustomerProductListCC) },
             new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People), Title = "Customers", ClassType = typeof(CustomersCCF) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.GoToToday),Title = "Customer Orders", ClassType = typeof(CustomerOrderListCCF) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Customer Orders", ClassType = typeof(CustomerOrderListCCF) },
             new Scenario() { SymbolIcon=new SymbolIcon(Symbol.Home), Title = "Products", ClassType = typeof(ProductInStock) },
-            new Scenario() {SymbolIcon=new SymbolIcon(Symbol.Calculator), Title = "Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
+            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
             new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People),Title = "Suppliers", ClassType = typeof(SupplierCCF) },
-            new Scenario() {SymbolIcon=new SymbolIcon(Symbol.GoToToday), Title = "Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
+            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
         };
     }
 
     public class Scenario
     {
         public SymbolIcon SymbolIcon { get; set; }
+        public FontIcon FontIcon { get; set; }
         public string Title { get; set; }
         public Type ClassType { get; set; }
     }
