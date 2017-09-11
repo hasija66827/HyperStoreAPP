@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
@@ -21,13 +22,13 @@ namespace SDKTemplate
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uEB50"}, Title = "Customer Billing", ClassType = typeof(CustomerProductListCC) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People), Title = "Customers", ClassType = typeof(CustomersCCF) },
-            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Customer Orders", ClassType = typeof(CustomerOrderListCCF) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.Home), Title = "Products", ClassType = typeof(ProductInStock) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE7BF" }, Title = "Customer Billing", ClassType = typeof(CustomerProductListCC) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"}, Title = "Customers", ClassType = typeof(CustomersCCF) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Customer Orders", ClassType = typeof(CustomerOrderListCCF) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE80F"}, Title = "Products", ClassType = typeof(ProductInStock) },
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
-            new Scenario() { SymbolIcon=new SymbolIcon(Symbol.People),Title = "Suppliers", ClassType = typeof(SupplierCCF) },
-            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"},Title = "Suppliers", ClassType = typeof(SupplierCCF) },
+            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
         };
     }
 

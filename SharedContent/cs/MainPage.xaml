@@ -54,7 +54,6 @@
                                     <FontIcon x:Name="ScenarioFontIcon"
                                               FontFamily="Segoe MDL2 Assets"
                                               Glyph="{Binding Converter={StaticResource ScenarioFontIconConverter}}" />
-                                    <SymbolIcon Symbol="{Binding Converter={StaticResource ScenarioSymbolConverter}}" />
                                     <TextBlock Text="{Binding Converter={StaticResource ScenarioConverter}}" />
                                 </StackPanel>
                             </DataTemplate>
