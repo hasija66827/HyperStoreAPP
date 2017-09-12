@@ -18,13 +18,8 @@
             <Border  x:Name="HeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Billing Summary"
-                               Style="{StaticResource HeaderTextBlockStyle}" />
-                    <FontIcon  FontFamily="Segoe MDL2 Assets"
-                               Glyph="&#xE8EF;"
-                               Foreground="White" />
-                </StackPanel>
+                <TextBlock Text="Billing Summary"
+                           Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
             <RelativePanel x:Name="ContentPanel"
                            RelativePanel.Below="HeaderPanel"

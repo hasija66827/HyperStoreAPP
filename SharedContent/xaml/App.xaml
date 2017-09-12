@@ -254,7 +254,7 @@
                         <Setter Property="TextLineBounds"
                                 Value="Full" />
                         <Setter Property="Width"
-                                Value="270" />
+                                Value="330" />
                         <Setter Property="Foreground"
                                 Value="White" />
                         <Setter Property="HorizontalAlignment"
@@ -296,7 +296,7 @@
                         <Setter Property="TextLineBounds"
                                 Value="Full" />
                         <Setter Property="Width"
-                                Value="780" />
+                                Value="820" />
                         <Setter Property="Foreground"
                                 Value="White" />
                         <Setter Property="HorizontalAlignment"

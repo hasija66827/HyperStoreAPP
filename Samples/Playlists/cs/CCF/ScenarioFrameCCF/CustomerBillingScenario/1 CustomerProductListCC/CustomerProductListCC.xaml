@@ -32,14 +32,8 @@
                     <Border  x:Name="HeaderPanel"
                              RelativePanel.AlignTopWithPanel="True"
                              Style="{StaticResource HeaderBorder}">
-                        <StackPanel Orientation="Horizontal" Width="820">
-                            <TextBlock Text="Price List"
-                                   Style="{StaticResource ScenarioHeaderTextBlockStyle}" 
-                                      />
-                            <FontIcon  FontFamily="Segoe MDL2 Assets"
-                                       Glyph="&#xE7BF;"
-                                       Foreground="White" />
-                        </StackPanel>
+                        <TextBlock Text="Price List"
+                                   Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
                     </Border>
                     <RelativePanel x:Name="RadContentPanel"
                                    HorizontalAlignment="Center"
