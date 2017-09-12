@@ -43,7 +43,7 @@
                        Style="{StaticResource ScenarioDescriptionTextStyle}"
                        RelativePanel.Below="OrderDateLBCP" />
             <CalendarDatePicker x:Name="DueDateLBCP"
-                                Header="From"
+                                Header="From"                                
                                 Style="{StaticResource CalenderDatePickerStyle}"
                                 DateFormat="{}{day.integer} {month.full} {year.full}"
                                 RelativePanel.Below="DueDateTitle"

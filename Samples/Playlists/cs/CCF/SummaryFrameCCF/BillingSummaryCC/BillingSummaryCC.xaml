@@ -44,10 +44,11 @@
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.CartAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToNegativeRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                               Style="{StaticResource GreenTextBlockStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.Tax, Mode=OneWay, Converter={StaticResource FloatToPositiveRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                               Foreground="#FFFF2FAE"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                 </StackPanel>
             </RelativePanel>
