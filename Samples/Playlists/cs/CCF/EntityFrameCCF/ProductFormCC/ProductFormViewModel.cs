@@ -49,6 +49,12 @@ namespace SDKTemplate
         [RegularExpression(@"[a-zA-Z]{1,20}", ErrorMessage = "Name is Invalid")]
         public string Name { get; set; }
 
+        //TODO: add error text block.
+        private Int32 _threshold;
+        [Range(0, float.MaxValue)]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public Int32 Threshold { get { return this._threshold; } set { SetProperty(ref _threshold, value); } }
+
         private decimal? _displayPrice;
         [DefaultValue(0)]
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]

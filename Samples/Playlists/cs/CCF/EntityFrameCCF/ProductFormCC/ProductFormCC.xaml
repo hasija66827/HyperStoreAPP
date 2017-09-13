@@ -47,6 +47,12 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[DisplayPrice][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox x:Name="Threshold"
+                     Header="Threshold"
+                     Text="{x:Bind _PFV.Threshold,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     PlaceholderText=""
+                     ToolTipService.ToolTip="The number of units of product below which you want get notified"
+                     Style="{StaticResource MediumFormTextBoxStyle}" />
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Left">
                 <TextBox x:Name="DiscountPer"
