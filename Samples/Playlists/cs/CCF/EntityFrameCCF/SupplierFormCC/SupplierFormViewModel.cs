@@ -37,6 +37,8 @@ namespace SDKTemplate
 
         private string _name;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [MaxLength(16, ErrorMessage ="Try name with atmost 16 charecters.")]
+        [RegularExpression(@"[a-zA-Z]{1,16}", ErrorMessage = "Name is Invalid")]
         public virtual string Name
         {
             get { return this._name; }

@@ -24,12 +24,14 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            _PFV = DataContext as ProductFormViewModel;
+            _PFV.ErrorsChanged += _PFV_ErrorsChanged;
             var product = (ProductViewModelBase)e.Parameter;
-            if (product == null)
-                this._PFV = new ProductFormViewModel();
-            else
-                this._PFV = new ProductFormViewModel(product);
+            base.OnNavigatedTo(e);
+        }
+
+        private void _PFV_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -39,10 +41,9 @@ namespace SDKTemplate
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Utility.CheckIfValidProductCode(ProductCodeTB.Text))
-            {
+            var IsValid = this._PFV.ValidateProperties();
+            if (IsValid)
                 this.Frame.Navigate(typeof(ProductTagCC), this._PFV);
-            }
         }
     }
 }

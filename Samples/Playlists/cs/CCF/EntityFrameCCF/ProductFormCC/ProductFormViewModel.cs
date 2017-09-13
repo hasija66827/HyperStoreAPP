@@ -1,7 +1,9 @@
 ﻿using Models;
+using Mvvm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -10,72 +12,108 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public sealed partial class ProductFormCC
+    public sealed class ProductFormViewModel : ValidatableBindableBase
     {
-        private class ProductFormViewModel : ProductViewModelBase, INotifyPropertyChanged
+        public decimal? DiscountAmount
         {
-            private decimal? _displayPrice;
-            public override decimal? DisplayPrice
-            {
-                get { return this._displayPrice; }
-                set
-                {
-                    this._displayPrice = value;
-                    this.OnPropertyChanged(nameof(DiscountAmount));
-                    this.OnPropertyChanged(nameof(SubTotal));
-                    this.OnPropertyChanged(nameof(SellingPrice));
-                }
-            }
+            get { return this.DisplayPrice * (this.DiscountPer) / 100; }
 
-            private decimal? _discountPer;
-            public override decimal? DiscountPer
-            {
-                get { return this._discountPer; }
-                set
-                {
-                    this._discountPer = value;
-                    decimal f = (decimal)Convert.ToDouble(value);
-                    this.OnPropertyChanged(nameof(DiscountAmount));
-                    this.OnPropertyChanged(nameof(SubTotal));
-                    this.OnPropertyChanged(nameof(TotalGSTAmount));
-                    this.OnPropertyChanged(nameof(SellingPrice));
-                }
-            }
+        }
+        public decimal? SubTotal
+        {
+            get { return this.DisplayPrice - this.DiscountAmount; }
+        }
 
-            private decimal? _CGSTPer;
-            public override decimal? CGSTPer
-            {
-                get { return this._CGSTPer; }
-                set
-                {
-                    this._CGSTPer = value;
-                    this.OnPropertyChanged(nameof(TotalGSTPer));
-                    this.OnPropertyChanged(nameof(TotalGSTAmount));
-                    this.OnPropertyChanged(nameof(SellingPrice));
-                }
-            }
+        public decimal? SellingPrice
+        {
+            get { return this.SubTotal + this.TotalGSTAmount; }
+        }
 
-            private decimal? _SGSTPer;
-            public override decimal? SGSTPer
-            {
-                get { return this._SGSTPer; }
-                set
-                {
-                    this._SGSTPer = value;
-                    this.OnPropertyChanged(nameof(TotalGSTPer));
-                    this.OnPropertyChanged(nameof(TotalGSTAmount));
-                    this.OnPropertyChanged(nameof(SellingPrice));
-                }
-            }
-            public ProductFormViewModel() : base() { }
-            public ProductFormViewModel(TProduct parent) : base(parent) { }
+        public decimal? TotalGSTPer
+        {
+            get { return this.CGSTPer + this.SGSTPer; }
+        }
 
-            public event PropertyChangedEventHandler PropertyChanged = delegate { };
-            public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public decimal? TotalGSTAmount
+        {
+            get { return this.SubTotal * (this.TotalGSTPer) / 100; }
+        }
+
+        private string _code;
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [RegularExpression(@"[1-9]\d{3,12}", ErrorMessage = "Try code with atleast 4 and atmost 13 digits.")]
+        public string Code { get { return this._code; } set { SetProperty(ref _code, value); } }
+
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [MaxLength(20, ErrorMessage = "Try name with atmost 20 charecters.")]
+        [RegularExpression(@"[a-zA-Z]{1,20}", ErrorMessage = "Name is Invalid")]
+        public string Name { get; set; }
+
+        private decimal? _displayPrice;
+        [DefaultValue(0)]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [Range(0, float.MaxValue)]
+        public decimal? DisplayPrice
+        {
+            get { return this._displayPrice; }
+            set
             {
-                // Raise the PropertyChanged event, passing the name of the property whose value has changed.
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                this._displayPrice = value;
+                this.OnPropertyChanged(nameof(DiscountAmount));
+                this.OnPropertyChanged(nameof(SubTotal));
+                this.OnPropertyChanged(nameof(SellingPrice));
+            }
+        }
+
+        private decimal? _discountPer;
+        [DefaultValue(0)]
+        [Range(0, 100)]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public decimal? DiscountPer
+        {
+            get { return this._discountPer; }
+            set
+            {
+                this._discountPer = value;
+                decimal f = (decimal)Convert.ToDouble(value);
+                this.OnPropertyChanged(nameof(DiscountAmount));
+                this.OnPropertyChanged(nameof(SubTotal));
+                this.OnPropertyChanged(nameof(TotalGSTAmount));
+                this.OnPropertyChanged(nameof(SellingPrice));
+            }
+        }
+
+        private decimal? _CGSTPer;
+        [DefaultValue(0)]
+        [Range(0, 100)]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public decimal? CGSTPer
+        {
+            get { return this._CGSTPer; }
+            set
+            {
+                this._CGSTPer = value;
+                this.OnPropertyChanged(nameof(TotalGSTPer));
+                this.OnPropertyChanged(nameof(TotalGSTAmount));
+                this.OnPropertyChanged(nameof(SellingPrice));
+            }
+        }
+
+        private decimal? _SGSTPer;
+        [DefaultValue(0)]
+        [Range(0, 100)]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public decimal? SGSTPer
+        {
+            get { return this._SGSTPer; }
+            set
+            {
+                this._SGSTPer = value;
+                this.OnPropertyChanged(nameof(TotalGSTPer));
+                this.OnPropertyChanged(nameof(TotalGSTAmount));
+                this.OnPropertyChanged(nameof(SellingPrice));
             }
         }
     }
+
 }

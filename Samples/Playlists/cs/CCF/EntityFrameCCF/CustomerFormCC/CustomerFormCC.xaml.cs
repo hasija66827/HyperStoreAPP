@@ -35,8 +35,8 @@ namespace SDKTemplate
         private FormMode? _FormMode { get; set; }
         public CustomerFormCC()
         {
-            this.InitializeComponent();
             Current = this;
+            this.InitializeComponent();
             if (CustomerASBCC.Current != null)
                 CustomerAddedOrUpdatedEvent += CustomerASBCC.Current.RefreshTheCustomers;
         }

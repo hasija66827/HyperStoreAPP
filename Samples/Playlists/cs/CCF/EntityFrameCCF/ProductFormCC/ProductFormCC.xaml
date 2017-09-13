@@ -11,6 +11,9 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
+    <Page.DataContext>
+        <local:ProductFormViewModel />
+    </Page.DataContext>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
@@ -28,29 +31,15 @@
                      ToolTipService.ToolTip="The code by which you can search for the product"
                      PlaceholderText="Four digit product code"
                      Style="{StaticResource FormTextBoxStyle}" />
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Errors[Code][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="ProductNameTB"
                      Header="Product Name"
                      Text="{x:Bind _PFV.Name, Mode=TwoWay}"
                      ToolTipService.ToolTip="Product Name for e.g. Maggi"
                      Style="{StaticResource FormTextBoxStyle}" />
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="Threshold"
-                         Header="Threshold"
-                         Text="{x:Bind _PFV.Threshold,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="The number of units of product below which you want get notified"
-                         Style="{StaticResource MediumFormTextBoxStyle}" />
-                <TextBox x:Name="RefillTime"
-                         Header="Refill Time"
-                         Text="{x:Bind _PFV.RefillTime, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="The number of days required by you, to get the item from Wholeseller"
-                         Style="{StaticResource MediumFormTextBoxStyle}" />
-            </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
                 <TextBox x:Name="DisplayPrice"
@@ -58,7 +47,7 @@
                          Text="{x:Bind _PFV.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
                          ToolTipService.ToolTip="Price of the product to be sold to the Customer"
                          Style="{StaticResource MediumFormTextBoxStyle}"
-                         Width="80"/>
+                         Width="80" />
                 <TextBox x:Name="DiscountPer"
                          Header="Dis %"
                          Text="{x:Bind _PFV.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
@@ -98,9 +87,7 @@
             </StackPanel>
             <TextBlock Text="{x:Bind _PFV.SellingPrice, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
                        Style="{StaticResource PositiveValueTB}"
-                       HorizontalAlignment="Right"/>
-            
-          
+                       HorizontalAlignment="Right" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
