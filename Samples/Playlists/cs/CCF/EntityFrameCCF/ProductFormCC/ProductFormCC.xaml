@@ -40,19 +40,20 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox x:Name="DisplayPrice"
+                     Header="DisplayPrice"
+                     Text="{x:Bind _PFV.DisplayPrice, Mode=TwoWay,  Converter={StaticResource CheckIfPositiveFloat} }"
+                     ToolTipService.ToolTip="Price of the product to be sold to the Customer"
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[DisplayPrice][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
             <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right">
-                <TextBox x:Name="DisplayPrice"
-                         Header="DisplayPrice"
-                         Text="{x:Bind _PFV.DisplayPrice, Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay }"
-                         ToolTipService.ToolTip="Price of the product to be sold to the Customer"
-                         Style="{StaticResource MediumFormTextBoxStyle}"
-                         Width="80" />
+                        HorizontalAlignment="Left">
                 <TextBox x:Name="DiscountPer"
                          Header="Dis %"
-                         Text="{x:Bind _PFV.DiscountPer,Converter={StaticResource CheckIfValidPercentage}, Mode=TwoWay}"
+                         Text="{x:Bind _PFV.DiscountPer, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}"
                          ToolTipService.ToolTip="Discount % on Display Price, given to the Customer"
-                         Style="{StaticResource SmallFormTextBoxStyle}" />
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
                 <TextBlock x:Name="DiscountAmount"
                            Width="60"
                            TextAlignment="Right"
@@ -63,6 +64,8 @@
                            ToolTipService.ToolTip="Subtotal"
                            Style="{StaticResource PositiveValueTB}" />
             </StackPanel>
+            <TextBlock Text="{Binding Errors[DiscountPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
                 <TextBox x:Name="CGSTPer"
@@ -85,6 +88,10 @@
                            ToolTipService.ToolTip="Total GST Amount"
                            Style="{StaticResource PositiveValueTB}" />
             </StackPanel>
+            <TextBlock Text="{Binding Errors[CGSTPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBlock Text="{Binding Errors[SGSTPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBlock Text="{x:Bind _PFV.SellingPrice, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
                        Style="{StaticResource PositiveValueTB}"
                        HorizontalAlignment="Right" />

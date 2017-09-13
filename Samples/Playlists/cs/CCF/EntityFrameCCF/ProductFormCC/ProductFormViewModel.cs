@@ -58,7 +58,7 @@ namespace SDKTemplate
             get { return this._displayPrice; }
             set
             {
-                this._displayPrice = value;
+                SetProperty(ref _displayPrice, value);
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SubTotal));
                 this.OnPropertyChanged(nameof(SellingPrice));
@@ -67,14 +67,14 @@ namespace SDKTemplate
 
         private decimal? _discountPer;
         [DefaultValue(0)]
-        [Range(0, 100)]
+        [Range(0, 100, ErrorMessage ="Discount Percentage is Invalid")]
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public decimal? DiscountPer
         {
             get { return this._discountPer; }
             set
             {
-                this._discountPer = value;
+                SetProperty(ref _discountPer, value);
                 decimal f = (decimal)Convert.ToDouble(value);
                 this.OnPropertyChanged(nameof(DiscountAmount));
                 this.OnPropertyChanged(nameof(SubTotal));
@@ -85,14 +85,14 @@ namespace SDKTemplate
 
         private decimal? _CGSTPer;
         [DefaultValue(0)]
-        [Range(0, 100)]
+        [Range(0, 100, ErrorMessage = "CGST Percentage is Invalid")]
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public decimal? CGSTPer
         {
             get { return this._CGSTPer; }
             set
             {
-                this._CGSTPer = value;
+                SetProperty(ref _CGSTPer, value);
                 this.OnPropertyChanged(nameof(TotalGSTPer));
                 this.OnPropertyChanged(nameof(TotalGSTAmount));
                 this.OnPropertyChanged(nameof(SellingPrice));
@@ -101,19 +101,18 @@ namespace SDKTemplate
 
         private decimal? _SGSTPer;
         [DefaultValue(0)]
-        [Range(0, 100)]
+        [Range(0, 100, ErrorMessage = "SGST Percentage is Invalid")]
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public decimal? SGSTPer
         {
             get { return this._SGSTPer; }
             set
             {
-                this._SGSTPer = value;
+                SetProperty(ref _SGSTPer, value);
                 this.OnPropertyChanged(nameof(TotalGSTPer));
                 this.OnPropertyChanged(nameof(TotalGSTAmount));
                 this.OnPropertyChanged(nameof(SellingPrice));
             }
         }
     }
-
 }
