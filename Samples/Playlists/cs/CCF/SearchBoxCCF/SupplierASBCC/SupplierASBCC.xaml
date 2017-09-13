@@ -32,7 +32,7 @@
                        Visibility="Collapsed"
                        RelativePanel.AlignLeftWith="WholeSellerASB"
                        RelativePanel.Below="WholeSellerASB" />
-            <RelativePanel x:Name="WholeSellerDetails"
+            <RelativePanel x:Name="SupplierDetails"
                            Visibility="Collapsed"
                            Height="120"
                            Margin="10,20,0,0"

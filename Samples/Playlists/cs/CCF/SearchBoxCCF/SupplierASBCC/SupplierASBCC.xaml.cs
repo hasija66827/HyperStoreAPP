@@ -46,6 +46,8 @@ namespace SDKTemplate
 
         public async void RefreshTheSuppliers()
         {
+            NoResults.Visibility = Visibility.Collapsed;
+            SupplierDetails.Visibility = Visibility.Collapsed;
             var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
             if (suppliers != null)
                 this._Suppliers = suppliers.Select(s => new SupplierASBViewModel(s)).ToList();
@@ -107,7 +109,7 @@ namespace SDKTemplate
             {
                 _selectedWholeSellerInASB = WholeSeller;
                 NoResults.Visibility = Visibility.Collapsed;
-                WholeSellerDetails.Visibility = Visibility.Visible;
+                SupplierDetails.Visibility = Visibility.Visible;
                 WholeSellerMobNo.Text = WholeSeller.MobileNo;
                 WholeSellerName.Text = WholeSeller.Name;
                 WholeSellerAddress.Text = WholeSeller.Address != null ? WholeSeller.Address : "";
@@ -118,7 +120,7 @@ namespace SDKTemplate
             {
                 _selectedWholeSellerInASB = null;
                 NoResults.Visibility = Visibility.Visible;
-                WholeSellerDetails.Visibility = Visibility.Collapsed;
+                SupplierDetails.Visibility = Visibility.Collapsed;
             }
             SelectedSupplierChangedEvent?.Invoke();
         }

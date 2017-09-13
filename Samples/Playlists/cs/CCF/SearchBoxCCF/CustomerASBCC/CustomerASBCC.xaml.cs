@@ -44,6 +44,8 @@ namespace SDKTemplate
 
         public async void RefreshTheCustomers()
         {
+            NoResults.Visibility = Visibility.Collapsed;
+            CustomerDetails.Visibility = Visibility.Collapsed;
             var customers = await CustomerDataSource.RetrieveCustomersAsync(null);
             if (customers != null)
                 this._Customers = customers.Select(c => new CustomerASBViewModel(c)).ToList();
