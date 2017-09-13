@@ -35,9 +35,16 @@ namespace SDKTemplate
             Current = this;
             this.InitializeComponent();
             this._Suppliers = null;
+            if (SupplierFormCC.Current != null)
+                SupplierFormCC.Current.SupplierAddedOrUpdatedEvent += RefreshTheSuppliers;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            RefreshTheSuppliers();
+        }
+
+        public async void RefreshTheSuppliers()
         {
             var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
             if (suppliers != null)

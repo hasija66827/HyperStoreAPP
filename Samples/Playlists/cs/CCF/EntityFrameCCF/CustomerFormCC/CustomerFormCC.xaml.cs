@@ -23,16 +23,22 @@ namespace SDKTemplate
         Create,
         Update,
     };
+    public delegate void CustomerAddedOrUpdatedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class CustomerFormCC : Page
     {
+        public static CustomerFormCC Current;
+        public event CustomerAddedOrUpdatedDelegate CustomerAddedOrUpdatedEvent;
         private CustomerFormViewModel _CFV { get; set; }
         private FormMode? _FormMode { get; set; }
         public CustomerFormCC()
         {
             this.InitializeComponent();
+            Current = this;
+            if (CustomerASBCC.Current != null)
+                CustomerAddedOrUpdatedEvent += CustomerASBCC.Current.RefreshTheCustomers;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -58,6 +64,7 @@ namespace SDKTemplate
             base.OnNavigatedTo(e);
         }
 
+
         private void AddCustomerViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
         {
             //ErrorList.ItemsSource = addWholeSellerViewModel.Errors.Errors.Values.SelectMany(x => x);
@@ -82,11 +89,13 @@ namespace SDKTemplate
                 };
                 if (_FormMode == FormMode.Create)
                 {
-                    await CustomerDataSource.CreateNewCustomerAsync(customerDTO);
+                    if (await CustomerDataSource.CreateNewCustomerAsync(customerDTO) != null)
+                        this.CustomerAddedOrUpdatedEvent?.Invoke();
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    await CustomerDataSource.UpdateCustomerAsync((Guid)this._CFV.CustomerId, customerDTO);
+                    if (await CustomerDataSource.UpdateCustomerAsync((Guid)this._CFV.CustomerId, customerDTO) != null)
+                        this.CustomerAddedOrUpdatedEvent?.Invoke();
                 }
                 else
                 { throw new NotImplementedException(); }

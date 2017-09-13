@@ -33,9 +33,16 @@ namespace SDKTemplate
             this.InitializeComponent();
             Current = this;
             this._Customers = null;
+            if (CustomerFormCC.Current != null)
+                CustomerFormCC.Current.CustomerAddedOrUpdatedEvent += RefreshTheCustomers;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            RefreshTheCustomers();
+        }
+
+        public async void RefreshTheCustomers()
         {
             var customers = await CustomerDataSource.RetrieveCustomersAsync(null);
             if (customers != null)
