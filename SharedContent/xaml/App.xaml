@@ -511,14 +511,14 @@
                         <Setter Property="Orientation"
                                 Value="Horizontal" />
                         <Setter Property="Background"
-                                Value="Black" />
+                                Value="#FFDAE0E0" />
                     </Style>
                     <Style x:Key="ListItemStackPanel"
                            TargetType="StackPanel">
                         <Setter Property="Margin"
                                 Value="0,5,0,0" />
                         <Setter Property="Background"
-                                Value="LightGray" />
+                                Value="#FFF6FFFF" />
                         <Setter Property="Orientation"
                                 Value="Horizontal" />
                     </Style>
@@ -593,7 +593,7 @@
                         <Setter Property="FontWeight"
                                 Value="SemiBold" />
                         <Setter Property="Foreground"
-                                Value="#FF0CBEFF" />
+                                Value="Black" />
                         <Setter Property="Width"
                                 Value="125" />
                         <Setter Property="Padding"
