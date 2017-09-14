@@ -39,9 +39,9 @@ namespace SDKTemplate
             if (this._SelectPaymentModeViewModel == null)
                 throw new Exception("Page Navigation parameter should not be null");
             if (this._SelectPaymentModeViewModel.WalletAmountToBeDeducted >= 0)
-                WalletBalanceToBeDeductedTB.Foreground = new SolidColorBrush(Windows.UI.Colors.LawnGreen);
+                WalletBalanceToBeDeductedTB.Foreground = (SolidColorBrush)Application.Current.Resources["GreenBrush"];
             else
-                WalletBalanceToBeDeductedTB.Foreground = new SolidColorBrush(Windows.UI.Colors.PaleVioletRed);
+                WalletBalanceToBeDeductedTB.Foreground = (SolidColorBrush)Application.Current.Resources["RedBrush"];
         }
 
         private void PayLaterRadBtn_Click(object sender, RoutedEventArgs e)

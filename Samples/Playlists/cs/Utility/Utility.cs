@@ -50,7 +50,22 @@ namespace SDKTemplate
         }
     }
 
-    // Append the decimal value with Rupee symbol.
+    public class FloatToInverseRupeeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            return Utility.FloatToInverseRupeeConverter(value);
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class FloatToNegativeRupeeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType,
@@ -138,7 +153,7 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
-    // Append the decimal value with %Off
+    // Append the decimal value with %GST
     public class FloatToPercentageGSTConverter : IValueConverter
     {
         public object Convert(object value, Type targetType,
@@ -245,39 +260,12 @@ namespace SDKTemplate
 
     partial class Utility
     {
-        public static string DEFAULT_CUSTOMER_GUID { get { return "cccccccc-cccc-cccc-cccc-cccccccccccc"; } }
-
+      
         public static decimal Rounddecimal(decimal f)
         {
             return (decimal)(Math.Round((decimal)f, 2));
         }
-
-        public static bool CheckIfStringIsNumber(string str)
-        {
-            // TODO: Apply more checks
-            if (str == null || str == "")
-                return false;
-            return true;
-        }
-
-       
-        public static bool IsMobileNumber(string text)
-        {
-            if (text.Length == 10)
-            {
-                try
-                {
-                    Convert.ToInt64(text);
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
-            }
-            return false;
-        }
-
+        
         public static string ConvertToRupee(object value)
         {
             // value is the data from the source object.
@@ -313,6 +301,16 @@ namespace SDKTemplate
 
         }
 
+        public static string FloatToInverseRupeeConverter(object value)
+        {
+            var v = System.Convert.ToDouble(value);
+            if (v > 0)
+                return Utility.FloatToNegativeRupeeConverter(value);
+            else
+                return Utility.FloatToPositiveRupeeConverter(value);
+        }
+
+
 
         public static string GetGlyphValue(String productName)
         {
@@ -326,67 +324,7 @@ namespace SDKTemplate
         }
 
 
-        public static bool CheckIfValidProductCode(string productCode)
-        {
-            if (productCode == "")
-            {
-                MainPage.Current.NotifyUser("The Product code cannot be empty", NotifyType.ErrorMessage);
-                return false;
-            }
-            try
-            {
-                //TODO: negative number should also be not allowed.
-                System.Convert.ToInt16(productCode);
-            }
-            catch
-            {
-                MainPage.Current.NotifyUser("The Product should contains digits only", NotifyType.ErrorMessage);
-                return false;
-            }
-            if (productCode.Length != 4)
-            {
-                MainPage.Current.NotifyUser("The Product code should be of 4 digits", NotifyType.ErrorMessage);
-                return false;
-            }
 
-
-            return true;
-        }
-        public static string GenerateCustomerOrderNo(int? length = null)
-        {
-            if (length == null)
-                length = 7;
-            var random = new Random();
-            string s = "CORD";
-            s = String.Concat(s, random.Next(1, 10).ToString());
-            for (int i = 1; i < length; i++)
-                s = String.Concat(s, random.Next(10).ToString());
-            return s;
-        }
-
-        public static string GenerateWholeSellerTransactionNo(int? length = null)
-        {
-            if (length == null)
-                length = 7;
-            var random = new Random();
-            string s = "STXN";
-            s = String.Concat(s, random.Next(1, 10).ToString());
-            for (int i = 1; i < length; i++)
-                s = String.Concat(s, random.Next(10).ToString());
-            return s;
-        }
-
-        public static string GenerateWholeSellerOrderNo(int? length = null)
-        {
-            if (length == null)
-                length = 7;
-            var random = new Random();
-            string s = "SORD";
-            s = String.Concat(s, random.Next(1, 10).ToString());
-            for (int i = 1; i < length; i++)
-                s = String.Concat(s, random.Next(10).ToString());
-            return s;
-        }
 
         /// <summary>
         /// 

@@ -43,6 +43,12 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="GreenBrush"
+                                     Color="#FF59E71A" />
+                    <SolidColorBrush x:Key="RedBrush"
+                                     Color="#FFF01919" />
+                    <SolidColorBrush x:Key="PinkBrush"
+                                     Color="#FFFF2FAE" />
                     <Style x:Key="FontAwesome"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -302,7 +308,6 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>
-                    
                     <Style x:Key="ScenarioHeaderTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -468,7 +473,6 @@
                         <Setter Property="TextAlignment"
                                 Value="Left" />
                     </Style>
-                    
                     <Style x:Key="ListTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

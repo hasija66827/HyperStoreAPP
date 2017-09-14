@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
-        <local:FloatToNegativeRupeeConverter x:Key="FloatToInverseRupeeConverter" />
+        <local:FloatToInverseRupeeConverter x:Key="FloatToInverseRupeeConverter" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>
@@ -94,6 +94,7 @@
                            Grid.Row="2" />
                 <TextBlock x:Name="WalletBalanceToBeDeductedTB"
                            Text="{x:Bind _SelectPaymentModeViewModel.WalletAmountToBeDeducted,Converter={StaticResource FloatToInverseRupeeConverter}, Mode=OneWay}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Column="1"
                            Grid.Row="1"
                            HorizontalAlignment="Right" />
@@ -109,6 +110,7 @@
                                Width="400" />
                     <TextBlock x:Name="ToBePaidTB"
                                Width="500"
+                               Foreground="{StaticResource PinkBrush}"
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                Text="{x:Bind _SelectPaymentModeViewModel.ToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                HorizontalAlignment="Right" />
