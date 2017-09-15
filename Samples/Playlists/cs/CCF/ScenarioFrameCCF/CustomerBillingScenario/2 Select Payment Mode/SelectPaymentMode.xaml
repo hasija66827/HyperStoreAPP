@@ -80,8 +80,9 @@
                 <TextBlock x:Name="TotalAmountToBePaidTB"
                            Text="{x:Bind _SelectPaymentModeViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
+                           Foreground="{StaticResource PinkBrush}"
                            Grid.Column="1"
-                           HorizontalAlignment="Right" />
+                           HorizontalAlignment="Left" />
                 <CheckBox x:Name="UseWalletChkBox"
                           Content="Use wallet"
                           Grid.Column="0"
@@ -97,7 +98,7 @@
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            Grid.Column="1"
                            Grid.Row="1"
-                           HorizontalAlignment="Right" />
+                           HorizontalAlignment="Left" />
             </Grid>
             <StackPanel x:Name="SelectPaymentModePanel"
                         Orientation="Vertical"
@@ -109,11 +110,9 @@
                                Text="Select Payment Mode"
                                Width="400" />
                     <TextBlock x:Name="ToBePaidTB"
-                               Width="500"
-                               Foreground="{StaticResource PinkBrush}"
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                Text="{x:Bind _SelectPaymentModeViewModel.ToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               HorizontalAlignment="Right" />
+                               HorizontalAlignment="Left" />
                 </StackPanel>
                 <RadioButton x:Name="PayNowRadBtn"
                              Content="Pay Now"
