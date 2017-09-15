@@ -46,6 +46,8 @@ namespace SDKTemplate.SignUp
         {
             if (_BIV.ValidateProperties())
             {
+                _BIV.SelectedCategory = (string)CategoryCMB.SelectedValue;
+                _BIV.SelectedStateIndex = StateCMB.SelectedIndex;
                 _BIFNavigatedEvent?.Invoke(_BIV);
                 this.Frame.Navigate(typeof(HyperStoreAccountCC));
             }

@@ -8,10 +8,6 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel>
             <TextBlock x:Name="location" />
-            <TextBlock Text="{x:Bind _CUIV.HSAV.MobileNo, Mode=OneWay}" />
-            <TextBlock Text="{x:Bind _CUIV.PCV.Name, Mode=OneWay}" />
-            <TextBlock Text="{x:Bind _CUIV.PCV.EmailId, Mode=OneWay}" />
-            <TextBlock Text="{x:Bind _CUIV.PCV.DateOfBirth, Mode=OneWay}" />
             <TextBlock Text="{x:Bind _CUIV.BIV.BusinessName, Mode=OneWay}" />
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <WebView x:Name="MapWebView"
@@ -19,7 +15,8 @@
                          Height="400" />
             </Grid>
             <TextBlock Text="{x:Bind _CUIV.BIV.FullAddress, Mode=OneWay}" />
-            <TextBlock Text="{x:Bind _CUIV.BIV.Category[0], Mode=OneWay}" />
+            <TextBlock Text="{x:Bind _CUIV.BIV.SelectedCategory, Mode=OneWay}" />
+            <TextBlock Text="{x:Bind _CUIV.HSAV.MobileNo, Mode=OneWay}" />
         </StackPanel>
     </Grid>
 </Page>

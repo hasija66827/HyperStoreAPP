@@ -45,12 +45,12 @@
             </RelativePanel>
             <ComboBox Header="State"
                       Margin="0,20,0,0"
-                      x:Name="State"
+                      x:Name="StateCMB"
                       ItemsSource="{x:Bind _BIV.State}"
                       Width="400" />
             <ComboBox Header="Category (your business type)"
                       Margin="0,20,0,0"
-                      x:Name="Category"
+                      x:Name="CategoryCMB"
                       ItemsSource="{x:Bind _BIV.Category}"
                       Width="400" />
         </StackPanel>

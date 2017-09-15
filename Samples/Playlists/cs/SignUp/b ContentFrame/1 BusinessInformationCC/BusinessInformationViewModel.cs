@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate.SignUp
 {
-   public  class BusinessInformationViewModel : ValidatableBindableBase
+    public class BusinessInformationViewModel : ValidatableBindableBase
     {
         private string _businessName;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
@@ -48,13 +48,20 @@ namespace SDKTemplate.SignUp
             set { SetProperty(ref _pincode, value); }
         }
 
+        public string SelectedCategory { get; set; }
+        public int SelectedStateIndex { get; set; }
+
         public List<string> Category { get; }
 
         public List<string> State { get; }
 
-        //TODO: remove State[0]
-        public string FullAddress {
-            get { return (_addressLine + " " + _city + ", " + State[0] + " " + PinCode); }
+        public string FullAddress
+        {
+            get
+            {
+                var state = SelectedStateIndex > -1 ? State[SelectedStateIndex] : "";
+                return (_addressLine + " " + _city + ", " + state + " " + PinCode);
+            }
         }
 
         public BusinessInformationViewModel()
