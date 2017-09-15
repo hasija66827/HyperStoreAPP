@@ -43,12 +43,20 @@ namespace SDKTemplate.SignUp
 
         public void Current_HSAFormNavigatedEvent(HyperStoreAccountViewModel HSAV)
         {
-            this._CUIV.HSAV = HSAV;
+            Utility.CopyPropertiesTo<HyperStoreAccountViewModel, HyperStoreAccountViewModel>(HSAV, this._CUIV.HSAV);
+            this._CUIV.OnALLPropertyChanged();
         }
 
         public void Current_BIFNavigatedEvent(BusinessInformationViewModel BIV)
         {
-            this._CUIV.BIV = BIV;
+            Utility.CopyPropertiesTo<BusinessInformationViewModel, BusinessInformationViewModel>(BIV, this._CUIV.BIV);
+            this._CUIV.OnALLPropertyChanged();
+        }
+
+        public void Current_PCFNavigatedEvent(ProfileCompletionViewModel PCV)
+        {
+            this._CUIV.PCV = PCV;
+            //TODO: Save the details.
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -63,6 +71,7 @@ namespace SDKTemplate.SignUp
             MapWebView.NavigateToString(GeneratedHTML);
             base.OnNavigatedTo(e);
         }
+
         private async void LoadData()
         {
             try

@@ -17,12 +17,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate.SignUp
 {
+    public delegate void ProfileCompletionFormNavigated(ProfileCompletionViewModel PCV);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class ProfileCompletionCC : Page
     {
         private ProfileCompletionViewModel _PCV;
+        private event ProfileCompletionFormNavigated _PCFNavigatedEvent;
         public ProfileCompletionCC()
         {
             this.InitializeComponent();
@@ -32,6 +34,7 @@ namespace SDKTemplate.SignUp
             this._PCV = DataContext as ProfileCompletionViewModel;
             this._PCV.DateOfBirth = DateTime.Now.AddYears(-25);
             this._PCV.ErrorsChanged += _PCV_ErrorsChanged;
+            this._PCFNavigatedEvent += CompleteUserInformationCC.Current.Current_PCFNavigatedEvent;
             base.OnNavigatedTo(e);
         }
 
@@ -43,7 +46,7 @@ namespace SDKTemplate.SignUp
         {
             if (_PCV.ValidateProperties())
             {
-                this.Frame.Navigate(typeof(MainPage));
+                this._PCFNavigatedEvent?.Invoke(_PCV);
             }
         }
     }

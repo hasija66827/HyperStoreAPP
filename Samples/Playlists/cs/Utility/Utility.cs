@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography.Certificates;
@@ -258,14 +259,29 @@ namespace SDKTemplate
         }
     }
 
+  
+
     partial class Utility
     {
-      
+        public static void CopyPropertiesTo<TS, TD>(TS source, TD dest)
+        {
+            var sourceProps = typeof(TS).GetProperties().Where(x => x.CanRead).ToList();
+            var destProps = typeof(TD).GetProperties().Where(x => x.CanWrite).ToList();
+
+            foreach (var sourceProp in sourceProps)
+            {
+                if (destProps.Any(x => x.Name == sourceProp.Name))
+                {
+                    var p = destProps.First(x => x.Name == sourceProp.Name);
+                    p.SetValue(dest, sourceProp.GetValue(source, null), null);
+                }
+            }
+        }
         public static decimal Rounddecimal(decimal f)
         {
             return (decimal)(Math.Round((decimal)f, 2));
         }
-        
+
         public static string ConvertToRupee(object value)
         {
             // value is the data from the source object.
