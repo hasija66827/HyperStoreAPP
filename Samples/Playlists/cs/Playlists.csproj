@@ -193,22 +193,22 @@
       <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryViewModel.cs" />
-    <Compile Include="SignUp\ResultFrame\GoogleMap\CompleteUserInformationCC.xaml.cs">
+    <Compile Include="SignUp\ResultFrame\CompleteUserInformationCC.xaml.cs">
       <DependentUpon>CompleteUserInformationCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUp\ResultFrame\CompleteUserInformationViewModel.cs" />
-    <Compile Include="SignUp\ContentFrame\BusinessInformationCC\BusinessInformationCC.xaml.cs">
+    <Compile Include="SignUp\ContentFrame\3 BusinessInformationCC\BusinessInformationCC.xaml.cs">
       <DependentUpon>BusinessInformationCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SignUp\ContentFrame\BusinessInformationCC\BusinessInformationViewModel.cs" />
-    <Compile Include="SignUp\ContentFrame\HyperStoreAccount\HyperStoreAccountViewModel.cs" />
-    <Compile Include="SignUp\ContentFrame\HyperStoreAccount\NewHyperStoreAccountCC.xaml.cs">
+    <Compile Include="SignUp\ContentFrame\3 BusinessInformationCC\BusinessInformationViewModel.cs" />
+    <Compile Include="SignUp\ContentFrame\1 HyperStoreAccount\HyperStoreAccountViewModel.cs" />
+    <Compile Include="SignUp\ContentFrame\1 HyperStoreAccount\NewHyperStoreAccountCC.xaml.cs">
       <DependentUpon>NewHyperStoreAccountCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SignUp\ContentFrame\ProfileCompletionCC\ProfileCompletionCC.xaml.cs">
+    <Compile Include="SignUp\ContentFrame\2 ProfileCompletionCC\ProfileCompletionCC.xaml.cs">
       <DependentUpon>ProfileCompletionCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SignUp\ContentFrame\ProfileCompletionCC\ProfileCompletionViewModel.cs" />
+    <Compile Include="SignUp\ContentFrame\2 ProfileCompletionCC\ProfileCompletionViewModel.cs" />
     <Compile Include="SignUp\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
@@ -508,19 +508,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUp\ResultFrame\GoogleMap\CompleteUserInformationCC.xaml">
+    <Page Include="SignUp\ResultFrame\CompleteUserInformationCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUp\ContentFrame\BusinessInformationCC\BusinessInformationCC.xaml">
+    <Page Include="SignUp\ContentFrame\3 BusinessInformationCC\BusinessInformationCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUp\ContentFrame\HyperStoreAccount\NewHyperStoreAccountCC.xaml">
+    <Page Include="SignUp\ContentFrame\1 HyperStoreAccount\NewHyperStoreAccountCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUp\ContentFrame\ProfileCompletionCC\ProfileCompletionCC.xaml">
+    <Page Include="SignUp\ContentFrame\2 ProfileCompletionCC\ProfileCompletionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

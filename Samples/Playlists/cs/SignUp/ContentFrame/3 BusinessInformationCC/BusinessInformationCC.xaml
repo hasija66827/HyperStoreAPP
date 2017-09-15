@@ -8,7 +8,7 @@
     <Page.DataContext>
         <local:BusinessInformationViewModel />
     </Page.DataContext>
-    <RelativePanel Background="White">
+    <RelativePanel>
         <StackPanel Margin="10">
             <TextBox Header="Business Name"
                      Style="{StaticResource LargeFormTextBoxStyle}"
