@@ -9,5 +9,10 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="location" />
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <WebView x:Name="MapWebView"
+                     Width="Auto"
+                     Height="400" />
+        </Grid>
     </Grid>
 </Page>
