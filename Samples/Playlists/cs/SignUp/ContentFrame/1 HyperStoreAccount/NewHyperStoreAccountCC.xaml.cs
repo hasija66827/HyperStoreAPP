@@ -16,13 +16,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate.SignUp
 {
+    public delegate void HyperStoreAccountFormNavigated(HyperStoreAccountViewModel HSAV);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class NewHyperStoreAccountCC : Page
+    public sealed partial class HyperStoreAccountCC : Page
     {
         private HyperStoreAccountViewModel _HSAV { get; set; }
-        public NewHyperStoreAccountCC()
+        private event HyperStoreAccountFormNavigated _HSAFormNavigatedEvent;
+        public HyperStoreAccountCC()
         {
             this.InitializeComponent();
         }
@@ -31,6 +33,7 @@ namespace SDKTemplate.SignUp
         {
             _HSAV = DataContext as HyperStoreAccountViewModel;
             _HSAV.ErrorsChanged += _HyperStoreAccountViewModel_ErrorsChanged;
+            _HSAFormNavigatedEvent += CompleteUserInformationCC.Current.Current_HSAFormNavigatedEvent;
             base.OnNavigatedTo(e);
         }
 
@@ -38,7 +41,10 @@ namespace SDKTemplate.SignUp
         {
             var IsValid = this._HSAV.ValidateProperties();
             if (IsValid)
+            {
+                _HSAFormNavigatedEvent?.Invoke(_HSAV);
                 this.Frame.Navigate(typeof(ProfileCompletionCC));
+            }
         }
 
         private void _HyperStoreAccountViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)

@@ -26,10 +26,11 @@ namespace SDKTemplate.SignUp
         {
             this.InitializeComponent();
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ContentFrame.Navigate(typeof(NewHyperStoreAccountCC));
             ResultFrame.Navigate(typeof(CompleteUserInformationCC));
+            ContentFrame.Navigate(typeof(BusinessInformationCC));
             base.OnNavigatedTo(e);
         }
     }

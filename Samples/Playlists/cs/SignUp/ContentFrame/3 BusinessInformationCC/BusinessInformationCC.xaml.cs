@@ -17,12 +17,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate.SignUp
 {
+    public delegate void BusinessInformationFormNavigated(BusinessInformationViewModel BIV);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class BusinessInformationCC : Page
     {
         private BusinessInformationViewModel _BIV { get; set; }
+        private event BusinessInformationFormNavigated _BIFNavigatedEvent;
         public BusinessInformationCC()
         {
             this.InitializeComponent();
@@ -32,6 +34,7 @@ namespace SDKTemplate.SignUp
         {
             _BIV = DataContext as BusinessInformationViewModel;
             _BIV.ErrorsChanged += _BIV_ErrorsChanged;
+            this._BIFNavigatedEvent += CompleteUserInformationCC.Current.Current_BIFNavigatedEvent;
             base.OnNavigatedTo(e);
         }
 
@@ -43,7 +46,8 @@ namespace SDKTemplate.SignUp
         {
             if (_BIV.ValidateProperties())
             {
-
+                _BIFNavigatedEvent?.Invoke(_BIV);
+                this.Frame.Navigate(typeof(HyperStoreAccountCC));
             }
         }
     }

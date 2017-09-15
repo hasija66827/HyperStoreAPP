@@ -26,10 +26,12 @@ namespace SDKTemplate.SignUp
     /// </summary>
     public sealed partial class CompleteUserInformationCC : Page
     {
+        public static CompleteUserInformationCC Current;
         public CompleteUserInformationViewModel _CUIV { get; set; }
         string GeneratedHTML = "";
         public CompleteUserInformationCC()
         {
+            Current = this;
             this.InitializeComponent();
             this._CUIV = new CompleteUserInformationViewModel()
             {
@@ -37,6 +39,16 @@ namespace SDKTemplate.SignUp
                 PCV = new ProfileCompletionViewModel(),
                 BIV = new BusinessInformationViewModel(),
             };
+        }
+
+        public void Current_HSAFormNavigatedEvent(HyperStoreAccountViewModel HSAV)
+        {
+            this._CUIV.HSAV = HSAV;
+        }
+
+        public void Current_BIFNavigatedEvent(BusinessInformationViewModel BIV)
+        {
+            this._CUIV.BIV = BIV;
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)

@@ -43,7 +43,7 @@ namespace SDKTemplate.SignUp
         {
             if (_PCV.ValidateProperties())
             {
-                this.Frame.Navigate(typeof(BusinessInformationCC));
+                this.Frame.Navigate(typeof(MainPage));
             }
         }
     }
