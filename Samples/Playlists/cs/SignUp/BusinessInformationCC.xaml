@@ -1,0 +1,62 @@
+﻿<Page x:Class="SDKTemplate.SignUp.BusinessInformationCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate.SignUp"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Page.DataContext>
+        <local:BusinessInformationViewModel />
+    </Page.DataContext>
+    <RelativePanel Background="White">
+        <StackPanel Margin="10">
+            <TextBox Header="Business Name"
+                     Style="{StaticResource LargeFormTextBoxStyle}"
+                     PlaceholderText="Business Name"
+                     Text="{x:Bind _BIV.BusinessName, Mode=TwoWay}" />
+            <TextBlock Text="{Binding Errors[BusinessName][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox Header="Address"
+                     Style="{StaticResource LargeFormTextBoxStyle}"
+                     Text="{x:Bind _BIV.AddressLine, Mode=TwoWay}"
+                     PlaceholderText="Address Line *" />
+            <TextBlock Text="{Binding Errors[AddressLine][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <RelativePanel>
+                <TextBox x:Name="City"
+                         Header="City"
+                         Style="{StaticResource FormTextBoxStyle}"
+                         Text="{x:Bind _BIV.City, Mode=TwoWay}"
+                         PlaceholderText="City *" />
+                <TextBlock Text="{Binding Errors[City][0]}"
+                           RelativePanel.Below="City"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+                <TextBox x:Name="PinCode"
+                         Header="Pin Code"
+                         Style="{StaticResource MediumFormTextBoxStyle}"
+                         Width="100"
+                         Text="{x:Bind _BIV.PinCode, Mode=TwoWay}"
+                         RelativePanel.AlignRightWithPanel="True"
+                         PlaceholderText="Pin code *" />
+                <TextBlock Text="{Binding Errors[PinCode][0]}"
+                           RelativePanel.Below="PinCode"
+                           RelativePanel.AlignRightWith="PinCode"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+            </RelativePanel>
+            <ComboBox Header="State"
+                      Margin="0,20,0,0"
+                      x:Name="State"
+                      ItemsSource="{x:Bind _BIV.State}"
+                      Width="400" />
+            <ComboBox Header="Category (your business type)"
+                      Margin="0,20,0,0"
+                      x:Name="Category"
+                      ItemsSource="{x:Bind _BIV.Category}"
+                      Width="400" />
+        </StackPanel>
+        <Button Content="Submit"
+                Click="Button_Click"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource DetailButtonStyle}" />
+    </RelativePanel>
+</Page>

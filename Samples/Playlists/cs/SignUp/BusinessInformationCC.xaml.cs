@@ -20,16 +20,31 @@ namespace SDKTemplate.SignUp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SignUpPage : Page
+    public sealed partial class BusinessInformationCC : Page
     {
-        public SignUpPage()
+        private BusinessInformationViewModel _BIV { get; set; }
+        public BusinessInformationCC()
         {
             this.InitializeComponent();
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ContentFrame.Navigate(typeof(BusinessInformationCC));
+            _BIV = DataContext as BusinessInformationViewModel;
+            _BIV.ErrorsChanged += _BIV_ErrorsChanged;
             base.OnNavigatedTo(e);
+        }
+
+        private void _BIV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (_BIV.ValidateProperties())
+            {
+
+            }
         }
     }
 }

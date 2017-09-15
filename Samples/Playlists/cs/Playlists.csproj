@@ -192,14 +192,18 @@
       <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryViewModel.cs" />
+    <Compile Include="SignUp\BusinessInformationCC.xaml.cs">
+      <DependentUpon>BusinessInformationCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\BusinessInformationViewModel.cs" />
     <Compile Include="SignUp\HyperStoreAccount\HyperStoreAccountViewModel.cs" />
     <Compile Include="SignUp\HyperStoreAccount\NewHyperStoreAccountCC.xaml.cs">
       <DependentUpon>NewHyperStoreAccountCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SignUp\ProfileCompletionCC.xaml.cs">
+    <Compile Include="SignUp\ProfileCompletionCC\ProfileCompletionCC.xaml.cs">
       <DependentUpon>ProfileCompletionCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SignUp\ProfileCompletionViewModel.cs" />
+    <Compile Include="SignUp\ProfileCompletionCC\ProfileCompletionViewModel.cs" />
     <Compile Include="SignUp\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
@@ -499,11 +503,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SignUp\BusinessInformationCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SignUp\HyperStoreAccount\NewHyperStoreAccountCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUp\ProfileCompletionCC.xaml">
+    <Page Include="SignUp\ProfileCompletionCC\ProfileCompletionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
