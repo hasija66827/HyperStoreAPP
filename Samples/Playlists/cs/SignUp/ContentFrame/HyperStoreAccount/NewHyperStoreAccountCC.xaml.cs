@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate.SignUp
@@ -20,31 +19,30 @@ namespace SDKTemplate.SignUp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProfileCompletionCC : Page
+    public sealed partial class NewHyperStoreAccountCC : Page
     {
-        private ProfileCompletionViewModel _PCV;
-        public ProfileCompletionCC()
+        private HyperStoreAccountViewModel _HSAV { get; set; }
+        public NewHyperStoreAccountCC()
         {
             this.InitializeComponent();
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._PCV = DataContext as ProfileCompletionViewModel;
-            this._PCV.DateOfBirth = DateTime.Now.AddYears(-25);
-            this._PCV.ErrorsChanged += _PCV_ErrorsChanged;
+            _HSAV = DataContext as HyperStoreAccountViewModel;
+            _HSAV.ErrorsChanged += _HyperStoreAccountViewModel_ErrorsChanged;
             base.OnNavigatedTo(e);
-        }
-
-        private void _PCV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
-        {
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (_PCV.ValidateProperties())
-            {
+            var IsValid = this._HSAV.ValidateProperties();
+            if (IsValid)
+                this.Frame.Navigate(typeof(ProfileCompletionCC));
+        }
 
-            }
+        private void _HyperStoreAccountViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
         }
     }
 }

@@ -26,6 +26,10 @@
     </Application>
   </Applications>
   <Capabilities>
-    <uap:Capability Name="musicLibrary" />
+    <Capability Name="internetClient" />
+    <Capability Name="internetClientServer" />
+    <uap:Capability Name="contacts" />
+    <DeviceCapability Name="location" />
+    <DeviceCapability Name="webcam" />
   </Capabilities>
 </Package>

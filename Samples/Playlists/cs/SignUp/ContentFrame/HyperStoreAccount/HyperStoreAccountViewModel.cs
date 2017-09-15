@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDKTemplate.SignUp.HyperStoreAccount
+namespace SDKTemplate.SignUp
 {
     class HyperStoreAccountViewModel : ValidatableBindableBase
     {

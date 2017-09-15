@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -20,16 +21,20 @@ namespace SDKTemplate.SignUp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SignUpPage : Page
+    public sealed partial class CompleteUserInformationCC : Page
     {
-        public SignUpPage()
+        public CompleteUserInformationCC()
         {
             this.InitializeComponent();
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ContentFrame.Navigate(typeof(NewHyperStoreAccountCC));
-            ResultFrame.Navigate(typeof(CompleteUserInformationCC));
+            var geoLocator = new Geolocator();
+            geoLocator.DesiredAccuracy = PositionAccuracy.High;
+            Geoposition pos = await geoLocator.GetGeopositionAsync();
+            string latitude = "Latitude: " + pos.Coordinate.Point.Position.Latitude.ToString();
+            string longitude = "Longitude: " + pos.Coordinate.Point.Position.Longitude.ToString();
+            location.Text = latitude + " " + longitude;
             base.OnNavigatedTo(e);
         }
     }
