@@ -430,8 +430,10 @@
                                 Value="Segoe UI" />
                         <Setter Property="FontWeight"
                                 Value="Normal" />
-                        <Setter Property="Width"
-                                Value="230" />
+                        <Setter Property="MaxWidth"
+                                Value="500" />
+                        <Setter Property="TextWrapping"
+                                Value="WrapWholeWords" />
                         <Setter Property="TextAlignment"
                                 Value="Right" />
                         <Setter Property="Foreground"

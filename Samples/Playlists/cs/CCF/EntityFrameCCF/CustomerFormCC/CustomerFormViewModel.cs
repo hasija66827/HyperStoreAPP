@@ -29,14 +29,14 @@ namespace SDKTemplate
         public string GSTIN { get { return this._gstin; } set { SetProperty(ref _gstin, value); } }
 
         private string _mobileNo;
-        [RegularExpression(@"[987]\d{9}", ErrorMessage = "{0} is Invalid.")]
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [RegularExpression(@"[987]\d{9}", ErrorMessage = "{0} is Invalid.")]
         public virtual string MobileNo { get { return this._mobileNo; } set { SetProperty(ref _mobileNo, value); } }
 
         private string _name;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [MaxLength(16, ErrorMessage ="Try name with atmost 16 charecters.")]
-        [RegularExpression(@"[a-zA-Z]{1,16}", ErrorMessage = "Name is Invalid")]
+        [RegularExpression(@"[a-zA-Z ]{1,16}", ErrorMessage = "Name is Invalid")]
         public virtual string Name
         {
             get { return this._name; }

@@ -192,6 +192,13 @@
       <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryViewModel.cs" />
+    <Compile Include="SignUp\HyperStoreAccount\HyperStoreAccountViewModel.cs" />
+    <Compile Include="SignUp\HyperStoreAccount\NewHyperStoreAccountCC.xaml.cs">
+      <DependentUpon>NewHyperStoreAccountCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextBoxAttached.cs" />
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerPurchaseTrendViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomersCCF.xaml.cs">
@@ -485,6 +492,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUp\HyperStoreAccount\NewHyperStoreAccountCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUp\SignUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
