@@ -26,11 +26,19 @@ namespace SDKTemplate.SignUp
     /// </summary>
     public sealed partial class CompleteUserInformationCC : Page
     {
+        public CompleteUserInformationViewModel _CUIV { get; set; }
         string GeneratedHTML = "";
         public CompleteUserInformationCC()
         {
             this.InitializeComponent();
+            this._CUIV = new CompleteUserInformationViewModel()
+            {
+                HSAV = new HyperStoreAccountViewModel(),
+                PCV = new ProfileCompletionViewModel(),
+                BIV = new BusinessInformationViewModel(),
+            };
         }
+
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             var geoLocator = new Geolocator();

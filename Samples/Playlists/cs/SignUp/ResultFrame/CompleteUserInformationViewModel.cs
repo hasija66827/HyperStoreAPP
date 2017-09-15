@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate.SignUp
 {
-    class CompleteUserInformationViewModel
+    public class CompleteUserInformationViewModel
     {
-        public BusinessInformationViewModel _BIV { get; set; }
-        public HyperStoreAccountViewModel _HSAV { get; set; }
-        public ProfileCompletionViewModel _PCV { get; set; }
+        public BusinessInformationViewModel BIV { get; set; }
+        public HyperStoreAccountViewModel HSAV { get; set; }
+        public ProfileCompletionViewModel PCV { get; set; }
+        public CompleteUserInformationViewModel() { }
     }
 }

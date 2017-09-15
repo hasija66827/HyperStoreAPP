@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate.SignUp
 {
-    class ProfileCompletionViewModel : ValidatableBindableBase
+   public  class ProfileCompletionViewModel : ValidatableBindableBase
     {
         private string _firstName;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
@@ -30,6 +30,11 @@ namespace SDKTemplate.SignUp
             set { SetProperty(ref _lastName, value); }
         }
 
+        public string Name
+        {
+            get { return this._firstName + this._lastName; }
+        }
+
         private string _emailId;
         [EmailAddress(ErrorMessage = "Email Id is Invalid")]
         public string EmailId
@@ -37,7 +42,7 @@ namespace SDKTemplate.SignUp
             get { return this._emailId; }
             set { SetProperty(ref _emailId, value); }
         }
-       
+
         public DateTime DateOfBirth { get; set; }
     }
 }

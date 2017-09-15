@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate.SignUp
 {
-    class HyperStoreAccountViewModel : ValidatableBindableBase
+   public  class HyperStoreAccountViewModel : ValidatableBindableBase
     {
         private string _mobileNo;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
