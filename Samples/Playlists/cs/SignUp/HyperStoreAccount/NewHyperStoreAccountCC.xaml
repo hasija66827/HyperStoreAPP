@@ -8,7 +8,7 @@
     <Page.DataContext>
         <local:HyperStoreAccountViewModel />
     </Page.DataContext>
-    <RelativePanel >
+    <RelativePanel>
         <StackPanel Margin="10">
             <TextBox Header="Mobile Number"
                      Style="{StaticResource FormTextBoxStyle}"
@@ -28,9 +28,10 @@
                          Password="{x:Bind _HSAV.ConfirmPassword, Mode=TwoWay}" />
             <TextBlock Text="{Binding Errors[ConfirmPassword][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <Button Content="Create a New Account"
-                    Click="Button_Click"
-                    Style="{StaticResource DetailButtonStyle}" />
         </StackPanel>
+        <Button Content="Create a New Account"
+                Click="Button_Click"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource DetailButtonStyle}" />
     </RelativePanel>
 </Page>

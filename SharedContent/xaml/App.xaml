@@ -346,6 +346,8 @@
                                 Value="Segoe UI" />
                         <Setter Property="FontWeight"
                                 Value="Normal" />
+                        <Setter Property="IsSpellCheckEnabled"
+                                Value="False" />
                         <Setter Property="FontSize"
                                 Value="15" />
                         <Setter Property="TextWrapping"

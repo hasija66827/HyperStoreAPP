@@ -1,0 +1,47 @@
+﻿<Page x:Class="SDKTemplate.SignUp.ProfileCompletionCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate.SignUp"
+      xmlns:common="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Page.DataContext>
+        <local:ProfileCompletionViewModel />
+    </Page.DataContext>
+    <UserControl.Resources>
+        <common:ConvertDateTimeOffsetToDateTime x:Key="ConvertDateTimeOffsetToDateTime" />
+    </UserControl.Resources>
+    <RelativePanel>
+        <StackPanel Margin="10">
+            <TextBox Header="First Name"
+                     Style="{StaticResource FormTextBoxStyle}"
+                     PlaceholderText="First Name"
+                     Text="{x:Bind _PCV.FirstName, Mode=TwoWay}" />
+            <TextBlock Text="{Binding Errors[FirstName][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox Header="Last Name"
+                     Style="{StaticResource FormTextBoxStyle}"
+                     PlaceholderText="Last Name"
+                     Text="{x:Bind _PCV.LastName, Mode=TwoWay}" />
+            <TextBlock Text="{Binding Errors[LastName][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox Header="Email Id"
+                         Style="{StaticResource FormTextBoxStyle}"
+                         PlaceholderText="Email Id"
+                         Text="{x:Bind _PCV.EmailId, Mode=TwoWay}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Errors[EmailId][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <CalendarDatePicker x:Name="DateOfBirthCP"
+                                Header="Date of Birth"
+                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                Date="{x:Bind _PCV.DateOfBirth, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
+        </StackPanel>
+        <Button Content="Next"
+                RelativePanel.AlignBottomWithPanel="True"
+                Click="Button_Click"
+                Style="{StaticResource DetailButtonStyle}" />
+    </RelativePanel>
+</Page>

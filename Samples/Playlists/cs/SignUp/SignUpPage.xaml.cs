@@ -28,7 +28,7 @@ namespace SDKTemplate.SignUp
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ContentFrame.Navigate(typeof(NewHyperStoreAccountCC));
+            ContentFrame.Navigate(typeof(ProfileCompletionCC));
             base.OnNavigatedTo(e);
         }
     }

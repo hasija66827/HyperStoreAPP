@@ -196,6 +196,10 @@
     <Compile Include="SignUp\HyperStoreAccount\NewHyperStoreAccountCC.xaml.cs">
       <DependentUpon>NewHyperStoreAccountCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SignUp\ProfileCompletionCC.xaml.cs">
+      <DependentUpon>ProfileCompletionCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\ProfileCompletionViewModel.cs" />
     <Compile Include="SignUp\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
@@ -496,6 +500,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignUp\HyperStoreAccount\NewHyperStoreAccountCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUp\ProfileCompletionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
