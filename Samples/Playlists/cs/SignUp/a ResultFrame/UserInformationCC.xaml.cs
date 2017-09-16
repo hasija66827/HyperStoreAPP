@@ -21,6 +21,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate.SignUp
 {
+    interface IPosition
+    {
+        string Latitude { get; set; }
+        string Longitude { get; set; }
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -28,6 +34,7 @@ namespace SDKTemplate.SignUp
     {
         public static CompleteUserInformationCC Current;
         public CompleteUserInformationViewModel _CUIV { get; set; }
+        private IPosition _Position;
         string GeneratedHTML = "";
         public CompleteUserInformationCC()
         {
@@ -64,8 +71,8 @@ namespace SDKTemplate.SignUp
             var geoLocator = new Geolocator();
             geoLocator.DesiredAccuracy = PositionAccuracy.High;
             Geoposition pos = await geoLocator.GetGeopositionAsync();
-            string latitude = "Latitude: " + pos.Coordinate.Point.Position.Latitude.ToString();
-            string longitude = "Longitude: " + pos.Coordinate.Point.Position.Longitude.ToString();
+            this._Position.Latitude = pos.Coordinate.Point.Position.Latitude.ToString();
+            this._Position.Longitude = pos.Coordinate.Point.Position.Longitude.ToString();
             this.LoadData();
             MapWebView.NavigateToString(GeneratedHTML);
             base.OnNavigatedTo(e);

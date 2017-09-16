@@ -193,10 +193,10 @@
       <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryViewModel.cs" />
-    <Compile Include="SignUp\a ResultFrame\CompleteUserInformationCC.xaml.cs">
-      <DependentUpon>CompleteUserInformationCC.xaml</DependentUpon>
+    <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
+      <DependentUpon>UserInformationCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SignUp\a ResultFrame\CompleteUserInformationViewModel.cs" />
+    <Compile Include="SignUp\a ResultFrame\UserInformationViewModel.cs" />
     <Compile Include="SignUp\b ContentFrame\1 BusinessInformationCC\BusinessInformationCC.xaml.cs">
       <DependentUpon>BusinessInformationCC.xaml</DependentUpon>
     </Compile>
@@ -508,7 +508,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUp\a ResultFrame\CompleteUserInformationCC.xaml">
+    <Page Include="SignUp\a ResultFrame\UserInformationCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
