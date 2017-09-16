@@ -65,12 +65,11 @@ namespace SDKTemplate.SignUp
         {
             this._CUIV.PCV = PCV;
             _CreateUser();
-            //TODO: Save the details.
         }
 
         private async void _CreateUser()
         {
-            var user = new UserDTO()
+            var personalInformationDTO = new PersonalInformationDTO()
             {
                 FirstName = _CUIV.PCV.FirstName,
                 LastName = _CUIV.PCV.LastName,
@@ -78,15 +77,27 @@ namespace SDKTemplate.SignUp
                 DateOfBirth = _CUIV.PCV.DateOfBirth,
                 MobileNo = _CUIV.HSAV.MobileNo,
                 Password = _CUIV.HSAV.Password,
+            };
+
+            var businessInformationDTO = new BusinessInformationDTO()
+            {
                 BusinessName = _CUIV.BIV.BusinessName,
                 BusinessType = _CUIV.BIV.SelectedBusinessType,
+                GSTIN = _CUIV.BIV.GSTIN,
                 AddressLine = _CUIV.BIV.AddressLine,
                 City = _CUIV.BIV.City,
                 PinCode = _CUIV.BIV.PinCode,
                 State = _CUIV.BIV.SelectedState,
                 Cordinates = this._Cordinates,
             };
-           await UserDataSource.CreateNewUserAsync(user);
+
+            var user = new UserDTO()
+            {
+                PI = personalInformationDTO,
+                BI = businessInformationDTO,
+            };
+
+            await UserDataSource.CreateNewUserAsync(user);
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)

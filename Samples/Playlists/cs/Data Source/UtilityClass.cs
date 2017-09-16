@@ -16,7 +16,7 @@ namespace SDKTemplate
 
     namespace DTO
     {
-        public class UserDTO
+        public class PersonalInformationDTO
         {
             [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
             [MaxLength(9, ErrorMessage = "Try first name with atmost 9 charecters.")]
@@ -40,6 +40,10 @@ namespace SDKTemplate
             [MinLength(6, ErrorMessage = "Short passwords are easy to guess. Try one with at least 6 characters.")]
             public string Password { get; set; }
 
+        }
+
+        public class BusinessInformationDTO
+        {
             [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
             [MaxLength(25, ErrorMessage = "Try Business name with atmost 25 charecters.")]
             [RegularExpression(@"[a-zA-Z\s]{1,25}", ErrorMessage = "Business name is Invalid")]
@@ -48,6 +52,10 @@ namespace SDKTemplate
             [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
             [MaxLength(25, ErrorMessage = "Try address with atmost 25 charecters.")]
             public string AddressLine { get; set; }
+
+            [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+            [RegularExpression(@"\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z]{1}\d{1}[zZ][a-zA-Z0-9]", ErrorMessage = "{0} is Invalid.")]
+            public string GSTIN { get; set; }
 
             [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
             [MaxLength(15, ErrorMessage = "Try city with atmost 15 charecters.")]
@@ -63,6 +71,13 @@ namespace SDKTemplate
             public string State { get; set; }
 
             public Cordinates Cordinates { get; set; }
+        }
+
+
+        public class UserDTO
+        {
+            public PersonalInformationDTO PI { get; set; }
+            public BusinessInformationDTO BI { get; set; }
         }
 
         public class CustomerDTO

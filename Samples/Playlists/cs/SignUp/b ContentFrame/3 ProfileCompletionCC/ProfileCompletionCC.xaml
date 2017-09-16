@@ -39,7 +39,7 @@
                                 DateFormat="{}{day.integer} {month.full} {year.full}"
                                 Date="{x:Bind _PCV.DateOfBirth, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
         </StackPanel>
-        <Button Content="Next"
+        <Button Content="Complete SignUp"
                 RelativePanel.AlignBottomWithPanel="True"
                 Click="Button_Click"
                 Style="{StaticResource DetailButtonStyle}" />

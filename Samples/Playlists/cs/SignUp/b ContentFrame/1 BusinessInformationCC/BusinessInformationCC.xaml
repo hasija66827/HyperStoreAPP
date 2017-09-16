@@ -8,13 +8,19 @@
     <Page.DataContext>
         <local:BusinessInformationViewModel />
     </Page.DataContext>
-    <RelativePanel>
+    <RelativePanel >
         <StackPanel Margin="10">
             <TextBox Header="Business Name"
                      Style="{StaticResource LargeFormTextBoxStyle}"
                      PlaceholderText="Business Name"
                      Text="{x:Bind _BIV.BusinessName, Mode=TwoWay}" />
             <TextBlock Text="{Binding Errors[BusinessName][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox Header="GSTIN"
+                     Style="{StaticResource LargeFormTextBoxStyle}"
+                     PlaceholderText="GSTIN *"
+                     Text="{x:Bind _BIV.GSTIN, Mode=TwoWay}" />
+            <TextBlock Text="{Binding Errors[GSTIN][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="Address"
                      Style="{StaticResource LargeFormTextBoxStyle}"

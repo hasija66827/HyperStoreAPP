@@ -16,13 +16,13 @@
                Margin="0,60,60,0"/>
         <Frame x:Name="ContentFrame"
                Width="700"
-               Height="600"
+               Height="650"
                Background="#FFE9EDED"
                RelativePanel.AlignLeftWith="HeaderFrame"
                RelativePanel.Below="HeaderFrame" />
         <Frame x:Name="ResultFrame"
                Width="700"
-               Height="550"
+               Height="600"
                Background="#FFE9EDED"
                RelativePanel.AlignVerticalCenterWith="ContentFrame"
                RelativePanel.RightOf="HeaderFrame" />

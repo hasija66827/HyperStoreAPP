@@ -16,7 +16,7 @@ namespace SDKTemplate
             var user = await Utility.CreateAsync<TUser>(API.Users, userDTO);
             if (user != null)
             {
-                var message = String.Format("Welcome {0}!!!\n We are happy to find you here.", user);
+                var message = String.Format("Welcome {0} {1}!!!\n We are happy to find you here.", user.FirstName, user.LastName);
                 SuccessNotification.PopUpSuccessNotification(API.Users, message);
             }
             return user;

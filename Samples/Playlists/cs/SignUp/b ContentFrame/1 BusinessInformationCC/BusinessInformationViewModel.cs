@@ -20,6 +20,10 @@ namespace SDKTemplate.SignUp
             set { SetProperty(ref _businessName, value); }
         }
 
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [RegularExpression(@"\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z]{1}\d{1}[zZ][a-zA-Z0-9]", ErrorMessage = "{0} is Invalid.")]
+        public string GSTIN { get; set; }
+
         private string _addressLine;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [MaxLength(25, ErrorMessage = "Try address with atmost 25 charecters.")]
@@ -81,9 +85,10 @@ namespace SDKTemplate.SignUp
             var s = new List<string>();
             s.Add("Delhi");
             s.Add("Gujrat");
+            s.Add("Karnataka");
             s.Add("Madhya Pradesh");
             s.Add("Maharashtra");
-            s.Add("Rajhasthan");
+            s.Add("Rajasthan");
             s.Add("Telengana");
             States = s;
             SelectedStateIndex = -1;
