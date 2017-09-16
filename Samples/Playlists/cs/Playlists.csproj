@@ -148,6 +148,7 @@
       <DependentUpon>CustomerSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data Source\CustomerTransactionDataSource.cs" />
+    <Compile Include="Data Source\UserDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\SupplierOrderTransaction.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\SupplierTransaction.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="mvvm2\BindableBase.cs" />
     <Compile Include="mvvm2\BindableValidator.cs" />
     <Compile Include="mvvm2\DateTimeToDateTimeOffsetConverter.cs" />

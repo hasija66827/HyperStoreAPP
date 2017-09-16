@@ -11,7 +11,7 @@
                        Style="{StaticResource BaseTextBlockStyle}"
                        FontSize="28"
                        Padding="0,30,30,0" />
-            <TextBlock Text="{x:Bind _CUIV.BIV.SelectedCategory, Mode=OneWay}"
+            <TextBlock Text="{x:Bind _CUIV.BIV.SelectedBusinessType, Mode=OneWay}"
                        Style="{StaticResource SeparatorStyle}"
                        FontSize="20"
                        Padding="10,10,30,30" />

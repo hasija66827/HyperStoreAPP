@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,10 +22,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate.SignUp
 {
-    interface IPosition
+    public class Cordinates
     {
-        string Latitude { get; set; }
-        string Longitude { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 
     /// <summary>
@@ -34,7 +35,7 @@ namespace SDKTemplate.SignUp
     {
         public static CompleteUserInformationCC Current;
         public CompleteUserInformationViewModel _CUIV { get; set; }
-        private IPosition _Position;
+        private Cordinates _Cordinates;
         string GeneratedHTML = "";
         public CompleteUserInformationCC()
         {
@@ -63,7 +64,29 @@ namespace SDKTemplate.SignUp
         public void Current_PCFNavigatedEvent(ProfileCompletionViewModel PCV)
         {
             this._CUIV.PCV = PCV;
+            _CreateUser();
             //TODO: Save the details.
+        }
+
+        private async void _CreateUser()
+        {
+            var user = new UserDTO()
+            {
+                FirstName = _CUIV.PCV.FirstName,
+                LastName = _CUIV.PCV.LastName,
+                EmailId = _CUIV.PCV.EmailId,
+                DateOfBirth = _CUIV.PCV.DateOfBirth,
+                MobileNo = _CUIV.HSAV.MobileNo,
+                Password = _CUIV.HSAV.Password,
+                BusinessName = _CUIV.BIV.BusinessName,
+                BusinessType = _CUIV.BIV.SelectedBusinessType,
+                AddressLine = _CUIV.BIV.AddressLine,
+                City = _CUIV.BIV.City,
+                PinCode = _CUIV.BIV.PinCode,
+                State = _CUIV.BIV.SelectedState,
+                Cordinates = this._Cordinates,
+            };
+           await UserDataSource.CreateNewUserAsync(user);
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -71,8 +94,11 @@ namespace SDKTemplate.SignUp
             var geoLocator = new Geolocator();
             geoLocator.DesiredAccuracy = PositionAccuracy.High;
             Geoposition pos = await geoLocator.GetGeopositionAsync();
-            this._Position.Latitude = pos.Coordinate.Point.Position.Latitude.ToString();
-            this._Position.Longitude = pos.Coordinate.Point.Position.Longitude.ToString();
+            this._Cordinates = new Cordinates()
+            {
+                Latitude = pos.Coordinate.Point.Position.Latitude.ToString(),
+                Longitude = pos.Coordinate.Point.Position.Longitude.ToString()
+            };
             this.LoadData();
             MapWebView.NavigateToString(GeneratedHTML);
             base.OnNavigatedTo(e);

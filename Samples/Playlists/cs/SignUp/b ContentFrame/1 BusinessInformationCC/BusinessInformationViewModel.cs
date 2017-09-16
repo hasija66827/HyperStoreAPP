@@ -48,19 +48,20 @@ namespace SDKTemplate.SignUp
             set { SetProperty(ref _pincode, value); }
         }
 
-        public string SelectedCategory { get; set; }
+        public string SelectedBusinessType { get { if (SelectedBusinessTypeIndex > -1) return BusinessTypes[SelectedBusinessTypeIndex]; return ""; } }
+        public int SelectedBusinessTypeIndex { get; set; }
+        public List<string> BusinessTypes { get; }
+
+        public string SelectedState { get { if (SelectedStateIndex > -1) return States[SelectedStateIndex]; return ""; } }
         public int SelectedStateIndex { get; set; }
-
-        public List<string> Category { get; }
-
-        public List<string> State { get; }
+        public List<string> States { get; }
 
         public string FullAddress
         {
             get
             {
                 if (SelectedStateIndex > -1)
-                    return _addressLine + " " + _city + ",  " + State[SelectedStateIndex] + "  " + PinCode;
+                    return _addressLine + " " + _city + ",  " + SelectedState + "  " + PinCode;
                 else
                     return "";
             }
@@ -70,11 +71,12 @@ namespace SDKTemplate.SignUp
         {
             var x = new List<string>();
             x.Add("Apparels Store");
-            x.Add("Shoes Store");
-            x.Add("Medical Store");
-            x.Add("Grocerry Store");
             x.Add("Electronic Store");
-            Category = x;
+            x.Add("Grocerry Store");
+            x.Add("Medical Store");
+            x.Add("Shoes Store");
+            SelectedBusinessTypeIndex = -1;
+            BusinessTypes = x;
 
             var s = new List<string>();
             s.Add("Delhi");
@@ -83,7 +85,7 @@ namespace SDKTemplate.SignUp
             s.Add("Maharashtra");
             s.Add("Rajhasthan");
             s.Add("Telengana");
-            State = s;
+            States = s;
             SelectedStateIndex = -1;
         }
     }

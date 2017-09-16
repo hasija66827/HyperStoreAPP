@@ -8,6 +8,7 @@ namespace SDKTemplate
 {
     class API
     {
+        public static string Users { get { return "Users"; } }
         public static string Customers { get { return "Customers"; } }
         public static string Products { get { return "Products"; } }
         public static string Suppliers { get { return "Suppliers"; } }

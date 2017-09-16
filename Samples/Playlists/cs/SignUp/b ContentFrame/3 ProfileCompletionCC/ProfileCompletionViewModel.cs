@@ -22,8 +22,8 @@ namespace SDKTemplate.SignUp
 
         private string _lastName;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [MaxLength(9, ErrorMessage = "Try second name with atmost 9 charecters.")]
-        [RegularExpression(@"[a-zA-Z]{1,9}", ErrorMessage = "Second name is Invalid")]
+        [MaxLength(9, ErrorMessage = "Try last name with atmost 9 charecters.")]
+        [RegularExpression(@"[a-zA-Z]{1,9}", ErrorMessage = "Last name is Invalid")]
         public string LastName
         {
             get { return this._lastName; }

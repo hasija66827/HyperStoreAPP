@@ -46,12 +46,12 @@
             <ComboBox Header="State"
                       Margin="0,20,0,0"
                       x:Name="StateCMB"
-                      ItemsSource="{x:Bind _BIV.State}"
+                      ItemsSource="{x:Bind _BIV.States}"
                       Width="400" />
             <ComboBox Header="Category (your business type)"
                       Margin="0,20,0,0"
                       x:Name="CategoryCMB"
-                      ItemsSource="{x:Bind _BIV.Category}"
+                      ItemsSource="{x:Bind _BIV.BusinessTypes}"
                       Width="400" />
         </StackPanel>
         <Button Content="Submit"
