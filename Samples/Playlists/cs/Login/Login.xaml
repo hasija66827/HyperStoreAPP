@@ -1,0 +1,49 @@
+﻿<Page x:Class="SDKTemplate.Login.LoginCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate.Login"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Page.DataContext>
+        <local:LoginViewModel />
+    </Page.DataContext>
+    <RelativePanel  HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#FFE9EDED">
+        <StackPanel Margin="20">
+            <TextBlock Text="Hyper Store"
+                       Style="{StaticResource ScenarioHeaderTextStyle}"
+                       FontWeight="SemiBold"
+                       FontSize="30"
+                       Margin="0,0,0,20" />
+            <TextBox Header="Registered Hyper Store Mobile Number"
+                     PlaceholderText="Mobile Number"
+                     Style="{StaticResource FormTextBoxStyle}"
+                     Text="{x:Bind _LoginViewModel.MobileNo, Mode=TwoWay}" />
+            <TextBlock Text="{Binding Errors[MobileNo][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <PasswordBox Header="Hyper Store Password"
+                         PlaceholderText="Password"
+                         Password="{x:Bind _LoginViewModel.Password, Mode=TwoWay}" />
+            <TextBlock Text="{Binding Errors[Password][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <HyperlinkButton Content="Forgot Password?"
+                             HorizontalAlignment="Right"
+                             Foreground="#FF10ACDC" />
+            <Button x:Name="LoginBtn"
+                    Click="LoginBtn_Click"
+                    Content="Login Securely"
+                    Style="{StaticResource DetailButtonStyle}" />
+            <TextBlock Text="OR"
+                       HorizontalAlignment="Center"
+                       FontSize="14"
+                       FontWeight="SemiLight"
+                       Foreground="Gray" />
+            <Button x:Name="SignUpClick"
+                    Content="Create New Account"
+                    Click="SignUpClick_Click"
+                    Style="{StaticResource TransButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
+</Page>

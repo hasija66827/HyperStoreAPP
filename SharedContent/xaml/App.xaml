@@ -618,7 +618,7 @@
                         <Setter Property="Width"
                                 Value="140" />
                         <Setter Property="Background"
-                                Value="#FF238FC7" />
+                                Value="#FF10ACDC" />
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
@@ -631,7 +631,7 @@
                         <Setter Property="Width"
                                 Value="800" />
                         <Setter Property="Background"
-                                Value="#FF238FC7" />
+                                Value="#FF10ACDC" />
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
@@ -644,10 +644,28 @@
                         <Setter Property="Width"
                                 Value="540" />
                         <Setter Property="Background"
-                                Value="#FF238FC7" />
+                                Value="#FF10ACDC" />
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
+                    <Style x:Key="TransButtonStyle"
+                           TargetType="Button">
+                        <Setter Property="BorderBrush"
+                                Value="#FF10ACDC"/>
+                        <Setter Property="BorderThickness"
+                                Value="1" />
+                        <Setter Property="Foreground"
+                                Value="#FF10ACDC" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="Width"
+                                Value="540" />
+                        <Setter Property="Background"
+                                Value="White" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                    </Style>
+                    
                     <Style x:Key="PositiveValueTB"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

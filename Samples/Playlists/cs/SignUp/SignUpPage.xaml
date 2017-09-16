@@ -11,9 +11,11 @@
                Width="700"
                Height="50"
                Background="#FFE9EDED"
-               BorderBrush="LightGray"
-               BorderThickness="1"
-               Margin="0,60,60,0"/>
+               Margin="0,60,60,0" />
+        <Rectangle RelativePanel.Below="HeaderFrame"
+                   Stroke="LightGray"
+                   Width="700"
+                   Height=".5" />
         <Frame x:Name="ContentFrame"
                Width="700"
                Height="650"

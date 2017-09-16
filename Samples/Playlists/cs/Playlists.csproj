@@ -153,6 +153,10 @@
     <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
     <Compile Include="FilterViewModel\FilterProductCriteria.cs" />
+    <Compile Include="Login\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\LoginViewModel.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\TagDataSource.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -455,6 +459,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\SummaryFrameCCF\CustomerSummmaryCC\CustomerSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
