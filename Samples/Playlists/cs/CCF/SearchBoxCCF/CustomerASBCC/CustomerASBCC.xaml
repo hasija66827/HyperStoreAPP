@@ -45,7 +45,7 @@
                              Margin="0,16,0,8"
                              Fill="#FF830D0D" />
                     <TextBlock x:Name="CustomerGlyph"
-                               Text="RH"
+                               Text="Glyph"
                                FontSize="20"
                                Margin="0,8,0,8"
                                RelativePanel.AlignHorizontalCenterWith="CustomerBackground"

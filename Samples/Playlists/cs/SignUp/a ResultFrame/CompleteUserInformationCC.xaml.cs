@@ -66,7 +66,6 @@ namespace SDKTemplate.SignUp
             Geoposition pos = await geoLocator.GetGeopositionAsync();
             string latitude = "Latitude: " + pos.Coordinate.Point.Position.Latitude.ToString();
             string longitude = "Longitude: " + pos.Coordinate.Point.Position.Longitude.ToString();
-            location.Text = latitude + " " + longitude;
             this.LoadData();
             MapWebView.NavigateToString(GeneratedHTML);
             base.OnNavigatedTo(e);

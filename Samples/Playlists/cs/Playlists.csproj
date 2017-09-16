@@ -202,8 +202,8 @@
     </Compile>
     <Compile Include="SignUp\b ContentFrame\1 BusinessInformationCC\BusinessInformationViewModel.cs" />
     <Compile Include="SignUp\b ContentFrame\2 HyperStoreAccount\HyperStoreAccountViewModel.cs" />
-    <Compile Include="SignUp\b ContentFrame\2 HyperStoreAccount\NewHyperStoreAccountCC.xaml.cs">
-      <DependentUpon>NewHyperStoreAccountCC.xaml</DependentUpon>
+    <Compile Include="SignUp\b ContentFrame\2 HyperStoreAccount\HyperStoreAccountCC.xaml.cs">
+      <DependentUpon>HyperStoreAccountCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUp\b ContentFrame\3 ProfileCompletionCC\ProfileCompletionCC.xaml.cs">
       <DependentUpon>ProfileCompletionCC.xaml</DependentUpon>
@@ -516,7 +516,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUp\b ContentFrame\2 HyperStoreAccount\NewHyperStoreAccountCC.xaml">
+    <Page Include="SignUp\b ContentFrame\2 HyperStoreAccount\HyperStoreAccountCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

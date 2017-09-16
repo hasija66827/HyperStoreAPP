@@ -13,7 +13,7 @@ namespace SDKTemplate.SignUp
         private string _firstName;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [MaxLength(9, ErrorMessage = "Try first name with atmost 9 charecters.")]
-        [RegularExpression(@"[a-zA-Z]{1,9}", ErrorMessage = "First name is Invalid")]
+        [RegularExpression(@"[a-zA-Z]{1,9}[\s]{0,1}", ErrorMessage = "First name is Invalid")]
         public string FirstName
         {
             get { return this._firstName; }

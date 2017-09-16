@@ -13,7 +13,7 @@ namespace SDKTemplate.SignUp
         private string _businessName;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [MaxLength(25, ErrorMessage = "Try Business name with atmost 25 charecters.")]
-        [RegularExpression(@"[a-zA-Z]{1,20}", ErrorMessage = "Business name is Invalid")]
+        [RegularExpression(@"[a-zA-Z\s]{1,25}", ErrorMessage = "Business name is Invalid")]
         public string BusinessName
         {
             get { return this._businessName; }
@@ -59,15 +59,18 @@ namespace SDKTemplate.SignUp
         {
             get
             {
-                var state = SelectedStateIndex > -1 ? State[SelectedStateIndex] : "";
-                return (_addressLine + " " + _city + ", " + state + " " + PinCode);
+                if (SelectedStateIndex > -1)
+                    return _addressLine + " " + _city + ",  " + State[SelectedStateIndex] + "  " + PinCode;
+                else
+                    return "";
             }
         }
 
         public BusinessInformationViewModel()
         {
             var x = new List<string>();
-            x.Add("Apparels and Shoes Store");
+            x.Add("Apparels Store");
+            x.Add("Shoes Store");
             x.Add("Medical Store");
             x.Add("Grocerry Store");
             x.Add("Electronic Store");
@@ -81,6 +84,7 @@ namespace SDKTemplate.SignUp
             s.Add("Rajhasthan");
             s.Add("Telengana");
             State = s;
+            SelectedStateIndex = -1;
         }
     }
 }

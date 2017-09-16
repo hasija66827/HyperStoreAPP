@@ -22,9 +22,9 @@
                RelativePanel.Below="HeaderFrame" />
         <Frame x:Name="ResultFrame"
                Width="700"
-               Height="650"
+               Height="550"
                Background="#FFE9EDED"
-               RelativePanel.AlignBottomWith="ContentFrame"
+               RelativePanel.AlignVerticalCenterWith="ContentFrame"
                RelativePanel.RightOf="HeaderFrame" />
     </RelativePanel>
 </Page>
