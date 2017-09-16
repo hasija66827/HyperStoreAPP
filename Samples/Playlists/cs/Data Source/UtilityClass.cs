@@ -78,6 +78,7 @@ namespace SDKTemplate
         {
             public PersonalInformationDTO PI { get; set; }
             public BusinessInformationDTO BI { get; set; }
+            public string DeviceId { get; set; }
         }
 
         public class AuthenticateUserDTO
@@ -89,7 +90,8 @@ namespace SDKTemplate
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            //DeviceId;
+            [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+            public string DeviceId { get; set; }
         }
 
         public class CustomerDTO

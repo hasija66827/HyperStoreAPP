@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,6 +37,8 @@ namespace SDKTemplate.Login
             base.OnNavigatedTo(e);
         }
 
+
+
         private void _LoginViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
         {
 
@@ -48,9 +51,10 @@ namespace SDKTemplate.Login
                 var authenticationDTO = new AuthenticateUserDTO()
                 {
                     MobileNo = _LoginViewModel.MobileNo,
-                    Password = _LoginViewModel.Password
+                    Password = _LoginViewModel.Password,
+                    DeviceId = Utility.GetHardwareId()
                 };
-                //Send login request with the device Id.
+               
                 var eAuthentication = await UserDataSource.AuthenticateUserAsync(authenticationDTO);
                 if (eAuthentication == EAuthentication.TwoFactorAuthenticated)
                     this.Frame.Navigate(typeof(MainPage));

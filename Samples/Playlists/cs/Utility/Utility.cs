@@ -263,6 +263,18 @@ namespace SDKTemplate
 
     partial class Utility
     {
+        public static string GetHardwareId()
+        {
+            var token = Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(null);
+            var hardwareId = token.Id;
+            var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
+
+            byte[] bytes = new byte[hardwareId.Length];
+            dataReader.ReadBytes(bytes);
+
+            return BitConverter.ToString(bytes);
+        }
+
         public static void CopyPropertiesTo<TS, TD>(TS source, TD dest)
         {
             var sourceProps = typeof(TS).GetProperties().Where(x => x.CanRead).ToList();

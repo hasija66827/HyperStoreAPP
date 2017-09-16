@@ -95,6 +95,7 @@ namespace SDKTemplate.SignUp
             {
                 PI = personalInformationDTO,
                 BI = businessInformationDTO,
+                DeviceId = Utility.GetHardwareId()
             };
 
             await UserDataSource.CreateNewUserAsync(user);
