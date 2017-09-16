@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,14 +38,30 @@ namespace SDKTemplate.Login
 
         private void _LoginViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
         {
-     
+
         }
 
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             if (_LoginViewModel.ValidateProperties())
             {
+                var authenticationDTO = new AuthenticateUserDTO()
+                {
+                    MobileNo = _LoginViewModel.MobileNo,
+                    Password = _LoginViewModel.Password
+                };
                 //Send login request with the device Id.
+                var eAuthentication = await UserDataSource.AuthenticateUserAsync(authenticationDTO);
+                if (eAuthentication == EAuthentication.TwoFactorAuthenticated)
+                    this.Frame.Navigate(typeof(MainPage));
+                else if (eAuthentication == EAuthentication.OneFactorAuthenticated)
+                {
+                    //MSG Diaologue
+                }
+                else
+                {
+                    //MSG Dialogue
+                }
             }
         }
 

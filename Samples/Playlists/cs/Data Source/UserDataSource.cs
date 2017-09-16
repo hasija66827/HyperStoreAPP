@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public enum EAuthentication
+    {
+        NotAuthenticated,
+        OneFactorAuthenticated,
+        TwoFactorAuthenticated
+    }
     class UserDataSource
     {
         #region Create 
@@ -22,5 +28,13 @@ namespace SDKTemplate
             return user;
         }
         #endregion
+
+        public static async Task<EAuthentication> AuthenticateUserAsync(AuthenticateUserDTO authenticateUserDTO)
+        {
+            var eauthentication = await Utility.RetrieveAsync<EAuthentication>(API.Users, QueryString.AuthenticateUser, authenticateUserDTO);
+            if (eauthentication != null && eauthentication.Count == 1)
+                return eauthentication[0];
+            return EAuthentication.NotAuthenticated;
+        }
     }
 }

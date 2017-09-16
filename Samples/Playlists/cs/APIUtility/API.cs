@@ -25,4 +25,9 @@ namespace SDKTemplate
         public static string PriceQuotedBySupplier { get { return "PriceQuotedBySupplier"; } }
         public static string RecommendedProducts { get { return "RecommendedProducts"; } }
     }
+    class QueryString
+    {
+        public static string AuthenticateUser { get { return "AuthenticateUser"; } }
+
+    }
 }
