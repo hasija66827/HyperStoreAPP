@@ -30,7 +30,8 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <HyperlinkButton Content="Forgot Password?"
                              HorizontalAlignment="Right"
-                             Foreground="#FF10ACDC" />
+                             Foreground="#FF10ACDC"
+                             TabIndex="-1" />
             <Button x:Name="LoginBtn"
                     Click="LoginBtn_Click"
                     Content="Login Securely"

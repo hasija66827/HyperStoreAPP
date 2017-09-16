@@ -381,7 +381,6 @@
                                 Value="Left" />
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
-                       
                     </Style>
                     <Style x:Key="MediumFormTextBoxStyle"
                            TargetType="TextBox">
@@ -395,7 +394,6 @@
                                 Value="Wrap" />
                         <Setter Property="Width"
                                 Value="140" />
-                       
                         <Setter Property="local:TextBoxAttached.AutoSelectable"
                                 Value="True" />
                         <Setter Property="HorizontalContentAlignment"
@@ -614,11 +612,28 @@
                         <Setter Property="Foreground"
                                 Value="WhiteSmoke" />
                         <Setter Property="FontWeight"
-                                Value="SemiLight" />
+                                Value="Normal" />
                         <Setter Property="Width"
                                 Value="140" />
                         <Setter Property="Background"
                                 Value="#FF10ACDC" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                    </Style>
+                    <Style x:Key="TransFormButtonStyle"
+                           TargetType="Button">
+                        <Setter Property="BorderBrush"
+                                Value="#FF10ACDC" />
+                        <Setter Property="BorderThickness"
+                                Value="1" />
+                        <Setter Property="Foreground"
+                                Value="#FF10ACDC" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="Width"
+                                Value="140" />
+                        <Setter Property="Background"
+                                Value="White" />
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
@@ -627,7 +642,7 @@
                         <Setter Property="Foreground"
                                 Value="WhiteSmoke" />
                         <Setter Property="FontWeight"
-                                Value="SemiLight" />
+                                Value="Normal" />
                         <Setter Property="Width"
                                 Value="800" />
                         <Setter Property="Background"
@@ -640,7 +655,7 @@
                         <Setter Property="Foreground"
                                 Value="WhiteSmoke" />
                         <Setter Property="FontWeight"
-                                Value="SemiLight" />
+                                Value="Normal" />
                         <Setter Property="Width"
                                 Value="540" />
                         <Setter Property="Background"
@@ -651,7 +666,7 @@
                     <Style x:Key="TransButtonStyle"
                            TargetType="Button">
                         <Setter Property="BorderBrush"
-                                Value="#FF10ACDC"/>
+                                Value="#FF10ACDC" />
                         <Setter Property="BorderThickness"
                                 Value="1" />
                         <Setter Property="Foreground"
@@ -665,7 +680,6 @@
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
-                    
                     <Style x:Key="PositiveValueTB"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

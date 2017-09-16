@@ -112,7 +112,7 @@
             <Button x:Name="CancelBtn"
                     Content="Cancel"
                     Click="CancelBtn_Click"
-                    Style="{StaticResource FormButtonStyle}" />
+                    Style="{StaticResource TransFormButtonStyle}" />
         </StackPanel>
     </RelativePanel>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using SDKTemplate.DTO;
+using SDKTemplate.SignUp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,7 +72,7 @@ namespace SDKTemplate.Login
 
         private void SignUpClick_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(SignUpPage));
         }
     }
 }
