@@ -40,7 +40,7 @@ namespace SDKTemplate
         #region Update
         public static async Task<TCustomer> UpdateCustomerAsync(Guid customerId, CustomerDTO customerDTO)
         {
-            var customer = await Utility.UpdateAsync<TCustomer>(API.Customers, customerId.ToString(), customerDTO);
+            var customer = await Utility.UpdateAsync<TCustomer>(BaseURI.HyperStoreService + API.Customers, customerId.ToString(), customerDTO);
             if (customer != null)
             {
                 //TODO: succes notification

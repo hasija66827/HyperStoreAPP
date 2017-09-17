@@ -29,7 +29,7 @@ namespace SDKTemplate
         #region Update
         public static async Task<TSupplier> UpdateSupplierAsync(Guid supplierId, SupplierDTO supplierDTO)
         {
-            var supplier = await Utility.UpdateAsync<TSupplier>(API.Suppliers, supplierId.ToString(), supplierDTO);
+            var supplier = await Utility.UpdateAsync<TSupplier>(BaseURI.HyperStoreService + API.Suppliers, supplierId.ToString(), supplierDTO);
             if (supplier != null)
             {
                 //TODO: Success Notification
