@@ -42,13 +42,13 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TSupplier>> RetrieveSuppliersAsync(SupplierFilterCriteriaDTO sfc)
         {
-            List<TSupplier> suppliers = await Utility.RetrieveAsync<TSupplier>(BaseURI.HyperStoreService, API.Suppliers, null, sfc);
+            List<TSupplier> suppliers = await Utility.RetrieveAsync<TSupplier>(BaseURI.HyperStoreService + API.Suppliers, null, sfc);
             return suppliers;
         }
 
         public static async Task<IRange<T>> RetrieveWalletRangeAsync<T>()
         {
-            var IRanges = await Utility.RetrieveAsync<IRange<T>>(BaseURI.HyperStoreService, API.Suppliers, "GetWalletBalanceRange", null);
+            var IRanges = await Utility.RetrieveAsync<IRange<T>>(BaseURI.HyperStoreService + API.Suppliers, "GetWalletBalanceRange", null);
             if (IRanges != null && IRanges.Count == 1)
                 return IRanges[0];
             return null;

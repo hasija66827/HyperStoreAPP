@@ -31,7 +31,7 @@ namespace SDKTemplate
 
         public static async Task<EAuthentication> AuthenticateUserAsync(AuthenticateUserDTO authenticateUserDTO)
         {
-            var eauthentication = await Utility.RetrieveAsync<EAuthentication>(BaseURI.LoginSignUpService, API.Users, QueryString.AuthenticateUser, authenticateUserDTO);
+            var eauthentication = await Utility.RetrieveAsync<EAuthentication>(BaseURI.LoginSignUpService + API.Users, QueryString.AuthenticateUser, authenticateUserDTO);
             if (eauthentication != null && eauthentication.Count == 1)
                 return eauthentication[0];
             return EAuthentication.NotAuthenticated;

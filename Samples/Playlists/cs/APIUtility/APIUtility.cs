@@ -18,14 +18,14 @@ namespace SDKTemplate
 {
     public partial class Utility
     {
-        public static async Task<List<T>> RetrieveAsync<T>(string baseURI, string APIName, string queryString, object content)
+        public static async Task<List<T>> RetrieveAsync<T>(string baseURI, string queryString, object content)
         {
             string httpResponseBody = "";
             string actionURI = "";
             if (queryString != null)
-                actionURI = baseURI + APIName + "/" + queryString;
+                actionURI = baseURI + "/" + queryString;
             else
-                actionURI = baseURI + APIName;
+                actionURI = baseURI;
 
             try
             {
@@ -44,7 +44,7 @@ namespace SDKTemplate
                 if (ex.HResult == -2147012867)
                     userMessage = "Could not connect to server. \nPlease check the internet connection.";
 
-                ErrorNotification.PopUpHTTPGetErrorNotifcation(APIName, userMessage);
+                ErrorNotification.PopUpHTTPGetErrorNotifcation(baseURI, userMessage);
                 return default(List<T>);
             }
         }
