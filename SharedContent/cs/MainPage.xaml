@@ -206,12 +206,6 @@
                           Icon="Add"
                           Label="Product"
                           VerticalAlignment="Top" />
-            <AppBarButton x:Name="AddTagBtn"
-                          HorizontalAlignment="Center"
-                          Icon="Add"
-                          Label="Tag"
-                          Click="AddTagBtn_Click"
-                          VerticalAlignment="Top" />
             <AppBarButton x:Name="AddWholeSellerBtn"
                           HorizontalAlignment="Center"
                           Icon="AddFriend"
