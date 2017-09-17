@@ -55,11 +55,12 @@ namespace SDKTemplate.Login
                     Password = _LoginViewModel.Password,
                     DeviceId = Utility.GetHardwareId()
                 };
-               
-                var eAuthentication = await UserDataSource.AuthenticateUserAsync(authenticationDTO);
-                if (eAuthentication == EAuthentication.TwoFactorAuthenticated)
+
+                var authenticationToken = await UserDataSource.AuthenticateUserAsync(authenticationDTO);
+                BaseURI.UserId = authenticationToken.User.UserId;
+                if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
                     this.Frame.Navigate(typeof(MainPage));
-                else if (eAuthentication == EAuthentication.OneFactorAuthenticated)
+                else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)
                 {
                     //MSG Diaologue
                 }

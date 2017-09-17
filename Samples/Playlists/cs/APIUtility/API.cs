@@ -8,7 +8,8 @@ namespace SDKTemplate
 {
     class BaseURI
     {
-        public static string HyperStoreService { get { return "https://localhost:44346/api/"; } }
+        public static Guid UserId { get; set; }
+        public static string HyperStoreService { get { return "https://localhost:44346/api/" + UserId + "/"; } }
         public static string LoginSignUpService { get { return "http://localhost:52109/api/"; } }
     }
 

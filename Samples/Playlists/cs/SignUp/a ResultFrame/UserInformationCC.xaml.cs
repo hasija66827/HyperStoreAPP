@@ -98,7 +98,9 @@ namespace SDKTemplate.SignUp
                 DeviceId = Utility.GetHardwareId()
             };
 
-            await UserDataSource.CreateNewUserAsync(user);
+            var authenticationToken = await UserDataSource.CreateNewUserAsync(user);
+            if (authenticationToken != null)
+                BaseURI.UserId = authenticationToken.User.UserId;
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)

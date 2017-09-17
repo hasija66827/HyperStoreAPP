@@ -8,33 +8,40 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public enum EAuthentication
+    public enum EAuthenticationFactor
     {
         NotAuthenticated,
         OneFactorAuthenticated,
         TwoFactorAuthenticated
     }
+
+    public class AuthenticationToken
+    {
+        public EAuthenticationFactor AuthenticationFactor { get; set; }
+        public TUser User { get; set; }
+    }
+
     class UserDataSource
     {
         #region Create 
-        public static async Task<TUser> CreateNewUserAsync(UserDTO userDTO)
+        public static async Task<AuthenticationToken> CreateNewUserAsync(UserDTO userDTO)
         {
-            var user = await Utility.CreateAsync<TUser>(BaseURI.LoginSignUpService + API.Users, userDTO);
-            if (user != null)
+            var authenticationToken = await Utility.CreateAsync<AuthenticationToken>(BaseURI.LoginSignUpService + API.Users, userDTO);
+            if (authenticationToken != null)
             {
-                var message = String.Format("Welcome {0} {1}!!!\n We are happy to find you here.", user.FirstName, user.LastName);
+                var message = String.Format("Welcome {0} {1}!!!\n We are happy to find you here.", authenticationToken.User.FirstName, authenticationToken.User.LastName);
                 SuccessNotification.PopUpSuccessNotification(API.Users, message);
             }
-            return user;
+            return authenticationToken;
         }
         #endregion
 
-        public static async Task<EAuthentication> AuthenticateUserAsync(AuthenticateUserDTO authenticateUserDTO)
+        public static async Task<AuthenticationToken> AuthenticateUserAsync(AuthenticateUserDTO authenticateUserDTO)
         {
-            var eauthentication = await Utility.RetrieveAsync<EAuthentication>(BaseURI.LoginSignUpService + API.Users, QueryString.AuthenticateUser, authenticateUserDTO);
-            if (eauthentication != null && eauthentication.Count == 1)
-                return eauthentication[0];
-            return EAuthentication.NotAuthenticated;
+            var authenticationToken = await Utility.RetrieveAsync<AuthenticationToken>(BaseURI.LoginSignUpService + API.Users, QueryString.AuthenticateUser, authenticateUserDTO);
+            if (authenticationToken != null && authenticationToken.Count == 1)
+                return authenticationToken[0];
+            return new AuthenticationToken(){AuthenticationFactor= EAuthenticationFactor.NotAuthenticated};
         }
     }
 }

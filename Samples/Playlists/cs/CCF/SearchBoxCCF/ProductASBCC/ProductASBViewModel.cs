@@ -20,7 +20,7 @@ namespace SDKTemplate
         //Constructor to convert parent obect to child object.
         public ProductASBViewModel(TProduct parent)
         {
-            foreach (PropertyInfo prop in parent.GetType().GetProperties())
+            foreach (PropertyInfo prop in typeof(TProduct).GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }
     }
