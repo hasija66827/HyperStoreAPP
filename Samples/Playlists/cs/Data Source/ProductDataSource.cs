@@ -14,7 +14,7 @@ namespace SDKTemplate
         #region Create
         public static async Task<TProduct> CreateNewProductAsync(ProductDTO productDTO)
         {
-            var product = await Utility.CreateAsync<TProduct>(API.Products, productDTO);
+            var product = await Utility.CreateAsync<TProduct>(BaseURI.HyperStoreService + API.Products, productDTO);
             if (product != null)
             {
                 var message = String.Format("You should Update the stock of the product {0} ({1}) as the Quantity is {2} right now.", product.Name, product.Code, product.TotalQuantity);
@@ -40,8 +40,9 @@ namespace SDKTemplate
         {
             List<TProductMetadata> productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService, API.Products, "GetProductMetadata", null);
             if (productMetadata != null && productMetadata.Count == 1)
-               return productMetadata[0];
-            return new TProductMetadata() {
+                return productMetadata[0];
+            return new TProductMetadata()
+            {
                 DiscountPerRange = new IRange<decimal?>(0, 100),
                 QuantityRange = new IRange<decimal>(0, 1000),
             };

@@ -27,7 +27,7 @@ namespace SDKTemplate
         public static async Task<TCustomer> CreateNewCustomerAsync(CustomerDTO customerDTO)
         {
 
-            var customer = await Utility.CreateAsync<TCustomer>(API.Customers, customerDTO);
+            var customer = await Utility.CreateAsync<TCustomer>(BaseURI.HyperStoreService + API.Customers, customerDTO);
             if (customer != null)
             {
                 var message = String.Format("You can Start taking Orders from Customer {0} ({1})", customer.Name, customer.MobileNo);

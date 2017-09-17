@@ -16,7 +16,7 @@ namespace SDKTemplate
         #region Create
         public static async Task<TSupplier> CreateNewSupplier(SupplierDTO supplierDTO)
         {
-            var supplier = await Utility.CreateAsync<TSupplier>(API.Suppliers, supplierDTO);
+            var supplier = await Utility.CreateAsync<TSupplier>(BaseURI.HyperStoreService + API.Suppliers, supplierDTO);
             if (supplier != null)
             {
                 var message = String.Format("You can Start placing Ordes to Supplier {0} ({1})", supplier.Name, supplier.MobileNo);

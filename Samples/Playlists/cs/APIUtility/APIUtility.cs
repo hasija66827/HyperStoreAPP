@@ -69,12 +69,12 @@ namespace SDKTemplate
             }
         }
 
-        public static async Task<T> CreateAsync<T>(string APIName, object content)
+        public static async Task<T> CreateAsync<T>(string BaseURI, object content)
         {
             try
             {
                 var serializeContent = JsonConvert.SerializeObject(content);
-                var response = await Utility.HttpPost(APIName, serializeContent);
+                var response = await Utility.HttpPost(BaseURI, serializeContent);
                 if (response.StatusCode != HttpStatusCode.Created && response.StatusCode != HttpStatusCode.Ok)
                     throw new Exception(response.Content.ToString());
                 var httpResponseBody = await response.Content.ReadAsStringAsync();
@@ -83,7 +83,7 @@ namespace SDKTemplate
             }
             catch (Exception ex)
             {
-                ErrorNotification.PopUpHTTPPostErrorNotifcation(APIName, ex.Message);
+                ErrorNotification.PopUpHTTPPostErrorNotifcation(BaseURI, ex.Message);
                 //TODO: handle different types of exception
                 return default(T);
             }
@@ -91,12 +91,10 @@ namespace SDKTemplate
 
         private static async Task<HttpResponseMessage> HttpPost(string actionURI, string content)
         {
-            string absoluteURI = "https://localhost:44346/api/";
-            string uri = string.Concat(absoluteURI, actionURI);
             HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
             httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
             HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(uri));
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(actionURI));
             request.Content = new HttpStringContent(content, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
             try
             {

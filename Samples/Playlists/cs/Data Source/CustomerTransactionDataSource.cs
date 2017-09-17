@@ -13,8 +13,7 @@ namespace SDKTemplate
         #region create
         public static async Task<TCustomerTransaction> CreateNewTransactionAsync(CustomerTransactionDTO transactionDTO)
         {
-            string actionURI = API.CustomerTransactions;
-            var transaction = await Utility.CreateAsync<TCustomerTransaction>(actionURI, transactionDTO);
+            var transaction = await Utility.CreateAsync<TCustomerTransaction>(BaseURI.HyperStoreService + API.CustomerTransactions, transactionDTO);
             _SendTransactionCreationNotification(transaction);
             return transaction;
         }

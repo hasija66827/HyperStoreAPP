@@ -63,7 +63,7 @@ namespace SDKTemp.Data
         private static async Task<decimal?> CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
         {
 
-            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(API.CustomerOrders, customerOrderDTO);
+            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.CustomerOrders, customerOrderDTO);
             return deductedWalletAmount;
         }
 

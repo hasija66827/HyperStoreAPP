@@ -13,7 +13,7 @@ namespace SDKTemplate
         #region Create
         public static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
-            var x= await Utility.CreateAsync<decimal?>(API.SupplierOrders, supplierOrderDTO);
+            var x = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
             return x;
         }
         #endregion

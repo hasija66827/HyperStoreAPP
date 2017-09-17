@@ -19,7 +19,7 @@ namespace SDKTemplate
         #region Create 
         public static async Task<TUser> CreateNewUserAsync(UserDTO userDTO)
         {
-            var user = await Utility.CreateAsync<TUser>(API.Users, userDTO);
+            var user = await Utility.CreateAsync<TUser>(BaseURI.LoginSignUpService + API.Users, userDTO);
             if (user != null)
             {
                 var message = String.Format("Welcome {0} {1}!!!\n We are happy to find you here.", user.FirstName, user.LastName);
