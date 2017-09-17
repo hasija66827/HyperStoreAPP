@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -59,7 +60,9 @@ namespace SDKTemplate.Login
                 var authenticationToken = await UserDataSource.AuthenticateUserAsync(authenticationDTO);
                 if (authenticationToken == null || authenticationToken.AuthenticationFactor == EAuthenticationFactor.NotAuthenticated)
                 {
-                    //MSG DIalogue: INvalid username or password.
+                    var msg = new MessageDialog("Please enter valid Mobile Number and Password.", "Error");
+                    await msg.ShowAsync();
+
                 }
                 else
                 {
@@ -68,7 +71,8 @@ namespace SDKTemplate.Login
                         this.Frame.Navigate(typeof(MainPage));
                     else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)
                     {
-                        //MSG Diaologue OTP Verification starts.
+                        var msg = new MessageDialog("Login from the Device on which you signed up.", "Security Error: Invalid Device");
+                        await msg.ShowAsync();
                     }
                 }
             }
