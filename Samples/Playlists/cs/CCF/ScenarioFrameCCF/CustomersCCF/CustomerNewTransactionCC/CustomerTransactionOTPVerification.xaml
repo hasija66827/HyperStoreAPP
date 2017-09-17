@@ -1,11 +1,10 @@
-﻿<Page
-    x:Class="SDKTemplate.CustomerTransactionOTPVerification"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SDKTemplate"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="SDKTemplate.CustomerTransactionOTPVerification"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
@@ -42,10 +41,6 @@
                        Style="{ThemeResource LargeFormTBPropStyle}" />
             <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.OptionalDescription}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBox x:Name="OTPLabel"
-                     Header="Enter OTP"
-                     PlaceholderText="Enter OTP"
-                     Style="{ThemeResource LargeFormTextBoxStyle}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"

@@ -52,6 +52,9 @@
                                      Color="#FFFF2FAE" />
                     <SolidColorBrush x:Key="FrameBrush"
                                      Color="White"/>
+                    <SolidColorBrush x:Key="LightGrayBrush"
+                                     Color="#FFE9EDED"
+                                     />
                     <Style x:Key="FontAwesome"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

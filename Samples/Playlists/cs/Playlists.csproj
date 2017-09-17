@@ -199,6 +199,9 @@
       <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryViewModel.cs" />
+    <Compile Include="OTPDialogue.xaml.cs">
+      <DependentUpon>OTPDialogue.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
       <DependentUpon>UserInformationCC.xaml</DependentUpon>
     </Compile>
@@ -463,6 +466,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Login\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OTPDialogue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
