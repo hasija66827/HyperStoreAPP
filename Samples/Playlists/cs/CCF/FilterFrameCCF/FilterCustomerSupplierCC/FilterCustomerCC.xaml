@@ -24,6 +24,10 @@
                        Text="Wallet Balance" />
             <customControl:RangeSlider x:Name="WalletRangeSlider"
                                        Width="270"
+                                       Minimum="-10000000"
+                                       RangeMin="-10000000"
+                                       Maximum="10000000"
+                                       RangeMax="10000000"
                                        RelativePanel.Below="WalletTB" />
             <RelativePanel Width="270"
                            RelativePanel.Below="WalletRangeSlider"
