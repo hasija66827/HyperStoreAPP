@@ -29,7 +29,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TTag>> RetreiveTagsAsync()
         {
-            List<TTag> tags = await Utility.RetrieveAsync<TTag>(API.Tags, null, null);
+            List<TTag> tags = await Utility.RetrieveAsync<TTag>(BaseURI.HyperStoreService, API.Tags, null, null);
             return tags;
         }
         #endregion

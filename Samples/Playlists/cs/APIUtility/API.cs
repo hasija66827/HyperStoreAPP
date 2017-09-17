@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    class BaseURI
+    {
+        public static string HyperStoreService { get { return "https://localhost:44346/api/"; } }
+        public static string LoginSignUpService { get { return "http://localhost:52109/api/"; } }
+    }
+
     class API
     {
         public static string Users { get { return "Users"; } }

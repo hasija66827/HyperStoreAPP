@@ -21,13 +21,13 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TSupplierOrder>> RetrieveSupplierOrdersAsync(SupplierOrderFilterCriteriaDTO sofc)
         {
-            List<TSupplierOrder> supplierOrders = await Utility.RetrieveAsync<TSupplierOrder>(API.SupplierOrders, null, sofc);
+            List<TSupplierOrder> supplierOrders = await Utility.RetrieveAsync<TSupplierOrder>(BaseURI.HyperStoreService, API.SupplierOrders, null, sofc);
             return supplierOrders;
         }
 
         public static async Task<List<TSupplierOrderProduct>> RetrieveOrderDetailsAsync(Guid supplierOrderId)
         {
-            List<TSupplierOrderProduct> orderDetails = await Utility.RetrieveAsync<TSupplierOrderProduct>(API.SupplierOrderProducts, supplierOrderId.ToString(), null);
+            List<TSupplierOrderProduct> orderDetails = await Utility.RetrieveAsync<TSupplierOrderProduct>(BaseURI.HyperStoreService, API.SupplierOrderProducts, supplierOrderId.ToString(), null);
             return orderDetails;
         }
         #endregion

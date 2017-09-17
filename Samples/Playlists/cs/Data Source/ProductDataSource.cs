@@ -27,7 +27,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TProduct>> RetrieveProductDataAsync(ProductFilterCriteriaDTO pfc)
         {
-            List<TProduct> products = await Utility.RetrieveAsync<TProduct>(API.Products, null, pfc);
+            List<TProduct> products = await Utility.RetrieveAsync<TProduct>(BaseURI.HyperStoreService, API.Products, null, pfc);
             return products;
         }
 
@@ -38,7 +38,7 @@ namespace SDKTemplate
 
         public static async Task<TProductMetadata> RetrieveProductMetadataAsync()
         {
-            List<TProductMetadata> productMetadata = await Utility.RetrieveAsync<TProductMetadata>(API.Products, "GetProductMetadata", null);
+            List<TProductMetadata> productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService, API.Products, "GetProductMetadata", null);
             if (productMetadata != null && productMetadata.Count == 1)
                return productMetadata[0];
             return new TProductMetadata() {

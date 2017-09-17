@@ -12,12 +12,12 @@ namespace SDKTemplate
     {
         public static async Task<List<TCustomerPurchaseTrend>> RetrieveCustomerPurchaseTrend(CustomerPurchaseTrendDTO customerPurchaseTrendDTO)
         {
-            return await Utility.RetrieveAsync<TCustomerPurchaseTrend>(API.CustomerPurchaseTrend, null, customerPurchaseTrendDTO);
+            return await Utility.RetrieveAsync<TCustomerPurchaseTrend>(BaseURI.HyperStoreService, API.CustomerPurchaseTrend, null, customerPurchaseTrendDTO);
         }
 
         public static async Task<List<TProductConsumptionDeficientTrend>> RetrieveProductConsumptionTrend(ProductConsumptionTrendDTO productConsumptionTrendDTO)
         {
-            return await Utility.RetrieveAsync<TProductConsumptionDeficientTrend>(API.ProductConsumptionTrend, null, productConsumptionTrendDTO);
+            return await Utility.RetrieveAsync<TProductConsumptionDeficientTrend>(BaseURI.HyperStoreService, API.ProductConsumptionTrend, null, productConsumptionTrendDTO);
         }
 
         /// <summary>
@@ -28,12 +28,12 @@ namespace SDKTemplate
         /// <param name="ProductId"></param>
         public static async Task<List<TPriceQuotedBySupplier>> RetrieveLatestPriceQuotedBySupplierAsync(Guid productId)
         {
-            return await Utility.RetrieveAsync<TPriceQuotedBySupplier>(API.PriceQuotedBySupplier, productId.ToString(), null);
+            return await Utility.RetrieveAsync<TPriceQuotedBySupplier>(BaseURI.HyperStoreService, API.PriceQuotedBySupplier, productId.ToString(), null);
         }
 
         public static async Task<List<TRecommendedProduct>> RetrieveRecommendedProductAsync(Guid customerId)
         {
-            return await Utility.RetrieveAsync<TRecommendedProduct>(API.RecommendedProducts, customerId.ToString(), null);
+            return await Utility.RetrieveAsync<TRecommendedProduct>(BaseURI.HyperStoreService, API.RecommendedProducts, customerId.ToString(), null);
         }
 
     }

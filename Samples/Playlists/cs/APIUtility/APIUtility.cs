@@ -18,14 +18,14 @@ namespace SDKTemplate
 {
     public partial class Utility
     {
-        public static async Task<List<T>> RetrieveAsync<T>(string APIName, string queryString, object content)
+        public static async Task<List<T>> RetrieveAsync<T>(string BaseURI, string APIName, string queryString, object content)
         {
             string httpResponseBody = "";
             string actionURI = "";
             if (queryString != null)
-                actionURI = APIName + "/" + queryString;
+                actionURI = BaseURI + APIName + "/" + queryString;
             else
-                actionURI = APIName;
+                actionURI = BaseURI + APIName;
 
             try
             {
@@ -51,13 +51,10 @@ namespace SDKTemplate
 
         private static async Task<HttpResponseMessage> HttpGet(string actionURI, object content)
         {
-            string absoluteURI = "https://localhost:44346/api/";
-            string uri = string.Concat(absoluteURI, actionURI);
-
             HttpBaseProtocolFilter httpBaseProtocolFilter = new HttpBaseProtocolFilter();
             httpBaseProtocolFilter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
             HttpClient httpClient = new HttpClient(httpBaseProtocolFilter);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(uri));
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(actionURI));
 
             if (content != null)
                 request.Content = new HttpStringContent(JsonConvert.SerializeObject(content), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
@@ -158,6 +155,6 @@ namespace SDKTemplate
                 var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
                 throw new Exception(x);
             }
-        }  
+        }
     }
 }
