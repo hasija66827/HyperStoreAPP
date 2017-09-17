@@ -57,16 +57,19 @@ namespace SDKTemplate.Login
                 };
 
                 var authenticationToken = await UserDataSource.AuthenticateUserAsync(authenticationDTO);
-                BaseURI.UserId = authenticationToken.User.UserId;
-                if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
-                    this.Frame.Navigate(typeof(MainPage));
-                else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)
+                if (authenticationToken == null || authenticationToken.AuthenticationFactor == EAuthenticationFactor.NotAuthenticated)
                 {
-                    //MSG Diaologue
+                    //MSG DIalogue: INvalid username or password.
                 }
                 else
                 {
-                    //MSG Dialogue
+                    BaseURI.UserId = authenticationToken.User.UserId;
+                    if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
+                        this.Frame.Navigate(typeof(MainPage));
+                    else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)
+                    {
+                        //MSG Diaologue OTP Verification starts.
+                    }
                 }
             }
         }

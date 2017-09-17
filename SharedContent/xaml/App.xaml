@@ -43,12 +43,15 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    
                     <SolidColorBrush x:Key="GreenBrush"
                                      Color="#FF59E71A" />
                     <SolidColorBrush x:Key="RedBrush"
                                      Color="#FFF01919" />
                     <SolidColorBrush x:Key="PinkBrush"
                                      Color="#FFFF2FAE" />
+                    <SolidColorBrush x:Key="FrameBrush"
+                                     Color="White"/>
                     <Style x:Key="FontAwesome"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

@@ -41,11 +41,7 @@ namespace SDKTemplate
             List<TProductMetadata> productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService + API.Products, "GetProductMetadata", null);
             if (productMetadata != null && productMetadata.Count == 1)
                 return productMetadata[0];
-            return new TProductMetadata()
-            {
-                DiscountPerRange = new IRange<decimal?>(0, 100),
-                QuantityRange = new IRange<decimal>(0, 1000),
-            };
+            return null;
         }
 
         public static bool IsProductCodeExist(string barCode)

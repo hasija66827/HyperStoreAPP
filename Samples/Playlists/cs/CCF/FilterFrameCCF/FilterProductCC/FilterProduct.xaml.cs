@@ -42,8 +42,11 @@ namespace SDKTemplate
             QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             ShowDeficientItemsOnly.Click += ShowDeficientItemsOnly_Click;
             var productMetadata = await ProductDataSource.RetrieveProductMetadataAsync();
-            InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
-            InitializeQuantityRangeSlider(productMetadata.QuantityRange);
+            if (productMetadata != null)
+            {
+                InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
+                InitializeQuantityRangeSlider(productMetadata.QuantityRange);
+            }
             this.ProductFilterQDT = GetCurrentState();
         }
 
@@ -66,7 +69,7 @@ namespace SDKTemplate
             QuantityRangeSlider.RangeMax = QuantityRangeSlider.Maximum;
             QuantityRangeSlider.Minimum = (double)quantityRange.LB;
             QuantityRangeSlider.RangeMin = QuantityRangeSlider.Minimum;
-        }    
+        }
 
         private ProductFilterQDTDTO GetCurrentState()
         {

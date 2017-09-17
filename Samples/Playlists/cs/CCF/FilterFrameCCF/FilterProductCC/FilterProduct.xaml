@@ -56,6 +56,8 @@
                 <customControl:RangeSlider x:Name="QuantityRangeSlider"
                                            Minimum="0"
                                            RangeMin="0"
+                                           Maximum="100000"
+                                           RangeMax="100000"
                                            Width="250"
                                            RelativePanel.Below="QuantityTB" />
                 <StackPanel Orientation="Horizontal"
