@@ -197,10 +197,29 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <AppBarButton x:Name="AddCustomer"
-                          Icon="AddFriend"
-                          Label="Customer"
+                          Height="60"
                           VerticalAlignment="Top"
-                          Click="AddCustomer_Click" />
+                          Click="AddCustomer_Click"
+                          Width="78">
+                <AppBarButton.Content>
+                    <RelativePanel x:Name="Customer"
+                                   Height="50"
+                                   Margin="0,0,0,-30"
+                                   VerticalAlignment="Center">
+                        <FontIcon x:Name="ScenarioFontIcon"
+                                  FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE1E2;"
+                                  Foreground="#FF1DCDD7"
+                                  FontSize="25"
+                                  RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                  Height="25" />
+                        <TextBlock RelativePanel.Below="ScenarioFontIcon"
+                                   RelativePanel.AlignHorizontalCenterWith="ScenarioFontIcon"
+                                   Text="Customer"
+                                   FontSize="14" />
+                    </RelativePanel>
+                </AppBarButton.Content>
+            </AppBarButton>
             <AppBarButton x:Name="AddProductBtn"
                           HorizontalAlignment="Center"
                           Icon="Add"
