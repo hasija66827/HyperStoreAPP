@@ -26,11 +26,11 @@ namespace SDKTemplate
         #region Create 
         public static async Task<AuthenticationToken> CreateNewUserAsync(UserDTO userDTO)
         {
-            var authenticationToken = await Utility.CreateAsync<AuthenticationToken>(BaseURI.LoginSignUpService + API.Users, userDTO);
+            var authenticationToken = await Utility.CreateAsync<AuthenticationToken>(AuthenticationServiceAPI.Users, userDTO);
             if (authenticationToken != null)
             {
                 var message = String.Format("Welcome {0} {1}!!!\n We are happy to find you here.", authenticationToken.User.FirstName, authenticationToken.User.LastName);
-                SuccessNotification.PopUpSuccessNotification(API.Users, message);
+                SuccessNotification.PopUpSuccessNotification(AuthenticationServiceAPI.Users, message);
             }
             return authenticationToken;
         }
@@ -38,7 +38,7 @@ namespace SDKTemplate
 
         public static async Task<AuthenticationToken> AuthenticateUserAsync(AuthenticateUserDTO authenticateUserDTO)
         {
-            var authenticationToken = await Utility.RetrieveAsync<AuthenticationToken>(BaseURI.LoginSignUpService + API.Users, QueryString.AuthenticateUser, authenticateUserDTO);
+            var authenticationToken = await Utility.RetrieveAsync<AuthenticationToken>(AuthenticationServiceAPI.Users, AuthenticationServiceCustomAPI.AuthenticateUser, authenticateUserDTO);
             if (authenticationToken != null && authenticationToken.Count == 1)
                 return authenticationToken[0];
             return new AuthenticationToken(){AuthenticationFactor= EAuthenticationFactor.NotAuthenticated};

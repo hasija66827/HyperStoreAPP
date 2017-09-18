@@ -17,34 +17,42 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class OTPDialogCC : ContentDialog
     {
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-          "Text", typeof(string), typeof(OTPDialogCC), new PropertyMetadata(default(string)));
+        private bool _IsVerified;
+        public bool IsVerified { get { return this._IsVerified; } }
+        private string _InputOTP { get; set; }
+        private string _GeneratedOTP { get; set; }
 
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
-        public OTPDialogCC(string mobileNumber)
+        public OTPDialogCC(string mobileNumber, string generatedOTP)
         {
             this.InitializeComponent();
-            OTPDialog.Title = "OTP sent to " + mobileNumber;
+            TitleTB.Text = mobileNumber;
+            _GeneratedOTP = generatedOTP;
         }
 
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _IsVerified = false;
+            this.Hide();
         }
 
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void VerifyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (_InputOTP == _GeneratedOTP)
+            {
+                _IsVerified = true;
+                this.Hide();
+            }
+            else
+            {
+                _IsVerified = false;
+                ErrorTB.Text = "Invalid OTP";
+            }
         }
     }
 }

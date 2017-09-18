@@ -5,16 +5,42 @@
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                x:Name="OTPDialog"
-               Title="OTP sent to"
-               FontWeight="SemiBold"
+               Padding="0"
+               Margin="0"
                Background="{StaticResource LightGrayBrush}"
-               PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-               PrimaryButtonText="Verify"
-               SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
-               SecondaryButtonText="Resend"
-               mc:Ignorable="d">
-    <Grid>
-        <TextBox Text="{Binding ElementName=ContentDialog, Path=Text, Mode=TwoWay}"
-                 PlaceholderText="Enter OTP" />
-    </Grid>
+               mc:Ignorable="d"
+               Height="229"
+               Width="323">
+    <RelativePanel Height="203">
+        <TextBlock x:Name="HeaderPanel"
+                   Text="OTP Verification"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource SampleHeaderTextStyle}"
+                   Width="285" />
+        <StackPanel RelativePanel.Below="HeaderPanel"
+                    Width="260"
+                    RelativePanel.AlignHorizontalCenterWith="HeaderPanel">
+            <TextBlock x:Name="TitleTB"
+                       FontSize="15"
+                       Style="{StaticResource SeparatorStyle}" />
+            <TextBox Text="{x:Bind _InputOTP, Mode=TwoWay}"
+                     Style="{StaticResource FormTextBoxStyle}"
+                     Width="260"
+                     PlaceholderText="Enter OTP" />
+            <TextBlock x:Name="ErrorTB"
+                       Text=""
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <Button Content="Verify"
+                    x:Name="VerifyBtn"
+                    Click="VerifyBtn_Click"
+                    Width="250"
+                    Style="{StaticResource FormButtonStyle}" />
+            <Button x:Name="CancelBtn"
+                    Content="Cancel"
+                    Width="250"
+                    Click="CancelBtn_Click"
+                    Style="{StaticResource TransFormButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
 </ContentDialog>

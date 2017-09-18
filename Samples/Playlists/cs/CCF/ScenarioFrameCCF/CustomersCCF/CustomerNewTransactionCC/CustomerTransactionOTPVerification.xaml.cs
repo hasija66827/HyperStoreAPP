@@ -35,28 +35,25 @@ namespace SDKTemplate
 
         private async void ProceedToPayBtn_Click(object sender, RoutedEventArgs e)
         {
-            var OTPDialog = new OTPDialogCC(_CustomerNewTransactionViewModel?.Customer?.MobileNo);
-            var result = await OTPDialog.ShowAsync();
-            // TODO: verify OTP
-            if (result == ContentDialogResult.Primary)
+            var OTPVerificationDTO = new OTPVerificationDTO()
             {
-                if (OTPDialog.Text == "123456")
+                UserID = BaseURI.UserId,
+                IsCredit = false,
+                ReceiverMobileNo = this._CustomerNewTransactionViewModel?.Customer?.MobileNo,
+                TransactionAmount = this._CustomerNewTransactionViewModel?.ReceivingAmount
+            };
+            var IsVerified = await OTPDataSource.VerifyTransactionByOTP(OTPVerificationDTO);
+            if (IsVerified)
+            {
+                var transactionDTO = new CustomerTransactionDTO()
                 {
-                    var transactionDTO = new CustomerTransactionDTO()
-                    {
-                        CustomerId = this._CustomerNewTransactionViewModel?.Customer?.CustomerId,
-                        IsCredit = false,
-                        TransactionAmount = this._CustomerNewTransactionViewModel?.ReceivingAmount,
-                        Description = this._CustomerNewTransactionViewModel.OptionalDescription,
-                    };
-                    var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
-                    this.Frame.Navigate(typeof(CustomersCCF));
-                }
-            }
-            else if (result == ContentDialogResult.Secondary)
-            {
-                OTPDialog.Hide();
-                //throw new NotImplementedException("Resend the OTP");
+                    CustomerId = this._CustomerNewTransactionViewModel?.Customer?.CustomerId,
+                    IsCredit = false,
+                    TransactionAmount = this._CustomerNewTransactionViewModel?.ReceivingAmount,
+                    Description = this._CustomerNewTransactionViewModel.OptionalDescription,
+                };
+                var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
+                this.Frame.Navigate(typeof(CustomersCCF));
             }
         }
     }

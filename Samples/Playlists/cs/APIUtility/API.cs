@@ -10,12 +10,10 @@ namespace SDKTemplate
     {
         public static Guid UserId { get; set; }
         public static string HyperStoreService { get { return "https://localhost:44346/api/" + UserId + "/"; } }
-        public static string LoginSignUpService { get { return "http://localhost:52109/api/"; } }
     }
 
     class API
     {
-        public static string Users { get { return "Users"; } }
         public static string Customers { get { return "Customers"; } }
         public static string Products { get { return "Products"; } }
         public static string Suppliers { get { return "Suppliers"; } }
@@ -32,9 +30,16 @@ namespace SDKTemplate
         public static string PriceQuotedBySupplier { get { return "PriceQuotedBySupplier"; } }
         public static string RecommendedProducts { get { return "RecommendedProducts"; } }
     }
-    class QueryString
+
+    public class AuthenticationServiceAPI
+    {
+        private static string BaseURI { get { return "http://localhost:52109/api/"; } }
+        public static string Users { get { return BaseURI + "Users"; } }
+        public static string OTPVerification { get { return BaseURI + "OTPVerification"; } }
+    }
+
+    class AuthenticationServiceCustomAPI
     {
         public static string AuthenticateUser { get { return "AuthenticateUser"; } }
-
     }
 }

@@ -199,6 +199,7 @@
       <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryViewModel.cs" />
+    <Compile Include="OTPDataSource.cs" />
     <Compile Include="OTPDialogue.xaml.cs">
       <DependentUpon>OTPDialogue.xaml</DependentUpon>
     </Compile>
