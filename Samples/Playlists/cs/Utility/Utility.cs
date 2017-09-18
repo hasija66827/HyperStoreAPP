@@ -217,17 +217,36 @@ namespace SDKTemplate
         {
             try
             {
-                var v = (decimal)(System.Convert.ToDouble(value));
-                if (v < 0)
-                    throw new Exception();
+                 value = (System.Convert.ToDecimal(value));
             }
             catch (Exception e)
             {
-
-                value = 0;
-                MainPage.Current.NotifyUser("Invalid value entered, resetting it to zero", NotifyType.ErrorMessage);
+                value = null;
             }
-            return (decimal)System.Convert.ToDouble(value);
+            return (value);
+        }
+    }
+    // Tries to convert value into positive decimal, if it fails then reset the value to one.
+    public class ConverToInt32 : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            return value?.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            try
+            {
+                value = (System.Convert.ToInt32(value));
+            }
+            catch (Exception e)
+            {
+                value = null;
+            }
+            return (value);
         }
     }
 

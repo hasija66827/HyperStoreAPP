@@ -185,10 +185,10 @@
     <Compile Include="mvvm2\LaterThanPropertyAttribute.cs" />
     <Compile Include="mvvm2\NumericAttribute.cs" />
     <Compile Include="mvvm2\ValidatableBindableBase.cs" />
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagCC.xaml.cs">
-      <DependentUpon>ProductTagCC.xaml</DependentUpon>
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductBasicDetailFormCC\ProductBasicDetailCC.xaml.cs">
+      <DependentUpon>ProductBasicDetailCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagViewModel.cs" />
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductBasicDetailFormCC\ProductBasicDetailViewModel.cs" />
     <Compile Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProduct.xaml.cs">
       <DependentUpon>RecommendedProduct.xaml</DependentUpon>
     </Compile>
@@ -254,8 +254,8 @@
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPageNavigationParameter.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\CustomerFormCC\CustomerFormViewModel.cs" />
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormCC.xaml.cs">
-      <DependentUpon>ProductFormCC.xaml</DependentUpon>
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductPricingDetailFormCC\ProductPricingFormCC.xaml.cs">
+      <DependentUpon>ProductPricingFormCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerPageNavigationParameter.cs" />
     <Compile Include="BlankPage.xaml.cs">
@@ -288,7 +288,7 @@
     <Compile Include="CCF\ScenarioFrameCCF\ProductCCF\ProductInStock.xaml.cs">
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormViewModel.cs" />
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\ProductPricingDetailFormCC\ProductPricingDetailViewModel.cs" />
     <Compile Include="Notifications\ErrorTittle.cs" />
     <Compile Include="Notifications\ErrorNotification.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
@@ -371,7 +371,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\EntityFrameCCF\ProductFormCC\ProductFormCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\ProductFormCC\ProductPricingDetailFormCC\ProductPricingFormCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -459,7 +459,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductTagFormCC\ProductTagCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductBasicDetailFormCC\ProductBasicDetailCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

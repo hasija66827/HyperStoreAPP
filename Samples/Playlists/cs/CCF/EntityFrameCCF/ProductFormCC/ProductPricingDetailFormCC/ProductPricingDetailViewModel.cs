@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public sealed class ProductFormViewModel : ValidatableBindableBase
+    public sealed class ProductPricingDetailViewModel : ValidatableBindableBase
     {
         public decimal? DiscountAmount
         {
@@ -39,25 +39,9 @@ namespace SDKTemplate
             get { return this.SubTotal * (this.TotalGSTPer) / 100; }
         }
 
-        private string _code;
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [RegularExpression(@"[1-9]\d{3,12}", ErrorMessage = "Try code with atleast 4 and atmost 13 digits.")]
-        public string Code { get { return this._code; } set { SetProperty(ref _code, value); } }
-
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [MaxLength(20, ErrorMessage = "Try name with atmost 20 charecters.")]
-        [RegularExpression(@"[a-zA-Z]{1,20}", ErrorMessage = "Name is Invalid")]
-        public string Name { get; set; }
-
-        //TODO: add error text block.
-        private Int32 _threshold;
-        [Range(0, float.MaxValue)]
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        public Int32 Threshold { get { return this._threshold; } set { SetProperty(ref _threshold, value); } }
-
+       
         private decimal? _displayPrice;
-        [DefaultValue(0)]
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "DisplayPrice is Invalid", AllowEmptyStrings = false)]
         [Range(0, float.MaxValue)]
         public decimal? DisplayPrice
         {
@@ -73,8 +57,8 @@ namespace SDKTemplate
 
         private decimal? _discountPer;
         [DefaultValue(0)]
-        [Range(0, 100, ErrorMessage ="Discount Percentage is Invalid")]
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [Range(0, 100, ErrorMessage ="Try Discount % in Range (0, 100).")]
+        [Required(ErrorMessage = "Discount Percentage is Invalid", AllowEmptyStrings = false)]
         public decimal? DiscountPer
         {
             get { return this._discountPer; }
@@ -91,8 +75,8 @@ namespace SDKTemplate
 
         private decimal? _CGSTPer;
         [DefaultValue(0)]
-        [Range(0, 100, ErrorMessage = "CGST Percentage is Invalid")]
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [Range(0, 100, ErrorMessage = "Try CGST % in Range (0, 100).")]
+        [Required(ErrorMessage = "CGST Percentage is Invalid", AllowEmptyStrings = false)]
         public decimal? CGSTPer
         {
             get { return this._CGSTPer; }
@@ -107,8 +91,8 @@ namespace SDKTemplate
 
         private decimal? _SGSTPer;
         [DefaultValue(0)]
-        [Range(0, 100, ErrorMessage = "SGST Percentage is Invalid")]
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [Range(0, 100, ErrorMessage = "Try SGST % in Range (0, 100).")]
+        [Required(ErrorMessage = "SGST Percentage is Invalid", AllowEmptyStrings = false)]
         public decimal? SGSTPer
         {
             get { return this._SGSTPer; }

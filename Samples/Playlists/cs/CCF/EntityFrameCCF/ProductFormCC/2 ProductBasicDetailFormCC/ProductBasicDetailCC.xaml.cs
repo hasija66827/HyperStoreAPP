@@ -25,7 +25,8 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class ProductTagCC : Page
     {
-        private TProduct _SelectedProduct { get; set; }
+        private ProductPricingDetailViewModel _PPDV { get; set; }
+        private ProductBasicDetailViewModel _PBDV { get; set; }
         private List<ProductTagViewModel> _ProductTags { get; set; }
         private List<Guid?> _SelectedTagIds { get { return _ProductTags.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
         public static ProductTagCC Current;
@@ -37,7 +38,8 @@ namespace SDKTemplate
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._SelectedProduct = (TProduct)e.Parameter;
+            this._PPDV = (ProductPricingDetailViewModel)e.Parameter;
+            this._PBDV = DataContext as ProductBasicDetailViewModel;
             var tags = await TagDataSource.RetreiveTagsAsync();
             var Items = tags.Select(t => new ProductTagViewModel()
             {
@@ -51,21 +53,23 @@ namespace SDKTemplate
 
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            var productDTO = new ProductDTO()
+            var IsValid = this._PBDV.ValidateProperties();
+            if (IsValid)
             {
-                TagIds = _SelectedTagIds,
-                CGSTPer = _SelectedProduct.CGSTPer,
-                Code = _SelectedProduct.Code,
-                DiscountPer = _SelectedProduct.DiscountPer,
-                DisplayPrice = _SelectedProduct.DisplayPrice,
-                Name = _SelectedProduct.Name,
-                RefillTime = _SelectedProduct.RefillTime,
-                SGSTPer = _SelectedProduct.SGSTPer,
-                Threshold = _SelectedProduct.Threshold
-            };
-            if (await ProductDataSource.CreateNewProductAsync(productDTO) != null)
-                MainPage.Current.NotifyUser("The product was created succesfully", NotifyType.StatusMessage);
-            this.Frame.Navigate(typeof(BlankPage));
+                var productDTO = new ProductDTO()
+                {
+                    TagIds = _SelectedTagIds,
+                    CGSTPer = _PPDV.CGSTPer,
+                    Code = _PBDV.Code,
+                    DiscountPer = _PPDV.DiscountPer,
+                    DisplayPrice = _PPDV.DisplayPrice,
+                    Name = _PBDV.Name,
+                    RefillTime = 12,//remove it
+                    SGSTPer = _PPDV.SGSTPer,
+                    Threshold = _PBDV.Threshold
+                };
+                var product = await ProductDataSource.CreateNewProductAsync(productDTO);
+            } 
         }
     }
 }

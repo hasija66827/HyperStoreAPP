@@ -15,7 +15,7 @@ namespace SDKTemplate
     public sealed partial class ProductFormCC : Page
     {
         public static ProductFormCC Current;
-        private ProductFormViewModel _PFV;
+        private ProductPricingDetailViewModel _PPDV;
         public ProductFormCC()
         {
             Current = this;
@@ -24,9 +24,8 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _PFV = DataContext as ProductFormViewModel;
-            _PFV.ErrorsChanged += _PFV_ErrorsChanged;
-            var product = (ProductViewModelBase)e.Parameter;
+            _PPDV = DataContext as ProductPricingDetailViewModel;
+            _PPDV.ErrorsChanged += _PFV_ErrorsChanged;
             base.OnNavigatedTo(e);
         }
 
@@ -41,9 +40,9 @@ namespace SDKTemplate
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsValid = this._PFV.ValidateProperties();
+            var IsValid = this._PPDV.ValidateProperties();
             if (IsValid)
-                this.Frame.Navigate(typeof(ProductTagCC), this._PFV);
+                this.Frame.Navigate(typeof(ProductTagCC), this._PPDV);
         }
     }
 }
