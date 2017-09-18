@@ -16,6 +16,8 @@ using SDKTemp.Data;
 using Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using SDKTemplate.DTO;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -30,7 +32,6 @@ namespace SDKTemplate
         public PayLaterOTPVerification()
         {
             this.InitializeComponent();
-            SubmitBtn.Click += SubmitBtn_Click;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -45,19 +46,32 @@ namespace SDKTemplate
             };
         }
 
-        private async void SubmitBtn_Click(object sender, RoutedEventArgs e)
+
+        private async void ProceedBtn_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: verify OTP
-            if (OTPTB.Text == "123456")
+            var IsVerified = await _InitiateOTPVerificationAsync();
+            if (IsVerified)
             {
-                var task = CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter, this._PayLaterModeViewModel.PartiallyPayingAmount);
-                var usingWalletAmount = await task;
+
+                var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter,
+                                                                            this._PayLaterModeViewModel.PartiallyPayingAmount);
                 this.Frame.Navigate(typeof(CustomerProductListCC));
             }
-            else
+
+        }
+
+        private async Task<bool> _InitiateOTPVerificationAsync()
+        {
+            var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingCustomerOrder_Credit];
+            var fomattedSMSContent = String.Format(SMSContent, this._PayLaterModeViewModel?.AmountToBePaidLater, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
+            var OTPVerificationDTO = new OTPVerificationDTO()
             {
-                MainPage.Current.NotifyUser("Invalid OTP", NotifyType.ErrorMessage);
-            }
+                UserID = BaseURI.User.UserId,
+                ReceiverMobileNo = this._PageNavigationParameter?.SelectedCustomer?.MobileNo,
+                SMSContent = fomattedSMSContent,
+            };
+            var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);
+            return IsVerified;
         }
     }
 }
