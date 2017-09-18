@@ -35,12 +35,13 @@ namespace SDKTemplate
 
         private async void ProceedToPayBtn_Click(object sender, RoutedEventArgs e)
         {
+            var SMSContent = OTPVConstants.SMSContents[ScenarioType.ReceiveFromCustomer_Transaction];
+            var fomattedSMSContent = String.Format(SMSContent, this._CustomerNewTransactionViewModel?.ReceivingAmount, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {
                 UserID = BaseURI.User.UserId,
-                IsCredit = false,
                 ReceiverMobileNo = this._CustomerNewTransactionViewModel?.Customer?.MobileNo,
-                TransactionAmount = this._CustomerNewTransactionViewModel?.ReceivingAmount
+                SMSContent= fomattedSMSContent,
             };
             var IsVerified = await OTPDataSource.VerifyTransactionByOTP(OTPVerificationDTO);
             if (IsVerified)

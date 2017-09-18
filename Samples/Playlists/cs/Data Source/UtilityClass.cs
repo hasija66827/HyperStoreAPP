@@ -16,6 +16,15 @@ namespace SDKTemplate
 
     namespace DTO
     {
+        public enum ScenarioType
+        {
+            PayToSupplier_Transaction,
+            PlacingCustomerOrder_Credit,
+            PlacingCustomerOrder_Debit,
+            PlacingSupplierOrder_Credit,
+            ReceiveFromCustomer_Transaction,
+        }
+
         public class PersonalInformationDTO
         {
             [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
@@ -104,12 +113,8 @@ namespace SDKTemplate
             public string ReceiverMobileNo { get; set; }
 
             [Required]
-            [Range(0, 98765432198765)]
-            public decimal? TransactionAmount { get; set; }
-
-            [Required]
-            public bool? IsCredit { get; set; }
-
+            [StringLength(200)]
+            public string SMSContent { get; set; }
         }
 
         public class CustomerDTO

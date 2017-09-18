@@ -203,6 +203,7 @@
     <Compile Include="OTPDialogCC\OTPDialog.xaml.cs">
       <DependentUpon>OTPDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OTPVerificationConstants.cs" />
     <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
       <DependentUpon>UserInformationCC.xaml</DependentUpon>
     </Compile>
