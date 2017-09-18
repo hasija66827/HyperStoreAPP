@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="SDKTemplate.ProductBasicFormCC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDKTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:ConverToInt32 x:Key="ConverToInt32" />
+    </UserControl.Resources>
+    <Page.DataContext>
+        <local:ProductBasicDetailViewModel />
+    </Page.DataContext>
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Product"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <StackPanel x:Name="ContentPanel"
+                    Orientation="Vertical"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWith="HeaderPanel"
+                    RelativePanel.Below="HeaderPanel"
+                    Padding="10">
+            <TextBox x:Name="ProductCodeTB"
+                     Header="Product Code"
+                     Text="{x:Bind _PBDV.Code, Mode=TwoWay}"
+                     ToolTipService.ToolTip="The code by which you can search for the product"
+                     PlaceholderText="Four digit product code"
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[Code][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox x:Name="ProductNameTB"
+                     Header="Product Name"
+                     Text="{x:Bind _PBDV.Name, Mode=TwoWay}"
+                     ToolTipService.ToolTip="Product Name for e.g. Maggi"
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[Name][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox x:Name="Threshold"
+                     Header="Threshold"
+                     Text="{x:Bind _PBDV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
+                     PlaceholderText=""
+                     ToolTipService.ToolTip="The number of units of product below which you want get notified"
+                     Style="{StaticResource MediumFormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[Threshold][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          MaxHeight="220"
+                          Width="300">
+                <ItemsControl x:Name="TagItemControl"
+                              ItemsSource="{x:Bind _ProductTags}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="local:FilterTagViewModel">
+                            <CheckBox Content="{Binding TagName}"
+                                      FontSize="14"
+                                      Foreground="Black"
+                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"
+                                      IsThreeState="False" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+        <Button Content="Save"
+                x:Name="SaveBtn"
+                Style="{StaticResource FormButtonStyle}"
+                RelativePanel.AlignBottomWithPanel="True"
+                Click="SaveBtn_Click"
+                Width="305" />
+    </RelativePanel>
+</Page>

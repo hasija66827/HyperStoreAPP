@@ -1,0 +1,97 @@
+﻿<Page x:Class="SDKTemplate.ProductPricingFormCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
+        <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
+    </UserControl.Resources>
+    <Page.DataContext>
+        <local:ProductPricingDetailViewModel />
+    </Page.DataContext>
+    <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Product Pricing Detail"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
+        <StackPanel x:Name="ContentPanel"
+                    Orientation="Vertical"
+                    RelativePanel.Below="HeaderPanel"
+                    Margin="10,0,0,0">
+           <TextBox x:Name="DisplayPrice"
+                     Header="DisplayPrice"
+                     Text="{x:Bind _PPDV.DisplayPrice, Mode=TwoWay,  Converter={StaticResource CheckIfPositiveFloat} }"
+                     ToolTipService.ToolTip="Price of the product to be sold to the Customer"
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[DisplayPrice][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                <TextBox x:Name="DiscountPer"
+                         Header="Dis %"
+                         Text="{x:Bind _PPDV.DiscountPer, Mode=TwoWay,Converter={StaticResource CheckIfPositiveFloat}}"
+                         ToolTipService.ToolTip="Discount % on Display Price, given to the Customer"
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                <TextBlock x:Name="DiscountAmount"
+                           Width="60"
+                           TextAlignment="Right"
+                           Text="{x:Bind _PPDV.DiscountAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                           ToolTipService.ToolTip="Discount on the Display Price, given to the Customer" />
+                <TextBlock x:Name="SubTotal"
+                           Text="{x:Bind _PPDV.SubTotal,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                           ToolTipService.ToolTip="Subtotal"
+                           Style="{StaticResource PositiveValueTB}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Errors[DiscountPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <TextBox x:Name="CGSTPer"
+                         Header="CGST %"
+                         Text="{x:Bind _PPDV.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         ToolTipService.ToolTip="CGST Percentage on the Subtotal"
+                         Style="{StaticResource SmallFormTextBoxStyle}" />
+                <TextBox x:Name="SGSTPer"
+                         Header="SGST %"
+                         Text="{x:Bind _PPDV.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         ToolTipService.ToolTip="SGSTPer on the Subtotal"
+                         Style="{StaticResource SmallFormTextBoxStyle}" />
+                <TextBlock x:Name="TotalGSTPer"
+                           Width="60"
+                           TextAlignment="Right"
+                           Text="{x:Bind _PPDV.TotalGSTPer, Mode=OneWay}"
+                           ToolTipService.ToolTip="Total GST Percentage on Subtotal" />
+                <TextBlock x:Name="TotalGSTAmount"
+                           Text="{x:Bind _PPDV.TotalGSTAmount, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                           ToolTipService.ToolTip="Total GST Amount"
+                           Style="{StaticResource PositiveValueTB}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Errors[CGSTPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBlock Text="{Binding Errors[SGSTPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBlock Text="{x:Bind _PPDV.SellingPrice, Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                       Style="{StaticResource PositiveValueTB}"
+                       HorizontalAlignment="Right" />
+        </StackPanel>
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True">
+            <Button Content="Next"
+                    x:Name="NextBtn"
+                    Click="NextBtn_Click"
+                    Style="{StaticResource FormButtonStyle}" />
+            <Button x:Name="CancelBtn"
+                    Content="Cancel"
+                    Click="CancelBtn_Click"
+                    Style="{StaticResource TransFormButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
+</Page>
