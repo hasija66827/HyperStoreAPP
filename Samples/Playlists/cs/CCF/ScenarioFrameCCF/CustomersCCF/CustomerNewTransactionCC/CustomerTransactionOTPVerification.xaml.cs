@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -35,15 +36,7 @@ namespace SDKTemplate
 
         private async void ProceedToPayBtn_Click(object sender, RoutedEventArgs e)
         {
-            var SMSContent = OTPVConstants.SMSContents[ScenarioType.ReceiveFromCustomer_Transaction];
-            var fomattedSMSContent = String.Format(SMSContent, this._CustomerNewTransactionViewModel?.ReceivingAmount, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
-            var OTPVerificationDTO = new OTPVerificationDTO()
-            {
-                UserID = BaseURI.User.UserId,
-                ReceiverMobileNo = this._CustomerNewTransactionViewModel?.Customer?.MobileNo,
-                SMSContent= fomattedSMSContent,
-            };
-            var IsVerified = await OTPDataSource.VerifyTransactionByOTP(OTPVerificationDTO);
+            var IsVerified = await _InitiateOTPVerificationAsync();
             if (IsVerified)
             {
                 var transactionDTO = new CustomerTransactionDTO()
@@ -56,6 +49,20 @@ namespace SDKTemplate
                 var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 this.Frame.Navigate(typeof(CustomersCCF));
             }
+        }
+
+        private async Task<bool> _InitiateOTPVerificationAsync()
+        {
+            var SMSContent = OTPVConstants.SMSContents[ScenarioType.ReceiveFromCustomer_Transaction];
+            var fomattedSMSContent = String.Format(SMSContent, this._CustomerNewTransactionViewModel?.ReceivingAmount, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
+            var OTPVerificationDTO = new OTPVerificationDTO()
+            {
+                UserID = BaseURI.User.UserId,
+                ReceiverMobileNo = this._CustomerNewTransactionViewModel?.Customer?.MobileNo,
+                SMSContent = fomattedSMSContent,
+            };
+            var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);
+            return IsVerified;
         }
     }
 }

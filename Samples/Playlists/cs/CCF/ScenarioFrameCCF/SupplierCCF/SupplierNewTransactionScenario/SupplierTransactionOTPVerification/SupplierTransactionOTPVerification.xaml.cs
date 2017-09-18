@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -35,26 +36,33 @@ namespace SDKTemplate
 
         private async void VerifyBtn_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: verify OTP
-            if (OTPLabel.Text == "123456")
+            var IsVerified = await _InitiateOTPVerificationAsync();
+            if (IsVerified)
             {
                 var transactionDTO = new SupplierTransactionDTO()
                 {
                     SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.SupplierId,
                     IsCredit = false,
                     TransactionAmount = this._SupplierNewTransactionViewModel?.PayingAmount,
-                    Description=this._SupplierNewTransactionViewModel?.OptionalDescription,
+                    Description = this._SupplierNewTransactionViewModel?.OptionalDescription,
                 };
                 var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
 
-                MainPage.Current.NotifyUser("OTP Verified and The updated wallet balance of the wholeSeller is \u20b9"
-                    + (transaction.WalletSnapshot - transaction.TransactionAmount), NotifyType.StatusMessage);
-                this.Frame.Navigate(typeof(SupplierCCF));
             }
-            else
+        }
+
+        private async Task<bool> _InitiateOTPVerificationAsync()
+        {
+            var SMSContent = OTPVConstants.SMSContents[ScenarioType.PayToSupplier_Transaction];
+            var fomattedSMSContent = String.Format(SMSContent, this._SupplierNewTransactionViewModel?.PayingAmount, _SupplierNewTransactionViewModel?.Supplier?.Name, OTPVConstants.OTPLiteral);
+            var OTPVerificationDTO = new OTPVerificationDTO()
             {
-                MainPage.Current.NotifyUser("Invalid OTP", NotifyType.ErrorMessage);
-            }
+                UserID = BaseURI.User.UserId,
+                ReceiverMobileNo = BaseURI.User.MobileNo,
+                SMSContent = fomattedSMSContent,
+            };
+            var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);
+            return IsVerified;
         }
     }
 }

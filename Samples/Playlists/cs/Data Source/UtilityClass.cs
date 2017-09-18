@@ -16,15 +16,7 @@ namespace SDKTemplate
 
     namespace DTO
     {
-        public enum ScenarioType
-        {
-            PayToSupplier_Transaction,
-            PlacingCustomerOrder_Credit,
-            PlacingCustomerOrder_Debit,
-            PlacingSupplierOrder_Credit,
-            ReceiveFromCustomer_Transaction,
-        }
-
+      
         public class PersonalInformationDTO
         {
             [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]

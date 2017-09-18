@@ -9,7 +9,7 @@ namespace SDKTemplate
 {
     class OTPDataSource
     {
-        public async static Task<bool> VerifyTransactionByOTP(OTPVerificationDTO OTPVerificationDTO)
+        public async static Task<bool> VerifyTransactionByOTPAsync(OTPVerificationDTO OTPVerificationDTO)
         {
             var OTP = await Utility.RetrieveAsync<string>(AuthenticationServiceAPI.OTPVerification, null, OTPVerificationDTO);
             if (OTP == null)

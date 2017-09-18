@@ -41,11 +41,7 @@
                        Style="{ThemeResource LargeFormTBPropStyle}" />
             <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.OptionalDescription}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBox x:Name="OTPLabel"
-                     Header="Enter OTP"
-                     PlaceholderText="Enter OTP"
-                     Style="{ThemeResource LargeFormTextBoxStyle}" />
-        </StackPanel>
+         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">
