@@ -84,32 +84,15 @@
                            Grid.Row="1"
                            Grid.Column="1" />
             </Grid>
-            <StackPanel Orientation="Vertical"
-                        RelativePanel.Below="DetailsPanel"
-                        Margin="0,80">
-                <TextBlock Text="Enter OTP"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource SampleHeaderTextStyle}" />
-                <TextBlock x:Name="MobNoTB"
-                           Text="{x:Bind _OTPVerificationForPayingNow.Customer.MobileNo}"
-                           Foreground="#FF08BFC2"
-                           HorizontalAlignment="Center" />
-                <TextBox x:Name="OTPTB"
-                         Width="120"
-                         PlaceholderText="6 digit"
-                         Grid.Row="3"
-                         Grid.Column="1"
-                         HorizontalContentAlignment="Right" />
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Margin="0,20">
-                    <Button x:Name="SubmitBtn"
-                            Content="Verify" />
-                    <Button x:Name="ResendBtn"
-                            Margin="40,0,0,0"
-                            Content="Resend" />
-                </StackPanel>
-            </StackPanel>
+            
         </RelativePanel>
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True">
+            <Button x:Name="ProceedBtn"
+                    Click="ProceedBtn_Click"
+                    Content="Proceed"
+                    Style="{StaticResource ScenarioButtonStyle}" />
+        </StackPanel>
     </Grid>
 </Page>
