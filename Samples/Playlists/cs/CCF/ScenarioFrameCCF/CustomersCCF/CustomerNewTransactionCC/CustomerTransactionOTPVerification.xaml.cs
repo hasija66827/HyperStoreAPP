@@ -37,7 +37,7 @@ namespace SDKTemplate
         {
             var OTPVerificationDTO = new OTPVerificationDTO()
             {
-                UserID = BaseURI.UserId,
+                UserID = BaseURI.User.UserId,
                 IsCredit = false,
                 ReceiverMobileNo = this._CustomerNewTransactionViewModel?.Customer?.MobileNo,
                 TransactionAmount = this._CustomerNewTransactionViewModel?.ReceivingAmount

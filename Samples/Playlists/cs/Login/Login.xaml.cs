@@ -66,7 +66,7 @@ namespace SDKTemplate.Login
                 }
                 else
                 {
-                    BaseURI.UserId = authenticationToken.User.UserId;
+                    BaseURI.User = authenticationToken.User;
                     if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
                         this.Frame.Navigate(typeof(MainPage));
                     else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)

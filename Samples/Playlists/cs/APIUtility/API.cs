@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace SDKTemplate
 {
     class BaseURI
     {
-        public static Guid UserId { get; set; }
-        public static string HyperStoreService { get { return "https://localhost:44346/api/" + UserId + "/"; } }
+        public static TUser User { get; set; }
+        public static string HyperStoreService { get { return "https://localhost:44346/api/" + User.UserId + "/"; } }
     }
 
     class API

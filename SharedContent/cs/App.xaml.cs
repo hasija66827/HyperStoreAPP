@@ -82,7 +82,9 @@ namespace SDKTemplate
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(LoginCC), e.Arguments);
+
+                BaseURI.User = new Models.TUser();// Need to removed, as it will be setup in the login or signup time.
+                rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

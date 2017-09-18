@@ -100,7 +100,7 @@ namespace SDKTemplate.SignUp
 
             var authenticationToken = await UserDataSource.CreateNewUserAsync(user);
             if (authenticationToken != null)
-                BaseURI.UserId = authenticationToken.User.UserId;
+                BaseURI.User = authenticationToken.User;
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
