@@ -10,5 +10,6 @@ namespace SDKTemplate
     {
         public string Error_HTTPGet { get; set; }
         public string Error_HTTPPost { get; set; }
+        public string Error_HTTPPut { get; set; }
     }
 }

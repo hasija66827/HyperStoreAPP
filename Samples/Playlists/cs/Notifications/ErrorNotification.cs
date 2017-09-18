@@ -13,7 +13,6 @@ namespace SDKTemplate
     class ErrorNotification
     {
         // In a real app, these would be initialized with actual data
-        private static string image = "https://unsplash.it/360/202?image=883";
         private static string logo = "ms-appdata:///local/Andrew.jpg";
         ToastVisual visual;
         // Construct the visuals of the toast
@@ -22,8 +21,9 @@ namespace SDKTemplate
         private ToastContent toastContent;
         private ToastNotification toast;
         private const int NotificationLength = 120;
-        private static string RetrieveFailedForEntity = "Unfortunately!! We were unable to Get {0} from the Server";
-        private static string CreationFailedForEntity = "Unforutnately!!! {0} creation did not succeded";
+        private static string RetrieveFailedForEntity = "Unfortunately!! We were unable to Get {0} from the Server.";
+        private static string CreationFailedForEntity = "Unforutnately!!! {0} creation did not succeded.";
+        private static string UpdationFailedForEntity = "Unforutnately!!! {0} updation did not succeded.";
 
         public static void PopUpHTTPGetErrorNotifcation(string APIName, string userMessage)
         {
@@ -45,6 +45,17 @@ namespace SDKTemplate
             ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
         }
 
+        public static void PopUpHTTPPutErrorNotifcation(string APIName, string userMessage)
+        {
+            if (userMessage.Length > NotificationLength)
+                userMessage = userMessage.Substring(0, NotificationLength);
+            ErrorTitle title;
+            ErrorNotification._Dictionary_API_Title.TryGetValue(APIName, out title);
+            ErrorNotification errorNotification = new ErrorNotification(title?.Error_HTTPPut, userMessage);
+            ToastNotificationManager.CreateToastNotifier().Show(errorNotification.toast);
+        }
+
+
         public static void InitializeDictionary()
         {
             _Dictionary_API_Title = new Dictionary<string, ErrorTitle>();
@@ -60,6 +71,7 @@ namespace SDKTemplate
                         {
                             Error_HTTPGet = String.Format(RetrieveFailedForEntity, APIName),
                             Error_HTTPPost = String.Format(CreationFailedForEntity, APIName),
+                            Error_HTTPPut = String.Format(UpdationFailedForEntity, APIName),
                         });
             }
         }
@@ -81,11 +93,6 @@ namespace SDKTemplate
             {
                 Text = content
             },
-
-            new AdaptiveImage()
-            {
-                Source = image
-            }
         },
 
                     AppLogoOverride = new ToastGenericAppLogo()
@@ -101,9 +108,6 @@ namespace SDKTemplate
             };
             // And create the toast notification
             toast = new ToastNotification(toastContent.GetXml());
-            toast.ExpirationTime = DateTime.Now.AddMinutes(5);
         }
-
     }
-
 }

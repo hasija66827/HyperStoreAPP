@@ -42,7 +42,7 @@ namespace SDKTemplate
                 var userMessage = ex.Message;
 
                 if (ex.HResult == -2147012867)
-                    userMessage = "Could not connect to server. \nPlease check the internet connection.";
+                    userMessage = "Could not connect to server.\nPlease check the internet connection.";
 
                 ErrorNotification.PopUpHTTPGetErrorNotifcation(baseURI, userMessage);
                 return default(T);
@@ -83,7 +83,11 @@ namespace SDKTemplate
             }
             catch (Exception ex)
             {
-                ErrorNotification.PopUpHTTPPostErrorNotifcation(baseURI, ex.Message);
+                var userMessage = ex.Message;
+                if (ex.HResult == -2147012867)
+                    userMessage = "Could not connect to server.\nPlease check the internet connection.";
+
+                ErrorNotification.PopUpHTTPPostErrorNotifcation(baseURI, userMessage);
                 //TODO: handle different types of exception
                 return default(T);
             }
@@ -103,8 +107,7 @@ namespace SDKTemplate
             }
             catch (Exception ex)
             {
-                var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
-                throw new Exception(x);
+                throw ex;
             }
         }
 
@@ -128,7 +131,11 @@ namespace SDKTemplate
             }
             catch (Exception ex)
             {
-                //ErrorNotification.PopUpHTTPPostErrorNotifcation(APIName, ex.Message);
+                var userMessage = ex.Message;
+                if (ex.HResult == -2147012867)
+                    userMessage = "Could not connect to server.\nPlease check the internet connection.";
+
+                ErrorNotification.PopUpHTTPPutErrorNotifcation(baseURI, userMessage);
                 //TODO: handle different types of exception
                 return default(T);
             }
@@ -148,8 +155,7 @@ namespace SDKTemplate
             }
             catch (Exception ex)
             {
-                var x = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
-                throw new Exception(x);
+                throw ex;
             }
         }
     }

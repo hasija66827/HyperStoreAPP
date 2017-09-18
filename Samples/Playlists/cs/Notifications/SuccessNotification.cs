@@ -49,7 +49,6 @@ namespace SDKTemplate
         }
 
         private const int NotificationLength = 120;
-        private static string image = "https://unsplash.it/360/202?image=883";
         private static string logo = "ms-appdata:///local/Andrew.jpg";
         ToastVisual visual;
         // Construct the visuals of the toast
@@ -74,10 +73,6 @@ namespace SDKTemplate
                 Text = content
             },
 
-            new AdaptiveImage()
-            {
-                Source = image
-            }
         },
 
                     AppLogoOverride = new ToastGenericAppLogo()
@@ -94,7 +89,6 @@ namespace SDKTemplate
             };
             // And create the toast notification
             toast = new ToastNotification(toastContent.GetXml());
-            toast.ExpirationTime = DateTime.Now.AddMinutes(5);
         }
     }
 }
