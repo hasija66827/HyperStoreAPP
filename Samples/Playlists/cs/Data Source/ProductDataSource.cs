@@ -27,7 +27,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TProduct>> RetrieveProductDataAsync(ProductFilterCriteriaDTO pfc)
         {
-            List<TProduct> products = await Utility.RetrieveAsync<TProduct>(BaseURI.HyperStoreService + API.Products, null, pfc);
+            List<TProduct> products = await Utility.RetrieveAsync<List<TProduct>>(BaseURI.HyperStoreService + API.Products, null, pfc);
             return products;
         }
 
@@ -38,10 +38,8 @@ namespace SDKTemplate
 
         public static async Task<TProductMetadata> RetrieveProductMetadataAsync()
         {
-            List<TProductMetadata> productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService + API.Products, "GetProductMetadata", null);
-            if (productMetadata != null && productMetadata.Count == 1)
-                return productMetadata[0];
-            return null;
+           var productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService + API.Products, "GetProductMetadata", null);
+            return productMetadata;
         }
 
         public static bool IsProductCodeExist(string barCode)

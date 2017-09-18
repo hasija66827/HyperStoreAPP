@@ -41,7 +41,7 @@ namespace SDKTemplate
         #region Read
         public static async Task<List<TSupplierTransaction>> RetrieveTransactionsAsync(SupplierTransactionFilterCriteriaDTO tfc)
         {
-            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<TSupplierTransaction>(BaseURI.HyperStoreService + API.SupplierTransactions, null, tfc);
+            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<List<TSupplierTransaction>>(BaseURI.HyperStoreService + API.SupplierTransactions, null, tfc);
             return transactions;
         }
         #endregion

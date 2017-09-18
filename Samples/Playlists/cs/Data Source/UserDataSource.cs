@@ -39,9 +39,9 @@ namespace SDKTemplate
         public static async Task<AuthenticationToken> AuthenticateUserAsync(AuthenticateUserDTO authenticateUserDTO)
         {
             var authenticationToken = await Utility.RetrieveAsync<AuthenticationToken>(AuthenticationServiceAPI.Users, AuthenticationServiceCustomAPI.AuthenticateUser, authenticateUserDTO);
-            if (authenticationToken != null && authenticationToken.Count == 1)
-                return authenticationToken[0];
+            if (authenticationToken== null)
             return new AuthenticationToken(){AuthenticationFactor= EAuthenticationFactor.NotAuthenticated};
+            return authenticationToken;
         }
     }
 }

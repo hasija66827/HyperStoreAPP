@@ -53,9 +53,9 @@ namespace SDKTemplate
         {
             if (walletBalanceRange != null)
             {
-                WalletRangeSlider.Maximum = (double)(walletBalanceRange.UB + 10);
+                WalletRangeSlider.Maximum = (double)(walletBalanceRange.UB + 1);
                 WalletRangeSlider.RangeMax = WalletRangeSlider.Maximum;
-                WalletRangeSlider.Minimum = (double)(walletBalanceRange.LB - 10);
+                WalletRangeSlider.Minimum = (double)(walletBalanceRange.LB);
                 WalletRangeSlider.RangeMin = WalletRangeSlider.Minimum;
             }
         }

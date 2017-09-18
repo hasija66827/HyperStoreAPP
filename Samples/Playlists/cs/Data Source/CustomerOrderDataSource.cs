@@ -70,13 +70,13 @@ namespace SDKTemp.Data
         public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
         {
             string actionURI = API.CustomerOrders;
-            List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<TCustomerOrder>(BaseURI.HyperStoreService + API.CustomerOrders, null, cofc);
+            List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<List<TCustomerOrder>>(BaseURI.HyperStoreService + API.CustomerOrders, null, cofc);
             return customerOrders;
         }
 
         public static async Task<List<TCustomerOrderProduct>> RetrieveOrderDetailsAsync(Guid customerOrderId)
         {
-            List<TCustomerOrderProduct> orderDetails = await Utility.RetrieveAsync<TCustomerOrderProduct>(BaseURI.HyperStoreService + API.CustomerOrderProducts, customerOrderId.ToString(), null);
+            List<TCustomerOrderProduct> orderDetails = await Utility.RetrieveAsync<List<TCustomerOrderProduct>>(BaseURI.HyperStoreService + API.CustomerOrderProducts, customerOrderId.ToString(), null);
             return orderDetails;
         }
     }

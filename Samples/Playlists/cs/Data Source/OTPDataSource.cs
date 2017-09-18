@@ -12,9 +12,9 @@ namespace SDKTemplate
         public async static Task<bool> VerifyTransactionByOTP(OTPVerificationDTO OTPVerificationDTO)
         {
             var OTP = await Utility.RetrieveAsync<string>(AuthenticationServiceAPI.OTPVerification, null, OTPVerificationDTO);
-            if (OTP == null || OTP.Count != 1)
+            if (OTP == null)
                 return false;
-            var OTPDialog = new OTPDialogCC(OTPVerificationDTO.ReceiverMobileNo, OTP[0]);
+            var OTPDialog = new OTPDialogCC(OTPVerificationDTO.ReceiverMobileNo, OTP);
             await OTPDialog.ShowAsync();
             return OTPDialog.IsVerified;
         }

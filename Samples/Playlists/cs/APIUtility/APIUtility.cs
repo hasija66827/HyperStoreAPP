@@ -18,7 +18,7 @@ namespace SDKTemplate
 {
     public partial class Utility
     {
-        public static async Task<List<T>> RetrieveAsync<T>(string baseURI, string queryString, object content)
+        public static async Task<T> RetrieveAsync<T>(string baseURI, string queryString, object content)
         {
             string httpResponseBody = "";
             string actionURI = "";
@@ -33,7 +33,7 @@ namespace SDKTemplate
                 if (response.StatusCode != HttpStatusCode.Ok)
                     throw new Exception(response.Content.ToString());
                 httpResponseBody = await response.Content.ReadAsStringAsync();
-                var results = JsonConvert.DeserializeObject<List<T>>(httpResponseBody);
+                var results = JsonConvert.DeserializeObject<T>(httpResponseBody);
                 return results;
             }
             catch (Exception ex)
@@ -45,7 +45,7 @@ namespace SDKTemplate
                     userMessage = "Could not connect to server. \nPlease check the internet connection.";
 
                 ErrorNotification.PopUpHTTPGetErrorNotifcation(baseURI, userMessage);
-                return default(List<T>);
+                return default(T);
             }
         }
 

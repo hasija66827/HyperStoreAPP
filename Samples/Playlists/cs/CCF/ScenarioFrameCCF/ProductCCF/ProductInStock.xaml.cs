@@ -64,7 +64,7 @@ namespace SDKTemplate
                 MasterListView.ItemsSource = items;
                 var totalResults = items;
                 //TODO: get total quantity
-                ProductCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
+                ProductCountTB.Text = "(" + totalResults.Count() + "/" + "xxxx" + ")";
             }
         }
 
