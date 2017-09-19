@@ -185,10 +185,10 @@
     <Compile Include="mvvm2\LaterThanPropertyAttribute.cs" />
     <Compile Include="mvvm2\NumericAttribute.cs" />
     <Compile Include="mvvm2\ValidatableBindableBase.cs" />
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\1 ProductBasicFormCC\ProductBasicDetailCC.xaml.cs">
-      <DependentUpon>ProductBasicDetailCC.xaml</DependentUpon>
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\1 ProductBasicFormCC\ProductDetailFormCC.xaml.cs">
+      <DependentUpon>ProductDetailFormCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\1 ProductBasicFormCC\ProductBasicDetailViewModel.cs" />
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\1 ProductBasicFormCC\ProductDetailFormViewModel.cs" />
     <Compile Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProduct.xaml.cs">
       <DependentUpon>RecommendedProduct.xaml</DependentUpon>
     </Compile>
@@ -459,7 +459,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\EntityFrameCCF\ProductFormCC\1 ProductBasicFormCC\ProductBasicDetailCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\ProductFormCC\1 ProductBasicFormCC\ProductDetailFormCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

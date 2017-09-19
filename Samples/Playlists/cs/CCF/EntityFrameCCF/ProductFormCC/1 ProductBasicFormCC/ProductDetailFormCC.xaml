@@ -9,7 +9,7 @@
         <local:ConverToInt32 x:Key="ConverToInt32" />
     </UserControl.Resources>
     <Page.DataContext>
-        <local:ProductBasicFormViewModel />
+        <local:ProductDetailFormViewModel />
     </Page.DataContext>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
@@ -23,10 +23,10 @@
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWith="HeaderPanel"
                     RelativePanel.Below="HeaderPanel"
-                    Padding="10">
+                    Padding="10,0">
             <TextBox x:Name="ProductCodeTB"
                      Header="Product Code"
-                     Text="{x:Bind _PBFV.Code, Mode=TwoWay}"
+                     Text="{x:Bind _ProdBasicInfo._PDFV.Code, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"
                      PlaceholderText="Four digit product code"
                      Style="{StaticResource FormTextBoxStyle}" />
@@ -34,14 +34,14 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="ProductNameTB"
                      Header="Product Name"
-                     Text="{x:Bind _PBFV.Name, Mode=TwoWay}"
+                     Text="{x:Bind _ProdBasicInfo._PDFV.Name, Mode=TwoWay}"
                      ToolTipService.ToolTip="Product Name for e.g. Maggi"
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="Threshold"
                      Header="Threshold"
-                     Text="{x:Bind _PBFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
+                     Text="{x:Bind _ProdBasicInfo._PDFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
                      PlaceholderText=""
                      ToolTipService.ToolTip="The number of units of product below which you want get notified"
                      Style="{StaticResource MediumFormTextBoxStyle}" />
@@ -52,7 +52,7 @@
             <StackPanel Orientation="Horizontal"
                         Margin="0,5">
                 <TextBox x:Name="TagName"
-                         Text="{x:Bind _Tag.TagName, Mode=TwoWay}"
+                         Text="{x:Bind _TagFormViewModel.TagName, Mode=TwoWay}"
                          ToolTipService.ToolTip="Tag Name which can be assigned to product"
                          PlaceholderText="Enter Tag Name"
                          Style="{StaticResource MediumFormTextBoxStyle}" />
@@ -63,8 +63,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           MaxHeight="95"
                           Width="300">
-                <ItemsControl x:Name="TagItemControl"
-                              ItemsSource="{x:Bind _ProductTags}">
+                <ItemsControl x:Name="TagItemControl">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="local:FilterTagViewModel">
                             <CheckBox Content="{Binding TagName}"

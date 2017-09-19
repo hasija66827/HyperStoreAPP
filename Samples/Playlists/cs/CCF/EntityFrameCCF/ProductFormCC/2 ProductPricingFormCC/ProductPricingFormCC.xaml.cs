@@ -16,8 +16,8 @@ namespace SDKTemplate
     public sealed partial class ProductPricingFormCC : Page
     {
         public static ProductPricingFormCC Current;
+        private ProductBasicInformation _ProdBasicInfo { get; set; }
         private ProductPricingDetailViewModel _PPDV { get; set; }
-        private ProductBasicFormViewModel _PBFV { get; set; }
         public ProductPricingFormCC()
         {
             Current = this;
@@ -26,10 +26,9 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _PBFV = (ProductBasicFormViewModel)e.Parameter;
+            _ProdBasicInfo = (ProductBasicInformation)e.Parameter;
             _PPDV = DataContext as ProductPricingDetailViewModel;
             _PPDV.ErrorsChanged += _PFV_ErrorsChanged;
-
             base.OnNavigatedTo(e);
         }
 
@@ -44,15 +43,15 @@ namespace SDKTemplate
             {
                 var productDTO = new ProductDTO()
                 {
-                    TagIds = null,//TODO
+                    TagIds = _ProdBasicInfo._SelectedTagIds,
                     CGSTPer = _PPDV.CGSTPer,
-                    Code = _PBFV.Code,
+                    Code = _ProdBasicInfo._PDFV.Code,
                     DiscountPer = _PPDV.DiscountPer,
                     DisplayPrice = _PPDV.DisplayPrice,
-                    Name = _PBFV.Name,
+                    Name = _ProdBasicInfo._PDFV.Name,
                     RefillTime = 12,//remove it
                     SGSTPer = _PPDV.SGSTPer,
-                    Threshold = _PBFV.Threshold
+                    Threshold = _ProdBasicInfo._PDFV.Threshold
                 };
                 var product = await ProductDataSource.CreateNewProductAsync(productDTO);
             }
