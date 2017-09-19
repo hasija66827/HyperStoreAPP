@@ -26,7 +26,8 @@ namespace SDKTemplate
     public sealed partial class ProductBasicFormCC : Page
     {
         private ProductPricingDetailViewModel _PPDV { get; set; }
-        private ProductBasicDetailViewModel _PBDV { get; set; }
+        private TagFormViewModel _Tag { get; set; }
+        private ProductBasicFormViewModel _PBFV { get; set; }
         private List<ProductTagViewModel> _ProductTags { get; set; }
         private List<Guid?> _SelectedTagIds { get { return _ProductTags.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList(); } }
         public static ProductBasicFormCC Current;
@@ -39,7 +40,8 @@ namespace SDKTemplate
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._PPDV = (ProductPricingDetailViewModel)e.Parameter;
-            this._PBDV = DataContext as ProductBasicDetailViewModel;
+            this._Tag = new TagFormViewModel();
+            this._PBFV = DataContext as ProductBasicFormViewModel;
             var tags = await TagDataSource.RetreiveTagsAsync();
             var Items = tags.Select(t => new ProductTagViewModel()
             {
@@ -51,25 +53,31 @@ namespace SDKTemplate
             TagItemControl.ItemsSource = this._ProductTags;
         }
 
-        private async void SaveBtn_Click(object sender, RoutedEventArgs e)
+        private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsValid = this._PBDV.ValidateProperties();
+            var IsValid = this._PBFV.ValidateProperties();
             if (IsValid)
             {
-                var productDTO = new ProductDTO()
+                this.Frame.Navigate(typeof(ProductPricingFormCC),_PBFV);
+            }
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BlankPage));
+        }
+
+        private async void CreateTag_Click(object sender, RoutedEventArgs e)
+        {
+            var IsValid = this._Tag.ValidateProperties();
+            if (IsValid)
+            {
+                var tagDTO = new TagDTO()
                 {
-                    TagIds = _SelectedTagIds,
-                    CGSTPer = _PPDV.CGSTPer,
-                    Code = _PBDV.Code,
-                    DiscountPer = _PPDV.DiscountPer,
-                    DisplayPrice = _PPDV.DisplayPrice,
-                    Name = _PBDV.Name,
-                    RefillTime = 12,//remove it
-                    SGSTPer = _PPDV.SGSTPer,
-                    Threshold = _PBDV.Threshold
+                    TagName = this._Tag.TagName,
                 };
-                var product = await ProductDataSource.CreateNewProductAsync(productDTO);
-            } 
+                await TagDataSource.CreateNewTagAsync(tagDTO);
+            }
         }
     }
 }

@@ -1,16 +1,15 @@
-﻿<Page
-    x:Class="SDKTemplate.ProductBasicFormCC"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SDKTemplate"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="SDKTemplate.ProductBasicFormCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
     <UserControl.Resources>
         <local:ConverToInt32 x:Key="ConverToInt32" />
     </UserControl.Resources>
     <Page.DataContext>
-        <local:ProductBasicDetailViewModel />
+        <local:ProductBasicFormViewModel />
     </Page.DataContext>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
@@ -27,7 +26,7 @@
                     Padding="10">
             <TextBox x:Name="ProductCodeTB"
                      Header="Product Code"
-                     Text="{x:Bind _PBDV.Code, Mode=TwoWay}"
+                     Text="{x:Bind _PBFV.Code, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"
                      PlaceholderText="Four digit product code"
                      Style="{StaticResource FormTextBoxStyle}" />
@@ -35,21 +34,34 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="ProductNameTB"
                      Header="Product Name"
-                     Text="{x:Bind _PBDV.Name, Mode=TwoWay}"
+                     Text="{x:Bind _PBFV.Name, Mode=TwoWay}"
                      ToolTipService.ToolTip="Product Name for e.g. Maggi"
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="Threshold"
                      Header="Threshold"
-                     Text="{x:Bind _PBDV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
+                     Text="{x:Bind _PBFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
                      PlaceholderText=""
                      ToolTipService.ToolTip="The number of units of product below which you want get notified"
                      Style="{StaticResource MediumFormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Threshold][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBlock Text="Add Tag To Product"
+                       Style="{StaticResource  TagLineTextStyle}" />
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,5">
+                <TextBox x:Name="TagName"
+                         Text="{x:Bind _Tag.TagName, Mode=TwoWay}"
+                         ToolTipService.ToolTip="Tag Name which can be assigned to product"
+                         PlaceholderText="Enter Tag Name"
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                <Button x:Name="CreateTag"
+                        Content="CreateTag"
+                        Click="CreateTag_Click" />
+            </StackPanel>
             <ScrollViewer VerticalScrollBarVisibility="Auto"
-                          MaxHeight="220"
+                          MaxHeight="95"
                           Width="300">
                 <ItemsControl x:Name="TagItemControl"
                               ItemsSource="{x:Bind _ProductTags}">
@@ -65,11 +77,17 @@
                 </ItemsControl>
             </ScrollViewer>
         </StackPanel>
-        <Button Content="Save"
-                x:Name="SaveBtn"
-                Style="{StaticResource FormButtonStyle}"
-                RelativePanel.AlignBottomWithPanel="True"
-                Click="SaveBtn_Click"
-                Width="305" />
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True">
+            <Button x:Name="CancelBtn"
+                    Content="Cancel"
+                    Click="CancelBtn_Click"
+                    Style="{StaticResource TransFormButtonStyle}" />
+            <Button Content="Next"
+                    x:Name="NextBtn"
+                    Click="NextBtn_Click"
+                    Style="{StaticResource FormButtonStyle}" />
+        </StackPanel>
     </RelativePanel>
 </Page>

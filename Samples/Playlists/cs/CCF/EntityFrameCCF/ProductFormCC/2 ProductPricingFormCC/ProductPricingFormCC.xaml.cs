@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
@@ -15,7 +16,8 @@ namespace SDKTemplate
     public sealed partial class ProductPricingFormCC : Page
     {
         public static ProductPricingFormCC Current;
-        private ProductPricingDetailViewModel _PPDV;
+        private ProductPricingDetailViewModel _PPDV { get; set; }
+        private ProductBasicFormViewModel _PBFV { get; set; }
         public ProductPricingFormCC()
         {
             Current = this;
@@ -24,8 +26,10 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            _PBFV = (ProductBasicFormViewModel)e.Parameter;
             _PPDV = DataContext as ProductPricingDetailViewModel;
             _PPDV.ErrorsChanged += _PFV_ErrorsChanged;
+
             base.OnNavigatedTo(e);
         }
 
@@ -33,16 +37,30 @@ namespace SDKTemplate
         {
         }
 
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(BlankPage));
-        }
-
-        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var IsValid = this._PPDV.ValidateProperties();
             if (IsValid)
-                this.Frame.Navigate(typeof(ProductBasicFormCC), this._PPDV);
+            {
+                var productDTO = new ProductDTO()
+                {
+                    TagIds = null,//TODO
+                    CGSTPer = _PPDV.CGSTPer,
+                    Code = _PBFV.Code,
+                    DiscountPer = _PPDV.DiscountPer,
+                    DisplayPrice = _PPDV.DisplayPrice,
+                    Name = _PBFV.Name,
+                    RefillTime = 12,//remove it
+                    SGSTPer = _PPDV.SGSTPer,
+                    Threshold = _PBFV.Threshold
+                };
+                var product = await ProductDataSource.CreateNewProductAsync(productDTO);
+            }
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

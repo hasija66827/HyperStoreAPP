@@ -25,7 +25,7 @@
                     Orientation="Vertical"
                     RelativePanel.Below="HeaderPanel"
                     Margin="10,0,0,0">
-           <TextBox x:Name="DisplayPrice"
+            <TextBox x:Name="DisplayPrice"
                      Header="DisplayPrice"
                      Text="{x:Bind _PPDV.DisplayPrice, Mode=TwoWay,  Converter={StaticResource CheckIfPositiveFloat} }"
                      ToolTipService.ToolTip="Price of the product to be sold to the Customer"
@@ -84,14 +84,15 @@
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">
-            <Button Content="Next"
-                    x:Name="NextBtn"
-                    Click="NextBtn_Click"
-                    Style="{StaticResource FormButtonStyle}" />
-            <Button x:Name="CancelBtn"
-                    Content="Cancel"
-                    Click="CancelBtn_Click"
+            <Button x:Name="BackBtn"
+                    Content="Back"
+                    Click="BackBtn_Click"
                     Style="{StaticResource TransFormButtonStyle}" />
+            <Button Content="Save"
+                    x:Name="SaveBtn"
+                    Style="{StaticResource FormButtonStyle}"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    Click="SaveBtn_Click" />
         </StackPanel>
     </RelativePanel>
 </Page>

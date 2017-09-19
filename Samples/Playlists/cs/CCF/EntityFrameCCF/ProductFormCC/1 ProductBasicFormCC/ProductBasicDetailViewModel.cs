@@ -27,7 +27,7 @@ namespace SDKTemplate
         }
     }
 
-    public sealed class ProductBasicDetailViewModel : ValidatableBindableBase
+    public sealed class ProductBasicFormViewModel : ValidatableBindableBase
     {
         private string _code;
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
