@@ -209,7 +209,8 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            return value?.ToString();
+            var formattedvalue = Math.Round((System.Convert.ToDecimal(value)), 2);
+            return formattedvalue.ToString();
         }
 
         public object ConvertBack(object value, Type targetType,
@@ -217,7 +218,8 @@ namespace SDKTemplate
         {
             try
             {
-                 value = (System.Convert.ToDecimal(value));
+                value = (System.Convert.ToDecimal(value));
+
             }
             catch (Exception e)
             {
@@ -226,6 +228,9 @@ namespace SDKTemplate
             return (value);
         }
     }
+
+
+
     // Tries to convert value into positive decimal, if it fails then reset the value to one.
     public class ConverToInt32 : IValueConverter
     {
@@ -278,7 +283,7 @@ namespace SDKTemplate
         }
     }
 
-  
+
 
     partial class Utility
     {

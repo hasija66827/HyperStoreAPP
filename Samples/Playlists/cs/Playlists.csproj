@@ -204,6 +204,10 @@
       <DependentUpon>OTPDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="OTPVerificationConstants.cs" />
+    <Compile Include="Pro.xaml.cs">
+      <DependentUpon>Pro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProViewModel.cs" />
     <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
       <DependentUpon>UserInformationCC.xaml</DependentUpon>
     </Compile>
@@ -472,6 +476,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OTPDialogCC\OTPDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

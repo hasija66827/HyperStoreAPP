@@ -43,7 +43,6 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
-                    
                     <SolidColorBrush x:Key="GreenBrush"
                                      Color="#FF59E71A" />
                     <SolidColorBrush x:Key="RedBrush"
@@ -51,10 +50,9 @@
                     <SolidColorBrush x:Key="PinkBrush"
                                      Color="#FFFF2FAE" />
                     <SolidColorBrush x:Key="FrameBrush"
-                                     Color="White"/>
+                                     Color="White" />
                     <SolidColorBrush x:Key="LightGrayBrush"
-                                     Color="#FFE9EDED"
-                                     />
+                                     Color="#FFE9EDED" />
                     <Style x:Key="FontAwesome"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -531,6 +529,19 @@
                                 Value="#FFF6FFFF" />
                         <Setter Property="Orientation"
                                 Value="Horizontal" />
+                    </Style>
+                    <Style x:Key="ProductStackPanel"
+                           TargetType="StackPanel">
+                        <Setter Property="Width"
+                                Value="110" />
+                        <Setter Property="Padding"
+                                Value="3" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                        <Setter Property="BorderBrush"
+                                Value="LightGray" />
+                        <Setter Property="BorderThickness"
+                                Value="1" />
                     </Style>
                     <Style x:Key="ListViewStyle"
                            TargetType="ListView">
