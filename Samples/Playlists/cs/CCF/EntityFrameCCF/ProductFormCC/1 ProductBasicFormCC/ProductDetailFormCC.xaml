@@ -39,14 +39,24 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBox x:Name="Threshold"
-                     Header="Threshold"
-                     Text="{x:Bind _ProdBasicInfo._PDFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
-                     PlaceholderText=""
-                     ToolTipService.ToolTip="The number of units of product below which you want get notified"
-                     Style="{StaticResource MediumFormTextBoxStyle}" />
-            <TextBlock Text="{Binding Errors[Threshold][0]}"
-                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="Threshold"
+                         Header="Threshold"
+                         Text="{x:Bind _ProdBasicInfo._PDFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
+                         PlaceholderText=""
+                         ToolTipService.ToolTip="The number of units of product below which you want get notified"
+                         Style="{StaticResource SmallFormTextBoxStyle}" />
+                <TextBlock Text="{Binding Errors[Threshold][0]}"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+                <TextBox x:Name="HSN"
+                         Header="HSN"
+                         Text="{x:Bind _ProdBasicInfo._PDFV.HSN,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
+                         PlaceholderText=""
+                         ToolTipService.ToolTip="The HSN of the product."
+                         Style="{StaticResource SmallFormTextBoxStyle}" />
+                <TextBlock Text="{Binding Errors[HSN][0]}"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
             <TextBlock Text="Add Tag To Product"
                        Style="{StaticResource  TagLineTextStyle}" />
             <StackPanel Orientation="Horizontal"

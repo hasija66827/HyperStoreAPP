@@ -231,12 +231,12 @@ namespace SDKTemplate
             [Required]
             public string Code { get; set; }
             [Required]
-            public decimal? DisplayPrice { get; set; }
+            public decimal? MRP { get; set; }
             [Required]
             public decimal? DiscountPer { get; set; }
             [Required]
             public string Name { get; set; }
-            public Int32 RefillTime { get; set; }
+            public Int32? HSN { get; set; }
             public decimal? SGSTPer { get; set; }
             public Int32? Threshold { get; set; }
             public List<Guid?> TagIds { get; set; }

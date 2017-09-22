@@ -139,7 +139,7 @@ namespace SDKTemplate
                 ProductId.Text = product.Code;
                 ProductName.Text = product.FormattedNameQuantity;
                 ProductSellingPrice.Text = Utility.ConvertToRupee(product.ValueIncTax);
-                ProductCostPrice.Text = Utility.ConvertToRupee(product.DisplayPrice);
+                ProductCostPrice.Text = Utility.ConvertToRupee(product.MRP);
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
                 ProductGSTPer.Text = product.SGSTPer + product.CGSTPer + "%GST";
                 ProductGlyph.Text = Utility.GetGlyphValue(product.Name);

@@ -14,11 +14,11 @@ namespace SDKTemplate
     {
         public decimal? DiscountAmount
         {
-            get { return this.DisplayPrice * (this.DiscountPer) / 100; }
+            get { return this.MRP * (this.DiscountPer) / 100; }
         }
         public decimal? ValueIncTax
         {
-            get { return this.DisplayPrice - this.DiscountAmount; }
+            get { return this.MRP - this.DiscountAmount; }
         }
 
         public virtual decimal? TotalGSTPer

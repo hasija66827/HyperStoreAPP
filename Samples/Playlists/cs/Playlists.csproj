@@ -204,10 +204,10 @@
       <DependentUpon>OTPDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="OTPVerificationConstants.cs" />
-    <Compile Include="Pro.xaml.cs">
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\Pro.xaml.cs">
       <DependentUpon>Pro.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProViewModel.cs" />
+    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\ProViewModel.cs" />
     <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
       <DependentUpon>UserInformationCC.xaml</DependentUpon>
     </Compile>
@@ -258,9 +258,6 @@
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPageNavigationParameter.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\CustomerFormCC\CustomerFormViewModel.cs" />
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\ProductPricingFormCC.xaml.cs">
-      <DependentUpon>ProductPricingFormCC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerPageNavigationParameter.cs" />
     <Compile Include="BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
@@ -292,7 +289,6 @@
     <Compile Include="CCF\ScenarioFrameCCF\ProductCCF\ProductInStock.xaml.cs">
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\ProductPricingDetailViewModel.cs" />
     <Compile Include="Notifications\ErrorTittle.cs" />
     <Compile Include="Notifications\ErrorNotification.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
@@ -372,10 +368,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\EntityFrameCCF\CustomerFormCC\CustomerFormCC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\ProductPricingFormCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -479,7 +471,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pro.xaml">
+    <Page Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\Pro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

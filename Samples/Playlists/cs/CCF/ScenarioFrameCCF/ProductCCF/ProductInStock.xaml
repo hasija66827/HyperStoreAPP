@@ -39,7 +39,7 @@
                            RelativePanel.AlignRightWithPanel="True"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="DisplayPrice"
-                           Text="{x:Bind DisplayPrice, Converter={StaticResource FloatToRupeeConverter} }"
+                           Text="{x:Bind MRP, Converter={StaticResource FloatToRupeeConverter} }"
                            RelativePanel.Below="ProductName"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"

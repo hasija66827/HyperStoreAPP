@@ -129,7 +129,7 @@
                                         <TextBlock x:Name="DisplayPrice"
                                                    Foreground="Black"
                                                    Style="{StaticResource LargeListTextBlockStyle}"
-                                                   Text="{x:Bind DisplayPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                                   Text="{x:Bind MRP, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="DiscountPer"
                                                    Style="{StaticResource GreenListTextBlockStyle}"
                                                    Text="{x:Bind DiscountPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />

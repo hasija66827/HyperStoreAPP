@@ -1,65 +1,69 @@
 ﻿using SDKTemplate.DTO;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
 namespace SDKTemplate
 {
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProductPricingFormCC : Page
+    public sealed partial class Pro : Page
     {
-        public static ProductPricingFormCC Current;
+        private ProViewModel _ProViewModel { get; set; }
         private ProductBasicInformation _ProdBasicInfo { get; set; }
-        private ProductPricingDetailViewModel _PPDV { get; set; }
-        public ProductPricingFormCC()
+        public Pro()
         {
-            Current = this;
+            this._ProViewModel = new ProViewModel();
             this.InitializeComponent();
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _ProdBasicInfo = (ProductBasicInformation)e.Parameter;
-            _PPDV = DataContext as ProductPricingDetailViewModel;
-            _PPDV.ErrorsChanged += _PFV_ErrorsChanged;
+            _ProViewModel = DataContext as ProViewModel;
+            _ProViewModel.ErrorsChanged += _ProViewModel_ErrorsChanged;
             base.OnNavigatedTo(e);
         }
 
-        private void _PFV_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        private void _ProViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
         {
+
         }
 
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsValid = this._PPDV.ValidateProperties();
+            var IsValid = this._ProViewModel.ValidateProperties();
             if (IsValid)
             {
                 var productDTO = new ProductDTO()
                 {
                     TagIds = _ProdBasicInfo._SelectedTagIds,
-                    CGSTPer = _PPDV.CGSTPer,
+                    CGSTPer = _ProViewModel.CGSTPer,
                     Code = _ProdBasicInfo._PDFV.Code,
-                    DiscountPer = _PPDV.DiscountPer,
-                    DisplayPrice = _PPDV.DisplayPrice,
+                    DiscountPer = _ProViewModel.DiscPer,
+                    MRP = _ProViewModel.MRP,
                     Name = _ProdBasicInfo._PDFV.Name,
-                    RefillTime = 12,//remove it
-                    SGSTPer = _PPDV.SGSTPer,
+                    HSN = _ProdBasicInfo._PDFV.HSN,
+                    SGSTPer = _ProViewModel.SGSTPer,
                     Threshold = _ProdBasicInfo._PDFV.Threshold
                 };
                 var product = await ProductDataSource.CreateNewProductAsync(productDTO);
+                if (product != null)
+                    this.Frame.Navigate(typeof(BlankPage));
             }
-        }
-
-        private void BackBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

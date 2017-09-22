@@ -39,10 +39,13 @@ namespace SDKTemplate
         [RegularExpression(@"[a-zA-Z\s]{1,20}", ErrorMessage = "Name is Invalid")]
         public string Name { get; set; }
 
-        //TODO: add error text block.
         private Int32? _threshold;
-        [Range(0, Int32.MaxValue)]
-        [Required(ErrorMessage = "Try Threshold with positive integar.", AllowEmptyStrings = false)]
+        [Range(0, Int32.MaxValue, ErrorMessage = "Try Threshold with positive integar.")]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         public Int32? Threshold { get { return this._threshold; } set { SetProperty(ref _threshold, value); } }
+
+        private Int32? _HSN;
+        [Range(0, Int32.MaxValue, ErrorMessage = "Try HSN with positive integar.")]
+        public Int32? HSN { get { return this._HSN; } set { SetProperty(ref _HSN, value); } }
     }
 }

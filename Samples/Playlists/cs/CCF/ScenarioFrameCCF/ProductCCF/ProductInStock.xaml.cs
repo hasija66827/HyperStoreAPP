@@ -95,7 +95,7 @@ namespace SDKTemplate
             var x = await AnalyticsDataSource.RetrieveLatestPriceQuotedBySupplierAsync(clickedItem.ProductId);
             priceQuotedByWholeSellerCollection.PriceQuotedBySuppliers = x.Select(tpqs => new PriceQuotedBySupplierViewModel(tpqs)).ToList();
             DetailContentPresenter.Content = priceQuotedByWholeSellerCollection;
-            MainPage.Current.NavigateNewsFeedFrame(typeof(ProductPricingFormCC), clickedItem);
+           // MainPage.Current.NavigateNewsFeedFrame(typeof(ProductPricingFormCC), clickedItem);
             this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();

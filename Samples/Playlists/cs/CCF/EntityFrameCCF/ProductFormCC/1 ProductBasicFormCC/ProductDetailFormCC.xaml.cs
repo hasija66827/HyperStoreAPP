@@ -82,7 +82,7 @@ namespace SDKTemplate
             if (IsValid)
             {
                 _ProdBasicInfo._SelectedTagIds = _ProductTags.Where(t => t.IsChecked == true).Select(t => t.TagId).ToList();
-                this.Frame.Navigate(typeof(ProductPricingFormCC), _ProdBasicInfo);
+                this.Frame.Navigate(typeof(Pro), _ProdBasicInfo);
             }
         }
 
