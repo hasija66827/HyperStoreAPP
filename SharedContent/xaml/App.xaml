@@ -293,6 +293,42 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>
+                    <Style x:Key="ProductHeaderTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="SemiBold" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                        <Setter Property="Width"
+                                Value="100" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="TextAlignment"
+                                Value="Center" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Center" />
+                    </Style>
+                    <Style x:Key="ProductTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontWeight"
+                                Value="SemiBold" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="Width"
+                                Value="100" />
+                        <Setter Property="Padding"
+                                Value="3" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="TextAlignment"
+                                Value="Center" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Center" />
+                    </Style>
                     <Style x:Key="GreenTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -534,6 +570,8 @@
                            TargetType="StackPanel">
                         <Setter Property="Width"
                                 Value="110" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Center" />
                         <Setter Property="Padding"
                                 Value="3" />
                         <Setter Property="Margin"

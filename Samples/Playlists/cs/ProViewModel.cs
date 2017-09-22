@@ -33,6 +33,7 @@ namespace SDKTemplate
         public void OnALLPropertyChanged()
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.
+            this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(MRP)));
             this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(DiscountAmount)));
             this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(ValueIncTax)));
             this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(ValueExcTax)));

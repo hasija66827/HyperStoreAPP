@@ -13,83 +13,102 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Product"
+            <TextBlock Text="Product Pricing"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
-        <StackPanel Orientation="Horizontal"
-                    RelativePanel.Below="HeaderPanel"
-                    x:Name="GSTPercentage">
-            <TextBox Header="CGST %"
-                     Text="{x:Bind _ProViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                     Style="{StaticResource MediumFormTextBoxStyle}" />
-            <TextBox Header="SGST %"
-                     Text="{x:Bind _ProViewModel.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                     Style="{StaticResource MediumFormTextBoxStyle}" />
+        <StackPanel x:Name="ContentPanel"
+                    Margin="10,0,0,0"
+                    RelativePanel.Below="HeaderPanel">
+            <StackPanel x:Name="Price"
+                        Orientation="Horizontal">
+                <TextBox Header="MRP/Unit"
+                         Text="{x:Bind _ProViewModel.MRP,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                <TextBox Header="Dis %"
+                         Text="{x:Bind _ProViewModel.DiscPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         Style="{StaticResource SmallFormTextBoxStyle}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        x:Name="GSTPercentage">
+                <TextBox Header="CGST %"
+                         Text="{x:Bind _ProViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         Style="{StaticResource SmallFormTextBoxStyle}" />
+                <TextBox Header="SGST %"
+                         Text="{x:Bind _ProViewModel.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                         Style="{StaticResource SmallFormTextBoxStyle}" />
+            </StackPanel>
+            <RelativePanel RelativePanel.Below="GSTPercentage">
+                <StackPanel x:Name="Parent"
+                            Margin="60,5,0,0"
+                            Orientation="Horizontal">
+                    <StackPanel Background="#FFDA2D0E"
+                                Style="{StaticResource ProductStackPanel}">
+                        <TextBlock Text="MRP/ Unit"
+                                   Style="{StaticResource ProductHeaderTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind _ProViewModel.MRP, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
+                                   Style="{StaticResource ProductTextBlockStyle}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="FirstLevel"
+                            RelativePanel.Below="Parent"
+                            Orientation="Horizontal">
+                    <StackPanel Background="#FF31CE00"
+                                Style="{StaticResource ProductStackPanel}">
+                        <TextBlock Text="Discount"
+                                   Style="{StaticResource ProductHeaderTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind _ProViewModel.DiscountAmount, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
+                                   Style="{StaticResource ProductTextBlockStyle}" />
+                    </StackPanel>
+                    <StackPanel Background="#FF31CE00"
+                                Style="{StaticResource ProductStackPanel}">
+                        <TextBlock Text="Value Inc Tax"
+                                   Style="{StaticResource ProductHeaderTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind _ProViewModel.ValueIncTax,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                                   Style="{StaticResource ProductTextBlockStyle}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="SecondLevel"
+                            RelativePanel.RightOf="FirstLevel"
+                            Margin="-200,5,0,0"
+                            RelativePanel.Below="FirstLevel"
+                            Orientation="Horizontal">
+                    <StackPanel Style="{StaticResource ProductStackPanel}"
+                                Background="#FF03A0D4">
+                        <TextBlock Text="Value Exc Tax"
+                                   Style="{StaticResource ProductHeaderTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind _ProViewModel.ValueExcTax, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
+                                   Style="{StaticResource ProductTextBlockStyle}" />
+                    </StackPanel>
+                    <StackPanel Background="#FF03A0D4"
+                                Style="{StaticResource ProductStackPanel}">
+                        <TextBlock Text="Total GST"
+                                   Style="{StaticResource ProductHeaderTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind _ProViewModel.TotalGSTAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
+                                   Style="{StaticResource ProductTextBlockStyle}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="ThirdLevel"
+                            Margin="-200,5,0,0"
+                            RelativePanel.RightOf="SecondLevel"
+                            RelativePanel.Below="SecondLevel"
+                            Orientation="Horizontal">
+                    <StackPanel Background="#FF04B7A5"
+                                Style="{StaticResource ProductStackPanel}">
+                        <TextBlock Text="CGST"
+                                   Style="{StaticResource ProductHeaderTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind _ProViewModel.CGSTAmount, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
+                                   Style="{StaticResource ProductTextBlockStyle}" />
+                    </StackPanel>
+                    <StackPanel Background="#FF04B7A5"
+                                Style="{StaticResource ProductStackPanel}">
+                        <TextBlock Text="SGST"
+                                   Style="{StaticResource ProductHeaderTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind _ProViewModel.SGSTAmount, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
+                                   Style="{StaticResource ProductTextBlockStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </RelativePanel>
         </StackPanel>
-        <StackPanel x:Name="Price"
-                    RelativePanel.Below="GSTPercentage"
-                    Orientation="Horizontal">
-            <TextBox Header="MRPUnit"
-                     Text="{x:Bind _ProViewModel.MRP,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                     Style="{StaticResource MediumFormTextBoxStyle}" />
-            <TextBox Header="Dis %"
-                     Text="{x:Bind _ProViewModel.DiscPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
-                     Style="{StaticResource MediumFormTextBoxStyle}" />
-        </StackPanel>
-        <RelativePanel RelativePanel.Below="Price"
-                       Background="{StaticResource LightGrayBrush}">
-            <StackPanel x:Name="FirstLevel"
-                        Orientation="Horizontal">
-                <StackPanel Background="GreenYellow"
-                            Style="{StaticResource ProductStackPanel}">
-                    <TextBlock Text="Discount" />
-                    <TextBlock Text="{x:Bind _ProViewModel.DiscountAmount, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                </StackPanel>
-                <StackPanel Background="GreenYellow"
-                            Style="{StaticResource ProductStackPanel}">
-                    <TextBlock Text="Value Inc Tax" />
-                    <TextBlock Text="{x:Bind _ProViewModel.ValueIncTax,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                </StackPanel>
-            </StackPanel>
-            <StackPanel x:Name="SecondLevel"
-                        RelativePanel.RightOf="FirstLevel"
-                        Margin="-200,10,0,0"
-                        RelativePanel.Below="FirstLevel"
-                        Orientation="Horizontal">
-                <StackPanel Style="{StaticResource ProductStackPanel}"
-                            Background="DeepSkyBlue">
-                    <TextBlock Text="Value Exc Tax" />
-                    <TextBlock Text="{x:Bind _ProViewModel.ValueExcTax, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                </StackPanel>
-                <StackPanel Background="DeepSkyBlue"
-                            Style="{StaticResource ProductStackPanel}">
-                    <TextBlock Text="Total GST" />
-                    <TextBlock Text="{x:Bind _ProViewModel.TotalGSTAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                </StackPanel>
-            </StackPanel>
-            <StackPanel x:Name="ThirdLevel"
-                        Margin="-200,10,0,0"
-                        RelativePanel.RightOf="SecondLevel"
-                        RelativePanel.Below="SecondLevel"
-                        Orientation="Horizontal">
-                <StackPanel Background="Turquoise"
-                            Style="{StaticResource ProductStackPanel}">
-                    <TextBlock Text="CGST" />
-                    <TextBlock Text="{x:Bind _ProViewModel.CGSTAmount, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                </StackPanel>
-                <StackPanel Background="Turquoise"
-                            Style="{StaticResource ProductStackPanel}">
-                    <TextBlock Text="SGST" />
-                    <TextBlock Text="{x:Bind _ProViewModel.SGSTAmount, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                </StackPanel>
-            </StackPanel>
-        </RelativePanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">
