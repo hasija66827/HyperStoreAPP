@@ -145,7 +145,7 @@
                        BorderThickness="1"
                        RelativePanel.AlignTopWith="HeaderFrame"
                        Margin="0,10,10,0" />
-                <Frame x:Name="LeftBottomFrame"
+                <Frame x:Name="RightBottomFrame"
                        Background="{StaticResource FrameBrush}"
                        RelativePanel.RightOf="ScenarioFrame"
                        RelativePanel.Below="NewsFeedFrame"

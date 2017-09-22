@@ -91,21 +91,21 @@
                                        Style="{StaticResource ListTextBlockStyle}" />
                             <TextBlock Text="Name"
                                        Style="{StaticResource ListTextBlockStyle}" />
-                            <TextBlock Text="DPrice"
+                            <TextBlock Text="MRP/Unit"
                                        Style="{StaticResource LargeListTextBlockStyle}" />
                             <TextBlock Text="Disc %"
                                        Style="{StaticResource ListTextBlockStyle}" />
                             <TextBlock Text="Dis Amt"
                                        Style="{StaticResource LargeListTextBlockStyle}" />
-                            <TextBlock Text="SubTotal"
-                                       Style="{StaticResource LargeListTextBlockStyle}" />
-                            <TextBlock Text="TGST %"
-                                       Style="{StaticResource ListTextBlockStyle}" />
-                            <TextBlock Text="SPrice"
+                            <TextBlock Text="Value+TGST"
                                        Style="{StaticResource LargeListTextBlockStyle}" />
                             <TextBlock Text="Quantity"
                                        Style="{StaticResource ListTextBlockStyle}" />
                             <TextBlock Text="Net Value"
+                                       Style="{StaticResource LargeListTextBlockStyle}" />
+                            <TextBlock Text="TGST %"
+                                       Style="{StaticResource ListTextBlockStyle}" />
+                            <TextBlock Text="TGST"
                                        Style="{StaticResource LargeListTextBlockStyle}" />
                         </StackPanel>
                         <ListView x:Name="ListView"
@@ -136,17 +136,10 @@
                                         <TextBlock x:Name="DiscountAmount"
                                                    Style="{StaticResource GreenListTextBlockStyle}"
                                                    Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                                        <TextBlock x:Name="SubTotal"
+                                        <TextBlock x:Name="ValueIncTax"
                                                    Style="{StaticResource LargeListTextBlockStyle}"
-                                                   Foreground="Black"
-                                                   Text="{x:Bind SubTotal, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                                        <TextBlock x:Name="TotalGSTPer"
-                                                   Style="{StaticResource ListTextBlockStyle}"
-                                                   Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageGSTConverter}}" />
-                                        <TextBlock x:Name="SellingPrice"
-                                                   Foreground="Black"
-                                                   Style="{StaticResource LargeListTextBlockStyle}"
-                                                   Text="{x:Bind SellingPrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                                   Foreground="#FFFF2FAE"
+                                                   Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBox x:Name="Quantity"
                                                  Style="{StaticResource ListTextBoxStyle}"
                                                  Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
@@ -155,6 +148,13 @@
                                                    Foreground="#FFFF2FAE"
                                                    Style="{StaticResource LargeListTextBlockStyle}"
                                                    Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                        <TextBlock x:Name="TotalGSTPer"
+                                                   Style="{StaticResource ListTextBlockStyle}"
+                                                   Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageGSTConverter}}" />
+                                        <TextBlock x:Name="TotalGSTAmount"
+                                                   Foreground="Black"
+                                                   Style="{StaticResource LargeListTextBlockStyle}"
+                                                   Text="{x:Bind TotalGSTAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

@@ -12,7 +12,7 @@ namespace SDKTemplate
 {
     public class CustomerBillingProductViewModelBase : ProductViewModelBase
     {
-        public decimal? NetValue { get { return this.QuantityConsumed * this.SellingPrice; } }
+        public decimal? NetValue { get { return this.QuantityConsumed * this.ValueIncTax; } }
         public virtual decimal? QuantityConsumed { get; set; }
 
         public CustomerBillingProductViewModelBase(TProduct parent) : base(parent)

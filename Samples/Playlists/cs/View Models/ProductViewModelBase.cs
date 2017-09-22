@@ -15,16 +15,10 @@ namespace SDKTemplate
         public decimal? DiscountAmount
         {
             get { return this.DisplayPrice * (this.DiscountPer) / 100; }
-
         }
-        public decimal? SubTotal
+        public decimal? ValueIncTax
         {
             get { return this.DisplayPrice - this.DiscountAmount; }
-        }
-
-        public virtual decimal? SellingPrice
-        {
-            get { return this.SubTotal + this.TotalGSTAmount; }
         }
 
         public virtual decimal? TotalGSTPer
@@ -32,10 +26,13 @@ namespace SDKTemplate
             get { return this.CGSTPer + this.SGSTPer; }
         }
 
+        public decimal? ValueExcTax { get { return ValueIncTax * 100 / (100 + CGSTPer + SGSTPer); } }
+
         public virtual decimal? TotalGSTAmount
         {
-            get { return this.SubTotal * (this.TotalGSTPer) / 100; }
+            get { return this.ValueIncTax - ValueExcTax; }
         }
+
         //TODO: place it in another viewmodel
         public string FormattedNameQuantity
         {

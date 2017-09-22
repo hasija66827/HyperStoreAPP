@@ -138,7 +138,7 @@ namespace SDKTemplate
                 ProductDetails.Visibility = Visibility.Visible;
                 ProductId.Text = product.Code;
                 ProductName.Text = product.FormattedNameQuantity;
-                ProductSellingPrice.Text = "xxxx";//Utility.FloatToRupeeConverter(product.SellingPrice);
+                ProductSellingPrice.Text = Utility.ConvertToRupee(product.ValueIncTax);
                 ProductCostPrice.Text = Utility.ConvertToRupee(product.DisplayPrice);
                 ProductDiscountPer.Text = product.DiscountPer + "% Off";
                 ProductGSTPer.Text = product.SGSTPer + product.CGSTPer + "%GST";

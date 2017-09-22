@@ -35,7 +35,7 @@
                            Text="{x:Bind FormattedNameQuantity}"
                            Style="{ThemeResource MasterListTextBlockStyle}"
                            TextWrapping="Wrap" />
-                <TextBlock Text="{x:Bind SellingPrice, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToRupeeConverter}}"
                            RelativePanel.AlignRightWithPanel="True"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="DisplayPrice"

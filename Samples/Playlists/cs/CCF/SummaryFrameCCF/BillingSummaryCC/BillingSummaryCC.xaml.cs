@@ -35,7 +35,7 @@ namespace SDKTemplate
                     this._BillingSummaryViewModel.TotalQuantity = (decimal)products.Sum(p => p.QuantityConsumed);
                     this._BillingSummaryViewModel.CartAmount = (decimal)products.Sum(p => p.DisplayPrice * p.QuantityConsumed);
                     this._BillingSummaryViewModel.DiscountAmount = (decimal)products.Sum(p => p.DiscountAmount * p.QuantityConsumed);
-                    this._BillingSummaryViewModel.Tax = (decimal)products.Sum(p => (p.SellingPrice - p.SubTotal) * p.QuantityConsumed);
+                    this._BillingSummaryViewModel.Tax = (decimal)products.Sum(p => (p.TotalGSTAmount) * p.QuantityConsumed);
                     this._BillingSummaryViewModel.PayAmount = (decimal)products.Sum(p => p.NetValue);
                     this._BillingSummaryViewModel.OnALLPropertyChanged();
                 });

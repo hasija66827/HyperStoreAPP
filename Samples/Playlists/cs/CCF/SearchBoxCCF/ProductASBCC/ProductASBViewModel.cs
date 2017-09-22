@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class ProductASBViewModel : TProduct
+    public class ProductASBViewModel : ProductViewModelBase
     {
         // Property is used by ASB(AutoSuggestBox) for display member path and text member path property
         public string Product_Id_Name { get { return string.Format("{0} ({1})", Code, Name); } }
-        public string FormattedNameQuantity
-        {
-            get { return this.Name + " (" + this.TotalQuantity + ")"; }
-        }
+  
 
         //Constructor to convert parent obect to child object.
         public ProductASBViewModel(TProduct parent)

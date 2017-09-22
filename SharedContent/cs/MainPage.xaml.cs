@@ -94,18 +94,17 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(RecommendedProductCC));
-                    SummaryFrame.Navigate(typeof(BillingSummaryCC));
+                    RightBottomFrame.Navigate(typeof(BillingSummaryCC));
+                    SummaryFrame.Navigate(typeof(BlankPage));
                     ChangeLayout(false);
-
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterOrderCC));
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
+                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
@@ -117,7 +116,7 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Customer);
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
-                    LeftBottomFrame.Navigate(typeof(CustomerTrendCC));
+                    RightBottomFrame.Navigate(typeof(CustomerTrendCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(CustomerSummaryCC));
                     ChangeLayout(false);
@@ -129,7 +128,7 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
                     SummaryFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
-                    LeftBottomFrame.Navigate(typeof(ProductConsumptionPer));
+                    RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     ChangeLayout(false);
 
@@ -138,7 +137,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Supplier);
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
+                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierSummaryCC));
@@ -149,7 +148,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
+                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
@@ -161,7 +160,7 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
-                    LeftBottomFrame.Navigate(typeof(BlankPage));
+                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierOrderSummary));
@@ -184,13 +183,13 @@ namespace SDKTemplate
             {
                 ScenarioFrame.Width = 1200;
                 NewsFeedFrame.Visibility = Visibility.Collapsed;
-                LeftBottomFrame.Visibility = Visibility.Collapsed;
+                RightBottomFrame.Visibility = Visibility.Collapsed;
             }
             else
             {
                 ScenarioFrame.Width = 830;
                 NewsFeedFrame.Visibility = Visibility.Visible;
-                LeftBottomFrame.Visibility = Visibility.Visible;
+                RightBottomFrame.Visibility = Visibility.Visible;
             }
         }
 
