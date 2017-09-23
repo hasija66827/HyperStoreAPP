@@ -124,7 +124,7 @@
     <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormCC.xaml.cs">
       <DependentUpon>TagFormCC.xaml</DependentUpon>
     </Compile>
@@ -136,11 +136,11 @@
       <DependentUpon>CustomerTrendCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerTransactionViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerNewTransactionCC.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\1 CustomerNewTransactionCC\CustomerNewTransactionCC.xaml.cs">
       <DependentUpon>CustomerNewTransactionCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerNewTransactionViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerTransactionOTPVerification.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\1 CustomerNewTransactionCC\CustomerNewTransactionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\CustomersCCF\2 CustomerTransactionOTPVerification\CustomerTransactionOTPVerification.xaml.cs">
       <DependentUpon>CustomerTransactionOTPVerification.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\CustomerSummmaryCC\CustomerSummaryViewModel.cs" />
@@ -332,10 +332,10 @@
     <Compile Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummary.xaml.cs">
       <DependentUpon>SupplierOrderSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierNewTransactionCC\SupplierNewTransactionCC.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml.cs">
       <DependentUpon>SupplierNewTransactionCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml.cs">
       <DependentUpon>SupplierTransactionOTPVerification.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -428,11 +428,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerNewTransactionCC.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\CustomersCCF\1 CustomerNewTransactionCC\CustomerNewTransactionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomersCCF\CustomerNewTransactionCC\CustomerTransactionOTPVerification.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\CustomersCCF\2 CustomerTransactionOTPVerification\CustomerTransactionOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -512,11 +512,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierNewTransactionCC\SupplierNewTransactionCC.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
