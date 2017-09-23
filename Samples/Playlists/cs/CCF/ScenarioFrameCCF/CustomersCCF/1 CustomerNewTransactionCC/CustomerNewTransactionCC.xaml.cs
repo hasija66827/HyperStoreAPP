@@ -23,7 +23,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class CustomerNewTransactionCC : Page
     {
-        private CustomerNewTransactionViewModel _CustomerNewTransactionViewModel { get; set; }
+        private CustomerNewTransactionViewModel _CNTV { get; set; }
         public CustomerNewTransactionCC()
         {
             this.InitializeComponent();
@@ -32,15 +32,23 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var selecetedCustomer = (TCustomer)e.Parameter;
-            this._CustomerNewTransactionViewModel = new CustomerNewTransactionViewModel()
-            {
-                Customer = selecetedCustomer,
-                ReceivingAmount = 0,
-            };
+            _CNTV = DataContext as CustomerNewTransactionViewModel;
+            _CNTV.ErrorsChanged += _CNTV_ErrorsChanged;
+            _CNTV.Customer = selecetedCustomer;
+            _CNTV.ReceivingAmount = null;
         }
+
+        private void _CNTV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+        }
+
         private void ProceedBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CustomerTransactionOTPVerification), this._CustomerNewTransactionViewModel);
+            var IsValid = _CNTV.ValidateProperties();
+            if (IsValid)
+            {
+                this.Frame.Navigate(typeof(CustomerTransactionOTPVerification), this._CNTV);
+            }
         }
     }
 }

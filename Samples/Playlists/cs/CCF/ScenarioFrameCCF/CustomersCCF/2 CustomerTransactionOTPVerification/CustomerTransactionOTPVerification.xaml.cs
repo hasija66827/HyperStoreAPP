@@ -44,8 +44,8 @@ namespace SDKTemplate
                 {
                     CustomerId = this._CustomerNewTransactionViewModel?.Customer?.CustomerId,
                     IsCredit = false,
-                    TransactionAmount = this._CustomerNewTransactionViewModel?.ReceivingAmount,
-                    Description = this._CustomerNewTransactionViewModel.OptionalDescription,
+                    TransactionAmount = Utility.TryToConvertToDecimal(this._CustomerNewTransactionViewModel?.ReceivingAmount),
+                    Description = this._CustomerNewTransactionViewModel.Description,
                 };
                 var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 if (transaction != null)

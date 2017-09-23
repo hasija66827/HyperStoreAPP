@@ -6,9 +6,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
-        <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
-        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
+    <Page.DataContext>
+        <local:CustomerNewTransactionViewModel />
+    </Page.DataContext>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
@@ -20,24 +22,28 @@
                     RelativePanel.Below="HeaderPanel">
             <TextBlock Text="Payer Name"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.Name}"
+            <TextBlock Text="{x:Bind _CNTV.Customer.Name}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBlock Text="Mobile Number"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.MobileNo}"
+            <TextBlock Text="{x:Bind _CNTV.Customer.MobileNo}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBlock Text="Wallet Balance"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+            <TextBlock Text="{x:Bind _CNTV.Customer.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBox Header="Enter Amount To Receive"
-                     PlaceholderText="Enter Amount"
-                     Text="{x:Bind _CustomerNewTransactionViewModel.ReceivingAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+            <TextBox Header="Amount To Receive"
+                     PlaceholderText="Enter Amount To Receive"
+                     Text="{x:Bind _CNTV.ReceivingAmount, Mode=TwoWay}"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
-            <TextBox Header="Optional Description"
-                     PlaceholderText="Description"
-                     Text="{x:Bind _CustomerNewTransactionViewModel.OptionalDescription, Mode=TwoWay}"
+            <TextBlock  Text="{Binding Errors[ReceivingAmount][0]}"
+                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox Header="Description"
+                     PlaceholderText="Description of Transaction"
+                     Text="{x:Bind _CNTV.Description, Mode=TwoWay}"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
+            <TextBlock  Text="{Binding Errors[Description][0]}"
+                        Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"

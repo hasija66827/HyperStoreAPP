@@ -37,7 +37,7 @@
                      ToolTipService.ToolTip="Address by which you can search the customer"
                      PlaceholderText="F806 Aparna Cyber Commune"
                      Style="{StaticResource FormTextBoxStyle}" />
-            <TextBlock  Text="{Binding ErrorsAddress[0]}"
+            <TextBlock  Text="{Binding Errors[Address][0]}"
                         Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="MobileNoTB"
                      Header="Mobile Number"
