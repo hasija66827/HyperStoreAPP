@@ -1,4 +1,5 @@
 ﻿using Models;
+using SDKTemp.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -60,10 +61,23 @@ namespace SDKTemplate
                 }
             }
             RefreshTheProducts();
+            ProductDataSource.ProductCreatedEvent += RefreshTheProducts;
+            CustomerOrderDataSource.ProductStockUpdatedEvent += RefreshTheProducts;
+            SupplierOrderDataSource.ProductStockUpdatedEvent += RefreshTheProducts;
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            ProductDataSource.ProductCreatedEvent -= RefreshTheProducts;
+            CustomerOrderDataSource.ProductStockUpdatedEvent -= RefreshTheProducts;
+            SupplierOrderDataSource.ProductStockUpdatedEvent -= RefreshTheProducts;
+            base.OnNavigatedFrom(e);
         }
 
         public async void RefreshTheProducts()
         {
+            ProductASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             ProductDetails.Visibility = Visibility.Collapsed;
             var products = await ProductDataSource.RetrieveProductDataAsync(null);

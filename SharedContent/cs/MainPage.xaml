@@ -153,8 +153,8 @@
                        Width="310"
                        BorderBrush="LightGray"
                        BorderThickness="1"
-                       MinHeight="190"
-                       Height="190"
+                       MinHeight="200"
+                       Height="200"
                        Margin="0,10,10,0" />
                 <StackPanel x:Name="StatusPanel"
                             Orientation="Vertical"

@@ -40,7 +40,7 @@ namespace SDKTemplate
             RefreshTheCustomers();
             CustomerDataSource.CustomerCreatedEvent += RefreshTheCustomers;
             CustomerDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
-            CustomerOrderDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
+            CustomerOrderDataSource.CustomerBalanceUpdatedEvent += RefreshTheCustomers;
             CustomerTransactionDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
             base.OnNavigatedTo(e);
         }
@@ -49,13 +49,14 @@ namespace SDKTemplate
         {
             CustomerDataSource.CustomerCreatedEvent -= RefreshTheCustomers;
             CustomerDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
-            CustomerOrderDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
+            CustomerOrderDataSource.CustomerBalanceUpdatedEvent -= RefreshTheCustomers;
             CustomerTransactionDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
             base.OnNavigatedFrom(e);
         }
 
         public async void RefreshTheCustomers()
         {
+            CustomerASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             CustomerDetails.Visibility = Visibility.Collapsed;
             var customers = await CustomerDataSource.RetrieveCustomersAsync(null);

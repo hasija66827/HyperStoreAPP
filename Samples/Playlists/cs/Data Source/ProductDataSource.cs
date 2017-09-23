@@ -9,15 +9,18 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public delegate void ProductEntityChangedDelegate();
     class ProductDataSource
     {
+        public static event ProductEntityChangedDelegate ProductCreatedEvent;
         #region Create
         public static async Task<TProduct> CreateNewProductAsync(ProductDTO productDTO)
         {
             var product = await Utility.CreateAsync<TProduct>(BaseURI.HyperStoreService + API.Products, productDTO);
             if (product != null)
             {
-                var message = String.Format("You should Update the stock of the product {0} ({1}) as the Quantity is {2} right now.", product.Name, product.Code, product.TotalQuantity);
+                var message = String.Format("You should update the stock of the product {0} ({1}) as the quantity is {2} right now.", product.Name, product.Code, product.TotalQuantity);
+                ProductCreatedEvent?.Invoke();
                 SuccessNotification.PopUpSuccessNotification(API.Products, message);
             }
             return product;
@@ -31,29 +34,10 @@ namespace SDKTemplate
             return products;
         }
 
-        public static List<ProductViewModelBase> GetProductsById(Guid? productId)
-        {
-            return null;
-        }
-
         public static async Task<TProductMetadata> RetrieveProductMetadataAsync()
         {
            var productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService + API.Products, "GetProductMetadata", null);
             return productMetadata;
-        }
-
-        public static bool IsProductCodeExist(string barCode)
-        {
-
-            return false;
-
-        }
-
-        public static bool IsProductNameExist(string name)
-        {
-
-            return false;
-
         }
         #endregion
     }

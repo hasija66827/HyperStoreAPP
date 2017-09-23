@@ -42,7 +42,7 @@ namespace SDKTemplate
             RefreshTheSuppliers();
             SupplierDataSource.SupplierCreatedEvent += RefreshTheSuppliers;
             SupplierDataSource.SupplierUpdatedEvent += RefreshTheSuppliers;
-            SupplierOrderDataSource.SupplierUpdatedEvent += RefreshTheSuppliers;
+            SupplierOrderDataSource.SupplierBalanceUpdatedEvent += RefreshTheSuppliers;
             SupplierTransactionDataSource.SupplierUpdateEvent += RefreshTheSuppliers;
             base.OnNavigatedTo(e);
         }
@@ -51,13 +51,14 @@ namespace SDKTemplate
         {
             SupplierDataSource.SupplierCreatedEvent -= RefreshTheSuppliers;
             SupplierDataSource.SupplierUpdatedEvent -= RefreshTheSuppliers;
-            SupplierOrderDataSource.SupplierUpdatedEvent -= RefreshTheSuppliers;
+            SupplierOrderDataSource.SupplierBalanceUpdatedEvent -= RefreshTheSuppliers;
             SupplierTransactionDataSource.SupplierUpdateEvent -= RefreshTheSuppliers;
             base.OnNavigatedFrom(e);
         }
 
         public async void RefreshTheSuppliers()
         {
+            SupplierASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             SupplierDetails.Visibility = Visibility.Collapsed;
             var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);

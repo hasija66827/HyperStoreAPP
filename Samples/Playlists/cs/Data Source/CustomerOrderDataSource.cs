@@ -13,7 +13,8 @@ namespace SDKTemp.Data
     public class CustomerOrderDataSource
     {
         #region Create
-        public static event CustomerEntityChangedDelegate CustomerUpdatedEvent;
+        public static event CustomerEntityChangedDelegate CustomerBalanceUpdatedEvent;
+        public static event ProductEntityChangedDelegate ProductStockUpdatedEvent;
         public static async Task<decimal?> PlaceOrderAsync(CustomerPageNavigationParameter PNP, decimal payingAmount)
         {
             var productsConsumed = PNP.ProductsConsumed.Select(p => new ProductConsumedDTO()
@@ -34,7 +35,8 @@ namespace SDKTemp.Data
             var deductedWalletAmount = await _CreateCustomerOrderAsync(customerOrderDTO);
             if (deductedWalletAmount != null)
             {
-                CustomerUpdatedEvent?.Invoke();
+                CustomerBalanceUpdatedEvent?.Invoke();
+                ProductStockUpdatedEvent?.Invoke();
                 _SendOrderCreationNotification(PNP, deductedWalletAmount);
             }
             return deductedWalletAmount;
