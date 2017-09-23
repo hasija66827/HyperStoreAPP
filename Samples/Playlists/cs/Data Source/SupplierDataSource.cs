@@ -11,8 +11,12 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
+    public delegate void SupplierEntityChangedDelegate();
     class SupplierDataSource
     {
+        public static event SupplierEntityChangedDelegate SupplierCreatedEvent;
+        public static event SupplierEntityChangedDelegate SupplierUpdatedEvent;
+
         #region Create
         public static async Task<TSupplier> CreateNewSupplier(SupplierDTO supplierDTO)
         {
@@ -20,6 +24,7 @@ namespace SDKTemplate
             if (supplier != null)
             {
                 var message = String.Format("You can Start placing Ordes to Supplier {0} ({1})", supplier.Name, supplier.MobileNo);
+                SupplierCreatedEvent?.Invoke();
                 SuccessNotification.PopUpSuccessNotification(API.Suppliers, message);
             }
             return supplier;
@@ -33,6 +38,7 @@ namespace SDKTemplate
             if (supplier != null)
             {
                 //TODO: Success Notification
+                SupplierUpdatedEvent?.Invoke();
             }
             return supplier;
         }

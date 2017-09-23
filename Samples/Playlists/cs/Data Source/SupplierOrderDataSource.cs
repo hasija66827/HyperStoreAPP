@@ -10,11 +10,17 @@ namespace SDKTemplate
 {
     public class SupplierOrderDataSource
     {
+        public static event SupplierEntityChangedDelegate SupplierUpdatedEvent;
         #region Create
         public static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
-            var x = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
-            return x;
+            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
+            if (deductedWalletAmount != null)
+            {
+                SupplierUpdatedEvent?.Invoke();
+                //TODO: Send success notification
+            }
+            return deductedWalletAmount;
         }
         #endregion
 

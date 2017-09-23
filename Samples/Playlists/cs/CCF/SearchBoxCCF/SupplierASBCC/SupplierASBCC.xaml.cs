@@ -40,6 +40,20 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             RefreshTheSuppliers();
+            SupplierDataSource.SupplierCreatedEvent += RefreshTheSuppliers;
+            SupplierDataSource.SupplierUpdatedEvent += RefreshTheSuppliers;
+            SupplierOrderDataSource.SupplierUpdatedEvent += RefreshTheSuppliers;
+            SupplierTransactionDataSource.SupplierUpdateEvent += RefreshTheSuppliers;
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            SupplierDataSource.SupplierCreatedEvent -= RefreshTheSuppliers;
+            SupplierDataSource.SupplierUpdatedEvent -= RefreshTheSuppliers;
+            SupplierOrderDataSource.SupplierUpdatedEvent -= RefreshTheSuppliers;
+            SupplierTransactionDataSource.SupplierUpdateEvent -= RefreshTheSuppliers;
+            base.OnNavigatedFrom(e);
         }
 
         public async void RefreshTheSuppliers()
@@ -101,18 +115,18 @@ namespace SDKTemplate
             }
         }
 
-        private void _SelectSupplier(SupplierASBViewModel WholeSeller)
+        private void _SelectSupplier(SupplierASBViewModel supplier)
         {
-            if (WholeSeller != null)
+            if (supplier != null)
             {
-                _selectedWholeSellerInASB = WholeSeller;
+                _selectedWholeSellerInASB = supplier;
                 NoResults.Visibility = Visibility.Collapsed;
                 SupplierDetails.Visibility = Visibility.Visible;
-                WholeSellerMobNo.Text = WholeSeller.MobileNo;
-                WholeSellerName.Text = WholeSeller.Name;
-                WholeSellerAddress.Text = WholeSeller.Address != null ? WholeSeller.Address : "";
-                WholeSellerWalletBalance.Text = Utility.ConvertToRupee(WholeSeller.WalletBalance);
-                WholeSellerGlyph.Text = Utility.GetGlyphValue(WholeSeller.Name);
+                WholeSellerMobNo.Text = supplier.MobileNo;
+                WholeSellerName.Text = supplier.Name;
+                WholeSellerAddress.Text = supplier.Address != null ? supplier.Address : "";
+                WholeSellerWalletBalance.Text = Utility.ConvertToRupee(supplier.WalletBalance);
+                WholeSellerGlyph.Text = Utility.GetGlyphValue(supplier.Name);
             }
             else
             {

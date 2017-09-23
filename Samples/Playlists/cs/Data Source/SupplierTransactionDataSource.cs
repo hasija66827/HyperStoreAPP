@@ -10,15 +10,19 @@ namespace SDKTemplate
 {
     public class SupplierTransactionDataSource
     {
+        public static SupplierEntityChangedDelegate SupplierUpdateEvent;
         #region create
         public static async Task<TSupplierTransaction> CreateNewTransactionAsync(SupplierTransactionDTO transactionDTO)
         {
             var transaction = await Utility.CreateAsync<TSupplierTransaction>(BaseURI.HyperStoreService + API.SupplierTransactions, transactionDTO);
-            _SendTransactionCreationNotification(transaction);
+            if (transaction != null)
+            {
+                SupplierUpdateEvent?.Invoke();
+                _SendTransactionCreationNotification(transaction);
+            }
             return transaction;
         }
-        #endregion
-
+       
         private static void _SendTransactionCreationNotification(TSupplierTransaction transaction)
         {
             if (transaction == null)
@@ -36,6 +40,7 @@ namespace SDKTemplate
 
             SuccessNotification.PopUpSuccessNotification(API.SupplierTransactions, firstMessage + "\n" + secondMessage);
         }
+        #endregion
 
 
         #region Read
