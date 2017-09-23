@@ -29,6 +29,7 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._CustomerNewTransactionViewModel = (CustomerNewTransactionViewModel)e.Parameter;
@@ -47,7 +48,8 @@ namespace SDKTemplate
                     Description = this._CustomerNewTransactionViewModel.OptionalDescription,
                 };
                 var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
-                this.Frame.Navigate(typeof(CustomersCCF));
+                if (transaction != null)
+                    this.Frame.Navigate(typeof(CustomersCCF));
             }
         }
 

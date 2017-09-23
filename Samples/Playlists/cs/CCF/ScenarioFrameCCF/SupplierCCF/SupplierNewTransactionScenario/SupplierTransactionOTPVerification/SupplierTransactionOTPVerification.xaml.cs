@@ -47,7 +47,8 @@ namespace SDKTemplate
                     Description = this._SupplierNewTransactionViewModel?.OptionalDescription,
                 };
                 var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
-
+                if (transaction != null)
+                    this.Frame.Navigate(typeof(SupplierCCF));
             }
         }
 
