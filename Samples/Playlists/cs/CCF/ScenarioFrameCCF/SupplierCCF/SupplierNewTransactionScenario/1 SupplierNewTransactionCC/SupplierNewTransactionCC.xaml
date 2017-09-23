@@ -9,10 +9,13 @@
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
+    <Page.DataContext>
+        <local:SupplierNewTransactionViewModel />
+    </Page.DataContext>
     <RelativePanel Background="White">
-        <Border  x:Name="HeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
+        <Border x:Name="HeaderPanel"
+                RelativePanel.AlignTopWithPanel="True"
+                Style="{StaticResource HeaderBorder}">
             <TextBlock Text="Pay Money"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
@@ -20,24 +23,28 @@
                     RelativePanel.Below="HeaderPanel">
             <TextBlock Text="Payee Name"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
+            <TextBlock Text="{x:Bind _SNTV.Supplier.Name}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBlock Text="Mobile Number"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
+            <TextBlock Text="{x:Bind _SNTV.Supplier.MobileNo}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBlock Text="Wallet Balance"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+            <TextBlock Text="{x:Bind _SNTV.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
             <TextBox Header="Enter Amount To Pay"
-                     PlaceholderText="Enter Amount"
-                     Text="{x:Bind _SupplierNewTransactionViewModel.PayingAmount,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     PlaceholderText="Enter Amount To Pay"
+                     Text="{x:Bind _SNTV.PayingAmount, Mode=TwoWay}"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
-            <TextBox Header="Optional Description"
-                     Text="{x:Bind _SupplierNewTransactionViewModel.OptionalDescription, Mode=TwoWay}"
-                     PlaceholderText="Description"
+            <TextBlock  Text="{Binding Errors[PayingAmount][0]}"
+                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBox Header="Description"
+                     Text="{x:Bind _SNTV.Description, Mode=TwoWay}"
+                     PlaceholderText="Description of Transaction"
                      Style="{ThemeResource LargeFormTextBoxStyle}" />
+            <TextBlock  Text="{Binding Errors[Description][0]}"
+                        Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"

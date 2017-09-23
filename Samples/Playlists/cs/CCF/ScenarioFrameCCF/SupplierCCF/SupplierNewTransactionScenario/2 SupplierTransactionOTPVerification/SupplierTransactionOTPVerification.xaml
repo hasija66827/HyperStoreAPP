@@ -37,9 +37,9 @@
                        Style="{ThemeResource LargeFormTBPropStyle}" />
             <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Optional Description"
+            <TextBlock Text="Description"
                        Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.OptionalDescription}"
+            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Description}"
                        Style="{ThemeResource LargeFormTBValueStyle}" />
          </StackPanel>
         <StackPanel x:Name="CommandPanel"

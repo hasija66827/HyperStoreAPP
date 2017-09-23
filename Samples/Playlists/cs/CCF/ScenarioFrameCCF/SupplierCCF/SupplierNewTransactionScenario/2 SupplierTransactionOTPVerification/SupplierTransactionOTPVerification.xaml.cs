@@ -43,8 +43,8 @@ namespace SDKTemplate
                 {
                     SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.SupplierId,
                     IsCredit = false,
-                    TransactionAmount = this._SupplierNewTransactionViewModel?.PayingAmount,
-                    Description = this._SupplierNewTransactionViewModel?.OptionalDescription,
+                    TransactionAmount = Utility.TryToConvertToDecimal(this._SupplierNewTransactionViewModel?.PayingAmount),
+                    Description = this._SupplierNewTransactionViewModel?.Description,
                 };
                 var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 if (transaction != null)
