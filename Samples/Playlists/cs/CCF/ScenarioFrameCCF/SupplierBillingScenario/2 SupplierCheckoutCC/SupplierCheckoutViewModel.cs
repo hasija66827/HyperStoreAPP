@@ -26,7 +26,7 @@ namespace SDKTemplate
         public DateTime DueDate { get; set; }
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [Range(0, 100, ErrorMessage = "Try Interest Rate in Range(0,100)")]
+        [Range(0, 100, ErrorMessage = "Try Interest Rate in Range(0, 100)")]
         public string IntrestRate { get; set; }
 
         private decimal? _payingAmountDec { get { return Utility.TryToConvertToDecimal(_payingAmount); } }

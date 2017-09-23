@@ -27,7 +27,7 @@
                x:Name="ContentPanel">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400" />
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
@@ -50,7 +50,7 @@
                         Grid.Column="1">
                 <TextBox Text="{x:Bind _SCV.PayingAmount, Mode=TwoWay}"
                          PlaceholderText="Enter Amount Paying Now"
-                         Style="{StaticResource MediumFormTextBoxStyle}"
+                         Style="{StaticResource FormTextBoxStyle}"
                          Foreground="{StaticResource RedBrush}" />
                 <TextBlock Text="{Binding Errors[PayingAmount][0]}"
                            Style="{StaticResource ErrorTextBlockStyle}" />
@@ -69,11 +69,12 @@
                          Grid.Column="1">
                 <TextBox Text="{x:Bind _SCV.IntrestRate, Mode=TwoWay}"
                          PlaceholderText="Enter Interest Rate"
-                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                         Style="{StaticResource FormTextBoxStyle}" />
                 <TextBlock Text="{Binding Errors[IntrestRate][0]}"
                            Style="{StaticResource ErrorTextBlockStyle}" />
             </StackPanel>
             <TextBlock Text="Due Date"
+                       VerticalAlignment="Center"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="4" />
             <CalendarDatePicker Date="{x:Bind _SCV.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"

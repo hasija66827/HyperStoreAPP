@@ -52,7 +52,8 @@ namespace SDKTemplate
 
             if (compare < 0)
             {
-                return new ValidationResult(String.Format("Value should be less than {0}({1})", this.propertyName, otherValue));
+                var errorMessage = String.Format("Value should be less than {0}.", Utility.ConvertToRupee(otherValue));
+                return new ValidationResult(errorMessage);
             }
 
             return ValidationResult.Success;
