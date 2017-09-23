@@ -19,9 +19,9 @@
                 <AutoSuggestBox x:Name="ProductASB"
                                 PlaceholderText="Search Product (e.g. 1111 or Maggi)"
                                 DisplayMemberPath="Product_Id_Name"
-                                TextChanged="ProductASB_TextChanged"
+                                TextChanged="_ProductASB_TextChanged"
                                 QueryIcon="Find"
-                                QuerySubmitted="ProductASB_QuerySubmitted"
+                                QuerySubmitted="_ProductASB_QuerySubmitted"
                                 MinWidth="280"
                                 TextMemberPath="Product_Id_Name"
                                 Width="280" />

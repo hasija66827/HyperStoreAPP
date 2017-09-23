@@ -57,7 +57,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
         /// <param name="args">The event arguments.</param>
-        private void WholeSellerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void _SupplierASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (this._Suppliers == null)
                 return;
@@ -66,7 +66,7 @@ namespace SDKTemplate
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var matchingWholeSellers = GetMatchingSuppliers(sender.Text);
+                var matchingWholeSellers = _GetMatchingSuppliers(sender.Text);
                 sender.ItemsSource = matchingWholeSellers.ToList();
             }
         }
@@ -80,7 +80,7 @@ namespace SDKTemplate
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void WholeSellerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void _SupplierASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (this._Suppliers == null)
                 return;
@@ -89,19 +89,19 @@ namespace SDKTemplate
             {
                 // User selected an item, take an action on it here
                 var choosenWholeSeller = args.ChosenSuggestion;
-                SelectSupplier((SupplierASBViewModel)choosenWholeSeller);
+                _SelectSupplier((SupplierASBViewModel)choosenWholeSeller);
             }
             else
             {
                 SupplierASBViewModel matchingWholeSeller = null;
                 // if a text is present, find best possible match.
                 if (args.QueryText != "")
-                    matchingWholeSeller = (GetMatchingSuppliers(args.QueryText)).FirstOrDefault();
-                SelectSupplier(matchingWholeSeller);
+                    matchingWholeSeller = (_GetMatchingSuppliers(args.QueryText)).FirstOrDefault();
+                _SelectSupplier(matchingWholeSeller);
             }
         }
 
-        private void SelectSupplier(SupplierASBViewModel WholeSeller)
+        private void _SelectSupplier(SupplierASBViewModel WholeSeller)
         {
             if (WholeSeller != null)
             {
@@ -128,7 +128,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="query">The part of the name or company to look for</param>
         /// <returns>An ordered list of mobileNumber that matches the query</returns>
-        private List<SupplierASBViewModel> GetMatchingSuppliers(string query)
+        private List<SupplierASBViewModel> _GetMatchingSuppliers(string query)
         {
             if (this._Suppliers == null)
                 return null;

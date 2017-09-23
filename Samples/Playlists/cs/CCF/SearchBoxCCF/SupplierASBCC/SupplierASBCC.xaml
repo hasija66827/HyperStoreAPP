@@ -21,9 +21,9 @@
                             TextMemberPath="Supplier_MobileNo_Name"
                             DisplayMemberPath="Supplier_MobileNo_Name"
                             PlaceholderText="Search By Mobile Number or Name"
-                            TextChanged="WholeSellerASB_TextChanged"
+                            TextChanged="_SupplierASB_TextChanged"
                             QueryIcon="Find"
-                            QuerySubmitted="WholeSellerASB_QuerySubmitted"
+                            QuerySubmitted="_SupplierASB_QuerySubmitted"
                             MinWidth="280"
                             Width="280" />
             <TextBlock x:Name="NoResults"

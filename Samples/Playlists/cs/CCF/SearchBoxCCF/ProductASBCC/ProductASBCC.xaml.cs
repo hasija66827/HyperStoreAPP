@@ -42,10 +42,10 @@ namespace SDKTemplate
         {
             Current = this;
             this.InitializeComponent();
-            AddToCartBtn.Click += AddToCartBtn_Click;
+            AddToCartBtn.Click += _AddToCartBtn_Click;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
             {
@@ -59,12 +59,19 @@ namespace SDKTemplate
                     AddToCartBtn.Visibility = Visibility.Visible;
                 }
             }
+            RefreshTheProducts();
+        }
+
+        public async void RefreshTheProducts()
+        {
+            NoResults.Visibility = Visibility.Collapsed;
+            ProductDetails.Visibility = Visibility.Collapsed;
             var products = await ProductDataSource.RetrieveProductDataAsync(null);
             if (products != null)
                 this._Products = products.Select(p => new ProductASBViewModel(p)).ToList();
         }
 
-        private void AddToCartBtn_Click(object sender, RoutedEventArgs e)
+        private void _AddToCartBtn_Click(object sender, RoutedEventArgs e)
         {
             this.OnAddProductClickedEvent?.Invoke(this.SelectedProductInASB);
         }
@@ -75,7 +82,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
         /// <param name="args">The event arguments.</param>
-        private void ProductASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void _ProductASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (this._Products == null)
                 return;
@@ -84,7 +91,7 @@ namespace SDKTemplate
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                sender.ItemsSource = GetMatchingProducts(sender.Text);
+                sender.ItemsSource = _GetMatchingProducts(sender.Text);
             }
         }
 
@@ -97,7 +104,7 @@ namespace SDKTemplate
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void ProductASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void _ProductASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (this._Products == null)
                 return;
@@ -113,7 +120,7 @@ namespace SDKTemplate
             }
             else
             {
-                var matchingProducts = GetMatchingProducts(args.QueryText);
+                var matchingProducts = _GetMatchingProducts(args.QueryText);
                 // Choose the first match, or clear the selection if there are no matches.
                 var product = matchingProducts.FirstOrDefault();
                 if (product == null)
@@ -121,7 +128,7 @@ namespace SDKTemplate
                 else
                     selectedProductInASB = new ProductASBViewModel(matchingProducts.FirstOrDefault());
             }
-            SelectProduct(selectedProductInASB);
+            _SelectProduct(selectedProductInASB);
             Current.SelectedProductChangedEvent?.Invoke();
         }
 
@@ -129,7 +136,7 @@ namespace SDKTemplate
         /// Display details of the specified Product.
         /// </summary>
         /// <param name="Product"></param>
-        private void SelectProduct(ProductASBViewModel product)
+        private void _SelectProduct(ProductASBViewModel product)
         {
             this._selectedProductInASB = product;
             if (product != null)
@@ -156,7 +163,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="query">The part of the name or company to look for</param>
         /// <returns>An ordered list of Product that matches the query</returns>
-        private List<ProductASBViewModel> GetMatchingProducts(string query)
+        private List<ProductASBViewModel> _GetMatchingProducts(string query)
         {
             if (_Products == null)
                 return null;
