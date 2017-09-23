@@ -52,26 +52,16 @@
                          Text="{x:Bind _ProdBasicInfo._PDFV.HSN,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
                          PlaceholderText=""
                          ToolTipService.ToolTip="The HSN of the product."
-                         Style="{StaticResource SmallFormTextBoxStyle}" />
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
                 <TextBlock Text="{Binding Errors[HSN][0]}"
                            Style="{StaticResource ErrorTextBlockStyle}" />
             </StackPanel>
             <TextBlock Text="{Binding Errors[Threshold][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-             <TextBlock Text="Add Tag To Product"
+            <TextBlock Text="Add Tag To Product"
                        Style="{StaticResource  ScenarioHeaderTextStyle}" />
-            <StackPanel Orientation="Horizontal"
-                        Margin="0,5">
-                <TextBox x:Name="TagName"
-                         Text="{x:Bind _TagFormViewModel.TagName, Mode=TwoWay}"
-                         ToolTipService.ToolTip="Tag Name which can be assigned to product"
-                         PlaceholderText="Enter Tag Name"
-                         Style="{StaticResource MediumFormTextBoxStyle}" />
-                <Button x:Name="CreateTag"
-                        Content="CreateTag"
-                        Click="CreateTag_Click" />
-            </StackPanel>
             <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Height="95"
                           MaxHeight="95"
                           Width="300">
                 <ItemsControl x:Name="TagItemControl">
@@ -86,6 +76,17 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,5">
+                <TextBox x:Name="TagName"
+                         Text="{x:Bind _TagFormViewModel.TagName, Mode=TwoWay}"
+                         ToolTipService.ToolTip="Tag Name which can be assigned to product"
+                         PlaceholderText="Enter Tag Name"
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                <Button x:Name="CreateTag"
+                        Content="CreateNewTag"
+                        Click="CreateTag_Click" />
+            </StackPanel>
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"

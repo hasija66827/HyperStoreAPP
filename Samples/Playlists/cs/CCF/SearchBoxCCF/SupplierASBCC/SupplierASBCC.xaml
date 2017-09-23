@@ -33,7 +33,7 @@
                        RelativePanel.AlignLeftWith="WholeSellerASB"
                        RelativePanel.Below="WholeSellerASB" />
             <RelativePanel x:Name="SupplierDetails"
-                           Visibility="Collapsed"
+                           Visibility="Visible"
                            Height="120"
                            Margin="10,20,0,0"
                            RelativePanel.Below="WholeSellerASB">
@@ -41,7 +41,7 @@
                          Height="48"
                          Width="48"
                          Margin="0,16,0,8"
-                         Fill="#FF201BE2" />
+                         Fill="#FF046260" />
                 <TextBlock x:Name="WholeSellerGlyph"
                            Text="RH"
                            FontSize="20"
