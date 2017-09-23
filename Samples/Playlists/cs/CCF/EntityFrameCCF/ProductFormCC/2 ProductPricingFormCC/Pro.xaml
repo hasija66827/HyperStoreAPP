@@ -23,7 +23,7 @@
                     Margin="10,0,0,0"
                     RelativePanel.Below="HeaderPanel">
             <TextBox Header="MRP/Unit"
-                     Text="{x:Bind _ProViewModel.MRP,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind _ProViewModel.MRP, Mode=TwoWay}"
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[MRP][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
@@ -32,25 +32,25 @@
                     Margin="10,0,0,0"
                     RelativePanel.Below="MRPPanel">
             <TextBox Header="Dis %"
-                     Text="{x:Bind _ProViewModel.DiscPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind _ProViewModel.DiscPer, Mode=TwoWay}"
                      Style="{StaticResource SmallFormTextBoxStyle}" />
-            <TextBlock Text="{Binding Errors[DiscPer][0]}"
+            <TextBlock Text=""
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="CGST %"
-                     Text="{x:Bind _ProViewModel.CGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind _ProViewModel.CGSTPer, Mode=TwoWay}"
                      Style="{StaticResource SmallFormTextBoxStyle}" />
-            <TextBlock Text="{Binding Errors[CGSTPer][0]}"
+            <TextBlock Text=""
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="SGST %"
-                     Text="{x:Bind _ProViewModel.SGSTPer,Converter={StaticResource CheckIfPositiveFloat}, Mode=TwoWay}"
+                     Text="{x:Bind _ProViewModel.SGSTPer, Mode=TwoWay}"
                      Style="{StaticResource SmallFormTextBoxStyle}" />
-            <TextBlock Text="{Binding Errors[SGSTPer][0]}"
+            <TextBlock Text=""
                        Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
         <RelativePanel x:Name="PriceDesigner"
                        RelativePanel.RightOf="PriceEditor"
                        RelativePanel.AlignTopWith="PriceEditor"
-                       RelativePanel.Above="CommandPanel">
+                       RelativePanel.Above="ErrorPanel">
             <StackPanel x:Name="Parent"
                         Margin="60,5,0,0"
                         Orientation="Horizontal">
@@ -58,7 +58,7 @@
                             Style="{StaticResource ProductStackPanel}">
                     <TextBlock Text="MRP/ Unit"
                                Style="{StaticResource ProductHeaderTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind _ProViewModel.MRP, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
+                    <TextBlock Text="{x:Bind _ProViewModel.MRPPerUnit, Converter={StaticResource FloatToRupeeConverter},Mode=OneWay}"
                                Style="{StaticResource ProductTextBlockStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -81,8 +81,8 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel x:Name="SecondLevel"
-                        RelativePanel.RightOf="FirstLevel"
-                        Margin="-200,5,0,0"
+                        RelativePanel.AlignLeftWith="FirstLevel"
+                        Margin="0,5,0,0"
                         RelativePanel.Below="FirstLevel"
                         Orientation="Horizontal">
                 <StackPanel Style="{StaticResource ProductStackPanel}"
@@ -101,8 +101,8 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel x:Name="ThirdLevel"
-                        Margin="-200,5,0,0"
-                        RelativePanel.RightOf="SecondLevel"
+                        Margin="0,5,0,0"
+                        RelativePanel.AlignLeftWith="SecondLevel"
                         RelativePanel.Below="SecondLevel"
                         Orientation="Horizontal">
                 <StackPanel Background="#FF04B7A5"
@@ -121,6 +121,15 @@
                 </StackPanel>
             </StackPanel>
         </RelativePanel>
+        <StackPanel x:Name="ErrorPanel"
+                    RelativePanel.Above="CommandPanel">
+            <TextBlock Text="{Binding Errors[DiscPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBlock Text="{Binding Errors[CGSTPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <TextBlock Text="{Binding Errors[SGSTPer][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+        </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">

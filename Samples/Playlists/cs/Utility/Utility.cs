@@ -320,15 +320,22 @@ namespace SDKTemplate
 
         public static string ConvertToRupee(object value)
         {
-            // value is the data from the source object.
-            var price = Math.Round(System.Convert.ToDouble(value), 2);
-            var absPrice = Math.Abs(price);
-            CultureInfo hindi = new CultureInfo("hi-IN");
-            string text = string.Format(hindi, "{0:c}", absPrice);
-            // Return the value to pass to the target.
-            if (price >= 0)
-                return text;
-            return "-" + text;
+            try
+            {
+                // value is the data from the source object.
+                var price = Math.Round(System.Convert.ToDouble(value), 2);
+                var absPrice = Math.Abs(price);
+                CultureInfo hindi = new CultureInfo("hi-IN");
+                string text = string.Format(hindi, "{0:c}", absPrice);
+                // Return the value to pass to the target.
+                if (price >= 0)
+                    return text;
+                return "-" + text;
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
         }
 
         public static string FloatToNegativeRupeeConverter(object value)
@@ -383,16 +390,19 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="value"></param>
         /// <returns>returns decimal is object can be converted, o.w. 0</returns>
-        public static decimal TryToConvertToFloat(object value)
+        public static decimal? TryToConvertToDecimal(object value)
         {
-            decimal result = 0;
+            if (value == null)
+                return null;
+            decimal? result = null;
             try
             {
+                
                 result = Convert.ToDecimal(value);
             }
-            catch
+            catch(Exception ex)
             {
-                result = 0;
+                result = null;
             }
             return result;
         }

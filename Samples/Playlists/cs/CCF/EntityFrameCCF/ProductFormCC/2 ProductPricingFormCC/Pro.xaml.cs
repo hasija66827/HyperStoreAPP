@@ -51,13 +51,13 @@ namespace SDKTemplate
                 var productDTO = new ProductDTO()
                 {
                     TagIds = _ProdBasicInfo._SelectedTagIds,
-                    CGSTPer = _ProViewModel.CGSTPer,
+                    CGSTPer = Utility.TryToConvertToDecimal(_ProViewModel.CGSTPer),
                     Code = _ProdBasicInfo._PDFV.Code,
-                    DiscountPer = _ProViewModel.DiscPer,
-                    MRP = _ProViewModel.MRP,
+                    DiscountPer = Utility.TryToConvertToDecimal(_ProViewModel.DiscPer),
+                    MRP = Utility.TryToConvertToDecimal(_ProViewModel.MRP),
                     Name = _ProdBasicInfo._PDFV.Name,
                     HSN = _ProdBasicInfo._PDFV.HSN,
-                    SGSTPer = _ProViewModel.SGSTPer,
+                    SGSTPer = Utility.TryToConvertToDecimal(_ProViewModel.SGSTPer),
                     Threshold = _ProdBasicInfo._PDFV.Threshold
                 };
                 var product = await ProductDataSource.CreateNewProductAsync(productDTO);
