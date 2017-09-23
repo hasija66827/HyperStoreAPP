@@ -37,7 +37,7 @@ namespace SDKTemplate
             // in order to call methods that are in this class.
             Current = this;
             //SampleTitle.Text = FEATURE_NAME;
-            AddProductBtn.Click += AddProductBtn_Click;
+           
         }
         public void NavigateNewsFeedFrame(Type sourcePageType, object parameter)
         {

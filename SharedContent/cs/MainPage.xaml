@@ -202,35 +202,47 @@
                           Click="AddCustomer_Click"
                           Width="78">
                 <AppBarButton.Content>
-                    <RelativePanel x:Name="Customer"
-                                   Height="50"
-                                   Margin="0,0,0,-30"
-                                   VerticalAlignment="Center">
-                        <FontIcon x:Name="ScenarioFontIcon"
-                                  FontFamily="Segoe MDL2 Assets"
-                                  Glyph="&#xE1E2;"
-                                  Foreground="#FF1DCDD7"
-                                  FontSize="25"
-                                  RelativePanel.AlignHorizontalCenterWithPanel="True"
-                                  Height="25" />
-                        <TextBlock RelativePanel.Below="ScenarioFontIcon"
-                                   RelativePanel.AlignHorizontalCenterWith="ScenarioFontIcon"
+                    <StackPanel Height="50"
+                                Margin="0,0,0,-30"
+                                VerticalAlignment="Center">
+                        <FontIcon Style="{StaticResource FontIconStyle}"
+                                  Glyph="&#xE1E2;" />
+                        <TextBlock HorizontalAlignment="Center"
                                    Text="Customer"
                                    FontSize="14" />
-                    </RelativePanel>
+                    </StackPanel>
                 </AppBarButton.Content>
             </AppBarButton>
-            <AppBarButton x:Name="AddProductBtn"
-                          HorizontalAlignment="Center"
-                          Icon="Add"
-                          Label="Product"
-                          VerticalAlignment="Top" />
-            <AppBarButton x:Name="AddWholeSellerBtn"
-                          HorizontalAlignment="Center"
-                          Icon="AddFriend"
-                          Label="Supplier"
+            <AppBarButton Height="60"
+                          Click="AddProductBtn_Click"
                           VerticalAlignment="Top"
-                          Click="AddWholeSellerBtn_Click" />
+                          Width="78">
+                <AppBarButton.Content>
+                    <StackPanel Height="50"
+                                Margin="0,0,0,-30"
+                                VerticalAlignment="Center">
+                        <FontIcon Style="{StaticResource FontIconStyle}"
+                                  Glyph="&#xE1E2;" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   Text="Product"
+                                   FontSize="14" />
+                    </StackPanel>
+                </AppBarButton.Content>
+            </AppBarButton>
+            <AppBarButton Height="60"
+                          VerticalAlignment="Top"
+                          Width="78"
+                          Click="AddWholeSellerBtn_Click">
+                <StackPanel Height="50"
+                            Margin="0,0,0,-30"
+                            VerticalAlignment="Center">
+                    <FontIcon Style="{StaticResource FontIconStyle}"
+                              Glyph="&#xE1E2;" />
+                    <TextBlock HorizontalAlignment="Center"
+                               Text="Supplier"
+                               FontSize="14" />
+                </StackPanel>
+            </AppBarButton>
         </StackPanel>
     </Grid>
 </Page>
