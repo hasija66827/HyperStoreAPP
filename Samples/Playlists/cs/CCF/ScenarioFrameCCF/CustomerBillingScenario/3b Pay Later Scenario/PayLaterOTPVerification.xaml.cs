@@ -27,7 +27,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class PayLaterOTPVerification : Page
     {
-        private PayLaterModeViewModel _PayLaterModeViewModel { get; set; }
+        private PayLaterModeViewModel _PLV { get; set; }
         private CustomerPageNavigationParameter _PageNavigationParameter { get; set; }
         public PayLaterOTPVerification()
         {
@@ -37,32 +37,37 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._PageNavigationParameter = (CustomerPageNavigationParameter)e.Parameter;
-            var p = this._PageNavigationParameter;
-            this._PayLaterModeViewModel = new PayLaterModeViewModel()
-            {
-                Customer = p.SelectedCustomer,
-                ToBePaid = p.SelectPaymentModeViewModelBase.ToBePaid,
-                PartiallyPayingAmount = 0
-            };
+            var PNP = this._PageNavigationParameter;
+            _PLV = DataContext as PayLaterModeViewModel;
+            _PLV.ErrorsChanged += _PLV_ErrorsChanged;
+            _PLV.AmountToBePaid = PNP.SelectPaymentModeViewModelBase.ToBePaid;
+            _PLV.PayingAmount = null;
+        }
+
+        private void _PLV_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
         }
 
         private async void ProceedBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsVerified = await _InitiateOTPVerificationAsync();
-            if (IsVerified)
+            var IsValid = _PLV.ValidateProperties();
+            if (IsValid)
             {
+                var IsVerified = await _InitiateOTPVerificationAsync();
+                if (IsVerified)
+                {
 
-                var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter,
-                                                                                        this._PayLaterModeViewModel.PartiallyPayingAmount);
-                this.Frame.Navigate(typeof(CustomerProductListCC));
+                    var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter,
+                                                                                                        Utility.TryToConvertToDecimal(this._PLV.PayingAmount));
+                    this.Frame.Navigate(typeof(CustomerProductListCC));
+                }
             }
-
         }
 
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
             var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingCustomerOrder_Credit];
-            var fomattedSMSContent = String.Format(SMSContent, this._PayLaterModeViewModel?.AmountToBePaidLater, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
+            var fomattedSMSContent = String.Format(SMSContent, this._PLV?.AmountToBePaidLater, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {
                 UserID = BaseURI.User.UserId,

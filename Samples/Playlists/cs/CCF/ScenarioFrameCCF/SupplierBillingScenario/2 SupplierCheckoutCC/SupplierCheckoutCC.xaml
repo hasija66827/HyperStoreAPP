@@ -55,7 +55,7 @@
                 <TextBlock Text="{Binding Errors[PayingAmount][0]}"
                            Style="{StaticResource ErrorTextBlockStyle}" />
             </StackPanel>
-            <TextBlock Text="Pay Later"
+            <TextBlock Text="Paying Later"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2" />
             <TextBlock Text="{x:Bind _SCV.AmountToBePaidLater, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"

@@ -47,7 +47,7 @@ namespace SDKTemplate
             }
             catch (FormatException)
             {
-                return new ValidationResult(String.Format("{0} is not numeric", this.propertyName));
+                return new ValidationResult("Try value in numeric range.");
             }
 
             if (compare < 0)

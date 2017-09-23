@@ -11,25 +11,17 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class SupplierCheckoutViewModelBase
-    {
-        public SupplierCheckoutViewModelBase()
-        {
-        }
-    }
-
-    public class SupplierCheckoutViewModel : ValidatableBindableBase, INotifyPropertyChanged
+    public class SupplierCheckoutViewModel : ValidatableBindableBase
     {
         public decimal? AmountToBePaid { get; set; }
-        public decimal? AmountToBePaidLater { get { return this.AmountToBePaid - this._payingAmountDec; } }
-
+        public decimal? AmountToBePaidLater { get { return this.AmountToBePaid - this._PayingAmountDec; } }
         public DateTime DueDate { get; set; }
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [Range(0, 100, ErrorMessage = "Try Interest Rate in Range(0, 100)")]
         public string IntrestRate { get; set; }
 
-        private decimal? _payingAmountDec { get { return Utility.TryToConvertToDecimal(_payingAmount); } }
+        private decimal? _PayingAmountDec { get { return Utility.TryToConvertToDecimal(_payingAmount); } }
         private string _payingAmount;
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings =false)]

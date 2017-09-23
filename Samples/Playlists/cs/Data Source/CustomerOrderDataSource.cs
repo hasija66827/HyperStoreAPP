@@ -15,7 +15,7 @@ namespace SDKTemp.Data
         #region Create
         public static event CustomerEntityChangedDelegate CustomerBalanceUpdatedEvent;
         public static event ProductEntityChangedDelegate ProductStockUpdatedEvent;
-        public static async Task<decimal?> PlaceOrderAsync(CustomerPageNavigationParameter PNP, decimal payingAmount)
+        public static async Task<decimal?> PlaceOrderAsync(CustomerPageNavigationParameter PNP, decimal? payingAmount)
         {
             var productsConsumed = PNP.ProductsConsumed.Select(p => new ProductConsumedDTO()
             {
