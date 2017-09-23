@@ -10,27 +10,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SDKTemplate
 {
-    partial class CustomerDataSource
+    public delegate void CustomerEntityChangedDelegate();
+
+    public class CustomerDataSource
     {
-        public class CustomerFilterCriteriaDTO
-        {
-            [Required]
-            public IRange<decimal> WalletAmount { get; set; }
-            public Guid? CustomerId { get; set; }
-        }
+        public static event CustomerEntityChangedDelegate CustomerCreatedEvent;
+        public static event CustomerEntityChangedDelegate CustomerUpdatedEvent;
 
         #region Create 
-        /// <summary>
-        /// Adds The customer into customer Data source as well as in sqllte database.
-        /// </summary>
-        /// <param name="newCustomer"></param>
         public static async Task<TCustomer> CreateNewCustomerAsync(CustomerDTO customerDTO)
         {
-
             var customer = await Utility.CreateAsync<TCustomer>(BaseURI.HyperStoreService + API.Customers, customerDTO);
             if (customer != null)
             {
-                var message = String.Format("You can Start taking Orders from Customer {0} ({1})", customer.Name, customer.MobileNo);
+                CustomerCreatedEvent?.Invoke();
+                var message = String.Format("You can start taking orders from Customer {0} ({1}).", customer.Name, customer.MobileNo);
                 SuccessNotification.PopUpSuccessNotification(API.Customers, message);
             }
             return customer;
@@ -44,6 +38,7 @@ namespace SDKTemplate
             if (customer != null)
             {
                 //TODO: succes notification
+                CustomerUpdatedEvent?.Invoke();
             }
             return customer;
         }
@@ -61,26 +56,6 @@ namespace SDKTemplate
         {
             var IRange = await Utility.RetrieveAsync<IRange<T>>(BaseURI.HyperStoreService + API.Customers, "GetWalletBalanceRange", null);
             return IRange;
-        }
-
-        /// <summary>
-        /// Check if Name is unique across the list of customers.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static bool IsNameExist(string name)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// Checks if mobile number exist across the list of the customers.
-        /// </summary>
-        /// <param name="mobileNumber"></param>
-        /// <returns></returns>
-        public static bool IsMobileNumberExist(string mobileNumber)
-        {
-            return false;
         }
         #endregion
     }

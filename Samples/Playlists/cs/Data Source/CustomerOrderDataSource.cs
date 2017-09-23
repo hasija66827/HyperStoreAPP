@@ -12,6 +12,8 @@ namespace SDKTemp.Data
 {
     public class CustomerOrderDataSource
     {
+        #region Create
+        public static event CustomerEntityChangedDelegate CustomerUpdatedEvent;
         public static async Task<decimal?> PlaceOrderAsync(CustomerPageNavigationParameter PNP, decimal payingAmount)
         {
             var productsConsumed = PNP.ProductsConsumed.Select(p => new ProductConsumedDTO()
@@ -29,10 +31,12 @@ namespace SDKTemp.Data
                 IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,
                 PayingAmount = payingAmount
             };
-            var deductedWalletAmount = await CreateCustomerOrderAsync(customerOrderDTO);
-            _SendOrderCreationNotification(PNP, deductedWalletAmount);
-
-
+            var deductedWalletAmount = await _CreateCustomerOrderAsync(customerOrderDTO);
+            if (deductedWalletAmount != null)
+            {
+                CustomerUpdatedEvent?.Invoke();
+                _SendOrderCreationNotification(PNP, deductedWalletAmount);
+            }
             return deductedWalletAmount;
         }
 
@@ -57,15 +61,15 @@ namespace SDKTemp.Data
 
                 SuccessNotification.PopUpSuccessNotification(API.CustomerOrders, firstMessage + "\n" + secondMessage);
             }
-
         }
 
-        private static async Task<decimal?> CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
+        private static async Task<decimal?> _CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
         {
 
             var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.CustomerOrders, customerOrderDTO);
             return deductedWalletAmount;
         }
+        #endregion
 
         public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
         {

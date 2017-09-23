@@ -120,6 +120,13 @@ namespace SDKTemplate
             public string Name { get; set; }
         }
 
+        public class CustomerFilterCriteriaDTO
+        {
+            [Required]
+            public IRange<decimal> WalletAmount { get; set; }
+            public Guid? CustomerId { get; set; }
+        }
+
         public class SupplierDTO
         {
             public string Address { get; set; }

@@ -38,6 +38,20 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             RefreshTheCustomers();
+            CustomerDataSource.CustomerCreatedEvent += RefreshTheCustomers;
+            CustomerDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
+            CustomerOrderDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
+            CustomerTransactionDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            CustomerDataSource.CustomerCreatedEvent -= RefreshTheCustomers;
+            CustomerDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
+            CustomerOrderDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
+            CustomerTransactionDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
+            base.OnNavigatedFrom(e);
         }
 
         public async void RefreshTheCustomers()
@@ -134,6 +148,7 @@ namespace SDKTemplate
                             || item.Name.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
+
     }
 }
 

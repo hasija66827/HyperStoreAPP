@@ -10,14 +10,18 @@ namespace SDKTemplate
 {
     class CustomerTransactionDataSource
     {
-        #region create
+        public static event CustomerEntityChangedDelegate CustomerUpdatedEvent;
+        #region Create
         public static async Task<TCustomerTransaction> CreateNewTransactionAsync(CustomerTransactionDTO transactionDTO)
         {
             var transaction = await Utility.CreateAsync<TCustomerTransaction>(BaseURI.HyperStoreService + API.CustomerTransactions, transactionDTO);
-            _SendTransactionCreationNotification(transaction);
+            if (transaction != null)
+            {
+                CustomerUpdatedEvent?.Invoke();
+                _SendTransactionCreationNotification(transaction);
+            }
             return transaction;
         }
-        #endregion
 
         private static void _SendTransactionCreationNotification(TCustomerTransaction transaction)
         {
@@ -36,6 +40,7 @@ namespace SDKTemplate
 
             SuccessNotification.PopUpSuccessNotification(API.CustomerTransactions, firstMessage + "\n" + secondMessage);
         }
+        #endregion
 
         #region Read
         public static async Task<List<TCustomerTransaction>> RetrieveTransactionsAsync(CustomerTransactionFilterCriteriaDTO tfc)
