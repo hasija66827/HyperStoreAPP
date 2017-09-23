@@ -27,7 +27,7 @@
                x:Name="ContentPanel">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400" />
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="250" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
@@ -50,7 +50,7 @@
                         Grid.Column="1">
                 <TextBox Text="{x:Bind _SCV.PayingAmount, Mode=TwoWay}"
                          PlaceholderText="Enter Amount Paying Now"
-                         Style="{StaticResource FormTextBoxStyle}"
+                         Style="{StaticResource MediumFormTextBoxStyle}"
                          Foreground="{StaticResource RedBrush}" />
                 <TextBlock Text="{Binding Errors[PayingAmount][0]}"
                            Style="{StaticResource ErrorTextBlockStyle}" />

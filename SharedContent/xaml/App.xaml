@@ -473,7 +473,7 @@
                         <Setter Property="FontWeight"
                                 Value="Normal" />
                         <Setter Property="MaxWidth"
-                                Value="500" />
+                                Value="290" />
                         <Setter Property="TextWrapping"
                                 Value="WrapWholeWords" />
                         <Setter Property="TextAlignment"
