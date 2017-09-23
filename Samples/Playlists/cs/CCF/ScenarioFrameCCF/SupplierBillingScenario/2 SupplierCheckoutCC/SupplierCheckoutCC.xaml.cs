@@ -24,7 +24,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class SupplierCheckoutCC : Page
     {
-        private SupplierCheckoutViewModel _SupplierCheckoutViewModel { get; set; }
+        private SupplierCheckoutViewModel _SCV { get; set; }
         private SupplierPageNavigationParameter SupplierPageNavigationParameter { get; set; }
         public SupplierCheckoutCC()
         {
@@ -36,52 +36,63 @@ namespace SDKTemplate
         {
             this.SupplierPageNavigationParameter = (SupplierPageNavigationParameter)e.Parameter;
             var PNP = this.SupplierPageNavigationParameter;
-            this._SupplierCheckoutViewModel = new SupplierCheckoutViewModel()
-            {
-                AmountToBePaid = PNP.SupplierBillingSummaryViewModel.BillAmount,
-                PayingAmount = PNP.SupplierBillingSummaryViewModel.BillAmount,
-                DueDate = DateTime.Now.AddDays(20),
-                IntrestRate = 0
-            };
+            _SCV = DataContext as SupplierCheckoutViewModel;
+            _SCV.ErrorsChanged += _SCV_ErrorsChanged;
+            _SCV.AmountToBePaid = PNP.SupplierBillingSummaryViewModel.BillAmount;
+            _SCV.PayingAmount = null;
+            _SCV.DueDate = DateTime.Now.AddDays(45);
+            _SCV.IntrestRate = null;
+        }
+
+        private void _SCV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+
         }
 
         private async void _PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsVerified = await _InitiateOTPVerification();
-            if (IsVerified)
+            var IsValid = _SCV.ValidateProperties();
+            if (IsValid)
             {
-                var PNP = this.SupplierPageNavigationParameter;
-
-                var productPurchased = PNP.ProductPurchased.Select(p => new ProductPurchasedDTO()
+                var IsVerified = await _InitiateOTPVerification();
+                if (IsVerified)
                 {
-                    ProductId = p.ProductId,
-                    QuantityPurchased = p.QuantityPurchased,
-                    PurchasePricePerUnit = p.PurchasePrice,
+                    var supplierOrderDTO = _CreateSupplierOrderDTO();
+                    var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
+                    _SendOrderCreationNotification(this.SupplierPageNavigationParameter, usingWalletAmount);
+                    this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
                 }
-                ).ToList();
-
-                var supplierOrderDTO = new SupplierOrderDTO()
-                {
-                    DueDate = _SupplierCheckoutViewModel.DueDate,
-                    IntrestRate = _SupplierCheckoutViewModel.IntrestRate,
-                    ProductsPurchased = productPurchased,
-                    PayingAmount = _SupplierCheckoutViewModel.PayingAmount,
-                    SupplierId = PNP.SelectedSupplier?.SupplierId,
-                    SupplierBillingSummary = PNP.SupplierBillingSummaryViewModel
-                };
-
-                var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
-
-                _SendOrderCreationNotification(PNP, usingWalletAmount);
-
-                this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
             }
+        }
+
+        private SupplierOrderDTO _CreateSupplierOrderDTO()
+        {
+            var PNP = this.SupplierPageNavigationParameter;
+
+            var productPurchased = PNP.ProductPurchased.Select(p => new ProductPurchasedDTO()
+            {
+                ProductId = p.ProductId,
+                QuantityPurchased = p.QuantityPurchased,
+                PurchasePricePerUnit = p.PurchasePrice,
+            }
+            ).ToList();
+
+            var supplierOrderDTO = new SupplierOrderDTO()
+            {
+                DueDate = _SCV.DueDate,
+                IntrestRate = Utility.TryToConvertToDecimal(_SCV.IntrestRate),
+                ProductsPurchased = productPurchased,
+                PayingAmount = Utility.TryToConvertToDecimal(_SCV.PayingAmount),
+                SupplierId = PNP.SelectedSupplier?.SupplierId,
+                SupplierBillingSummary = PNP.SupplierBillingSummaryViewModel
+            };
+            return supplierOrderDTO;
         }
 
         private async Task<bool> _InitiateOTPVerification()
         {
             var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingSupplierOrder_Credit];
-            var formattedSMSContent = String.Format(SMSContent, _SupplierCheckoutViewModel.AmountToBePaidLater,
+            var formattedSMSContent = String.Format(SMSContent, _SCV.AmountToBePaidLater,
                                                               SupplierPageNavigationParameter?.SelectedSupplier?.Name,
                                                               OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()

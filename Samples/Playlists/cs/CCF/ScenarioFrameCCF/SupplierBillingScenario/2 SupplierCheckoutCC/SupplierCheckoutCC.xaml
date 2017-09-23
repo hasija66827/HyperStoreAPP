@@ -11,6 +11,9 @@
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
+    <Page.DataContext>
+        <local:SupplierCheckoutViewModel />
+    </Page.DataContext>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
@@ -24,48 +27,56 @@
                x:Name="ContentPanel">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400" />
-                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="1.4*" />
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="1.4*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <TextBlock Text="Total Amount Due"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0" />
-            <TextBlock Text="{x:Bind _SupplierCheckoutViewModel.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+            <TextBlock Text="{x:Bind _SCV.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0"
                        Grid.Column="1" />
-            <TextBlock Text="Partially Paying"
+            <TextBlock Text="Paying Now"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="1" />
-            <TextBox Text="{x:Bind _SupplierCheckoutViewModel.PayingAmount, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat}}"
-                     Style="{StaticResource MediumFormTextBoxStyle}"
-                     Grid.Row="1"
-                     Grid.Column="1"
-                     Foreground="{StaticResource RedBrush}" />
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1">
+                <TextBox Text="{x:Bind _SCV.PayingAmount, Mode=TwoWay}"
+                         PlaceholderText="Enter Amount Paying Now"
+                         Style="{StaticResource FormTextBoxStyle}"
+                         Foreground="{StaticResource RedBrush}" />
+                <TextBlock Text="{Binding Errors[PayingAmount][0]}"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
             <TextBlock Text="Pay Later"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2" />
-            <TextBlock Text="{x:Bind _SupplierCheckoutViewModel.AmountToBePaidLater, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"
+            <TextBlock Text="{x:Bind _SCV.AmountToBePaidLater, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2"
                        Grid.Column="1" />
             <TextBlock Text="Interest Rate (%)"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="3" />
-            <TextBox Text="{x:Bind _SupplierCheckoutViewModel.IntrestRate, Mode=TwoWay, Converter={StaticResource CheckIfValidPercentage}}"
-                     Style="{StaticResource MediumFormTextBoxStyle}"
-                     Grid.Row="3"
-                     Grid.Column="1" />
+            <StackPanel  Grid.Row="3"
+                         Grid.Column="1">
+                <TextBox Text="{x:Bind _SCV.IntrestRate, Mode=TwoWay}"
+                         PlaceholderText="Enter Interest Rate"
+                         Style="{StaticResource MediumFormTextBoxStyle}" />
+                <TextBlock Text="{Binding Errors[IntrestRate][0]}"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
             <TextBlock Text="Due Date"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="4" />
-            <CalendarDatePicker Date="{x:Bind _SupplierCheckoutViewModel.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
+            <CalendarDatePicker Date="{x:Bind _SCV.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
                                 Grid.Row="4"
                                 Grid.Column="1" />
         </Grid>
