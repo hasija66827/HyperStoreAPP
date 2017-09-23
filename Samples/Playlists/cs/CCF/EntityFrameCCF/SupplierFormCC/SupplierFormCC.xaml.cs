@@ -30,7 +30,6 @@ namespace SDKTemplate
     public sealed partial class SupplierFormCC : Page
     {
         public static SupplierFormCC Current;
-        public event SupplierAddedOrUpdatedDelegate SupplierAddedOrUpdatedEvent;
         private SupplierFormViewModel _SFV { get; set; }
         private FormMode _FormMode { get; set; }
         public SupplierFormCC()
@@ -38,8 +37,6 @@ namespace SDKTemplate
             this.InitializeComponent();
             _SFV = new SupplierFormViewModel();
             Current = this;
-            if (SupplierASBCC.Current != null)
-                SupplierFormCC.Current.SupplierAddedOrUpdatedEvent += SupplierASBCC.Current.RefreshTheSuppliers;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -88,14 +85,11 @@ namespace SDKTemplate
                 };
                 if (_FormMode == FormMode.Create)
                 {
-                    if (await SupplierDataSource.CreateNewSupplier(supplierDTO) != null)
-                        this.SupplierAddedOrUpdatedEvent?.Invoke();
-
+                    var supplier = await SupplierDataSource.CreateNewSupplier(supplierDTO);
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    if (await SupplierDataSource.UpdateSupplierAsync((Guid)_SFV.SupplierId, supplierDTO) != null)
-                        this.SupplierAddedOrUpdatedEvent?.Invoke();
+                    var supplier = await SupplierDataSource.UpdateSupplierAsync((Guid)_SFV.SupplierId, supplierDTO);
                 }
                 else
                 {

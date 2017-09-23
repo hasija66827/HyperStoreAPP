@@ -20,7 +20,7 @@
                             Height="30"
                             TextMemberPath="Supplier_MobileNo_Name"
                             DisplayMemberPath="Supplier_MobileNo_Name"
-                            PlaceholderText="Search By MobNo (e.g. 9632166827)"
+                            PlaceholderText="Search By Mobile Number or Name"
                             TextChanged="WholeSellerASB_TextChanged"
                             QueryIcon="Find"
                             QuerySubmitted="WholeSellerASB_QuerySubmitted"

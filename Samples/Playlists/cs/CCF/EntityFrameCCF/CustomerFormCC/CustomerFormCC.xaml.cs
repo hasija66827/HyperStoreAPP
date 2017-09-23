@@ -30,15 +30,12 @@ namespace SDKTemplate
     public sealed partial class CustomerFormCC : Page
     {
         public static CustomerFormCC Current;
-        public event CustomerAddedOrUpdatedDelegate CustomerAddedOrUpdatedEvent;
         private CustomerFormViewModel _CFV { get; set; }
         private FormMode? _FormMode { get; set; }
         public CustomerFormCC()
         {
             Current = this;
             this.InitializeComponent();
-            if (CustomerASBCC.Current != null)
-                CustomerAddedOrUpdatedEvent += CustomerASBCC.Current.RefreshTheCustomers;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -89,13 +86,11 @@ namespace SDKTemplate
                 };
                 if (_FormMode == FormMode.Create)
                 {
-                    if (await CustomerDataSource.CreateNewCustomerAsync(customerDTO) != null)
-                        this.CustomerAddedOrUpdatedEvent?.Invoke();
+                    var customer = await CustomerDataSource.CreateNewCustomerAsync(customerDTO);
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    if (await CustomerDataSource.UpdateCustomerAsync((Guid)this._CFV.CustomerId, customerDTO) != null)
-                        this.CustomerAddedOrUpdatedEvent?.Invoke();
+                    var customer = await CustomerDataSource.UpdateCustomerAsync((Guid)this._CFV.CustomerId, customerDTO);
                 }
                 else
                 { throw new NotImplementedException(); }

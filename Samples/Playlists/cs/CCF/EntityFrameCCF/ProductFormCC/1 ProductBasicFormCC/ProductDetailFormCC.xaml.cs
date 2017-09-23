@@ -36,6 +36,7 @@ namespace SDKTemplate
         private TagFormViewModel _TagFormViewModel { get; set; }
         private List<ProductTagViewModel> _ProductTags { get; set; }
         public static ProductBasicFormCC Current;
+        private FormMode? _FormMode { get; set; }
         public ProductBasicFormCC()
         {
             Current = this;

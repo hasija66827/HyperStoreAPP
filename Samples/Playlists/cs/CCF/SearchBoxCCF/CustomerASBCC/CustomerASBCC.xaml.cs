@@ -33,8 +33,6 @@ namespace SDKTemplate
             this.InitializeComponent();
             Current = this;
             this._Customers = null;
-            if (CustomerFormCC.Current != null)
-                CustomerFormCC.Current.CustomerAddedOrUpdatedEvent += RefreshTheCustomers;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -57,7 +55,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
         /// <param name="args">The event arguments.</param>
-        private void CustomerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void _CustomerASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (this._Customers == null)
                 return;
@@ -66,7 +64,7 @@ namespace SDKTemplate
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var matchingCustomers = GetMatchingCustomers(sender.Text);
+                var matchingCustomers = _GetMatchingCustomers(sender.Text);
                 sender.ItemsSource = matchingCustomers.ToList();
             }
         }
@@ -80,7 +78,7 @@ namespace SDKTemplate
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void CustomerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void _CustomerASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (this._Customers == null)
                 return;
@@ -88,18 +86,18 @@ namespace SDKTemplate
             {
                 // User selected an item, take an action on it here
                 var choosenCustomer = (CustomerASBViewModel)args.ChosenSuggestion;
-                SelectCustomer(choosenCustomer);
+                _SelectCustomer(choosenCustomer);
             }
             else
             {
                 CustomerASBViewModel matchingCustomer = null;
                 if (args.QueryText != "")
-                    matchingCustomer = GetMatchingCustomers(args.QueryText).FirstOrDefault();
-                SelectCustomer(matchingCustomer);
+                    matchingCustomer = _GetMatchingCustomers(args.QueryText).FirstOrDefault();
+                _SelectCustomer(matchingCustomer);
             }
         }
 
-        private void SelectCustomer(CustomerASBViewModel customer)
+        private void _SelectCustomer(CustomerASBViewModel customer)
         {
             if (customer != null)
             {
@@ -127,7 +125,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="query">The part of the name or company to look for</param>
         /// <returns>An ordered list of mobileNumber that matches the query</returns>
-        private List<CustomerASBViewModel> GetMatchingCustomers(string query)
+        private List<CustomerASBViewModel> _GetMatchingCustomers(string query)
         {
             if (this._Customers == null)
                 return null;

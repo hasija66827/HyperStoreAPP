@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate Task SelectedWholeSellerChangedDelegate();
+    public delegate Task SelectedSupplierChangedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -29,14 +29,12 @@ namespace SDKTemplate
         public TSupplier SelectedSupplierInASB { get { return this._selectedWholeSellerInASB; } }
         private List<SupplierASBViewModel> _Suppliers { get; set; }
         private SupplierASBViewModel _selectedWholeSellerInASB;
-        public event SelectedWholeSellerChangedDelegate SelectedSupplierChangedEvent;
+        public event SelectedSupplierChangedDelegate SelectedSupplierChangedEvent;
         public SupplierASBCC()
         {
             Current = this;
             this.InitializeComponent();
             this._Suppliers = null;
-            if (SupplierFormCC.Current != null)
-                SupplierFormCC.Current.SupplierAddedOrUpdatedEvent += RefreshTheSuppliers;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

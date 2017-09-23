@@ -21,10 +21,10 @@
                                 Height="30"
                                 TextMemberPath="Customer_MobileNo_Name"
                                 DisplayMemberPath="Customer_MobileNo_Name"
-                                PlaceholderText="Search By MobNo (e.g. 9632166827)"
-                                TextChanged="CustomerASB_TextChanged"
+                                PlaceholderText="Search By Mobile Number or Name"
+                                TextChanged="_CustomerASB_TextChanged"
                                 QueryIcon="Find"
-                                QuerySubmitted="CustomerASB_QuerySubmitted"
+                                QuerySubmitted="_CustomerASB_QuerySubmitted"
                                 MinWidth="280"
                                 Width="280"
                                 RelativePanel.AlignLeftWith="HeaderPanel" />
