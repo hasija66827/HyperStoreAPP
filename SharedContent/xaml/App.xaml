@@ -53,6 +53,10 @@
                                      Color="White" />
                     <SolidColorBrush x:Key="LightGrayBrush"
                                      Color="#FFE9EDED" />
+                    <SolidColorBrush x:Key="ListHeaderBrush"
+                                     Color="#FFDAE0E0" />
+                    <SolidColorBrush x:Key="ListItemBrush"
+                                     Color="#FFF6FFFF" />
                     <Style x:Key="FontAwesome"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

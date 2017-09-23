@@ -13,7 +13,7 @@ namespace SDKTemplate
     {
         public decimal AmountToBePaid { get; set; }
         public virtual decimal PayingAmount { get; set; }
-        public decimal RemainingAmount { get { return this.AmountToBePaid - this.PayingAmount; } }
+        public decimal AmountToBePaidLater { get { return this.AmountToBePaid - this.PayingAmount; } }
         public decimal IntrestRate { get; set; }
         public DateTime DueDate { get; set; }
         public SupplierCheckoutViewModelBase() {
@@ -44,7 +44,7 @@ namespace SDKTemplate
                 }
                 this._payingAmount = value;
                 this.OnPropertyChanged(nameof(PayingAmount));
-                this.OnPropertyChanged(nameof(RemainingAmount));
+                this.OnPropertyChanged(nameof(AmountToBePaidLater));
             }
         }
         public SupplierCheckoutViewModel():base() { }

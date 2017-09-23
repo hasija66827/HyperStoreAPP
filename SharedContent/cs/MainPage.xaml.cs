@@ -148,12 +148,11 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-                    SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
+                    RightBottomFrame.Navigate(typeof(SupplierBillingSummaryCC));
+                    SummaryFrame.Navigate(typeof(BlankPage));
                     ChangeLayout(false);
-
                 }
 
                 else if (s.ClassType == typeof(SupplierOrderCCF))

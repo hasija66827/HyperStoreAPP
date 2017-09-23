@@ -28,13 +28,13 @@
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Items / Quantity: "
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Cart Amount "
+                    <TextBlock Text="Cart Amount: "
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Discount Amount "
+                    <TextBlock Text="Discount Amount: "
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Pay Amount "
+                    <TextBlock Text="Pay Amount: "
                                Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Total GST "
+                    <TextBlock Text="Total GST: "
                                Style="{StaticResource SummaryTextBlockStyle}" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
@@ -46,7 +46,7 @@
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToNegativeRupeeConverter}}"
                                Style="{StaticResource GreenTextBlockStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Foreground="#FFFF2FAE"
+                               Foreground="{StaticResource PinkBrush}"
                                Style="{StaticResource SummaryTextBlockStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.Tax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{StaticResource SummaryTextBlockStyle}" />

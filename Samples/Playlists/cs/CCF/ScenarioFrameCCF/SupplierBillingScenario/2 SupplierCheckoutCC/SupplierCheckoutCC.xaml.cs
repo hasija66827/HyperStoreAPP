@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,7 +29,7 @@ namespace SDKTemplate
         public SupplierCheckoutCC()
         {
             this.InitializeComponent();
-            PlaceOrderBtn.Click += PlaceOrderBtn_Click;
+            PlaceOrderBtn.Click += _PlaceOrderBtn_Click;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -44,35 +45,53 @@ namespace SDKTemplate
             };
         }
 
-        private async void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
+        private async void _PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            var PNP = this.SupplierPageNavigationParameter;
-
-            var productPurchased = PNP.ProductPurchased.Select(p => new ProductPurchasedDTO()
+            var IsVerified = await _InitiateOTPVerification();
+            if (IsVerified)
             {
-                ProductId = p.ProductId,
-                QuantityPurchased = p.QuantityPurchased,
-                PurchasePricePerUnit = p.PurchasePrice,
+                var PNP = this.SupplierPageNavigationParameter;
+
+                var productPurchased = PNP.ProductPurchased.Select(p => new ProductPurchasedDTO()
+                {
+                    ProductId = p.ProductId,
+                    QuantityPurchased = p.QuantityPurchased,
+                    PurchasePricePerUnit = p.PurchasePrice,
+                }
+                ).ToList();
+
+                var supplierOrderDTO = new SupplierOrderDTO()
+                {
+                    DueDate = _SupplierCheckoutViewModel.DueDate,
+                    IntrestRate = _SupplierCheckoutViewModel.IntrestRate,
+                    ProductsPurchased = productPurchased,
+                    PayingAmount = _SupplierCheckoutViewModel.PayingAmount,
+                    SupplierId = PNP.SelectedSupplier?.SupplierId,
+                    SupplierBillingSummary = PNP.SupplierBillingSummaryViewModel
+                };
+
+                var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
+
+                _SendOrderCreationNotification(PNP, usingWalletAmount);
+
+                this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
             }
-            ).ToList();
+        }
 
-
-
-            var supplierOrderDTO = new SupplierOrderDTO()
+        private async Task<bool> _InitiateOTPVerification()
+        {
+            var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingSupplierOrder_Credit];
+            var formattedSMSContent = String.Format(SMSContent, _SupplierCheckoutViewModel.AmountToBePaidLater,
+                                                              SupplierPageNavigationParameter?.SelectedSupplier?.Name,
+                                                              OTPVConstants.OTPLiteral);
+            var OTPVerificationDTO = new OTPVerificationDTO()
             {
-                DueDate = _SupplierCheckoutViewModel.DueDate,
-                IntrestRate = _SupplierCheckoutViewModel.IntrestRate,
-                ProductsPurchased = productPurchased,
-                PayingAmount = _SupplierCheckoutViewModel.PayingAmount,
-                SupplierId = PNP.SelectedSupplier?.SupplierId,
-                SupplierBillingSummary = PNP.SupplierBillingSummaryViewModel
+                UserID = BaseURI.User.UserId,
+                ReceiverMobileNo = BaseURI.User.MobileNo,
+                SMSContent = formattedSMSContent
             };
-
-            var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
-
-            _SendOrderCreationNotification(PNP, usingWalletAmount);
-
-            this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
+            var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);
+            return IsVerified;
         }
 
         private static void _SendOrderCreationNotification(SupplierPageNavigationParameter PNP, decimal? usingWalletAmount)

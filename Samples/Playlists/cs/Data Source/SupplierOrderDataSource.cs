@@ -20,7 +20,6 @@ namespace SDKTemplate
             {
                 SupplierBalanceUpdatedEvent?.Invoke();
                 ProductStockUpdatedEvent?.Invoke();
-                //TODO: Send success notification
             }
             return deductedWalletAmount;
         }

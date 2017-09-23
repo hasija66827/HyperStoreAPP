@@ -85,7 +85,7 @@
                                    RelativePanel.Below="RadContentPanel">
                         <StackPanel x:Name="StaticLabelsForList"
                                     Margin="0,20,0,0"
-                                    Background="#FFDAE0E0"
+                                    Background="{StaticResource ListHeaderBrush}"
                                     Orientation="Horizontal">
                             <TextBlock Text="Prod Id"
                                        Style="{StaticResource ListTextBlockStyle}" />
@@ -120,7 +120,7 @@
                                 <DataTemplate x:DataType="local:CustomerBillingProductViewModel">
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,5,0,0"
-                                                Background="#FFF6FFFF">
+                                                Background="{StaticResource ListItemBrush}">
                                         <TextBlock Text="{x:Bind Code, Mode=OneWay}"
                                                    Style="{StaticResource ListTextBlockStyle}"
                                                    Foreground="Black" />
@@ -138,14 +138,14 @@
                                                    Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="ValueIncTax"
                                                    Style="{StaticResource LargeListTextBlockStyle}"
-                                                   Foreground="#FFFF2FAE"
+                                                   Foreground="{StaticResource PinkBrush}"
                                                    Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBox x:Name="Quantity"
                                                  Style="{StaticResource ListTextBoxStyle}"
                                                  Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
                                         <TextBlock x:Name="NetValue"
                                                    FontSize="16"
-                                                   Foreground="#FFFF2FAE"
+                                                   Foreground="{StaticResource PinkBrush}"
                                                    Style="{StaticResource LargeListTextBlockStyle}"
                                                    Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="TotalGSTPer"

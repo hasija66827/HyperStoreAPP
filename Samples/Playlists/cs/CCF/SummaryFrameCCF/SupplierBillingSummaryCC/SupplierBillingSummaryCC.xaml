@@ -7,7 +7,7 @@
       mc:Ignorable="d">
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
-     </UserControl.Resources>
+    </UserControl.Resources>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
@@ -22,7 +22,7 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Items / Quantity: "
                            Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="Pay Amount "
+                <TextBlock Text="Pay Amount: "
                            Style="{StaticResource SummaryTextBlockStyle}" />
             </StackPanel>
             <StackPanel Orientation="Vertical"
@@ -30,6 +30,7 @@
                 <TextBlock Text="{x:Bind _BillingSummaryViewModel.Items_Quantity, Mode=OneWay}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
                 <TextBlock Text="{x:Bind _BillingSummaryViewModel.BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                           Foreground="{StaticResource PinkBrush}"
                            Style="{StaticResource SummaryTextBlockStyle}" />
             </StackPanel>
         </RelativePanel>

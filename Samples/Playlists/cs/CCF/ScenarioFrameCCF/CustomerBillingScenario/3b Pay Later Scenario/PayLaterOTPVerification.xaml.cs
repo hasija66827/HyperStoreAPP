@@ -46,7 +46,6 @@ namespace SDKTemplate
             };
         }
 
-
         private async void ProceedBtn_Click(object sender, RoutedEventArgs e)
         {
             var IsVerified = await _InitiateOTPVerificationAsync();
@@ -54,7 +53,7 @@ namespace SDKTemplate
             {
 
                 var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter,
-                                                                            this._PayLaterModeViewModel.PartiallyPayingAmount);
+                                                                                        this._PayLaterModeViewModel.PartiallyPayingAmount);
                 this.Frame.Navigate(typeof(CustomerProductListCC));
             }
 

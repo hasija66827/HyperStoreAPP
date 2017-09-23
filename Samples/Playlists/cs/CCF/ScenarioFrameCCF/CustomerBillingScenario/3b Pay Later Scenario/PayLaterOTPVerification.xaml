@@ -13,7 +13,7 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Pay Later OTP Verification"
+            <TextBlock Text="Pay Later"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <RelativePanel x:Name="RadContentPanel"
@@ -86,7 +86,7 @@
                      HorizontalAlignment="Right"
                      HorizontalContentAlignment="Right"
                      Grid.Column="1"
-                     Foreground="#FFED2314" />
+                     Foreground="{StaticResource RedBrush}" />
             <TextBlock Text="Pay Later"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2"
@@ -102,7 +102,7 @@
                     RelativePanel.AlignBottomWithPanel="True">
             <Button x:Name="ProceedBtn"
                     Click="ProceedBtn_Click"
-                    Content="Proceed"
+                    Content="OTP Verify and Place Order"
                     Style="{StaticResource ScenarioButtonStyle}" />
         </StackPanel>
     </RelativePanel>
