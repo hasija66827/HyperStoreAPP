@@ -37,16 +37,16 @@
             <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
-                    <TextBlock Text="Id"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
+                    <TextBlock Text="Product Id"
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Product Name"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Purchase Price"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Quantity"
-                               Style="{StaticResource ListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Net Value"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                 </StackPanel>
                 <ListView x:Name="OrderDetailListView"
                           ItemsSource="{x:Bind OrderDetails}"

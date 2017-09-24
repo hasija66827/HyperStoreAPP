@@ -34,15 +34,15 @@
             <StackPanel>
                 <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Txn No"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Txn Date"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Supplier Wallet Balance"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Txn Amount"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Description"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                 </StackPanel>
                 <ListView x:Name="TransactionHistoriesOfWholeSellers"
                           ItemsSource="{x:Bind Transactions}"

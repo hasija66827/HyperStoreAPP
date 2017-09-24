@@ -43,6 +43,12 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    <Style x:Key="CustomerProductListHeader"
+                           TargetType="StackPanel">
+                        
+                    </Style>
+                    
+                    
                     <SolidColorBrush x:Key="GreenBrush"
                                      Color="#FF59E71A" />
                     <SolidColorBrush x:Key="RedBrush"
@@ -58,7 +64,7 @@
                     <SolidColorBrush x:Key="ListItemBrush"
                                      Color="#FFF6FFFF" />
                     <SolidColorBrush x:Key="CustomerEllipseBrush"
-                                     Color="#FF830D0D"/>
+                                     Color="#FF830D0D" />
                     <SolidColorBrush x:Key="SupplierEllipseBrush"
                                      Color="#FF8C7A07" />
                     <Style x:Key="FontAwesome"
@@ -107,7 +113,7 @@
                         <Setter Property="FontSize"
                                 Value="20" />
                         <Setter Property="FontWeight"
-                                Value="ExtraBold"/>
+                                Value="ExtraBold" />
                     </Style>
                     <Style x:Key="EllipseStyle"
                            TargetType="Ellipse">
@@ -213,10 +219,18 @@
                     </Style>
                     <Style x:Key="ListHeaderTBStyle"
                            TargetType="TextBlock">
+                        <Setter Property="TextAlignment"
+                                Value="Center" />
+                        <Setter Property="Height"
+                                Value="30" />
+                        <Setter Property="Padding"
+                                Value="5" />
                         <Setter Property="FontFamily"
                                 Value="Segoe UI" />
+                        <Setter Property="Foreground"
+                                Value="{StaticResource SystemControlHighlightAccentBrush}" />
                         <Setter Property="FontWeight"
-                                Value="Bold" />
+                                Value="Medium" />
                         <Setter Property="FontSize"
                                 Value="15" />
                         <Setter Property="TextTrimming"
@@ -227,10 +241,8 @@
                                 Value="MaxHeight" />
                         <Setter Property="TextLineBounds"
                                 Value="Full" />
-                        <Setter Property="Width"
-                                Value="120" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Right" />
+                        <Setter Property="MinWidth"
+                                Value="80" />
                     </Style>
                     <Style x:Key="ListTBStyle"
                            TargetType="TextBlock">
@@ -597,7 +609,6 @@
                         <Setter Property="TextAlignment"
                                 Value="Left" />
                     </Style>
-                    
                     <Style x:Key="MasterListTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"

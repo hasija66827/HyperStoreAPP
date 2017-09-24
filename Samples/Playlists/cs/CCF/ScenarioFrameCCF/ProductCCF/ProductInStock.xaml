@@ -59,15 +59,15 @@
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Supplier Name"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Supplier Mobile No"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Last Order Date"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Qty Purchased"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Latest Purchase Price"
-                               Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
                 </StackPanel>
                 <ListView x:Name="PriceListBySuppliersListView"
                           ItemsSource="{x:Bind PriceQuotedBySuppliers}"

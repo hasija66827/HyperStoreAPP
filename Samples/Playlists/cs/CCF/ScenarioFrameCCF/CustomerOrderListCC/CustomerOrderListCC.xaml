@@ -12,6 +12,7 @@
     </Page.Transitions>
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToPercentageGSTConverter x:Key="FloatToPercentageGSTConverter" />
         <local:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:CustomerOrderViewModel">
@@ -75,21 +76,30 @@
                       x:DataType="local:CustomerOrderViewModel">
             <StackPanel>
                 <StackPanel x:Name="StaticLabelsForList"
-                            Style="{StaticResource ListHeaderStackPanel}">
-                    <TextBlock Text="Product Name"
-                               Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Display Price"
-                               Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Discount %"
-                               Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="TGST %"
-                               Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Selling Price"
-                               Style="{StaticResource ListTextBlockStyle}" />
-                    <TextBlock Text="Quantity Purchase"
-                               Style="{StaticResource ListTextBlockStyle}" />
+                            Margin="0,20,0,0"
+                            Background="{StaticResource ListHeaderBrush}"
+                            Orientation="Horizontal">
+                    <TextBlock Text="ProductId"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="Name"
+                               Width="110"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="MRP/Unit"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="Disc %"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="Dis Amt"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="ValIncTax"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="Qty"
+                               Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Net Value"
-                               Style="{StaticResource LargeListTextBlockStyle}" />
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="TGST %"
+                               Style="{StaticResource ListHeaderTBStyle}" />
+                    <TextBlock Text="TGST"
+                               Style="{StaticResource ListHeaderTBStyle}" />
                 </StackPanel>
                 <ListView x:Name="OrderDetailListView"
                           ItemsSource="{x:Bind OrderDetails}"
@@ -100,31 +110,39 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:CustomerOrderProductViewModel">
                             <StackPanel Style="{StaticResource ListItemStackPanel}">
+                                <TextBlock Text="{x:Bind Product.Code, Mode=OneTime}"
+                                           Style="{StaticResource ListTextBlockStyle}" />
                                 <TextBlock Text="{x:Bind Product.Name, Mode=OneTime}"
-                                           Style="{StaticResource ListTextBlockStyle}"
-                                           TextWrapping="Wrap" />
-                                <TextBlock x:Name="DisplayPrice"
-                                           Style="{StaticResource ListTextBlockStyle}"
+                                           Style="{StaticResource LightTextBlockStyle}" />
+                                <TextBlock x:Name="MRP"
                                            Foreground="Black"
-                                           Text="{x:Bind DisplayCostSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                           Style="{StaticResource LargeListTextBlockStyle}"
+                                           Text="{x:Bind MRPSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBlock x:Name="DiscountPer"
-                                           Style="{StaticResource ListTextBlockStyle}"
+                                           Style="{StaticResource GreenListTextBlockStyle}"
                                            Text="{x:Bind DiscountPerSnapShot, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}" />
-                                <TextBlock x:Name="TGSTPer"
-                                           Style="{StaticResource ListTextBlockStyle}"
-                                           Text="{x:Bind TGSTPerSnapShot, Mode=OneTime, Converter={StaticResource FloatToPercentageOFFConverter}}" />
-                                <TextBlock x:Name="SellingPrice"
-                                           Foreground="Black"
-                                           Style="{StaticResource ListTextBlockStyle}"
-                                           Text="{x:Bind SellingPrice, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBlock x:Name="DiscountAmount"
+                                           Style="{StaticResource GreenListTextBlockStyle}"
+                                           Text="{x:Bind DiscountAmountSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBlock x:Name="ValueIncTax"
+                                           Style="{StaticResource LargeListTextBlockStyle}"
+                                           Foreground="{StaticResource PinkBrush}"
+                                           Text="{x:Bind ValueIncTaxSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBlock x:Name="Quantity"
                                            Style="{StaticResource ListTextBlockStyle}"
                                            Text="{x:Bind QuantityConsumed, Mode=OneTime}" />
                                 <TextBlock x:Name="NetValue"
                                            FontSize="16"
-                                           Foreground="#FFFF2FAE"
+                                           Foreground="{StaticResource PinkBrush}"
                                            Style="{StaticResource LargeListTextBlockStyle}"
                                            Text="{x:Bind NetValue, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBlock x:Name="TotalGSTPer"
+                                           Style="{StaticResource ListTextBlockStyle}"
+                                           Text="{x:Bind TGSTPerSnapShot, Mode=OneTime, Converter={StaticResource FloatToPercentageGSTConverter}}" />
+                                <TextBlock x:Name="TotalGSTAmount"
+                                           Foreground="Black"
+                                           Style="{StaticResource LargeListTextBlockStyle}"
+                                           Text="{x:Bind TotalGSTAmountSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

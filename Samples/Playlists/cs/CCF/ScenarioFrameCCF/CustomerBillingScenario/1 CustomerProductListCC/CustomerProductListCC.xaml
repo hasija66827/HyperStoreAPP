@@ -87,26 +87,27 @@
                                     Margin="0,20,0,0"
                                     Background="{StaticResource ListHeaderBrush}"
                                     Orientation="Horizontal">
-                            <TextBlock Text="Prod Id"
-                                       Style="{StaticResource ListTextBlockStyle}" />
+                            <TextBlock Text="ProductId"
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Name"
-                                       Style="{StaticResource ListTextBlockStyle}" />
-                            <TextBlock Text="MRP/Unit"
-                                       Style="{StaticResource LargeListTextBlockStyle}" />
+                                       Width="110"
+                                       Style="{StaticResource ListHeaderTBStyle}" />
+                            <TextBlock Text="MRP/Unit"                                   
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Disc %"
-                                       Style="{StaticResource ListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Dis Amt"
-                                       Style="{StaticResource LargeListTextBlockStyle}" />
-                            <TextBlock Text="Value+TGST"
-                                       Style="{StaticResource LargeListTextBlockStyle}" />
-                            <TextBlock Text="Quantity"
-                                       Style="{StaticResource ListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
+                            <TextBlock Text="ValIncTax"
+                                       Style="{StaticResource ListHeaderTBStyle}" />
+                            <TextBlock Text="Qty"
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Net Value"
-                                       Style="{StaticResource LargeListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="TGST %"
-                                       Style="{StaticResource ListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="TGST"
-                                       Style="{StaticResource LargeListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                         </StackPanel>
                         <ListView x:Name="ListView"
                                   ItemsSource="{x:Bind _Products}"
@@ -125,7 +126,7 @@
                                                    Style="{StaticResource ListTextBlockStyle}" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
                                                    Style="{StaticResource LightTextBlockStyle}" />
-                                        <TextBlock x:Name="DisplayPrice"
+                                        <TextBlock x:Name="MRP"
                                                    Foreground="Black"
                                                    Style="{StaticResource LargeListTextBlockStyle}"
                                                    Text="{x:Bind MRP, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />

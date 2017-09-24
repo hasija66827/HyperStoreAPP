@@ -29,17 +29,17 @@
                                     Background="{StaticResource ListHeaderBrush}"
                                     Orientation="Horizontal">
                             <TextBlock Text="Product Id"
-                                       Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Product Name"
-                                       Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Purchase Price"
-                                       Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                            <TextBlock Text="Value+TGST"
-                                       Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
+                            <TextBlock Text="ValueIncTax"
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Quantity"
-                                       Style="{StaticResource LargeListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Net Value"
-                                       Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                       Style="{StaticResource ListHeaderTBStyle}" />
                         </StackPanel>
                         <ListView x:Name="ListView"
                                   ItemsSource="{x:Bind _Products}"
