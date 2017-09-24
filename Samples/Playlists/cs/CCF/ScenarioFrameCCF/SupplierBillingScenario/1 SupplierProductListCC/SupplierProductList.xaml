@@ -58,7 +58,7 @@
                                                    Foreground="Black"
                                                    Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Style="{StaticResource VeryLargeListTextBlockStyle}"
+                                                   Style="{StaticResource LightTextBlockStyle}"
                                                    TextWrapping="Wrap" />
                                         <TextBox x:Name="PurchasePrice"
                                                  Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"

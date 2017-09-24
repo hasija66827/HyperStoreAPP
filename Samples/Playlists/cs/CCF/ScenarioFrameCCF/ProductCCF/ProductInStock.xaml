@@ -86,7 +86,7 @@
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="OrderDate"
                                            Text="{x:Bind FormattedOrderDate, Mode=OneTime}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                           Style="{StaticResource LightTextBlockStyle}" />
                                 <TextBlock x:Name="QuantityPurchased"
                                            Text="{x:Bind QuantityPurchased, Mode=OneTime}"
                                            Style="{StaticResource LargeListTextBlockStyle}" />

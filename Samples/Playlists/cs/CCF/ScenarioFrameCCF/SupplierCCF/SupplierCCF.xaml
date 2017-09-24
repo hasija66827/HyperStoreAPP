@@ -56,7 +56,7 @@
                                            Style="{StaticResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="TransactionDate"
                                            Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
-                                           Style="{StaticResource LargeListTextBlockStyle}" />
+                                           Style="{StaticResource LightTextBlockStyle}" />
                                 <TextBlock x:Name="WalletSnapshot"
                                            Foreground="Black"
                                            Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
@@ -66,10 +66,9 @@
                                            Foreground="#FFFF2FAE"
                                            Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverterWithSign}}"
                                            Style="{ThemeResource VeryLargeListTextBlockStyle}" />
-                                <TextBlock x:Name="updatedWalletBalance"
-                                           Foreground="Black"
+                                <TextBlock x:Name="OrderNo"
                                            Text="{x:Bind SupplierOrderNo, Mode=OneWay}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                           Style="{StaticResource LightTextBlockStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

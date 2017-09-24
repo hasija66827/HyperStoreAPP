@@ -29,7 +29,7 @@
                                    Width="180"
                                    Text="{x:Bind ProductName, Mode=OneWay}" />
                         <TextBlock x:Name="LastOrderDate"
-                                   Style="{StaticResource VeryLargeListTextBlockStyle}"
+                                   Style="{StaticResource LightTextBlockStyle}"
                                    Text="{x:Bind FormattedLastOrderDate, Mode=OneWay}" />
                     </StackPanel>
                 </DataTemplate>

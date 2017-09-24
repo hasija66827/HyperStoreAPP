@@ -122,10 +122,9 @@
                                                 Margin="0,5,0,0"
                                                 Background="{StaticResource ListItemBrush}">
                                         <TextBlock Text="{x:Bind Code, Mode=OneWay}"
-                                                   Style="{StaticResource ListTextBlockStyle}"
-                                                   Foreground="Black" />
-                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
                                                    Style="{StaticResource ListTextBlockStyle}" />
+                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                                   Style="{StaticResource LightTextBlockStyle}" />
                                         <TextBlock x:Name="DisplayPrice"
                                                    Foreground="Black"
                                                    Style="{StaticResource LargeListTextBlockStyle}"
