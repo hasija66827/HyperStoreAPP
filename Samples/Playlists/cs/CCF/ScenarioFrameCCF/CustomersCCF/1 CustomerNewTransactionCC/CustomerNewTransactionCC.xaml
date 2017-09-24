@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
-         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
     <Page.DataContext>
         <local:CustomerNewTransactionViewModel />
@@ -19,29 +19,91 @@
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
+                    Margin="10,0,0,0"
                     RelativePanel.Below="HeaderPanel">
-            <TextBlock Text="Payer Name"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _CNTV.Customer.Name}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Mobile Number"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _CNTV.Customer.MobileNo}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Wallet Balance"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _CNTV.Customer.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBox Header="Amount To Receive"
-                     PlaceholderText="Enter Amount To Receive"
-                     Text="{x:Bind _CNTV.ReceivingAmount, Mode=TwoWay}"
-                     Style="{ThemeResource LargeFormTextBoxStyle}" />
-            <TextBlock  Text="{Binding Errors[ReceivingAmount][0]}"
-                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBox Header="Description"
-                     PlaceholderText="Description of Transaction"
-                     Text="{x:Bind _CNTV.Description, Mode=TwoWay}"
-                     Style="{ThemeResource LargeFormTextBoxStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="CustomerBackground"
+                             Style="{StaticResource EllipseStyle}"
+                             Fill="{StaticResource CustomerEllipseBrush}" />
+                    <TextBlock x:Name="CustomerGlyph"
+                               Text="RH"
+                               Style="{StaticResource GlyphTextBlockStyle}"
+                               RelativePanel.AlignHorizontalCenterWith="CustomerBackground"
+                               RelativePanel.AlignVerticalCenterWith="CustomerBackground" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Payee Name"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _CNTV.Customer.Name}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="MobGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE13A;"
+                              RelativePanel.AlignHorizontalCenterWith="MobGlyph"
+                              RelativePanel.AlignVerticalCenterWith="MobGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Mobile Number"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _CNTV.Customer.MobileNo}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="WalletBalanceGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE821;"
+                              RelativePanel.AlignHorizontalCenterWith="WalletBalanceGlyph"
+                              RelativePanel.AlignVerticalCenterWith="WalletBalanceGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Wallet Balance"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _CNTV.Customer.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <RelativePanel>
+                        <Ellipse x:Name="ReceiveGlyph"
+                                 Style="{StaticResource EllipseStyle}" />
+                        <TextBlock x:Name="RupeeGlyph"
+                                   Text="&#x20B9;"
+                                   Style="{StaticResource GlyphTextBlockStyle}"
+                                   RelativePanel.AlignHorizontalCenterWith="ReceiveGlyph"
+                                   RelativePanel.AlignVerticalCenterWith="ReceiveGlyph" />
+                    </RelativePanel>
+                    <TextBox Header="Amount To Receive"
+                             PlaceholderText="Enter Amount To Receive"
+                             Text="{x:Bind _CNTV.ReceivingAmount, Mode=TwoWay}"
+                             Style="{ThemeResource LargeFormTextBoxStyle}" />
+                </StackPanel>
+                <TextBlock  Text="{Binding Errors[ReceivingAmount][0]}"
+                            Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="DescriptionGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE15F;"
+                              RelativePanel.AlignHorizontalCenterWith="DescriptionGlyph"
+                              RelativePanel.AlignVerticalCenterWith="DescriptionGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <TextBox Header="Description"
+                         PlaceholderText="Description of Transaction"
+                         Text="{x:Bind _CNTV.Description, Mode=TwoWay}"
+                         Style="{ThemeResource LargeFormTextBoxStyle}" />
+            </StackPanel>
             <TextBlock  Text="{Binding Errors[Description][0]}"
                         Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>

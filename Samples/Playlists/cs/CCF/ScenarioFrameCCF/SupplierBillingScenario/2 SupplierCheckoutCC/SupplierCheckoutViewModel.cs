@@ -24,7 +24,8 @@ namespace SDKTemplate
         private decimal? _PayingAmountDec { get { return Utility.TryToConvertToDecimal(_payingAmount); } }
         private string _payingAmount;
 
-        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings =false)]
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        [Range(0, 1000000, ErrorMessage = "Try value in Range(0, 10000000).")]
         [LessThanProperty(nameof(AmountToBePaid))]
         public string PayingAmount
         {

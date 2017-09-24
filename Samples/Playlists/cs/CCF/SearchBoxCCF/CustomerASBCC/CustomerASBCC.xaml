@@ -40,10 +40,8 @@
                                Margin="10,20,0,0"
                                RelativePanel.Below="CustomerASB">
                     <Ellipse x:Name="CustomerBackground"
-                             Height="48"
-                             Width="48"
-                             Margin="0,16,0,8"
-                             Fill="#FF830D0D" />
+                             Style="{StaticResource EllipseStyle}"
+                             Fill="{StaticResource CustomerEllipseBrush}" />
                     <TextBlock x:Name="CustomerGlyph"
                                Text="Glyph"
                                FontSize="20"
