@@ -127,7 +127,7 @@ namespace SDKTemplate
                 WholeSellerName.Text = supplier.Name;
                 WholeSellerAddress.Text = supplier.Address != null ? supplier.Address : "";
                 WholeSellerWalletBalance.Text = Utility.ConvertToRupee(supplier.WalletBalance);
-                WholeSellerGlyph.Text = Utility.GetGlyphValue(supplier.Name);
+                SupplierGlyph.Text = Utility.GetGlyphValue(supplier.Name);
             }
             else
             {

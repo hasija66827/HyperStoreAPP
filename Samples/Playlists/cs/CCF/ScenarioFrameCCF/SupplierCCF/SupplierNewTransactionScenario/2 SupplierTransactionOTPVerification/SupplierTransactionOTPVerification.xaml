@@ -12,36 +12,111 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="OTP Verification"
+            <TextBlock Text="Pay Confirmation"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
+                    Margin="10,0,0,0"
                     RelativePanel.Below="HeaderPanel">
-            <TextBlock Text="Payee Name"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Mobile Number"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Wallet Balance"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Amount"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.PayingAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Updated Wallet Balance"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Description"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Description}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-         </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="SupplierBackground"
+                             Style="{StaticResource EllipseStyle}"
+                             Fill="{StaticResource SupplierEllipseBrush}" />
+                    <TextBlock x:Name="SupplierGlyph"
+                               Style="{StaticResource GlyphTextBlockStyle}"
+                               RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
+                               RelativePanel.AlignVerticalCenterWith="SupplierBackground" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Payee Name"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="MobGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE13A;"
+                              RelativePanel.AlignHorizontalCenterWith="MobGlyph"
+                              RelativePanel.AlignVerticalCenterWith="MobGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Mobile Number"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="WalletBalanceGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE821;"
+                              RelativePanel.AlignHorizontalCenterWith="WalletBalanceGlyph"
+                              RelativePanel.AlignVerticalCenterWith="WalletBalanceGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Wallet Balance"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="ReceiveGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <TextBlock x:Name="RupeeGlyph"
+                               Text="&#x20B9;"
+                               Style="{StaticResource GlyphTextBlockStyle}"
+                               RelativePanel.AlignHorizontalCenterWith="ReceiveGlyph"
+                               RelativePanel.AlignVerticalCenterWith="ReceiveGlyph" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Amount To Pay"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.PayingAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="UpdatedWalletBalanceGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE149;"
+                              RelativePanel.AlignHorizontalCenterWith="UpdatedWalletBalanceGlyph"
+                              RelativePanel.AlignVerticalCenterWith="UpdatedWalletBalanceGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Updated Wallet Balance"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="DescriptionGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE15F;"
+                              RelativePanel.AlignHorizontalCenterWith="DescriptionGlyph"
+                              RelativePanel.AlignVerticalCenterWith="DescriptionGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Description"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Description}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">

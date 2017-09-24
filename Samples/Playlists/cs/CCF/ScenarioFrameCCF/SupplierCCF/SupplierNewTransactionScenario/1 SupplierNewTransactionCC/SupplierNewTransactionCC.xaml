@@ -20,31 +20,94 @@
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
+                    Margin="10,0,0,0"
                     RelativePanel.Below="HeaderPanel">
-            <TextBlock Text="Payee Name"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SNTV.Supplier.Name}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Mobile Number"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SNTV.Supplier.MobileNo}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBlock Text="Wallet Balance"
-                       Style="{ThemeResource LargeFormTBPropStyle}" />
-            <TextBlock Text="{x:Bind _SNTV.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
-                       Style="{ThemeResource LargeFormTBValueStyle}" />
-            <TextBox Header="Amount To Pay"
-                     PlaceholderText="Enter Amount To Pay"
-                     Text="{x:Bind _SNTV.PayingAmount, Mode=TwoWay}"
-                     Style="{ThemeResource LargeFormTextBoxStyle}" />
-            <TextBlock  Text="{Binding Errors[PayingAmount][0]}"
-                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBox Header="Description"
-                     Text="{x:Bind _SNTV.Description, Mode=TwoWay}"
-                     PlaceholderText="Enter Description of Transaction"
-                     Style="{ThemeResource LargeFormTextBoxStyle}" />
-            <TextBlock  Text="{Binding Errors[Description][0]}"
-                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="SupplierBackground"
+                             Style="{StaticResource EllipseStyle}"
+                             Fill="{StaticResource SupplierEllipseBrush}" />
+                    <TextBlock x:Name="SupplierGlyph"
+                               Style="{StaticResource GlyphTextBlockStyle}"
+                               RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
+                               RelativePanel.AlignVerticalCenterWith="SupplierBackground" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Payee Name"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SNTV.Supplier.Name}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="MobGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE13A;"
+                              RelativePanel.AlignHorizontalCenterWith="MobGlyph"
+                              RelativePanel.AlignVerticalCenterWith="MobGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Mobile Number"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SNTV.Supplier.MobileNo}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RelativePanel>
+                    <Ellipse x:Name="WalletBalanceGlyph"
+                             Style="{StaticResource EllipseStyle}" />
+                    <FontIcon Glyph="&#xE821;"
+                              RelativePanel.AlignHorizontalCenterWith="WalletBalanceGlyph"
+                              RelativePanel.AlignVerticalCenterWith="WalletBalanceGlyph"
+                              Style="{StaticResource WhiteFontIconStyle}" />
+                </RelativePanel>
+                <StackPanel>
+                    <TextBlock Text="Wallet Balance"
+                               Style="{ThemeResource LargeFormTBPropStyle}" />
+                    <TextBlock Text="{x:Bind _SNTV.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                               Style="{ThemeResource LargeFormTBValueStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <RelativePanel>
+                        <Ellipse x:Name="PayGlyph"
+                                 Style="{StaticResource EllipseStyle}" />
+                        <TextBlock x:Name="RupeeGlyph"
+                                   Text="&#x20B9;"
+                                   Style="{StaticResource GlyphTextBlockStyle}"
+                                   RelativePanel.AlignHorizontalCenterWith="PayGlyph"
+                                   RelativePanel.AlignVerticalCenterWith="PayGlyph" />
+                    </RelativePanel>
+                    <TextBox Header="Amount To Pay"
+                             PlaceholderText="Enter Amount To Pay"
+                             Text="{x:Bind _SNTV.PayingAmount, Mode=TwoWay}"
+                             Style="{ThemeResource LargeFormTextBoxStyle}" />
+                </StackPanel>
+                <TextBlock  Text="{Binding Errors[PayingAmount][0]}"
+                            Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <RelativePanel>
+                        <Ellipse x:Name="DescriptionGlyph"
+                                 Style="{StaticResource EllipseStyle}" />
+                        <FontIcon Glyph="&#xE15F;"
+                                  RelativePanel.AlignHorizontalCenterWith="DescriptionGlyph"
+                                  RelativePanel.AlignVerticalCenterWith="DescriptionGlyph"
+                                  Style="{StaticResource WhiteFontIconStyle}" />
+                    </RelativePanel>
+                    <TextBox Header="Description"
+                             Text="{x:Bind _SNTV.Description, Mode=TwoWay}"
+                             PlaceholderText="Enter Description of Transaction"
+                             Style="{ThemeResource LargeFormTextBoxStyle}" />
+                </StackPanel>
+                <TextBlock  Text="{Binding Errors[Description][0]}"
+                            Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
