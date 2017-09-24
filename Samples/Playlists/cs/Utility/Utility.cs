@@ -56,7 +56,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            return Utility.FloatToInverseRupeeConverter(value);
+            return Utility.ConvertToRupeeWithInverseSign(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -122,7 +122,7 @@ namespace SDKTemplate
         public object Convert(object value, Type targetType,
             object parameter, string language)
         {
-            return Utility.ConvertToRupee(value);
+            return Utility.ConvertToRupeeWithSign(value);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -360,7 +360,7 @@ namespace SDKTemplate
 
         }
 
-        public static string FloatToInverseRupeeConverter(object value)
+        public static string ConvertToRupeeWithInverseSign(object value)
         {
             var v = System.Convert.ToDouble(value);
             if (v > 0)
@@ -369,6 +369,14 @@ namespace SDKTemplate
                 return Utility.FloatToPositiveRupeeConverter(value);
         }
 
+        public static string ConvertToRupeeWithSign(object value)
+        {
+            var v = System.Convert.ToDouble(value);
+            if (v < 0)
+                return Utility.FloatToNegativeRupeeConverter(value);
+            else
+                return Utility.FloatToPositiveRupeeConverter(value);
+        }
 
 
         public static string GetGlyphValue(String productName)
@@ -379,11 +387,8 @@ namespace SDKTemplate
             {
                 productGlyph += a.ElementAtOrDefault(0).ToString();
             }
-            return productGlyph.ToUpper();
+            return productGlyph.ToUpper().Substring(0, 2);
         }
-
-
-
 
         /// <summary>
         /// 
@@ -397,10 +402,10 @@ namespace SDKTemplate
             decimal? result = null;
             try
             {
-                
+
                 result = Convert.ToDecimal(value);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result = null;
             }

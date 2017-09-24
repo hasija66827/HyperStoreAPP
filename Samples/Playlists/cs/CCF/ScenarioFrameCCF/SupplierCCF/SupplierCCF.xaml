@@ -8,6 +8,7 @@
       mc:Ignorable="d">
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToRupeeConverterWithSign x:Key="FloatToRupeeConverterWithSign" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="model:TSupplier">
             <RelativePanel>
@@ -63,7 +64,7 @@
                                 <TextBlock x:Name="CreditAmount"
                                            FontSize="16"
                                            Foreground="#FFFF2FAE"
-                                           Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverterWithSign}}"
                                            Style="{ThemeResource VeryLargeListTextBlockStyle}" />
                                 <TextBlock x:Name="updatedWalletBalance"
                                            Foreground="Black"
