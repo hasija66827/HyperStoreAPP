@@ -51,7 +51,7 @@
                            Margin="12,11,12,0" />
                 <TextBlock x:Name="WholeSellerName"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                           Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
                            RelativePanel.Below="WholeSellerMobNo"
                            RelativePanel.AlignLeftWith="WholeSellerMobNo"
                            Margin="12,0" />

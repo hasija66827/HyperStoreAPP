@@ -387,7 +387,10 @@ namespace SDKTemplate
             {
                 productGlyph += a.ElementAtOrDefault(0).ToString();
             }
-            return productGlyph.ToUpper().Substring(0, 2);
+            string glyph = productGlyph.ToUpper();
+            if (glyph.Length > 2)
+                glyph = glyph.Substring(0, 2);
+            return glyph;
         }
 
         /// <summary>

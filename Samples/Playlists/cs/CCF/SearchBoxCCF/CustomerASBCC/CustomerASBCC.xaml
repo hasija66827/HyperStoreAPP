@@ -35,7 +35,7 @@
                            RelativePanel.AlignLeftWith="CustomerASB"
                            RelativePanel.Below="CustomerASB" />
                 <RelativePanel x:Name="CustomerDetails"
-                               Visibility="Collapsed"
+                               Visibility="Visible"
                                Height="140"
                                Margin="10,20,0,0"
                                RelativePanel.Below="CustomerASB">
@@ -53,7 +53,7 @@
                                Margin="12,11,12,0" />
                     <TextBlock x:Name="CustomerName"
                                Style="{StaticResource BodyTextBlockStyle}"
-                               Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                               Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
                                RelativePanel.Below="CustomerMobNo"
                                RelativePanel.AlignLeftWith="CustomerMobNo"
                                Margin="12,0" />
@@ -64,8 +64,8 @@
                                RelativePanel.AlignLeftWith="CustomerName"
                                Margin="12,0" />
                     <TextBlock x:Name="CustomerWalletBalance"
-                               RelativePanel.Below="CustomerBackground"
-                               Margin="6,0" />
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               RelativePanel.Below="CustomerBackground" />
                     <TextBlock x:Name="CustomerNetWorth"
                                RelativePanel.Below="CustomerWalletBalance"
                                Margin="6,10" />
