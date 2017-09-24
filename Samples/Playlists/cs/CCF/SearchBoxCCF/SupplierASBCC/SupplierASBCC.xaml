@@ -34,26 +34,20 @@
                        RelativePanel.Below="WholeSellerASB" />
             <RelativePanel x:Name="SupplierDetails"
                            Visibility="Visible"
-                           Height="120"
+                           Height="140"
                            Margin="10,20,0,0"
                            RelativePanel.Below="WholeSellerASB">
-                <Ellipse x:Name="WholeSellerBackground"
-                         Height="48"
-                         Width="48"
-                         Margin="0,16,0,8"
-                         Fill="#FF8C7A07" />
-                <TextBlock x:Name="WholeSellerGlyph"
-                           Text="RH"
-                           FontSize="20"
-                           Margin="0,8,0,8"
-                           RelativePanel.AlignHorizontalCenterWith="WholeSellerBackground"
-                           RelativePanel.AlignVerticalCenterWith="WholeSellerBackground"
-                           Foreground="#FFFCFCFC"
-                           SelectionHighlightColor="#FFE8EEEE" />
+                <Ellipse x:Name="SupplierBackground"
+                         Style="{StaticResource EllipseStyle}"
+                         Fill="{StaticResource SupplierEllipseBrush}" />
+                <TextBlock x:Name="SupplierGlyph"
+                           Style="{StaticResource GlyphTextBlockStyle}"
+                           RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
+                           RelativePanel.AlignVerticalCenterWith="SupplierBackground" />
                 <TextBlock x:Name="WholeSellerMobNo"
                            Style="{StaticResource BaseTextBlockStyle}"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           RelativePanel.RightOf="WholeSellerBackground"
+                           RelativePanel.RightOf="SupplierBackground"
                            Margin="12,11,12,0" />
                 <TextBlock x:Name="WholeSellerName"
                            Style="{StaticResource BodyTextBlockStyle}"
@@ -70,7 +64,7 @@
                 <TextBlock x:Name="WholeSellerWalletBalance"
                            Text="200"
                            Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
-                           RelativePanel.Below="WholeSellerBackground"
+                           RelativePanel.Below="SupplierBackground"
                            Margin="6,0" />
             </RelativePanel>
         </StackPanel>

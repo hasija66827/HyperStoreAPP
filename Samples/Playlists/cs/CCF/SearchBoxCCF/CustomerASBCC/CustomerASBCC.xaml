@@ -43,13 +43,9 @@
                              Style="{StaticResource EllipseStyle}"
                              Fill="{StaticResource CustomerEllipseBrush}" />
                     <TextBlock x:Name="CustomerGlyph"
-                               Text="Glyph"
-                               FontSize="20"
-                               Margin="0,8,0,8"
                                RelativePanel.AlignHorizontalCenterWith="CustomerBackground"
                                RelativePanel.AlignVerticalCenterWith="CustomerBackground"
-                               Foreground="#FFFCFCFC"
-                               SelectionHighlightColor="#FFE8EEEE" />
+                               Style="{StaticResource GlyphTextBlockStyle}" />
                     <TextBlock x:Name="CustomerMobNo"
                                Style="{StaticResource BaseTextBlockStyle}"
                                Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"

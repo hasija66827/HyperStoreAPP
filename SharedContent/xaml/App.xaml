@@ -59,6 +59,8 @@
                                      Color="#FFF6FFFF" />
                     <SolidColorBrush x:Key="CustomerEllipseBrush"
                                      Color="#FF830D0D"/>
+                    <SolidColorBrush x:Key="SupplierEllipseBrush"
+                                     Color="#FF8C7A07" />
                     <Style x:Key="FontAwesome"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -120,6 +122,8 @@
                     </Style>
                     <Style x:Key="GlyphTextBlockStyle"
                            TargetType="TextBlock">
+                        <Setter Property="Text"
+                                Value="RH" />
                         <Setter Property="Foreground"
                                 Value="#FFFCFCFC" />
                         <Setter Property="FontSize"

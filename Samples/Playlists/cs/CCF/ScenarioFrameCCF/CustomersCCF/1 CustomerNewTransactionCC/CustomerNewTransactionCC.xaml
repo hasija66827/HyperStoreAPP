@@ -27,7 +27,6 @@
                              Style="{StaticResource EllipseStyle}"
                              Fill="{StaticResource CustomerEllipseBrush}" />
                     <TextBlock x:Name="CustomerGlyph"
-                               Text="RH"
                                Style="{StaticResource GlyphTextBlockStyle}"
                                RelativePanel.AlignHorizontalCenterWith="CustomerBackground"
                                RelativePanel.AlignVerticalCenterWith="CustomerBackground" />
@@ -100,7 +99,7 @@
                               Style="{StaticResource WhiteFontIconStyle}" />
                 </RelativePanel>
                 <TextBox Header="Description"
-                         PlaceholderText="Description of Transaction"
+                         PlaceholderText="Enter Description of Transaction"
                          Text="{x:Bind _CNTV.Description, Mode=TwoWay}"
                          Style="{ThemeResource LargeFormTextBoxStyle}" />
             </StackPanel>
