@@ -28,14 +28,15 @@
                      Header="Product Code"
                      Text="{x:Bind _ProdBasicInfo._PDFV.Code, Mode=TwoWay}"
                      ToolTipService.ToolTip="The code by which you can search for the product"
-                     PlaceholderText="Four digit product code"
+                     PlaceholderText="Enter Barcode or 4 digit Code."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Code][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="ProductNameTB"
                      Header="Product Name"
                      Text="{x:Bind _ProdBasicInfo._PDFV.Name, Mode=TwoWay}"
-                     ToolTipService.ToolTip="Product Name for e.g. Maggi"
+                     PlaceholderText="Enter Product Name"
+                     ToolTipService.ToolTip="For e.g. Glucose"
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
@@ -43,14 +44,14 @@
                 <TextBox x:Name="Threshold"
                          Header="Threshold"
                          Text="{x:Bind _ProdBasicInfo._PDFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
-                         PlaceholderText=""
-                         ToolTipService.ToolTip="The number of units of product below which you want get notified"
+                         PlaceholderText="Threshold"
+                         ToolTipService.ToolTip="The number of units of product below which you want to mark product as deficient."
                          Style="{StaticResource SmallFormTextBoxStyle}" />
                 <TextBox x:Name="HSN"
                          Margin="50,0,0,0"
                          Header="HSN"
                          Text="{x:Bind _ProdBasicInfo._PDFV.HSN,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
-                         PlaceholderText=""
+                         PlaceholderText="Enter HSN."
                          ToolTipService.ToolTip="The HSN of the product."
                          Style="{StaticResource MediumFormTextBoxStyle}" />
                 <TextBlock Text="{Binding Errors[HSN][0]}"
@@ -81,7 +82,7 @@
                 <TextBox x:Name="TagName"
                          Text="{x:Bind _TagFormViewModel.TagName, Mode=TwoWay}"
                          ToolTipService.ToolTip="Tag Name which can be assigned to product"
-                         PlaceholderText="Enter Tag Name"
+                         PlaceholderText="Enter Tag Name."
                          Style="{StaticResource MediumFormTextBoxStyle}" />
                 <Button x:Name="CreateTag"
                         Content="CreateNewTag"

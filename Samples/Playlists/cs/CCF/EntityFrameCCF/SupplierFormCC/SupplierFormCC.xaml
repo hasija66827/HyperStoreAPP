@@ -15,7 +15,6 @@
             <TextBlock Text="Supplier"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
-        
         <StackPanel x:Name="ContentPanel"
                     Orientation="Vertical"
                     RelativePanel.Below="HeaderPanel"
@@ -23,24 +22,24 @@
             <TextBox x:Name="NameTB"
                      Header="Supplier Name"
                      Text="{x:Bind _SFV.Name, Mode=TwoWay}"
-                     ToolTipService.ToolTip="The name of the supplier"
-                     PlaceholderText="Nitin Hasija"
+                     ToolTipService.ToolTip="The name of the supplier."
+                     PlaceholderText="Enter Supplier Name."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="AddressTB"
                      Header="Address"
                      Text="{x:Bind _SFV.Address, Mode=TwoWay}"
-                     ToolTipService.ToolTip="Address by which you can search the supplier"
-                     PlaceholderText="Pune Chinchwad"
+                     ToolTipService.ToolTip="The address of supplier."
+                     PlaceholderText="Enter Address of Supplier."
                      Style="{StaticResource FormTextBoxStyle}" />
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Errors[Address][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="Mobile Number"
                      x:Name="MobileNoTB"
                      Text="{x:Bind _SFV.MobileNo, Mode=TwoWay}"
-                     ToolTipService.ToolTip="Mobile Number by which you can search the supplier"
-                     PlaceholderText="9970377274"
+                     ToolTipService.ToolTip="Mobile No. e.g. 7987421819"
+                     PlaceholderText="Enter Mobile No of Supplier."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[MobileNo][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
@@ -48,12 +47,11 @@
                      x:Name="GSTINTB"
                      Text="{x:Bind _SFV.GSTIN, Mode=TwoWay}"
                      ToolTipService.ToolTip="GSTIN No. For e.g. 23ABCDE1234F1ZH"
-                     PlaceholderText="15 Charecters"
+                     PlaceholderText="Enter GSTIN of Supplier."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[GSTIN][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
-        
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">

@@ -37,7 +37,7 @@
                                Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Txn Date"
                                Style="{StaticResource ListHeaderTBStyle}" />
-                    <TextBlock Text="Supplier Wallet Balance"
+                    <TextBlock Text="Wallet Balance"
                                Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Txn Amount"
                                Style="{StaticResource ListHeaderTBStyle}" />

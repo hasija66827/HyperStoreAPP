@@ -26,24 +26,24 @@
             <TextBox Header="Name"
                      x:Name="NameTB"
                      Text="{x:Bind _CFV.Name, Mode=TwoWay}"
-                     ToolTipService.ToolTip="The name of the customer"
-                     PlaceholderText="Rahul Hasija"
+                     ToolTipService.ToolTip="The name of the customer."
+                     PlaceholderText="Enter Customer Name."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="AddressTB"
                      Header="Address"
                      Text="{x:Bind _CFV.Address, Mode=TwoWay}"
-                     ToolTipService.ToolTip="Address by which you can search the customer"
-                     PlaceholderText="F806 Aparna Cyber Commune"
+                     ToolTipService.ToolTip="The address of the customer."
+                     PlaceholderText="Enter Address of Customer."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock  Text="{Binding Errors[Address][0]}"
                         Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="MobileNoTB"
                      Header="Mobile Number"
                      Text="{x:Bind _CFV.MobileNo, Mode=TwoWay}"
-                     ToolTipService.ToolTip="Mobile Number by which you can search the customer"
-                     PlaceholderText="9632166827"
+                     ToolTipService.ToolTip="Mobile Number e.g. 9632166827."
+                     PlaceholderText="Enter Mobile Number."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[MobileNo][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
@@ -51,7 +51,7 @@
                      Header="GSTIN"
                      Text="{x:Bind _CFV.GSTIN, Mode=TwoWay}"
                      ToolTipService.ToolTip="GSTIN No. For e.g. 23ABCDE1234F1ZH"
-                     PlaceholderText="15 Charecters"
+                     PlaceholderText="Enter GSTIN of Customer."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[GSTIN][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
