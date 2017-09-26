@@ -117,6 +117,9 @@
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
+            <CheckBox Content="Cashback Transaction"
+                      IsEnabled="False"
+                      IsChecked="{x:Bind _CustomerNewTransactionViewModel.IsCashBack, Mode=OneTime}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"

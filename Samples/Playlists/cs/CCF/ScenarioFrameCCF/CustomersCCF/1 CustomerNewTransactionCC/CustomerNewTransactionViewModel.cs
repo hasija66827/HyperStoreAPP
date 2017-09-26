@@ -17,6 +17,8 @@ namespace SDKTemplate
         [Range(0, float.MaxValue, ErrorMessage = "Try receiving amount in range(0, 10000000).")]
         public string ReceivingAmount { get; set; }
 
+        public bool? IsCashBack { get; set; }
+
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [MaxLength(16, ErrorMessage = "Try description with atmost 16 charecters.")]
         public string Description { get; set; }

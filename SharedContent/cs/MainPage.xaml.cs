@@ -245,10 +245,7 @@ namespace SDKTemplate
             }
         }
 
-        async void Footer_Click(object sender, RoutedEventArgs e)
-        {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri(((HyperlinkButton)sender).Tag.ToString()));
-        }
+      
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -10,7 +10,7 @@ namespace SDKTemplate
     class BaseURI
     {
         public static TUser User { get; set; }
-        public static string HyperStoreService { get { return "https://localhost:44346/api/" + User.UserId + "/"; } }
+        public static string HyperStoreService { get { return "http://hyperstoreservicewebapp20170924100256.azurewebsites.net/api/" + User.UserId + "/"; } }
     }
 
     class API
@@ -34,7 +34,7 @@ namespace SDKTemplate
 
     public class AuthenticationServiceAPI
     {
-        private static string BaseURI { get { return "http://localhost:52109/api/"; } }
+        private static string BaseURI { get { return "http://loginsignupserviceapp.azurewebsites.net/api/"; } }
         public static string Users { get { return BaseURI + "Users"; } }
         public static string OTPVerification { get { return BaseURI + "OTPVerification"; } }
     }
