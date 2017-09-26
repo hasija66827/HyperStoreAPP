@@ -106,7 +106,7 @@
             <TextBlock  Text="{Binding Errors[Description][0]}"
                         Style="{StaticResource ErrorTextBlockStyle}" />
             <CheckBox Content="Cashback Transaction" 
-                      IsChecked="{x:Bind _CNTV.IsCashBack, Mode=TwoWay}"/>
+                      IsChecked="{x:Bind _CNTV.IsCashBackTransaction, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"

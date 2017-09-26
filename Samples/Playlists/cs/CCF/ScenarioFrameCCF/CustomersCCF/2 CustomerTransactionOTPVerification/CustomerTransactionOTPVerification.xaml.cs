@@ -24,7 +24,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class CustomerTransactionOTPVerification : Page
     {
-        private CustomerNewTransactionViewModel _CustomerNewTransactionViewModel { get; set; }
+        private CustomerNewTransactionViewModel _CNTV { get; set; }
         public CustomerTransactionOTPVerification()
         {
             this.InitializeComponent();
@@ -32,7 +32,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._CustomerNewTransactionViewModel = (CustomerNewTransactionViewModel)e.Parameter;
+            this._CNTV = (CustomerNewTransactionViewModel)e.Parameter;
         }
 
         private async void ProceedToPayBtn_Click(object sender, RoutedEventArgs e)
@@ -42,10 +42,11 @@ namespace SDKTemplate
             {
                 var transactionDTO = new CustomerTransactionDTO()
                 {
-                    CustomerId = this._CustomerNewTransactionViewModel?.Customer?.CustomerId,
+                    CustomerId = this._CNTV?.Customer?.CustomerId,
                     IsCredit = false,
-                    TransactionAmount = Utility.TryToConvertToDecimal(this._CustomerNewTransactionViewModel?.ReceivingAmount),
-                    Description = this._CustomerNewTransactionViewModel.Description,
+                    TransactionAmount = Utility.TryToConvertToDecimal(this._CNTV?.ReceivingAmount),
+                    Description = this._CNTV.Description,
+                    IsCashbackTransaction = this._CNTV.IsCashBackTransaction,
                 };
                 var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 if (transaction != null)
@@ -56,11 +57,11 @@ namespace SDKTemplate
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
             var SMSContent = OTPVConstants.SMSContents[ScenarioType.ReceiveFromCustomer_Transaction];
-            var fomattedSMSContent = String.Format(SMSContent, this._CustomerNewTransactionViewModel?.ReceivingAmount, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
+            var fomattedSMSContent = String.Format(SMSContent, this._CNTV?.ReceivingAmount, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {
                 UserID = BaseURI.User.UserId,
-                ReceiverMobileNo = this._CustomerNewTransactionViewModel?.Customer?.MobileNo,
+                ReceiverMobileNo = this._CNTV?.Customer?.MobileNo,
                 SMSContent = fomattedSMSContent,
             };
             var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);

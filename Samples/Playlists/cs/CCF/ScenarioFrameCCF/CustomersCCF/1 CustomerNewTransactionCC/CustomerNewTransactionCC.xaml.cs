@@ -36,7 +36,7 @@ namespace SDKTemplate
             _CNTV.ErrorsChanged += _CNTV_ErrorsChanged;
             _CNTV.Customer = selecetedCustomer;
             _CNTV.ReceivingAmount = null;
-            _CNTV.IsCashBack = false;
+            _CNTV.IsCashBackTransaction = false;
         }
 
         private void _CNTV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)

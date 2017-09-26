@@ -379,6 +379,9 @@ namespace SDKTemplate
             public decimal? TransactionAmount { get; set; }
 
             public string Description { get; set; }
+
+            [Required]
+            public bool? IsCashbackTransaction { get; set; }
         }
         #endregion
         #region SupplierTransaction

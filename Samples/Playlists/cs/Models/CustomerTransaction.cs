@@ -22,6 +22,7 @@ namespace Models
         public decimal WalletSnapshot { get; set; }
         public Guid CustomerId { get; set; }
         public TCustomer Customer { get; set; }
+        public bool IsCashBackTransaction { get; set; }
         public TCustomerTransaction() { }
     }
 }

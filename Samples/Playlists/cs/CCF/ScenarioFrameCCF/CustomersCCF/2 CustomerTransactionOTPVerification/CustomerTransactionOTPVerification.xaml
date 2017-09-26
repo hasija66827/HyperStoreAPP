@@ -32,7 +32,7 @@
                 <StackPanel>
                     <TextBlock Text="Payee Name"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.Name}"
+                    <TextBlock Text="{x:Bind _CNTV.Customer.Name}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -48,7 +48,7 @@
                 <StackPanel>
                     <TextBlock Text="Mobile Number"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.MobileNo}"
+                    <TextBlock Text="{x:Bind _CNTV.Customer.MobileNo}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -64,7 +64,7 @@
                 <StackPanel>
                     <TextBlock Text="Wallet Balance"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Customer.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind _CNTV.Customer.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -81,7 +81,7 @@
                 <StackPanel>
                     <TextBlock Text="Amount To Receive"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.ReceivingAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
+                    <TextBlock Text="{x:Bind _CNTV.ReceivingAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -97,7 +97,7 @@
                 <StackPanel>
                     <TextBlock Text="Updated Wallet Balance"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind _CNTV.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -113,18 +113,18 @@
                 <StackPanel>
                     <TextBlock Text="Description"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _CustomerNewTransactionViewModel.Description}"
+                    <TextBlock Text="{x:Bind _CNTV.Description}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
             <CheckBox Content="Cashback Transaction"
                       IsEnabled="False"
-                      IsChecked="{x:Bind _CustomerNewTransactionViewModel.IsCashBack, Mode=OneTime}" />
+                      IsChecked="{x:Bind _CNTV.IsCashBackTransaction, Mode=OneTime}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">
-            <Button Content="{x:Bind _CustomerNewTransactionViewModel.ProceedToReceive}"
+            <Button Content="{x:Bind _CNTV.ProceedToReceive}"
                     x:Name="ProceedToPayBtn"
                     Click="ProceedToPayBtn_Click"
                     Style="{StaticResource ScenarioButtonStyle}" />
