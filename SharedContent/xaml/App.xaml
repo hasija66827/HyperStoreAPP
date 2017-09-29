@@ -43,12 +43,6 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
-                    <Style x:Key="CustomerProductListHeader"
-                           TargetType="StackPanel">
-                        
-                    </Style>
-                    
-                    
                     <SolidColorBrush x:Key="GreenBrush"
                                      Color="#FF59E71A" />
                     <SolidColorBrush x:Key="RedBrush"
@@ -67,10 +61,50 @@
                                      Color="#FF830D0D" />
                     <SolidColorBrush x:Key="SupplierEllipseBrush"
                                      Color="#FF8C7A07" />
-                    <Style x:Key="FontAwesome"
+                    <Style x:Key="SHeaderBasicStyle"
                            TargetType="TextBlock">
-                        <Setter Property="FontFamily"
-                                Value="../../Samples/Playlists/cs/Assets/fontawesome-webfont.ttf" />
+                        <Setter Property="FontSize"
+                                Value="18" />
+                        <Setter Property="Height"
+                                Value="auto" />
+                        <Setter Property="Foreground"
+                                Value="#FF3DB6A2" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                        <Setter Property="Padding"
+                                Value="3" />
+                        <Setter Property="Margin"
+                                Value="3,0" />
+                    </Style>
+                    <Style x:Key="MasterHeaderTextBlockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource SHeaderBasicStyle}">
+                        <Setter Property="Width"
+                                Value="170" />
+                    </Style>
+                    <Style x:Key="DetailHeaderTextBlockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource SHeaderBasicStyle}">
+                        <Setter Property="Width"
+                                Value="370" />
+                    </Style>
+                    <Style x:Key="HeaderTextBlockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource SHeaderBasicStyle}">
+                        <Setter Property="Width"
+                                Value="330" />
+                    </Style>
+                    <Style x:Key="SubHeaderTextBlockStyle"
+                           BasedOn="{StaticResource SHeaderBasicStyle}"
+                           TargetType="TextBlock">
+                        <Setter Property="Width"
+                                Value="170" />
+                    </Style>
+                    <Style x:Key="ScenarioHeaderTextBlockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource SHeaderBasicStyle}">
+                        <Setter Property="Width"
+                                Value="820" />
                     </Style>
                     <Style x:Key="ListCaptionAltTextblockStyle"
                            TargetType="TextBlock"
@@ -265,98 +299,6 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Right" />
                     </Style>
-                    <Style x:Key="MasterHeaderTextBlockStyle"
-                           TargetType="TextBlock">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontSize"
-                                Value="20" />
-                        <Setter Property="TextTrimming"
-                                Value="None" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="LineStackingStrategy"
-                                Value="MaxHeight" />
-                        <Setter Property="TextLineBounds"
-                                Value="Full" />
-                        <Setter Property="Width"
-                                Value="170" />
-                        <Setter Property="Foreground"
-                                Value="White" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
-                        <Setter Property="Margin"
-                                Value="5" />
-                    </Style>
-                    <Style x:Key="DetailHeaderTextBlockStyle"
-                           TargetType="TextBlock">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontSize"
-                                Value="20" />
-                        <Setter Property="TextTrimming"
-                                Value="None" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="LineStackingStrategy"
-                                Value="MaxHeight" />
-                        <Setter Property="TextLineBounds"
-                                Value="Full" />
-                        <Setter Property="Width"
-                                Value="370" />
-                        <Setter Property="Foreground"
-                                Value="White" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
-                        <Setter Property="Margin"
-                                Value="15,5,5,5" />
-                    </Style>
-                    <Style x:Key="HeaderTextBlockStyle"
-                           TargetType="TextBlock">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontSize"
-                                Value="20" />
-                        <Setter Property="TextTrimming"
-                                Value="None" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="LineStackingStrategy"
-                                Value="MaxHeight" />
-                        <Setter Property="TextLineBounds"
-                                Value="Full" />
-                        <Setter Property="Width"
-                                Value="330" />
-                        <Setter Property="Foreground"
-                                Value="White" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
-                        <Setter Property="Margin"
-                                Value="5" />
-                    </Style>
-                    <Style x:Key="SubHeaderTextBlockStyle"
-                           TargetType="TextBlock">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontSize"
-                                Value="14" />
-                        <Setter Property="TextTrimming"
-                                Value="None" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="LineStackingStrategy"
-                                Value="MaxHeight" />
-                        <Setter Property="TextLineBounds"
-                                Value="Full" />
-                        <Setter Property="Width"
-                                Value="160" />
-                        <Setter Property="Foreground"
-                                Value="Black" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
-                        <Setter Property="Margin"
-                                Value="5" />
-                    </Style>
                     <Style x:Key="SummaryTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -431,37 +373,14 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>
-                    <Style x:Key="ScenarioHeaderTextBlockStyle"
-                           TargetType="TextBlock">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontSize"
-                                Value="20" />
-                        <Setter Property="TextTrimming"
-                                Value="None" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="LineStackingStrategy"
-                                Value="MaxHeight" />
-                        <Setter Property="TextLineBounds"
-                                Value="Full" />
-                        <Setter Property="Width"
-                                Value="820" />
-                        <Setter Property="Foreground"
-                                Value="White" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
-                        <Setter Property="Margin"
-                                Value="5" />
-                    </Style>
                     <Style x:Key="HeaderBorder"
                            TargetType="Border">
                         <Setter Property="Height"
-                                Value="36"></Setter>
-                        <Setter Property="Background"
-                                Value="#FF10B3D3" />
+                                Value="32" />
                         <Setter Property="Margin"
                                 Value="0,0,0,10" />
+                        <Setter Property="Background"
+                                Value="#FFECF6F7" />
                     </Style>
                     <Style x:Key="SubHeaderBorder"
                            TargetType="Border">
