@@ -122,7 +122,7 @@
                         <Setter Property="Width"
                                 Value="48" />
                         <Setter Property="Margin"
-                                Value="0,16,0,8" />
+                                Value="0,8,0,8" />
                         <Setter Property="Fill"
                                 Value="#FF0CA6B6" />
                     </Style>
@@ -142,7 +142,7 @@
                         <Setter Property="FontWeight"
                                 Value="SemiBold" />
                         <Setter Property="FontSize"
-                                Value="15" />
+                                Value="14" />
                         <Setter Property="TextTrimming"
                                 Value="None" />
                         <Setter Property="TextWrapping"
@@ -163,7 +163,7 @@
                         <Setter Property="FontWeight"
                                 Value="Normal" />
                         <Setter Property="FontSize"
-                                Value="15" />
+                                Value="14" />
                         <Setter Property="TextTrimming"
                                 Value="None" />
                         <Setter Property="TextWrapping"
@@ -334,6 +334,29 @@
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
+                    <Style x:Key="SubHeaderTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Segoe UI" />
+                        <Setter Property="FontSize"
+                                Value="14" />
+                        <Setter Property="TextTrimming"
+                                Value="None" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="LineStackingStrategy"
+                                Value="MaxHeight" />
+                        <Setter Property="TextLineBounds"
+                                Value="Full" />
+                        <Setter Property="Width"
+                                Value="160" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                    </Style>
                     <Style x:Key="SummaryTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -439,6 +462,15 @@
                                 Value="#FF10B3D3" />
                         <Setter Property="Margin"
                                 Value="0,0,0,10" />
+                    </Style>
+                    <Style x:Key="SubHeaderBorder"
+                           TargetType="Border">
+                        <Setter Property="Height"
+                                Value="26"></Setter>
+                        <Setter Property="Background"
+                                Value="#FFF6F4F4" />
+                        <Setter Property="Margin"
+                                Value="0,0,0,0" />
                     </Style>
                     <Style x:Key="FormTextBoxStyle"
                            TargetType="TextBox">

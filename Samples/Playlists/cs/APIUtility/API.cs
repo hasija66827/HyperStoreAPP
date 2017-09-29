@@ -10,7 +10,9 @@ namespace SDKTemplate
     class BaseURI
     {
         public static TUser User { get; set; }
-        public static string HyperStoreService { get { return "http://hyperstoreservicewebapp20170924100256.azurewebsites.net/api/" + User.UserId + "/"; } }
+        //public static string HyperStoreService { get { return "http://hyperstoreservicewebapp20170924100256.azurewebsites.net/api/" + User.UserId + "/"; } }
+        public static string HyperStoreService { get { return "https://localhost:44346/api/" + User.UserId + "/"; } }
+
     }
 
     class API
