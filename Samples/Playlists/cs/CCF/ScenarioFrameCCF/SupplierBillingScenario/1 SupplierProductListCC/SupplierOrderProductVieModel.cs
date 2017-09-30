@@ -14,11 +14,19 @@ namespace SDKTemplate
         public decimal? NetValue { get { return this.QuantityPurchased * this.PurchasePrice; } }
         public virtual decimal? QuantityPurchased { get; set; }
         public virtual decimal? PurchasePrice { get; set; }
-
+        public decimal? ProfitAmount { get { return this.ValueIncTax - this.PurchasePrice; } }
+        public decimal? ProfitPer
+        {
+            get
+            {
+                if (PurchasePrice != 0) { return this.ProfitAmount * 100 / this.PurchasePrice; }
+                else return 0;
+            }
+        }
         public SupplierBillingProductViewModelBase(TProduct parent) : base(parent)
         {
             this.QuantityPurchased = 0;
-            this.PurchasePrice = 0;
+            this.PurchasePrice = this.ValueIncTax;
         }
     }
 
@@ -33,6 +41,8 @@ namespace SDKTemplate
             {
                 this._purchasePrice = value;
                 this.OnPropertyChanged(nameof(NetValue));
+                this.OnPropertyChanged(nameof(ProfitAmount));
+                this.OnPropertyChanged(nameof(ProfitPer));
                 SupplierPurchasedProductListCC.Current.InvokeProductListChangeEvent();
             }
         }

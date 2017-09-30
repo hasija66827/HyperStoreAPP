@@ -92,7 +92,7 @@
                             <TextBlock Text="Name"
                                        Width="110"
                                        Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="MRP/Unit"                                   
+                            <TextBlock Text="MRP/Unit"
                                        Style="{StaticResource ListHeaderTBStyle}" />
                             <TextBlock Text="Disc %"
                                        Style="{StaticResource ListHeaderTBStyle}" />
@@ -112,49 +112,41 @@
                         <ListView x:Name="ListView"
                                   ItemsSource="{x:Bind _Products}"
                                   RelativePanel.Below="StaticLabelsForList"
-                                  RelativePanel.AlignRightWith="StaticLabelsForList"
-                                  RelativePanel.AlignLeftWith="StaticLabelsForList"
-                                  Margin="-12,0,0,0"
-                                  CanReorderItems="False"
-                                  SelectedIndex="-1">
+                                  Style="{StaticResource ListViewStyle}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="local:CustomerBillingProductViewModel">
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,5,0,0"
-                                                Background="{StaticResource ListItemBrush}">
+                                    <StackPanel Style="{StaticResource DetailListStackPanel}">
                                         <TextBlock Text="{x:Bind Code, Mode=OneWay}"
-                                                   Style="{StaticResource ListTextBlockStyle}" />
+                                                   Style="{StaticResource CaptionBasicTBStyle}" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Style="{StaticResource LightTextBlockStyle}" />
+                                                   Style="{StaticResource ArialBasicTBStyle}" />
                                         <TextBlock x:Name="MRP"
-                                                   Foreground="Black"
-                                                   Style="{StaticResource LargeListTextBlockStyle}"
+                                                   Style="{StaticResource CalibriBasicTBStyle}"
                                                    Text="{x:Bind MRP, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="DiscountPer"
-                                                   Style="{StaticResource GreenListTextBlockStyle}"
+                                                   Foreground="{StaticResource GreenBrush}"
+                                                   Width="55"
+                                                   Style="{StaticResource CalibriBasicTBStyle}"
                                                    Text="{x:Bind DiscountPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />
                                         <TextBlock x:Name="DiscountAmount"
-                                                   Style="{StaticResource GreenListTextBlockStyle}"
+                                                   Foreground="{StaticResource GreenBrush}"
+                                                   Style="{StaticResource CalibriBasicTBStyle}"
                                                    Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="ValueIncTax"
-                                                   Style="{StaticResource LargeListTextBlockStyle}"
+                                                   Style="{StaticResource CalibriBasicTBStyle}"
                                                    Foreground="{StaticResource PinkBrush}"
                                                    Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBox x:Name="Quantity"
                                                  Style="{StaticResource ListTextBoxStyle}"
                                                  Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
                                         <TextBlock x:Name="NetValue"
-                                                   FontSize="16"
                                                    Foreground="{StaticResource PinkBrush}"
-                                                   Style="{StaticResource LargeListTextBlockStyle}"
+                                                   Style="{StaticResource CalibriBasicTBStyle}"
                                                    Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="TotalGSTPer"
-                                                   Style="{StaticResource ListTextBlockStyle}"
+                                                   Width="55"
+                                                   Style="{StaticResource CaptionBasicTBStyle}"
                                                    Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageGSTConverter}}" />
-                                        <TextBlock x:Name="TotalGSTAmount"
-                                                   Foreground="Black"
-                                                   Style="{StaticResource LargeListTextBlockStyle}"
-                                                   Text="{x:Bind TotalGSTAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

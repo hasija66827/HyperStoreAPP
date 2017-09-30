@@ -140,11 +140,10 @@ namespace SDKTemplate
             object parameter, string language)
         {
             if (value == null)
-                return "fckoff";
-            // value is the data from the source object.
-            decimal price = (decimal)value;
+                return "x% Off";
+
             // Return the value to pass to the target.
-            return price.ToString() + "% Off";
+            return value.ToString() + "% Off";
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -162,11 +161,10 @@ namespace SDKTemplate
         {
             //TODO: Remove
             if (value == null)
-                return "null";
-            // value is the data from the source object.
-            decimal price = (decimal)value;
+                return "x% GST";
+
             // Return the value to pass to the target.
-            return price.ToString() + "% GST";
+            return value.ToString() + "% GST";
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -176,6 +174,28 @@ namespace SDKTemplate
             throw new NotImplementedException();
         }
     }
+
+    // Append the decimal value with %GST
+    public class FloatToPercentageProfitConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            //TODO: Remove
+            if (value == null)
+                return "x% Pft";
+            // Return the value to pass to the target.
+            return Math.Round((System.Convert.ToDecimal(value)), 2) + "% Pft";
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     // Tries to convert value into positive integer, if it fails then reset the value to one.
     public class CheckIfPositiveInteger : IValueConverter
     {

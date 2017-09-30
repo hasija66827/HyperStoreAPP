@@ -44,7 +44,7 @@
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="GreenBrush"
-                                     Color="#FF59E71A" />
+                                     Color="#FF0FBD0F" />
                     <SolidColorBrush x:Key="RedBrush"
                                      Color="#FFF01919" />
                     <SolidColorBrush x:Key="PinkBrush"
@@ -154,6 +154,8 @@
                                 Value="Left" />
                         <Setter Property="Padding"
                                 Value="3" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
                     </Style>
                     <Style x:Key="MasterListRightTextBlockStyle"
                            TargetType="TextBlock">
@@ -171,6 +173,8 @@
                                 Value="Left" />
                         <Setter Property="Padding"
                                 Value="3" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
                     </Style>
                     <Style x:Key="ListCaptionAltTextblockStyle"
                            TargetType="TextBlock">
@@ -185,25 +189,25 @@
                            TargetType="TextBlock"
                            BasedOn="{StaticResource MasterListTextBlockStyle}">
                         <Setter Property="Width"
-                                Value="120" />
+                                Value="115" />
                     </Style>
                     <Style x:Key="LargeArialBasicTBStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource MasterListTextBlockStyle}">
                         <Setter Property="Width"
-                                Value="150" />
+                                Value="140" />
                     </Style>
                     <Style x:Key="CalibriBasicTBStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource MasterListRightTextBlockStyle}">
                         <Setter Property="Width"
-                                Value="105" />
+                                Value="100" />
                     </Style>
                     <Style x:Key="CaptionBasicTBStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource ListCaptionAltTextblockStyle}">
                         <Setter Property="Width"
-                                Value="105" />
+                                Value="100" />
                     </Style>
                     <Style x:Key="ListBodyTextBlockStyle"
                            TargetType="TextBlock"
@@ -598,11 +602,11 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                         <Setter Property="Width"
-                                Value="70" />
+                                Value="15" />
                         <Setter Property="local:TextBoxAttached.AutoSelectable"
                                 Value="True" />
                         <Setter Property="HorizontalContentAlignment"
-                                Value="Left" />
+                                Value="Center" />
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>
@@ -699,11 +703,13 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                         <Setter Property="Width"
-                                Value="90" />
+                                Value="80" />
                         <Setter Property="local:TextBoxAttached.AutoSelectable"
                                 Value="True" />
                         <Setter Property="HorizontalContentAlignment"
-                                Value="Left" />
+                                Value="Center" />
+                        <Setter Property="Margin"
+                                Value="5,0" />
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>

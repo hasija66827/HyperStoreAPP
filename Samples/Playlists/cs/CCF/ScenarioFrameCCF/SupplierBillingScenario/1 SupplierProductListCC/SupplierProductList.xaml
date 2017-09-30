@@ -7,7 +7,10 @@
       mc:Ignorable="d">
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToPercentageProfitConverter x:Key="FloatToPercentageProfitConverter" />
+        <local:FloatToPercentageGSTConverter x:Key="FloatToPercentageGSTConverter" />
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
+        <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
     <Grid Background="White">
@@ -44,37 +47,35 @@
                         <ListView x:Name="ListView"
                                   ItemsSource="{x:Bind _Products}"
                                   RelativePanel.Below="StaticLabelsForList"
-                                  RelativePanel.AlignRightWith="StaticLabelsForList"
-                                  RelativePanel.AlignLeftWith="StaticLabelsForList"
-                                  CanReorderItems="False"
-                                  Margin="-12,0,0,0"
-                                  SelectedIndex="-1">
+                                  Style="{StaticResource ListViewStyle}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="local:SupplierBillingProductViewModel">
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,5,0,0"
-                                                Background="{StaticResource ListItemBrush}">
+                                    <StackPanel  Style="{StaticResource DetailListStackPanel}">
                                         <TextBlock Text="{x:Bind Code, Mode=OneWay}"
-                                                   Foreground="Black"
-                                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                                   Style="{StaticResource CaptionBasicTBStyle}" />
                                         <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Style="{StaticResource LightTextBlockStyle}"
-                                                   TextWrapping="Wrap" />
+                                                   Style="{StaticResource LargeArialBasicTBStyle}" />
                                         <TextBox x:Name="PurchasePrice"
                                                  Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
-                                                 Style="{StaticResource VeryLargeListTextBoxStyle}" />
+                                                 Style="{StaticResource LargeListTextBoxStyle}" />
+                                        <TextBlock x:Name="ProfitPer"
+                                                   Foreground="{StaticResource GreenBrush}"
+                                                   Style="{StaticResource CalibriBasicTBStyle}"
+                                                   Text="{x:Bind ProfitPer, Mode=OneWay, Converter={StaticResource FloatToPercentageProfitConverter}}" />
+                                        <TextBlock x:Name="ProfitAmount"
+                                                   Foreground="{StaticResource GreenBrush}"
+                                                   Style="{StaticResource CalibriBasicTBStyle}"
+                                                   Text="{x:Bind ProfitAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="SellingPrice"
                                                    Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Foreground="Black"
-                                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                                   Style="{StaticResource CalibriBasicTBStyle}" />
                                         <TextBox x:Name="Quantity"
                                                  Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
-                                                 Style="{StaticResource LargeListTextBoxStyle}" />
+                                                 Style="{StaticResource ListTextBoxStyle}" />
                                         <TextBlock x:Name="NetValue"
                                                    Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   FontSize="16"
                                                    Foreground="{StaticResource PinkBrush}"
-                                                   Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                                   Style="{StaticResource CalibriBasicTBStyle}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

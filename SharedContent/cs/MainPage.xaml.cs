@@ -95,10 +95,9 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(s.ClassType);
-                    NewsFeedFrame.Navigate(typeof(RecommendedProductCC));
+                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     RightBottomFrame.Navigate(typeof(BillingSummaryCC));
-                    SummaryFrame.Navigate(typeof(BlankPage));
-                    
+                    SummaryFrame.Navigate(typeof(RecommendedProductCC));     
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
@@ -108,8 +107,6 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
-                    
-
                 }
                 else if (s.ClassType == typeof(CustomersCCF))
                 {
