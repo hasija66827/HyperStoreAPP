@@ -5,39 +5,5 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid Background="White">
-        <StackPanel>
-            <RelativePanel Style="{StaticResource MasterListRelativePanel}">
-                <TextBlock x:Name="MobileNo"
-                           Text="{x:Bind MobileNo}"
-                           Style="{ThemeResource MasterListTextBlockStyle}" />
-                <TextBlock x:Name="WalletBalance"
-                           Text="6250"
-                           Margin="80,0,0,0"
-                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
-                <TextBlock x:Name="Name"
-                           Text="{x:Bind Name}"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
-                           RelativePanel.Below="MobileNo" />
-            </RelativePanel>
-            <RelativePanel BorderBrush="{StaticResource SystemControlHighlightAccentBrush}"
-                           BorderThickness="5,0.1,0.1,0.1"
-                           Padding="4"
-                           Margin="0,2">
-                <TextBlock Text="Rahul"
-                           FontFamily="Arial"
-                           FontWeight="Normal"
-                           Foreground="#FF434646" />
-            </RelativePanel>
-            <RelativePanel BorderBrush="{StaticResource SystemControlHighlightAccentBrush}"
-                           BorderThickness="5,0.1,0.1,0.1"
-                           Padding="4"
-                           Margin="0,2">
-                <TextBlock Text="Rahul"
-                           FontFamily="Arial"
-                           FontWeight="Normal"
-                           Foreground="#FF434646" />
-            </RelativePanel>
-        </StackPanel>
-    </Grid>
+   
 </Page>

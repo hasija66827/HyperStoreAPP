@@ -40,8 +40,8 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBox x:Name="Low Stock Alert"
-                     Header="Threshold"
+            <TextBox x:Name="LowStockAlert"
+                     Header="Low Stock Alert"
                      Text="{x:Bind _ProdBasicInfo._PDFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
                      PlaceholderText="Enter Number of Units."
                      ToolTipService.ToolTip="The number of units of product below which you want to mark the product deficient."
