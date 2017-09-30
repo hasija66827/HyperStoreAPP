@@ -37,30 +37,31 @@ namespace SDKTemplate
             // in order to call methods that are in this class.
             Current = this;
             //SampleTitle.Text = FEATURE_NAME;
-           
+
         }
         public void NavigateNewsFeedFrame(Type sourcePageType, object parameter)
         {
             NewsFeedFrame.Navigate(sourcePageType, parameter);
         }
+
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            NewsFeedFrame.Navigate(typeof(CustomerFormCC));
+            QuickCreateSplitter.IsPaneOpen = true;
+            EntityFrame.Navigate(typeof(CustomerFormCC));
         }
 
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewsFeedFrame.Navigate(typeof(ProductBasicFormCC), null);
+            QuickCreateSplitter.IsPaneOpen = true;
+            EntityFrame.Navigate(typeof(ProductBasicFormCC), null);
         }
 
         private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewsFeedFrame.Navigate(typeof(SupplierFormCC));
+            QuickCreateSplitter.IsPaneOpen = true;
+            EntityFrame.Navigate(typeof(SupplierFormCC));
         }
-        private void AddTagBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NewsFeedFrame.Navigate(typeof(TagFormCC));
-        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
@@ -97,7 +98,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     RightBottomFrame.Navigate(typeof(BillingSummaryCC));
-                    SummaryFrame.Navigate(typeof(RecommendedProductCC));     
+                    SummaryFrame.Navigate(typeof(RecommendedProductCC));
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
@@ -116,7 +117,7 @@ namespace SDKTemplate
                     RightBottomFrame.Navigate(typeof(CustomerTrendCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(CustomerSummaryCC));
-                    
+
 
                 }
                 else if (s.ClassType == typeof(ProductInStock))
@@ -127,7 +128,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-                    
+
 
                 }
                 else if (s.ClassType == typeof(SupplierCCF))
@@ -138,7 +139,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierSummaryCC));
-                    
+
 
                 }
                 else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
@@ -149,7 +150,7 @@ namespace SDKTemplate
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     RightBottomFrame.Navigate(typeof(SupplierBillingSummaryCC));
                     SummaryFrame.Navigate(typeof(BlankPage));
-                    
+
                 }
 
                 else if (s.ClassType == typeof(SupplierOrderCCF))
@@ -160,7 +161,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierOrderSummary));
-                    
+
                 }
                 else
                 {
@@ -190,42 +191,17 @@ namespace SDKTemplate
             // Otherwise, schedule a task on the UI thread to perform the update.
             if (Dispatcher.HasThreadAccess)
             {
-                UpdateStatus(strMessage, type);
+                //UpdateStatus(strMessage, type);
             }
             else
             {
-                var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateStatus(strMessage, type));
+                //TODO: Take care of this.
+                // var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateStatus(strMessage, type));
             }
         }
 
-        private void UpdateStatus(string strMessage, NotifyType type)
-        {
-            switch (type)
-            {
-                case NotifyType.StatusMessage:
-                    StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.LawnGreen);
-                    break;
-                case NotifyType.ErrorMessage:
-                    StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.PaleVioletRed);
-                    break;
-            }
-            StatusBlock.Text = strMessage;
 
-            // Collapse the StatusBlock if it has no text to conserve real estate.
-            StatusBorder.Visibility = (StatusBlock.Text != String.Empty) ? Visibility.Visible : Visibility.Collapsed;
-            if (StatusBlock.Text != String.Empty)
-            {
-                StatusBorder.Visibility = Visibility.Collapsed;
-                StatusPanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                StatusBorder.Visibility = Visibility.Collapsed;
-                StatusPanel.Visibility = Visibility.Collapsed;
-            }
-        }
 
-      
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

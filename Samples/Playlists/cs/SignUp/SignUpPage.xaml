@@ -10,7 +10,7 @@
         <Frame x:Name="HeaderFrame"
                Width="700"
                Height="50"
-               Background="#FFE9EDED"
+               Background="{StaticResource FormThemeBrush}"
                Margin="0,60,60,0" />
         <Rectangle RelativePanel.Below="HeaderFrame"
                    Stroke="LightGray"
@@ -19,13 +19,13 @@
         <Frame x:Name="ContentFrame"
                Width="700"
                Height="650"
-               Background="#FFE9EDED"
+               Background="{StaticResource FormThemeBrush}"
                RelativePanel.AlignLeftWith="HeaderFrame"
                RelativePanel.Below="HeaderFrame" />
         <Frame x:Name="ResultFrame"
                Width="700"
                Height="600"
-               Background="#FFE9EDED"
+               Background="{StaticResource FormThemeBrush}"
                RelativePanel.AlignVerticalCenterWith="ContentFrame"
                RelativePanel.RightOf="HeaderFrame" />
     </RelativePanel>

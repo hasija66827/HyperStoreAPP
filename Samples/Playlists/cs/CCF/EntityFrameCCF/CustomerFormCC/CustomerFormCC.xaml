@@ -12,12 +12,12 @@
     <Page.DataContext>
         <local:CustomerFormViewModel />
     </Page.DataContext>
-    <RelativePanel Background="White">
+    <RelativePanel >
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
+                 Style="{StaticResource FormHeaderBorder}">
             <TextBlock Text="Customer"
-                       Style="{StaticResource HeaderTextBlockStyle}" />
+                       Style="{StaticResource FormHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
                     RelativePanel.Below="HeaderPanel"

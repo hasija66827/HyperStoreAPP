@@ -11,12 +11,12 @@
     <Page.DataContext>
         <local:ProductDetailFormViewModel />
     </Page.DataContext>
-    <RelativePanel Background="White">
+    <RelativePanel Background="{StaticResource FormThemeBrush}">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
+                 Style="{StaticResource FormHeaderBorder}">
             <TextBlock Text="Product"
-                       Style="{StaticResource HeaderTextBlockStyle}" />
+                       Style="{StaticResource FormHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
                     Orientation="Vertical"
@@ -62,8 +62,8 @@
             <TextBlock Text="Add Tag To Product"
                        Style="{StaticResource  ScenarioHeaderTextStyle}" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
-                          Height="95"
-                          MaxHeight="95"
+                          Height="200"
+                         
                           Width="300">
                 <ItemsControl x:Name="TagItemControl">
                     <ItemsControl.ItemTemplate>

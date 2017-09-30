@@ -11,9 +11,9 @@
     <RelativePanel>
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
+                 Style="{StaticResource FormHeaderBorder}">
             <TextBlock Text="Supplier"
-                       Style="{StaticResource HeaderTextBlockStyle}" />
+                       Style="{StaticResource FormHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
                     Orientation="Vertical"

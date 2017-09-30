@@ -12,12 +12,12 @@
     <Page.DataContext>
         <local:ProViewModel />
     </Page.DataContext>
-    <RelativePanel Background="White">
+    <RelativePanel Background="{StaticResource FormThemeBrush}">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
+                 Style="{StaticResource FormHeaderBorder}">
             <TextBlock Text="Product Pricing"
-                       Style="{StaticResource HeaderTextBlockStyle}" />
+                       Style="{StaticResource FormHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="MRPPanel"
                     Margin="10,0,0,0"
@@ -48,9 +48,8 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
         <RelativePanel x:Name="PriceDesigner"
-                       RelativePanel.RightOf="PriceEditor"
-                       RelativePanel.AlignTopWith="PriceEditor"
-                       RelativePanel.Above="ErrorPanel">
+                       RelativePanel.Below="ErrorPanel"
+                      >
             <StackPanel x:Name="Parent"
                         Margin="60,5,0,0"
                         Orientation="Horizontal">
@@ -122,7 +121,7 @@
             </StackPanel>
         </RelativePanel>
         <StackPanel x:Name="ErrorPanel"
-                    RelativePanel.Above="CommandPanel">
+                    RelativePanel.Below="PriceEditor">
             <TextBlock Text="{Binding Errors[DiscPer][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBlock Text="{Binding Errors[CGSTPer][0]}"

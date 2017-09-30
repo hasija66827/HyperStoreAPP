@@ -63,6 +63,10 @@
                                      Color="#FF8C7A07" />
                     <SolidColorBrush x:Key="BlueThemeBrush"
                                      Color="#FF1487A3" />
+                    <SolidColorBrush x:Key="FormThemeBrush"
+                                     Color="#FFE9EDED" />
+                    <SolidColorBrush x:Key="FormHeaderButtonBrush"
+                                     Color="#FF10ACDC" />
                     <Style x:Key="SHeaderBasicStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontSize"
@@ -79,6 +83,14 @@
                                 Value="3,0" />
                         <Setter Property="FontFamily"
                                 Value="Arial" />
+                    </Style>
+                    <Style x:Key="FormHeaderTextBlockStyle"
+                           BasedOn="{StaticResource SHeaderBasicStyle}"
+                           TargetType="TextBlock">
+                        <Setter Property="Foreground"
+                                Value="WhiteSmoke" />
+                        <Setter Property="Width"
+                                Value="330" />
                     </Style>
                     <Style x:Key="MasterHeaderTextBlockStyle"
                            TargetType="TextBlock"
@@ -229,7 +241,6 @@
                         <Setter Property="Background"
                                 Value="{StaticResource FrameBrush}" />
                     </Style>
-                    
                     <Style x:Key="FontIconStyle"
                            TargetType="FontIcon">
                         <Setter Property="FontFamily"
@@ -482,6 +493,15 @@
                                 Value="0,0,0,10" />
                         <Setter Property="Background"
                                 Value="#FFECF6FC" />
+                    </Style>
+                    <Style x:Key="FormHeaderBorder"
+                           TargetType="Border">
+                        <Setter Property="Height"
+                                Value="32" />
+                        <Setter Property="Margin"
+                                Value="0,0,0,10" />
+                        <Setter Property="Background"
+                                Value="{StaticResource FormHeaderButtonBrush}" />
                     </Style>
                     <Style x:Key="SubHeaderBorder"
                            TargetType="Border">
@@ -775,7 +795,7 @@
                         <Setter Property="Width"
                                 Value="140" />
                         <Setter Property="Background"
-                                Value="#FF10ACDC" />
+                                Value="{StaticResource FormHeaderButtonBrush}" />
                         <Setter Property="Margin"
                                 Value="5" />
                     </Style>
