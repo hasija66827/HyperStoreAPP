@@ -55,15 +55,14 @@
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">
-            <Button Content="Save"
-                    Command="{Binding ValidateCommand}"
-                    x:Name="SaveBtn"
-                    Click="SaveBtn_Click"
-                    Style="{StaticResource FormButtonStyle}" />
             <Button x:Name="CancelBtn"
                     Content="Cancel"
                     Click="CancelBtn_Click"
                     Style="{StaticResource TransFormButtonStyle}" />
+            <Button Content="Save"
+                    x:Name="SaveBtn"
+                    Click="SaveBtn_Click"
+                    Style="{StaticResource FormButtonStyle}" />
         </StackPanel>
     </RelativePanel>
 </Page>

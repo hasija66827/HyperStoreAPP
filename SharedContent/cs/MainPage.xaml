@@ -192,7 +192,7 @@
         <SplitView x:Name="QuickCreateSplitter"
                    Height="710"
                    PanePlacement="Right"
-                   Width="350"
+                   Width="360"
                    IsPaneOpen="False"
                    DisplayMode="Overlay"
                    RelativePanel.Below="AppBarButtons"

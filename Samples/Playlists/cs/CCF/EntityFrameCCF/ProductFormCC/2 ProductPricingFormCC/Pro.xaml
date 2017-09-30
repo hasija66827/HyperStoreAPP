@@ -33,23 +33,22 @@
                     RelativePanel.Below="MRPPanel">
             <TextBox Header="Dis %"
                      Text="{x:Bind _ProViewModel.DiscPer, Mode=TwoWay}"
-                     Style="{StaticResource SmallFormTextBoxStyle}" />
-            <TextBlock Text=""
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[DiscPer][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="CGST %"
                      Text="{x:Bind _ProViewModel.CGSTPer, Mode=TwoWay}"
-                     Style="{StaticResource SmallFormTextBoxStyle}" />
-            <TextBlock Text=""
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[CGSTPer][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="SGST %"
                      Text="{x:Bind _ProViewModel.SGSTPer, Mode=TwoWay}"
-                     Style="{StaticResource SmallFormTextBoxStyle}" />
-            <TextBlock Text=""
+                     Style="{StaticResource FormTextBoxStyle}" />
+            <TextBlock Text="{Binding Errors[SGSTPer][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
         <RelativePanel x:Name="PriceDesigner"
-                       RelativePanel.Below="ErrorPanel"
-                      >
+                       RelativePanel.Below="PriceEditor">
             <StackPanel x:Name="Parent"
                         Margin="60,5,0,0"
                         Orientation="Horizontal">
@@ -81,7 +80,7 @@
             </StackPanel>
             <StackPanel x:Name="SecondLevel"
                         RelativePanel.AlignLeftWith="FirstLevel"
-                        Margin="0,5,0,0"
+                        Margin="50,5,0,0"
                         RelativePanel.Below="FirstLevel"
                         Orientation="Horizontal">
                 <StackPanel Style="{StaticResource ProductStackPanel}"
@@ -100,7 +99,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel x:Name="ThirdLevel"
-                        Margin="0,5,0,0"
+                        Margin="100,5,0,0"
                         RelativePanel.AlignLeftWith="SecondLevel"
                         RelativePanel.Below="SecondLevel"
                         Orientation="Horizontal">
@@ -120,15 +119,6 @@
                 </StackPanel>
             </StackPanel>
         </RelativePanel>
-        <StackPanel x:Name="ErrorPanel"
-                    RelativePanel.Below="PriceEditor">
-            <TextBlock Text="{Binding Errors[DiscPer][0]}"
-                       Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBlock Text="{Binding Errors[CGSTPer][0]}"
-                       Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBlock Text="{Binding Errors[SGSTPer][0]}"
-                       Style="{StaticResource ErrorTextBlockStyle}" />
-        </StackPanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True">
@@ -139,7 +129,7 @@
                     x:Name="SaveBtn"
                     Click="SaveBtn_Click"
                     Style="{StaticResource FormButtonStyle}"
-                    RelativePanel.AlignBottomWithPanel="True" />
+                     />
         </StackPanel>
     </RelativePanel>
 </Page>
