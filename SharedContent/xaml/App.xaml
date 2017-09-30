@@ -61,20 +61,24 @@
                                      Color="#FF830D0D" />
                     <SolidColorBrush x:Key="SupplierEllipseBrush"
                                      Color="#FF8C7A07" />
+                    <SolidColorBrush x:Key="BlueThemeBrush"
+                                     Color="#FF1487A3" />
                     <Style x:Key="SHeaderBasicStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontSize"
-                                Value="18" />
+                                Value="19" />
                         <Setter Property="Height"
                                 Value="auto" />
                         <Setter Property="Foreground"
-                                Value="#FF3DB6A2" />
+                                Value="{StaticResource BlueThemeBrush}" />
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                         <Setter Property="Padding"
-                                Value="3" />
+                                Value="3,8,3,0" />
                         <Setter Property="Margin"
                                 Value="3,0" />
+                        <Setter Property="FontFamily"
+                                Value="Arial" />
                     </Style>
                     <Style x:Key="MasterHeaderTextBlockStyle"
                            TargetType="TextBlock"
@@ -106,11 +110,59 @@
                         <Setter Property="Width"
                                 Value="820" />
                     </Style>
+                    <Style x:Key="MasterListRelativePanel"
+                           TargetType="RelativePanel">
+                        <Setter Property="Margin"
+                                Value="-10,2" />
+                        <Setter Property="Background"
+                                Value="#FFFDFDFF" />
+                        <Setter Property="BorderBrush"
+                                Value="{StaticResource BlueThemeBrush}" />
+                        <Setter Property="BorderThickness"
+                                Value="5,0,0,0.5" />
+                        <Setter Property="Padding"
+                                Value="8,9,8,4" />
+                    </Style>
+                    <Style x:Key="MasterListTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Arial" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="TextAlignment"
+                                Value="Left" />
+                        <Setter Property="Padding"
+                                Value="3" />
+                    </Style>
+                    <Style x:Key="MasterListRightTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="Calibri" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="Foreground"
+                                Value="#FF3F3F48" />
+                        <Setter Property="TextWrapping"
+                                Value="Wrap" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="TextAlignment"
+                                Value="Left" />
+                        <Setter Property="Padding"
+                                Value="3" />
+                    </Style>
                     <Style x:Key="ListCaptionAltTextblockStyle"
-                           TargetType="TextBlock"
-                           BasedOn="{StaticResource CaptionTextBlockStyle}">
+                           TargetType="TextBlock">
                         <Setter Property="FontSize"
                                 Value="13" />
+                        <Setter Property="Padding"
+                                Value="2" />
                         <Setter Property="Foreground"
                                 Value="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
                     </Style>
@@ -380,7 +432,7 @@
                         <Setter Property="Margin"
                                 Value="0,0,0,10" />
                         <Setter Property="Background"
-                                Value="#FFECF6F7" />
+                                Value="#FFECF6FC" />
                     </Style>
                     <Style x:Key="SubHeaderBorder"
                            TargetType="Border">
@@ -559,26 +611,6 @@
                                 Value="Wrap" />
                         <Setter Property="TextAlignment"
                                 Value="Left" />
-                    </Style>
-                    <Style x:Key="MasterListTextBlockStyle"
-                           TargetType="TextBlock">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontWeight"
-                                Value="SemiBold" />
-                        <Setter Property="Foreground"
-                                Value="Black" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="TextAlignment"
-                                Value="Left" />
-                        <Setter Property="Padding"
-                                Value="0,10,5,5" />
-                    </Style>
-                    <Style x:Key="MasterListRelativePanel"
-                           TargetType="RelativePanel">
-                        <Setter Property="Margin"
-                                Value="0,5,0,0" />
                     </Style>
                     <Style x:Key="ListHeaderStackPanel"
                            TargetType="StackPanel">

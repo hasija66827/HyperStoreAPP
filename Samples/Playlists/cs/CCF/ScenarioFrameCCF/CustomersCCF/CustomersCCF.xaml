@@ -11,19 +11,18 @@
         <local:FloatToRupeeConverterWithSign x:Key="FloatToRupeeConverterWithSign" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="model:TCustomer">
-            <RelativePanel>
+            <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind MobileNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="WalletBalance"
                            RelativePanel.AlignRightWithPanel="True"
                            Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
-                           Style="{ThemeResource MasterListTextBlockStyle}" />
+                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="Name"
                            Text="{x:Bind Name}"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}"
-                           RelativePanel.Below="MobileNo"
-                           TextWrapping="Wrap" />
+                           RelativePanel.Below="MobileNo" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
@@ -129,7 +128,7 @@
                           Grid.Row="1"
                           Grid.Column="1"
                           Grid.RowSpan="3"
-                          BorderThickness="10,0,0,0"
+                          BorderThickness="5,0,0,0"
                           ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter.ContentTransitions>

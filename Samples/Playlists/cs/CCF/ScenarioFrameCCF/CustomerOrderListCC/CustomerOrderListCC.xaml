@@ -21,19 +21,16 @@
                            Text="{x:Bind Customer.MobileNo}"
                            Style="{StaticResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="FormattedCustomerOrderNo"
-                           Padding="10,10,10,5"
                            RelativePanel.AlignRightWithPanel="True"
                            Text="{x:Bind CustomerOrderNo}"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="FormatterPaidBillAmount"
-                           Padding="10,0,10,10"
                            RelativePanel.Below="MobileNo"
                            Text="{x:Bind FormattedPaidBillAmount}"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock x:Name="FormattedOrderDate"
                            RelativePanel.AlignBottomWith="FormatterPaidBillAmount"
                            RelativePanel.AlignRightWithPanel="True"
-                           Padding="10,0,10,10"
                            Text="{x:Bind FormattedOrderDate}"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
             </RelativePanel>
@@ -220,7 +217,7 @@
         <RelativePanel Grid.Row="1"
                        Grid.Column="1"
                        Grid.RowSpan="2"
-                       BorderThickness="10,0,0,0"
+                       BorderThickness="5,0,0,0"
                        BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter x:Name="DetailContentPresenter"
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"

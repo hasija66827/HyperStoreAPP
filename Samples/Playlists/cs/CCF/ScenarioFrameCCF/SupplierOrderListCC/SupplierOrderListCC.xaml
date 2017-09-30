@@ -10,24 +10,21 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:SupplierOrderViewModel">
-            <RelativePanel>
+            <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind Supplier.MobileNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="WholeSellerOrderNo"
                            RelativePanel.AlignRightWithPanel="True"
                            Text="{x:Bind SupplierOrderNo}"
-                           Padding="10,10,10,5"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="FormattedPaidBillAmount"
                            Text="{x:Bind FormattedPaidBillAmount}"
-                           Padding="10,0,10,10"
                            RelativePanel.Below="MobileNo"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock x:Name="FormattedOrderDate"
                            Text="{x:Bind FormattedOrderDate}"
                            RelativePanel.AlignBottomWith="FormattedPaidBillAmount"
-                           Padding="10,0,10,10"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}"
                            RelativePanel.AlignRightWithPanel="True" />
             </RelativePanel>
@@ -86,7 +83,6 @@
             <RelativePanel Background="#FFF6F4F4">
                 <StackPanel x:Name="OrderPricing"
                             Background="White"
-                            Padding="0,0,5,5"
                             Orientation="Vertical">
                     <Border  x:Name="HeaderPanel"
                              Style="{StaticResource SubHeaderBorder}">
@@ -307,7 +303,7 @@
                        Grid.Column="1"
                        Grid.RowSpan="2"
                        BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-                       BorderThickness="10,0,0,0">
+                       BorderThickness="5,0,0,0">
             <ContentPresenter x:Name="DetailContentPresenter"
                               ContentTemplate="{StaticResource DetailContentTemplate}"
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">

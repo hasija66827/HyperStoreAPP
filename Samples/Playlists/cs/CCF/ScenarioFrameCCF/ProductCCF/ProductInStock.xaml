@@ -33,11 +33,10 @@
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="ProductName"
                            Text="{x:Bind FormattedNameQuantity}"
-                           Style="{ThemeResource MasterListTextBlockStyle}"
-                           TextWrapping="Wrap" />
+                           Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToRupeeConverter}}"
                            RelativePanel.AlignRightWithPanel="True"
-                           Style="{ThemeResource MasterListTextBlockStyle}" />
+                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="DisplayPrice"
                            Text="{x:Bind MRP, Converter={StaticResource FloatToRupeeConverter} }"
                            RelativePanel.Below="ProductName"
@@ -129,8 +128,7 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
@@ -173,7 +171,7 @@
                           Grid.Row="1"
                           Grid.Column="1"
                           Grid.RowSpan="3"
-                          BorderThickness="10,0,0,0"
+                          BorderThickness="5,0,0,0"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
                           ContentTemplate="{StaticResource DetailContentTemplate}">
             <ContentPresenter.ContentTransitions>

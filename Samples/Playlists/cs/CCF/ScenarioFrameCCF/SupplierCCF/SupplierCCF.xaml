@@ -11,22 +11,18 @@
         <local:FloatToRupeeConverterWithSign x:Key="FloatToRupeeConverterWithSign" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="model:TSupplier">
-            <RelativePanel>
+            <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind MobileNo}"
-                           Padding="10,10,10,5"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="WalletBalance"
                            RelativePanel.AlignRightWithPanel="True"
-                           Padding="10,10,10,5"
                            Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
-                           Style="{ThemeResource BaseTextBlockStyle}" />
+                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="Name"
                            Text="{x:Bind Name}"
-                           Padding="10,0,10,10"
                            RelativePanel.Below="MobileNo"
-                           Style="{ThemeResource  ListCaptionAltTextblockStyle}"
-                           TextWrapping="Wrap" />
+                           Style="{ThemeResource  ListCaptionAltTextblockStyle}" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
@@ -132,7 +128,7 @@
                           Grid.Row="1"
                           Grid.Column="1"
                           Grid.RowSpan="3"
-                          BorderThickness="10,0,0,0"
+                          BorderThickness="5,0,0,0"
                           ContentTemplate="{StaticResource DetailContentTemplate}"
                           BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
             <ContentPresenter.ContentTransitions>
