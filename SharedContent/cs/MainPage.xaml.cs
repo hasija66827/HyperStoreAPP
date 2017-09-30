@@ -98,7 +98,7 @@ namespace SDKTemplate
                     NewsFeedFrame.Navigate(typeof(RecommendedProductCC));
                     RightBottomFrame.Navigate(typeof(BillingSummaryCC));
                     SummaryFrame.Navigate(typeof(BlankPage));
-                    ChangeLayout(false);
+                    
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
@@ -108,7 +108,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
-                    ChangeLayout(true);
+                    
 
                 }
                 else if (s.ClassType == typeof(CustomersCCF))
@@ -119,7 +119,7 @@ namespace SDKTemplate
                     RightBottomFrame.Navigate(typeof(CustomerTrendCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(CustomerSummaryCC));
-                    ChangeLayout(false);
+                    
 
                 }
                 else if (s.ClassType == typeof(ProductInStock))
@@ -130,7 +130,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-                    ChangeLayout(false);
+                    
 
                 }
                 else if (s.ClassType == typeof(SupplierCCF))
@@ -141,7 +141,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierSummaryCC));
-                    ChangeLayout(false);
+                    
 
                 }
                 else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
@@ -152,7 +152,7 @@ namespace SDKTemplate
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     RightBottomFrame.Navigate(typeof(SupplierBillingSummaryCC));
                     SummaryFrame.Navigate(typeof(BlankPage));
-                    ChangeLayout(false);
+                    
                 }
 
                 else if (s.ClassType == typeof(SupplierOrderCCF))
@@ -163,7 +163,7 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierOrderSummary));
-                    ChangeLayout(true);
+                    
                 }
                 else
                 {
@@ -175,23 +175,6 @@ namespace SDKTemplate
                 }
             }
         }
-
-        private void ChangeLayout(bool Expanded)
-        {
-            if (Expanded)
-            {
-                ScenarioFrame.Width = 1200;
-                NewsFeedFrame.Visibility = Visibility.Collapsed;
-                RightBottomFrame.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ScenarioFrame.Width = 830;
-                NewsFeedFrame.Visibility = Visibility.Visible;
-                RightBottomFrame.Visibility = Visibility.Visible;
-            }
-        }
-
 
         public List<Scenario> Scenarios
         {

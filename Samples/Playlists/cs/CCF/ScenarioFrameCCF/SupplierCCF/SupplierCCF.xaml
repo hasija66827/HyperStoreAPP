@@ -45,26 +45,23 @@
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:SupplierTransactionViewModel">
-                            <StackPanel Style="{StaticResource ListItemStackPanel}">
+                            <StackPanel Style="{StaticResource DetailListStackPanel}">
                                 <TextBlock x:Name="TransactionNo"
-                                           Foreground="Black"
                                            Text="{x:Bind TransactionNo, Mode=OneWay}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                           Style="{StaticResource ArialBasicTBStyle}" />
                                 <TextBlock x:Name="TransactionDate"
                                            Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
-                                           Style="{StaticResource LightTextBlockStyle}" />
+                                           Style="{StaticResource CaptionBasicTBStyle}" />
                                 <TextBlock x:Name="WalletSnapshot"
-                                           Foreground="Black"
                                            Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
-                                <TextBlock x:Name="CreditAmount"
-                                           FontSize="16"
-                                           Foreground="#FFFF2FAE"
+                                           Style="{StaticResource CalibriBasicTBStyle}" />
+                                <TextBlock x:Name="TxnAmount"
+                                           Foreground="{StaticResource PinkBrush}"
                                            Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverterWithSign}}"
-                                           Style="{ThemeResource VeryLargeListTextBlockStyle}" />
+                                           Style="{ThemeResource CalibriBasicTBStyle}" />
                                 <TextBlock x:Name="OrderNo"
                                            Text="{x:Bind SupplierOrderNo, Mode=OneWay}"
-                                           Style="{StaticResource LightTextBlockStyle}" />
+                                           Style="{StaticResource CaptionBasicTBStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -80,7 +77,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="White">
+    <Grid Background="{StaticResource FrameBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition MinHeight="400"
@@ -88,10 +85,10 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              Width="240" />
+                              Width="250" />
             <ColumnDefinition x:Name="DetailColumn"
-                              MinWidth="200"
-                              Width="*" />
+                              MinWidth="400"
+                              Width="auto" />
         </Grid.ColumnDefinitions>
         <Border  x:Name="MasterHeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"

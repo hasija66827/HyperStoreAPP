@@ -20,7 +20,7 @@
                               RelativePanel.Below="HeaderPanel">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:TCustomerPurchaseTrend">
-                                <StackPanel Style="{StaticResource ListItemStackPanel}">
+                                <StackPanel Style="{StaticResource DetailListStackPanel}">
                                     <TextBlock x:Name="ProductName"
                                                Style="{StaticResource LargeListTextBlockStyle}"
                                                Text="{x:Bind Product.Name, Mode=OneWay}" />

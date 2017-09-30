@@ -123,6 +123,21 @@
                         <Setter Property="Padding"
                                 Value="8,9,8,4" />
                     </Style>
+                    <Style x:Key="DetailListStackPanel"
+                           TargetType="StackPanel">
+                        <Setter Property="Margin"
+                                Value="-10,2" />
+                        <Setter Property="Background"
+                                Value="#FFFDFDFF" />
+                        <Setter Property="BorderBrush"
+                                Value="{StaticResource SystemControlHighlightAccentBrush}" />
+                        <Setter Property="BorderThickness"
+                                Value="5,0,0,0.5" />
+                        <Setter Property="Padding"
+                                Value="8,9,8,4" />
+                        <Setter Property="Orientation"
+                                Value="Horizontal" />
+                    </Style>
                     <Style x:Key="MasterListTextBlockStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
@@ -166,6 +181,30 @@
                         <Setter Property="Foreground"
                                 Value="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
                     </Style>
+                    <Style x:Key="ArialBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource MasterListTextBlockStyle}">
+                        <Setter Property="Width"
+                                Value="120" />
+                    </Style>
+                    <Style x:Key="LargeArialBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource MasterListTextBlockStyle}">
+                        <Setter Property="Width"
+                                Value="150" />
+                    </Style>
+                    <Style x:Key="CalibriBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource MasterListRightTextBlockStyle}">
+                        <Setter Property="Width"
+                                Value="105" />
+                    </Style>
+                    <Style x:Key="CaptionBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource ListCaptionAltTextblockStyle}">
+                        <Setter Property="Width"
+                                Value="105" />
+                    </Style>
                     <Style x:Key="ListBodyTextBlockStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource BodyTextBlockStyle}">
@@ -181,6 +220,12 @@
                         <Setter Property="Width"
                                 Value="140" />
                     </Style>
+                    <Style x:Key="MasterDetailGridStyle"
+                           TargetType="Grid">
+                        <Setter Property="Background"
+                                Value="{StaticResource FrameBrush}" />
+                    </Style>
+                    
                     <Style x:Key="FontIconStyle"
                            TargetType="FontIcon">
                         <Setter Property="FontFamily"
@@ -619,15 +664,6 @@
                         <Setter Property="Background"
                                 Value="#FFDAE0E0" />
                     </Style>
-                    <Style x:Key="ListItemStackPanel"
-                           TargetType="StackPanel">
-                        <Setter Property="Margin"
-                                Value="0,5,0,0" />
-                        <Setter Property="Background"
-                                Value="#FFF6FFFF" />
-                        <Setter Property="Orientation"
-                                Value="Horizontal" />
-                    </Style>
                     <Style x:Key="ProductStackPanel"
                            TargetType="StackPanel">
                         <Setter Property="Width"
@@ -645,12 +681,12 @@
                     </Style>
                     <Style x:Key="ListViewStyle"
                            TargetType="ListView">
-                        <Setter Property="Margin"
-                                Value="-12,0,0,0" />
                         <Setter Property="CanReorderItems"
                                 Value="False" />
                         <Setter Property="SelectedIndex"
                                 Value="-1" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
                     </Style>
                     <Style x:Key="LargeListTextBoxStyle"
                            TargetType="TextBox">

@@ -76,22 +76,22 @@
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="common:PriceQuotedBySupplierViewModel">
-                            <StackPanel Style="{StaticResource ListItemStackPanel}">
+                            <StackPanel Style="{StaticResource DetailListStackPanel}">
                                 <TextBlock x:Name="SupplierName"
                                            Text="{x:Bind Supplier.Name, Mode=OneTime}"
-                                           Style="{StaticResource LargeListTextBlockStyle}" />
+                                           Style="{StaticResource LargeArialBasicTBStyle}" />
                                 <TextBlock x:Name="SupplierMobileNo"
                                            Text="{x:Bind Supplier.MobileNo, Mode=OneTime}"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                           Style="{StaticResource CalibriBasicTBStyle}" />
                                 <TextBlock x:Name="OrderDate"
                                            Text="{x:Bind FormattedOrderDate, Mode=OneTime}"
-                                           Style="{StaticResource LightTextBlockStyle}" />
+                                           Style="{StaticResource CaptionBasicTBStyle}" />
                                 <TextBlock x:Name="QuantityPurchased"
+                                           Width="60"
                                            Text="{x:Bind QuantityPurchased, Mode=OneTime}"
-                                           Style="{StaticResource LargeListTextBlockStyle}" />
+                                           Style="{StaticResource CalibriBasicTBStyle}" />
                                 <TextBlock x:Name="PurchasePrice"
-                                           Foreground="Black"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
+                                           Style="{StaticResource CalibriBasicTBStyle}"
                                            Text="{x:Bind PurchasePrice, Mode=OneTime,Converter={StaticResource FloatToRupeeConverter}}" />
                             </StackPanel>
                         </DataTemplate>
@@ -132,9 +132,10 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn"
-                              Width="270" />
+                              Width="250" />
             <ColumnDefinition x:Name="DetailColumn"
-                              Width="*" />
+                              MinWidth="400"
+                              Width="auto" />
         </Grid.ColumnDefinitions>
         <Border  x:Name="MasterHeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
