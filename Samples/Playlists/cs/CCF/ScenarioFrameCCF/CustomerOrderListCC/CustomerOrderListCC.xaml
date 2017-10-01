@@ -37,35 +37,123 @@
         </DataTemplate>
         <DataTemplate x:Key="CustomerBillingSummaryTemplate"
                       x:DataType="local:CustomerOrderViewModel">
-            <RelativePanel  Width="300">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Items / Quantity: "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Cart Amount "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Discount Amount "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Tax "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Total Bill"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Payed Amount "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+            <RelativePanel>
+                <StackPanel x:Name="OrderPricing"
+                            Style="{StaticResource DetailListSummaryStackPanel}">
+                    <Border  x:Name="HeaderPanel"
+                             Style="{StaticResource SubHeaderBorder}">
+                        <TextBlock Text="Order Pricing"
+                                   Style="{StaticResource SubHeaderTextBlockStyle}" />
+                    </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <RelativePanel>
+                            <Ellipse x:Name="CartAmountGlyph"
+                                     Style="{StaticResource SmallEllipseStyle}" />
+                            <TextBlock Text="&#x20B9;"
+                                       Style="{StaticResource GlyphTextBlockStyle}"
+                                       RelativePanel.AlignHorizontalCenterWith="CartAmountGlyph"
+                                       RelativePanel.AlignVerticalCenterWith="CartAmountGlyph" />
+                        </RelativePanel>
+                        <StackPanel>
+                            <TextBlock Text="Cart Amount"
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind BillingSummary.CartAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RelativePanel>
+                            <Ellipse x:Name="DiscountAmountGlyph"
+                                     Fill="Red"
+                                     Style="{StaticResource SmallEllipseStyle}" />
+                            <TextBlock Text="&#x20B9;"
+                                       Style="{StaticResource GlyphTextBlockStyle}"
+                                       RelativePanel.AlignHorizontalCenterWith="DiscountAmountGlyph"
+                                       RelativePanel.AlignVerticalCenterWith="DiscountAmountGlyph" />
+                        </RelativePanel>
+                        <StackPanel>
+                            <TextBlock Text="Discount Amount"
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind BillingSummary.DiscountAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RelativePanel>
+                            <Ellipse x:Name="BillAmountGlyph"
+                                     Fill="Red"
+                                     Style="{StaticResource SmallEllipseStyle}" />
+                            <TextBlock Text="&#x20B9;"
+                                       Style="{StaticResource GlyphTextBlockStyle}"
+                                       RelativePanel.AlignHorizontalCenterWith="BillAmountGlyph"
+                                       RelativePanel.AlignVerticalCenterWith="BillAmountGlyph" />
+                        </RelativePanel>
+                        <StackPanel>
+                            <TextBlock Text="Bill Amount"
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind BillingSummary.PayAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical"
-                            RelativePanel.AlignRightWithPanel="True">
-                    <TextBlock Text="{x:Bind BillingSummary.Items_Quantity, Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind BillingSummary.CartAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind BillingSummary.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind BillingSummary.Tax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind BillingSummary.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind PayingAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                <StackPanel  x:Name="OrderDetails"
+                             Style="{StaticResource DetailListSummaryStackPanel}"
+                             RelativePanel.RightOf="OrderPricing">
+                    <Border  x:Name="OrderDetailsHeaderPanel"
+                             Style="{StaticResource SubHeaderBorder}">
+                        <TextBlock Text="Order Details"
+                                   Style="{StaticResource SubHeaderTextBlockStyle}" />
+                    </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <RelativePanel>
+                            <Ellipse x:Name="ItemQuantityGlyph"
+                                     Style="{StaticResource SmallEllipseStyle}" />
+                            <FontIcon Glyph="&#xE1D3;"
+                                      RelativePanel.AlignHorizontalCenterWith="ItemQuantityGlyph"
+                                      RelativePanel.AlignVerticalCenterWith="ItemQuantityGlyph"
+                                      Style="{StaticResource WhiteFontIconStyle}" />
+                        </RelativePanel>
+                        <StackPanel>
+                            <TextBlock Text="Item/Quantity"
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind BillingSummary.Items_Quantity}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RelativePanel>
+                            <Ellipse x:Name="PayedAmountGlyph"
+                                     Fill="Red"
+                                     Style="{StaticResource SmallEllipseStyle}" />
+                            <TextBlock Text="&#x20B9;"
+                                       Style="{StaticResource GlyphTextBlockStyle}"
+                                       RelativePanel.AlignHorizontalCenterWith="PayedAmountGlyph"
+                                       RelativePanel.AlignVerticalCenterWith="PayedAmountGlyph" />
+                        </RelativePanel>
+                        <StackPanel>
+                            <TextBlock Text="Payed Amount"
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind PayingAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RelativePanel>
+                            <Ellipse x:Name="TotalGSTAmountGlyph"
+                                     Fill="Red"
+                                     Style="{StaticResource SmallEllipseStyle}" />
+                            <TextBlock Text="&#x20B9;"
+                                       Style="{StaticResource GlyphTextBlockStyle}"
+                                       RelativePanel.AlignHorizontalCenterWith="TotalGSTAmountGlyph"
+                                       RelativePanel.AlignVerticalCenterWith="TotalGSTAmountGlyph" />
+                        </RelativePanel>
+                        <StackPanel>
+                            <TextBlock Text="TotalGST Amount"
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind BillingSummary.Tax, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
             </RelativePanel>
         </DataTemplate>

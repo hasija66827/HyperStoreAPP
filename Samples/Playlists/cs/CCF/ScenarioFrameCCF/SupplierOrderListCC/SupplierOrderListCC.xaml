@@ -14,18 +14,20 @@
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind Supplier.MobileNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
-                <TextBlock x:Name="WholeSellerOrderNo"
-                           RelativePanel.AlignRightWithPanel="True"
-                           Text="{x:Bind SupplierOrderNo}"
-                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="FormattedPaidBillAmount"
                            Text="{x:Bind FormattedPaidBillAmount}"
-                           RelativePanel.Below="MobileNo"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                           RelativePanel.Below="MobileNo" />
+                <TextBlock x:Name="WholeSellerOrderNo"
+                           Text="{x:Bind SupplierOrderNo}"
+                           Style="{ThemeResource MasterListRightTextBlockStyle}"
+                           RelativePanel.AlignRightWithPanel="True"
+                           RelativePanel.RightOf="MobileNo" />
                 <TextBlock x:Name="FormattedOrderDate"
                            Text="{x:Bind FormattedOrderDate}"
+                           Style="{ThemeResource ListCaptionRightAltTextblockStyle}"
+                           RelativePanel.RightOf="FormattedPaidBillAmount"
                            RelativePanel.AlignBottomWith="FormattedPaidBillAmount"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
                            RelativePanel.AlignRightWithPanel="True" />
             </RelativePanel>
         </DataTemplate>
@@ -77,20 +79,18 @@
         </DataTemplate>
         <DataTemplate x:Key="SupplierBillingSummaryTemplate"
                       x:DataType="local:SupplierOrderViewModel">
-            <RelativePanel Background="#FFF6F4F4">
+            <RelativePanel>
                 <StackPanel x:Name="OrderPricing"
-                            Background="White"
-                            Orientation="Vertical">
+                            Style="{StaticResource DetailListSummaryStackPanel}">
                     <Border  x:Name="HeaderPanel"
                              Style="{StaticResource SubHeaderBorder}">
                         <TextBlock Text="Order Pricing"
-                                   Style="{StaticResource SubHeaderTextBlockStyle}"
-                                   Margin="0,0,0,0" />
+                                   Style="{StaticResource SubHeaderTextBlockStyle}" />
                     </Border>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="BillAmountGlyph"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
                                        RelativePanel.AlignHorizontalCenterWith="BillAmountGlyph"
@@ -98,16 +98,16 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="Bill Amount"
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
-                            <TextBlock Text="{x:Bind BillAmount }"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind BillAmount, Converter={StaticResource FloatToRupeeConverter} }"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="SettledAmountGlyph"
                                      Fill="Green"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
                                        RelativePanel.AlignHorizontalCenterWith="SettledAmountGlyph"
@@ -115,9 +115,9 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="Settled Amount"
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
-                            <TextBlock Text="{x:Bind SettledPayedAmount}"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind SettledPayedAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
@@ -125,7 +125,7 @@
                         <RelativePanel>
                             <Ellipse x:Name="RemainingAmountGlyph"
                                      Fill="Red"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
                                        RelativePanel.AlignHorizontalCenterWith="RemainingAmountGlyph"
@@ -133,23 +133,24 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="Remaining Amount"
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
-                            <TextBlock Text="{x:Bind RemainingAmount}"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind RemainingAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel x:Name="SettledAmountBreakup"
-                            Background="White"
-                            Margin="10,0,0,0"
-                            Padding="5"
                             RelativePanel.RightOf="OrderPricing"
-                            Orientation="Vertical">
-                    <TextBlock Text="Settled Amount Breakup" />
+                            Style="{StaticResource DetailListSummaryStackPanel}">
+                    <Border  x:Name="SettledAmountBreakupHeaderPanel"
+                             Style="{StaticResource SubHeaderBorder}">
+                        <TextBlock Text="Settled Amount Break up"
+                                   Style="{StaticResource SubHeaderTextBlockStyle}" />
+                    </Border>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="ByCashGlyph"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <FontIcon Glyph="&#xEC59;"
                                       RelativePanel.AlignHorizontalCenterWith="ByCashGlyph"
                                       RelativePanel.AlignVerticalCenterWith="ByCashGlyph"
@@ -157,15 +158,15 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="By Cash "
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
-                            <TextBlock Text="{x:Bind PayedAmount}"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind PayedAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="ByWalletGlyph"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <FontIcon Glyph="&#xE821;"
                                       RelativePanel.AlignHorizontalCenterWith="ByWalletGlyph"
                                       RelativePanel.AlignVerticalCenterWith="ByWalletGlyph"
@@ -173,15 +174,15 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="By Wallet "
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
-                            <TextBlock Text="{x:Bind PayedAmountByWallet}"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind PayedAmountByWallet, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="ByTransactionGlyph"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <FontIcon Glyph="&#xEC5C;"
                                       RelativePanel.AlignHorizontalCenterWith="ByTransactionGlyph"
                                       RelativePanel.AlignVerticalCenterWith="ByTransactionGlyph"
@@ -189,23 +190,24 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="By Transaction "
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
-                            <TextBlock Text="{x:Bind PayedAmountByTx}"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind PayedAmountByTx, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical"
-                            Background="White"
-                            x:Name="OrderDetails"
-                            Padding="5"
-                            Margin="10,0,0,0"
-                            RelativePanel.RightOf="SettledAmountBreakup">
-                    <TextBlock Text="Order Details" />
+                <StackPanel  x:Name="OrderDetails"
+                             Style="{StaticResource DetailListSummaryStackPanel}"
+                             RelativePanel.RightOf="SettledAmountBreakup">
+                    <Border  x:Name="OrderDetailsHeaderPanel"
+                             Style="{StaticResource SubHeaderBorder}">
+                        <TextBlock Text="Order Details"
+                                   Style="{StaticResource SubHeaderTextBlockStyle}" />
+                    </Border>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="ItemQuantityGlyph"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <FontIcon Glyph="&#xE1D3;"
                                       RelativePanel.AlignHorizontalCenterWith="ItemQuantityGlyph"
                                       RelativePanel.AlignVerticalCenterWith="ItemQuantityGlyph"
@@ -213,15 +215,15 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="Item/Quantity"
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
                             <TextBlock Text="{x:Bind Items_Quantity}"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="DueDateGlyph"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <FontIcon Glyph="&#xE823;"
                                       RelativePanel.AlignHorizontalCenterWith="DueDateGlyph"
                                       RelativePanel.AlignVerticalCenterWith="DueDateGlyph"
@@ -229,15 +231,15 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="Due Date"
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
                             <TextBlock Text="{x:Bind FormattedDueDate }"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="InterestRateGlyph"
-                                     Style="{StaticResource EllipseStyle}" />
+                                     Style="{StaticResource SmallEllipseStyle}" />
                             <FontIcon Glyph="&#xE94C;"
                                       RelativePanel.AlignHorizontalCenterWith="InterestRateGlyph"
                                       RelativePanel.AlignVerticalCenterWith="InterestRateGlyph"
@@ -245,63 +247,58 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="Interest Rate"
-                                       Style="{ThemeResource LargeFormTBPropStyle}" />
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
                             <TextBlock Text="{x:Bind InterestRate}"
-                                       Style="{ThemeResource LargeFormTBValueStyle}" />
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn"
-                              Width="270" />
-            <ColumnDefinition x:Name="DetailColumn"
-                              Width="*" />
-        </Grid.ColumnDefinitions>
-        <Border  x:Name="MasterHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Supplier Orders"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-                <TextBlock x:Name="OrderCountTB"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-            </StackPanel>
-        </Border>
-        <Border  x:Name="DetailHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}"
-                 Grid.Column="1">
-            <TextBlock Text="Supplier Order Details"
-                       Style="{StaticResource DetailHeaderTextBlockStyle}" />
-        </Border>
-        <ListView x:Name="MasterListView"
-                  Grid.Row="1"
-                  ItemContainerTransitions="{x:Null}"
-                  ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-                  ItemClick="MasterListView_ItemClick"
-                  IsItemClickEnabled="True"
-                  Visibility="Visible">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-        <RelativePanel Grid.Row="1"
-                       Grid.Column="1"
-                       Grid.RowSpan="2"
-                       BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-                       BorderThickness="5,0,0,0">
+    <RelativePanel Background="{StaticResource FrameBrush}">
+        <StackPanel x:Name="MasterColumn"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True">
+            <Border x:Name="MasterHeaderPanel"
+                    Style="{StaticResource HeaderBorder}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Supplier Orders"
+                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                    <TextBlock x:Name="OrderCountTB"
+                               Width="40"
+                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                </StackPanel>
+            </Border>
+            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                          Height="{Binding ElementName=MasterColumn, Path=ActualHeight}">
+                <ListView x:Name="MasterListView"
+                          Grid.Row="1"
+                          ItemContainerTransitions="{x:Null}"
+                          ItemTemplate="{StaticResource MasterListViewItemTemplate}"
+                          ItemClick="MasterListView_ItemClick"
+                          IsItemClickEnabled="True">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
+        <RelativePanel RelativePanel.AlignTopWithPanel="True"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.RightOf="MasterColumn"
+                       Style="{StaticResource DetailColumRelativePanelStyle}">
+            <Border x:Name="DetailHeaderPanel"
+                    RelativePanel.AlignTopWithPanel="True"
+                    Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Supplier Order Details"
+                           Style="{StaticResource DetailHeaderTextBlockStyle}" />
+            </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.Below="DetailHeaderPanel"
                               ContentTemplate="{StaticResource DetailContentTemplate}"
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">
                 <ContentPresenter.ContentTransitions>
@@ -310,11 +307,9 @@
                 </ContentPresenter.ContentTransitions>
             </ContentPresenter>
             <ContentPresenter x:Name="BillingSummary"
-                              Padding="10"
-                              Background="#FFF6F4F4"
                               RelativePanel.AlignBottomWithPanel="True"
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
                               ContentTemplate="{StaticResource SupplierBillingSummaryTemplate}" />
         </RelativePanel>
-    </Grid>
+    </RelativePanel>
 </Page>

@@ -13,84 +13,77 @@
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
         <local:CheckIfPositiveFloat x:Key="CheckIfPositiveFloat" />
     </UserControl.Resources>
-    <Grid Background="White">
-        <Grid x:Name="RootGrid">
-            <ScrollViewer VerticalScrollMode="Auto"
-                          VerticalScrollBarVisibility="Auto">
-                <RelativePanel  Background="White">
-                    <Border  x:Name="HeaderPanel"
-                             RelativePanel.AlignTopWithPanel="True"
-                             Style="{StaticResource HeaderBorder}">
-                        <TextBlock Text="Price List"
-                                   Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
-                    </Border>
-                    <RelativePanel x:Name="BillingView"
-                                   RelativePanel.Below="HeaderPanel"
-                                   Visibility="Visible">
-                        <StackPanel x:Name="StaticLabelsForList"
-                                    Margin="0,10,0,10"
-                                    Background="{StaticResource ListHeaderBrush}"
-                                    Orientation="Horizontal">
-                            <TextBlock Text="Product Id"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Product Name"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Purchase Price"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="ValueIncTax"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Quantity"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Net Value"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                        </StackPanel>
-                        <ListView x:Name="ListView"
-                                  ItemsSource="{x:Bind _Products}"
-                                  RelativePanel.Below="StaticLabelsForList"
-                                  Style="{StaticResource ListViewStyle}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="local:SupplierBillingProductViewModel">
-                                    <StackPanel  Style="{StaticResource DetailListStackPanel}">
-                                        <TextBlock Text="{x:Bind Code, Mode=OneWay}"
-                                                   Style="{StaticResource CaptionBasicTBStyle}" />
-                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Style="{StaticResource LargeArialBasicTBStyle}" />
-                                        <TextBox x:Name="PurchasePrice"
-                                                 Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
-                                                 Style="{StaticResource LargeListTextBoxStyle}" />
-                                        <TextBlock x:Name="ProfitPer"
-                                                   Foreground="{StaticResource GreenBrush}"
-                                                   Style="{StaticResource CalibriBasicTBStyle}"
-                                                   Text="{x:Bind ProfitPer, Mode=OneWay, Converter={StaticResource FloatToPercentageProfitConverter}}" />
-                                        <TextBlock x:Name="ProfitAmount"
-                                                   Foreground="{StaticResource GreenBrush}"
-                                                   Style="{StaticResource CalibriBasicTBStyle}"
-                                                   Text="{x:Bind ProfitAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                                        <TextBlock x:Name="SellingPrice"
-                                                   Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Style="{StaticResource CalibriBasicTBStyle}" />
-                                        <TextBox x:Name="Quantity"
-                                                 Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
-                                                 Style="{StaticResource ListTextBoxStyle}" />
-                                        <TextBlock x:Name="NetValue"
-                                                   Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                                   Foreground="{StaticResource PinkBrush}"
-                                                   Style="{StaticResource CalibriBasicTBStyle}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </RelativePanel>
-                    <StackPanel x:Name="CommandPanel"
-                                Orientation="Horizontal"
-                                RelativePanel.AlignBottomWithPanel="True"
-                                Margin="40,20,0,0">
-                        <Button x:Name="CheckoutBtn"
-                                Content="Checkout"
-                                Style="{StaticResource ScenarioButtonStyle}" />
-                    </StackPanel>
-                </RelativePanel>
+    <RelativePanel  Background="{StaticResource FrameBrush}">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Price List"
+                       Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+        </Border>
+        <StackPanel x:Name="BillingView"
+                    RelativePanel.Below="HeaderPanel"
+                    RelativePanel.Above="CommandPanel">
+            <StackPanel x:Name="StaticLabelsForList"
+                        Background="{StaticResource ListHeaderBrush}"
+                        Orientation="Horizontal">
+                <TextBlock Text="Product Id"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Product Name"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Purchase Price"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="ValueIncTax"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Quantity"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Net Value"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+            </StackPanel>
+            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}">
+                <ListView x:Name="ListView"
+                          ItemsSource="{x:Bind _Products}"
+                          Style="{StaticResource ListViewStyle}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:SupplierBillingProductViewModel">
+                            <StackPanel  Style="{StaticResource DetailListStackPanel}">
+                                <TextBlock Text="{x:Bind Code, Mode=OneWay}"
+                                           Style="{StaticResource CaptionBasicTBStyle}" />
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                           Style="{StaticResource LargeArialBasicTBStyle}" />
+                                <TextBox x:Name="PurchasePrice"
+                                         Text="{x:Bind PurchasePrice, Mode=TwoWay, Converter={StaticResource CheckIfPositiveFloat }}"
+                                         Style="{StaticResource LargeListTextBoxStyle}" />
+                                <TextBlock x:Name="ProfitPer"
+                                           Foreground="{StaticResource GreenBrush}"
+                                           Style="{StaticResource CalibriBasicTBStyle}"
+                                           Text="{x:Bind ProfitPer, Mode=OneWay, Converter={StaticResource FloatToPercentageProfitConverter}}" />
+                                <TextBlock x:Name="ProfitAmount"
+                                           Foreground="{StaticResource GreenBrush}"
+                                           Style="{StaticResource CalibriBasicTBStyle}"
+                                           Text="{x:Bind ProfitAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBlock x:Name="SellingPrice"
+                                           Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Style="{StaticResource CalibriBasicTBStyle}" />
+                                <TextBox x:Name="Quantity"
+                                         Text="{x:Bind QuantityPurchased, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}"
+                                         Style="{StaticResource ListTextBoxStyle}" />
+                                <TextBlock x:Name="NetValue"
+                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Foreground="{StaticResource PinkBrush}"
+                                           Style="{StaticResource CalibriBasicTBStyle}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </ScrollViewer>
-        </Grid>
-    </Grid>
+        </StackPanel>
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    Margin="40,20,0,0">
+            <Button x:Name="CheckoutBtn"
+                    Content="Checkout"
+                    Style="{StaticResource ScenarioButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
 </Page>

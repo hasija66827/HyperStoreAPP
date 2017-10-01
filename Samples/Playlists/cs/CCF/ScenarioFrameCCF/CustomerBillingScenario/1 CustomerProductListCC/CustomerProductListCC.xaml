@@ -24,139 +24,130 @@
         <local:CheckIfPositiveInteger x:Key="CheckIfPositiveInteger" />
         <local:CheckIfValidPercentage x:Key="CheckIfValidPercentage" />
     </UserControl.Resources>
-    <Grid>
-        <Grid x:Name="RootGrid">
-            <ScrollViewer VerticalScrollMode="Auto"
-                          VerticalScrollBarVisibility="Auto">
-                <RelativePanel  Background="White">
-                    <Border  x:Name="HeaderPanel"
-                             RelativePanel.AlignTopWithPanel="True"
-                             Style="{StaticResource HeaderBorder}">
-                        <TextBlock Text="Price List"
-                                   Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
-                    </Border>
-                    <RelativePanel x:Name="RadContentPanel"
-                                   HorizontalAlignment="Center"
-                                   RelativePanel.Below="HeaderPanel"
-                                   Margin="10,0,0,0">
-                        <RadioButton x:Name="BillingRadBtn"
-                                     IsChecked="True"
-                                     GroupName="Billing"
-                                     Width="200" />
-                        <RadioButton x:Name="PaymentModRadBtn"
-                                     IsChecked="False"
-                                     IsEnabled="False"
-                                     GroupName="SelectPaymentMode"
-                                     Width="200"
-                                     RelativePanel.RightOf="BillingRadBtn" />
-                        <RadioButton x:Name="OTPVerificationBtn"
-                                     IsChecked="False"
-                                     GroupName="OTPVerification"
-                                     IsEnabled="False"
-                                     Width="200"
-                                     RelativePanel.RightOf="PaymentModRadBtn" />
-                        <RadioButton x:Name="MakePaymentRadBtn"
-                                     IsChecked="False"
-                                     GroupName="MakePayment"
-                                     IsEnabled="False"
-                                     Width="200"
-                                     RelativePanel.RightOf="OTPVerificationBtn" />
-                        <TextBlock RelativePanel.Below="BillingRadBtn"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   RelativePanel.AlignLeftWith="BillingRadBtn"
-                                   Text="Billing" />
-                        <TextBlock  Text="Payment Mode"
-                                    RelativePanel.Below="PaymentModRadBtn"
-                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                    RelativePanel.AlignLeftWith="PaymentModRadBtn" />
-                        <TextBlock  Text="OTP Verify"
-                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                    RelativePanel.Below="OTPVerificationBtn"
-                                    RelativePanel.AlignLeftWith="OTPVerificationBtn" />
-                        <TextBlock  Text="Make Payment"
-                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                    RelativePanel.Below="MakePaymentRadBtn"
-                                    RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
-                    </RelativePanel>
-                    <RelativePanel x:Name="BillingView"
-                                   HorizontalAlignment="Left"
-                                   Visibility="Visible"
-                                   RelativePanel.AlignLeftWithPanel="True"
-                                   RelativePanel.Below="RadContentPanel">
-                        <StackPanel x:Name="StaticLabelsForList"
-                                    Margin="0,20,0,0"
-                                    Background="{StaticResource ListHeaderBrush}"
-                                    Orientation="Horizontal">
-                            <TextBlock Text="ProductId"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Name"
-                                       Width="110"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="MRP/Unit"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Disc %"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Dis Amt"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="ValIncTax"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Qty"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="Net Value"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="TGST %"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                            <TextBlock Text="TGST"
-                                       Style="{StaticResource ListHeaderTBStyle}" />
-                        </StackPanel>
-                        <ListView x:Name="ListView"
-                                  ItemsSource="{x:Bind _Products}"
-                                  RelativePanel.Below="StaticLabelsForList"
-                                  Style="{StaticResource ListViewStyle}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="local:CustomerBillingProductViewModel">
-                                    <StackPanel Style="{StaticResource DetailListStackPanel}">
-                                        <TextBlock Text="{x:Bind Code, Mode=OneWay}"
-                                                   Style="{StaticResource CaptionBasicTBStyle}" />
-                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                                   Style="{StaticResource ArialBasicTBStyle}" />
-                                        <TextBlock x:Name="MRP"
-                                                   Style="{StaticResource CalibriBasicTBStyle}"
-                                                   Text="{x:Bind MRP, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                                        <TextBlock x:Name="DiscountPer"
-                                                   Width="65"
-                                                   Style="{StaticResource GCalibriBasicTBStyle}"
-                                                   Text="{x:Bind DiscountPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />
-                                        <TextBlock x:Name="DiscountAmount"
-                                                   Style="{StaticResource GCalibriBasicTBStyle}"
-                                                   Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                                        <TextBlock x:Name="ValueIncTax"
-                                                   Style="{StaticResource PCalibriBasicTBStyle}"
-                                                   Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                                        <TextBox x:Name="Quantity"
-                                                 Style="{StaticResource ListTextBoxStyle}"
-                                                 Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
-                                        <TextBlock x:Name="NetValue"
-                                                   Style="{StaticResource PCalibriBasicTBStyle}"
-                                                   Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
-                                        <TextBlock x:Name="TotalGSTPer"
-                                                   Width="55"
-                                                   Style="{StaticResource CaptionBasicTBStyle}"
-                                                   Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageGSTConverter}}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </RelativePanel>
-                    <StackPanel x:Name="CommandPanel"
-                                Orientation="Horizontal"
-                                RelativePanel.AlignBottomWithPanel="True">
-                        <Button x:Name="Checkout"
-                                Content="Checkout"
-                                Style="{StaticResource ScenarioButtonStyle}" />
-                    </StackPanel>
-                </RelativePanel>
+    <RelativePanel Background="{StaticResource FrameBrush}">
+        <Border x:Name="HeaderPanel"
+                RelativePanel.AlignTopWithPanel="True"
+                Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Price List"
+                       Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
+        </Border>
+        <RelativePanel x:Name="RadContentPanel"
+                       HorizontalAlignment="Center"
+                       RelativePanel.Below="HeaderPanel"
+                       Margin="10,0,0,0">
+            <RadioButton x:Name="BillingRadBtn"
+                         IsChecked="True"
+                         GroupName="Billing"
+                         Width="200" />
+            <RadioButton x:Name="PaymentModRadBtn"
+                         IsChecked="False"
+                         IsEnabled="False"
+                         GroupName="SelectPaymentMode"
+                         Width="200"
+                         RelativePanel.RightOf="BillingRadBtn" />
+            <RadioButton x:Name="OTPVerificationBtn"
+                         IsChecked="False"
+                         GroupName="OTPVerification"
+                         IsEnabled="False"
+                         Width="200"
+                         RelativePanel.RightOf="PaymentModRadBtn" />
+            <RadioButton x:Name="MakePaymentRadBtn"
+                         IsChecked="False"
+                         GroupName="MakePayment"
+                         IsEnabled="False"
+                         Width="200"
+                         RelativePanel.RightOf="OTPVerificationBtn" />
+            <TextBlock RelativePanel.Below="BillingRadBtn"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       RelativePanel.AlignLeftWith="BillingRadBtn"
+                       Text="Billing" />
+            <TextBlock  Text="Payment Mode"
+                        RelativePanel.Below="PaymentModRadBtn"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        RelativePanel.AlignLeftWith="PaymentModRadBtn" />
+            <TextBlock  Text="OTP Verify"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        RelativePanel.Below="OTPVerificationBtn"
+                        RelativePanel.AlignLeftWith="OTPVerificationBtn" />
+            <TextBlock  Text="Make Payment"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        RelativePanel.Below="MakePaymentRadBtn"
+                        RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
+        </RelativePanel>
+        <StackPanel x:Name="BillingView"
+                    RelativePanel.Below="RadContentPanel"
+                    RelativePanel.Above="CommandPanel">
+            <StackPanel x:Name="StaticLabelsForList"
+                        Background="{StaticResource ListHeaderBrush}"
+                        Orientation="Horizontal">
+                <TextBlock Text="ProductId"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Name"
+                           Width="110"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="MRP/Unit"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Disc %"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Dis Amt"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="ValIncTax"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Qty"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="Net Value"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="TGST %"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+                <TextBlock Text="TGST"
+                           Style="{StaticResource ListHeaderTBStyle}" />
+            </StackPanel>
+            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}">
+                <ListView x:Name="ListView"
+                          ItemsSource="{x:Bind _Products}"
+                          Style="{StaticResource ListViewStyle}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:CustomerBillingProductViewModel">
+                            <StackPanel Style="{StaticResource DetailListStackPanel}">
+                                <TextBlock Text="{x:Bind Code, Mode=OneWay}"
+                                           Style="{StaticResource CaptionBasicTBStyle}" />
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                           Style="{StaticResource ArialBasicTBStyle}" />
+                                <TextBlock x:Name="MRP"
+                                           Style="{StaticResource CalibriBasicTBStyle}"
+                                           Text="{x:Bind MRP, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBlock x:Name="DiscountPer"
+                                           Width="65"
+                                           Style="{StaticResource GCalibriBasicTBStyle}"
+                                           Text="{x:Bind DiscountPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />
+                                <TextBlock x:Name="DiscountAmount"
+                                           Style="{StaticResource GCalibriBasicTBStyle}"
+                                           Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBlock x:Name="ValueIncTax"
+                                           Style="{StaticResource PCalibriBasicTBStyle}"
+                                           Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBox x:Name="Quantity"
+                                         Style="{StaticResource ListTextBoxStyle}"
+                                         Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
+                                <TextBlock x:Name="NetValue"
+                                           Style="{StaticResource PCalibriBasicTBStyle}"
+                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                <TextBlock x:Name="TotalGSTPer"
+                                           Width="55"
+                                           Style="{StaticResource CaptionBasicTBStyle}"
+                                           Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageGSTConverter}}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </ScrollViewer>
-        </Grid>
-    </Grid>
+        </StackPanel>
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True">
+            <Button x:Name="Checkout"
+                    Content="Checkout"
+                    Style="{StaticResource ScenarioButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
 </Page>

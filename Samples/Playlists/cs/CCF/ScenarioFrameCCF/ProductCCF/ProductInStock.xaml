@@ -34,22 +34,25 @@
                 <TextBlock x:Name="ProductName"
                            Text="{x:Bind FormattedNameQuantity}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
-                <TextBlock Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToRupeeConverter}}"
-                           RelativePanel.AlignRightWithPanel="True"
-                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="DisplayPrice"
                            Text="{x:Bind MRP, Converter={StaticResource FloatToRupeeConverter} }"
                            RelativePanel.Below="ProductName"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"
+                <TextBlock x:Name="DiscountPer"
+                           Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"
                            RelativePanel.Below="ProductName"
                            RelativePanel.RightOf="DisplayPrice"
                            Margin="10,0,0,0"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                <TextBlock Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToRupeeConverter}}"
+                           Style="{ThemeResource MasterListRightTextBlockStyle}"
+                           RelativePanel.RightOf="ProductName"
+                           RelativePanel.AlignRightWithPanel="True" />
                 <TextBlock Text="{x:Bind TotalGSTPer, Converter={StaticResource FloatToPercentageGSTConverter}}"
-                           RelativePanel.Below="ProductName"
-                           RelativePanel.AlignRightWithPanel="True"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource ListCaptionRightAltTextblockStyle}"
+                           RelativePanel.RightOf="DiscountPer"
+                           RelativePanel.AlignBottomWith="DiscountPer"
+                           RelativePanel.AlignRightWithPanel="True" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
@@ -71,8 +74,6 @@
                 <ListView x:Name="PriceListBySuppliersListView"
                           ItemsSource="{x:Bind PriceQuotedBySuppliers}"
                           RelativePanel.Below="StaticLabelsForList"
-                          RelativePanel.AlignRightWith="StaticLabelsForList"
-                          RelativePanel.AlignLeftWith="StaticLabelsForList"
                           Style="{StaticResource ListViewStyle}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="common:PriceQuotedBySupplierViewModel">
@@ -100,85 +101,57 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid x:Name="LayoutRoot"
-          Loaded="LayoutRoot_Loaded"
-          Background="White">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates"
-                              CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
-                <VisualState x:Name="DefaultState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="MasterColumn.Width"
-                                Value="*" />
-                        <Setter Target="DetailColumn.Width"
-                                Value="0" />
-                        <Setter Target="MasterListView.SelectionMode"
-                                Value="None" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn"
-                              Width="250" />
-            <ColumnDefinition x:Name="DetailColumn"
-                              MinWidth="400"
-                              Width="auto" />
-        </Grid.ColumnDefinitions>
-        <Border  x:Name="MasterHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Products"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-                <TextBlock x:Name="ProductCountTB"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-            </StackPanel>
-        </Border>
-        <Border  x:Name="DetailHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}"
-                 Grid.Column="1">
-            <TextBlock Text="Price Quoted By Supplier"
-                       Style="{StaticResource DetailHeaderTextBlockStyle}" />
-        </Border>
-        <ListView x:Name="MasterListView"
-                  Grid.Row="1"
-                  ItemContainerTransitions="{x:Null}"
-                  ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-                  IsItemClickEnabled="True"
-                  ItemClick="MasterListView_ItemClick"
-                  Visibility="Visible">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-        <ContentPresenter x:Name="DetailContentPresenter"
-                          Grid.Row="1"
-                          Grid.Column="1"
-                          Grid.RowSpan="3"
-                          BorderThickness="5,0,0,0"
-                          BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-                          ContentTemplate="{StaticResource DetailContentTemplate}">
-            <ContentPresenter.ContentTransitions>
-                <!-- Empty by default. See MasterListView_ItemClick -->
-                <TransitionCollection />
-            </ContentPresenter.ContentTransitions>
-        </ContentPresenter>
-    </Grid>
+    <RelativePanel Background="{StaticResource FrameBrush}">
+        <StackPanel x:Name="MasterColumn"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True">
+            <Border  x:Name="MasterHeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Products"
+                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                    <TextBlock x:Name="ProductCountTB"
+                               Width="40"
+                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                </StackPanel>
+            </Border>
+            <ScrollViewer  Height="{Binding ElementName=MasterColumn, Path=ActualHeight}"
+                           Style="{StaticResource MasterColumScrollViewer}">
+                <ListView x:Name="MasterListView"
+                          ItemContainerTransitions="{x:Null}"
+                          ItemTemplate="{StaticResource MasterListViewItemTemplate}"
+                          IsItemClickEnabled="True"
+                          ItemClick="MasterListView_ItemClick"
+                          Visibility="Visible">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
+        <RelativePanel x:Name="DetailColumn"
+                       RelativePanel.RightOf="MasterColumn"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.AlignTopWithPanel="True"
+                       Style="{StaticResource DetailColumRelativePanelStyle}">
+            <Border x:Name="DetailHeaderPanel"
+                    RelativePanel.AlignTopWithPanel="True"
+                    Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Price Quoted By Supplier"
+                           Style="{StaticResource DetailHeaderTextBlockStyle}" />
+            </Border>
+            <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.Below="DetailHeaderPanel"
+                              ContentTemplate="{StaticResource DetailContentTemplate}">
+                <ContentPresenter.ContentTransitions>
+                    <!-- Empty by default. See MasterListView_ItemClick -->
+                    <TransitionCollection />
+                </ContentPresenter.ContentTransitions>
+            </ContentPresenter>
+        </RelativePanel>
+    </RelativePanel>
 </Page>

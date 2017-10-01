@@ -42,7 +42,6 @@ namespace SDKTemplate
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            UpdateForVisualState(AdaptiveStates.CurrentState);
             await UpdateMasterListViewItemSourceByFilterCriteria();
             DisableContentTransitions();
         }
@@ -67,21 +66,7 @@ namespace SDKTemplate
                 ProductCountTB.Text = "(" + totalResults.Count() + "/" + "xxxx" + ")";
             }
         }
-
-        private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            UpdateForVisualState(e.NewState, e.OldState);
-        }
-
-        private void UpdateForVisualState(VisualState newState, VisualState oldState = null)
-        {
-            var isNarrow = newState == NarrowState;
-            EntranceNavigationTransitionInfo.SetIsTargetElement(MasterListView, isNarrow);
-            if (DetailContentPresenter != null)
-            {
-                EntranceNavigationTransitionInfo.SetIsTargetElement(DetailContentPresenter, !isNarrow);
-            }
-        }
+        
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             // Assure we are displaying the correct item. This is necessary in certain adaptive cases.

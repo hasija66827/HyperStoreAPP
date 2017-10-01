@@ -67,6 +67,15 @@
                                      Color="#FFE9EDED" />
                     <SolidColorBrush x:Key="FormHeaderButtonBrush"
                                      Color="#FF10ACDC" />
+                    <SolidColorBrush x:Key="LightBlueBoxColor"
+                                     Color="#FFFDFDFF" />
+                    <Style x:Key="DetailColumRelativePanelStyle"
+                           TargetType="RelativePanel">
+                        <Setter Property="BorderBrush"
+                                Value="LightGray" />
+                        <Setter Property="BorderThickness"
+                                Value="1,0,0,0" />
+                    </Style>
                     <Style x:Key="SHeaderBasicStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontSize"
@@ -114,7 +123,11 @@
                            BasedOn="{StaticResource SHeaderBasicStyle}"
                            TargetType="TextBlock">
                         <Setter Property="Width"
-                                Value="170" />
+                                Value="180" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="Foreground"
+                                Value="{StaticResource SystemControlHighlightAccentBrush}" />
                     </Style>
                     <Style x:Key="ScenarioHeaderTextBlockStyle"
                            TargetType="TextBlock"
@@ -127,20 +140,22 @@
                         <Setter Property="Margin"
                                 Value="-10,2" />
                         <Setter Property="Background"
-                                Value="#FFFDFDFF" />
+                                Value="{StaticResource LightBlueBoxColor}" />
                         <Setter Property="BorderBrush"
                                 Value="{StaticResource BlueThemeBrush}" />
                         <Setter Property="BorderThickness"
                                 Value="5,0,0,0.5" />
                         <Setter Property="Padding"
                                 Value="8,9,8,4" />
+                        <Setter Property="MaxWidth"
+                                Value="270" />
                     </Style>
                     <Style x:Key="DetailListStackPanel"
                            TargetType="StackPanel">
                         <Setter Property="Margin"
                                 Value="-10,2" />
                         <Setter Property="Background"
-                                Value="#FFFDFDFF" />
+                                Value="{StaticResource LightBlueBoxColor}" />
                         <Setter Property="BorderBrush"
                                 Value="{StaticResource SystemControlHighlightAccentBrush}" />
                         <Setter Property="BorderThickness"
@@ -150,7 +165,20 @@
                         <Setter Property="Orientation"
                                 Value="Horizontal" />
                     </Style>
-                    <Style x:Key="MasterListTextBlockStyle"
+                    <Style x:Key="DetailListSummaryStackPanel"
+                           TargetType="StackPanel">
+                        <Setter Property="Orientation"
+                                Value="Vertical" />
+                        <Setter Property="Margin"
+                                Value="2" />
+                        <Setter Property="Background"
+                                Value="{StaticResource LightBlueBoxColor}" />
+                        <Setter Property="BorderBrush"
+                                Value="LightGray" />
+                        <Setter Property="BorderThickness"
+                                Value="1" />
+                    </Style>
+                    <Style x:Key="ArialBaseStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
                                 Value="Arial" />
@@ -169,7 +197,7 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                     </Style>
-                    <Style x:Key="MasterListRightTextBlockStyle"
+                    <Style x:Key="CalibriBaseStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily"
                                 Value="Calibri" />
@@ -188,7 +216,7 @@
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
                     </Style>
-                    <Style x:Key="ListCaptionAltTextblockStyle"
+                    <Style x:Key="CaptionBaseStyle"
                            TargetType="TextBlock">
                         <Setter Property="FontSize"
                                 Value="13" />
@@ -199,27 +227,41 @@
                     </Style>
                     <Style x:Key="ArialBasicTBStyle"
                            TargetType="TextBlock"
-                           BasedOn="{StaticResource MasterListTextBlockStyle}">
+                           BasedOn="{StaticResource ArialBaseStyle}">
                         <Setter Property="Width"
                                 Value="115" />
                     </Style>
                     <Style x:Key="SmallArialBasicTBStyle"
                            TargetType="TextBlock"
-                           BasedOn="{StaticResource MasterListTextBlockStyle}">
+                           BasedOn="{StaticResource ArialBaseStyle}">
                         <Setter Property="Width"
                                 Value="60" />
                     </Style>
                     <Style x:Key="LargeArialBasicTBStyle"
                            TargetType="TextBlock"
-                           BasedOn="{StaticResource MasterListTextBlockStyle}">
+                           BasedOn="{StaticResource ArialBaseStyle}">
                         <Setter Property="Width"
+                                Value="140" />
+                    </Style>
+                    <Style x:Key="MasterListTextBlockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource ArialBaseStyle}">
+                        <Setter Property="MaxWidth"
                                 Value="140" />
                     </Style>
                     <Style x:Key="CalibriBasicTBStyle"
                            TargetType="TextBlock"
-                           BasedOn="{StaticResource MasterListRightTextBlockStyle}">
+                           BasedOn="{StaticResource CalibriBaseStyle}">
                         <Setter Property="Width"
                                 Value="100" />
+                    </Style>
+                    <Style x:Key="MasterListRightTextBlockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource CalibriBaseStyle}">
+                        <Setter Property="TextAlignment"
+                                Value="Right" />
+                        <Setter Property="Margin"
+                                Value="20,0,0,0" />
                     </Style>
                     <Style x:Key="GCalibriBasicTBStyle"
                            TargetType="TextBlock"
@@ -235,9 +277,20 @@
                     </Style>
                     <Style x:Key="CaptionBasicTBStyle"
                            TargetType="TextBlock"
-                           BasedOn="{StaticResource ListCaptionAltTextblockStyle}">
+                           BasedOn="{StaticResource CaptionBaseStyle}">
                         <Setter Property="Width"
                                 Value="100" />
+                    </Style>
+                    <Style x:Key="ListCaptionAltTextblockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource CaptionBaseStyle}"></Style>
+                    <Style x:Key="ListCaptionRightAltTextblockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource CaptionBaseStyle}">
+                        <Setter Property="Margin"
+                                Value="20,0,0,0" />
+                        <Setter Property="TextAlignment"
+                                Value="Right" />
                     </Style>
                     <Style x:Key="ListBodyTextBlockStyle"
                            TargetType="TextBlock"
@@ -254,6 +307,15 @@
                         <Setter Property="Width"
                                 Value="140" />
                     </Style>
+                    <Style x:Key="MasterColumScrollViewer"
+                           TargetType="ScrollViewer">
+                       
+                        <Setter Property="VerticalScrollBarVisibility"
+                                Value="Hidden" />
+                        <Setter Property="VerticalScrollMode"
+                                Value="Enabled" />
+                    </Style>
+                    
                     <Style x:Key="MasterDetailGridStyle"
                            TargetType="Grid">
                         <Setter Property="Background"
@@ -279,16 +341,30 @@
                         <Setter Property="FontWeight"
                                 Value="ExtraBold" />
                     </Style>
-                    <Style x:Key="EllipseStyle"
+                    <Style x:Key="EllipseStyleBasic"
                            TargetType="Ellipse">
-                        <Setter Property="Height"
-                                Value="48" />
-                        <Setter Property="Width"
-                                Value="48" />
                         <Setter Property="Margin"
                                 Value="0,8,0,8" />
                         <Setter Property="Fill"
                                 Value="#FF0CA6B6" />
+                    </Style>
+                    <Style x:Key="EllipseStyle"
+                           TargetType="Ellipse"
+                           BasedOn="{StaticResource EllipseStyleBasic}">
+                        <Setter Property="Height"
+                                Value="48" />
+                        <Setter Property="Width"
+                                Value="48" />
+                    </Style>
+                    <Style x:Key="SmallEllipseStyle"
+                           TargetType="Ellipse"
+                           BasedOn="{StaticResource EllipseStyleBasic}">
+                        <Setter Property="Height"
+                                Value="34" />
+                        <Setter Property="Width"
+                                Value="34" />
+                        <Setter Property="Margin"
+                                Value="8,8,8,0" />
                     </Style>
                     <Style x:Key="GlyphTextBlockStyle"
                            TargetType="TextBlock">
@@ -503,32 +579,30 @@
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
                     </Style>
-                    <Style x:Key="HeaderBorder"
+                    <Style x:Key="HeaderBorderBasic"
                            TargetType="Border">
                         <Setter Property="Height"
                                 Value="32" />
                         <Setter Property="Margin"
                                 Value="0,0,0,10" />
+                    </Style>
+                    <Style x:Key="HeaderBorder"
+                           TargetType="Border"
+                           BasedOn="{StaticResource HeaderBorderBasic}">
                         <Setter Property="Background"
                                 Value="#FFECF6FC" />
                     </Style>
                     <Style x:Key="FormHeaderBorder"
-                           TargetType="Border">
-                        <Setter Property="Height"
-                                Value="32" />
-                        <Setter Property="Margin"
-                                Value="0,0,0,10" />
+                           TargetType="Border"
+                           BasedOn="{StaticResource HeaderBorderBasic}">
                         <Setter Property="Background"
                                 Value="{StaticResource FormHeaderButtonBrush}" />
                     </Style>
                     <Style x:Key="SubHeaderBorder"
-                           TargetType="Border">
-                        <Setter Property="Height"
-                                Value="26"></Setter>
+                           TargetType="Border"
+                           BasedOn="{StaticResource HeaderBorderBasic}">
                         <Setter Property="Background"
-                                Value="#FFF6F4F4" />
-                        <Setter Property="Margin"
-                                Value="0,0,0,0" />
+                                Value="#FFF0F0F0" />
                     </Style>
                     <Style x:Key="FormTextBoxStyle"
                            TargetType="TextBox">
