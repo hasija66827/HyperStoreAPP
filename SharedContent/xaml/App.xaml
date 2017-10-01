@@ -203,6 +203,12 @@
                         <Setter Property="Width"
                                 Value="115" />
                     </Style>
+                    <Style x:Key="SmallArialBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource MasterListTextBlockStyle}">
+                        <Setter Property="Width"
+                                Value="60" />
+                    </Style>
                     <Style x:Key="LargeArialBasicTBStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource MasterListTextBlockStyle}">
@@ -214,6 +220,18 @@
                            BasedOn="{StaticResource MasterListRightTextBlockStyle}">
                         <Setter Property="Width"
                                 Value="100" />
+                    </Style>
+                    <Style x:Key="GCalibriBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource CalibriBasicTBStyle}">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource GreenBrush}" />
+                    </Style>
+                    <Style x:Key="PCalibriBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource CalibriBasicTBStyle}">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource PinkBrush}" />
                     </Style>
                     <Style x:Key="CaptionBasicTBStyle"
                            TargetType="TextBlock"
@@ -798,7 +816,6 @@
                                 Value="{StaticResource FormHeaderButtonBrush}" />
                         <Setter Property="Margin"
                                 Value="5" />
-                        
                     </Style>
                     <Style x:Key="TransFormButtonStyle"
                            TargetType="Button">

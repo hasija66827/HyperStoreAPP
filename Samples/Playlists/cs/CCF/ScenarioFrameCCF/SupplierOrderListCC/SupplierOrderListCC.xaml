@@ -56,22 +56,19 @@
                         <DataTemplate x:DataType="local:SupplierOrderProductViewModel">
                             <StackPanel Style="{StaticResource DetailListStackPanel}">
                                 <TextBlock Text="{x:Bind Product.Code, Mode=OneWay}"
-                                           Foreground="Black"
-                                           Style="{StaticResource LargeListTextBlockStyle}" />
+                                           Style="{StaticResource CaptionBasicTBStyle}" />
                                 <TextBlock Text="{x:Bind Product.Name, Mode=OneWay}"
-                                           Style="{StaticResource LargeListTextBlockStyle}"
-                                           TextWrapping="Wrap" />
+                                           Style="{StaticResource LargeArialBasicTBStyle}" />
                                 <TextBlock x:Name="PurchasePrice"
                                            Text="{x:Bind PurchasePrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
-                                           Foreground="Black"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}" />
+                                           Style="{StaticResource CalibriBasicTBStyle}" />
                                 <TextBlock x:Name="Quantity"
                                            Text="{x:Bind QuantityPurchased, Mode=OneWay}"
-                                           Style="{StaticResource ListTextBlockStyle}" />
+                                           Style="{StaticResource SmallArialBasicTBStyle}" />
                                 <TextBlock x:Name="NetValue"
-                                           Foreground="#FFFF2FAE"
-                                           Style="{StaticResource VeryLargeListTextBlockStyle}"
-                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
+                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                           Foreground="{StaticResource PinkBrush}"
+                                           Style="{StaticResource CalibriBasicTBStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

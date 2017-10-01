@@ -124,24 +124,20 @@
                                                    Style="{StaticResource CalibriBasicTBStyle}"
                                                    Text="{x:Bind MRP, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="DiscountPer"
-                                                   Foreground="{StaticResource GreenBrush}"
-                                                   Width="55"
-                                                   Style="{StaticResource CalibriBasicTBStyle}"
+                                                   Width="65"
+                                                   Style="{StaticResource GCalibriBasicTBStyle}"
                                                    Text="{x:Bind DiscountPer, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />
                                         <TextBlock x:Name="DiscountAmount"
-                                                   Foreground="{StaticResource GreenBrush}"
-                                                   Style="{StaticResource CalibriBasicTBStyle}"
+                                                   Style="{StaticResource GCalibriBasicTBStyle}"
                                                    Text="{x:Bind DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="ValueIncTax"
-                                                   Style="{StaticResource CalibriBasicTBStyle}"
-                                                   Foreground="{StaticResource PinkBrush}"
+                                                   Style="{StaticResource PCalibriBasicTBStyle}"
                                                    Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBox x:Name="Quantity"
                                                  Style="{StaticResource ListTextBoxStyle}"
                                                  Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
                                         <TextBlock x:Name="NetValue"
-                                                   Foreground="{StaticResource PinkBrush}"
-                                                   Style="{StaticResource CalibriBasicTBStyle}"
+                                                   Style="{StaticResource PCalibriBasicTBStyle}"
                                                    Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                         <TextBlock x:Name="TotalGSTPer"
                                                    Width="55"
