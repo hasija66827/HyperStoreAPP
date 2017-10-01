@@ -39,6 +39,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
             _CFV = DataContext as CustomerFormViewModel;
             _CFV.ErrorsChanged += AddCustomerViewModel_ErrorsChanged;
             if (e.Parameter != null)
@@ -68,7 +69,7 @@ namespace SDKTemplate
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BlankPage));
+            MainPage.Current.CloseSplitPane();
         }
 
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -83,16 +84,19 @@ namespace SDKTemplate
                     MobileNo = this._CFV.MobileNo,
                     Name = this._CFV.Name,
                 };
+                TCustomer customer = null;
                 if (_FormMode == FormMode.Create)
                 {
-                    var customer = await CustomerDataSource.CreateNewCustomerAsync(customerDTO);
+                    customer = await CustomerDataSource.CreateNewCustomerAsync(customerDTO);
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    var customer = await CustomerDataSource.UpdateCustomerAsync((Guid)this._CFV.CustomerId, customerDTO);
+                    customer = await CustomerDataSource.UpdateCustomerAsync((Guid)this._CFV.CustomerId, customerDTO);
                 }
                 else
                 { throw new NotImplementedException(); }
+                if (customer != null)
+                    MainPage.Current.CloseSplitPane();
             }
         }
     }

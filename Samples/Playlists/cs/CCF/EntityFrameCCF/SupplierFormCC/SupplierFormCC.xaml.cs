@@ -23,7 +23,7 @@ namespace SDKTemplate
         Supplier,
         Customer
     }
-     /// <summary>
+    /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class SupplierFormCC : Page
@@ -67,7 +67,7 @@ namespace SDKTemplate
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BlankPage));
+            MainPage.Current.CloseSplitPane();
         }
 
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -82,18 +82,21 @@ namespace SDKTemplate
                     MobileNo = _SFV.MobileNo,
                     Name = _SFV.Name
                 };
+                TSupplier supplier = null;
                 if (_FormMode == FormMode.Create)
                 {
-                    var supplier = await SupplierDataSource.CreateNewSupplier(supplierDTO);
+                    supplier = await SupplierDataSource.CreateNewSupplier(supplierDTO);
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    var supplier = await SupplierDataSource.UpdateSupplierAsync((Guid)_SFV.SupplierId, supplierDTO);
+                    supplier = await SupplierDataSource.UpdateSupplierAsync((Guid)_SFV.SupplierId, supplierDTO);
                 }
                 else
                 {
                     throw new NotImplementedException();
                 }
+                if (supplier != null)
+                    MainPage.Current.CloseSplitPane();
             }
         }
     }

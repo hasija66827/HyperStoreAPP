@@ -89,7 +89,7 @@ namespace SDKTemplate
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BlankPage));
+            MainPage.Current.CloseSplitPane();
         }
 
         private async void CreateTag_Click(object sender, RoutedEventArgs e)

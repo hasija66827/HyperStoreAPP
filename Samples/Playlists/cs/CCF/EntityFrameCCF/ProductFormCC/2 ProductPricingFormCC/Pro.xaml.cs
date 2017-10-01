@@ -62,7 +62,7 @@ namespace SDKTemplate
                 };
                 var product = await ProductDataSource.CreateNewProductAsync(productDTO);
                 if (product != null)
-                    this.Frame.Navigate(typeof(BlankPage));
+                    MainPage.Current.CloseSplitPane();
             }
         }
     }

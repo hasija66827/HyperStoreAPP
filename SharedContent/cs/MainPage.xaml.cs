@@ -62,6 +62,12 @@ namespace SDKTemplate
             EntityFrame.Navigate(typeof(SupplierFormCC));
         }
 
+        //TODO: Bad coding practice.
+        public void CloseSplitPane()
+        {
+            QuickCreateSplitter.IsPaneOpen = false;
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
@@ -148,8 +154,8 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-                    RightBottomFrame.Navigate(typeof(SupplierBillingSummaryCC));
-                    SummaryFrame.Navigate(typeof(BlankPage));
+                    RightBottomFrame.Navigate(typeof(BlankPage));
+                    SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
 
                 }
 
