@@ -39,11 +39,11 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            UpdateForVisualState(AdaptiveStates.CurrentState);
+           
             // Don't play a content transition for first item load.
             // Sometimes, this content will be animated as part of the page transition.
             await UpdateMasterListViewItemSourceByFilterCriteria();
-            DisableContentTransitions();
+           
         }
 
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
@@ -90,20 +90,8 @@ namespace SDKTemplate
             //DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
         }
 
-        private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            UpdateForVisualState(e.NewState, e.OldState);
-        }
-
-        private void UpdateForVisualState(VisualState newState, VisualState oldState = null)
-        {
-            var isNarrow = newState == NarrowState;
-            EntranceNavigationTransitionInfo.SetIsTargetElement(MasterListView, isNarrow);
-            if (DetailContentPresenter != null)
-            {
-                EntranceNavigationTransitionInfo.SetIsTargetElement(DetailContentPresenter, !isNarrow);
-            }
-        }
+    
+      
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {

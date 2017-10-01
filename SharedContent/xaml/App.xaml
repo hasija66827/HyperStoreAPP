@@ -253,7 +253,7 @@
                            TargetType="TextBlock"
                            BasedOn="{StaticResource CalibriBaseStyle}">
                         <Setter Property="Width"
-                                Value="100" />
+                                Value="110" />
                     </Style>
                     <Style x:Key="MasterListRightTextBlockStyle"
                            TargetType="TextBlock"
@@ -283,7 +283,10 @@
                     </Style>
                     <Style x:Key="ListCaptionAltTextblockStyle"
                            TargetType="TextBlock"
-                           BasedOn="{StaticResource CaptionBaseStyle}"></Style>
+                           BasedOn="{StaticResource CaptionBaseStyle}">
+                        <Setter Property="MaxWidth"
+                                Value="155" />
+                    </Style>
                     <Style x:Key="ListCaptionRightAltTextblockStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource CaptionBaseStyle}">
@@ -309,13 +312,11 @@
                     </Style>
                     <Style x:Key="MasterColumScrollViewer"
                            TargetType="ScrollViewer">
-                       
                         <Setter Property="VerticalScrollBarVisibility"
                                 Value="Hidden" />
                         <Setter Property="VerticalScrollMode"
                                 Value="Enabled" />
                     </Style>
-                    
                     <Style x:Key="MasterDetailGridStyle"
                            TargetType="Grid">
                         <Setter Property="Background"

@@ -15,14 +15,15 @@
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind MobileNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
-                <TextBlock x:Name="WalletBalance"
-                           RelativePanel.AlignRightWithPanel="True"
-                           Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
-                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="Name"
                            Text="{x:Bind Name}"
-                           RelativePanel.Below="MobileNo"
-                           Style="{ThemeResource  ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource  ListCaptionAltTextblockStyle}"
+                           RelativePanel.Below="MobileNo" />
+                <TextBlock x:Name="WalletBalance"
+                           Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
+                           Style="{ThemeResource MasterListRightTextBlockStyle}"
+                           RelativePanel.RightOf="MobileNo"
+                           RelativePanel.AlignRightWithPanel="True" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
@@ -77,61 +78,55 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="{StaticResource FrameBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition MinHeight="400"
-                           Height="650" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn"
-                              Width="250" />
-            <ColumnDefinition x:Name="DetailColumn"
-                              MinWidth="400"
-                              Width="auto" />
-        </Grid.ColumnDefinitions>
-        <Border  x:Name="MasterHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Suppliers"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-                <TextBlock x:Name="WholeSallerCountTB"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-            </StackPanel>
-        </Border>
-        <ListView x:Name="MasterListView"
-                  Grid.Row="1"
-                  ItemContainerTransitions="{x:Null}"
-                  ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-                  IsItemClickEnabled="True"
-                  ItemClick="MasterListView_ItemClick"
-                  Visibility="Visible">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-        <Border  x:Name="DetailHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}"
-                 Grid.Column="1">
-            <TextBlock Text="Transactions of the Supplier"
-                       Style="{StaticResource DetailHeaderTextBlockStyle}" />
-        </Border>
-        <ContentPresenter x:Name="DetailContentPresenter"
-                          Grid.Row="1"
-                          Grid.Column="1"
-                          Grid.RowSpan="3"
-                          BorderThickness="5,0,0,0"
-                          ContentTemplate="{StaticResource DetailContentTemplate}"
-                          BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
-            <ContentPresenter.ContentTransitions>
-                <!-- Empty by default. See MasterListView_ItemClick -->
-                <TransitionCollection />
-            </ContentPresenter.ContentTransitions>
-        </ContentPresenter>
-    </Grid>
+    <RelativePanel Background="{StaticResource FrameBrush}">
+        <StackPanel x:Name="MasterColumn"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True">
+            <Border x:Name="MasterHeaderPanel"
+                    RelativePanel.AlignTopWithPanel="True"
+                    Style="{StaticResource HeaderBorder}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Suppliers"
+                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                    <TextBlock x:Name="WholeSallerCountTB"
+                               Style="{StaticResource SHeaderBasicStyle}" />
+                </StackPanel>
+            </Border>
+            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                          Height="{Binding ElementName=MasterColumn, Path=ActualHeight}">
+                <ListView x:Name="MasterListView"
+                          ItemContainerTransitions="{x:Null}"
+                          ItemTemplate="{StaticResource MasterListViewItemTemplate}"
+                          IsItemClickEnabled="True"
+                          ItemClick="MasterListView_ItemClick"
+                          Visibility="Visible">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
+        <RelativePanel RelativePanel.AlignTopWithPanel="True"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.RightOf="MasterColumn"
+                       Style="{StaticResource DetailColumRelativePanelStyle}">
+            <Border  x:Name="DetailHeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Transactions of the Supplier"
+                           Style="{StaticResource DetailHeaderTextBlockStyle}" />
+            </Border>
+            <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.Below="DetailHeaderPanel"
+                              ContentTemplate="{StaticResource DetailContentTemplate}">
+                <ContentPresenter.ContentTransitions>
+                    <!-- Empty by default. See MasterListView_ItemClick -->
+                    <TransitionCollection />
+                </ContentPresenter.ContentTransitions>
+            </ContentPresenter>
+        </RelativePanel>
+    </RelativePanel>
 </Page>

@@ -20,19 +20,21 @@
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind Customer.MobileNo}"
                            Style="{StaticResource MasterListTextBlockStyle}" />
-                <TextBlock x:Name="FormattedCustomerOrderNo"
-                           RelativePanel.AlignRightWithPanel="True"
-                           Text="{x:Bind CustomerOrderNo}"
-                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
-                <TextBlock x:Name="FormatterPaidBillAmount"
-                           RelativePanel.Below="MobileNo"
+                <TextBlock x:Name="FormattedPaidBillAmount"
                            Text="{x:Bind FormattedPaidBillAmount}"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock x:Name="FormattedOrderDate"
-                           RelativePanel.AlignBottomWith="FormatterPaidBillAmount"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                           RelativePanel.Below="MobileNo" />
+                <TextBlock x:Name="FormattedCustomerOrderNo"
+                           Text="{x:Bind CustomerOrderNo}"
+                           Style="{ThemeResource MasterListRightTextBlockStyle}"
                            RelativePanel.AlignRightWithPanel="True"
+                           RelativePanel.RightOf="MobileNo" />
+                <TextBlock x:Name="FormattedOrderDate"
                            Text="{x:Bind FormattedOrderDate}"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                           Style="{ThemeResource ListCaptionRightAltTextblockStyle}"
+                           RelativePanel.AlignBottomWith="FormattedPaidBillAmount"
+                           RelativePanel.RightOf="FormattedPaidBillAmount"
+                           RelativePanel.AlignRightWithPanel="True" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="CustomerBillingSummaryTemplate"
@@ -224,79 +226,50 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="White"
-          x:Name="LayoutRoot"
-          Loaded="LayoutRoot_Loaded">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates"
-                              CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
-                <VisualState x:Name="DefaultState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="MasterColumn.Width"
-                                Value="*" />
-                        <Setter Target="DetailColumn.Width"
-                                Value="0" />
-                        <Setter Target="MasterListView.SelectionMode"
-                                Value="None" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn"
-                              Width="240" />
-            <ColumnDefinition x:Name="DetailColumn"
-                              Width="*" />
-        </Grid.ColumnDefinitions>
-        <Border  x:Name="MasterHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Customer Orders"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-                <TextBlock x:Name="OrderCountTB"
-                           Style="{StaticResource MasterHeaderTextBlockStyle}" />
-            </StackPanel>
-        </Border>
-        <Border  x:Name="DetailHeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}"
-                 Grid.Column="1">
-            <TextBlock Text="Customer Order Details"
-                       Style="{StaticResource DetailHeaderTextBlockStyle}" />
-        </Border>
-        <ListView x:Name="MasterListView"
-                  Grid.Row="1"
-                  ItemContainerTransitions="{x:Null}"
-                  ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-                  IsItemClickEnabled="True"
-                  ItemClick="MasterListView_ItemClick"
-                  Visibility="Visible">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-        <RelativePanel Grid.Row="1"
-                       Grid.Column="1"
-                       Grid.RowSpan="2"
-                       BorderThickness="5,0,0,0"
-                       BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
+    <RelativePanel Background="{StaticResource FrameBrush}">
+        <StackPanel x:Name="MasterColumn"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True">
+            <Border  x:Name="MasterHeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Customer Orders"
+                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                    <TextBlock x:Name="OrderCountTB"
+                               Width="40"
+                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                </StackPanel>
+            </Border>
+            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                          Height="{Binding ElementName=MasterColumn, Path=ActualHeight}">
+                <ListView x:Name="MasterListView"
+                          ItemContainerTransitions="{x:Null}"
+                          ItemTemplate="{StaticResource MasterListViewItemTemplate}"
+                          IsItemClickEnabled="True"
+                          ItemClick="MasterListView_ItemClick"
+                          Visibility="Visible">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
+        <RelativePanel RelativePanel.AlignTopWithPanel="True"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.RightOf="MasterColumn"
+                       Style="{StaticResource DetailColumRelativePanelStyle}">
+            <Border  x:Name="DetailHeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Customer Order Details"
+                           Style="{StaticResource DetailHeaderTextBlockStyle}" />
+            </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.Below="DetailHeaderPanel"
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
                               ContentTemplate="{StaticResource DetailContentTemplate}">
                 <ContentPresenter.ContentTransitions>
@@ -309,5 +282,5 @@
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
                               ContentTemplate="{StaticResource CustomerBillingSummaryTemplate}" />
         </RelativePanel>
-    </Grid>
+    </RelativePanel>
 </Page>
