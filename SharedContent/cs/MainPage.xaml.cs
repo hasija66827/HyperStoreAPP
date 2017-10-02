@@ -9,6 +9,7 @@
 //
 //*********************************************************
 
+using Models;
 using SDKTemp.Data;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,18 @@ namespace SDKTemplate
         {
             QuickCreateSplitter.IsPaneOpen = true;
             EntityFrame.Navigate(typeof(SupplierFormCC));
+        }
+
+        public void UpdateCustomer(TCustomer customer)
+        {
+            QuickCreateSplitter.IsPaneOpen = true;
+            EntityFrame.Navigate(typeof(CustomerFormCC), customer);
+        }
+
+        public void UpdateSupplier(TSupplier supplier)
+        {
+            QuickCreateSplitter.IsPaneOpen = true;
+            EntityFrame.Navigate(typeof(SupplierFormCC), supplier);
         }
 
         //TODO: Bad coding practice.

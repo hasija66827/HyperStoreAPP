@@ -104,6 +104,7 @@
                           ItemContainerTransitions="{x:Null}"
                           ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                           IsItemClickEnabled="True"
+                          RightTapped="MasterListView_RightTapped"
                           ItemClick="MasterListView_ItemClick">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -111,6 +112,16 @@
                                     Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
+                    <ListView.Resources>
+                        <MenuFlyout x:Name="CustomerMenuFlyout">
+                            <MenuFlyout.Items>
+                                <MenuFlyoutItem x:Name="Edit"
+                                                Text="Edit"
+                                                Click="Edit_Click"                                              
+                                                CommandParameter="{Binding }" />
+                            </MenuFlyout.Items>
+                        </MenuFlyout>
+                    </ListView.Resources>
                 </ListView>
             </ScrollViewer>
         </RelativePanel>

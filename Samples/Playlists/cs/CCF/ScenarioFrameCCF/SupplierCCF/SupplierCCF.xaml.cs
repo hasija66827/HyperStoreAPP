@@ -29,6 +29,7 @@ namespace SDKTemplate
     {
         public static SupplierCCF Current;
         public event SupplierListUpdatedDelegate SupplierListUpdatedEvent;
+        private TSupplier _RightTappedSupplier { get; set; }
         public SupplierCCF()
         {
             Current = this;
@@ -75,7 +76,6 @@ namespace SDKTemplate
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedSupplier = (TSupplier)e.ClickedItem;
-            MainPage.Current.NavigateNewsFeedFrame(typeof(SupplierFormCC), selectedSupplier);
             var tfc = new SupplierTransactionFilterCriteriaDTO()
             {
                 SupplierId = selectedSupplier?.SupplierId
@@ -97,5 +97,17 @@ namespace SDKTemplate
             if (selectedSupplier != null)
                 this.Frame.Navigate(typeof(SupplierNewTransactionCC), selectedSupplier);
         }
+
+        private void MasterListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            SupplierMenuFlyout.ShowAt(listView, e.GetPosition(listView));
+            _RightTappedSupplier = ((FrameworkElement)e.OriginalSource).DataContext as TSupplier;
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.UpdateSupplier(_RightTappedSupplier);
+        }    
     }
 }

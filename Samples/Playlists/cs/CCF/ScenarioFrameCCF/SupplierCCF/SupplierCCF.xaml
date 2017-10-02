@@ -102,16 +102,26 @@
                           RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"
                           ItemContainerTransitions="{x:Null}"
+                          RightTapped="MasterListView_RightTapped"
                           ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                           IsItemClickEnabled="True"
-                          ItemClick="MasterListView_ItemClick"
-                          Visibility="Visible">
+                          ItemClick="MasterListView_ItemClick">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment"
                                     Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
+                    <ListView.Resources>
+                        <MenuFlyout x:Name="SupplierMenuFlyout">
+                            <MenuFlyout.Items>
+                                <MenuFlyoutItem x:Name="Edit"
+                                                Text="Edit"
+                                                Click="Edit_Click"
+                                                CommandParameter="{Binding }" />
+                            </MenuFlyout.Items>
+                        </MenuFlyout>
+                    </ListView.Resources>
                 </ListView>
             </ScrollViewer>
         </RelativePanel>

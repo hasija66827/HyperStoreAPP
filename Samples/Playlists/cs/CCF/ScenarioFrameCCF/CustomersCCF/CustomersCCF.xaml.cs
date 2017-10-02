@@ -23,7 +23,7 @@ namespace SDKTemplate
 {
     public delegate void CustomerSelectionChangeDelegate(TCustomer customer);
     public delegate void CustomerListUpdatedDelegate(List<TCustomer> customers);
-
+  
     /// <summary>
     /// Master Detail View where 
     /// Master shows the list of the customer and
@@ -34,13 +34,16 @@ namespace SDKTemplate
         public static CustomersCCF Current;
         public event CustomerSelectionChangeDelegate CustomerSelectionChangeEvent;
         public event CustomerListUpdatedDelegate CustomerListUpdatedEvent;
+        private TCustomer _RightTappedItem { get; set; }
         public CustomersCCF()
         {
             Current = this;
             this.InitializeComponent();
             CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+
         }
+       
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -85,7 +88,6 @@ namespace SDKTemplate
             {
                 CustomerId = selectedCustomer?.CustomerId
             };
-            MainPage.Current.NavigateNewsFeedFrame(typeof(CustomerFormCC), selectedCustomer);
             DetailContentPresenter.Content = null;
             var transactions = await CustomerTransactionDataSource.RetrieveTransactionsAsync(tfc);
             if (transactions != null)
@@ -102,6 +104,19 @@ namespace SDKTemplate
             var selecetedCustomer = (TCustomer)MasterListView.SelectedItem;
             if (selecetedCustomer != null)
                 this.Frame.Navigate(typeof(CustomerNewTransactionCC), selecetedCustomer);
+        }
+
+      
+        private void MasterListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            CustomerMenuFlyout.ShowAt(listView, e.GetPosition(listView));
+            _RightTappedItem= ((FrameworkElement)e.OriginalSource).DataContext as TCustomer;
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.UpdateCustomer(_RightTappedItem);
         }
     }
 }
