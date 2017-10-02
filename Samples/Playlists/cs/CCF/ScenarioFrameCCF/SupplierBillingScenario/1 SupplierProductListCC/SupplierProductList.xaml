@@ -20,9 +20,9 @@
             <TextBlock Text="Price List"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
-        <StackPanel x:Name="BillingView"
-                    RelativePanel.Below="HeaderPanel"
-                    RelativePanel.Above="CommandPanel">
+        <RelativePanel x:Name="BillingView"
+                       RelativePanel.Below="HeaderPanel"
+                       RelativePanel.Above="CommandPanel">
             <StackPanel x:Name="StaticLabelsForList"
                         Background="{StaticResource ListHeaderBrush}"
                         Orientation="Horizontal">
@@ -39,7 +39,9 @@
                 <TextBlock Text="Net Value"
                            Style="{StaticResource ListHeaderTBStyle}" />
             </StackPanel>
-            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}">
+            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                          RelativePanel.Below="StaticLabelsForList"
+                          RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="ListView"
                           ItemsSource="{x:Bind _Products}"
                           Style="{StaticResource ListViewStyle}">
@@ -76,7 +78,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollViewer>
-        </StackPanel>
+        </RelativePanel>
         <StackPanel x:Name="CommandPanel"
                     Orientation="Horizontal"
                     RelativePanel.AlignBottomWithPanel="True"

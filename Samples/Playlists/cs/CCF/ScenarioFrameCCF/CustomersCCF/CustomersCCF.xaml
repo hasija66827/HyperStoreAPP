@@ -28,8 +28,9 @@
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerTransactionCollection">
-            <StackPanel Background="{StaticResource FrameBrush}">
-                <StackPanel  Style="{StaticResource ListHeaderStackPanel}">
+            <RelativePanel>
+                <StackPanel x:Name="StaticLabelForList"
+                            Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Txn No"
                                Style="{StaticResource ListHeaderTBStyle}" />
                     <TextBlock Text="Txn Date"
@@ -41,32 +42,36 @@
                     <TextBlock Text="Description"
                                Style="{StaticResource ListHeaderTBStyle}" />
                 </StackPanel>
-                <ListView x:Name="PurchaseHistoriesOfCustomer"
-                          ItemsSource="{x:Bind Transactions}"
-                          Style="{StaticResource ListViewStyle}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:CustomerTransactionViewModel">
-                            <StackPanel Style="{StaticResource DetailListStackPanel}">
-                                <TextBlock x:Name="TransactionNo"
-                                           Text="{x:Bind TransactionNo, Mode=OneWay}"
-                                           Style="{StaticResource ArialBasicTBStyle}" />
-                                <TextBlock x:Name="TransactionDate"
-                                           Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
-                                           Style="{StaticResource CaptionBasicTBStyle}" />
-                                <TextBlock x:Name="WalletSnapshot"
-                                           Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Style="{StaticResource CalibriBasicTBStyle}" />
-                                <TextBlock x:Name="TxnAmount"
-                                           Foreground="{StaticResource PinkBrush}"
-                                           Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverterWithSign}}"
-                                           Style="{ThemeResource CalibriBasicTBStyle}" />
-                                <TextBlock x:Name="OrderNo"
-                                           Text="{x:Bind CustomerOrderNo, Mode=OneWay}"
-                                           Style="{StaticResource CaptionBasicTBStyle}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                              RelativePanel.Below="StaticLabelForList"
+                              RelativePanel.Above="CommandPanel">
+                    <ListView x:Name="PurchaseHistoriesOfCustomer"
+                              ItemsSource="{x:Bind Transactions}"
+                              Style="{StaticResource ListViewStyle}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:CustomerTransactionViewModel">
+                                <StackPanel Style="{StaticResource DetailListStackPanel}">
+                                    <TextBlock x:Name="TransactionNo"
+                                               Text="{x:Bind TransactionNo, Mode=OneWay}"
+                                               Style="{StaticResource ArialBasicTBStyle}" />
+                                    <TextBlock x:Name="TransactionDate"
+                                               Text="{x:Bind FormattedTransactionDate, Mode=OneWay}"
+                                               Style="{StaticResource CaptionBasicTBStyle}" />
+                                    <TextBlock x:Name="WalletSnapshot"
+                                               Text="{x:Bind WalletSnapshot, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                               Style="{StaticResource CalibriBasicTBStyle}" />
+                                    <TextBlock x:Name="TxnAmount"
+                                               Foreground="{StaticResource PinkBrush}"
+                                               Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverterWithSign}}"
+                                               Style="{ThemeResource CalibriBasicTBStyle}" />
+                                    <TextBlock x:Name="OrderNo"
+                                               Text="{x:Bind CustomerOrderNo, Mode=OneWay}"
+                                               Style="{StaticResource CaptionBasicTBStyle}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
                 <StackPanel x:Name="CommandPanel"
                             Orientation="Horizontal"
                             RelativePanel.AlignBottomWithPanel="True">
@@ -75,13 +80,13 @@
                             Click="ReceiveMoney_Click"
                             Style="{StaticResource DetailButtonStyle}" />
                 </StackPanel>
-            </StackPanel>
+            </RelativePanel>
         </DataTemplate>
     </Page.Resources>
     <RelativePanel Background="{StaticResource FrameBrush}">
-        <StackPanel x:Name="MasterColumn"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    RelativePanel.AlignTopWithPanel="True">
+        <RelativePanel x:Name="MasterColumn"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.AlignTopWithPanel="True">
             <Border x:Name="MasterHeaderPanel"
                     RelativePanel.AlignTopWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
@@ -93,13 +98,13 @@
                 </StackPanel>
             </Border>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
-                          Height="{Binding ElementName=MasterColumn, Path=ActualHeight}">
+                          RelativePanel.Below="MasterHeaderPanel"
+                          RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"
                           ItemContainerTransitions="{x:Null}"
                           ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                           IsItemClickEnabled="True"
-                          ItemClick="MasterListView_ItemClick"
-                          Visibility="Visible">
+                          ItemClick="MasterListView_ItemClick">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment"
@@ -108,8 +113,9 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
             </ScrollViewer>
-        </StackPanel>
-        <RelativePanel RelativePanel.AlignTopWithPanel="True"
+        </RelativePanel>
+        <RelativePanel x:Name="DetailColumn"
+                       RelativePanel.AlignTopWithPanel="True"
                        RelativePanel.AlignBottomWithPanel="True"
                        RelativePanel.RightOf="MasterColumn"
                        Style="{StaticResource DetailColumRelativePanelStyle}">
@@ -120,6 +126,7 @@
                            Style="{StaticResource DetailHeaderTextBlockStyle}" />
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.AlignBottomWithPanel="True"
                               RelativePanel.Below="DetailHeaderPanel"
                               ContentTemplate="{StaticResource DetailContentTemplate}">
                 <ContentPresenter.ContentTransitions>

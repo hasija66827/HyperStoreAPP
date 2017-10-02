@@ -32,7 +32,7 @@
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:SupplierOrderViewModel">
-            <StackPanel>
+            <RelativePanel>
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Product Id"
@@ -46,35 +46,35 @@
                     <TextBlock Text="Net Value"
                                Style="{StaticResource ListHeaderTBStyle}" />
                 </StackPanel>
-                <ListView x:Name="OrderDetailListView"
-                          ItemsSource="{x:Bind OrderDetails}"
-                          RelativePanel.Below="StaticLabelsForList"
-                          RelativePanel.AlignRightWith="StaticLabelsForList"
-                          RelativePanel.AlignLeftWith="StaticLabelsForList"
-                          Height="300"
-                          Style="{StaticResource ListViewStyle}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:SupplierOrderProductViewModel">
-                            <StackPanel Style="{StaticResource DetailListStackPanel}">
-                                <TextBlock Text="{x:Bind Product.Code, Mode=OneWay}"
-                                           Style="{StaticResource CaptionBasicTBStyle}" />
-                                <TextBlock Text="{x:Bind Product.Name, Mode=OneWay}"
-                                           Style="{StaticResource LargeArialBasicTBStyle}" />
-                                <TextBlock x:Name="PurchasePrice"
-                                           Text="{x:Bind PurchasePrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
-                                           Style="{StaticResource CalibriBasicTBStyle}" />
-                                <TextBlock x:Name="Quantity"
-                                           Text="{x:Bind QuantityPurchased, Mode=OneWay}"
-                                           Style="{StaticResource SmallArialBasicTBStyle}" />
-                                <TextBlock x:Name="NetValue"
-                                           Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                                           Foreground="{StaticResource PinkBrush}"
-                                           Style="{StaticResource CalibriBasicTBStyle}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackPanel>
+                <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                              RelativePanel.Below="StaticLabelsForList"
+                              RelativePanel.AlignBottomWithPanel="True">
+                    <ListView x:Name="OrderDetailListView"
+                              ItemsSource="{x:Bind OrderDetails}"
+                              Style="{StaticResource ListViewStyle}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:SupplierOrderProductViewModel">
+                                <StackPanel Style="{StaticResource DetailListStackPanel}">
+                                    <TextBlock Text="{x:Bind Product.Code, Mode=OneWay}"
+                                               Style="{StaticResource CaptionBasicTBStyle}" />
+                                    <TextBlock Text="{x:Bind Product.Name, Mode=OneWay}"
+                                               Style="{StaticResource LargeArialBasicTBStyle}" />
+                                    <TextBlock x:Name="PurchasePrice"
+                                               Text="{x:Bind PurchasePrice, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
+                                               Style="{StaticResource CalibriBasicTBStyle}" />
+                                    <TextBlock x:Name="Quantity"
+                                               Text="{x:Bind QuantityPurchased, Mode=OneWay}"
+                                               Style="{StaticResource SmallArialBasicTBStyle}" />
+                                    <TextBlock x:Name="NetValue"
+                                               Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                                               Foreground="{StaticResource PinkBrush}"
+                                               Style="{StaticResource CalibriBasicTBStyle}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="SupplierBillingSummaryTemplate"
                       x:DataType="local:SupplierOrderViewModel">
@@ -256,9 +256,9 @@
         </DataTemplate>
     </Page.Resources>
     <RelativePanel Background="{StaticResource FrameBrush}">
-        <StackPanel x:Name="MasterColumn"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    RelativePanel.AlignTopWithPanel="True">
+        <RelativePanel x:Name="MasterColumn"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.AlignTopWithPanel="True">
             <Border x:Name="MasterHeaderPanel"
                     Style="{StaticResource HeaderBorder}">
                 <StackPanel Orientation="Horizontal">
@@ -270,7 +270,8 @@
                 </StackPanel>
             </Border>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
-                          Height="{Binding ElementName=MasterColumn, Path=ActualHeight}">
+                          RelativePanel.Below="MasterHeaderPanel"
+                          RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"
                           Grid.Row="1"
                           ItemContainerTransitions="{x:Null}"
@@ -285,7 +286,7 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
             </ScrollViewer>
-        </StackPanel>
+        </RelativePanel>
         <RelativePanel RelativePanel.AlignTopWithPanel="True"
                        RelativePanel.AlignBottomWithPanel="True"
                        RelativePanel.RightOf="MasterColumn"
@@ -298,6 +299,7 @@
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
                               RelativePanel.Below="DetailHeaderPanel"
+                              RelativePanel.Above="BillingSummary"
                               ContentTemplate="{StaticResource DetailContentTemplate}"
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}">
                 <ContentPresenter.ContentTransitions>

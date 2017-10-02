@@ -161,9 +161,8 @@
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerOrderViewModel">
-            <StackPanel>
+            <RelativePanel>
                 <StackPanel x:Name="StaticLabelsForList"
-                            Margin="0,20,0,0"
                             Background="{StaticResource ListHeaderBrush}"
                             Orientation="Horizontal">
                     <TextBlock Text="ProductId"
@@ -188,48 +187,49 @@
                     <TextBlock Text="TGST"
                                Style="{StaticResource ListHeaderTBStyle}" />
                 </StackPanel>
-                <ListView x:Name="OrderDetailListView"
-                          ItemsSource="{x:Bind OrderDetails}"
-                          RelativePanel.Below="StaticLabelsForList"
-                          RelativePanel.AlignRightWith="StaticLabelsForList"
-                          RelativePanel.AlignLeftWith="StaticLabelsForList"
-                          Style="{StaticResource ListViewStyle}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:CustomerOrderProductViewModel">
-                            <StackPanel Style="{StaticResource DetailListStackPanel}">
-                                <TextBlock Text="{x:Bind Product.Name, Mode=OneTime}"
-                                           Style="{StaticResource ArialBasicTBStyle}" />
-                                <TextBlock x:Name="MRP"
-                                           Style="{StaticResource CalibriBasicTBStyle}"
-                                           Text="{x:Bind MRPSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
-                                <TextBlock x:Name="DiscountPer"
-                                           Width="65"
-                                           Style="{StaticResource GCalibriBasicTBStyle}"
-                                           Text="{x:Bind DiscountPerSnapShot, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />
-                                <TextBlock x:Name="ValueIncTax"
-                                           Style="{StaticResource PCalibriBasicTBStyle}"
-                                           Text="{x:Bind ValueIncTaxSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
-                                <TextBlock x:Name="Quantity"
-                                           Style="{StaticResource SmallArialBasicTBStyle}"
-                                           Text="{x:Bind QuantityConsumed, Mode=OneTime}" />
-                                <TextBlock x:Name="NetValue"
-                                           Style="{StaticResource PCalibriBasicTBStyle}"
-                                           Text="{x:Bind NetValue, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
-                                <TextBlock x:Name="TotalGSTPer"
-                                           Width="55"
-                                           Style="{StaticResource CaptionBasicTBStyle}"
-                                           Text="{x:Bind TGSTPerSnapShot, Mode=OneTime, Converter={StaticResource FloatToPercentageGSTConverter}}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackPanel>
+                <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                              RelativePanel.Below="StaticLabelsForList"
+                              RelativePanel.AlignBottomWithPanel="True">
+                    <ListView x:Name="OrderDetailListView"
+                              ItemsSource="{x:Bind OrderDetails}"
+                              Style="{StaticResource ListViewStyle}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:CustomerOrderProductViewModel">
+                                <StackPanel Style="{StaticResource DetailListStackPanel}">
+                                    <TextBlock Text="{x:Bind Product.Name, Mode=OneTime}"
+                                               Style="{StaticResource ArialBasicTBStyle}" />
+                                    <TextBlock x:Name="MRP"
+                                               Style="{StaticResource CalibriBasicTBStyle}"
+                                               Text="{x:Bind MRPSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                    <TextBlock x:Name="DiscountPer"
+                                               Width="65"
+                                               Style="{StaticResource GCalibriBasicTBStyle}"
+                                               Text="{x:Bind DiscountPerSnapShot, Mode=OneWay, Converter={StaticResource FloatToPercentageOFFConverter}}" />
+                                    <TextBlock x:Name="ValueIncTax"
+                                               Style="{StaticResource PCalibriBasicTBStyle}"
+                                               Text="{x:Bind ValueIncTaxSnapShot, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                    <TextBlock x:Name="Quantity"
+                                               Style="{StaticResource SmallArialBasicTBStyle}"
+                                               Text="{x:Bind QuantityConsumed, Mode=OneTime}" />
+                                    <TextBlock x:Name="NetValue"
+                                               Style="{StaticResource PCalibriBasicTBStyle}"
+                                               Text="{x:Bind NetValue, Mode=OneTime, Converter={StaticResource FloatToRupeeConverter}}" />
+                                    <TextBlock x:Name="TotalGSTPer"
+                                               Width="55"
+                                               Style="{StaticResource CaptionBasicTBStyle}"
+                                               Text="{x:Bind TGSTPerSnapShot, Mode=OneTime, Converter={StaticResource FloatToPercentageGSTConverter}}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </RelativePanel>
         </DataTemplate>
     </Page.Resources>
     <RelativePanel Background="{StaticResource FrameBrush}">
-        <StackPanel x:Name="MasterColumn"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    RelativePanel.AlignTopWithPanel="True">
+        <RelativePanel x:Name="MasterColumn"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.AlignTopWithPanel="True">
             <Border  x:Name="MasterHeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
@@ -242,7 +242,8 @@
                 </StackPanel>
             </Border>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
-                          Height="{Binding ElementName=MasterColumn, Path=ActualHeight}">
+                          RelativePanel.Below="MasterHeaderPanel"
+                          RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"
                           ItemContainerTransitions="{x:Null}"
                           ItemTemplate="{StaticResource MasterListViewItemTemplate}"
@@ -257,19 +258,20 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
             </ScrollViewer>
-        </StackPanel>
+        </RelativePanel>
         <RelativePanel RelativePanel.AlignTopWithPanel="True"
                        RelativePanel.AlignBottomWithPanel="True"
                        RelativePanel.RightOf="MasterColumn"
                        Style="{StaticResource DetailColumRelativePanelStyle}">
-            <Border  x:Name="DetailHeaderPanel"
-                     RelativePanel.AlignTopWithPanel="True"
-                     Style="{StaticResource HeaderBorder}">
+            <Border x:Name="DetailHeaderPanel"
+                    RelativePanel.AlignTopWithPanel="True"
+                    Style="{StaticResource HeaderBorder}">
                 <TextBlock Text="Customer Order Details"
                            Style="{StaticResource DetailHeaderTextBlockStyle}" />
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
                               RelativePanel.Below="DetailHeaderPanel"
+                              RelativePanel.Above="BillingSummary"
                               Content="{x:Bind MasterListView.SelectedItem, Mode=OneWay}"
                               ContentTemplate="{StaticResource DetailContentTemplate}">
                 <ContentPresenter.ContentTransitions>
