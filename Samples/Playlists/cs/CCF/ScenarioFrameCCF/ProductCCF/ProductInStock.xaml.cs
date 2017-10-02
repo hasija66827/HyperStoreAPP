@@ -80,13 +80,10 @@ namespace SDKTemplate
             var x = await AnalyticsDataSource.RetrieveLatestPriceQuotedBySupplierAsync(clickedItem.ProductId);
             priceQuotedByWholeSellerCollection.PriceQuotedBySuppliers = x.Select(tpqs => new PriceQuotedBySupplierViewModel(tpqs)).ToList();
             DetailContentPresenter.Content = priceQuotedByWholeSellerCollection;
-            MainPage.Current.NavigateNewsFeedFrame(typeof(ProductBasicFormCC), clickedItem);
             this.ProductStockSelectionChangedEvent?.Invoke(clickedItem);
             // Play a refresh animation when the user switches detail items.
             EnableContentTransitions();
         }
-
-
 
         private void EnableContentTransitions()
         {
@@ -94,6 +91,7 @@ namespace SDKTemplate
             // just for adding the transition on the content selection.
             //DetailContentPresenter.ContentTransitions.Add(new EntranceThemeTransition());
         }
+
         private void DisableContentTransitions()
         {
             if (DetailContentPresenter != null)
