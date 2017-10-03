@@ -1,0 +1,79 @@
+﻿<Page x:Class="SDKTemplate.Settings.SettingsCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate.Settings"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Page.DataContext>
+        <local:SettingsViewModel />
+    </Page.DataContext>
+    <RelativePanel Background="{ThemeResource FormThemeBrush}">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource FormHeaderBorder}">
+            <TextBlock Text="Settings"
+                       Style="{StaticResource FormHeaderTextBlockStyle}" />
+        </Border>
+        <StackPanel x:Name="PasscodeAuthenticationPanel"
+                    RelativePanel.Below="HeaderPanel"
+                    Margin="10">
+            <TextBlock Text="Passcode Authentication"
+                       Style="{StaticResource ArialBaseStyle}" />
+            <StackPanel Margin="10,5">
+                <PasswordBox Header="Passcode"
+                             InputScope="Password"
+                             Password="{x:Bind _SV.Passcode, Mode=TwoWay}"
+                             PlaceholderText="6 Digit Passcode" />
+                <TextBlock Text="{Binding Errors[Passcode][0]}"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+                <PasswordBox Header="Confirm Passcode"
+                             InputScope="Password"
+                             Password="{x:Bind _SV.ConfirmPasscode, Mode=TwoWay}"
+                             PlaceholderText="Confirm Passcode" />
+                <TextBlock Text="{Binding Errors[ConfirmPasscode][0]}"
+                           Style="{StaticResource ErrorTextBlockStyle}" />
+            </StackPanel>
+            <Button Content="Update Passcode"
+                    x:Name="UpdatePassCodeBtn"
+                    Click="UpdatePassCodeBtn_Click"
+                    Style="{StaticResource FormButtonStyle}" />
+        </StackPanel>
+        <Border x:Name="Border"
+                BorderBrush="LightGray"
+                BorderThickness=".5"
+                Margin="10"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.Below="PasscodeAuthenticationPanel"></Border>
+        <StackPanel x:Name="OTPAuthentication"
+                    RelativePanel.Below="Border"
+                    Margin="10">
+            <TextBlock Text="OTP Authentication"
+                       Style="{StaticResource ArialBaseStyle}" />
+            <StackPanel Margin="10,5">
+                <RadioButton GroupName="SMSPlan"
+                             x:Name="PlanA"
+                             Content="350 SMS for 150 INR" />
+                <RadioButton GroupName="SMSPlan"
+                             x:Name="PlanB"
+                             Content="800 SMS for 300 INR" />
+                <RadioButton GroupName="SMSPlan"
+                             x:Name="PlanC"
+                             Content="1500 SMS for 500 INR" />
+                <TextBlock Text="Kindly do Paytm @7987421819"
+                           Style="{StaticResource CaptionBaseStyle}" />
+            </StackPanel>
+            <Button x:Name="RequestForPlan"
+                    Content="Request For SMS Plan"
+                    Width="200"
+                    Click="RequestForPlan_Click"
+                    Style="{StaticResource TransFormButtonStyle}"
+                    BorderThickness="0"
+                    Foreground="{StaticResource SystemControlHighlightListAccentHighBrush}" />
+        </StackPanel>
+        <StackPanel x:Name="CommandPanel"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignBottomWithPanel="True"></StackPanel>
+    </RelativePanel>
+</Page>

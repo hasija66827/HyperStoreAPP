@@ -26,6 +26,19 @@
                      Text="{x:Bind _PCV.LastName, Mode=TwoWay}" />
             <TextBlock Text="{Binding Errors[LastName][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <PasswordBox Header="Passcode"
+                         ToolTipService.ToolTip="This will be required when you do transaction with supplier."
+                         InputScope="Password"
+                         Password="{x:Bind _PCV.Passcode, Mode=TwoWay}"
+                         PlaceholderText="6 Digit Passcode" />
+            <TextBlock Text="{Binding Errors[Passcode][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <PasswordBox Header="Confirm Passcode"
+                         InputScope="Password"
+                         Password="{x:Bind _PCV.ConfirmPasscode, Mode=TwoWay}"
+                         PlaceholderText="Confirm Passcode" />
+            <TextBlock Text="{Binding Errors[ConfirmPasscode][0]}"
+                       Style="{StaticResource ErrorTextBlockStyle}" />
             <StackPanel Orientation="Horizontal">
                 <TextBox Header="Email Id"
                          Style="{StaticResource FormTextBoxStyle}"

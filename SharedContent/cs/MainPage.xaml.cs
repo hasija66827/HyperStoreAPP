@@ -147,8 +147,6 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(s.ClassType);
                     RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
-
-
                 }
                 else if (s.ClassType == typeof(SupplierCCF))
                 {
@@ -158,8 +156,6 @@ namespace SDKTemplate
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierSummaryCC));
-
-
                 }
                 else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
                 {
@@ -169,7 +165,6 @@ namespace SDKTemplate
                     NewsFeedFrame.Navigate(typeof(BlankPage));
                     RightBottomFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
-
                 }
 
                 else if (s.ClassType == typeof(SupplierOrderCCF))
@@ -218,9 +213,6 @@ namespace SDKTemplate
                 // var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateStatus(strMessage, type));
             }
         }
-
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

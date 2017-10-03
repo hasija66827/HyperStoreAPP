@@ -15,8 +15,7 @@ namespace SDKTemplate
     using System.Threading.Tasks;
 
     namespace DTO
-    {
-      
+    {    
         public class PersonalInformationDTO
         {
             [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
@@ -41,6 +40,10 @@ namespace SDKTemplate
             [MinLength(6, ErrorMessage = "Short passwords are easy to guess. Try one with at least 6 characters.")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+            [DataType(DataType.Password)]
+            [RegularExpression(@"\d{6}", ErrorMessage = "Try passcode with 6 digits.")]
+            public string Passcode { get; set; }
         }
 
         public class BusinessInformationDTO

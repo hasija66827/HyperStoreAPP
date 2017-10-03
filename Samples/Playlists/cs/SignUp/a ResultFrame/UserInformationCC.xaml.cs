@@ -77,6 +77,7 @@ namespace SDKTemplate.SignUp
                 DateOfBirth = _CUIV.PCV.DateOfBirth,
                 MobileNo = _CUIV.HSAV.MobileNo,
                 Password = _CUIV.HSAV.Password,
+                Passcode=_CUIV.PCV.Passcode,
             };
 
             var businessInformationDTO = new BusinessInformationDTO()

@@ -29,6 +29,9 @@ namespace Models
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string Passcode { get; set; }
         #endregion
 
         #region BusinessInformation

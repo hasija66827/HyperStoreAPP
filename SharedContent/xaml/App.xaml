@@ -104,8 +104,7 @@
                     <Style x:Key="MasterHeaderTextBlockStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource SHeaderBasicStyle}">
-                        <Setter Property="Width"
-                                Value="170" />
+                       
                     </Style>
                     <Style x:Key="DetailHeaderTextBlockStyle"
                            TargetType="TextBlock"

@@ -9,6 +9,7 @@
 //
 //*********************************************************
 
+using SDKTemplate.Settings;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
@@ -29,6 +30,7 @@ namespace SDKTemplate
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
             new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"},Title = "Suppliers", ClassType = typeof(SupplierCCF) },
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
+            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE713"}, Title = "Settings", ClassType = typeof(SettingsCC) },
         };
     }
 

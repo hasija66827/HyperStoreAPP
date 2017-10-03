@@ -58,23 +58,27 @@ namespace SDKTemplate.Login
                 };
 
                 var authenticationToken = await UserDataSource.AuthenticateUserAsync(authenticationDTO);
-                if (authenticationToken == null || authenticationToken.AuthenticationFactor == EAuthenticationFactor.NotAuthenticated)
+                if (authenticationToken == null)
+                {
+                    var msg = new MessageDialog("Unable to login on server.", "Error");
+                }
+                else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.NotAuthenticated)
                 {
                     var msg = new MessageDialog("Please enter valid Mobile Number and Password.", "Error");
                     await msg.ShowAsync();
 
                 }
-                else
+                else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)
+                {
+                    var msg = new MessageDialog("Login from the Device on which you signed up.", "Security Error: Invalid Device");
+                    await msg.ShowAsync();
+                }
+                else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
                 {
                     BaseURI.User = authenticationToken.User;
-                    if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
-                        this.Frame.Navigate(typeof(MainPage));
-                    else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)
-                    {
-                        var msg = new MessageDialog("Login from the Device on which you signed up.", "Security Error: Invalid Device");
-                        await msg.ShowAsync();
-                    }
+                    this.Frame.Navigate(typeof(MainPage));
                 }
+
             }
         }
 
