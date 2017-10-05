@@ -1,0 +1,37 @@
+﻿<ContentDialog x:Class="SDKTemplate.PasscodeDialogCC.PasscodeDialogCC"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:local="using:SDKTemplate.PasscodeDialogCC"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               x:Name="PasscodeDialog"
+               Padding="0"
+               Margin="0"
+               Background="{StaticResource LightGrayBrush}"
+               mc:Ignorable="d"
+               Height="229"
+               Width="323">
+    <RelativePanel>
+        <TextBlock x:Name="HeaderPanel"
+                   Text="Passcode Verification"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource SampleHeaderTextStyle}" />
+        <StackPanel RelativePanel.Below="HeaderPanel"
+                    RelativePanel.AlignHorizontalCenterWith="HeaderPanel">
+              <PasswordBox Header="Passcode"
+                         PlaceholderText="6 digit passcode"
+                         Password="{x:Bind _InputPasscode, Mode=TwoWay}" />
+            <TextBlock x:Name="ErrorTB"
+                       Text=""
+                       Style="{StaticResource ErrorTextBlockStyle}" />
+            <Button Content="Verify"
+                    x:Name="VerifyBtn"
+                    Click="VerifyBtn_Click"
+                    Style="{StaticResource FormButtonStyle}" />
+            <Button x:Name="CancelBtn"
+                    Content="Cancel"
+                    Click="CancelBtn_Click"
+                    Style="{StaticResource TransFormButtonStyle}" />
+        </StackPanel>
+    </RelativePanel>
+</ContentDialog>

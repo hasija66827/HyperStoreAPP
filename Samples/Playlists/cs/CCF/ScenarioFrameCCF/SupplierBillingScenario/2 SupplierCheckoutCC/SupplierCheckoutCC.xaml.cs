@@ -54,7 +54,7 @@ namespace SDKTemplate
             var IsValid = _SCV.ValidateProperties();
             if (IsValid)
             {
-                var IsVerified = await _InitiateOTPVerification();
+                var IsVerified = await _InitiatePasscodeVerificationAsync();
                 if (IsVerified)
                 {
                     var supplierOrderDTO = _CreateSupplierOrderDTO();
@@ -63,6 +63,13 @@ namespace SDKTemplate
                     this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
                 }
             }
+        }
+
+        private async Task<bool> _InitiatePasscodeVerificationAsync()
+        {
+            var passcodeDialog = new PasscodeDialogCC.PasscodeDialogCC(BaseURI.User.Passcode);
+            await passcodeDialog.ShowAsync();
+            return passcodeDialog.IsVerified;
         }
 
         private SupplierOrderDTO _CreateSupplierOrderDTO()
@@ -89,6 +96,7 @@ namespace SDKTemplate
             return supplierOrderDTO;
         }
 
+        //Currently we are not using OTPverification for supplier order transaction.
         private async Task<bool> _InitiateOTPVerification()
         {
             var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingSupplierOrder_Credit];

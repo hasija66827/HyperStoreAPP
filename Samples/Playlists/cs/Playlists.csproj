@@ -217,6 +217,9 @@
       <DependentUpon>Pro.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\ProViewModel.cs" />
+    <Compile Include="PasscodeDialogCC\PasscodeDialogCC.xaml.cs">
+      <DependentUpon>PasscodeDialogCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\SettingsCC.xaml.cs">
       <DependentUpon>SettingsCC.xaml</DependentUpon>
     </Compile>
@@ -485,6 +488,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\Pro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasscodeDialogCC\PasscodeDialogCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

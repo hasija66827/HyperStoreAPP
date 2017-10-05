@@ -36,7 +36,7 @@ namespace SDKTemplate
 
         private async void VerifyBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsVerified = await _InitiateOTPVerificationAsync();
+            var IsVerified = await _InitiatePasscodeVerificationAsync();
             if (IsVerified)
             {
                 var transactionDTO = new SupplierTransactionDTO()
@@ -52,6 +52,14 @@ namespace SDKTemplate
             }
         }
 
+        private async Task<bool> _InitiatePasscodeVerificationAsync()
+        {
+            var passcodeDialog = new PasscodeDialogCC.PasscodeDialogCC(BaseURI.User.Passcode);
+            await passcodeDialog.ShowAsync();
+            return passcodeDialog.IsVerified;
+        }
+
+        //Currently we are not allowing OTPVerification for supplier transaction.
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
             var SMSContent = OTPVConstants.SMSContents[ScenarioType.PayToSupplier_Transaction];

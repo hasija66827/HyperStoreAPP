@@ -25,7 +25,7 @@ namespace SDKTemplate
         }
         public SupplierBillingProductViewModelBase(TProduct parent) : base(parent)
         {
-            this.QuantityPurchased = 0;
+            this.QuantityPurchased = 1;
             this.PurchasePrice = this.ValueIncTax;
         }
     }
