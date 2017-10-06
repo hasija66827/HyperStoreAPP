@@ -98,6 +98,13 @@ namespace SDKTemplate
             public string DeviceId { get; set; }
         }
 
+        public class UpdateUserDTO
+        {
+            [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+            [RegularExpression(@"\d{6}", ErrorMessage = "Try passcode with 6 digits.")]
+            public string Passcode { get; set; }
+        }
+
         public class OTPVerificationDTO
         {
             [Required]

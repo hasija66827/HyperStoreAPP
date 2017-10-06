@@ -36,11 +36,24 @@ namespace SDKTemplate
         }
         #endregion
 
+        #region Update
+        public static async Task<TUser> UpdatePasscodeAsync(Guid userId, UpdateUserDTO updateUserDTO)
+        {
+            var user = await Utility.UpdateAsync<TUser>(AuthenticationServiceAPI.Users, userId.ToString(), updateUserDTO);
+            if (user != null)
+            {
+                //TODO: succes notification
+            }
+            return user;
+        }
+
+        #endregion
+
         public static async Task<AuthenticationToken> AuthenticateUserAsync(AuthenticateUserDTO authenticateUserDTO)
         {
             var authenticationToken = await Utility.RetrieveAsync<AuthenticationToken>(AuthenticationServiceAPI.Users, AuthenticationServiceCustomAPI.AuthenticateUser, authenticateUserDTO);
-            if (authenticationToken== null)
-            return new AuthenticationToken(){AuthenticationFactor= EAuthenticationFactor.NotAuthenticated};
+            if (authenticationToken == null)
+                return new AuthenticationToken() { AuthenticationFactor = EAuthenticationFactor.NotAuthenticated };
             return authenticationToken;
         }
     }

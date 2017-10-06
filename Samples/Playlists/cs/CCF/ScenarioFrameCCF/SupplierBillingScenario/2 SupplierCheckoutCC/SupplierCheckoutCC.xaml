@@ -84,7 +84,7 @@
         <StackPanel x:Name="CommandPanel"
                     RelativePanel.AlignBottomWithPanel="True">
             <Button x:Name="PlaceOrderBtn"
-                    Content="OTP Verify and Place Order"
+                    Content="Place Order"
                     Grid.Row="5"
                     HorizontalAlignment="Right"
                     Style="{StaticResource ScenarioButtonStyle}" />

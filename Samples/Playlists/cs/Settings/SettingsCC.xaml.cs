@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,8 +32,8 @@ namespace SDKTemplate.Settings
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _SV = DataContext as SettingsViewModel;
-            _SV.Passcode = BaseURI.User.Passcode;
-            _SV.ConfirmPasscode = BaseURI.User.Passcode;
+            _SV.Passcode = "";
+            _SV.ConfirmPasscode = "";
             _SV.ErrorsChanged += _SV_ErrorsChanged;
             base.OnNavigatedTo(e);
         }
@@ -47,14 +48,20 @@ namespace SDKTemplate.Settings
 
         }
 
-        private async void UpdatePassCodeBtn_Click(object sender, RoutedEventArgs e)
+        private async void UpdatePasscodeBtn_Click(object sender, RoutedEventArgs e)
         {
             var IsValid = this._SV.ValidateProperties();
+            var str = Passcode.Password;
             if (IsValid)
             {
                 if (_SV.Passcode != BaseURI.User.Passcode)
                 {
+                    var updateUserDTO = new UpdateUserDTO() { Passcode = _SV.Passcode };
+                    var user = await UserDataSource.UpdatePasscodeAsync(BaseURI.User.UserId, updateUserDTO);
+                    if (user != null)
+                        BaseURI.User = user;
                     //TODO:Verify the trans with free SMS service.
+
                 }
             }
         }

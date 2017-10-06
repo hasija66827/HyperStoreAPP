@@ -249,7 +249,30 @@ namespace SDKTemplate
         }
     }
 
+   
+    public class IntToBoolConverter : IValueConverter
+    {
+        #region IValueConverter Members
 
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            try
+            {
+                return (System.Convert.ToInt32(value) > 0);
+            }
+            catch (InvalidCastException)
+            {
+                return DependencyProperty.UnsetValue;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return System.Convert.ToBoolean(value) ? 1 : 0;
+        }
+
+        #endregion
+    }
 
     // Tries to convert value into positive decimal, if it fails then reset the value to one.
     public class ConverToInt32 : IValueConverter
