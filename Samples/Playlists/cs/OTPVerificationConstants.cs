@@ -14,7 +14,8 @@ namespace SDKTemplate
         PlacingCustomerOrder_Debit,
         PlacingSupplierOrder_Credit,
         ReceiveFromCustomer_Transaction,
-        User_PasscodeChange
+        User_PasscodeChange,
+        User_Registration,
     }
 
     public class OTPVConstants
@@ -27,6 +28,8 @@ namespace SDKTemplate
         public static readonly string ReceiveFromCustomer_Transaction = "OTP for Adding INR {0} to your wallet at {1} is {2}. Please share it with merchant only for security reasons.";
         public static readonly string OTPLiteral = "{0}";
         private static readonly string User_Passcode = "OTP for updating the passcode for your Hyperstore Account is {0}. Please do not share it with anyone for security reasons.";
+        private static readonly string User_Registration = "Hello Mr. {0}!!! OTP for creating your Hyperstore Account is {1}. Please do not share it with anyone for security reasons.";
+
         public static Dictionary<ScenarioType, string> SMSContents = new Dictionary<ScenarioType, string>();
 
         static OTPVConstants()
@@ -37,6 +40,7 @@ namespace SDKTemplate
             SMSContents.Add(ScenarioType.PlacingSupplierOrder_Credit, PlacingSupplierOrder_Credit);
             SMSContents.Add(ScenarioType.ReceiveFromCustomer_Transaction, ReceiveFromCustomer_Transaction);
             SMSContents.Add(ScenarioType.User_PasscodeChange, User_Passcode);
+            SMSContents.Add(ScenarioType.User_Registration, User_Registration);
         }
     }
 }

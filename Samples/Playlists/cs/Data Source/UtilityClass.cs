@@ -111,7 +111,7 @@ namespace SDKTemplate
             public Guid? UserID { get; set; }
 
             [Required]
-            [StringLength(10, MinimumLength = 10)]
+            [RegularExpression(@"[987]\d{9}")]
             public string ReceiverMobileNo { get; set; }
 
             [Required]

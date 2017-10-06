@@ -61,10 +61,26 @@ namespace SDKTemplate.SignUp
             this._CUIV.OnALLPropertyChanged();
         }
 
-        public void Current_PCFNavigatedEvent(ProfileCompletionViewModel PCV)
+        public async void Current_PCFNavigatedEvent(ProfileCompletionViewModel PCV)
         {
             this._CUIV.PCV = PCV;
-            _CreateUser();
+            var IsVerified = await _InitiateOTPVerificationAsync();
+            if (IsVerified)
+                _CreateUser();
+        }
+
+        private async Task<bool> _InitiateOTPVerificationAsync()
+        {
+            var SMSContent = OTPVConstants.SMSContents[ScenarioType.User_Registration];
+            var fomattedSMSContent = String.Format(SMSContent, this._CUIV.PCV.FirstName, OTPVConstants.OTPLiteral);
+            var OTPVerificationDTO = new OTPVerificationDTO()
+            {
+                UserID = Guid.Empty,
+                ReceiverMobileNo = this._CUIV.HSAV.MobileNo,
+                SMSContent = fomattedSMSContent,
+            };
+            var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);
+            return IsVerified;
         }
 
         private async void _CreateUser()
@@ -77,7 +93,7 @@ namespace SDKTemplate.SignUp
                 DateOfBirth = _CUIV.PCV.DateOfBirth,
                 MobileNo = _CUIV.HSAV.MobileNo,
                 Password = _CUIV.HSAV.Password,
-                Passcode=_CUIV.PCV.Passcode,
+                Passcode = _CUIV.PCV.Passcode,
             };
 
             var businessInformationDTO = new BusinessInformationDTO()
