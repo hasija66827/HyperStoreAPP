@@ -106,6 +106,7 @@ namespace SDKTemplate.SignUp
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //TODO: Handle the exception in await call.
             var geoLocator = new Geolocator();
             geoLocator.DesiredAccuracy = PositionAccuracy.High;
             Geoposition pos = await geoLocator.GetGeopositionAsync();

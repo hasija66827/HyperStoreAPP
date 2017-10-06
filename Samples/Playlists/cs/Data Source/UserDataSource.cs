@@ -42,7 +42,9 @@ namespace SDKTemplate
             var user = await Utility.UpdateAsync<TUser>(AuthenticationServiceAPI.Users, userId.ToString(), updateUserDTO);
             if (user != null)
             {
-                //TODO: succes notification
+                BaseURI.User = user;
+                var message = String.Format("The passcode was succesfully updated.");
+                SuccessNotification.PopUpSuccessNotification(AuthenticationServiceAPI.Users, message);
             }
             return user;
         }

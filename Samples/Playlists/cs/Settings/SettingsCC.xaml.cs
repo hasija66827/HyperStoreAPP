@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -51,19 +52,29 @@ namespace SDKTemplate.Settings
         private async void UpdatePasscodeBtn_Click(object sender, RoutedEventArgs e)
         {
             var IsValid = this._SV.ValidateProperties();
-            var str = Passcode.Password;
             if (IsValid)
             {
-                if (_SV.Passcode != BaseURI.User.Passcode)
+                var IsVerified = await _InitiateOTPVerificationAsync();
+                if (IsVerified)
                 {
                     var updateUserDTO = new UpdateUserDTO() { Passcode = _SV.Passcode };
                     var user = await UserDataSource.UpdatePasscodeAsync(BaseURI.User.UserId, updateUserDTO);
-                    if (user != null)
-                        BaseURI.User = user;
-                    //TODO:Verify the trans with free SMS service.
-
                 }
             }
+        }
+
+        private async Task<bool> _InitiateOTPVerificationAsync()
+        {
+            var SMSContent = OTPVConstants.SMSContents[ScenarioType.User_PasscodeChange];
+            var fomattedSMSContent = String.Format(SMSContent, OTPVConstants.OTPLiteral);
+            var OTPVerificationDTO = new OTPVerificationDTO()
+            {
+                UserID = BaseURI.User.UserId,
+                ReceiverMobileNo = BaseURI.User.MobileNo,
+                SMSContent = fomattedSMSContent,
+            };
+            var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);
+            return IsVerified;
         }
     }
 }
