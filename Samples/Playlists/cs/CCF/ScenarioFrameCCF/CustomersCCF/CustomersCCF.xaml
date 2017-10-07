@@ -94,7 +94,7 @@
                     <TextBlock Text="Customers"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
                     <TextBlock x:Name="CustomerCountTB"
-                               Style="{StaticResource SHeaderBasicStyle}" />
+                               Style="{StaticResource ResultCountTextBlockStyle}" />
                 </StackPanel>
             </Border>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"

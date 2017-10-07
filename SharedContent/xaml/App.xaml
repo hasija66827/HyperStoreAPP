@@ -104,7 +104,16 @@
                     <Style x:Key="MasterHeaderTextBlockStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource SHeaderBasicStyle}">
-                       
+                    </Style>
+                    <Style x:Key="ResultCountTextBlockStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource SHeaderBasicStyle}">
+                        <Setter Property="FontWeight"
+                                  Value="SemiLight"/>
+                        <Setter Property="FontSize"
+                                Value="15"/>
+                        <Setter Property="HorizontalAlignment"
+                                Value="Right"/>
                     </Style>
                     <Style x:Key="DetailHeaderTextBlockStyle"
                            TargetType="TextBlock"

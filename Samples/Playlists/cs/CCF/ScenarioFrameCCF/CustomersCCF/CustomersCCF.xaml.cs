@@ -34,6 +34,7 @@ namespace SDKTemplate
         public static CustomersCCF Current;
         public event CustomerSelectionChangeDelegate CustomerSelectionChangeEvent;
         public event CustomerListUpdatedDelegate CustomerListUpdatedEvent;
+        private Int32 _totalCustomers;
         private TCustomer _RightTappedItem { get; set; }
         public CustomersCCF()
         {
@@ -47,6 +48,7 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            _totalCustomers = await CustomerDataSource.RetrieveTotalCustomers();
             await UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
@@ -69,8 +71,7 @@ namespace SDKTemplate
             if (items != null)
             {
                 MasterListView.ItemsSource = items;
-                var totalResults = items.Count;
-                CustomerCountTB.Text = "(" + totalResults.ToString() + "/" + 12 + ")";
+                CustomerCountTB.Text = "( " + items.Count + " / " + _totalCustomers + " )";
                 CustomerListUpdatedEvent?.Invoke(items);
             }
         }

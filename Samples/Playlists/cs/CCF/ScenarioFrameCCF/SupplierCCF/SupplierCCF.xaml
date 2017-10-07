@@ -93,8 +93,8 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Suppliers"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
-                    <TextBlock x:Name="WholeSallerCountTB"
-                               Style="{StaticResource SHeaderBasicStyle}" />
+                    <TextBlock x:Name="SupplierCountTB"
+                               Style="{StaticResource ResultCountTextBlockStyle}" />
                 </StackPanel>
             </Border>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"

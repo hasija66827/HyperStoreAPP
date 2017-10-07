@@ -30,6 +30,7 @@ namespace SDKTemplate
         public static SupplierCCF Current;
         public event SupplierListUpdatedDelegate SupplierListUpdatedEvent;
         private TSupplier _RightTappedSupplier { get; set; }
+        private Int32 _totalSuppliers;
         public SupplierCCF()
         {
             Current = this;
@@ -40,6 +41,7 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            _totalSuppliers = await SupplierDataSource.RetrieveTotalSuppliers();
             await UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
@@ -62,8 +64,7 @@ namespace SDKTemplate
             {
                 MasterListView.ItemsSource = items;
                 var totalResults = items.Count;
-                ///TODO:remove xxxxx
-                WholeSallerCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxx" + ")";
+                SupplierCountTB.Text = "( " + totalResults + " / " + _totalSuppliers + " )";
                 SupplierListUpdatedEvent?.Invoke(items);
             }
         }

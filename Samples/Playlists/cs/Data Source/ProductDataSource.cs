@@ -34,6 +34,12 @@ namespace SDKTemplate
             return products;
         }
 
+        public static async Task<Int32> RetrieveTotalProducts()
+        {
+            Int32 totalProducts = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.Products, CustomAction.GetTotalRecordsCount, null);
+            return totalProducts;
+        }
+
         public static async Task<TProductMetadata> RetrieveProductMetadataAsync()
         {
            var productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService + API.Products, "GetProductMetadata", null);

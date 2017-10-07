@@ -52,9 +52,15 @@ namespace SDKTemplate
             return suppliers;
         }
 
+        public static async Task<Int32> RetrieveTotalSuppliers()
+        {
+            Int32 totalSuppliers = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.Suppliers, CustomAction.GetTotalRecordsCount, null);
+            return totalSuppliers;
+        }
+
         public static async Task<IRange<T>> RetrieveWalletRangeAsync<T>()
         {
-            var IRange = await Utility.RetrieveAsync<IRange<T>>(BaseURI.HyperStoreService + API.Suppliers, "GetWalletBalanceRange", null);
+            var IRange = await Utility.RetrieveAsync<IRange<T>>(BaseURI.HyperStoreService + API.Suppliers, CustomAction.GetWalletBalanceRange, null);
             return IRange;
         }
         #endregion 

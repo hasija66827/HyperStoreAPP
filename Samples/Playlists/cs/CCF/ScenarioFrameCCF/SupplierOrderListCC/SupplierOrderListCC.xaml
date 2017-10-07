@@ -265,8 +265,7 @@
                     <TextBlock Text="Supplier Orders"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
                     <TextBlock x:Name="OrderCountTB"
-                               Width="40"
-                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                               Style="{StaticResource ResultCountTextBlockStyle}" />
                 </StackPanel>
             </Border>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"

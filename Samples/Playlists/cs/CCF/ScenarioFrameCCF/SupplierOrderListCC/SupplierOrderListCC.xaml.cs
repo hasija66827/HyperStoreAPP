@@ -28,6 +28,7 @@ namespace SDKTemplate
     {
         public static SupplierOrderCCF Current;
         public SupplierOderListUpdatedDelegate SupplierOrderListUpdatedEvent;
+        private Int32 _totalOrders;
         public SupplierOrderCCF()
         {
             Current = this;
@@ -38,6 +39,7 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            _totalOrders = await SupplierDataSource.RetrieveTotalSuppliers();
             await UpdateMasterListViewByFilterCriteriaAsync();
         }
 
@@ -58,8 +60,7 @@ namespace SDKTemplate
                 var items = supplierOrders.Select(so => new SupplierOrderViewModel(so));
                 MasterListView.ItemsSource = items;
                 var totalResults = items.Count();
-                //TODO: Remove xxxxx
-                OrderCountTB.Text = "(" + totalResults.ToString() + "/" + "xxxxx" + ")";
+                OrderCountTB.Text = "( " + totalResults + " / " + _totalOrders + " )";
                 this.SupplierOrderListUpdatedEvent?.Invoke(items);
             }
         }

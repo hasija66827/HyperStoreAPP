@@ -30,6 +30,7 @@ namespace SDKTemplate
     {
         public event ProductStockSelectionChangedDelegate ProductStockSelectionChangedEvent;
         public static ProductInStock Current;
+        private Int32 _totalProducts;
         public ProductInStock()
         {
             Current = this;
@@ -41,9 +42,10 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            _totalProducts = await ProductDataSource.RetrieveTotalProducts();
             await UpdateMasterListViewItemSourceByFilterCriteria();
             DisableContentTransitions();
+            base.OnNavigatedTo(e);
         }
 
         //Will Update the MasterListView by filtering out Products on the basis of specific filter criteria.
@@ -61,9 +63,7 @@ namespace SDKTemplate
             {
                 var items = products.Select(p => new ProductViewModelBase(p)).ToList();
                 MasterListView.ItemsSource = items;
-                var totalResults = items;
-                //TODO: get total quantity
-                ProductCountTB.Text = "(" + totalResults.Count() + "/" + "xxxx" + ")";
+                ProductCountTB.Text = "( " + items.Count + " / " + _totalProducts + " )";
             }
         }
         

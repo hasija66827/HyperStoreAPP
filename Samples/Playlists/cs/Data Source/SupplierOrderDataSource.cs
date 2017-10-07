@@ -32,6 +32,13 @@ namespace SDKTemplate
             return supplierOrders;
         }
 
+        public static async Task<Int32> RetrieveTotalSupplierOrder()
+        {
+            Int32 totalOrders = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.SupplierOrders, CustomAction.GetTotalRecordsCount, null);
+            return totalOrders;
+        }
+
+
         public static async Task<List<TSupplierOrderProduct>> RetrieveOrderDetailsAsync(Guid supplierOrderId)
         {
             List<TSupplierOrderProduct> orderDetails = await Utility.RetrieveAsync<List<TSupplierOrderProduct>>(BaseURI.HyperStoreService + API.SupplierOrderProducts, supplierOrderId.ToString(), null);

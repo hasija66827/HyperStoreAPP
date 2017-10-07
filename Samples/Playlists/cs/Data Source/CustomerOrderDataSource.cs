@@ -75,9 +75,14 @@ namespace SDKTemp.Data
 
         public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
         {
-            string actionURI = API.CustomerOrders;
             List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<List<TCustomerOrder>>(BaseURI.HyperStoreService + API.CustomerOrders, null, cofc);
             return customerOrders;
+        }
+
+        public static async Task<Int32> RetrieveTotalCustomerOrder()
+        {
+            Int32 totalOrders = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.CustomerOrders, CustomAction.GetTotalRecordsCount, null);
+            return totalOrders;
         }
 
         public static async Task<List<TCustomerOrderProduct>> RetrieveOrderDetailsAsync(Guid customerOrderId)

@@ -237,11 +237,11 @@
                     <TextBlock Text="Customer Orders"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
                     <TextBlock x:Name="OrderCountTB"
-                               Width="40"
-                               Style="{StaticResource MasterHeaderTextBlockStyle}" />
+                               Style="{StaticResource ResultCountTextBlockStyle}" />
                 </StackPanel>
             </Border>
-            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+            <ScrollViewer x:Name="ScrollViewer"
+                Style="{StaticResource MasterColumScrollViewer}"
                           RelativePanel.Below="MasterHeaderPanel"
                           RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"

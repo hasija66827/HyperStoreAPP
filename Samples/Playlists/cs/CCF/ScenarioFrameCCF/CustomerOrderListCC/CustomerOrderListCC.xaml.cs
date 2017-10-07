@@ -26,6 +26,7 @@ namespace SDKTemplate
     {
         public static CustomerOrderListCCF Current;
         public event CustomerOrderListChangedDelegate CustomerOrderListUpdatedEvent;
+        private Int32 _totalOrders;
         public CustomerOrderListCCF()
         {
             Current = this;
@@ -39,11 +40,11 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-           
+
             // Don't play a content transition for first item load.
             // Sometimes, this content will be animated as part of the page transition.
-            await UpdateMasterListViewItemSourceByFilterCriteria();
-           
+            _totalOrders = await CustomerOrderDataSource.RetrieveTotalCustomerOrder();
+            await UpdateMasterListViewItemSourceByFilterCriteria();           
         }
 
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
@@ -61,7 +62,7 @@ namespace SDKTemplate
             {
                 var items = customerOrderList.Select(co => new CustomerOrderViewModel(co));
                 MasterListView.ItemsSource = items;
-                OrderCountTB.Text = "(" + items.Count().ToString() + "/" + "xxxx" + ")";
+                OrderCountTB.Text = "( " + items.Count() + " / " + _totalOrders + " )";
                 CustomerOrderListUpdatedEvent?.Invoke(items);
             }
         }

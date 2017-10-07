@@ -34,6 +34,11 @@ namespace SDKTemplate
         public static string RecommendedProducts { get { return "RecommendedProducts"; } }
     }
 
+    public class CustomAction {
+        public static string GetWalletBalanceRange { get { return "GetWalletBalanceRange"; } }
+        public static string GetTotalRecordsCount { get { return "GetTotalRecordsCount"; } }
+    }
+
     public class AuthenticationServiceAPI
     {
         private static string BaseURI { get { return "https://loginsignupserviceapp.azurewebsites.net/api/"; } }
