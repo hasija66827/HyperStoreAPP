@@ -13,6 +13,7 @@
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
         <StackPanel Orientation="Vertical"
+                    x:Name="ASB"
                     RelativePanel.Below="HeaderPanel"
                     Margin="10,0,0,0">
             <AutoSuggestBox HorizontalAlignment="Left"
@@ -32,41 +33,43 @@
                        Visibility="Collapsed"
                        RelativePanel.AlignLeftWith="WholeSellerASB"
                        RelativePanel.Below="WholeSellerASB" />
-            <RelativePanel x:Name="SupplierDetails"
-                           Visibility="Visible"
-                           Height="140"
-                           Margin="10,20,0,0"
-                           RelativePanel.Below="WholeSellerASB">
-                <Ellipse x:Name="SupplierBackground"
-                         Style="{StaticResource EllipseStyle}"
-                         Fill="{StaticResource SupplierEllipseBrush}" />
-                <TextBlock x:Name="SupplierGlyph"
-                           Style="{StaticResource GlyphTextBlockStyle}"
-                           RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
-                           RelativePanel.AlignVerticalCenterWith="SupplierBackground" />
-                <TextBlock x:Name="WholeSellerMobNo"
-                           Style="{StaticResource BaseTextBlockStyle}"
-                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                           RelativePanel.RightOf="SupplierBackground"
-                           Margin="12,11,12,0" />
-                <TextBlock x:Name="WholeSellerName"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
-                           RelativePanel.Below="WholeSellerMobNo"
-                           RelativePanel.AlignLeftWith="WholeSellerMobNo"
-                           Margin="12,0" />
-                <TextBlock x:Name="WholeSellerAddress"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                           RelativePanel.Below="WholeSellerName"
-                           RelativePanel.AlignLeftWith="WholeSellerName"
-                           Margin="12,0" />
-                <TextBlock x:Name="WholeSellerWalletBalance"
-                           Text="200"
-                           Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
-                           RelativePanel.Below="SupplierBackground"
-                           Margin="6,0" />
-            </RelativePanel>
         </StackPanel>
+        <RelativePanel x:Name="SupplierDetails"
+                       Visibility="Visible"
+                       Margin="10,20,0,0"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.Below="ASB">
+            <Ellipse x:Name="SupplierBackground"
+                     Style="{StaticResource EllipseStyle}"
+                     Fill="{StaticResource SupplierEllipseBrush}" />
+            <TextBlock x:Name="SupplierGlyph"
+                       Style="{StaticResource GlyphTextBlockStyle}"
+                       RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
+                       RelativePanel.AlignVerticalCenterWith="SupplierBackground" />
+            <TextBlock x:Name="WholeSellerWalletBalance"
+                       Style="{StaticResource ArialBaseStyle}"
+                       RelativePanel.Below="SupplierBackground"
+                       Margin="6,0" />
+            <TextBlock x:Name="WholeSellerMobNo"
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                       RelativePanel.RightOf="SupplierBackground"
+                       Margin="12,11,12,0" />
+            <TextBlock x:Name="WholeSellerName"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
+                       RelativePanel.Below="WholeSellerMobNo"
+                       RelativePanel.AlignLeftWith="WholeSellerMobNo"
+                       Margin="12,0" />
+            <TextBlock x:Name="WholeSellerAddress"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                       RelativePanel.Below="WholeSellerName"
+                       RelativePanel.AlignLeftWith="WholeSellerName"
+                       Margin="12,0" />
+            
+        </RelativePanel>
     </RelativePanel>
 </Page>

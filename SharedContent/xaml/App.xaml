@@ -61,6 +61,8 @@
                                      Color="#FF830D0D" />
                     <SolidColorBrush x:Key="SupplierEllipseBrush"
                                      Color="#FF8C7A07" />
+                    <SolidColorBrush x:Key="ProductEllipseBrush"
+                                     Color="#FFA9DD13" />
                     <SolidColorBrush x:Key="BlueThemeBrush"
                                      Color="#FF1487A3" />
                     <SolidColorBrush x:Key="FormThemeBrush"
@@ -373,6 +375,8 @@
                                 Value="48" />
                         <Setter Property="Width"
                                 Value="48" />
+                        <Setter Property="Margin"
+                                Value="0,16,0,8" />
                     </Style>
                     <Style x:Key="SmallEllipseStyle"
                            TargetType="Ellipse"

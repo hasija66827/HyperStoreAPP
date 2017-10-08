@@ -12,12 +12,13 @@
     <Page.DataContext>
         <local:SettingsViewModel />
     </Page.DataContext>
-    <RelativePanel Background="{ThemeResource FormThemeBrush}">
+    <RelativePanel Background="{ThemeResource FrameBrush}"
+                   Margin="10">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource FormHeaderBorder}">
+                 Style="{StaticResource HeaderBorder}">
             <TextBlock Text="Settings"
-                       Style="{StaticResource FormHeaderTextBlockStyle}" />
+                       Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="PasscodeAuthenticationPanel"
                     RelativePanel.Below="HeaderPanel"
@@ -41,6 +42,7 @@
             </StackPanel>
             <Button Content="Update Passcode"
                     x:Name="UpdatePassCodeBtn"
+                    Width="200"
                     IsEnabled="{Binding ElementName=Passcode, Path=Password.Length, Converter={StaticResource IntToBoolConverter}}"
                     Click="UpdatePasscodeBtn_Click"
                     Style="{StaticResource FormButtonStyle}" />
@@ -75,7 +77,6 @@
                     Width="200"
                     Click="RequestForPlan_Click"
                     Style="{StaticResource TransFormButtonStyle}"
-                    BorderThickness="0"
                     Foreground="{StaticResource SystemControlHighlightListAccentHighBrush}" />
         </StackPanel>
         <StackPanel x:Name="CommandPanel"
