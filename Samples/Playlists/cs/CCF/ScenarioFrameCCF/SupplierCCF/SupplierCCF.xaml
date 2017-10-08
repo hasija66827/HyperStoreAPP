@@ -32,15 +32,17 @@
                 <StackPanel x:Name="StaticLabelForList"
                             Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Txn No"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Txn Date"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Width="100"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Wallet Balance"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Txn Amount"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Description"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Width="105"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                 </StackPanel>
                 <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
                               RelativePanel.Below="StaticLabelForList"

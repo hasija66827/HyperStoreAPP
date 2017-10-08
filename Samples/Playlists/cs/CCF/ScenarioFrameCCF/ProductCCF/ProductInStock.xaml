@@ -61,15 +61,17 @@
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Supplier Name"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Width="140"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Mobile No"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Last Order Date"
-                               Style="{StaticResource ListHeaderTBStyle}" />
-                    <TextBlock Text="Qty Purchased"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
+                    <TextBlock Text="Qty"
+                               Width="60"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Latest Purchase Price"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                 </StackPanel>
                 <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
                               RelativePanel.Below="StaticLabelsForList"

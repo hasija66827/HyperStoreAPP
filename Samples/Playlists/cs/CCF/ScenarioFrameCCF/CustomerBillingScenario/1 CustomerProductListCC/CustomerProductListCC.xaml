@@ -75,32 +75,33 @@
                         RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
         </RelativePanel>
         <RelativePanel x:Name="BillingView"
+                       Margin="0,10"
                        RelativePanel.Below="RadContentPanel"
                        RelativePanel.Above="CheckoutBtn">
             <StackPanel x:Name="StaticLabelsForList"
-                        Background="{StaticResource ListHeaderBrush}"
-                        Orientation="Horizontal">
+                        Style="{StaticResource ListHeaderStackPanel}">
                 <TextBlock Text="ProductId"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Name"
                            Width="110"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="MRP/Unit"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Disc %"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Width="65"
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Dis Amt"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="ValIncTax"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Qty"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Width="55"
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Net Value"
-                           Style="{StaticResource ListHeaderTBStyle}" />
-                <TextBlock Text="TGST %"
-                           Style="{StaticResource ListHeaderTBStyle}" />
-                <TextBlock Text="TGST"
-                           Style="{StaticResource ListHeaderTBStyle}" />
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
+                <TextBlock Text="TGST%"
+                           Width="60"
+                           Style="{StaticResource HighlightArialBasicTBStyle}" />
             </StackPanel>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
                           RelativePanel.Below="StaticLabelsForList"
@@ -129,13 +130,14 @@
                                            Style="{StaticResource PCalibriBasicTBStyle}"
                                            Text="{x:Bind ValueIncTax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBox x:Name="Quantity"
+                                         Width="65"
                                          Style="{StaticResource ListTextBoxStyle}"
                                          Text="{x:Bind QuantityConsumed, Mode=TwoWay, Converter={StaticResource CheckIfPositiveInteger}}" />
                                 <TextBlock x:Name="NetValue"
                                            Style="{StaticResource PCalibriBasicTBStyle}"
                                            Text="{x:Bind NetValue, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}" />
                                 <TextBlock x:Name="TotalGSTPer"
-                                           Width="55"
+                                           Width="60"
                                            Style="{StaticResource CaptionBasicTBStyle}"
                                            Text="{x:Bind TotalGSTPer, Mode=OneWay, Converter={StaticResource FloatToPercentageGSTConverter}}" />
                             </StackPanel>

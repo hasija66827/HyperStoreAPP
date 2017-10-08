@@ -242,6 +242,14 @@
                         <Setter Property="Width"
                                 Value="115" />
                     </Style>
+                    <Style x:Key="HighlightArialBasicTBStyle"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource ArialBaseStyle}">
+                        <Setter Property="Width"
+                                Value="115" />
+                        <Setter Property="Foreground"
+                                Value="{StaticResource SystemControlHighlightAccentBrush}" />
+                    </Style>
                     <Style x:Key="SmallArialBasicTBStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource ArialBaseStyle}">
@@ -755,6 +763,8 @@
                                 Value="Horizontal" />
                         <Setter Property="Background"
                                 Value="#FFDAE0E0" />
+                        <Setter Property="Padding"
+                                Value="5,2,0,2" />
                     </Style>
                     <Style x:Key="ProductStackPanel"
                            TargetType="StackPanel">

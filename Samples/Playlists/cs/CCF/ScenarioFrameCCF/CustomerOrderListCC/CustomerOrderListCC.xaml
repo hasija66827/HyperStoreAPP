@@ -162,29 +162,24 @@
                       x:DataType="local:CustomerOrderViewModel">
             <RelativePanel>
                 <StackPanel x:Name="StaticLabelsForList"
-                            Background="{StaticResource ListHeaderBrush}"
-                            Orientation="Horizontal">
-                    <TextBlock Text="ProductId"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                            Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Name"
-                               Width="110"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="MRP/Unit"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Disc %"
-                               Style="{StaticResource ListHeaderTBStyle}" />
-                    <TextBlock Text="Dis Amt"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Width="65"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="ValIncTax"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Qty"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Width="55"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Net Value"
-                               Style="{StaticResource ListHeaderTBStyle}" />
-                    <TextBlock Text="TGST %"
-                               Style="{StaticResource ListHeaderTBStyle}" />
-                    <TextBlock Text="TGST"
-                               Style="{StaticResource ListHeaderTBStyle}" />
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
+                    <TextBlock Text="TGST%"
+                               Width="60"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                 </StackPanel>
                 <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
                               RelativePanel.Below="StaticLabelsForList"
@@ -240,7 +235,7 @@
                 </StackPanel>
             </Border>
             <ScrollViewer x:Name="ScrollViewer"
-                Style="{StaticResource MasterColumScrollViewer}"
+                          Style="{StaticResource MasterColumScrollViewer}"
                           RelativePanel.Below="MasterHeaderPanel"
                           RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"
