@@ -43,7 +43,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             ProductASBCC.Current.OnAddProductClickedEvent += new OnAddProductClickedDelegate(this._AddProductToCart);
             _Products = new ObservableCollection<CustomerBillingProductViewModel>();
-            Checkout.Click += Checkout_Click;
+            CheckoutBtn.Click += Checkout_Click;
         }
 
         /// <summary>

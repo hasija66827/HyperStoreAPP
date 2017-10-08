@@ -66,7 +66,7 @@
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="DiscountAmountGlyph"
-                                     Fill="Red"
+                                     Fill="{StaticResource GreenBrush}"
                                      Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
@@ -75,6 +75,7 @@
                         </RelativePanel>
                         <StackPanel>
                             <TextBlock Text="Discount Amount"
+                                       Width="120"
                                        Style="{ThemeResource CaptionBasicTBStyle}" />
                             <TextBlock Text="{x:Bind BillingSummary.DiscountAmount, Converter={StaticResource FloatToRupeeConverter}}"
                                        Style="{ThemeResource CalibriBasicTBStyle}" />
@@ -83,7 +84,7 @@
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="BillAmountGlyph"
-                                     Fill="Red"
+                                     Fill="{StaticResource RedBrush}"
                                      Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
@@ -125,7 +126,6 @@
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="PayedAmountGlyph"
-                                     Fill="Red"
                                      Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
@@ -142,7 +142,6 @@
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="TotalGSTAmountGlyph"
-                                     Fill="Red"
                                      Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"

@@ -75,8 +75,8 @@
                         RelativePanel.AlignLeftWith="MakePaymentRadBtn" />
         </RelativePanel>
         <RelativePanel x:Name="BillingView"
-                    RelativePanel.Below="RadContentPanel"
-                    RelativePanel.Above="CommandPanel">
+                       RelativePanel.Below="RadContentPanel"
+                       RelativePanel.Above="CheckoutBtn">
             <StackPanel x:Name="StaticLabelsForList"
                         Background="{StaticResource ListHeaderBrush}"
                         Orientation="Horizontal">
@@ -144,12 +144,11 @@
                 </ListView>
             </ScrollViewer>
         </RelativePanel>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True">
-            <Button x:Name="Checkout"
-                    Content="Checkout"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+        <Button x:Name="CheckoutBtn"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Content="Checkout"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>

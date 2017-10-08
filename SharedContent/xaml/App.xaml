@@ -44,9 +44,9 @@
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="GreenBrush"
-                                     Color="#FF0FBD0F" />
+                                     Color="#FF75C71B" />
                     <SolidColorBrush x:Key="RedBrush"
-                                     Color="#FFF01919" />
+                                     Color="#FFC32424" />
                     <SolidColorBrush x:Key="PinkBrush"
                                      Color="#FFFF2FAE" />
                     <SolidColorBrush x:Key="FrameBrush"
@@ -120,7 +120,7 @@
                            TargetType="TextBlock"
                            BasedOn="{StaticResource SHeaderBasicStyle}">
                         <Setter Property="Width"
-                                Value="370" />
+                                Value="600" />
                     </Style>
                     <Style x:Key="HeaderTextBlockStyle"
                            TargetType="TextBlock"
@@ -142,7 +142,7 @@
                            TargetType="TextBlock"
                            BasedOn="{StaticResource SHeaderBasicStyle}">
                         <Setter Property="Width"
-                                Value="820" />
+                                Value="850" />
                     </Style>
                     <Style x:Key="MasterListRelativePanel"
                            TargetType="RelativePanel">
@@ -934,8 +934,8 @@
                                 Value="WhiteSmoke" />
                         <Setter Property="FontWeight"
                                 Value="Normal" />
-                        <Setter Property="Width"
-                                Value="800" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Stretch" />
                         <Setter Property="Background"
                                 Value="#FF10ACDC" />
                         <Setter Property="Margin"
@@ -947,12 +947,12 @@
                                 Value="WhiteSmoke" />
                         <Setter Property="FontWeight"
                                 Value="Normal" />
-                        <Setter Property="Width"
-                                Value="540" />
                         <Setter Property="Background"
                                 Value="#FF10ACDC" />
                         <Setter Property="Margin"
                                 Value="5" />
+                        <Setter Property="Width"
+                                Value="600" />
                     </Style>
                     <Style x:Key="TransButtonStyle"
                            TargetType="Button">

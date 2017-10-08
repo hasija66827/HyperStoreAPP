@@ -28,7 +28,8 @@
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
                       x:DataType="local:CustomerTransactionCollection">
-            <RelativePanel>
+            <RelativePanel RelativePanel.AlignLeftWithPanel="True"
+                           RelativePanel.AlignRightWithPanel="True">
                 <StackPanel x:Name="StaticLabelForList"
                             Style="{StaticResource ListHeaderStackPanel}">
                     <TextBlock Text="Txn No"
@@ -44,7 +45,7 @@
                 </StackPanel>
                 <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
                               RelativePanel.Below="StaticLabelForList"
-                              RelativePanel.Above="CommandPanel">
+                              RelativePanel.Above="ReceiveMoneyBtn">
                     <ListView x:Name="PurchaseHistoriesOfCustomer"
                               ItemsSource="{x:Bind Transactions}"
                               Style="{StaticResource ListViewStyle}">
@@ -72,14 +73,11 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </ScrollViewer>
-                <StackPanel x:Name="CommandPanel"
-                            Orientation="Horizontal"
-                            RelativePanel.AlignBottomWithPanel="True">
-                    <Button x:Name="ReceiveMoney"
-                            Content="{x:Bind ReceiveMoneyFromCustomer}"
-                            Click="ReceiveMoney_Click"
-                            Style="{StaticResource DetailButtonStyle}" />
-                </StackPanel>
+                <Button x:Name="ReceiveMoneyBtn"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        Content="{x:Bind ReceiveMoneyFromCustomer}"
+                        Click="ReceiveMoney_Click"
+                        Style="{StaticResource DetailButtonStyle}" />
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>
@@ -117,7 +115,7 @@
                             <MenuFlyout.Items>
                                 <MenuFlyoutItem x:Name="Edit"
                                                 Text="Edit"
-                                                Click="Edit_Click"                                              
+                                                Click="Edit_Click"
                                                 CommandParameter="{Binding }" />
                             </MenuFlyout.Items>
                         </MenuFlyout>
@@ -127,6 +125,7 @@
         </RelativePanel>
         <RelativePanel x:Name="DetailColumn"
                        RelativePanel.AlignTopWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True"
                        RelativePanel.AlignBottomWithPanel="True"
                        RelativePanel.RightOf="MasterColumn"
                        Style="{StaticResource DetailColumRelativePanelStyle}">
@@ -137,6 +136,8 @@
                            Style="{StaticResource DetailHeaderTextBlockStyle}" />
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.AlignLeftWithPanel="True"
+                              RelativePanel.AlignRightWithPanel="True"
                               RelativePanel.AlignBottomWithPanel="True"
                               RelativePanel.Below="DetailHeaderPanel"
                               ContentTemplate="{StaticResource DetailContentTemplate}">

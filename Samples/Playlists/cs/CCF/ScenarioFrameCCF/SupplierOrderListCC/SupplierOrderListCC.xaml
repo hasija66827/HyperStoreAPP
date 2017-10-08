@@ -105,7 +105,7 @@
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="SettledAmountGlyph"
-                                     Fill="Green"
+                                     Fill="{StaticResource GreenBrush}"
                                      Style="{StaticResource SmallEllipseStyle}" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
@@ -123,15 +123,16 @@
                                 RelativePanel.RightOf="SettledAmountBreakup">
                         <RelativePanel>
                             <Ellipse x:Name="RemainingAmountGlyph"
-                                     Fill="Red"
-                                     Style="{StaticResource SmallEllipseStyle}" />
+                                     Fill="{StaticResource RedBrush}"
+                                     Style="{StaticResource SmallEllipseStyle}"
+                                     FocusVisualPrimaryBrush="#FF96BF22" />
                             <TextBlock Text="&#x20B9;"
                                        Style="{StaticResource GlyphTextBlockStyle}"
                                        RelativePanel.AlignHorizontalCenterWith="RemainingAmountGlyph"
                                        RelativePanel.AlignVerticalCenterWith="RemainingAmountGlyph" />
                         </RelativePanel>
                         <StackPanel>
-                            <TextBlock Text="Remaining Amount"
+                            <TextBlock Text="Remaining Amount" Width="120"
                                        Style="{ThemeResource CaptionBasicTBStyle}" />
                             <TextBlock Text="{x:Bind RemainingAmount, Converter={StaticResource FloatToRupeeConverter}}"
                                        Style="{ThemeResource CalibriBasicTBStyle}" />

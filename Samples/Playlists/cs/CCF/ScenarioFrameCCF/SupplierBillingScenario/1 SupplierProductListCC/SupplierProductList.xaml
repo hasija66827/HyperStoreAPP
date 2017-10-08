@@ -22,7 +22,7 @@
         </Border>
         <RelativePanel x:Name="BillingView"
                        RelativePanel.Below="HeaderPanel"
-                       RelativePanel.Above="CommandPanel">
+                       RelativePanel.Above="CheckoutBtn">
             <StackPanel x:Name="StaticLabelsForList"
                         Background="{StaticResource ListHeaderBrush}"
                         Orientation="Horizontal">
@@ -79,13 +79,11 @@
                 </ListView>
             </ScrollViewer>
         </RelativePanel>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    Margin="40,20,0,0">
-            <Button x:Name="CheckoutBtn"
-                    Content="Checkout"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+        <Button x:Name="CheckoutBtn"
+                Content="Checkout"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>
