@@ -69,6 +69,8 @@
                                      Color="#FF10ACDC" />
                     <SolidColorBrush x:Key="LightBlueBoxColor"
                                      Color="#FFFDFDFF" />
+                    <SolidColorBrush x:Key="FrameBackgroundBrush"
+                                     Color="#FFF6F4F4"/>
                     <Style x:Key="DetailColumRelativePanelStyle"
                            TargetType="RelativePanel">
                         <Setter Property="BorderBrush"

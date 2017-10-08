@@ -23,7 +23,7 @@
         <local:ScenarioSymbolBindingConverter x:Key="ScenarioSymbolConverter"></local:ScenarioSymbolBindingConverter>
         <local:ScenarioFontIconBindingConverter x:Key="ScenarioFontIconConverter"></local:ScenarioFontIconBindingConverter>
     </Page.Resources>
-    <RelativePanel Background="#FFF6F4F4">
+    <RelativePanel Background="{StaticResource FrameBackgroundBrush}">
         <SplitView x:Name="Splitter"
                    IsPaneOpen="False"
                    DisplayMode="CompactOverlay"
@@ -56,45 +56,11 @@
                 </RelativePanel>
             </SplitView.Pane>
             <RelativePanel Margin="0,0,5,0">
-                <Frame x:Name="HeaderFrame"
-                       Margin="10,10,0,0"
-                       Background="{StaticResource FrameBrush}"
-                       MinHeight="230"
-                       Height="230"
-                       MinWidth="300"
-                       Width="300"
-                       BorderBrush="LightGray"
-                       BorderThickness="1" />
-                <Frame x:Name="SearchBoxFrame"
-                       Background="{StaticResource FrameBrush}"
-                       Margin="10,10,0,0"
-                       RelativePanel.Below="HeaderFrame"
-                       MinHeight="260"
-                       Height="265"
-                       MinWidth="300"
-                       Width="300"
-                       BorderBrush="LightGray"
-                       BorderThickness="1" />
-                <Frame x:Name="SummaryFrame"
-                       Background="{StaticResource FrameBrush}"
-                       Margin="10,10,0,0"
-                       RelativePanel.Below="SearchBoxFrame"
-                       MinHeight="200"
-                       Height="205"
-                       MinWidth="300"
-                       Width="300"
-                       BorderBrush="LightGray"
-                       BorderThickness="1" />
-                <Frame x:Name="ScenarioFrame"
-                       Background="{StaticResource FrameBrush}"
-                       Margin="10,10,10,0"
+                <Frame x:Name="MainFrame"
+                       Background="{StaticResource FrameBackgroundBrush}"
                        MinWidth="810"
-                       Width="810"
                        MinHeight="720"
-                       Height="720"
-                       RelativePanel.RightOf="SearchBoxFrame"
-                       BorderBrush="LightGray"
-                       BorderThickness="1" />
+                       />
             </RelativePanel>
         </SplitView>
         <StackPanel x:Name="HeaderPanel"

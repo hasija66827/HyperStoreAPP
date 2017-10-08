@@ -155,6 +155,9 @@
     <Compile Include="CCF\SummaryFrameCCF\CustomerSummmaryCC\CustomerSummary.xaml.cs">
       <DependentUpon>CustomerSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommonPage.xaml.cs">
+      <DependentUpon>CommonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data Source\CustomerTransactionDataSource.cs" />
     <Compile Include="Data Source\UserDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
@@ -476,6 +479,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\SummaryFrameCCF\CustomerSummmaryCC\CustomerSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -99,73 +99,17 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private void ScenarioControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Clear the status block when navigating scenarios.
-            NotifyUser(String.Empty, NotifyType.StatusMessage);
-
             ListBox scenarioListBox = sender as ListBox;
             Scenario s = scenarioListBox.SelectedItem as Scenario;
             if (s != null)
             {
-                if (s.ClassType == typeof(CustomerProductListCC))
+                if (s.ClassType == typeof(Settings.SettingsCC))
                 {
-                    HeaderFrame.Navigate(typeof(CustomerASBCC));
-                    SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                    ScenarioFrame.Navigate(s.ClassType);
-                    //RightBottomFrame.Navigate(typeof(BillingSummaryCC));
-                    SummaryFrame.Navigate(typeof(RecommendedProductCC));
-                }
-                else if (s.ClassType == typeof(CustomerOrderListCCF))
-                {
-                    HeaderFrame.Navigate(typeof(CustomerASBCC));
-                    SearchBoxFrame.Navigate(typeof(FilterOrderCC));
-                    ScenarioFrame.Navigate(s.ClassType);
-                    SummaryFrame.Navigate(typeof(OrderSummaryCC));
-                }
-                else if (s.ClassType == typeof(CustomersCCF))
-                {
-                    HeaderFrame.Navigate(typeof(CustomerASBCC));
-                    SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Customer);
-                    ScenarioFrame.Navigate(typeof(CustomersCCF));
-                    //TODO: Move To Dashboard
-                    //RightBottomFrame.Navigate(typeof(CustomerTrendCC));
-                    SummaryFrame.Navigate(typeof(CustomerSummaryCC));
-
-
-                }
-                else if (s.ClassType == typeof(ProductInStock))
-                {
-                    HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
-                    SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
-                    SummaryFrame.Navigate(typeof(FilterProductCC));
-                    ScenarioFrame.Navigate(s.ClassType);
-                    //TODO: Move to Dashboard
-                    //RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
-                }
-                else if (s.ClassType == typeof(SupplierCCF))
-                {
-                    HeaderFrame.Navigate(typeof(SupplierASBCC));
-                    SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Supplier);
-                    ScenarioFrame.Navigate(typeof(SupplierCCF));
-                    SummaryFrame.Navigate(typeof(SupplierSummaryCC));
-                }
-                else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
-                {
-                    HeaderFrame.Navigate(typeof(SupplierASBCC));
-                    SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                    ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
-                    SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
-                }
-
-                else if (s.ClassType == typeof(SupplierOrderCCF))
-                {
-                    HeaderFrame.Navigate(typeof(SupplierASBCC));
-                    SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
-                    ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
-                    SummaryFrame.Navigate(typeof(SupplierOrderSummary));
+                    MainFrame.Navigate(s.ClassType);
                 }
                 else
                 {
-                    ScenarioFrame.Navigate(s.ClassType);
+                    MainFrame.Navigate(typeof(CommonPage), s);
                 }
                 if (Window.Current.Bounds.Width < 640)
                 {
