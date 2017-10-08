@@ -281,13 +281,13 @@
     <Compile Include="BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\BillingSummaryCC\BillingSummaryCC.xaml.cs">
+    <Compile Include="CCF\SummaryFrameCCF\CustomerBillingSummaryCC\BillingSummaryCC.xaml.cs">
       <DependentUpon>BillingSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBCC.xaml.cs">
       <DependentUpon>ProductASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\BillingSummaryCC\BillingSummaryViewModel.cs" />
+    <Compile Include="CCF\SummaryFrameCCF\CustomerBillingSummaryCC\BillingSummaryViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\1 CustomerProductListCC\CustomerProductListCC.xaml.cs">
       <DependentUpon>CustomerProductListCC.xaml</DependentUpon>
     </Compile>
@@ -410,7 +410,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\SummaryFrameCCF\BillingSummaryCC\BillingSummaryCC.xaml">
+    <Page Include="CCF\SummaryFrameCCF\CustomerBillingSummaryCC\BillingSummaryCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
