@@ -95,28 +95,6 @@
                        RelativePanel.RightOf="SearchBoxFrame"
                        BorderBrush="LightGray"
                        BorderThickness="1" />
-                <Frame x:Name="NewsFeedFrame"
-                       Background="{StaticResource FrameBrush}"
-                       RelativePanel.RightOf="ScenarioFrame"
-                       MinWidth="310"
-                       Width="310"
-                       MinHeight="510"
-                       Height="510"
-                       BorderBrush="LightGray"
-                       BorderThickness="1"
-                       RelativePanel.AlignTopWith="HeaderFrame"
-                       Margin="0,10,10,0" />
-                <Frame x:Name="RightBottomFrame"
-                       Background="{StaticResource FrameBrush}"
-                       RelativePanel.RightOf="ScenarioFrame"
-                       RelativePanel.Below="NewsFeedFrame"
-                       MinWidth="310"
-                       Width="310"
-                       BorderBrush="LightGray"
-                       BorderThickness="1"
-                       MinHeight="200"
-                       Height="200"
-                       Margin="0,10,10,0" />
             </RelativePanel>
         </SplitView>
         <StackPanel x:Name="HeaderPanel"
@@ -199,7 +177,7 @@
                    RelativePanel.AlignRightWithPanel="True"
                    PaneBackground="{StaticResource FormThemeBrush}">
             <SplitView.Pane>
-                    <Frame x:Name="EntityFrame" />
+                <Frame x:Name="EntityFrame" />
             </SplitView.Pane>
         </SplitView>
     </RelativePanel>

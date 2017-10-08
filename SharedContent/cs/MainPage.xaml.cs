@@ -40,10 +40,6 @@ namespace SDKTemplate
             //SampleTitle.Text = FEATURE_NAME;
 
         }
-        public void NavigateNewsFeedFrame(Type sourcePageType, object parameter)
-        {
-            NewsFeedFrame.Navigate(sourcePageType, parameter);
-        }
 
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -115,17 +111,14 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(s.ClassType);
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
-                    RightBottomFrame.Navigate(typeof(BillingSummaryCC));
+                    //RightBottomFrame.Navigate(typeof(BillingSummaryCC));
                     SummaryFrame.Navigate(typeof(RecommendedProductCC));
                 }
                 else if (s.ClassType == typeof(CustomerOrderListCCF))
                 {
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterOrderCC));
-                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(s.ClassType);
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(OrderSummaryCC));
                 }
                 else if (s.ClassType == typeof(CustomersCCF))
@@ -133,8 +126,8 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(CustomerASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Customer);
                     ScenarioFrame.Navigate(typeof(CustomersCCF));
-                    RightBottomFrame.Navigate(typeof(CustomerTrendCC));
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
+                    //TODO: Move To Dashboard
+                    //RightBottomFrame.Navigate(typeof(CustomerTrendCC));
                     SummaryFrame.Navigate(typeof(CustomerSummaryCC));
 
 
@@ -145,16 +138,14 @@ namespace SDKTemplate
                     SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
                     SummaryFrame.Navigate(typeof(FilterProductCC));
                     ScenarioFrame.Navigate(s.ClassType);
-                    RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
+                    //TODO: Move to Dashboard
+                    //RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
                 }
                 else if (s.ClassType == typeof(SupplierCCF))
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Supplier);
-                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierCCF));
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierSummaryCC));
                 }
                 else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
@@ -162,8 +153,6 @@ namespace SDKTemplate
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(ProductASBCC));
                     ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
-                    RightBottomFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
                 }
 
@@ -171,11 +160,8 @@ namespace SDKTemplate
                 {
                     HeaderFrame.Navigate(typeof(SupplierASBCC));
                     SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
-                    RightBottomFrame.Navigate(typeof(BlankPage));
                     ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
-                    NewsFeedFrame.Navigate(typeof(BlankPage));
                     SummaryFrame.Navigate(typeof(SupplierOrderSummary));
-
                 }
                 else
                 {
