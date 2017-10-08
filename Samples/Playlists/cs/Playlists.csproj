@@ -114,6 +114,9 @@
     </Compile>
     <Compile Include="APIUtility\API.cs" />
     <Compile Include="APIUtility\APIUtility.cs" />
+    <Compile Include="BillingPage.xaml.cs">
+      <DependentUpon>BillingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterTagViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterProductByTagCC.xaml.cs">
@@ -377,6 +380,10 @@
       <Link>Styles\Styles.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BillingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterProductByTagCC.xaml">
       <SubType>Designer</SubType>

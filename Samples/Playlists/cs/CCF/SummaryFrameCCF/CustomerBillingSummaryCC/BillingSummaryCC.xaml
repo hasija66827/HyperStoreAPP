@@ -14,42 +14,59 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <RelativePanel Background="White">
+        <RelativePanel Background="{StaticResource FrameBrush}">
             <Border  x:Name="HeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
                 <TextBlock Text="Billing Summary"
-                           Style="{StaticResource HeaderTextBlockStyle}" />
+                           Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
             </Border>
             <RelativePanel x:Name="ContentPanel"
                            RelativePanel.Below="HeaderPanel"
                            Margin="10,0,0,0"
-                           Width="300">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Items / Quantity: "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                           >
+                <StackPanel 
+                    x:Name="OrderPricingStaticLabel"
+                    Orientation="Vertical"
+                            >
                     <TextBlock Text="Cart Amount: "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                               Style="{StaticResource ArialBaseStyle}" />
                     <TextBlock Text="Discount Amount: "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Pay Amount: "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
-                    <TextBlock Text="Total GST: "
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                               Style="{StaticResource ArialBaseStyle}" />
+                    <TextBlock Text="Bill Amount: "
+                               Style="{StaticResource ArialBaseStyle}" />
                 </StackPanel>
-                <StackPanel Orientation="Vertical"
-                            RelativePanel.AlignRightWithPanel="True">
-                    <TextBlock Text="{x:Bind _BillingSummaryViewModel.Items_Quantity, Mode=OneWay}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                <StackPanel 
+                    x:Name="OrderPricing"
+                    Orientation="Vertical"
+                    Margin="10,0,0,0"
+RelativePanel.RightOf="OrderPricingStaticLabel">
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.CartAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                               Style="{StaticResource CalibriBasicTBStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToNegativeRupeeConverter}}"
-                               Style="{StaticResource GreenTextBlockStyle}" />
+                               Style="{StaticResource GCalibriBasicTBStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                                Foreground="{StaticResource PinkBrush}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                               Style="{StaticResource PCalibriBasicTBStyle}" />
+                </StackPanel>
+
+                <StackPanel 
+                    x:Name="OrderDetailsStaticLabel"
+                    Margin="40,0,0,0"
+
+                    RelativePanel.RightOf="OrderPricing"
+                    Orientation="Vertical">
+                    <TextBlock Text="Items / Quantity: "
+                               Style="{StaticResource ArialBaseStyle}" />
+                    <TextBlock Text="Total GST: "
+                               Style="{StaticResource ArialBaseStyle}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            RelativePanel.RightOf="OrderDetailsStaticLabel">
+                    <TextBlock Text="{x:Bind _BillingSummaryViewModel.Items_Quantity, Mode=OneWay}"
+                               Style="{StaticResource CalibriBasicTBStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.Tax, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Style="{StaticResource SummaryTextBlockStyle}" />
+                               Style="{StaticResource CalibriBasicTBStyle}" />
                 </StackPanel>
             </RelativePanel>
         </RelativePanel>

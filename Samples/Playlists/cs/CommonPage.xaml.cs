@@ -30,15 +30,8 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Scenario s = e.Parameter as Scenario;
-            if (s.ClassType == typeof(CustomerProductListCC))
-            {
-                HeaderFrame.Navigate(typeof(CustomerASBCC));
-                SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                ScenarioFrame.Navigate(s.ClassType);
-                //RightBottomFrame.Navigate(typeof(BillingSummaryCC));
-                SummaryFrame.Navigate(typeof(RecommendedProductCC));
-            }
-            else if (s.ClassType == typeof(CustomerOrderListCCF))
+           
+           if (s.ClassType == typeof(CustomerOrderListCCF))
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterOrderCC));
@@ -53,8 +46,6 @@ namespace SDKTemplate
                 //TODO: Move To Dashboard
                 //RightBottomFrame.Navigate(typeof(CustomerTrendCC));
                 SummaryFrame.Navigate(typeof(CustomerSummaryCC));
-
-
             }
             else if (s.ClassType == typeof(ProductInStock))
             {
