@@ -13,9 +13,9 @@
                     Background="#FFE9EDED">
         <StackPanel Margin="20">
             <TextBlock Text="Hyper Store"
-                       Style="{StaticResource ScenarioHeaderTextStyle}"
+                       Style="{StaticResource ArialBaseStyle}"
                        FontWeight="SemiBold"
-                       FontSize="30"
+                       FontSize="26"
                        Margin="0,0,0,20" />
             <TextBox Header="Registered Hyper Store Mobile Number"
                      PlaceholderText="Mobile Number"

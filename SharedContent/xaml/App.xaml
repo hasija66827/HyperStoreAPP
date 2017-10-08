@@ -891,7 +891,7 @@
                         <Setter Property="FontWeight"
                                 Value="Normal" />
                         <Setter Property="Width"
-                                Value="540" />
+                                Value="600" />
                         <Setter Property="Background"
                                 Value="White" />
                         <Setter Property="Margin"
