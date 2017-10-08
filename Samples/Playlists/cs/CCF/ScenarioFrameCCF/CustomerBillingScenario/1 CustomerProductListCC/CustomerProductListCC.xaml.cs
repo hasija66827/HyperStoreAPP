@@ -79,7 +79,7 @@ namespace SDKTemplate
         {
             if (CustomerASBCC.Current.SelectedCustomerInASB == null)
             {
-                MainPage.Current.NotifyUser("Customer not selected in search box", NotifyType.ErrorMessage);
+                CustomerASBCC.Current.NotifyUser();
                 return;
             }
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;

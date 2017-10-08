@@ -34,6 +34,10 @@
                        Visibility="Collapsed"
                        RelativePanel.AlignLeftWith="CustomerASB"
                        RelativePanel.Below="CustomerASB" />
+            <TextBlock x:Name="ErrorTB"
+                       Visibility="Collapsed"
+                       Text="Select the customer in searchbox."
+                       Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
         <RelativePanel x:Name="CustomerDetails"
                        RelativePanel.Below="ASB"

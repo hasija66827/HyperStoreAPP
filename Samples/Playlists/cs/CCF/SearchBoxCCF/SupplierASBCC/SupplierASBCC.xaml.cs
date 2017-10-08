@@ -56,6 +56,11 @@ namespace SDKTemplate
             base.OnNavigatedFrom(e);
         }
 
+        public void NotifyUser()
+        {
+            ErrorTB.Visibility =Visibility.Visible;
+        }
+
         public async void RefreshTheSuppliers()
         {
             SupplierASB.Text = "";
@@ -128,6 +133,7 @@ namespace SDKTemplate
                 WholeSellerAddress.Text = supplier.Address != null ? supplier.Address : "";
                 WholeSellerWalletBalance.Text = Utility.ConvertToRupee(supplier.WalletBalance);
                 SupplierGlyph.Text = Utility.GetGlyphValue(supplier.Name);
+                ErrorTB.Visibility=Visibility.Collapsed;
             }
             else
             {

@@ -43,7 +43,7 @@ namespace SDKTemplate
             var selectedSupplierInASB = SupplierASBCC.Current.SelectedSupplierInASB;
             if (selectedSupplierInASB == null)
             {
-                MainPage.Current.NotifyUser("Select the Wholeseller", NotifyType.ErrorMessage);
+                SupplierASBCC.Current.NotifyUser();
                 return;
             }
             var navigationParameter = new SupplierPageNavigationParameter()
@@ -76,7 +76,7 @@ namespace SDKTemplate
                 index = this._Products.IndexOf(w);
                 InvokeProductListChangeEvent();
             }
-            
+
         }
 
         public void InvokeProductListChangeEvent()

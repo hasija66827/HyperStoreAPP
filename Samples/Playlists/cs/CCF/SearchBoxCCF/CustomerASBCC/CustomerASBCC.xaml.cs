@@ -54,6 +54,11 @@ namespace SDKTemplate
             base.OnNavigatedFrom(e);
         }
 
+        public void NotifyUser()
+        {
+            ErrorTB.Visibility=Visibility.Visible;
+        }
+
         public async void RefreshTheCustomers()
         {
             CustomerASB.Text = "";
@@ -125,6 +130,7 @@ namespace SDKTemplate
                 CustomerWalletBalance.Text = Utility.ConvertToRupee(customer.WalletBalance);
                 CustomerNetWorth.Text = "Total Sales: " + Utility.ConvertToRupee(customer.NetWorth);
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
+                ErrorTB.Visibility=Visibility.Collapsed;
             }
             else
             {
