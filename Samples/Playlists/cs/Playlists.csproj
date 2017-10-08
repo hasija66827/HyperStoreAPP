@@ -602,12 +602,6 @@
     <Content Include="..\..\..\SharedContent\media\storelogo-sdk.png">
       <Link>Assets\storeLogo-sdk.png</Link>
     </Content>
-    <Content Include="..\..\..\SharedContent\media\tile-sdk.png">
-      <Link>Assets\tile-sdk.png</Link>
-    </Content>
-    <Content Include="..\..\..\SharedContent\media\windows-sdk.png">
-      <Link>Assets\windows-sdk.png</Link>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsDesktop, Version=10.0.15063.0">
