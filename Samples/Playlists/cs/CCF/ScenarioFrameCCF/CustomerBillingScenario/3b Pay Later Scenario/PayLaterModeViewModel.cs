@@ -20,7 +20,7 @@ namespace SDKTemplate
         private string _payingAmount;
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [Range(0, 1000000, ErrorMessage = "Try value in Range(0, 10000000).")]
+        [Range(0, float.MaxValue, ErrorMessage = "Try value in Range(0, 100,00,000).")]
         [LessThanProperty(nameof(AmountToBePaid))]
         public string PayingAmount
         {

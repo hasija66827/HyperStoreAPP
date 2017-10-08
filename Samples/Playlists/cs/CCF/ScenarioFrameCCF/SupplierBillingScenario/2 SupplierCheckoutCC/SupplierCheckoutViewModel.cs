@@ -18,14 +18,14 @@ namespace SDKTemplate
         public DateTime DueDate { get; set; }
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [Range(0, 100, ErrorMessage = "Try Interest Rate in Range(0, 100)")]
+        [Range(0d, 100, ErrorMessage = "Try Interest Rate in Range(0, 100)")]
         public string IntrestRate { get; set; }
 
         private decimal? _PayingAmountDec { get { return Utility.TryToConvertToDecimal(_payingAmount); } }
         private string _payingAmount;
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [Range(0, 10000000, ErrorMessage = "Try value in Range(0, 100,00,000).")]
+        [Range(0, float.MaxValue, ErrorMessage = "Try value in Range(0, 100,00,000).")]
         [LessThanProperty(nameof(AmountToBePaid))]
         public string PayingAmount
         {

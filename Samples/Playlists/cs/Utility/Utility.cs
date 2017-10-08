@@ -440,7 +440,7 @@ namespace SDKTemplate
         /// 
         /// </summary>
         /// <param name="value"></param>
-        /// <returns>returns decimal is object can be converted, o.w. 0</returns>
+        /// <returns>returns decimal is object can be converted, o.w. null</returns>
         public static decimal? TryToConvertToDecimal(object value)
         {
             if (value == null)

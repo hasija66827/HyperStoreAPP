@@ -42,7 +42,7 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="LowStockAlert"
                      Header="Low Stock Alert"
-                     Text="{x:Bind _ProdBasicInfo._PDFV.Threshold,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
+                     Text="{x:Bind _ProdBasicInfo._PDFV.Threshold, Mode=TwoWay}"
                      PlaceholderText="Enter Number of Units."
                      ToolTipService.ToolTip="The number of units of product below which you want to mark the product deficient."
                      Style="{StaticResource FormTextBoxStyle}" />

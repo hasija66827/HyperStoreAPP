@@ -29,7 +29,7 @@ namespace SDKTemplate
         private decimal? _CGSTPerDec { get { return Utility.TryToConvertToDecimal(this._CGSTPer); } }
         private string _CGSTPer;
         [Required(ErrorMessage = "CGST Percentage is required.", AllowEmptyStrings = false)]
-        [Range(0, 100, ErrorMessage = "Try CGST % in Range (0, 100).")]
+        [Range(0d, 100, ErrorMessage = "Try CGST % in Range (0, 100).")]
         public string CGSTPer
         {
             get { return _CGSTPer; }
@@ -43,7 +43,7 @@ namespace SDKTemplate
         private decimal? _SGSTPerDec { get { return Utility.TryToConvertToDecimal(this._SGSTPer); } }
         private string _SGSTPer;
         [Required(ErrorMessage = "SGST Percentage is required.", AllowEmptyStrings = false)]
-        [Range(0, 100, ErrorMessage = "Try SGST % in Range (0, 100).")]
+        [Range(0d, 100, ErrorMessage = "Try SGST % in Range (0, 100).")]
         public string SGSTPer
         {
             get { return this._SGSTPer; }
@@ -57,7 +57,7 @@ namespace SDKTemplate
         private decimal? _DisPerDec { get { return Utility.TryToConvertToDecimal(this._DisPer); } }
         private string _DisPer;
         [Required(ErrorMessage = "Discount Percentage is required.", AllowEmptyStrings = false)]
-        [Range(0, 100, ErrorMessage = "Try Discount % in Range (0, 100).")]
+        [Range(0d, 100, ErrorMessage = "Try Discount % in Range (0, 100).")]
         public string DiscPer
         {
             get { return this._DisPer; }

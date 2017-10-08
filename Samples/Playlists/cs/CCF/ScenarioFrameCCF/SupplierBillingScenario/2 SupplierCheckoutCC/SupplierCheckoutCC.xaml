@@ -78,6 +78,7 @@
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="4" />
             <CalendarDatePicker Date="{x:Bind _SCV.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
+                                 DateFormat="{}{day.integer} {month.full} {year.full}"
                                 Grid.Row="4"
                                 Grid.Column="1" />
         </Grid>

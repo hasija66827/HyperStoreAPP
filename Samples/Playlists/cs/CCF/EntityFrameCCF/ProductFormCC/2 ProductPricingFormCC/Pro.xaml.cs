@@ -58,7 +58,7 @@ namespace SDKTemplate
                     Name = _ProdBasicInfo._PDFV.Name,
                     HSN = _ProdBasicInfo._PDFV.HSN,
                     SGSTPer = Utility.TryToConvertToDecimal(_ProViewModel.SGSTPer),
-                    Threshold = _ProdBasicInfo._PDFV.Threshold
+                    Threshold = Utility.TryToConvertToDecimal(_ProdBasicInfo._PDFV.Threshold)
                 };
                 var product = await ProductDataSource.CreateNewProductAsync(productDTO);
                 if (product != null)

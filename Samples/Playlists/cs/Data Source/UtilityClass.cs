@@ -244,18 +244,25 @@ namespace SDKTemplate
         #region Product Controller
         public class ProductDTO
         {
+            [Required]
+            [Range(0d, 100)]
             public decimal? CGSTPer { get; set; }
             [Required]
             public string Code { get; set; }
             [Required]
             public decimal? MRP { get; set; }
             [Required]
+            [Range(0d, 100)]
             public decimal? DiscountPer { get; set; }
             [Required]
             public string Name { get; set; }
             public Int32? HSN { get; set; }
+            [Required]
+            [Range(0d, 100)]
             public decimal? SGSTPer { get; set; }
-            public Int32? Threshold { get; set; }
+            [Required]
+            [Range(0, float.MaxValue)]
+            public decimal? Threshold { get; set; }
             public List<Guid?> TagIds { get; set; }
         }
 
@@ -346,7 +353,7 @@ namespace SDKTemplate
             public decimal? PayingAmount { get; set; }
 
             [Required]
-            [Range(0, 100)]
+            [Range(0d, 100)]
             public decimal? IntrestRate { get; set; }
         }
 
@@ -385,7 +392,7 @@ namespace SDKTemplate
             public bool? IsCredit { get; set; }
 
             [Required]
-            [Range(0, 98765432198765)]
+            [Range(0, float.MaxValue)]
             public decimal? TransactionAmount { get; set; }
 
             public string Description { get; set; }
@@ -410,7 +417,7 @@ namespace SDKTemplate
             public Guid? SupplierId { get; set; }
 
             [Required]
-            [Range(0, 98765432198765)]
+            [Range(0, float.MaxValue)]
             public decimal? TransactionAmount { get; set; }
 
             public string Description { get; set; }
