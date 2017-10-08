@@ -28,11 +28,27 @@ namespace SDKTemplate
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            HeaderFrame.Navigate(typeof(CustomerASBCC));
-            SearchBoxFrame.Navigate(typeof(ProductASBCC));
-            ScenarioFrame.Navigate(typeof(CustomerProductListCC));
-            RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
-            SummaryFrame.Navigate(typeof(BillingSummaryCC));
+            Scenario s = e.Parameter as Scenario;
+
+            if (s.ClassType == typeof(CustomerProductListCC))
+            {
+                HeaderFrame.Navigate(typeof(CustomerASBCC));
+                SearchBoxFrame.Navigate(typeof(ProductASBCC));
+                ScenarioFrame.Navigate(typeof(CustomerProductListCC));
+                RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
+                SummaryFrame.Navigate(typeof(BillingSummaryCC));
+
+            }
+            else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
+            {
+                HeaderFrame.Navigate(typeof(SupplierASBCC));
+                SearchBoxFrame.Navigate(typeof(ProductASBCC));
+                ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
+                SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
+                RecommendedProductFrame.Navigate(typeof(BlankPage));
+            }
+            else
+                throw new NotImplementedException();
             base.OnNavigatedTo(e);
         }
     }

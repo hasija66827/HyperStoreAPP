@@ -8,30 +8,35 @@
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
-    <RelativePanel Background="White">
+    <RelativePanel Background="{StaticResource FrameBrush}">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
             <TextBlock Text="Billing Summary"
-                       Style="{StaticResource HeaderTextBlockStyle}" />
+                       Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <RelativePanel x:Name="ContentPanel"
                        RelativePanel.Below="HeaderPanel"
-                       Width="300"
+                      
                        Margin="10,0,0,0">
-            <StackPanel Orientation="Vertical">
+            <StackPanel 
+                x:Name="OrderDetailStaticLabel"
+                Orientation="Vertical"
+                        >
                 <TextBlock Text="Items / Quantity: "
-                           Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="Pay Amount: "
-                           Style="{StaticResource SummaryTextBlockStyle}" />
+                           Style="{StaticResource ArialBaseStyle}" />
+                <TextBlock Text="Bill Amount: "
+                           Style="{StaticResource ArialBaseStyle}" />
             </StackPanel>
             <StackPanel Orientation="Vertical"
-                        RelativePanel.AlignRightWithPanel="True">
+                        RelativePanel.RightOf="OrderDetailStaticLabel"
+                        Margin="10,0,0,0"
+                        >
                 <TextBlock Text="{x:Bind _BillingSummaryViewModel.Items_Quantity, Mode=OneWay}"
-                           Style="{StaticResource SummaryTextBlockStyle}" />
+                           Style="{StaticResource CalibriBasicTBStyle}" />
                 <TextBlock Text="{x:Bind _BillingSummaryViewModel.BillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                           Foreground="{StaticResource PinkBrush}"
-                           Style="{StaticResource SummaryTextBlockStyle}" />
+                           
+                           Style="{StaticResource PCalibriBasicTBStyle}" />
             </StackPanel>
         </RelativePanel>
     </RelativePanel>

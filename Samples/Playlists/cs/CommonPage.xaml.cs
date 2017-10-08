@@ -30,8 +30,8 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Scenario s = e.Parameter as Scenario;
-           
-           if (s.ClassType == typeof(CustomerOrderListCCF))
+
+            if (s.ClassType == typeof(CustomerOrderListCCF))
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterOrderCC));
@@ -63,13 +63,6 @@ namespace SDKTemplate
                 ScenarioFrame.Navigate(typeof(SupplierCCF));
                 SummaryFrame.Navigate(typeof(SupplierSummaryCC));
             }
-            else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
-            {
-                HeaderFrame.Navigate(typeof(SupplierASBCC));
-                SearchBoxFrame.Navigate(typeof(ProductASBCC));
-                ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
-                SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
-            }
 
             else if (s.ClassType == typeof(SupplierOrderCCF))
             {
@@ -78,6 +71,8 @@ namespace SDKTemplate
                 ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
                 SummaryFrame.Navigate(typeof(SupplierOrderSummary));
             }
+            else
+                throw new NotImplementedException();
             base.OnNavigatedTo(e);
         }
     }

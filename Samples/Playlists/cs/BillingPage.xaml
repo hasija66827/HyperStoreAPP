@@ -50,7 +50,7 @@
                RelativePanel.RightOf="RecommendedProductFrame"       
                RelativePanel.AlignRightWithPanel="True"
                RelativePanel.AlignBottomWithPanel="True"
-                       MinHeight="120"
+                       MinHeight="90"
                        MinWidth="300"
                        BorderBrush="LightGray"
                        BorderThickness="1" />

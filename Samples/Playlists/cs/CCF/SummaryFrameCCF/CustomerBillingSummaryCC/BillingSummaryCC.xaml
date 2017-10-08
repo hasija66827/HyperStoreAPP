@@ -46,7 +46,7 @@ RelativePanel.RightOf="OrderPricingStaticLabel">
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.DiscountAmount, Mode=OneWay, Converter={StaticResource FloatToNegativeRupeeConverter}}"
                                Style="{StaticResource GCalibriBasicTBStyle}" />
                     <TextBlock Text="{x:Bind _BillingSummaryViewModel.PayAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                               Foreground="{StaticResource PinkBrush}"
+                              
                                Style="{StaticResource PCalibriBasicTBStyle}" />
                 </StackPanel>
 

@@ -107,9 +107,9 @@ namespace SDKTemplate
                 {
                     MainFrame.Navigate(s.ClassType);
                 }
-                if (s.ClassType == typeof(CustomerProductListCC))
+                if (s.ClassType == typeof(CustomerProductListCC) || s.ClassType==typeof(SupplierPurchasedProductListCC))
                 {
-                    MainFrame.Navigate(typeof(BillingPage));
+                    MainFrame.Navigate(typeof(BillingPage), s);
                 }
                 else
                 {
