@@ -22,7 +22,7 @@
         </Border>
         <StackPanel x:Name="PasscodeAuthenticationPanel"
                     RelativePanel.Below="HeaderPanel"
-                    Margin="10">
+                    Margin="10,0">
             <TextBlock Text="Passcode Authentication"
                        Style="{StaticResource ArialBaseStyle}" />
             <StackPanel Margin="10,5">
@@ -56,7 +56,7 @@
                 RelativePanel.Below="PasscodeAuthenticationPanel"></Border>
         <StackPanel x:Name="OTPAuthentication"
                     RelativePanel.Below="Border"
-                    Margin="10">
+                    Margin="10,0">
             <TextBlock Text="OTP Authentication"
                        Style="{StaticResource ArialBaseStyle}" />
             <StackPanel Margin="10,5">
@@ -78,5 +78,10 @@
                     Click="RequestForPlan_Click"
                     Style="{StaticResource TransFormButtonStyle}" />
         </StackPanel>
+        <TextBlock x:Name="SMSBalanceTB"
+                   Style="{StaticResource PCalibriBasicTBStyle}"
+                   RelativePanel.Below="Border"
+                   RelativePanel.RightOf="OTPAuthentication"
+                   Text=" SMS Left" />
     </RelativePanel>
 </Page>

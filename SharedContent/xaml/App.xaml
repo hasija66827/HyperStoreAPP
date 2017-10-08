@@ -613,6 +613,8 @@
                            BasedOn="{StaticResource HeaderBorderBasic}">
                         <Setter Property="Background"
                                 Value="#FFECF6FC" />
+                        <Setter Property="Padding"
+                                Value="0,0,10,0" />
                     </Style>
                     <Style x:Key="FormHeaderBorder"
                            TargetType="Border"
@@ -626,7 +628,7 @@
                         <Setter Property="Background"
                                 Value="#FFF0F0F0" />
                     </Style>
-                    <Style x:Key="FormTextBoxStyle"
+                    <Style x:Key="BaseTextBoxStyle"
                            TargetType="TextBox">
                         <Setter Property="FontFamily"
                                 Value="Segoe UI" />
@@ -638,77 +640,37 @@
                                 Value="15" />
                         <Setter Property="TextWrapping"
                                 Value="Wrap" />
+                        <Setter Property="local:TextBoxAttached.AutoSelectable"
+                                Value="True" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Left" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                    </Style>
+                    <Style x:Key="FormTextBoxStyle"
+                           TargetType="TextBox"
+                           BasedOn="{StaticResource BaseTextBoxStyle}">
                         <Setter Property="Width"
                                 Value="290" />
-                        <Setter Property="local:TextBoxAttached.AutoSelectable"
-                                Value="True" />
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Left" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
                     </Style>
                     <Style x:Key="LargeFormTextBoxStyle"
-                           TargetType="TextBox">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontWeight"
-                                Value="Normal" />
-                        <Setter Property="FontSize"
-                                Value="15" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
+                           TargetType="TextBox"
+                           BasedOn="{StaticResource BaseTextBoxStyle}">
                         <Setter Property="Width"
                                 Value="400" />
-                        <Setter Property="Height"
-                                Value="60" />
-                        <Setter Property="local:TextBoxAttached.AutoSelectable"
-                                Value="True" />
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Left" />
-                        <Setter Property="Margin"
-                                Value="10,0" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
                     </Style>
                     <Style x:Key="MediumFormTextBoxStyle"
-                           TargetType="TextBox">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontWeight"
-                                Value="Normal" />
-                        <Setter Property="FontSize"
-                                Value="15" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
+                           TargetType="TextBox"
+                           BasedOn="{StaticResource BaseTextBoxStyle}">
                         <Setter Property="Width"
                                 Value="140" />
-                        <Setter Property="local:TextBoxAttached.AutoSelectable"
-                                Value="True" />
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Left" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
                     </Style>
                     <Style x:Key="SmallFormTextBoxStyle"
-                           TargetType="TextBox">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontWeight"
-                                Value="Normal" />
-                        <Setter Property="FontSize"
-                                Value="15" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
+                           TargetType="TextBox"
+                           BasedOn="{StaticResource BaseTextBoxStyle}">
                         <Setter Property="Width"
                                 Value="55" />
-                        <Setter Property="Margin"
-                                Value="0,0,5,0" />
-                        <Setter Property="local:TextBoxAttached.AutoSelectable"
-                                Value="True" />
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Left" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
+                       
                     </Style>
                     <Style x:Key="ErrorTextBlockStyle"
                            TargetType="TextBlock">
@@ -726,23 +688,10 @@
                                 Value="Red" />
                     </Style>
                     <Style x:Key="ListTextBoxStyle"
-                           TargetType="TextBox">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontWeight"
-                                Value="Normal" />
-                        <Setter Property="FontSize"
-                                Value="15" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="Width"
-                                Value="15" />
-                        <Setter Property="local:TextBoxAttached.AutoSelectable"
-                                Value="True" />
+                           TargetType="TextBox"
+                           BasedOn="{StaticResource BaseTextBoxStyle}">
                         <Setter Property="HorizontalContentAlignment"
                                 Value="Center" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
                     </Style>
                     <Style x:Key="GreenListTextBlockStyle"
                            TargetType="TextBlock">
@@ -827,25 +776,11 @@
                                 Value="Stretch" />
                     </Style>
                     <Style x:Key="LargeListTextBoxStyle"
-                           TargetType="TextBox">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontWeight"
-                                Value="Normal" />
-                        <Setter Property="FontSize"
-                                Value="15" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        <Setter Property="Width"
+                           TargetType="TextBox"
+                           BasedOn="{StaticResource BaseTextBoxStyle}">
+                          <Setter Property="Width"
                                 Value="80" />
-                        <Setter Property="local:TextBoxAttached.AutoSelectable"
-                                Value="True" />
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Center" />
-                        <Setter Property="Margin"
-                                Value="5,0" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
+                   
                     </Style>
                     <Style x:Key="LargeListTextBlockStyle"
                            TargetType="TextBlock">
@@ -865,23 +800,10 @@
                                 Value="Left" />
                     </Style>
                     <Style x:Key="VeryLargeListTextBoxStyle"
-                           TargetType="TextBox">
-                        <Setter Property="FontFamily"
-                                Value="Segoe UI" />
-                        <Setter Property="FontWeight"
-                                Value="Normal" />
-                        <Setter Property="FontSize"
-                                Value="15" />
-                        <Setter Property="TextWrapping"
-                                Value="Wrap" />
+                           TargetType="TextBox"
+                           BasedOn="{StaticResource BaseTextBoxStyle}">
                         <Setter Property="Width"
                                 Value="125" />
-                        <Setter Property="local:TextBoxAttached.AutoSelectable"
-                                Value="True" />
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Left" />
-                        <Setter Property="HorizontalAlignment"
-                                Value="Left" />
                     </Style>
                     <Style x:Key="VeryLargeListTextBlockStyle"
                            TargetType="TextBlock">

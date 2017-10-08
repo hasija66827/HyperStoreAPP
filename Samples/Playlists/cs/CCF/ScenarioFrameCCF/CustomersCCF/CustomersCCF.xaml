@@ -95,7 +95,8 @@
                                Style="{StaticResource ResultCountTextBlockStyle}" />
                 </StackPanel>
             </Border>
-            <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+            <ScrollViewer x:Name="ScrollViewer"
+                          Style="{StaticResource MasterColumScrollViewer}"
                           RelativePanel.Below="MasterHeaderPanel"
                           RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"
