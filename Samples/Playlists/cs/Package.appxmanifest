@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="Microsoft.SDKSamples.Playlists.CS" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="04e446ad-24a5-46bb-99f8-d535271f0ead" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="5269HyperStore.HyperStore" Publisher="CN=63499D29-CBC7-4148-919F-878BC6AB9E70" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="2ba8e66a-c6d7-4c6f-aefc-0a8e3b013540" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Playlists C# Sample</DisplayName>
-    <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
+    <DisplayName>Hyper Store</DisplayName>
+    <PublisherDisplayName>Hyper Store</PublisherDisplayName>
     <Logo>Assets\StoreLogo-sdk.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,13 +15,16 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Playlists.App">
-      <uap:VisualElements DisplayName="Hyper Store" Square150x150Logo="Assets\SquareTile-sdk.png" Square44x44Logo="Assets\SmallTile-sdk.png" Description="Playlists C# Sample" BackgroundColor="#00b2f0">
+      <uap:VisualElements DisplayName="Hyper Store" Square150x150Logo="Assets\SquareTile-sdk.png" Square44x44Logo="Assets\SmallTile-sdk.png" Description="Hyper Store" BackgroundColor="#00b2f0">
         <uap:SplashScreen Image="Assets\Splash-sdk.png" />
         <uap:DefaultTile>
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>

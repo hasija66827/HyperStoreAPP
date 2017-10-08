@@ -20,8 +20,8 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>AF264A045EB43F2DEA8535405639502F97540112</PackageCertificateThumbprint>
-    <PackageCertificateKeyFile>Playlists_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>AE287193B1CC52513895C2CBE7278F79BA6DFE75</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>HyperStoreApp_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <AppxPackageDir>E:\APP\</AppxPackageDir>
   </PropertyGroup>
@@ -97,6 +97,8 @@
   <ItemGroup>
     <Content Include="Assets\Fonts\fontawesome-webfont.ttf" />
     <Content Include="htmlPage\googleMap.html" />
+    <None Include="HyperStoreApp_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
     <None Include="Playlists_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>

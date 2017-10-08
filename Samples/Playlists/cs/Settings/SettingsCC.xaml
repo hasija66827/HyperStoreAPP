@@ -76,11 +76,7 @@
                     Content="Request For SMS Plan"
                     Width="200"
                     Click="RequestForPlan_Click"
-                    Style="{StaticResource TransFormButtonStyle}"
-                    Foreground="{StaticResource SystemControlHighlightListAccentHighBrush}" />
+                    Style="{StaticResource TransFormButtonStyle}" />
         </StackPanel>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True"></StackPanel>
     </RelativePanel>
 </Page>

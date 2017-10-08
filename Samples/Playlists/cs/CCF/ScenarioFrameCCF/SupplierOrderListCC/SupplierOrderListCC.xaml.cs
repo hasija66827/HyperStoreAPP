@@ -39,7 +39,7 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            _totalOrders = await SupplierDataSource.RetrieveTotalSuppliers();
+            _totalOrders = await SupplierOrderDataSource.RetrieveTotalSupplierOrder();
             await UpdateMasterListViewByFilterCriteriaAsync();
         }
 

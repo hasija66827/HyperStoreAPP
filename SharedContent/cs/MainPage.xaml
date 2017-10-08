@@ -86,6 +86,7 @@
                     RelativePanel.AlignRightWithPanel="True"
                     HorizontalAlignment="Right">
             <AppBarButton x:Name="AddCustomer"
+                          IsTabStop="False"
                           Height="60"
                           VerticalAlignment="Top"
                           Click="AddCustomer_Click"
@@ -104,6 +105,7 @@
             </AppBarButton>
             <AppBarButton Height="60"
                           Click="AddProductBtn_Click"
+                          IsTabStop="False"
                           VerticalAlignment="Top"
                           Width="78">
                 <AppBarButton.Content>
@@ -120,6 +122,7 @@
             </AppBarButton>
             <AppBarButton Height="60"
                           VerticalAlignment="Top"
+                          IsTabStop="False"
                           Width="78"
                           Click="AddWholeSellerBtn_Click">
                 <StackPanel Height="50"

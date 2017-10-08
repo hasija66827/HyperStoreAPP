@@ -122,14 +122,21 @@ namespace SDKTemplate.SignUp
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: Handle the exception in await call.
             var geoLocator = new Geolocator();
             geoLocator.DesiredAccuracy = PositionAccuracy.High;
-            Geoposition pos = await geoLocator.GetGeopositionAsync();
+            Geoposition pos = null;
+            try
+            {
+               pos = await geoLocator.GetGeopositionAsync();   
+            }
+            catch (Exception )
+            {
+                //Unable to access the location: reason: System has not turned on location settings.
+            }
             this._Cordinates = new Cordinates()
             {
-                Latitude = pos.Coordinate.Point.Position.Latitude.ToString(),
-                Longitude = pos.Coordinate.Point.Position.Longitude.ToString()
+                Latitude = pos?.Coordinate.Point.Position.Latitude.ToString(),
+                Longitude = pos?.Coordinate.Point.Position.Longitude.ToString()
             };
             this.LoadData();
             MapWebView.NavigateToString(GeneratedHTML);
