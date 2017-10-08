@@ -78,17 +78,16 @@
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="4" />
             <CalendarDatePicker Date="{x:Bind _SCV.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
-                                 DateFormat="{}{day.integer} {month.full} {year.full}"
+                                DateFormat="{}{day.integer} {month.full} {year.full}"
                                 Grid.Row="4"
                                 Grid.Column="1" />
         </Grid>
-        <StackPanel x:Name="CommandPanel"
-                    RelativePanel.AlignBottomWithPanel="True">
-            <Button x:Name="PlaceOrderBtn"
-                    Content="Place Order"
-                    Grid.Row="5"
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+        <Button x:Name="PlaceOrderBtn"
+                Content="Place Order"
+                Grid.Row="5"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>

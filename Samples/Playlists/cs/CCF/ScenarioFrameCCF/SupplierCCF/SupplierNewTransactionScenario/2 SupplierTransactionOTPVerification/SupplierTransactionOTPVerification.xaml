@@ -117,13 +117,12 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True">
-            <Button Content="{x:Bind _SupplierNewTransactionViewModel.ProceedToPay}"
+               <Button Content="{x:Bind _SupplierNewTransactionViewModel.ProceedToPay}"
                     x:Name="ProceedToPayBtn"
                     Click="VerifyBtn_Click"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>

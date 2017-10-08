@@ -121,13 +121,12 @@
                       IsEnabled="False"
                       IsChecked="{x:Bind _CNTV.IsCashBackTransaction, Mode=OneTime}" />
         </StackPanel>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True">
-            <Button Content="{x:Bind _CNTV.ProceedToReceive}"
-                    x:Name="ProceedToPayBtn"
-                    Click="ProceedToPayBtn_Click"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+        <Button Content="{x:Bind _CNTV.ProceedToReceive}"
+                x:Name="ProceedToPayBtn"
+                Click="ProceedToPayBtn_Click"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>

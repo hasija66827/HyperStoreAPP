@@ -93,13 +93,11 @@
                      Grid.Row="2"
                      Grid.Column="1" />
         </Grid>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True">
-            <Button x:Name="PlaceOrderBtn"
-                    Content="Place Order"
-                    HorizontalAlignment="Center"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+        <Button x:Name="PlaceOrderBtn"
+                Content="Place Order"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>

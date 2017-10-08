@@ -99,13 +99,12 @@
                        Grid.Row="2"
                        Grid.Column="1" />
         </Grid>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True">
-            <Button x:Name="ProceedBtn"
-                    Click="ProceedBtn_Click"
-                    Content="OTP Verify and Place Order"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+        <Button x:Name="ProceedBtn"
+                Click="ProceedBtn_Click"
+                Content="OTP Verify and Place Order"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>

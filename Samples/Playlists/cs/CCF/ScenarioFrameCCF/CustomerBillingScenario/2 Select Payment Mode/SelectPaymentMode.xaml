@@ -122,14 +122,12 @@
                              Content="Pay Later"
                              GroupName="paymentMode" />
             </StackPanel>
-            <StackPanel x:Name="CommandPanel"
-                        Orientation="Horizontal"
-                        RelativePanel.AlignBottomWithPanel="True">
-                <Button x:Name="ProceedToPayment"
-                        Content="Proceed"
-                        HorizontalAlignment="Center"
-                        Style="{StaticResource ScenarioButtonStyle}" />
-            </StackPanel>
+            <Button x:Name="ProceedToPayment"
+                    Content="Proceed"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    Style="{StaticResource ScenarioButtonStyle}" />
         </RelativePanel>
     </Grid>
 </Page>

@@ -109,13 +109,12 @@
                             Style="{StaticResource ErrorTextBlockStyle}" />
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="CommandPanel"
-                    Orientation="Horizontal"
-                    RelativePanel.AlignBottomWithPanel="True">
-            <Button Content="Proceed"
-                    x:Name="ProceedBtn"
-                    Click="ProceedBtn_Click"
-                    Style="{StaticResource ScenarioButtonStyle}" />
-        </StackPanel>
+        <Button Content="Proceed"
+                x:Name="ProceedBtn"
+                Click="ProceedBtn_Click"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Style="{StaticResource ScenarioButtonStyle}" />
     </RelativePanel>
 </Page>
