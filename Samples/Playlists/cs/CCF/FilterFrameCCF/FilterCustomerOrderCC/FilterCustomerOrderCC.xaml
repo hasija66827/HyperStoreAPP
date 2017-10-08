@@ -23,16 +23,16 @@
             <TextBlock x:Name="Title"
                        Text="Order Date"
                        Margin="0,0,0,5"
-                       Style="{StaticResource ScenarioDescriptionTextStyle}" />
+                       Style="{StaticResource ArialBaseStyle}" />
             <CalendarDatePicker x:Name="startDateCP"
                                 Header="From"
-                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                DateFormat="{}{day.integer} {month.full}"
                                 Style="{StaticResource CalenderDatePickerStyle}"
                                 RelativePanel.Below="Title"
                                 Date="{x:Bind _FilterCustomerOrderViewModel.OrderDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
             <CalendarDatePicker x:Name="endDateCP"
                                 Header="To"
-                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                DateFormat="{}{day.integer} {month.full}"
                                 Style="{StaticResource CalenderDatePickerStyle}"
                                 RelativePanel.AlignTopWith="startDateCP"
                                 RelativePanel.AlignRightWithPanel="True"

@@ -70,7 +70,7 @@
                     <SolidColorBrush x:Key="LightBlueBoxColor"
                                      Color="#FFFDFDFF" />
                     <SolidColorBrush x:Key="FrameBackgroundBrush"
-                                     Color="#FFF6F4F4"/>
+                                     Color="#FFF6F4F4" />
                     <Style x:Key="DetailColumRelativePanelStyle"
                            TargetType="RelativePanel">
                         <Setter Property="BorderBrush"
@@ -105,17 +105,16 @@
                     </Style>
                     <Style x:Key="MasterHeaderTextBlockStyle"
                            TargetType="TextBlock"
-                           BasedOn="{StaticResource SHeaderBasicStyle}">
-                    </Style>
+                           BasedOn="{StaticResource SHeaderBasicStyle}"></Style>
                     <Style x:Key="ResultCountTextBlockStyle"
                            TargetType="TextBlock"
                            BasedOn="{StaticResource SHeaderBasicStyle}">
                         <Setter Property="FontWeight"
-                                  Value="SemiLight"/>
+                                Value="SemiLight" />
                         <Setter Property="FontSize"
-                                Value="15"/>
+                                Value="15" />
                         <Setter Property="HorizontalAlignment"
-                                Value="Right"/>
+                                Value="Right" />
                     </Style>
                     <Style x:Key="DetailHeaderTextBlockStyle"
                            TargetType="TextBlock"
@@ -315,10 +314,18 @@
                            TargetType="CalendarDatePicker">
                         <Setter Property="DateFormat"
                                 Value="{}{year.full}/{month.integer}/{day.integer}" />
-                        <Setter Property="FontStyle"
-                                Value="Italic" />
+                        <Setter Property="FontFamily"
+                                Value="Calibri" />
+                        <Setter Property="FontWeight"
+                                Value="Normal" />
+                        <Setter Property="Foreground"
+                                Value="#FF3F3F48" />
+                        <Setter Property="FontSize"
+                                Value="15" />
+                        <Setter Property="Margin"
+                                Value="3" />
                         <Setter Property="Width"
-                                Value="140" />
+                                Value="115" />
                     </Style>
                     <Style x:Key="MasterColumScrollViewer"
                            TargetType="ScrollViewer">

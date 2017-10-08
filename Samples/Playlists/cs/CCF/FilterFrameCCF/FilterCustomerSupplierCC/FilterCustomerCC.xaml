@@ -21,7 +21,8 @@
                        Margin="10,0,0,0"
                        RelativePanel.Below="HeaderPanel">
             <TextBlock x:Name="WalletTB"
-                       Text="Wallet Balance" />
+                       Text="Wallet Balance" 
+                       Style="{StaticResource ArialBaseStyle}"/>
             <customControl:RangeSlider x:Name="WalletRangeSlider"
                                        Width="270"
                                        Minimum="-10000000"
@@ -34,16 +35,16 @@
                            RelativePanel.AlignHorizontalCenterWith="WalletRangeSlider">
                 <TextBlock x:Name="WalletBalanceLB"
                            RelativePanel.AlignLeftWithPanel="True"
-                           FontSize="18"
+                           Style="{StaticResource CalibriBaseStyle}"
                            Text="{Binding RangeMin, ElementName=WalletRangeSlider, Mode=TwoWay,
                     Converter={StaticResource FloatToRupeeConverter}}" />
-                <TextBlock x:Name="WalletBalanceUB"
-                           RelativePanel.AlignRightWithPanel="True"
-                           FontSize="18"
-                           Text="{Binding RangeMax,
+                <TextBlock  x:Name="WalletBalanceUB"
+                            RelativePanel.AlignRightWithPanel="True"
+                            Style="{StaticResource CalibriBaseStyle}"
+                            Text="{Binding RangeMax,
                             ElementName=WalletRangeSlider,
                             Mode=TwoWay,
-                    Converter={StaticResource FloatToRupeeConverter}
+                            Converter={StaticResource FloatToRupeeConverter}
                     }" />
             </RelativePanel>
         </RelativePanel>

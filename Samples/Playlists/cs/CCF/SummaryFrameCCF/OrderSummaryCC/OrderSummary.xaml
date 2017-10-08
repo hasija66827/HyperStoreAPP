@@ -7,7 +7,7 @@
       mc:Ignorable="d">
     <UserControl.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
-      </UserControl.Resources>
+    </UserControl.Resources>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
@@ -17,20 +17,21 @@
         </Border>
         <RelativePanel x:Name="ContentPanel"
                        RelativePanel.Below="HeaderPanel"
-                       Margin="10,0,0,0"
-                       Width="300">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Total Bill Amount "
-                           Style="{StaticResource SummaryTextBlockStyle}" />
-                <TextBlock Text="Total Payed Amount "
-                           Style="{StaticResource SummaryTextBlockStyle}" />
+                       Margin="10,0,0,0">
+            <StackPanel x:Name="StaticLabel"
+                        Orientation="Vertical">
+                <TextBlock Text="Total Bill Amount:"
+                           Style="{StaticResource ArialBaseStyle}" />
+                <TextBlock Text="Total Payed Amount:"
+                           Style="{StaticResource ArialBaseStyle}" />
             </StackPanel>
             <StackPanel Orientation="Vertical"
+                        RelativePanel.RightOf="StaticLabel"
                         RelativePanel.AlignRightWithPanel="True">
                 <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalBillAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter }}"
-                           Style="{StaticResource SummaryTextBlockStyle}" />
+                           Style="{StaticResource CalibriBaseStyle}" />
                 <TextBlock Text="{x:Bind _OrderSummaryViewModel.TotalPayedAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                           Style="{StaticResource SummaryTextBlockStyle}" />
+                           Style="{StaticResource CalibriBaseStyle}" />
             </StackPanel>
         </RelativePanel>
     </RelativePanel>

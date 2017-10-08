@@ -6,21 +6,21 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControl="using:UWP"
       mc:Ignorable="d">
-        <RelativePanel Background="White">
+    <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
             <TextBlock Text="Filter Product"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
-            <StackPanel x:Name="ContentPanel"
-                        RelativePanel.Below="HeaderPanel"
+        <StackPanel x:Name="ContentPanel"
+                    RelativePanel.Below="HeaderPanel"
                     Margin="10,0,0,0"
                     Orientation="Vertical">
             <RelativePanel x:Name="DiscountPer">
-                <TextBlock Text="Discount %"
-                           x:Name="DiscountPerTB" 
-                           />
+                <TextBlock  Text="Discount %"
+                            x:Name="DiscountPerTB"
+                            Style="{StaticResource ArialBasicTBStyle}" />
                 <customControl:RangeSlider x:Name="DiscountPerRangeSlider"
                                            Maximum="100"
                                            Minimum="0"
@@ -28,31 +28,25 @@
                                            RangeMin="0"
                                            Width="250"
                                            RelativePanel.Below="DiscountPerTB" />
-                <StackPanel RelativePanel.RightOf="DiscountPerTB"
-                            RelativePanel.AlignRightWith="DiscountPerRangeSlider"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center">
+                <RelativePanel RelativePanel.RightOf="DiscountPerTB"
+                               RelativePanel.AlignRightWith="DiscountPerRangeSlider"
+                               HorizontalAlignment="Stretch">
                     <TextBlock x:Name="DiscountPerLB"
-                               HorizontalAlignment="Left"
-                               FontSize="14"
-                               Width=" 40"
+                               Style="{StaticResource CalibriBaseStyle}"
                                Text="{Binding RangeMin, ElementName=DiscountPerRangeSlider, Mode=TwoWay}" />
-                    <TextBlock Text="to"
-                               Width=" 40"
-                               FontSize="14" />
                     <TextBlock x:Name="DiscountPerUB"
-                               HorizontalAlignment="Right"
-                               FontSize="14"
-                               Width=" 40"
+                               RelativePanel.AlignRightWithPanel="True"
+                               Style="{StaticResource CalibriBaseStyle}"
                                Text="{Binding RangeMax,
                             ElementName=DiscountPerRangeSlider,
                             Mode=TwoWay}" />
-                </StackPanel>
+                </RelativePanel>
             </RelativePanel>
             <RelativePanel x:Name="Quantity"
                            Margin="0,10,0,0">
                 <TextBlock x:Name="QuantityTB"
-                           Text="Quantity" />
+                           Text="Quantity"
+                           Style="{StaticResource ArialBasicTBStyle}" />
                 <customControl:RangeSlider x:Name="QuantityRangeSlider"
                                            Minimum="0"
                                            RangeMin="0"
@@ -60,27 +54,19 @@
                                            RangeMax="100000"
                                            Width="250"
                                            RelativePanel.Below="QuantityTB" />
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            RelativePanel.RightOf="QuantityTB"
-                            RelativePanel.AlignRightWith="QuantityRangeSlider"
-                           >
+                <RelativePanel HorizontalAlignment="Stretch"
+                               RelativePanel.RightOf="QuantityTB"
+                               RelativePanel.AlignRightWith="QuantityRangeSlider">
                     <TextBlock x:Name="QuantityLB"
-                               HorizontalAlignment="Left"
-                               FontSize="14"
-                               Width=" 40"
+                               Style="{StaticResource CalibriBaseStyle}"
                                Text="{Binding RangeMin, ElementName=QuantityRangeSlider, Mode=TwoWay}" />
-                    <TextBlock Text="to"
-                               Width=" 40"
-                               FontSize="14" />
                     <TextBlock x:Name="QuantityUB"
-                               Width=" 40"
-                               HorizontalAlignment="Right"
-                               FontSize="14"
+                               RelativePanel.AlignRightWithPanel="True"
+                               Style="{StaticResource CalibriBaseStyle}"
                                Text="{Binding RangeMax,
                             ElementName=QuantityRangeSlider,
                             Mode=TwoWay}" />
-                </StackPanel>
+                </RelativePanel>
             </RelativePanel>
             <CheckBox x:Name="ShowDeficientItemsOnly"
                       Content="Deficient Items Only"

@@ -22,35 +22,34 @@
                        RelativePanel.Below="HeaderPanel">
             <TextBlock x:Name="Title"
                        Text="Order Date"
-                       Margin="0,0,0,5"
-                       Style="{StaticResource ScenarioDescriptionTextStyle}" />
+                       Style="{StaticResource ArialBaseStyle}" />
             <CalendarDatePicker x:Name="OrderDateLBCP"
                                 Header="From"
-                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                DateFormat="{}{day.integer} {month.full}"
                                 Date="{x:Bind _FilterSupplierOrderViewModel.OrderDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
                                 RelativePanel.Below="Title"
                                 Style="{StaticResource CalenderDatePickerStyle}" />
             <CalendarDatePicker x:Name="OrderDateUBCP"
                                 Header="To"
-                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                DateFormat="{}{day.integer} {month.full}"
                                 RelativePanel.AlignRightWithPanel="True"
                                 RelativePanel.AlignTopWith="OrderDateLBCP"
                                 Date="{x:Bind _FilterSupplierOrderViewModel.OrderDateRange.UB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
                                 Style="{StaticResource CalenderDatePickerStyle}" />
             <TextBlock x:Name="DueDateTitle"
                        Text="Due Date"
-                       Margin="0,10,0,5"
-                       Style="{StaticResource ScenarioDescriptionTextStyle}"
+                       Style="{StaticResource ArialBaseStyle}"
+                       Margin="0,10,0,0"
                        RelativePanel.Below="OrderDateLBCP" />
             <CalendarDatePicker x:Name="DueDateLBCP"
-                                Header="From"                                
+                                Header="From"
                                 Style="{StaticResource CalenderDatePickerStyle}"
-                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                DateFormat="{}{day.integer} {month.full}"
                                 RelativePanel.Below="DueDateTitle"
                                 Date="{x:Bind _FilterSupplierOrderViewModel.DueDateRange.LB, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
             <CalendarDatePicker x:Name="DueDateUBCP"
                                 Header="To"
-                                DateFormat="{}{day.integer} {month.full} {year.full}"
+                                DateFormat="{}{day.integer} {month.full}"
                                 Style="{StaticResource CalenderDatePickerStyle}"
                                 RelativePanel.AlignTopWith="DueDateLBCP"
                                 RelativePanel.AlignRightWithPanel="True"

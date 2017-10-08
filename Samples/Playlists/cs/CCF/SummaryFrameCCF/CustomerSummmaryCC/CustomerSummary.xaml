@@ -19,14 +19,11 @@
                        RelativePanel.Below="HeaderPanel"
                        Margin="10,0,0,0"
                        Width="300">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Total Wallet Balance"
-                           Style="{StaticResource SummaryTextBlockStyle}" />
-            </StackPanel>
-            <StackPanel Orientation="Vertical"
-                        RelativePanel.AlignRightWithPanel="True">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Wallet Balance:"
+                           Style="{StaticResource ArialBaseStyle}" />
                 <TextBlock Text="{x:Bind _CustomerSummaryViewModel.TotalWalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
-                           Style="{StaticResource SummaryTextBlockStyle}" />
+                           Style="{StaticResource CalibriBaseStyle}" />
             </StackPanel>
         </RelativePanel>
     </RelativePanel>
