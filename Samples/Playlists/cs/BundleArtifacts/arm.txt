@@ -1,2 +1,4 @@
-MainPackage=E:\Hasija66827\Windows-universal-samples\Samples\Playlists\cs\bin\ARM\Release\Playlists_1.0.0.0_ARM.appx
-SymbolPackage=E:\Hasija66827\Windows-universal-samples\Samples\Playlists\cs\AppPackages\Playlists_1.0.0.0_Test\Playlists_1.0.0.0_ARM.appxsym
+MainPackage=E:\Windows-universal-samples\Samples\Playlists\cs\bin\ARM\Release\HyperStoreApp_1.0.0.0_ARM.appx
+SymbolPackage=E:\APP\HyperStoreApp_1.0.0.0_Test\HyperStoreApp_1.0.0.0_ARM.appxsym
+ResourcePack=E:\Windows-universal-samples\Samples\Playlists\cs\bin\ARM\Release\HyperStoreApp_1.0.0.0_scale-100.appx
+ResourcePack=E:\Windows-universal-samples\Samples\Playlists\cs\bin\ARM\Release\HyperStoreApp_1.0.0.0_scale-150.appx

@@ -19,7 +19,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>AE287193B1CC52513895C2CBE7278F79BA6DFE75</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>HyperStoreApp_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
@@ -95,7 +95,17 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Assets\app-icon.png" />
+    <Content Include="Assets\app-icon.scale-100.png" />
+    <Content Include="Assets\app-icon.scale-200.png" />
     <Content Include="Assets\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\smalltile-sdk.scale-200.png" />
+    <Content Include="Assets\Splash-sdk.png" />
+    <Content Include="Assets\Splash-sdk.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\SquareTile-sdk.png" />
     <Content Include="htmlPage\googleMap.html" />
     <None Include="HyperStoreApp_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
@@ -594,12 +604,6 @@
     </Content>
     <Content Include="..\..\..\SharedContent\media\smalltile-sdk.png">
       <Link>Assets\smallTile-sdk.png</Link>
-    </Content>
-    <Content Include="..\..\..\SharedContent\media\splash-sdk.png">
-      <Link>Assets\splash-sdk.png</Link>
-    </Content>
-    <Content Include="..\..\..\SharedContent\media\squaretile-sdk.png">
-      <Link>Assets\squareTile-sdk.png</Link>
     </Content>
     <Content Include="..\..\..\SharedContent\media\storelogo-sdk.png">
       <Link>Assets\storeLogo-sdk.png</Link>
