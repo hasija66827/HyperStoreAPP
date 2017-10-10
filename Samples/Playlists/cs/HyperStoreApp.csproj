@@ -100,8 +100,6 @@
     <Content Include="Assets\app-icon.scale-200.png" />
     <Content Include="Assets\Fonts\fontawesome-webfont.ttf" />
     <Content Include="Assets\smalltile-sdk.scale-200.png" />
-    <Content Include="Assets\Splash-sdk.png" />
-    <Content Include="Assets\Splash-sdk.scale-150.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />

@@ -59,8 +59,7 @@
                 <Frame x:Name="MainFrame"
                        Background="{StaticResource FrameBackgroundBrush}"
                        MinWidth="810"
-                       MinHeight="720"
-                       />
+                       MinHeight="720" />
             </RelativePanel>
         </SplitView>
         <StackPanel x:Name="HeaderPanel"
@@ -81,6 +80,10 @@
                 </ToggleButton>
             </Border>
         </StackPanel>
+        <TextBlock Text="This is demo version. We will contact on your registered mobile number."
+                   MaxWidth="550"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   Style="{StaticResource ErrorTextBlockStyle}" />
         <StackPanel x:Name="AppBarButtons"
                     Orientation="Horizontal"
                     RelativePanel.AlignRightWithPanel="True"
