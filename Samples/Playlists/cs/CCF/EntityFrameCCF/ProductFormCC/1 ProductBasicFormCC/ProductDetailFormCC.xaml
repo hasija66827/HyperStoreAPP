@@ -11,7 +11,7 @@
     <Page.DataContext>
         <local:ProductDetailFormViewModel />
     </Page.DataContext>
-    <RelativePanel Background="{StaticResource FormThemeBrush}">
+    <RelativePanel>
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource FormHeaderBorder}">

@@ -37,7 +37,6 @@ namespace SDKTemplate
                 ScenarioFrame.Navigate(typeof(CustomerProductListCC));
                 RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
                 SummaryFrame.Navigate(typeof(BillingSummaryCC));
-
             }
             else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
             {

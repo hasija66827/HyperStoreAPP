@@ -202,21 +202,35 @@ namespace SDKTemplate
 
         public class CustomerBillingSummaryDTO
         {
-            public decimal TotalQuantity { get; set; }
-            public int TotalItems { get; set; }
-            public decimal CartAmount { get; set; }
-            public decimal DiscountAmount { get; set; }
-            public decimal Tax { get; set; }
-            public decimal PayAmount { get; set; }
+            [Required]
+            public decimal? TotalQuantity { get; set; }
+
+            [Required]
+            public int? TotalItems { get; set; }
+
+            [Required]
+            public decimal? CartAmount { get; set; }
+
+            [Required]
+            public decimal? DiscountAmount { get; set; }
+
+            [Required]
+            public decimal? Tax { get; set; }
+
+            [Required]
+            public decimal? PayAmount { get; set; }
         }
 
         public class SupplierBillingSummaryDTO
         {
-            public decimal BillAmount { get; set; }
+            [Required]
+            public decimal? BillAmount { get; set; }
 
-            public int TotalItems { get; set; }
+            [Required]
+            public int? TotalItems { get; set; }
 
-            public decimal TotalQuantity { get; set; }
+            [Required]
+            public decimal? TotalQuantity { get; set; }
         }
 
         public class CustomerOrderDTO
@@ -225,7 +239,7 @@ namespace SDKTemplate
             public List<ProductConsumedDTO> ProductsConsumed { get; set; }
 
             [Required]
-            public CustomerBillingSummaryDTO CustomerBillingSummary { get; set; }
+            public CustomerBillingSummaryDTO CustomerBillingSummaryDTO { get; set; }
 
             [Required]
             public Guid? CustomerId { get; set; }
@@ -347,7 +361,7 @@ namespace SDKTemplate
             [Required]
             public DateTime? DueDate { get; set; }
 
-            public SupplierBillingSummaryDTO SupplierBillingSummary { get; set; }
+            public SupplierBillingSummaryDTO SupplierBillingSummaryDTO { get; set; }
 
             [Required]
             public decimal? PayingAmount { get; set; }

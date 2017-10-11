@@ -10,7 +10,7 @@ namespace SDKTemplate
 {
     public class SelectPaymentModeViewModelBase
     {
-        public decimal PayAmount { get; set; }
+        public decimal? PayAmount { get; set; }
         public virtual bool? IsUsingWallet { get; set; }
         public virtual bool? IsPayingNow { get; set; }
         public decimal? CurrentWalletBalance { get; set; }
@@ -24,23 +24,23 @@ namespace SDKTemplate
                     return 0;
             }
         }
-        public decimal ToBePaid { get { return this.PayAmount - this.WalletAmountToBeDeducted; } }
+        public decimal? ToBePaid { get { return this.PayAmount - this.WalletAmountToBeDeducted; } }
 
     }
 
     public sealed class SelectPaymentModeViewModel : SelectPaymentModeViewModelBase, INotifyPropertyChanged
     {
-        private bool? _IsUisngWallet;
+        private bool? _IsUsingWallet;
         public override bool? IsUsingWallet
         {
             get
             {
-                var retValue = (this._IsUisngWallet != null) ? this._IsUisngWallet : false;
+                var retValue = (this._IsUsingWallet != null) ? this._IsUsingWallet : false;
                 return retValue;
             }
             set
             {
-                this._IsUisngWallet = value;
+                this._IsUsingWallet = value;
                 this.OnPropertyChanged(nameof(WalletAmountToBeDeducted));
                 this.OnPropertyChanged(nameof(ToBePaid));
 

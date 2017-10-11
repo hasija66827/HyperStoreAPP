@@ -10,15 +10,15 @@ namespace SDKTemplate
 {
     public class PayNowViewModelBase
     {
-        public decimal ToBePaid { get; set; }
-        public virtual decimal ActuallyPaying { get; set; }
-        public decimal WalletAmountToBeAdded { get { return this.ActuallyPaying - this.ToBePaid; } }
+        public decimal? ToBePaid { get; set; }
+        public virtual decimal? ActuallyPaying { get; set; }
+        public decimal? WalletAmountToBeAdded { get { return this.ActuallyPaying - this.ToBePaid; } }
     }
 
     public class PayNowViewModel : PayNowViewModelBase, INotifyPropertyChanged
     {
-        private decimal _actuallyPaying;
-        public override decimal ActuallyPaying
+        private decimal? _actuallyPaying;
+        public override decimal? ActuallyPaying
         {
             get { return this._actuallyPaying; }
             set
@@ -26,7 +26,6 @@ namespace SDKTemplate
                 if (value < this.ToBePaid)
                 {
                     this._actuallyPaying = this.ToBePaid;
-                    MainPage.Current.NotifyUser("paying amount should be greater or equal to the amount to be paid, resetting it", NotifyType.ErrorMessage);
                 }
                 else
                     this._actuallyPaying = value;

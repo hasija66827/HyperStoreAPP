@@ -91,7 +91,7 @@ namespace SDKTemplate
                 ProductsPurchased = productPurchased,
                 PayingAmount = Utility.TryToConvertToDecimal(_SCV.PayingAmount),
                 SupplierId = PNP.SelectedSupplier?.SupplierId,
-                SupplierBillingSummary = PNP.SupplierBillingSummaryViewModel
+                SupplierBillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
             };
             return supplierOrderDTO;
         }

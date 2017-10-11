@@ -31,12 +31,12 @@ namespace SDKTemplate
                 {
                     var products = CustomerProductListCC.Current.Products;
                         
-                    this._BillingSummaryViewModel.TotalItems = (int)products.Count();
-                    this._BillingSummaryViewModel.TotalQuantity = (decimal)products.Sum(p => p.QuantityConsumed);
-                    this._BillingSummaryViewModel.CartAmount = (decimal)products.Sum(p => p.MRP * p.QuantityConsumed);
-                    this._BillingSummaryViewModel.DiscountAmount = (decimal)products.Sum(p => p.DiscountAmount * p.QuantityConsumed);
-                    this._BillingSummaryViewModel.Tax = (decimal)products.Sum(p => (p.TotalGSTAmount) * p.QuantityConsumed);
-                    this._BillingSummaryViewModel.PayAmount = (decimal)products.Sum(p => p.NetValue);
+                    this._BillingSummaryViewModel.TotalItems = (int?)products.Count();
+                    this._BillingSummaryViewModel.TotalQuantity = (decimal?)products.Sum(p => p.QuantityConsumed);
+                    this._BillingSummaryViewModel.CartAmount = (decimal?)products.Sum(p => p.MRP * p.QuantityConsumed);
+                    this._BillingSummaryViewModel.DiscountAmount = (decimal?)products.Sum(p => p.DiscountAmount * p.QuantityConsumed);
+                    this._BillingSummaryViewModel.Tax = (decimal?)products.Sum(p => (p.TotalGSTAmount) * p.QuantityConsumed);
+                    this._BillingSummaryViewModel.PayAmount = (decimal?)products.Sum(p => p.NetValue);
                     this._BillingSummaryViewModel.OnALLPropertyChanged();
                 });
             CustomerProductListCC.Current.ProductQtyUpdatedEvent += d;
