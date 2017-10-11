@@ -26,7 +26,7 @@ namespace SDKTemplate
         public static CustomerASBCC Current;
         public TCustomer SelectedCustomerInASB { get { return this._selectedCustomerInASB; } }
         public event SelectedCustomerChangedDelegate SelectedCustomerChangedEvent;
-        private CustomerASBViewModel _selectedCustomerInASB;
+        private TCustomer _selectedCustomerInASB;
         private List<CustomerASBViewModel> _Customers { get; set; }
         public CustomerASBCC()
         {
@@ -40,8 +40,6 @@ namespace SDKTemplate
             RefreshTheCustomers();
             CustomerDataSource.CustomerCreatedEvent += RefreshTheCustomers;
             CustomerDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
-            CustomerOrderDataSource.CustomerBalanceUpdatedEvent += RefreshTheCustomers;
-            CustomerTransactionDataSource.CustomerUpdatedEvent += RefreshTheCustomers;
             base.OnNavigatedTo(e);
         }
 
@@ -49,14 +47,12 @@ namespace SDKTemplate
         {
             CustomerDataSource.CustomerCreatedEvent -= RefreshTheCustomers;
             CustomerDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
-            CustomerOrderDataSource.CustomerBalanceUpdatedEvent -= RefreshTheCustomers;
-            CustomerTransactionDataSource.CustomerUpdatedEvent -= RefreshTheCustomers;
             base.OnNavigatedFrom(e);
         }
 
         public void NotifyUser()
         {
-            ErrorTB.Visibility=Visibility.Visible;
+            ErrorTB.Visibility = Visibility.Visible;
         }
 
         public async void RefreshTheCustomers()
@@ -117,10 +113,13 @@ namespace SDKTemplate
             }
         }
 
-        private void _SelectCustomer(CustomerASBViewModel customer)
+        private async void _SelectCustomer(CustomerASBViewModel selectedCustomer)
         {
-            if (customer != null)
+            if (selectedCustomer != null)
             {
+                var customer = await CustomerDataSource.RetrieveTheCustomerAsync(selectedCustomer.CustomerId);
+                if (customer == null)
+                    return;
                 _selectedCustomerInASB = customer;
                 NoResults.Visibility = Visibility.Collapsed;
                 CustomerDetails.Visibility = Visibility.Visible;
@@ -130,7 +129,7 @@ namespace SDKTemplate
                 CustomerWalletBalance.Text = Utility.ConvertToRupee(customer.WalletBalance);
                 CustomerNetWorth.Text = "Total Sales: " + Utility.ConvertToRupee(customer.NetWorth);
                 CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
-                ErrorTB.Visibility=Visibility.Collapsed;
+                ErrorTB.Visibility = Visibility.Collapsed;
             }
             else
             {

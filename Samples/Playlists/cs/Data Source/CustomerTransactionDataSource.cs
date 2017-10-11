@@ -10,14 +10,12 @@ namespace SDKTemplate
 {
     class CustomerTransactionDataSource
     {
-        public static event CustomerEntityChangedDelegate CustomerUpdatedEvent;
         #region Create
         public static async Task<TCustomerTransaction> CreateNewTransactionAsync(CustomerTransactionDTO transactionDTO)
         {
             var transaction = await Utility.CreateAsync<TCustomerTransaction>(BaseURI.HyperStoreService + API.CustomerTransactions, transactionDTO);
             if (transaction != null)
             {
-                CustomerUpdatedEvent?.Invoke();
                 _SendTransactionCreationNotification(transaction);
             }
             return transaction;

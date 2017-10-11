@@ -52,6 +52,13 @@ namespace SDKTemplate
             return customers;
         }
 
+        public static async Task<TCustomer> RetrieveTheCustomerAsync(Guid customerId)
+        {
+            TCustomer customer = await Utility.RetrieveAsync<TCustomer>(BaseURI.HyperStoreService + API.Customers, customerId.ToString(), null);
+            return customer;
+        }
+
+
         public static async Task<Int32> RetrieveTotalCustomers()
         {
             Int32 totalCustomer = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.Customers, CustomAction.GetTotalRecordsCount, null);
