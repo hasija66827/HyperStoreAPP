@@ -18,14 +18,21 @@ namespace SDKTemplate
         {
             get
             {
-                if (IsUsingWallet == true)
-                    return Math.Min((decimal)this.CurrentWalletBalance, (decimal)this.PayAmount);
-                else
-                    return 0;
+                try
+                {
+                    if (IsUsingWallet == true)
+                        return Math.Min((decimal)this.CurrentWalletBalance, (decimal)this.PayAmount);
+                    else
+                        return 0;
+                }
+                catch(Exception e)
+                {
+                    //conversion to decimal might fail.
+                }
+                return 0;
             }
         }
         public decimal? ToBePaid { get { return this.PayAmount - this.WalletAmountToBeDeducted; } }
-
     }
 
     public sealed class SelectPaymentModeViewModel : SelectPaymentModeViewModelBase, INotifyPropertyChanged
