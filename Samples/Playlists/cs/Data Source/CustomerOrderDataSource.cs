@@ -31,6 +31,7 @@ namespace SDKTemp.Data
                 IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,
                 PayingAmount = payingAmount
             };
+
             var deductedWalletAmount = await _CreateCustomerOrderAsync(customerOrderDTO);
             if (deductedWalletAmount != null)
             {
@@ -65,7 +66,6 @@ namespace SDKTemp.Data
 
         private static async Task<decimal?> _CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
         {
-
             var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.CustomerOrders, customerOrderDTO);
             return deductedWalletAmount;
         }

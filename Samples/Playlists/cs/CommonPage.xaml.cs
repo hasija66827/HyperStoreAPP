@@ -29,37 +29,37 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Scenario s = e.Parameter as Scenario;
+            var scenarioType = e.Parameter as ScenarioType?;
 
-            if (s.ScenarioType == ScenarioType.CustomerOrder)
+            if (scenarioType == ScenarioType.CustomerOrder)
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterOrderCC));
                 ScenarioFrame.Navigate(typeof(CustomerOrderListCCF));
                 SummaryFrame.Navigate(typeof(OrderSummaryCC));
             }
-            else if (s.ScenarioType == ScenarioType.SupplierOrder)
+            else if (scenarioType == ScenarioType.SupplierOrder)
             {
                 HeaderFrame.Navigate(typeof(SupplierASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
                 ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
                 SummaryFrame.Navigate(typeof(SupplierOrderSummary));
             }
-            else if (s.ScenarioType == ScenarioType.Customers)
+            else if (scenarioType == ScenarioType.Customers)
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Customer);
                 ScenarioFrame.Navigate(typeof(CustomersCCF));
                 SummaryFrame.Navigate(typeof(CustomerSummaryCC));
             }
-            else if (s.ScenarioType == ScenarioType.Suppliers)
+            else if (scenarioType == ScenarioType.Suppliers)
             {
                 HeaderFrame.Navigate(typeof(SupplierASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Supplier);
                 ScenarioFrame.Navigate(typeof(SupplierCCF));
                 SummaryFrame.Navigate(typeof(SupplierSummaryCC));
             }
-            else if (s.ScenarioType == ScenarioType.Products)
+            else if (scenarioType == ScenarioType.Products)
             {
                 HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
                 SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));

@@ -101,7 +101,8 @@ namespace SDKTemplate
         {
             ListBox scenarioListBox = sender as ListBox;
             Scenario s = scenarioListBox.SelectedItem as Scenario;
-            RefreshPage(s);
+            if (s != null)
+                RefreshPage(s.ScenarioType);
         }
 
         public List<Scenario> Scenarios
@@ -109,26 +110,23 @@ namespace SDKTemplate
             get { return this.scenarios; }
         }
 
-        public static void RefreshPage(Scenario s)
+        public static void RefreshPage(ScenarioType scenarioType)
         {
-            if (s != null)
+            if (scenarioType == ScenarioType.Settings)
             {
-                if (s.ScenarioType == ScenarioType.Settings)
-                {
-                    Current.MainFrame.Navigate(typeof(Settings.SettingsCC));
-                }
-                else if (s.ScenarioType == ScenarioType.CustomerBilling || s.ScenarioType == ScenarioType.SupplierBilling)
-                {
-                    Current.MainFrame.Navigate(typeof(BillingPage), s);
-                }
-                else
-                {
-                    Current.MainFrame.Navigate(typeof(CommonPage), s);
-                }
-                if (Window.Current.Bounds.Width < 640)
-                {
-                    Current.Splitter.IsPaneOpen = false;
-                }
+                Current.MainFrame.Navigate(typeof(Settings.SettingsCC));
+            }
+            else if (scenarioType == ScenarioType.CustomerBilling || scenarioType == ScenarioType.SupplierBilling)
+            {
+                Current.MainFrame.Navigate(typeof(BillingPage), scenarioType);
+            }
+            else
+            {
+                Current.MainFrame.Navigate(typeof(CommonPage), scenarioType);
+            }
+            if (Window.Current.Bounds.Width < 640)
+            {
+                Current.Splitter.IsPaneOpen = false;
             }
         }
 
@@ -179,7 +177,7 @@ namespace SDKTemplate
             return true;
         }
     }
-   
+
     public class ScenarioFontIconBindingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

@@ -28,9 +28,9 @@ namespace SDKTemplate
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Scenario s = e.Parameter as Scenario;
+            var scenarioType = e.Parameter as ScenarioType?;
 
-            if (s.ScenarioType == ScenarioType.CustomerBilling)
+            if (scenarioType == ScenarioType.CustomerBilling)
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
@@ -38,7 +38,7 @@ namespace SDKTemplate
                 RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
                 SummaryFrame.Navigate(typeof(BillingSummaryCC));
             }
-            else if (s.ScenarioType == ScenarioType.SupplierBilling)
+            else if (scenarioType == ScenarioType.SupplierBilling)
             {
                 HeaderFrame.Navigate(typeof(SupplierASBCC));
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
