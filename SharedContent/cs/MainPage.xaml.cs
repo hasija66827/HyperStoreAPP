@@ -90,6 +90,17 @@ namespace SDKTemplate
                 ScenarioControl.SelectedIndex = 0;
             }
         }
+        public void ActivateProgressRing()
+        {
+            MainFrame.IsEnabled = false;
+            progressRing.IsActive = true;
+        }
+
+        public void DeactivateProgressRing()
+        {
+            progressRing.IsActive = false;
+            MainFrame.IsEnabled = true;
+        }
 
         /// <summary>
         /// Called whenever the user changes selection in the scenarios list.  This method will navigate to the respective

@@ -31,13 +31,14 @@ namespace SDKTemp.Data
                 IsUsingWallet = PNP.SelectPaymentModeViewModelBase.IsUsingWallet,
                 PayingAmount = payingAmount
             };
-
+            MainPage.Current.ActivateProgressRing();
             var deductedWalletAmount = await _CreateCustomerOrderAsync(customerOrderDTO);
             if (deductedWalletAmount != null)
             {
                 ProductStockUpdatedEvent?.Invoke();
                 _SendOrderCreationNotification(PNP, deductedWalletAmount);
             }
+            MainPage.Current.DeactivateProgressRing();
             return deductedWalletAmount;
         }
 

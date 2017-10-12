@@ -59,6 +59,10 @@
                        Background="{StaticResource FrameBackgroundBrush}"
                        MinWidth="810"
                        MinHeight="720" />
+                <ProgressRing x:Name="progressRing"
+                              Style="{StaticResource ProgressRing}"
+                              RelativePanel.AlignVerticalCenterWith="MainFrame"
+                              RelativePanel.AlignHorizontalCenterWith="MainFrame" />
             </RelativePanel>
         </SplitView>
         <StackPanel x:Name="HeaderPanel"

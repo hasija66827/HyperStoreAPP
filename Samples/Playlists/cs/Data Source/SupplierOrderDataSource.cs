@@ -15,12 +15,14 @@ namespace SDKTemplate
         #region Create
         public static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
+            MainPage.Current.ActivateProgressRing();
             var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
             if (deductedWalletAmount != null)
             {
                 SupplierBalanceUpdatedEvent?.Invoke();
                 ProductStockUpdatedEvent?.Invoke();
             }
+            MainPage.Current.DeactivateProgressRing();
             return deductedWalletAmount;
         }
         #endregion

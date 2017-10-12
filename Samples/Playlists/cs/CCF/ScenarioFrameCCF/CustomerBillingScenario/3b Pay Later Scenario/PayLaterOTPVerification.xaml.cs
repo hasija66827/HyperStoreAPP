@@ -56,9 +56,9 @@ namespace SDKTemplate
                 var IsVerified = await _InitiateOTPVerificationAsync();
                 if (IsVerified)
                 {
-
-                    var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter,
-                                                                                                        Utility.TryToConvertToDecimal(this._PLV.PayingAmount));
+                    var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter, Utility.TryToConvertToDecimal(this._PLV.PayingAmount));
+                    if (usingWalletAmount != null)
+                        MainPage.RefreshPage(ScenarioType.CustomerBilling);
                 }
             }
         }

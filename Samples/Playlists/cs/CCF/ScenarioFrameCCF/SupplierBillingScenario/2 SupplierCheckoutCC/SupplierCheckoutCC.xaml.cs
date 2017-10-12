@@ -59,6 +59,8 @@ namespace SDKTemplate
                 {
                     var supplierOrderDTO = _CreateSupplierOrderDTO();
                     var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
+                    if (usingWalletAmount != null)
+                        MainPage.RefreshPage(ScenarioType.SupplierBilling);
                     _SendOrderCreationNotification(this.SupplierPageNavigationParameter, usingWalletAmount);
                     this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
                 }

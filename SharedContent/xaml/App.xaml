@@ -43,6 +43,13 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    <Style x:Key="ProgressRing"
+                           TargetType="ProgressRing">
+                        <Setter Property="Width"
+                                Value="70" />
+                        <Setter Property="Height"
+                                Value="70" />
+                    </Style>
                     <SolidColorBrush x:Key="GreenBrush"
                                      Color="#FF75C71B" />
                     <SolidColorBrush x:Key="RedBrush"
@@ -654,7 +661,6 @@
                                 Value="Left" />
                         <Setter Property="HorizontalAlignment"
                                 Value="Left" />
-                       
                     </Style>
                     <Style x:Key="FormTextBoxStyle"
                            TargetType="TextBox"
@@ -683,7 +689,6 @@
                            BasedOn="{StaticResource BaseTextBoxStyle}">
                         <Setter Property="Width"
                                 Value="55" />
-                       
                     </Style>
                     <Style x:Key="ErrorTextBlockStyle"
                            TargetType="TextBlock">
@@ -793,9 +798,8 @@
                     <Style x:Key="LargeListTextBoxStyle"
                            TargetType="TextBox"
                            BasedOn="{StaticResource BaseTextBoxStyle}">
-                          <Setter Property="Width"
+                        <Setter Property="Width"
                                 Value="80" />
-                   
                     </Style>
                     <Style x:Key="LargeListTextBlockStyle"
                            TargetType="TextBlock">

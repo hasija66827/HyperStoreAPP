@@ -35,8 +35,9 @@ namespace SDKTemplate
 
         private async void PlaceOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            var task = CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter, this.PayNowViewModel.ActuallyPaying);
-            var usingWalletAmount = await task;
+            var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter, this.PayNowViewModel.ActuallyPaying);
+            if (usingWalletAmount != null)
+                MainPage.RefreshPage(ScenarioType.CustomerBilling);
         }
     }
 }
