@@ -52,6 +52,12 @@ namespace SDKTemplate
             return suppliers;
         }
 
+        public static async Task<TSupplier> RetrieveTheSupplierAsync(Guid supplierId)
+        {
+            TSupplier supplier = await Utility.RetrieveAsync<TSupplier>(BaseURI.HyperStoreService + API.Suppliers, supplierId.ToString(), null);
+            return supplier;
+        }
+
         public static async Task<Int32> RetrieveTotalSuppliers()
         {
             Int32 totalSuppliers = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.Suppliers, CustomAction.GetTotalRecordsCount, null);

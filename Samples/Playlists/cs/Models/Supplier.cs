@@ -8,7 +8,7 @@ namespace Models
 {
     public class TSupplier: supplierInterface
     {
-        public Guid? SupplierId { get; set; }
+        public Guid SupplierId { get; set; }
         public string Address { get; set; }
         public string GSTIN { get; set; }
         [Required]

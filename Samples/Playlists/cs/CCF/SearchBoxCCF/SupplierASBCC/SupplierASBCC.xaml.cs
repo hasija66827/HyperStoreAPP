@@ -26,9 +26,9 @@ namespace SDKTemplate
     public sealed partial class SupplierASBCC : Page
     {
         public static SupplierASBCC Current;
-        public TSupplier SelectedSupplierInASB { get { return this._selectedWholeSellerInASB; } }
+        public TSupplier SelectedSupplierInASB { get { return this._selectedSupplierInASB; } }
         private List<SupplierASBViewModel> _Suppliers { get; set; }
-        private SupplierASBViewModel _selectedWholeSellerInASB;
+        private SupplierASBViewModel _selectedSupplierInASB;
         public event SelectedSupplierChangedDelegate SelectedSupplierChangedEvent;
         public SupplierASBCC()
         {
@@ -42,8 +42,6 @@ namespace SDKTemplate
             RefreshTheSuppliers();
             SupplierDataSource.SupplierCreatedEvent += RefreshTheSuppliers;
             SupplierDataSource.SupplierUpdatedEvent += RefreshTheSuppliers;
-            SupplierOrderDataSource.SupplierBalanceUpdatedEvent += RefreshTheSuppliers;
-            SupplierTransactionDataSource.SupplierUpdateEvent += RefreshTheSuppliers;
             base.OnNavigatedTo(e);
         }
 
@@ -51,14 +49,12 @@ namespace SDKTemplate
         {
             SupplierDataSource.SupplierCreatedEvent -= RefreshTheSuppliers;
             SupplierDataSource.SupplierUpdatedEvent -= RefreshTheSuppliers;
-            SupplierOrderDataSource.SupplierBalanceUpdatedEvent -= RefreshTheSuppliers;
-            SupplierTransactionDataSource.SupplierUpdateEvent -= RefreshTheSuppliers;
             base.OnNavigatedFrom(e);
         }
 
         public void NotifyUser()
         {
-            ErrorTB.Visibility =Visibility.Visible;
+            ErrorTB.Visibility = Visibility.Visible;
         }
 
         public async void RefreshTheSuppliers()
@@ -108,8 +104,8 @@ namespace SDKTemplate
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item, take an action on it here
-                var choosenWholeSeller = args.ChosenSuggestion;
-                _SelectSupplier((SupplierASBViewModel)choosenWholeSeller);
+                var choosenSupplier = args.ChosenSuggestion;
+                _SelectSupplier((SupplierASBViewModel)choosenSupplier);
             }
             else
             {
@@ -121,23 +117,26 @@ namespace SDKTemplate
             }
         }
 
-        private void _SelectSupplier(SupplierASBViewModel supplier)
+        private async void _SelectSupplier(SupplierASBViewModel supplier)
         {
             if (supplier != null)
             {
-                _selectedWholeSellerInASB = supplier;
+                var retrievedSupplier = await SupplierDataSource.RetrieveTheSupplierAsync(supplier.SupplierId);
+                if (retrievedSupplier == null)
+                    return;
+                _selectedSupplierInASB = new SupplierASBViewModel(retrievedSupplier);
                 NoResults.Visibility = Visibility.Collapsed;
                 SupplierDetails.Visibility = Visibility.Visible;
-                WholeSellerMobNo.Text = supplier.MobileNo;
-                WholeSellerName.Text = supplier.Name;
-                WholeSellerAddress.Text = supplier.Address != null ? supplier.Address : "";
-                WholeSellerWalletBalance.Text = Utility.ConvertToRupee(supplier.WalletBalance);
-                SupplierGlyph.Text = Utility.GetGlyphValue(supplier.Name);
-                ErrorTB.Visibility=Visibility.Collapsed;
+                WholeSellerMobNo.Text = _selectedSupplierInASB.MobileNo;
+                WholeSellerName.Text = _selectedSupplierInASB.Name;
+                WholeSellerAddress.Text = _selectedSupplierInASB.Address != null ? _selectedSupplierInASB.Address : "";
+                WholeSellerWalletBalance.Text = Utility.ConvertToRupee(_selectedSupplierInASB.WalletBalance);
+                SupplierGlyph.Text = Utility.GetGlyphValue(_selectedSupplierInASB.Name);
+                ErrorTB.Visibility = Visibility.Collapsed;
             }
             else
             {
-                _selectedWholeSellerInASB = null;
+                _selectedSupplierInASB = null;
                 NoResults.Visibility = Visibility.Visible;
                 SupplierDetails.Visibility = Visibility.Collapsed;
             }

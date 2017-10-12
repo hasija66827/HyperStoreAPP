@@ -54,8 +54,7 @@
                        RelativePanel.AlignVerticalCenterWith="SupplierBackground" />
             <TextBlock x:Name="WholeSellerWalletBalance"
                        Style="{StaticResource ArialBaseStyle}"
-                       RelativePanel.Below="SupplierBackground"
-                       Margin="6,0" />
+                       RelativePanel.Below="SupplierBackground" />
             <TextBlock x:Name="WholeSellerMobNo"
                        Style="{StaticResource BaseTextBlockStyle}"
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
@@ -73,7 +72,6 @@
                        RelativePanel.Below="WholeSellerName"
                        RelativePanel.AlignLeftWith="WholeSellerName"
                        Margin="12,0" />
-            
         </RelativePanel>
     </RelativePanel>
 </Page>

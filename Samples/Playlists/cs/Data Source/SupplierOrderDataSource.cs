@@ -10,8 +10,6 @@ namespace SDKTemplate
 {
     public class SupplierOrderDataSource
     {
-        public static event SupplierEntityChangedDelegate SupplierBalanceUpdatedEvent;
-        public static event ProductEntityChangedDelegate ProductStockUpdatedEvent;
         #region Create
         public static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
@@ -19,7 +17,7 @@ namespace SDKTemplate
             var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
             if (deductedWalletAmount != null)
             {
-                SupplierBalanceUpdatedEvent?.Invoke();
+                //Notification is sent by the caller of this method.
             }
             MainPage.Current.DeactivateProgressRing();
             return deductedWalletAmount;

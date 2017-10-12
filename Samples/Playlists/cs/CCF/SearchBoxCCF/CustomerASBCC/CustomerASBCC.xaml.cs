@@ -26,7 +26,7 @@ namespace SDKTemplate
         public static CustomerASBCC Current;
         public TCustomer SelectedCustomerInASB { get { return this._selectedCustomerInASB; } }
         public event SelectedCustomerChangedDelegate SelectedCustomerChangedEvent;
-        private TCustomer _selectedCustomerInASB;
+        private CustomerASBViewModel _selectedCustomerInASB;
         private List<CustomerASBViewModel> _Customers { get; set; }
         public CustomerASBCC()
         {
@@ -117,18 +117,18 @@ namespace SDKTemplate
         {
             if (selectedCustomer != null)
             {
-                var customer = await CustomerDataSource.RetrieveTheCustomerAsync(selectedCustomer.CustomerId);
-                if (customer == null)
+                var retrievedCustomer = await CustomerDataSource.RetrieveTheCustomerAsync(selectedCustomer.CustomerId);
+                if (retrievedCustomer == null)
                     return;
-                _selectedCustomerInASB = customer;
+                _selectedCustomerInASB = new CustomerASBViewModel(retrievedCustomer);
                 NoResults.Visibility = Visibility.Collapsed;
                 CustomerDetails.Visibility = Visibility.Visible;
-                CustomerMobNo.Text = customer.MobileNo;
-                CustomerName.Text = customer.Name;
-                CustomerAddress.Text = customer.Address != null ? customer.Address : "";
-                CustomerWalletBalance.Text = Utility.ConvertToRupee(customer.WalletBalance);
-                CustomerNetWorth.Text = "Total Sales: " + Utility.ConvertToRupee(customer.NetWorth);
-                CustomerGlyph.Text = Utility.GetGlyphValue(customer.Name);
+                CustomerMobNo.Text = retrievedCustomer.MobileNo;
+                CustomerName.Text = retrievedCustomer.Name;
+                CustomerAddress.Text = retrievedCustomer.Address != null ? retrievedCustomer.Address : "";
+                CustomerWalletBalance.Text = Utility.ConvertToRupee(retrievedCustomer.WalletBalance);
+                CustomerNetWorth.Text = "Total Sales: " + Utility.ConvertToRupee(retrievedCustomer.NetWorth);
+                CustomerGlyph.Text = Utility.GetGlyphValue(retrievedCustomer.Name);
                 ErrorTB.Visibility = Visibility.Collapsed;
             }
             else
