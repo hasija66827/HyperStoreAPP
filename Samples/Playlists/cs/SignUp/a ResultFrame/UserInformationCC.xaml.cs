@@ -65,8 +65,13 @@ namespace SDKTemplate.SignUp
         {
             this._CUIV.PCV = PCV;
             var IsVerified = await _InitiateOTPVerificationAsync();
+            bool IsUserCreated = false;
             if (IsVerified)
-                _CreateUser();
+            {
+                IsUserCreated = await _CreateUser();
+                if (IsUserCreated == true)
+                    RootPage.Current.Navigate(typeof(Login.LoginCC));
+            }
         }
 
         private async Task<bool> _InitiateOTPVerificationAsync()
@@ -83,7 +88,7 @@ namespace SDKTemplate.SignUp
             return IsVerified;
         }
 
-        private async void _CreateUser()
+        private async Task<bool> _CreateUser()
         {
             var personalInformationDTO = new PersonalInformationDTO()
             {
@@ -117,7 +122,11 @@ namespace SDKTemplate.SignUp
 
             var authenticationToken = await UserDataSource.CreateNewUserAsync(user);
             if (authenticationToken != null)
+            {
                 BaseURI.User = authenticationToken.User;
+                return true;
+            }
+            return false;
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)

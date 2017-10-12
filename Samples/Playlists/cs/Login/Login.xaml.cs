@@ -76,15 +76,14 @@ namespace SDKTemplate.Login
                 else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
                 {
                     BaseURI.User = authenticationToken.User;
-                    this.Frame.Navigate(typeof(MainPage));
+                    RootPage.Current.Navigate(typeof(MainPage));
                 }
-
             }
         }
 
         private void SignUpClick_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SignUpPage));
+            RootPage.Current.Navigate(typeof(SignUpPage));
         }
     }
 }

@@ -236,6 +236,9 @@
     <Compile Include="PasscodeDialogCC\PasscodeDialogCC.xaml.cs">
       <DependentUpon>PasscodeDialogCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RootPage.xaml.cs">
+      <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\SettingsCC.xaml.cs">
       <DependentUpon>SettingsCC.xaml</DependentUpon>
     </Compile>
@@ -568,6 +571,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

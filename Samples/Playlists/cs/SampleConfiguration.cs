@@ -26,7 +26,8 @@ namespace SDKTemplate
         SupplierBilling,
         Suppliers,
         SupplierOrder,
-        Settings
+        Settings,
+        Logout
     }
 
     public partial class MainPage : Page
@@ -43,6 +44,7 @@ namespace SDKTemplate
             new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"},Title = "Suppliers", ScenarioType=ScenarioType.Suppliers },
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Supplier Orders", ScenarioType=ScenarioType.SupplierOrder },
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE713"}, Title = "Settings", ScenarioType=ScenarioType.Settings },
+            new Scenario(){ FontIcon=new FontIcon(){Glyph="\uE7E8" }, Title="Logout", ScenarioType=ScenarioType.Logout }
         };
     }
 

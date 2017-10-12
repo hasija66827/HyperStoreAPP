@@ -122,7 +122,11 @@ namespace SDKTemplate
 
         public static void RefreshPage(ScenarioType scenarioType)
         {
-            if (scenarioType == ScenarioType.Settings)
+            if (scenarioType == ScenarioType.Logout)
+            {
+                RootPage.Current.Navigate(typeof(Login.LoginCC));
+            }
+            else if (scenarioType == ScenarioType.Settings)
             {
                 Current.MainFrame.Navigate(typeof(Settings.SettingsCC));
             }

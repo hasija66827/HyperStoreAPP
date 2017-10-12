@@ -84,7 +84,7 @@ namespace SDKTemplate
                 // parameter
 
                 BaseURI.User = new Models.TUser();// Need to removed, as it will be setup in the login or signup time.
-                rootFrame.Navigate(typeof(LoginCC), e.Arguments);
+                rootFrame.Navigate(typeof(RootPage), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();
