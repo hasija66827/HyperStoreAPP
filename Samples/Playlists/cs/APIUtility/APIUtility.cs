@@ -41,10 +41,10 @@ namespace SDKTemplate
                 var logMessage = "Error: " + ex.HResult + " Message: " + ex.Message;
                 var userMessage = ex.Message;
 
-                if (ex.HResult == -2147012867)
-                    userMessage = "Could not connect to server.\nPlease check the internet connection.";
+                if (ex.HResult == -2147012867 || ex.HResult== -2147012889)
+                    userMessage = "Could not connect to server. Please check the internet connection.";
 
-                ErrorNotification.PopUpHTTPGetErrorNotifcation(baseURI, userMessage);
+                ErrorNotification.PopUpHTTPGetErrorNotifcation(ExtractAPIName(baseURI), userMessage);
                 return default(T);
             }
         }
@@ -84,10 +84,10 @@ namespace SDKTemplate
             catch (Exception ex)
             {
                 var userMessage = ex.Message;
-                if (ex.HResult == -2147012867)
-                    userMessage = "Could not connect to server.\nPlease check the internet connection.";
+                if (ex.HResult == -2147012867 || ex.HResult == -2147012889)
+                    userMessage = "Could not connect to server. Please check the internet connection.";
 
-                ErrorNotification.PopUpHTTPPostErrorNotifcation(baseURI, userMessage);
+                ErrorNotification.PopUpHTTPPostErrorNotifcation(ExtractAPIName(baseURI), userMessage);
                 //TODO: handle different types of exception
                 return default(T);
             }
@@ -132,10 +132,10 @@ namespace SDKTemplate
             catch (Exception ex)
             {
                 var userMessage = ex.Message;
-                if (ex.HResult == -2147012867)
-                    userMessage = "Could not connect to server.\nPlease check the internet connection.";
+                if (ex.HResult == -2147012867 || ex.HResult == -2147012889)
+                    userMessage = "Could not connect to server. Please check the internet connection.";
 
-                ErrorNotification.PopUpHTTPPutErrorNotifcation(baseURI, userMessage);
+                ErrorNotification.PopUpHTTPPutErrorNotifcation(ExtractAPIName(baseURI), userMessage);
                 //TODO: handle different types of exception
                 return default(T);
             }
@@ -157,6 +157,12 @@ namespace SDKTemplate
             {
                 throw ex;
             }
+        }
+
+        private static string ExtractAPIName(string BaseURI)
+        {
+            var startIndexOfAPI = BaseURI.LastIndexOf("/") + 1;
+            return BaseURI.Substring(startIndexOfAPI);
         }
     }
 }
