@@ -50,7 +50,7 @@ namespace SDKTemplate
                 };
                 var transaction = await CustomerTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 if (transaction != null)
-                    this.Frame.Navigate(typeof(CustomersCCF));
+                    MainPage.RefreshPage(ScenarioType.Customers);
             }
         }
 

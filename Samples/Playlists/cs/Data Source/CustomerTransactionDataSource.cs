@@ -13,11 +13,13 @@ namespace SDKTemplate
         #region Create
         public static async Task<TCustomerTransaction> CreateNewTransactionAsync(CustomerTransactionDTO transactionDTO)
         {
+            MainPage.Current.ActivateProgressRing();
             var transaction = await Utility.CreateAsync<TCustomerTransaction>(BaseURI.HyperStoreService + API.CustomerTransactions, transactionDTO);
             if (transaction != null)
             {
                 _SendTransactionCreationNotification(transaction);
             }
+            MainPage.Current.DeactivateProgressRing();
             return transaction;
         }
 

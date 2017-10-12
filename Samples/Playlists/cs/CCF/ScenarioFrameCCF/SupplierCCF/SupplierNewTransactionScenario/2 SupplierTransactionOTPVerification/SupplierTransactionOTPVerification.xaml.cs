@@ -48,7 +48,7 @@ namespace SDKTemplate
                 };
                 var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 if (transaction != null)
-                    this.Frame.Navigate(typeof(SupplierCCF));
+                    MainPage.RefreshPage(ScenarioType.Suppliers);
             }
         }
 
