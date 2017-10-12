@@ -85,10 +85,11 @@ namespace SDKTemplate
             toastContent = new ToastContent()
             {
                 Visual = visual,
-                Scenario=ToastScenario.Reminder
+                Scenario = ToastScenario.Default
             };
             // And create the toast notification
             toast = new ToastNotification(toastContent.GetXml());
+            toast.ExpirationTime = DateTime.Now.AddMinutes(5);
         }
     }
 }

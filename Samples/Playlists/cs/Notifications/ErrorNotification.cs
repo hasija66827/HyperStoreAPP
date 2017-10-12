@@ -108,6 +108,7 @@ namespace SDKTemplate
             };
             // And create the toast notification
             toast = new ToastNotification(toastContent.GetXml());
+            toast.ExpirationTime = DateTime.Now.AddSeconds(30);
         }
     }
 }
