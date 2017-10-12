@@ -69,8 +69,6 @@
                 <RadioButton GroupName="SMSPlan"
                              x:Name="PlanC"
                              Content="1500 SMS for 500 INR" />
-                <TextBlock Text="Kindly do Paytm @7987421819"
-                           Style="{StaticResource CaptionBaseStyle}" />
             </StackPanel>
             <Button x:Name="RequestForPlan"
                     Content="Request For SMS Plan"
@@ -83,5 +81,10 @@
                    RelativePanel.Below="Border"
                    RelativePanel.RightOf="OTPAuthentication"
                    Text=" SMS Left" />
+        <TextBlock Text="For any support contact @7987421819 or rahas@hyperlocalstore.in"
+                   RelativePanel.AlignBottomWithPanel="True"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   Width="auto"
+                   Style="{StaticResource PCalibriBasicTBStyle}" />
     </RelativePanel>
 </Page>

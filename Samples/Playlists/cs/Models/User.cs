@@ -32,6 +32,9 @@ namespace Models
 
         [Required]
         public string Passcode { get; set; }
+
+        [Required]
+        public bool IsRegisteredUser { get; set; }
         #endregion
 
         #region BusinessInformation
