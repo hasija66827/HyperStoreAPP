@@ -62,7 +62,6 @@ namespace SDKTemplate
                     if (usingWalletAmount != null)
                         MainPage.RefreshPage(ScenarioType.SupplierBilling);
                     _SendOrderCreationNotification(this.SupplierPageNavigationParameter, usingWalletAmount);
-                    this.Frame.Navigate(typeof(SupplierPurchasedProductListCC));
                 }
             }
         }
