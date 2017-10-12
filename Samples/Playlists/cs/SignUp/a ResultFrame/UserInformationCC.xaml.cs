@@ -71,7 +71,7 @@ namespace SDKTemplate.SignUp
 
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
-            var SMSContent = OTPVConstants.SMSContents[ScenarioType.User_Registration];
+            var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.User_Registration];
             var fomattedSMSContent = String.Format(SMSContent, this._CUIV.PCV.FirstName, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {

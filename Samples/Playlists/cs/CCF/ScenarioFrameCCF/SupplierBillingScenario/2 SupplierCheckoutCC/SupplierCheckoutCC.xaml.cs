@@ -99,7 +99,7 @@ namespace SDKTemplate
         //Currently we are not using OTPverification for supplier order transaction.
         private async Task<bool> _InitiateOTPVerification()
         {
-            var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingSupplierOrder_Credit];
+            var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PlacingSupplierOrder_Credit];
             var formattedSMSContent = String.Format(SMSContent, _SCV.AmountToBePaidLater,
                                                               SupplierPageNavigationParameter?.SelectedSupplier?.Name,
                                                               OTPVConstants.OTPLiteral);

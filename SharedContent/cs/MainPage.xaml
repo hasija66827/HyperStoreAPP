@@ -20,7 +20,6 @@
       mc:Ignorable="d">
     <Page.Resources>
         <local:ScenarioBindingConverter x:Key="ScenarioConverter"></local:ScenarioBindingConverter>
-        <local:ScenarioSymbolBindingConverter x:Key="ScenarioSymbolConverter"></local:ScenarioSymbolBindingConverter>
         <local:ScenarioFontIconBindingConverter x:Key="ScenarioFontIconConverter"></local:ScenarioFontIconBindingConverter>
     </Page.Resources>
     <RelativePanel Background="{StaticResource FrameBackgroundBrush}">

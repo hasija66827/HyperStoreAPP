@@ -59,14 +59,13 @@ namespace SDKTemplate
 
                     var usingWalletAmount = await CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter,
                                                                                                         Utility.TryToConvertToDecimal(this._PLV.PayingAmount));
-                    this.Frame.Navigate(typeof(CustomerProductListCC));
                 }
             }
         }
 
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
-            var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingCustomerOrder_Credit];
+            var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PlacingCustomerOrder_Credit];
             var fomattedSMSContent = String.Format(SMSContent, this._PLV?.AmountToBePaidLater, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {

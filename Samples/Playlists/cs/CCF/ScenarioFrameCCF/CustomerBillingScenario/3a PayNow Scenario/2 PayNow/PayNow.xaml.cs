@@ -37,7 +37,6 @@ namespace SDKTemplate
         {
             var task = CustomerOrderDataSource.PlaceOrderAsync(this._PageNavigationParameter, this.PayNowViewModel.ActuallyPaying);
             var usingWalletAmount = await task;
-            this.Frame.Navigate(typeof(CustomerProductListCC));
         }
     }
 }

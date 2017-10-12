@@ -61,13 +61,13 @@ namespace SDKTemplate
             string fomattedSMSContent = "";
             if (_OTPVerificationForPayingNow.WalletAmountToBeDeducted > 0)
             {
-                var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingCustomerOrder_Credit];
+                var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PlacingCustomerOrder_Credit];
                 fomattedSMSContent = String.Format(SMSContent, this._OTPVerificationForPayingNow.WalletAmountToBeDeducted,
                                                                     BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
             }
             else
             {
-                var SMSContent = OTPVConstants.SMSContents[ScenarioType.PlacingCustomerOrder_Debit];
+                var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PlacingCustomerOrder_Debit];
                 fomattedSMSContent = String.Format(SMSContent, Math.Abs(this._OTPVerificationForPayingNow.WalletAmountToBeDeducted),
                                                                     BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
             }

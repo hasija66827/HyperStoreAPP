@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public enum ScenarioType
+    public enum OTPScenarioType
     {
         PayToSupplier_Transaction,
         PlacingCustomerOrder_Credit,
@@ -30,17 +30,17 @@ namespace SDKTemplate
         private static readonly string User_Passcode = "OTP for updating the passcode for your Hyperstore Account is {0}. Please do not share it with anyone for security reasons.";
         private static readonly string User_Registration = "Hello Mr. {0}!!! OTP for creating your Hyperstore Account is {1}. Please do not share it with anyone for security reasons.";
 
-        public static Dictionary<ScenarioType, string> SMSContents = new Dictionary<ScenarioType, string>();
+        public static Dictionary<OTPScenarioType, string> SMSContents = new Dictionary<OTPScenarioType, string>();
 
         static OTPVConstants()
         {
-            SMSContents.Add(ScenarioType.PayToSupplier_Transaction, PayToSupplier_Transaction);
-            SMSContents.Add(ScenarioType.PlacingCustomerOrder_Credit, PlacingCustomerOrder_Credit);
-            SMSContents.Add(ScenarioType.PlacingCustomerOrder_Debit, PlacingCustomerOrder_Debit);
-            SMSContents.Add(ScenarioType.PlacingSupplierOrder_Credit, PlacingSupplierOrder_Credit);
-            SMSContents.Add(ScenarioType.ReceiveFromCustomer_Transaction, ReceiveFromCustomer_Transaction);
-            SMSContents.Add(ScenarioType.User_PasscodeChange, User_Passcode);
-            SMSContents.Add(ScenarioType.User_Registration, User_Registration);
+            SMSContents.Add(OTPScenarioType.PayToSupplier_Transaction, PayToSupplier_Transaction);
+            SMSContents.Add(OTPScenarioType.PlacingCustomerOrder_Credit, PlacingCustomerOrder_Credit);
+            SMSContents.Add(OTPScenarioType.PlacingCustomerOrder_Debit, PlacingCustomerOrder_Debit);
+            SMSContents.Add(OTPScenarioType.PlacingSupplierOrder_Credit, PlacingSupplierOrder_Credit);
+            SMSContents.Add(OTPScenarioType.ReceiveFromCustomer_Transaction, ReceiveFromCustomer_Transaction);
+            SMSContents.Add(OTPScenarioType.User_PasscodeChange, User_Passcode);
+            SMSContents.Add(OTPScenarioType.User_Registration, User_Registration);
         }
     }
 }

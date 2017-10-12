@@ -66,7 +66,7 @@ namespace SDKTemplate.Settings
 
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
-            var SMSContent = OTPVConstants.SMSContents[ScenarioType.User_PasscodeChange];
+            var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.User_PasscodeChange];
             var fomattedSMSContent = String.Format(SMSContent, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {

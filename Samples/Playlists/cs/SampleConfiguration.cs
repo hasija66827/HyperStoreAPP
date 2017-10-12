@@ -17,28 +17,39 @@ using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
+    public enum ScenarioType
+    {
+        CustomerBilling,
+        Customers,
+        CustomerOrder,
+        Products,
+        SupplierBilling,
+        Suppliers,
+        SupplierOrder,
+        Settings
+    }
+
     public partial class MainPage : Page
     {
         public const string FEATURE_NAME = "Hyper Store";
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE7BF" }, Title = "Customer Billing", ClassType = typeof(CustomerProductListCC) },
-            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"}, Title = "Customers", ClassType = typeof(CustomersCCF) },
-            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Customer Orders", ClassType = typeof(CustomerOrderListCCF) },
-            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE80F"}, Title = "Products", ClassType = typeof(ProductInStock) },
-            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Billing", ClassType = typeof(SupplierPurchasedProductListCC) },
-            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"},Title = "Suppliers", ClassType = typeof(SupplierCCF) },
-            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Supplier Orders", ClassType = typeof(SupplierOrderCCF) },
-            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE713"}, Title = "Settings", ClassType = typeof(SettingsCC) },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE7BF" }, Title = "Customer Billing", ScenarioType=ScenarioType.CustomerBilling },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"}, Title = "Customers",ScenarioType=ScenarioType.Customers },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Customer Orders", ScenarioType=ScenarioType.CustomerOrder },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE80F"}, Title = "Products", ScenarioType=ScenarioType.Products },
+            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Billing", ScenarioType = ScenarioType.SupplierBilling },
+            new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"},Title = "Suppliers", ScenarioType=ScenarioType.Suppliers },
+            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Supplier Orders", ScenarioType=ScenarioType.SupplierOrder },
+            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE713"}, Title = "Settings", ScenarioType=ScenarioType.Settings },
         };
     }
 
     public class Scenario
     {
-        public SymbolIcon SymbolIcon { get; set; }
         public FontIcon FontIcon { get; set; }
         public string Title { get; set; }
-        public Type ClassType { get; set; }
+        public ScenarioType ScenarioType { get; set; }
     }
 }

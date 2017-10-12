@@ -101,30 +101,35 @@ namespace SDKTemplate
         {
             ListBox scenarioListBox = sender as ListBox;
             Scenario s = scenarioListBox.SelectedItem as Scenario;
-            if (s != null)
-            {
-                if (s.ClassType == typeof(Settings.SettingsCC))
-                {
-                    MainFrame.Navigate(s.ClassType);
-                }
-                else if (s.ClassType == typeof(CustomerProductListCC) || s.ClassType==typeof(SupplierPurchasedProductListCC))
-                {
-                    MainFrame.Navigate(typeof(BillingPage), s);
-                }
-                else
-                {
-                    MainFrame.Navigate(typeof(CommonPage), s);
-                }
-                if (Window.Current.Bounds.Width < 640)
-                {
-                    Splitter.IsPaneOpen = false;
-                }
-            }
+            RefreshPage(s);
         }
 
         public List<Scenario> Scenarios
         {
             get { return this.scenarios; }
+        }
+
+        public static void RefreshPage(Scenario s)
+        {
+            if (s != null)
+            {
+                if (s.ScenarioType == ScenarioType.Settings)
+                {
+                    Current.MainFrame.Navigate(typeof(Settings.SettingsCC));
+                }
+                else if (s.ScenarioType == ScenarioType.CustomerBilling || s.ScenarioType == ScenarioType.SupplierBilling)
+                {
+                    Current.MainFrame.Navigate(typeof(BillingPage), s);
+                }
+                else
+                {
+                    Current.MainFrame.Navigate(typeof(CommonPage), s);
+                }
+                if (Window.Current.Bounds.Width < 640)
+                {
+                    Current.Splitter.IsPaneOpen = false;
+                }
+            }
         }
 
         /// <summary>
@@ -174,24 +179,7 @@ namespace SDKTemplate
             return true;
         }
     }
-    public class ScenarioSymbolBindingConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            Scenario s = value as Scenario;
-            if (s.SymbolIcon != null)
-            {
-                return s.SymbolIcon.Symbol;
-            }
-            return Symbol.More;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return true;
-        }
-    }
-
+   
     public class ScenarioFontIconBindingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

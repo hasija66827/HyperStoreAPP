@@ -31,45 +31,40 @@ namespace SDKTemplate
         {
             Scenario s = e.Parameter as Scenario;
 
-            if (s.ClassType == typeof(CustomerOrderListCCF))
+            if (s.ScenarioType == ScenarioType.CustomerOrder)
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterOrderCC));
-                ScenarioFrame.Navigate(s.ClassType);
+                ScenarioFrame.Navigate(typeof(CustomerOrderListCCF));
                 SummaryFrame.Navigate(typeof(OrderSummaryCC));
             }
-            else if (s.ClassType == typeof(CustomersCCF))
+            else if (s.ScenarioType == ScenarioType.SupplierOrder)
+            {
+                HeaderFrame.Navigate(typeof(SupplierASBCC));
+                SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
+                ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
+                SummaryFrame.Navigate(typeof(SupplierOrderSummary));
+            }
+            else if (s.ScenarioType == ScenarioType.Customers)
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Customer);
                 ScenarioFrame.Navigate(typeof(CustomersCCF));
-                //TODO: Move To Dashboard
-                //RightBottomFrame.Navigate(typeof(CustomerTrendCC));
                 SummaryFrame.Navigate(typeof(CustomerSummaryCC));
             }
-            else if (s.ClassType == typeof(ProductInStock))
-            {
-                HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
-                SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
-                SummaryFrame.Navigate(typeof(FilterProductCC));
-                ScenarioFrame.Navigate(s.ClassType);
-                //TODO: Move to Dashboard
-                //RightBottomFrame.Navigate(typeof(ProductConsumptionPer));
-            }
-            else if (s.ClassType == typeof(SupplierCCF))
+            else if (s.ScenarioType == ScenarioType.Suppliers)
             {
                 HeaderFrame.Navigate(typeof(SupplierASBCC));
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Supplier);
                 ScenarioFrame.Navigate(typeof(SupplierCCF));
                 SummaryFrame.Navigate(typeof(SupplierSummaryCC));
             }
-
-            else if (s.ClassType == typeof(SupplierOrderCCF))
+            else if (s.ScenarioType == ScenarioType.Products)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC));
-                SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
-                ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
-                SummaryFrame.Navigate(typeof(SupplierOrderSummary));
+                HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
+                SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
+                SummaryFrame.Navigate(typeof(FilterProductCC));
+                ScenarioFrame.Navigate(typeof(ProductInStock));
             }
             else
                 throw new NotImplementedException();

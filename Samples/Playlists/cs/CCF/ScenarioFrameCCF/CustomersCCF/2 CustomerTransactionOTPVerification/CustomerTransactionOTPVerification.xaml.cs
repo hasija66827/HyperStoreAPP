@@ -56,7 +56,7 @@ namespace SDKTemplate
 
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
-            var SMSContent = OTPVConstants.SMSContents[ScenarioType.ReceiveFromCustomer_Transaction];
+            var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.ReceiveFromCustomer_Transaction];
             var fomattedSMSContent = String.Format(SMSContent, this._CNTV?.ReceivingAmount, BaseURI.User.BusinessName, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {

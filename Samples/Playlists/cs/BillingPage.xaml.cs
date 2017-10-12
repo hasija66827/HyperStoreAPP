@@ -30,7 +30,7 @@ namespace SDKTemplate
         {
             Scenario s = e.Parameter as Scenario;
 
-            if (s.ClassType == typeof(CustomerProductListCC))
+            if (s.ScenarioType == ScenarioType.CustomerBilling)
             {
                 HeaderFrame.Navigate(typeof(CustomerASBCC));
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
@@ -38,7 +38,7 @@ namespace SDKTemplate
                 RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
                 SummaryFrame.Navigate(typeof(BillingSummaryCC));
             }
-            else if (s.ClassType == typeof(SupplierPurchasedProductListCC))
+            else if (s.ScenarioType == ScenarioType.SupplierBilling)
             {
                 HeaderFrame.Navigate(typeof(SupplierASBCC));
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));

@@ -62,7 +62,7 @@ namespace SDKTemplate
         //Currently we are not allowing OTPVerification for supplier transaction.
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
-            var SMSContent = OTPVConstants.SMSContents[ScenarioType.PayToSupplier_Transaction];
+            var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PayToSupplier_Transaction];
             var fomattedSMSContent = String.Format(SMSContent, this._SupplierNewTransactionViewModel?.PayingAmount, _SupplierNewTransactionViewModel?.Supplier?.Name, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {
