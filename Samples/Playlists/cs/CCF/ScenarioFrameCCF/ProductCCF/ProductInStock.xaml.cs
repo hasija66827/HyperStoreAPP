@@ -58,7 +58,7 @@ namespace SDKTemplate
                 TagIds = FilterProductByTagCC.Current.SelectedTagIds,
                 FilterProductQDT = FilterProductCC.Current.ProductFilterQDT
             };
-            var products = await ProductDataSource.RetrieveProductDataAsync(pfc);
+            var products = await ProductDataSource.RetrieveProductsAsync(pfc);
             if (products != null)
             {
                 var items = products.Select(p => new ProductViewModelBase(p)).ToList();

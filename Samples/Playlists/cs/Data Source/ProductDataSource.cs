@@ -28,10 +28,16 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<TProduct>> RetrieveProductDataAsync(ProductFilterCriteriaDTO pfc)
+        public static async Task<List<TProduct>> RetrieveProductsAsync(ProductFilterCriteriaDTO pfc)
         {
             List<TProduct> products = await Utility.RetrieveAsync<List<TProduct>>(BaseURI.HyperStoreService + API.Products, null, pfc);
             return products;
+        }
+
+        public static async Task<TProduct> RetrieveTheProductAsync(Guid productId)
+        {
+            var product = await Utility.RetrieveAsync<TProduct>(BaseURI.HyperStoreService + API.Products, productId.ToString(), null);
+            return product;
         }
 
         public static async Task<Int32> RetrieveTotalProducts()

@@ -20,7 +20,6 @@ namespace SDKTemplate
             if (deductedWalletAmount != null)
             {
                 SupplierBalanceUpdatedEvent?.Invoke();
-                ProductStockUpdatedEvent?.Invoke();
             }
             MainPage.Current.DeactivateProgressRing();
             return deductedWalletAmount;

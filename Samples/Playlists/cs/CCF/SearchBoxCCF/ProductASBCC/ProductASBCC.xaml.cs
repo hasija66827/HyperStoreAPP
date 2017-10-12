@@ -62,16 +62,12 @@ namespace SDKTemplate
             }
             RefreshTheProducts();
             ProductDataSource.ProductCreatedEvent += RefreshTheProducts;
-            CustomerOrderDataSource.ProductStockUpdatedEvent += RefreshTheProducts;
-            SupplierOrderDataSource.ProductStockUpdatedEvent += RefreshTheProducts;
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             ProductDataSource.ProductCreatedEvent -= RefreshTheProducts;
-            CustomerOrderDataSource.ProductStockUpdatedEvent -= RefreshTheProducts;
-            SupplierOrderDataSource.ProductStockUpdatedEvent -= RefreshTheProducts;
             base.OnNavigatedFrom(e);
         }
 
@@ -80,7 +76,7 @@ namespace SDKTemplate
             ProductASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             ProductDetails.Visibility = Visibility.Collapsed;
-            var products = await ProductDataSource.RetrieveProductDataAsync(null);
+            var products = await ProductDataSource.RetrieveProductsAsync(null);
             if (products != null)
                 this._Products = products.Select(p => new ProductASBViewModel(p)).ToList();
         }
@@ -150,23 +146,27 @@ namespace SDKTemplate
         /// Display details of the specified Product.
         /// </summary>
         /// <param name="Product"></param>
-        private void _SelectProduct(ProductASBViewModel product)
+        private async void _SelectProduct(ProductASBViewModel selectedProduct)
         {
-            this._selectedProductInASB = product;
-            if (product != null)
+            if (selectedProduct != null)
             {
+                var product = await ProductDataSource.RetrieveTheProductAsync(selectedProduct.ProductId);
+                if (product == null)
+                    return;
+                _selectedProductInASB = new ProductASBViewModel(product);
+                ProductId.Text = _selectedProductInASB.Code;
+                ProductName.Text = _selectedProductInASB.FormattedNameQuantity;
+                ProductSellingPrice.Text = Utility.ConvertToRupee(_selectedProductInASB.ValueIncTax);
+                ProductCostPrice.Text = Utility.ConvertToRupee(_selectedProductInASB.MRP);
+                ProductDiscountPer.Text = _selectedProductInASB.DiscountPer + "% Off";
+                ProductGSTPer.Text = _selectedProductInASB.SGSTPer + _selectedProductInASB.CGSTPer + "%GST";
+                ProductGlyph.Text = Utility.GetGlyphValue(_selectedProductInASB.Name);
                 NoResults.Visibility = Visibility.Collapsed;
                 ProductDetails.Visibility = Visibility.Visible;
-                ProductId.Text = product.Code;
-                ProductName.Text = product.FormattedNameQuantity;
-                ProductSellingPrice.Text = Utility.ConvertToRupee(product.ValueIncTax);
-                ProductCostPrice.Text = Utility.ConvertToRupee(product.MRP);
-                ProductDiscountPer.Text = product.DiscountPer + "% Off";
-                ProductGSTPer.Text = product.SGSTPer + product.CGSTPer + "%GST";
-                ProductGlyph.Text = Utility.GetGlyphValue(product.Name);
             }
             else
             {
+                _selectedProductInASB = null;
                 NoResults.Visibility = Visibility.Visible;
                 ProductDetails.Visibility = Visibility.Collapsed;
             }
