@@ -21,8 +21,8 @@ namespace SDKTemplate
         
         public FilterSupplierOrderViewModel()
         {
-            OrderDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-60), DateTime.Now.AddDays(1));
-            DueDateRange = new IRange<DateTime>(DateTime.Now.AddDays(-60), DateTime.Now.AddDays(60));
+            OrderDateRange = new IRange<DateTime>(DateTime.Now, DateTime.Now.AddDays(1));
+            DueDateRange = new IRange<DateTime>(DateTime.Now, DateTime.Now.AddMonths(2));
             IncludePartiallyPaidOrdersOnly = false;
         }
     }

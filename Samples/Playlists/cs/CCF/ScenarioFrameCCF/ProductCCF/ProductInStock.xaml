@@ -96,7 +96,7 @@
                                                Text="{x:Bind QuantityPurchased, Mode=OneTime}"
                                                Style="{StaticResource CalibriBasicTBStyle}" />
                                     <TextBlock x:Name="PurchasePrice"
-                                               Style="{StaticResource CalibriBasicTBStyle}"
+                                               Style="{StaticResource PCalibriBasicTBStyle}"
                                                Text="{x:Bind PurchasePrice, Mode=OneTime,Converter={StaticResource FloatToRupeeConverter}}" />
                                 </StackPanel>
                             </DataTemplate>
