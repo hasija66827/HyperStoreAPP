@@ -44,7 +44,7 @@ namespace SDKTemplate
                 if (ex.HResult == -2147012867 || ex.HResult== -2147012889)
                     userMessage = "Could not connect to server. Please check the internet connection.";
 
-                ErrorNotification.PopUpHTTPGetErrorNotifcation(ExtractAPIName(baseURI), userMessage);
+                ErrorNotification.PopUpHTTPGetErrorNotifcation(ExtractAPIName(actionURI), userMessage);
                 return default(T);
             }
         }
@@ -135,7 +135,7 @@ namespace SDKTemplate
                 if (ex.HResult == -2147012867 || ex.HResult == -2147012889)
                     userMessage = "Could not connect to server. Please check the internet connection.";
 
-                ErrorNotification.PopUpHTTPPutErrorNotifcation(ExtractAPIName(baseURI), userMessage);
+                ErrorNotification.PopUpHTTPPutErrorNotifcation(ExtractAPIName(actionURI), userMessage);
                 //TODO: handle different types of exception
                 return default(T);
             }
