@@ -1,0 +1,37 @@
+﻿<Page x:Class="SDKTemplate.SignUp.HeaderFrame.SignupHeaderCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate.SignUp.HeaderFrame"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+               >
+        <RelativePanel>
+            <Ellipse x:Name="BusinessGlyph"
+                     Style="{StaticResource EllipseStyle}" />
+            <FontIcon Glyph="&#xE913;"
+                      RelativePanel.AlignHorizontalCenterWith="BusinessGlyph"
+                      RelativePanel.AlignVerticalCenterWith="BusinessGlyph"
+                      Style="{StaticResource WhiteFontIconStyle}" />
+        </RelativePanel>
+        <RelativePanel Margin="50,0">
+            <Ellipse x:Name="AccountGlyph"
+                     Style="{StaticResource EllipseStyle}" />
+            <FontIcon Glyph="&#xE8D7;"
+                      RelativePanel.AlignHorizontalCenterWith="AccountGlyph"
+                      RelativePanel.AlignVerticalCenterWith="AccountGlyph"
+                      Style="{StaticResource WhiteFontIconStyle}" />
+        </RelativePanel>
+        <RelativePanel>
+            <Ellipse x:Name="ProfileGlyph"
+                     Style="{StaticResource EllipseStyle}" />
+            <FontIcon Glyph="&#xEA4A;"
+                      RelativePanel.AlignHorizontalCenterWith="ProfileGlyph"
+                      RelativePanel.AlignVerticalCenterWith="ProfileGlyph"
+                      Style="{StaticResource WhiteFontIconStyle}" />
+        </RelativePanel>
+    </StackPanel>
+</Page>

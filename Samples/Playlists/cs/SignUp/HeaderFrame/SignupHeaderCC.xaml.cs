@@ -1,5 +1,4 @@
-﻿using SDKTemplate.SignUp.HeaderFrame;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,24 +15,16 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SDKTemplate.SignUp
+namespace SDKTemplate.SignUp.HeaderFrame
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SignUpPage : Page
+    public sealed partial class SignupHeaderCC : Page
     {
-        public SignUpPage()
+        public SignupHeaderCC()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            HeaderFrame.Navigate(typeof(SignupHeaderCC));
-            ResultFrame.Navigate(typeof(CompleteUserInformationCC));
-            ContentFrame.Navigate(typeof(BusinessInformationCC));
-            base.OnNavigatedTo(e);
         }
     }
 }

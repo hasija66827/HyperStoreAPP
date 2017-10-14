@@ -53,8 +53,10 @@
                                 Date="{x:Bind _PCV.DateOfBirth, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}" />
         </StackPanel>
         <Button Content="Complete SignUp"
-                RelativePanel.AlignBottomWithPanel="True"
                 Click="Button_Click"
+                RelativePanel.AlignBottomWithPanel="True"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
                 Style="{StaticResource DetailButtonStyle}" />
     </RelativePanel>
 </Page>

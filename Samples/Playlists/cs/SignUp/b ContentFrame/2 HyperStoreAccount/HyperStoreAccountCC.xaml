@@ -31,6 +31,8 @@
         </StackPanel>
         <Button Content="Create a New Account"
                 Click="Button_Click"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.AlignBottomWithPanel="True"
                 Style="{StaticResource DetailButtonStyle}" />
     </RelativePanel>

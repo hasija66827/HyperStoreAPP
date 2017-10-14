@@ -48,7 +48,6 @@ namespace SDKTemplate.SignUp
         public string ConfirmPasscode { get { return this._confirmPasscode; } set { SetProperty(ref _confirmPasscode, value); } }
 
         private string _emailId;
-        [EmailAddress(ErrorMessage = "Email Id is Invalid")]
         public string EmailId
         {
             get { return this._emailId; }

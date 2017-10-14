@@ -259,6 +259,9 @@
       <DependentUpon>ProfileCompletionCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUp\b ContentFrame\3 ProfileCompletionCC\ProfileCompletionViewModel.cs" />
+    <Compile Include="SignUp\HeaderFrame\SignupHeaderCC.xaml.cs">
+      <DependentUpon>SignupHeaderCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUp\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
@@ -595,6 +598,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignUp\b ContentFrame\3 ProfileCompletionCC\ProfileCompletionCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUp\HeaderFrame\SignupHeaderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

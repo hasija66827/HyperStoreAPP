@@ -8,8 +8,8 @@
     <RelativePanel Background="White"
                    HorizontalAlignment="Center">
         <Frame x:Name="HeaderFrame"
-               Width="650"
-               Height="50"
+               Width="700"
+               Height="80"
                Background="{StaticResource FormThemeBrush}"
                Margin="0,30,0,0" />
         <Rectangle RelativePanel.Below="HeaderFrame"
@@ -24,9 +24,9 @@
                RelativePanel.AlignLeftWith="HeaderFrame"
                RelativePanel.Below="HeaderFrame" />
         <Frame x:Name="ResultFrame"
-               Width="550"
+               Width="500"
                Height="550"
-               Margin="40"
+               Margin="40,20"
                Background="{StaticResource FormThemeBrush}"
                RelativePanel.AlignVerticalCenterWith="ContentFrame"
                RelativePanel.RightOf="HeaderFrame" />

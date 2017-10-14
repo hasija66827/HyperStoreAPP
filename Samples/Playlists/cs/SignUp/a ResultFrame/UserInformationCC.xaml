@@ -5,48 +5,42 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid >
-        <StackPanel Margin="20,0,0,0">
-            <TextBlock Text="{x:Bind _CUIV.BIV.BusinessName, Mode=OneWay}"
-                       Style="{StaticResource BaseTextBlockStyle}"
-                       FontSize="28"
-                       Padding="0,30,30,0" />
-            <TextBlock Text="{x:Bind _CUIV.BIV.SelectedBusinessType, Mode=OneWay}"
-                       Style="{StaticResource SeparatorStyle}"
-                       FontSize="20"
-                       Padding="10,10,30,30" />
-            <Grid Margin="-20,0,0,0">
+    <Grid>
+        <StackPanel VerticalAlignment="Stretch">
+            <StackPanel x:Name="Header"
+                        VerticalAlignment="Top">
+                <TextBlock Text="{x:Bind _CUIV.BIV.BusinessName, Mode=OneWay}"
+                           FontFamily="Arial"
+                           FontSize="28"
+                           Padding="20" />
+                <TextBlock Text="{x:Bind _CUIV.BIV.SelectedBusinessType, Mode=OneWay}"
+                           Style="{StaticResource SeparatorStyle}"
+                           FontSize="20"
+                           Padding="20,0" />
+            </StackPanel>
+            <Grid Margin="-30,0,0,0"
+                  Height="350">
                 <WebView x:Name="MapWebView"
-                         Width="Auto"
-                         Height="300" />
+                         Width="Auto" />
             </Grid>
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="ContactInfo"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical">
                     <TextBlock Text="Address:"
-                               Padding="0,30,30,0"
-                               Style="{StaticResource BaseTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind _CUIV.BIV.FullAddress, Mode=OneWay}"
-                               FontSize="15"
-                               Padding="0,30,30,0"
-                               Style="{StaticResource SeparatorStyle}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                               Style="{StaticResource PaddedArialBasicStyle}" />
                     <TextBlock Text="GSTIN:"
-                               Padding="0,30,30,0"
-                               Style="{StaticResource BaseTextBlockStyle}" />
-                    <TextBlock Text="{x:Bind _CUIV.BIV.GSTIN, Mode=OneWay}"
-                               Padding="8,30,30,0"
-                               FontSize="15"
-                               Style="{StaticResource SeparatorStyle}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                               Style="{StaticResource PaddedArialBasicStyle}" />
                     <TextBlock Text="Phone:"
-                               Padding="0,30,30,0"
-                               Style="{StaticResource BaseTextBlockStyle}" />
+                               Style="{StaticResource PaddedArialBasicStyle}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{x:Bind _CUIV.BIV.FullAddress, Mode=OneWay}"
+                               Style="{StaticResource PaddedCaptionBasicStyle}" />
+                    <TextBlock Text="{x:Bind _CUIV.BIV.GSTIN, Mode=OneWay}"
+                               Style="{StaticResource PaddedCaptionBasicStyle}" />
                     <TextBlock Text="{x:Bind _CUIV.HSAV.MobileNo, Mode=OneWay}"
-                               Padding="8,30,30,0"
-                               FontSize="15"
-                               Style="{StaticResource SeparatorStyle}" />
+                               Style="{StaticResource PaddedCaptionBasicStyle}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
