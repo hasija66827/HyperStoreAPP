@@ -21,7 +21,7 @@ namespace SDKTemplate
             {
                 var message = String.Format("You should update the stock of the product {0} ({1}) as the quantity is {2} right now.", product.Name, product.Code, product.TotalQuantity);
                 ProductCreatedEvent?.Invoke();
-                SuccessNotification.PopUpSuccessNotification(API.Products, message);
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.Products, message);
             }
             return product;
         }

@@ -10,5 +10,6 @@ namespace SDKTemplate
     {
         public string Success_HTTPGet { get; set; }
         public string Success_HTTPPost { get; set; }
+        public string Success_HTTPPut { get; set; }
     }
 }

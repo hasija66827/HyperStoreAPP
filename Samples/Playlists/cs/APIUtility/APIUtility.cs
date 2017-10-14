@@ -161,6 +161,7 @@ namespace SDKTemplate
 
         private static string ExtractAPIName(string BaseURI)
         {
+            //TODO: what if the we have a guid at the last not the apiname, as we have in post request.
             var startIndexOfAPI = BaseURI.LastIndexOf("/") + 1;
             return BaseURI.Substring(startIndexOfAPI);
         }

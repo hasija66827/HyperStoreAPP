@@ -129,7 +129,7 @@ namespace SDKTemplate
                 else
                     secondMessage = String.Format("{0} owes you {1}.", PNP.SelectedSupplier.Name, formattedWalletBalance);
 
-                SuccessNotification.PopUpSuccessNotification(API.SupplierOrders, firstMessage + "\n" + secondMessage);
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.SupplierOrders, firstMessage + "\n" + secondMessage);
             }
         }
 

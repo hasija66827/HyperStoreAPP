@@ -38,7 +38,7 @@ namespace SDKTemplate
             else
                 secondMessage = String.Format("{1} owes you {0}.", formattedUpdatedWalletBalance, supplierName);
 
-            SuccessNotification.PopUpSuccessNotification(API.SupplierTransactions, firstMessage + "\n" + secondMessage);
+            SuccessNotification.PopUpHttpPostSuccessNotification(API.SupplierTransactions, firstMessage + "\n" + secondMessage);
         }
         #endregion
 

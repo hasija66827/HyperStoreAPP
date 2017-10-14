@@ -30,7 +30,7 @@ namespace SDKTemplate
             if (authenticationToken != null)
             {
                 var message = String.Format("Welcome {0} {1}!!!\n We are happy to find you here.", authenticationToken.User.FirstName, authenticationToken.User.LastName);
-                SuccessNotification.PopUpSuccessNotification(AuthenticationServiceAPI.Users, message);
+                SuccessNotification.PopUpHttpPostSuccessNotification(AuthenticationServiceAPI.Users, message);
             }
             return authenticationToken;
         }
@@ -44,7 +44,7 @@ namespace SDKTemplate
             {
                 BaseURI.User = user;
                 var message = String.Format("The passcode was succesfully updated.");
-                SuccessNotification.PopUpSuccessNotification(AuthenticationServiceAPI.Users, message);
+                SuccessNotification.PopUpHttpPostSuccessNotification(AuthenticationServiceAPI.Users, message);
             }
             return user;
         }

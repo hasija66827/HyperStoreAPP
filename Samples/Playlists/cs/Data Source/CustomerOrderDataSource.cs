@@ -59,7 +59,7 @@ namespace SDKTemp.Data
                 else
                     secondMessage = String.Format("{0} owes you {1}.", PNP.SelectedCustomer.Name, formattedWalletBalance);
 
-                SuccessNotification.PopUpSuccessNotification(API.CustomerOrders, firstMessage + "\n" + secondMessage);
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.CustomerOrders, firstMessage + "\n" + secondMessage);
             }
         }
 

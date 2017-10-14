@@ -14,7 +14,8 @@ namespace SDKTemplate
     {
         private static Dictionary<string, SuccessTitle> _Dictionary_API_Title;
 
-        private static string CreationSuccededForEntity = "Yay!! The {0} was created Successfully.";
+        private static string CreationSuccededForEntity = "Yay!!! The {0} was created successfully.";
+        private static string UpdationSuccededForEntity = "Yay!!! The {0} was updated successully.";
 
         public static void InitializeDictionary()
         {
@@ -30,6 +31,7 @@ namespace SDKTemplate
                         new SuccessTitle()
                         {
                             Success_HTTPPost = String.Format(CreationSuccededForEntity, APIName),
+                            Success_HTTPPut = String.Format(UpdationSuccededForEntity, APIName)
                         });
                 }
             }
@@ -40,11 +42,24 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="APIName">The APIName which is member of API class.</param>
         /// <param name="content">The content to be shown in notification.</param>
-        public static void PopUpSuccessNotification(string APIName, string content)
+        public static void PopUpHttpPostSuccessNotification(string APIName, string content)
         {
             SuccessTitle title;
             SuccessNotification._Dictionary_API_Title.TryGetValue(APIName, out title);
             SuccessNotification successNotification = new SuccessNotification(title?.Success_HTTPPost, content);
+            ToastNotificationManager.CreateToastNotifier().Show(successNotification.toast);
+        }
+
+        /// <summary>
+        /// It pops up the UI with the title retrieved from the dictionary(key param @APIName) and content specified by param @content.
+        /// </summary>
+        /// <param name="APIName">The APIName which is member of API class.</param>
+        /// <param name="content">The content to be shown in notification.</param>
+        public static void PopUpHttpPutSuccessNotification(string APIName, string content)
+        {
+            SuccessTitle title;
+            SuccessNotification._Dictionary_API_Title.TryGetValue(APIName, out title);
+            SuccessNotification successNotification = new SuccessNotification(title?.Success_HTTPPut, content);
             ToastNotificationManager.CreateToastNotifier().Show(successNotification.toast);
         }
 

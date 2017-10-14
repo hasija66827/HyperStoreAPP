@@ -25,7 +25,7 @@ namespace SDKTemplate
             {
                 CustomerCreatedEvent?.Invoke();
                 var message = String.Format("You can start taking orders from Customer {0} ({1}).", customer.Name, customer.MobileNo);
-                SuccessNotification.PopUpSuccessNotification(API.Customers, message);
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.Customers, message);
             }
             return customer;
         }
@@ -37,7 +37,8 @@ namespace SDKTemplate
             var customer = await Utility.UpdateAsync<TCustomer>(BaseURI.HyperStoreService + API.Customers, customerId.ToString(), customerDTO);
             if (customer != null)
             {
-                //TODO: succes notification
+                var message = String.Format("Customer {0} ({1}) is updated.", customer.Name, customer.MobileNo);
+                SuccessNotification.PopUpHttpPutSuccessNotification(API.Customers, message);
                 CustomerUpdatedEvent?.Invoke();
             }
             return customer;

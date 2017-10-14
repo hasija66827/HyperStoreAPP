@@ -20,7 +20,7 @@ namespace SDKTemplate
             {
                 var message = String.Format("You can associate {0} with any product in your store.\nThis can help you to filter out the products in meaningful way.", tag.TagName);
                 CreatedNewTagEvent?.Invoke(tag);
-                SuccessNotification.PopUpSuccessNotification(API.Tags, message);
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.Tags, message);
             }
             return tag;
         }

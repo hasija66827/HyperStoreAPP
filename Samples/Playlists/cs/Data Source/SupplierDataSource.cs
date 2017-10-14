@@ -25,7 +25,7 @@ namespace SDKTemplate
             {
                 var message = String.Format("You can Start placing Ordes to Supplier {0} ({1})", supplier.Name, supplier.MobileNo);
                 SupplierCreatedEvent?.Invoke();
-                SuccessNotification.PopUpSuccessNotification(API.Suppliers, message);
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.Suppliers, message);
             }
             return supplier;
         }
