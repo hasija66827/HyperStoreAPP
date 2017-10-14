@@ -33,6 +33,8 @@ namespace SDKTemplate
             this.InitializeComponent();
             TitleTB.Text = mobileNumber;
             _GeneratedOTP = generatedOTP;
+            //TODO: Remove it when we have SMS API working
+            _InputOTP = "123456";
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
