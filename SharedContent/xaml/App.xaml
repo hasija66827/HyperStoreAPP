@@ -279,7 +279,9 @@
                            TargetType="TextBlock"
                            BasedOn="{StaticResource CaptionBaseStyle}">
                         <Setter Property="Padding"
-                                Value="20" />
+                                Value="0,19" />
+                        <Setter Property="FontWeight"
+                                Value="SemiBold" />
                         <Setter Property="FontSize"
                                 Value="15" />
                     </Style>

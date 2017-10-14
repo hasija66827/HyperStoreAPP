@@ -5,18 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid>
+    <Grid Background="White">
         <StackPanel VerticalAlignment="Stretch">
             <StackPanel x:Name="Header"
                         VerticalAlignment="Top">
                 <TextBlock Text="{x:Bind _CUIV.BIV.BusinessName, Mode=OneWay}"
                            FontFamily="Arial"
                            FontSize="28"
-                           Padding="20" />
+                           Padding="20,10" />
                 <TextBlock Text="{x:Bind _CUIV.BIV.SelectedBusinessType, Mode=OneWay}"
                            Style="{StaticResource SeparatorStyle}"
                            FontSize="20"
-                           Padding="20,0" />
+                           Padding="20,5" />
             </StackPanel>
             <Grid Margin="-30,0,0,0"
                   Height="350">
