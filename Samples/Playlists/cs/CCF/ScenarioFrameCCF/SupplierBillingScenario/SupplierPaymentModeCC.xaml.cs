@@ -15,29 +15,16 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SDKTemplate
+namespace SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RootPage : Page
+    public sealed partial class SupplierPaymentModeCC : Page
     {
-        public static RootPage Current;
-        public RootPage()
+        public SupplierPaymentModeCC()
         {
-            Current = this;
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            RootFrame.Navigate(typeof(MainPage));
-            base.OnNavigatedTo(e);
-        }
-
-        public void Navigate(Type classType)
-        {
-            RootFrame.Navigate(classType);
         }
     }
 }

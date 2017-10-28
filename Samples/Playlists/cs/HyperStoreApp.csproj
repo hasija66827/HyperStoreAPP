@@ -142,6 +142,9 @@
       <DependentUpon>FilterSupplierOrderCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterSupplierOrderCC\FilterSupplierOrderViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPaymentModeCC.xaml.cs">
+      <DependentUpon>SupplierPaymentModeCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBViewModel.cs" />
@@ -430,6 +433,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BlankPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPaymentModeCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

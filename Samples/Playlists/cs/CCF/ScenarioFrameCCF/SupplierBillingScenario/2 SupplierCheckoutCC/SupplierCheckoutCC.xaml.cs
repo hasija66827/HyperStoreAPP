@@ -54,84 +54,9 @@ namespace SDKTemplate
             var IsValid = _SCV.ValidateProperties();
             if (IsValid)
             {
-                var IsVerified = await _InitiatePasscodeVerificationAsync();
-                if (IsVerified)
-                {
-                    var supplierOrderDTO = _CreateSupplierOrderDTO();
-                    var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
-                    if (usingWalletAmount != null)
-                        MainPage.RefreshPage(ScenarioType.SupplierBilling);
-                    _SendOrderCreationNotification(this.SupplierPageNavigationParameter, usingWalletAmount);
-                }
+                this.SupplierPageNavigationParameter.SupplierCheckoutViewModel = _SCV;
+                var IsCreated = await SupplierOrderDataSource.InitiateSupplierOrderCreation(this.SupplierPageNavigationParameter);
             }
         }
-
-        private async Task<bool> _InitiatePasscodeVerificationAsync()
-        {
-            var passcodeDialog = new PasscodeDialogCC.PasscodeDialogCC(BaseURI.User.Passcode);
-            await passcodeDialog.ShowAsync();
-            return passcodeDialog.IsVerified;
-        }
-
-        private SupplierOrderDTO _CreateSupplierOrderDTO()
-        {
-            var PNP = this.SupplierPageNavigationParameter;
-
-            var productPurchased = PNP.ProductPurchased.Select(p => new ProductPurchasedDTO()
-            {
-                ProductId = p.ProductId,
-                QuantityPurchased = p.QuantityPurchased,
-                PurchasePricePerUnit = p.PurchasePrice,
-            }
-            ).ToList();
-
-            var supplierOrderDTO = new SupplierOrderDTO()
-            {
-                DueDate = _SCV.DueDate,
-                IntrestRate = Utility.TryToConvertToDecimal(_SCV.IntrestRate),
-                ProductsPurchased = productPurchased,
-                PayingAmount = Utility.TryToConvertToDecimal(_SCV.PayingAmount),
-                SupplierId = PNP.SelectedSupplier?.SupplierId,
-                SupplierBillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
-            };
-            return supplierOrderDTO;
-        }
-
-        //Currently we are not using OTPverification for supplier order transaction.
-        private async Task<bool> _InitiateOTPVerification()
-        {
-            var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PlacingSupplierOrder_Credit];
-            var formattedSMSContent = String.Format(SMSContent, _SCV.AmountToBePaidLater,
-                                                              SupplierPageNavigationParameter?.SelectedSupplier?.Name,
-                                                              OTPVConstants.OTPLiteral);
-            var OTPVerificationDTO = new OTPVerificationDTO()
-            {
-                UserID = BaseURI.User.UserId,
-                ReceiverMobileNo = BaseURI.User.MobileNo,
-                SMSContent = formattedSMSContent
-            };
-            var IsVerified = await OTPDataSource.VerifyTransactionByOTPAsync(OTPVerificationDTO);
-            return IsVerified;
-        }
-
-        private static void _SendOrderCreationNotification(SupplierPageNavigationParameter PNP, decimal? usingWalletAmount)
-        {
-            if (usingWalletAmount != null)
-            {
-                string formattedUsingWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)usingWalletAmount));
-                string firstMessage = String.Format("{0} has been added to wallet.", formattedUsingWalletAmount);
-
-                string secondMessage = "";
-                decimal updatedWalletBalance = PNP.SelectedSupplier.WalletBalance + (decimal)usingWalletAmount;
-                var formattedWalletBalance = Utility.ConvertToRupee(Math.Abs(updatedWalletBalance));
-                if (updatedWalletBalance > 0)
-                    secondMessage = String.Format("You owe {0} to {1}.", formattedWalletBalance, PNP.SelectedSupplier.Name);
-                else
-                    secondMessage = String.Format("{0} owes you {1}.", PNP.SelectedSupplier.Name, formattedWalletBalance);
-
-                SuccessNotification.PopUpHttpPostSuccessNotification(API.SupplierOrders, firstMessage + "\n" + secondMessage);
-            }
-        }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="5269HyperStore.HyperStore" Publisher="CN=63499D29-CBC7-4148-919F-878BC6AB9E70" Version="1.2.2.0" />
+  <Identity Name="5269HyperStore.HyperStore" Publisher="CN=63499D29-CBC7-4148-919F-878BC6AB9E70" Version="1.2.3.0" />
   <mp:PhoneIdentity PhoneProductId="2ba8e66a-c6d7-4c6f-aefc-0a8e3b013540" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Hyper Store</DisplayName>

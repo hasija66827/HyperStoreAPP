@@ -1,1 +1,1 @@
-E:\Windows-universal-samples\Samples\Playlists\cs\bin\ARM\Release\Upload\HyperStoreApp_1.2.2.0\HyperStoreApp_1.2.2.0_x86_x64_arm.appxbundle
+E:\Windows-universal-samples\Samples\Playlists\cs\bin\ARM\Release\Upload\HyperStoreApp_1.2.3.0\HyperStoreApp_1.2.3.0_x86_x64_arm.appxbundle

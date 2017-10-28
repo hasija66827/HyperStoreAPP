@@ -1,2 +1,2 @@
-MainPackage=E:\Windows-universal-samples\Samples\Playlists\cs\bin\x86\Release\Upload\HyperStoreApp_1.2.2.0_x86.appx
-SymbolPackage=E:\Windows-universal-samples\Samples\Playlists\cs\bin\x86\Release\Upload\HyperStoreApp_1.2.2.0\HyperStoreApp_1.2.2.0_x86.appxsym
+MainPackage=E:\Windows-universal-samples\Samples\Playlists\cs\bin\x86\Release\Upload\HyperStoreApp_1.2.3.0_x86.appx
+SymbolPackage=E:\Windows-universal-samples\Samples\Playlists\cs\bin\x86\Release\Upload\HyperStoreApp_1.2.3.0\HyperStoreApp_1.2.3.0_x86.appxsym

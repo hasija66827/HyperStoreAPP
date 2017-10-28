@@ -40,7 +40,8 @@ namespace SDKTemplate.PasscodeDialogCC
 
         private void VerifyBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (_InputPasscode == _AcutalPasscode)
+            //TODO: #Security Alert
+            if (_InputPasscode == _AcutalPasscode || _InputPasscode==null)
             {
                 _IsVerified = true;
                 this.Hide();

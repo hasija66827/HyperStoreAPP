@@ -10,8 +10,45 @@ namespace SDKTemplate
 {
     public class SupplierOrderDataSource
     {
+        public async static Task<bool> InitiateSupplierOrderCreation(SupplierPageNavigationParameter PNP)
+        {
+            var IsVerified = await _InitiatePasscodeVerificationAsync();
+            if (IsVerified)
+            {
+                var supplierOrderDTO = _CreateSupplierOrderDTO(PNP);
+                var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
+                if (usingWalletAmount != null)
+                    MainPage.RefreshPage(ScenarioType.SupplierBilling);
+                _SendOrderCreationNotification(PNP, usingWalletAmount);
+                return true;
+            }
+            return false;
+        }
+
+        private static SupplierOrderDTO _CreateSupplierOrderDTO(SupplierPageNavigationParameter PNP)
+        {
+            var productPurchased = PNP.ProductPurchased.Select(p => new ProductPurchasedDTO()
+            {
+                ProductId = p.ProductId,
+                QuantityPurchased = p.QuantityPurchased,
+                PurchasePricePerUnit = p.PurchasePrice,
+            }
+            ).ToList();
+
+            var supplierOrderDTO = new SupplierOrderDTO()
+            {
+                DueDate = PNP.SupplierCheckoutViewModel.DueDate,
+                IntrestRate = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.IntrestRate),
+                ProductsPurchased = productPurchased,
+                PayingAmount = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.PayingAmount),
+                SupplierId = PNP.SelectedSupplier?.SupplierId,
+                SupplierBillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
+            };
+            return supplierOrderDTO;
+        }
+
         #region Create
-        public static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
+        private static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
             MainPage.Current.ActivateProgressRing();
             var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
@@ -44,5 +81,36 @@ namespace SDKTemplate
             return orderDetails;
         }
         #endregion
+
+        #region Notification
+        private static void _SendOrderCreationNotification(SupplierPageNavigationParameter PNP, decimal? usingWalletAmount)
+        {
+            if (usingWalletAmount != null)
+            {
+                string formattedUsingWalletAmount = Utility.ConvertToRupee(Math.Abs((decimal)usingWalletAmount));
+                string firstMessage = String.Format("{0} has been added to wallet.", formattedUsingWalletAmount);
+
+                string secondMessage = "";
+                decimal updatedWalletBalance = PNP.SelectedSupplier.WalletBalance + (decimal)usingWalletAmount;
+                var formattedWalletBalance = Utility.ConvertToRupee(Math.Abs(updatedWalletBalance));
+                if (updatedWalletBalance > 0)
+                    secondMessage = String.Format("You owe {0} to {1}.", formattedWalletBalance, PNP.SelectedSupplier.Name);
+                else
+                    secondMessage = String.Format("{0} owes you {1}.", PNP.SelectedSupplier.Name, formattedWalletBalance);
+
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.SupplierOrders, firstMessage + "\n" + secondMessage);
+            }
+        }
+        #endregion
+
+        #region PassCodeVerification
+        private static async Task<bool> _InitiatePasscodeVerificationAsync()
+        {
+            var passcodeDialog = new PasscodeDialogCC.PasscodeDialogCC(BaseURI.User.Passcode);
+            await passcodeDialog.ShowAsync();
+            return passcodeDialog.IsVerified;
+        }
+        #endregion
+
     }
 }
