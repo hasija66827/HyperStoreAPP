@@ -94,7 +94,7 @@
                         <StackPanel>
                             <TextBlock Text="Bill Amount"
                                        Style="{ThemeResource CaptionBasicTBStyle}" />
-                            <TextBlock Text="{x:Bind BillingSummary.PayAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                            <TextBlock Text="{x:Bind BillingSummary.BillAmount, Converter={StaticResource FloatToRupeeConverter}}"
                                        Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>
@@ -135,7 +135,7 @@
                         <StackPanel>
                             <TextBlock Text="Payed Amount"
                                        Style="{ThemeResource CaptionBasicTBStyle}" />
-                            <TextBlock Text="{x:Bind PayingAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                            <TextBlock Text="{x:Bind PayedAmount, Converter={StaticResource FloatToRupeeConverter}}"
                                        Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>

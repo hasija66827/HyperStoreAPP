@@ -173,13 +173,7 @@
                                       RelativePanel.AlignVerticalCenterWith="ByWalletGlyph"
                                       Style="{StaticResource WhiteFontIconStyle}" />
                         </RelativePanel>
-                        <StackPanel>
-                            <TextBlock Text="By Wallet "
-                                       Style="{ThemeResource CaptionBasicTBStyle}" />
-                            <TextBlock Text="{x:Bind PayedAmountByWallet, Converter={StaticResource FloatToRupeeConverter}}"
-                                       Style="{ThemeResource CalibriBasicTBStyle}" />
-                        </StackPanel>
-                    </StackPanel>
+                         </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
                             <Ellipse x:Name="ByTransactionGlyph"

@@ -14,8 +14,6 @@ namespace Models
         public DateTime OrderDate { get; set; }
         // Amount Payed on the order placement time.
         public decimal PayedAmount { get; set; }
-        // Amount Payed with wallet.
-        public decimal PayedAmountByWallet { get; set; }
         // Amount Settled Up Till date, always -leq BillAmount.
         public decimal SettledPayedAmount { get; set; }
         public decimal InterestRate { get; set; }

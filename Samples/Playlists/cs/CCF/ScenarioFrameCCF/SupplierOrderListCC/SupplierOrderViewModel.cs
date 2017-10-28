@@ -15,7 +15,7 @@ namespace SDKTemplate
     /// </summary>
     public class SupplierOrderViewModel : TSupplierOrder
     {
-        public decimal PayedAmountByTx { get { return this.SettledPayedAmount - this.PayedAmount - this.PayedAmountByWallet; } }
+        public decimal PayedAmountByTx { get { return this.SettledPayedAmount - this.PayedAmount; } }
         public decimal RemainingAmount{ get { return this.BillAmount - this.SettledPayedAmount; } }
         public string FormattedOrderDate
         {

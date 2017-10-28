@@ -45,7 +45,7 @@ namespace SDKTemplate
             if (this.PageNavigationParameter.OrderType == OrderType.SupplierOrder)
                 _CV.AmountToBePaid = this.PageNavigationParameter.SupplierPageNavigationParameter.SupplierBillingSummaryViewModel.BillAmount;
             else
-                _CV.AmountToBePaid = this.PageNavigationParameter.CustomerPageNavigationParameter.BillingSummaryViewModel.PayAmount;
+                _CV.AmountToBePaid = this.PageNavigationParameter.CustomerPageNavigationParameter.BillingSummaryViewModel.BillAmount;
         }
 
         private void _SCV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
@@ -62,11 +62,13 @@ namespace SDKTemplate
                 {
                     this.PageNavigationParameter.SupplierPageNavigationParameter.SupplierCheckoutViewModel = _CV;
                     var IsCreated = await SupplierOrderDataSource.InitiateSupplierOrderCreationAsync(this.PageNavigationParameter.SupplierPageNavigationParameter);
+                    MainPage.RefreshPage(ScenarioType.SupplierBilling);
                 }
                 else
                 {
                     this.PageNavigationParameter.CustomerPageNavigationParameter.CustomerCheckoutViewModel = _CV;
                     var IsCreated = await CustomerOrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
+                    MainPage.RefreshPage(ScenarioType.CustomerBilling);
                 }
             }
         }

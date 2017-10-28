@@ -17,9 +17,8 @@ namespace SDKTemplate
     {
         public string FormattedPaidBillAmount
         {
-            get { return Utility.ConvertToRupee(-this.UsingWalletAmount); }
+            get { return Utility.ConvertToRupee(this.SettledPayedAmount) + "/" + Utility.ConvertToRupee(this.BillAmount); }
         }
-
         public string FormattedOrderDate
         {
             get
@@ -42,7 +41,7 @@ namespace SDKTemplate
                         CartAmount = this.CartAmount,
                         DiscountAmount = this.DiscountAmount,
                         Tax = this.Tax,
-                        PayAmount = this.PayAmount,
+                        BillAmount = this.BillAmount,
                         TotalItems = this.TotalItems,
                         TotalQuantity = this.TotalQuantity,
                     };

@@ -33,8 +33,8 @@ namespace SDKTemplate
 
         private void Current_CustomerOrderListUpdatedEvent(IEnumerable<TCustomerOrder> customerOrders)
         {
-            this._OrderSummaryViewModel.TotalBillAmount = customerOrders.Sum(co => co.PayAmount);
-            this._OrderSummaryViewModel.TotalPayedAmount = customerOrders.Sum(co => co.PayingAmount);
+            this._OrderSummaryViewModel.TotalBillAmount = customerOrders.Sum(co => co.BillAmount);
+            this._OrderSummaryViewModel.TotalPayedAmount = customerOrders.Sum(co => co.PayedAmount);
             this._OrderSummaryViewModel.OnAllPropertyChanged();
         }
     }

@@ -47,7 +47,7 @@ namespace SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario
             else
             {
                 var CPNP = this.PageNavigationParameter.CustomerPageNavigationParameter;
-                _CV.AmountToBePaid = CPNP.BillingSummaryViewModel.PayAmount;
+                _CV.AmountToBePaid = CPNP.BillingSummaryViewModel.BillAmount;
             }
             _CV.PayingAmount = _CV.AmountToBePaid.ToString();
             base.OnNavigatedTo(e);
@@ -69,11 +69,13 @@ namespace SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario
                     {
                         this.PageNavigationParameter.SupplierPageNavigationParameter.SupplierCheckoutViewModel = _CV;
                         var IsCreated = await SupplierOrderDataSource.InitiateSupplierOrderCreationAsync(this.PageNavigationParameter.SupplierPageNavigationParameter);
+                        MainPage.RefreshPage(ScenarioType.SupplierBilling);
                     }
                     else
                     {
                         this.PageNavigationParameter.CustomerPageNavigationParameter.CustomerCheckoutViewModel = _CV;
                         var IsCreated = await CustomerOrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
+                        MainPage.RefreshPage(ScenarioType.CustomerBilling);
                     }
                 }
                 else if (PayLaterRadBtn.IsChecked == true)

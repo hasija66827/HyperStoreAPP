@@ -12,6 +12,8 @@ namespace Models
 
         [Required]
         public string CustomerOrderNo { get; set; }
+        public decimal BillAmount { get; set; }
+        public DateTime DueDate { get; set; }
 
         public DateTime OrderDate { get; set; }
 
@@ -20,16 +22,13 @@ namespace Models
         public decimal CartAmount { get; set; }
         public decimal DiscountAmount { get; set; }
         public decimal Tax { get; set; }
-        public decimal PayAmount { get; set; }
 
-        // PayingNow = PayBillAmount - UsingWalletAmount
+        // Amount Settled Up Till date, always -leq BillAmount.
+        public decimal SettledPayedAmount { get; set; }
+        public decimal PayedAmount { get; set; }
 
-        public bool IsPayingNow { get; set; }
+        public decimal InterestRate { get; set; }
 
-        public bool IsUsingWallet { get; set; }
-
-        public decimal PayingAmount { get; set; }
-        public decimal UsingWalletAmount { get; set; }
 
         public TCustomerOrder()
         {

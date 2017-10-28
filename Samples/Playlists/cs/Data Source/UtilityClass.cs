@@ -218,7 +218,7 @@ namespace SDKTemplate
             public decimal? Tax { get; set; }
 
             [Required]
-            public decimal? PayAmount { get; set; }
+            public decimal? BillAmount { get; set; }
         }
 
         public class SupplierBillingSummaryDTO
