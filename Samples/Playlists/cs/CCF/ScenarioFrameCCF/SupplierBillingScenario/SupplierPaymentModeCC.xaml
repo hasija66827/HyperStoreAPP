@@ -6,10 +6,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <UserControl.Resources>
-        <local:FloatToInverseRupeeConverter x:Key="FloatToInverseRupeeConverter" />
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
-        <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>
+    <Page.DataContext>
+        <local:SupplierCheckoutViewModel />
+    </Page.DataContext>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
@@ -26,6 +27,7 @@
                        Width="400"
                        Style="{StaticResource SubtitleTextBlockStyle}" />
             <TextBlock x:Name="TotalAmountToBePaidTB"
+                       Text="{x:Bind _SCV.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Foreground="{StaticResource PinkBrush}"
                        HorizontalAlignment="Left" />
@@ -53,6 +55,7 @@
         </StackPanel>
         <Button x:Name="ProceedToPayment"
                 Content="Proceed"
+                Click="ProceedToPayment_Click"
                 RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.AlignBottomWithPanel="True"

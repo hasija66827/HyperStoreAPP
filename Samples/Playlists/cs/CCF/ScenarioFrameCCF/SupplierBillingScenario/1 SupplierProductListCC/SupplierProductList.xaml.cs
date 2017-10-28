@@ -1,4 +1,5 @@
 ﻿using Models;
+using SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,7 +53,7 @@ namespace SDKTemplate
                 ProductPurchased = this.Products,
                 SupplierBillingSummaryViewModel = SupplierBillingSummaryCC.Current.BillingSummaryViewModel,
             };
-            this.Frame.Navigate(typeof(SupplierCheckoutCC), navigationParameter);
+            this.Frame.Navigate(typeof(SupplierPaymentModeCC), navigationParameter);
         }
 
         /// <summary>

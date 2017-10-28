@@ -22,9 +22,51 @@ namespace SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario
     /// </summary>
     public sealed partial class SupplierPaymentModeCC : Page
     {
+        private SupplierPageNavigationParameter SupplierPageNavigationParameter { get; set; }
+        private SupplierCheckoutViewModel _SCV { get; set; }
+
         public SupplierPaymentModeCC()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.SupplierPageNavigationParameter = (SupplierPageNavigationParameter)e.Parameter;
+            var PNP = this.SupplierPageNavigationParameter;
+            _SCV = DataContext as SupplierCheckoutViewModel;
+            _SCV.ErrorsChanged += _SCV_ErrorsChanged;
+            _SCV.AmountToBePaid = PNP.SupplierBillingSummaryViewModel.BillAmount;
+            _SCV.PayingAmount = PNP.SupplierBillingSummaryViewModel.BillAmount.ToString();
+            _SCV.DueDate = DateTime.Now.AddHours(1);
+            _SCV.IntrestRate = "0";
+            base.OnNavigatedTo(e);
+        }
+
+        private void _SCV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+
+        }
+
+        private async void ProceedToPayment_Click(object sender, RoutedEventArgs e)
+        {
+            var IsValid = _SCV.ValidateProperties();
+            if (IsValid)
+            {
+                if (PayNowRadBtn.IsChecked == true)
+                {
+                    this.SupplierPageNavigationParameter.SupplierCheckoutViewModel = _SCV;
+                    var IsCreated = await SupplierOrderDataSource.InitiateSupplierOrderCreation(this.SupplierPageNavigationParameter);
+                }
+                else if (PayLaterRadBtn.IsChecked == true)
+                {
+                    this.Frame.Navigate(typeof(SupplierCheckoutCC), this.SupplierPageNavigationParameter);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
         }
     }
 }
