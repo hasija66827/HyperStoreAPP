@@ -18,11 +18,12 @@ using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
- 
+
 using SDKTemp.Data;
 using System.Collections.ObjectModel;
 using SDKTemplate.DTO;
 using Models;
+using SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario;
 
 namespace SDKTemplate
 {
@@ -67,7 +68,7 @@ namespace SDKTemplate
                 index = this._Products.IndexOf(customerProduct);
                 this._Products[index].QuantityConsumed = 1;//Event will be triggered.
                 this.NewProductAddedIntoListEvent?.Invoke(customerProduct);
-            }   
+            }
         }
 
         public void InvokeProductListChangedEvent()
@@ -84,13 +85,14 @@ namespace SDKTemplate
             }
             var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
             var billSummary = BillingSummaryCC.Current.BillingSummaryViewModel;
-            CustomerPageNavigationParameter pageNavigationParameter = new CustomerPageNavigationParameter()
+            CustomerPageNavigationParameter customerNavigationParameter = new CustomerPageNavigationParameter()
             {
                 ProductsConsumed = Products,
                 SelectedCustomer = selectedCustomer,
                 BillingSummaryViewModel = billSummary,
             };
-            this.Frame.Navigate(typeof(SelectPaymentMode), pageNavigationParameter);
+            var navigationParameter = new PageNavigationParameter(OrderType.CustomerOrder, customerNavigationParameter, null);
+            this.Frame.Navigate(typeof(PayNowCC), navigationParameter);
         }
     }
 }

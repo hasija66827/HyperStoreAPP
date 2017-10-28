@@ -142,8 +142,8 @@
       <DependentUpon>FilterSupplierOrderCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterSupplierOrderCC\FilterSupplierOrderViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPaymentModeCC.xaml.cs">
-      <DependentUpon>SupplierPaymentModeCC.xaml</DependentUpon>
+    <Compile Include="CCF\CheckoutFrameCC\PayNowCC\PayNowCC.xaml.cs">
+      <DependentUpon>PayNowCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
@@ -152,10 +152,6 @@
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormCC.xaml.cs">
       <DependentUpon>TagFormCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\2 Select Payment Mode\SelectPaymentModeViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNowViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\2 PayNow\PayNowViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3b Pay Later Scenario\PayLaterModeViewModel.cs" />
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerTrendCC.xaml.cs">
       <DependentUpon>CustomerTrendCC.xaml</DependentUpon>
     </Compile>
@@ -297,7 +293,7 @@
       <DependentUpon>SupplierCCF.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPageNavigationParameter.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutViewModel.cs" />
+    <Compile Include="CCF\CheckoutFrameCC\CheckoutViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\CustomerFormCC\CustomerFormViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerPageNavigationParameter.cs" />
     <Compile Include="BlankPage.xaml.cs">
@@ -310,7 +306,7 @@
       <DependentUpon>ProductASBCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\CustomerBillingSummaryCC\BillingSummaryViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\1 CustomerProductListCC\CustomerProductListCC.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerProductListCC\CustomerProductListCC.xaml.cs">
       <DependentUpon>CustomerProductListCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBCC.xaml.cs">
@@ -333,15 +329,6 @@
     <Compile Include="Notifications\ErrorTittle.cs" />
     <Compile Include="Notifications\ErrorNotification.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNow.xaml.cs">
-      <DependentUpon>OTPVerificationForPayingNow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml.cs">
-      <DependentUpon>PayLaterOTPVerification.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\2 PayNow\PayNow.xaml.cs">
-      <DependentUpon>PayNow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>
@@ -349,25 +336,22 @@
     <Compile Include="CCF\ScenarioFrameCCF\CustomerOrderListCC\CustomerOrderViewModel.cs" />
     <Compile Include="Data Source\CustomerOrderDataSource.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\1 CustomerProductListCC\CustomerProductViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml.cs">
-      <DependentUpon>SelectPaymentMode.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerProductListCC\CustomerProductViewModel.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
     <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBCC.xaml.cs">
       <DependentUpon>SupplierASBCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\1 SupplierProductListCC\SupplierOrderProductVieModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\1 SupplierProductListCC\SupplierProductList.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierProductListCC\SupplierOrderProductVieModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierProductListCC\SupplierProductList.xaml.cs">
       <DependentUpon>SupplierProductList.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierBillingSummaryCC\SupplierBillingSummaryCC.xaml.cs">
       <DependentUpon>SupplierBillingSummaryCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierBillingSummaryCC\SupplierBillingSummaryViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutCC.xaml.cs">
-      <DependentUpon>SupplierCheckoutCC.xaml</DependentUpon>
+    <Compile Include="CCF\CheckoutFrameCC\PayLaterCC\PayLaterCC.xaml.cs">
+      <DependentUpon>PayLaterCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummary.xaml.cs">
       <DependentUpon>SupplierOrderSummary.xaml</DependentUpon>
@@ -420,23 +404,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\1 OTP Verification\OTPVerificationForPayingNow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3b Pay Later Scenario\PayLaterOTPVerification.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\3a PayNow Scenario\2 PayNow\PayNow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="BlankPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPaymentModeCC.xaml">
+    <Page Include="CCF\CheckoutFrameCC\PayNowCC\PayNowCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -448,7 +420,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\1 CustomerProductListCC\CustomerProductListCC.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerProductListCC\CustomerProductListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -536,15 +508,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\2 Select Payment Mode\SelectPaymentMode.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\1 SupplierProductListCC\SupplierProductList.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierProductListCC\SupplierProductList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -556,7 +524,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\2 SupplierCheckoutCC\SupplierCheckoutCC.xaml">
+    <Page Include="CCF\CheckoutFrameCC\PayLaterCC\PayLaterCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,6 +16,26 @@ namespace SDKTemplate
         public List<CustomerBillingProductViewModelBase> ProductsConsumed { get; set; }
         public TCustomer SelectedCustomer { get; set; }
         public CustomerBillingSummaryViewModelBase BillingSummaryViewModel { get; set; }
-        public SelectPaymentModeViewModelBase SelectPaymentModeViewModelBase { get; set; }
+        public CheckoutViewModel CustomerCheckoutViewModel { get; set; }
+    }
+    public enum OrderType
+    {
+        CustomerOrder,
+        SupplierOrder
+    }
+
+    public class PageNavigationParameter
+    {
+        private OrderType _OrderType;
+        public OrderType OrderType { get { return this._OrderType; } }
+        private CustomerPageNavigationParameter _CustomerPageNavigationParameter;
+        public CustomerPageNavigationParameter CustomerPageNavigationParameter { get { return this._CustomerPageNavigationParameter; } }
+        private SupplierPageNavigationParameter _SupplierPageNavigationParameter;
+        public SupplierPageNavigationParameter SupplierPageNavigationParameter { get { return this._SupplierPageNavigationParameter; } }
+        public PageNavigationParameter(OrderType orderType, CustomerPageNavigationParameter CPNV, SupplierPageNavigationParameter SPNV) {
+            _OrderType = orderType;
+            _CustomerPageNavigationParameter = CPNV;
+            _SupplierPageNavigationParameter = SPNV;
+        }
     }
 }

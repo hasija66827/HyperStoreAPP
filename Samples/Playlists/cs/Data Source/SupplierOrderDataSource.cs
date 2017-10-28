@@ -10,7 +10,7 @@ namespace SDKTemplate
 {
     public class SupplierOrderDataSource
     {
-        public async static Task<bool> InitiateSupplierOrderCreation(SupplierPageNavigationParameter PNP)
+        public async static Task<bool> InitiateSupplierOrderCreationAsync(SupplierPageNavigationParameter PNP)
         {
             var IsVerified = await _InitiatePasscodeVerificationAsync();
             if (IsVerified)
@@ -18,9 +18,10 @@ namespace SDKTemplate
                 var supplierOrderDTO = _CreateSupplierOrderDTO(PNP);
                 var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
                 if (usingWalletAmount != null)
-                    MainPage.RefreshPage(ScenarioType.SupplierBilling);
-                _SendOrderCreationNotification(PNP, usingWalletAmount);
-                return true;
+                {
+                    _SendOrderCreationNotification(PNP, usingWalletAmount);
+                    return true;
+                }
             }
             return false;
         }
@@ -39,8 +40,8 @@ namespace SDKTemplate
             {
                 DueDate = PNP.SupplierCheckoutViewModel.DueDate,
                 IntrestRate = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.IntrestRate),
-                ProductsPurchased = productPurchased,
                 PayingAmount = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.PayingAmount),
+                ProductsPurchased = productPurchased,
                 SupplierId = PNP.SelectedSupplier?.SupplierId,
                 SupplierBillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
             };
@@ -52,10 +53,6 @@ namespace SDKTemplate
         {
             MainPage.Current.ActivateProgressRing();
             var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
-            if (deductedWalletAmount != null)
-            {
-                //Notification is sent by the caller of this method.
-            }
             MainPage.Current.DeactivateProgressRing();
             return deductedWalletAmount;
         }

@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.SupplierCheckoutCC"
+﻿<Page x:Class="SDKTemplate.PayLaterCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -12,7 +12,7 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
     <Page.DataContext>
-        <local:SupplierCheckoutViewModel />
+        <local:CheckoutViewModel />
     </Page.DataContext>
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
@@ -39,7 +39,7 @@
             <TextBlock Text="Total Amount Due"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0" />
-            <TextBlock Text="{x:Bind _SCV.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+            <TextBlock Text="{x:Bind _CV.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0"
                        Grid.Column="1" />
@@ -48,7 +48,7 @@
                        Grid.Row="1" />
             <StackPanel Grid.Row="1"
                         Grid.Column="1">
-                <TextBox Text="{x:Bind _SCV.PayingAmount, Mode=TwoWay}"
+                <TextBox Text="{x:Bind _CV.PayingAmount, Mode=TwoWay}"
                          PlaceholderText="Enter Amount Paying Now"
                          Style="{StaticResource FormTextBoxStyle}"
                          Foreground="{StaticResource RedBrush}" />
@@ -58,7 +58,7 @@
             <TextBlock Text="Paying Later"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2" />
-            <TextBlock Text="{x:Bind _SCV.AmountToBePaidLater, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"
+            <TextBlock Text="{x:Bind _CV.AmountToBePaidLater, Mode=OneWay,Converter={StaticResource FloatToRupeeConverter} }"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="2"
                        Grid.Column="1" />
@@ -67,7 +67,7 @@
                        Grid.Row="3" />
             <StackPanel  Grid.Row="3"
                          Grid.Column="1">
-                <TextBox Text="{x:Bind _SCV.IntrestRate, Mode=TwoWay}"
+                <TextBox Text="{x:Bind _CV.IntrestRate, Mode=TwoWay}"
                          PlaceholderText="Enter Interest Rate"
                          Style="{StaticResource FormTextBoxStyle}" />
                 <TextBlock Text="{Binding Errors[IntrestRate][0]}"
@@ -77,7 +77,7 @@
                        VerticalAlignment="Center"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="4" />
-            <CalendarDatePicker Date="{x:Bind _SCV.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
+            <CalendarDatePicker Date="{x:Bind _CV.DueDate, Mode=TwoWay, Converter={StaticResource ConvertDateTimeOffsetToDateTime}}"
                                 DateFormat="{}{day.integer} {month.full} {year.full}"
                                 Grid.Row="4"
                                 Grid.Column="1" />

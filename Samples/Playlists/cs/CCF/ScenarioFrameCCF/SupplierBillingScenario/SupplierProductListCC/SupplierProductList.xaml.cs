@@ -47,13 +47,14 @@ namespace SDKTemplate
                 SupplierASBCC.Current.NotifyUser();
                 return;
             }
-            var navigationParameter = new SupplierPageNavigationParameter()
+            var supplierNavigationParameter = new SupplierPageNavigationParameter()
             {
                 SelectedSupplier = selectedSupplierInASB,
                 ProductPurchased = this.Products,
                 SupplierBillingSummaryViewModel = SupplierBillingSummaryCC.Current.BillingSummaryViewModel,
             };
-            this.Frame.Navigate(typeof(SupplierPaymentModeCC), navigationParameter);
+            var navigationParameter = new PageNavigationParameter(OrderType.SupplierOrder, null, supplierNavigationParameter);
+            this.Frame.Navigate(typeof(PayNowCC), navigationParameter);
         }
 
         /// <summary>
