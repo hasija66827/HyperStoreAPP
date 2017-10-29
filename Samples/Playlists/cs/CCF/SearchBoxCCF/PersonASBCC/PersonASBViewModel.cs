@@ -12,7 +12,7 @@ namespace SDKTemplate
     {
         public string Person_MobileNo_Name
         {
-            get { return string.Format("{0}({1})", MobileNo, Name); }
+            get { return string.Format("{0} ({1})", MobileNo, Name); }
         }
         public PersonASBViewModel(Person parent)
         {

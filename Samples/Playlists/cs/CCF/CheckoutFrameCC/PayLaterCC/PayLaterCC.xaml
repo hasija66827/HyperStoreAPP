@@ -40,6 +40,7 @@
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0" />
             <TextBlock Text="{x:Bind _CV.AmountToBePaid, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                       Foreground="{StaticResource PinkBrush}"
                        Style="{StaticResource SubtitleTextBlockStyle}"
                        Grid.Row="0"
                        Grid.Column="1" />
@@ -51,7 +52,8 @@
                 <TextBox Text="{x:Bind _CV.PayingAmount, Mode=TwoWay}"
                          PlaceholderText="Enter Amount Paying Now"
                          Style="{StaticResource FormTextBoxStyle}"
-                         Foreground="{StaticResource RedBrush}" />
+                         Foreground="{StaticResource GreenBrush}" 
+                         />
                 <TextBlock Text="{Binding Errors[PayingAmount][0]}"
                            Style="{StaticResource ErrorTextBlockStyle}" />
             </StackPanel>

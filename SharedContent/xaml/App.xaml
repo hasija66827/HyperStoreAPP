@@ -67,7 +67,7 @@
                     <SolidColorBrush x:Key="CustomerEllipseBrush"
                                      Color="#FF830D0D" />
                     <SolidColorBrush x:Key="SupplierEllipseBrush"
-                                     Color="#FF8C7A07" />
+                                     Color="#FF830D0D" />
                     <SolidColorBrush x:Key="ProductEllipseBrush"
                                      Color="#FFA9DD13" />
                     <SolidColorBrush x:Key="BlueThemeBrush"

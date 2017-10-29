@@ -43,14 +43,14 @@ namespace SDKTemplate
             this._EntityType = (EntityType)e.Parameter;
             _PFV = DataContext as PersonFormViewModel;
             _PFV.ErrorsChanged += AddSupplierViewModel_ErrorsChanged;
-            if (e.Parameter != null)
+            if (e.Parameter == null)
             {
-                var supplier = (Person)e.Parameter;
-                _PFV.SupplierId = supplier.PersonId;
-                _PFV.Address = supplier.Address;
-                _PFV.GSTIN = supplier.GSTIN;
-                _PFV.MobileNo = supplier.MobileNo;
-                _PFV.Name = supplier.Name;
+                var person = (Person)e.Parameter;
+                _PFV.SupplierId = person.PersonId;
+                _PFV.Address = person.Address;
+                _PFV.GSTIN = person.GSTIN;
+                _PFV.MobileNo = person.MobileNo;
+                _PFV.Name = person.Name;
                 _FormMode = FormMode.Update;
                 SaveBtn.Content = "Update";
             }

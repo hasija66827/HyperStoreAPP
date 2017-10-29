@@ -19,8 +19,8 @@
             <AutoSuggestBox HorizontalAlignment="Left"
                             x:Name="SupplierASB"
                             Height="30"
-                            TextMemberPath="Supplier_MobileNo_Name"
-                            DisplayMemberPath="Supplier_MobileNo_Name"
+                            TextMemberPath="Person_MobileNo_Name"
+                            DisplayMemberPath="Person_MobileNo_Name"
                             PlaceholderText="Search By Mobile Number or Name"
                             TextChanged="_PersonASB_TextChanged"
                             QueryIcon="Find"
@@ -59,7 +59,7 @@
                        Style="{StaticResource BaseTextBlockStyle}"
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        RelativePanel.RightOf="SupplierBackground"
-                       Margin="12,11,12,0" />
+                       Margin="12,0" />
             <TextBlock x:Name="WholeSellerName"
                        Style="{StaticResource BodyTextBlockStyle}"
                        Foreground="{StaticResource SystemControlForegroundBaseHighBrush}"
@@ -72,6 +72,11 @@
                        RelativePanel.Below="WholeSellerName"
                        RelativePanel.AlignLeftWith="WholeSellerName"
                        Margin="12,0" />
+            <TextBlock x:Name="NetWorth"
+                       Text="Net Worth: "
+                       Foreground="{StaticResource GreenBrush}"
+                       Style="{StaticResource ArialBaseStyle}"
+                       RelativePanel.AlignBottomWithPanel="True" />
         </RelativePanel>
     </RelativePanel>
 </Page>
