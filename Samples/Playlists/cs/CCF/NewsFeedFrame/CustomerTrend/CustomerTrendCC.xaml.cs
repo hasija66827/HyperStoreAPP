@@ -29,7 +29,7 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this._CustomerPurchaseTrendCollection = new CustomerPurchaseTrendCollectionViewModel();
-            CustomersCCF.Current.CustomerSelectionChangeEvent += Current_CustomerSelectionChangeEvent;
+           
         }
 
         private async void Current_CustomerSelectionChangeEvent(TCustomer selectedCustomer)

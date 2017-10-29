@@ -18,13 +18,18 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-  
+    enum FormMode
+    {
+        Create,
+        Update,
+    };
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class SupplierFormCC : Page
     {
         public static SupplierFormCC Current;
+        private EntityType _EntityType { get; set; }
         private SupplierFormViewModel _SFV { get; set; }
         private FormMode _FormMode { get; set; }
         public SupplierFormCC()
@@ -35,6 +40,7 @@ namespace SDKTemplate
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            this._EntityType = (EntityType)e.Parameter;
             _SFV = DataContext as SupplierFormViewModel;
             _SFV.ErrorsChanged += AddSupplierViewModel_ErrorsChanged;
             if (e.Parameter != null)
@@ -73,7 +79,7 @@ namespace SDKTemplate
             {
                 SupplierDTO supplierDTO = new SupplierDTO()
                 {
-                    EntityType = EntityType.Supplier,
+                    EntityType = this._EntityType,
                     Address = _SFV.Address,
                     GSTIN = _SFV.GSTIN,
                     MobileNo = _SFV.MobileNo,

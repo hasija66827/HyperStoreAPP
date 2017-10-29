@@ -12,55 +12,7 @@ namespace SDKTemp.Data
 {
     public class CustomerOrderDataSource
     {
-        #region Create
-       
-        private static CustomerOrderDTO _CreateCustomerOrderDTO(CustomerPageNavigationParameter PNP)
-        {
-            var productsConsumed = PNP.ProductsPurchased.Select(p => new ProductPurchasedDTO()
-            {
-                ProductId = p.ProductId,
-                QuantityPurchased = p.QuantityPurchased
-            }).ToList();
-
-            var customerOrderDTO = new CustomerOrderDTO()
-            {
-                CustomerBillingSummaryDTO = PNP.BillingSummaryViewModel,
-                CustomerId = PNP.SelectedCustomer?.SupplierId,
-                DueDate = PNP.CustomerCheckoutViewModel.DueDate,
-                IntrestRate = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.IntrestRate),
-                PayingAmount = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.PayingAmount),
-                ProductsConsumed = productsConsumed
-            };
-            return customerOrderDTO;
-        }
-
-        private static async Task<decimal?> _CreateCustomerOrderAsync(CustomerOrderDTO customerOrderDTO)
-        {
-            MainPage.Current.ActivateProgressRing();
-            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.CustomerOrders, customerOrderDTO);
-            MainPage.Current.DeactivateProgressRing();
-            return deductedWalletAmount;
-        }
-        #endregion
-
-        public static async Task<List<TCustomerOrder>> RetrieveCustomerOrdersAsync(CustomerOrderFilterCriteriaDTO cofc)
-        {
-            List<TCustomerOrder> customerOrders = await Utility.RetrieveAsync<List<TCustomerOrder>>(BaseURI.HyperStoreService + API.CustomerOrders, null, cofc);
-            return customerOrders;
-        }
-
-        public static async Task<Int32> RetrieveTotalCustomerOrder()
-        {
-            Int32 totalOrders = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.CustomerOrders, CustomAction.GetTotalRecordsCount, null);
-            return totalOrders;
-        }
-
-        public static async Task<List<TCustomerOrderProduct>> RetrieveOrderDetailsAsync(Guid customerOrderId)
-        {
-            List<TCustomerOrderProduct> orderDetails = await Utility.RetrieveAsync<List<TCustomerOrderProduct>>(BaseURI.HyperStoreService + API.CustomerOrderProducts, customerOrderId.ToString(), null);
-            return orderDetails;
-        }
-
+      
         #region SendNotification
         private static void _SendOrderCreationNotification(CustomerPageNavigationParameter PNP, decimal? deductedWalletAmount)
         {

@@ -11,6 +11,7 @@
 
 using Models;
 using SDKTemp.Data;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Core;
@@ -43,7 +44,7 @@ namespace SDKTemplate
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(CustomerFormCC));
+            EntityFrame.Navigate(typeof(SupplierFormCC), EntityType.Customer);
         }
 
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
@@ -55,13 +56,13 @@ namespace SDKTemplate
         private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(SupplierFormCC));
+            EntityFrame.Navigate(typeof(SupplierFormCC), EntityType.Supplier);
         }
 
-        public void UpdateCustomer(TCustomer customer)
+        public void UpdateCustomer(TSupplier customer)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(CustomerFormCC), customer);
+            EntityFrame.Navigate(typeof(SupplierFormCC), customer);
         }
 
         public void UpdateSupplier(TSupplier supplier)
