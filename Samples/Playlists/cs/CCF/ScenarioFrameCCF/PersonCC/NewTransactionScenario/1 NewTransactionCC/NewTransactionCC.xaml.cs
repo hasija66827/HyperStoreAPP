@@ -21,21 +21,21 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierNewTransactionCC : Page
+    public sealed partial class NewTransactionCC : Page
     {
-        private SupplierNewTransactionViewModel _SNTV { get; set; }
-        public SupplierNewTransactionCC()
+        private NewTransactionViewModel _NTV { get; set; }
+        public NewTransactionCC()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var selectedSupplier = (TSupplier)e.Parameter;
-            _SNTV = DataContext as SupplierNewTransactionViewModel;
-            _SNTV.ErrorsChanged += _SNTV_ErrorsChanged;
-            _SNTV.Supplier = selectedSupplier;
-            _SNTV.Amount = null;
+            var selectedSupplier = (Person)e.Parameter;
+            _NTV = DataContext as NewTransactionViewModel;
+            _NTV.ErrorsChanged += _SNTV_ErrorsChanged;
+            _NTV.Supplier = selectedSupplier;
+            _NTV.Amount = null;
         }
 
         private void _SNTV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
@@ -45,9 +45,9 @@ namespace SDKTemplate
 
         private void ProceedBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsValid = _SNTV.ValidateProperties();
+            var IsValid = _NTV.ValidateProperties();
             if (IsValid)
-                this.Frame.Navigate(typeof(SupplierTransactionOTPVerificationCC), this._SNTV);
+                this.Frame.Navigate(typeof(TransactionConfirmationCC), this._NTV);
         }
     }
 }

@@ -9,24 +9,20 @@ namespace SDKTemplate
 {
     class BaseURI
     {
-        public static TUser User { get; set; }
+        public static User User { get; set; }
         //public static string HyperStoreService { get { return "https://hyperstoreservicewebapp20170924100256.azurewebsites.net/api/" + User.UserId + "/"; } }
         public static string HyperStoreService { get { return "https://localhost:44346/api/" + User.UserId + "/"; } }
     }
 
     class API
     {
-        public static string Customers { get { return "Customers"; } }
         public static string Products { get { return "Products"; } }
-        public static string Persons { get { return "Suppliers"; } }
+        public static string Persons { get { return "Persons"; } }
         public static string Tags { get { return "Tags"; } }
-        public static string CustomerOrders { get { return "CustomerOrders"; } }
-        public static string CustomerTransactions { get { return "CustomerTransactions"; } }
-        public static string SupplierOrders { get { return "SupplierOrders"; } }
-        public static string Transactions { get { return "SupplierTransactions"; } }
+        public static string Orders { get { return "Orders"; } }
+        public static string Transactions { get { return "Transactions"; } }
 
-        public static string CustomerOrderProducts { get { return "CustomerOrderProducts"; } }
-        public static string SupplierOrderProducts { get { return "SupplierOrderProducts"; } }
+        public static string OrderProducts { get { return "OrderProducts"; } }
         public static string CustomerPurchaseTrend { get { return "CustomerPurchaseTrend"; } }
         public static string ProductConsumptionTrend { get { return "ProductConsumptionTrend"; } }
         public static string PriceQuotedBySupplier { get { return "PriceQuotedBySupplier"; } }

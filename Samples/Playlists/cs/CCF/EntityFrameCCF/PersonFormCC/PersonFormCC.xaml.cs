@@ -30,27 +30,27 @@ namespace SDKTemplate
     {
         public static PersonFormCC Current;
         private EntityType _EntityType { get; set; }
-        private PersonFormViewModel _SFV { get; set; }
+        private PersonFormViewModel _PFV { get; set; }
         private FormMode _FormMode { get; set; }
         public PersonFormCC()
         {
             this.InitializeComponent();
-            _SFV = new PersonFormViewModel();
+            _PFV = new PersonFormViewModel();
             Current = this;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._EntityType = (EntityType)e.Parameter;
-            _SFV = DataContext as PersonFormViewModel;
-            _SFV.ErrorsChanged += AddSupplierViewModel_ErrorsChanged;
+            _PFV = DataContext as PersonFormViewModel;
+            _PFV.ErrorsChanged += AddSupplierViewModel_ErrorsChanged;
             if (e.Parameter != null)
             {
-                var supplier = (TSupplier)e.Parameter;
-                _SFV.SupplierId = supplier.SupplierId;
-                _SFV.Address = supplier.Address;
-                _SFV.GSTIN = supplier.GSTIN;
-                _SFV.MobileNo = supplier.MobileNo;
-                _SFV.Name = supplier.Name;
+                var supplier = (Person)e.Parameter;
+                _PFV.SupplierId = supplier.PersonId;
+                _PFV.Address = supplier.Address;
+                _PFV.GSTIN = supplier.GSTIN;
+                _PFV.MobileNo = supplier.MobileNo;
+                _PFV.Name = supplier.Name;
                 _FormMode = FormMode.Update;
                 SaveBtn.Content = "Update";
             }
@@ -74,25 +74,25 @@ namespace SDKTemplate
 
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            var IsValid = _SFV.ValidateProperties();
+            var IsValid = _PFV.ValidateProperties();
             if (IsValid)
             {
                 SupplierDTO supplierDTO = new SupplierDTO()
                 {
                     EntityType = this._EntityType,
-                    Address = _SFV.Address,
-                    GSTIN = _SFV.GSTIN,
-                    MobileNo = _SFV.MobileNo,
-                    Name = _SFV.Name
+                    Address = _PFV.Address,
+                    GSTIN = _PFV.GSTIN,
+                    MobileNo = _PFV.MobileNo,
+                    Name = _PFV.Name
                 };
-                TSupplier supplier = null;
+                Person supplier = null;
                 if (_FormMode == FormMode.Create)
                 {
                     supplier = await PersonDataSource.CreateNewPerson(supplierDTO);
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    supplier = await PersonDataSource.UpdateSupplierAsync((Guid)_SFV.SupplierId, supplierDTO);
+                    supplier = await PersonDataSource.UpdateSupplierAsync((Guid)_PFV.SupplierId, supplierDTO);
                 }
                 else
                 {

@@ -23,7 +23,7 @@ namespace SDKTemplate
                 else return 0;
             }
         }
-        public SupplierBillingProductViewModelBase(TProduct parent) : base(parent)
+        public SupplierBillingProductViewModelBase(Product parent) : base(parent)
         {
             this.QuantityPurchased = 1;
             this.PurchasePrice = this.ValueIncTax;
@@ -60,7 +60,7 @@ namespace SDKTemplate
             }
         }
 
-        public SupplierBillingProductViewModel(TProduct parent) : base(parent)
+        public SupplierBillingProductViewModel(Product parent) : base(parent)
         {
         }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

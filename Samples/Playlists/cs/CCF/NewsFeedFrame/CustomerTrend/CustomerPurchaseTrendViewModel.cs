@@ -12,7 +12,7 @@ namespace SDKTemplate
     /// </summary>
     public sealed class CustomerPurchaseTrendCollectionViewModel
     {
-        public List<TCustomerPurchaseTrend> CustomerPurchaseTrends { get; set; }
+        public List<CustomerPurchaseTrend> CustomerPurchaseTrends { get; set; }
         public string CustomerName { get; set; }
         private decimal _NetWorthOfCustomer
         {

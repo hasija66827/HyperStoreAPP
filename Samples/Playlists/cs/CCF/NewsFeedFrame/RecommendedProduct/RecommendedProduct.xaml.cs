@@ -35,7 +35,7 @@ namespace SDKTemplate
             CustomerProductListCC.Current.NewProductAddedIntoListEvent += Current_NewProductAddedIntoListEvent;
         }
 
-        private void Current_NewProductAddedIntoListEvent(TProduct product)
+        private void Current_NewProductAddedIntoListEvent(Product product)
         {
             var purchasedRecomProduct = this._RecomProducts.Where(rp => rp.ProductId == product.ProductId).FirstOrDefault();
             if (purchasedRecomProduct != null)
@@ -48,7 +48,7 @@ namespace SDKTemplate
             if (customer != null)
             {
 
-                var TRecomProds = await AnalyticsDataSource.RetrieveRecommendedProductAsync((Guid)customer.SupplierId);
+                var TRecomProds = await AnalyticsDataSource.RetrieveRecommendedProductAsync((Guid)customer.PersonId);
                 var recomProds = TRecomProds.Select(rp => new RecommendedProductViewModel(rp));
                 recomProds.OrderBy(rp => rp.LastOrderDate);
                 this._RecomProducts.Clear();

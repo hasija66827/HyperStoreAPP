@@ -19,7 +19,7 @@
                               Style="{StaticResource ListViewStyle}"
                               RelativePanel.Below="HeaderPanel">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="model:TCustomerPurchaseTrend">
+                            <DataTemplate x:DataType="model:CustomerPurchaseTrend">
                                 <StackPanel Style="{StaticResource DetailListStackPanel}">
                                     <TextBlock x:Name="ProductName"
                                                Style="{StaticResource LargeListTextBlockStyle}"

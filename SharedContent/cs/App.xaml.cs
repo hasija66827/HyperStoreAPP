@@ -83,7 +83,7 @@ namespace SDKTemplate
                 // configuring the new page by passing required information as a navigation
                 // parameter
 
-                BaseURI.User = new Models.TUser();// Need to removed, as it will be setup in the login or signup time.
+                BaseURI.User = new Models.User();// Need to removed, as it will be setup in the login or signup time.
                 rootFrame.Navigate(typeof(RootPage), e.Arguments);
             }
             // Ensure the current window is active

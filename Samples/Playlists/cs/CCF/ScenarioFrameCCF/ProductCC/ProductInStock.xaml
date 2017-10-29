@@ -83,10 +83,10 @@
                             <DataTemplate x:DataType="common:PriceQuotedBySupplierViewModel">
                                 <StackPanel Style="{StaticResource DetailListStackPanel}">
                                     <TextBlock x:Name="SupplierName"
-                                               Text="{x:Bind Supplier.Name, Mode=OneTime}"
+                                               Text="{x:Bind Person.Name, Mode=OneTime}"
                                                Style="{StaticResource LargeArialBasicTBStyle}" />
                                     <TextBlock x:Name="SupplierMobileNo"
-                                               Text="{x:Bind Supplier.MobileNo, Mode=OneTime}"
+                                               Text="{x:Bind Person.MobileNo, Mode=OneTime}"
                                                Style="{StaticResource CalibriBasicTBStyle}" />
                                     <TextBlock x:Name="OrderDate"
                                                Text="{x:Bind FormattedOrderDate, Mode=OneTime}"

@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace SDKTemplate
 {
-    public class RecommendedProductViewModel : TRecommendedProduct
+    public class RecommendedProductViewModel : RecommendedProduct
     {
         public string FormattedLastOrderDate
         {
@@ -19,7 +19,7 @@ namespace SDKTemplate
                 return formatter.Format(this.LastOrderDate);
             }
         }
-        public RecommendedProductViewModel(TRecommendedProduct parent)
+        public RecommendedProductViewModel(RecommendedProduct parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);

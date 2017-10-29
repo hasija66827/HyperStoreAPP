@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace Models
 {
-    public class TCustomerPurchaseTrend
+    public class CustomerPurchaseTrend
     {
         public int TotalQuantityPurchased { get; set; }
-        public TProduct Product { get; set; }
+        public Product Product { get; set; }
         public decimal NetValue { get; set; }
-        public TCustomerPurchaseTrend() { }
+        public CustomerPurchaseTrend() { }
     }
 }

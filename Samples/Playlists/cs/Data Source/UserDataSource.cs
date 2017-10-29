@@ -18,7 +18,7 @@ namespace SDKTemplate
     public class AuthenticationToken
     {
         public EAuthenticationFactor AuthenticationFactor { get; set; }
-        public TUser User { get; set; }
+        public User User { get; set; }
     }
 
     class UserDataSource
@@ -37,9 +37,9 @@ namespace SDKTemplate
         #endregion
 
         #region Update
-        public static async Task<TUser> UpdatePasscodeAsync(Guid userId, UpdateUserDTO updateUserDTO)
+        public static async Task<User> UpdatePasscodeAsync(Guid userId, UpdateUserDTO updateUserDTO)
         {
-            var user = await Utility.UpdateAsync<TUser>(AuthenticationServiceAPI.Users, userId.ToString(), updateUserDTO);
+            var user = await Utility.UpdateAsync<User>(AuthenticationServiceAPI.Users, userId.ToString(), updateUserDTO);
             if (user != null)
             {
                 BaseURI.User = user;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class TProductMetadata
+    class ProductMetadata
     {
         public IRange<decimal?> DiscountPerRange { get; set; }
         public IRange<decimal> QuantityRange { get; set; }

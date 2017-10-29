@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class TPriceQuotedBySupplier
+    public class PriceQuotedBySupplier
     {
-        public Guid SupplierId { get; set; }
+        public Guid PersonId { get; set; }
         public DateTime OrderDate { get; set; }
-        public decimal PurchasePrice { get; set; }
         public decimal QuantityPurchased { get; set; }
-        public TSupplier Supplier { get; set; }
+        public decimal PurchasePrice { get; set; }
+        public Person Person { get; set; }
     }
 }

@@ -10,7 +10,7 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:FloatToRupeeConverterWithSign x:Key="FloatToRupeeConverterWithSign" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
-                      x:DataType="model:TSupplier">
+                      x:DataType="model:Person">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind MobileNo}"
@@ -67,7 +67,7 @@
                                                Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverterWithSign}}"
                                                Style="{ThemeResource CalibriBasicTBStyle}" />
                                     <TextBlock x:Name="OrderNo"
-                                               Text="{x:Bind SupplierOrderNo, Mode=OneWay}"
+                                               Text="{x:Bind OrderNo, Mode=OneWay}"
                                                Style="{StaticResource CaptionBasicTBStyle}" />
                                 </StackPanel>
                             </DataTemplate>

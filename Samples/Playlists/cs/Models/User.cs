@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class TUser
+    public class User
     {
         #region UserInformation
         public Guid UserId { get; set; }

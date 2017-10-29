@@ -18,9 +18,9 @@ namespace SDKTemplate
         public static event PersonEntityChangedDelegate PersonUpdatedEvent;
 
         #region Create
-        public static async Task<TSupplier> CreateNewPerson(SupplierDTO supplierDTO)
+        public static async Task<Person> CreateNewPerson(SupplierDTO supplierDTO)
         {
-            var person = await Utility.CreateAsync<TSupplier>(BaseURI.HyperStoreService + API.Persons, supplierDTO);
+            var person = await Utility.CreateAsync<Person>(BaseURI.HyperStoreService + API.Persons, supplierDTO);
             if (person != null)
             {
                 var message = String.Format("You can Start placing orders to Supplier {0} ({1})", person.Name, person.MobileNo);
@@ -32,9 +32,9 @@ namespace SDKTemplate
         #endregion
 
         #region Update
-        public static async Task<TSupplier> UpdateSupplierAsync(Guid supplierId, SupplierDTO supplierDTO)
+        public static async Task<Person> UpdateSupplierAsync(Guid supplierId, SupplierDTO supplierDTO)
         {
-            var supplier = await Utility.UpdateAsync<TSupplier>(BaseURI.HyperStoreService + API.Persons, supplierId.ToString(), supplierDTO);
+            var supplier = await Utility.UpdateAsync<Person>(BaseURI.HyperStoreService + API.Persons, supplierId.ToString(), supplierDTO);
             if (supplier != null)
             {
                 //TODO: Success Notification
@@ -46,15 +46,15 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<TSupplier>> RetrievePersonsAsync(SupplierFilterCriteriaDTO sfc)
+        public static async Task<List<Person>> RetrievePersonsAsync(SupplierFilterCriteriaDTO sfc)
         {
-            List<TSupplier> suppliers = await Utility.RetrieveAsync<List<TSupplier>>(BaseURI.HyperStoreService + API.Persons, null, sfc);
+            List<Person> suppliers = await Utility.RetrieveAsync<List<Person>>(BaseURI.HyperStoreService + API.Persons, null, sfc);
             return suppliers;
         }
 
-        public static async Task<TSupplier> RetrieveThePersonAsync(Guid supplierId)
+        public static async Task<Person> RetrieveThePersonAsync(Guid supplierId)
         {
-            TSupplier supplier = await Utility.RetrieveAsync<TSupplier>(BaseURI.HyperStoreService + API.Persons, supplierId.ToString(), null);
+            Person supplier = await Utility.RetrieveAsync<Person>(BaseURI.HyperStoreService + API.Persons, supplierId.ToString(), null);
             return supplier;
         }
 

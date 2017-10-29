@@ -15,7 +15,7 @@ namespace SDKTemplate
         public decimal? NetValue { get { return this.QuantityPurchased * this.ValueIncTax; } }
         public virtual decimal? QuantityPurchased { get; set; }
 
-        public CustomerBillingProductViewModelBase(TProduct parent) : base(parent)
+        public CustomerBillingProductViewModelBase(Product parent) : base(parent)
         {
             this.QuantityPurchased = 0;
         }
@@ -37,7 +37,7 @@ namespace SDKTemplate
             }
         }
 
-        public CustomerBillingProductViewModel(TProduct parent) : base(parent) { }
+        public CustomerBillingProductViewModel(Product parent) : base(parent) { }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

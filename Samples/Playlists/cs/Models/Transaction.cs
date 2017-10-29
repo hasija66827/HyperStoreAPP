@@ -5,19 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace Models
 {
-    public class TSupplierTransaction
+    public class Transaction
     {
-        public Guid SupplierTransactionId { get; set; }
+        public Guid TransactionId { get; set; }
         public bool IsCredit { get; set; }
         [Required]
         public string TransactionNo { get; set; }
-        public string SupplierOrderNo { get; set; }
+        public string OrderNo { get; set; }
         public DateTime TransactionDate { get; set; }
         public decimal TransactionAmount { get; set; }
         public decimal WalletSnapshot { get; set; }
-        public Guid SupplierId { get; set; }
-        public TSupplier Supplier { get; set; }
-        public TSupplierTransaction() {
+        public Guid PersonId { get; set; }
+        public Person Person { get; set; }
+        public Transaction() {
         }
     }
 }

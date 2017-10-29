@@ -11,10 +11,10 @@ namespace SDKTemplate
     public class SupplierTransactionDataSource
     {
         #region create
-        public static async Task<TSupplierTransaction> CreateNewTransactionAsync(SupplierTransactionDTO transactionDTO)
+        public static async Task<Transaction> CreateNewTransactionAsync(SupplierTransactionDTO transactionDTO)
         {
             MainPage.Current.ActivateProgressRing();
-            var transaction = await Utility.CreateAsync<TSupplierTransaction>(BaseURI.HyperStoreService + API.Transactions, transactionDTO);
+            var transaction = await Utility.CreateAsync<Transaction>(BaseURI.HyperStoreService + API.Transactions, transactionDTO);
             if (transaction != null)
             {
                 _SendTransactionCreationNotification(transaction);
@@ -23,11 +23,11 @@ namespace SDKTemplate
             return transaction;
         }
 
-        private static void _SendTransactionCreationNotification(TSupplierTransaction transaction)
+        private static void _SendTransactionCreationNotification(Transaction transaction)
         {
             if (transaction == null)
                 return;
-            var supplierName = transaction.Supplier.Name;
+            var supplierName = transaction.Person.Name;
             var formattedTranAmt = Utility.ConvertToRupee(transaction.TransactionAmount);
             string firstMessage = "";
             decimal updatedWalletBalance = 0;
@@ -54,9 +54,9 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<TSupplierTransaction>> RetrieveTransactionsAsync(SupplierTransactionFilterCriteriaDTO tfc)
+        public static async Task<List<Transaction>> RetrieveTransactionsAsync(SupplierTransactionFilterCriteriaDTO tfc)
         {
-            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<List<TSupplierTransaction>>(BaseURI.HyperStoreService + API.Transactions, null, tfc);
+            List<Transaction> transactions = await Utility.RetrieveAsync<List<Transaction>>(BaseURI.HyperStoreService + API.Transactions, null, tfc);
             return transactions;
         }
         #endregion

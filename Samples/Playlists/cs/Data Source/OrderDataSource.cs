@@ -51,7 +51,7 @@ namespace SDKTemplate
             {
                 EntityType = EntityType.Customer,
                 BillingSummaryDTO = PNP.BillingSummaryViewModel,
-                SupplierId = PNP.SelectedCustomer?.SupplierId,
+                SupplierId = PNP.SelectedCustomer?.PersonId,
                 DueDate = PNP.CustomerCheckoutViewModel.DueDate,
                 IntrestRate = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.IntrestRate),
                 PayingAmount = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.PayingAmount),
@@ -77,7 +77,7 @@ namespace SDKTemplate
                 IntrestRate = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.IntrestRate),
                 PayingAmount = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.PayingAmount),
                 ProductsPurchased = productPurchased,
-                SupplierId = PNP.SelectedSupplier?.SupplierId,
+                SupplierId = PNP.SelectedSupplier?.PersonId,
                 BillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
             };
             return supplierOrderDTO;
@@ -87,29 +87,29 @@ namespace SDKTemplate
         private static async Task<decimal?> CreateOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
             MainPage.Current.ActivateProgressRing();
-            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
+            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.Orders, supplierOrderDTO);
             MainPage.Current.DeactivateProgressRing();
             return deductedWalletAmount;
         }
         #endregion
 
         #region Read
-        public static async Task<List<TSupplierOrder>> RetrieveOrdersAsync(SupplierOrderFilterCriteriaDTO sofc)
+        public static async Task<List<Order>> RetrieveOrdersAsync(SupplierOrderFilterCriteriaDTO sofc)
         {
-            List<TSupplierOrder> supplierOrders = await Utility.RetrieveAsync<List<TSupplierOrder>>(BaseURI.HyperStoreService + API.SupplierOrders, null, sofc);
+            List<Order> supplierOrders = await Utility.RetrieveAsync<List<Order>>(BaseURI.HyperStoreService + API.Orders, null, sofc);
             return supplierOrders;
         }
 
         public static async Task<Int32> RetrieveTotalOrder()
         {
-            Int32 totalOrders = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.SupplierOrders, CustomAction.GetTotalRecordsCount, null);
+            Int32 totalOrders = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.Orders, CustomAction.GetTotalRecordsCount, null);
             return totalOrders;
         }
 
 
-        public static async Task<List<TSupplierOrderProduct>> RetrieveOrderDetailsAsync(Guid supplierOrderId)
+        public static async Task<List<OrderProduct>> RetrieveOrderDetailsAsync(Guid supplierOrderId)
         {
-            List<TSupplierOrderProduct> orderDetails = await Utility.RetrieveAsync<List<TSupplierOrderProduct>>(BaseURI.HyperStoreService + API.SupplierOrderProducts, supplierOrderId.ToString(), null);
+            List<OrderProduct> orderDetails = await Utility.RetrieveAsync<List<OrderProduct>>(BaseURI.HyperStoreService + API.OrderProducts, supplierOrderId.ToString(), null);
             return orderDetails;
         }
         #endregion
@@ -130,7 +130,7 @@ namespace SDKTemplate
                 else
                     secondMessage = String.Format("{0} owes you {1}.", PNP.SelectedSupplier.Name, formattedWalletBalance);
 
-                SuccessNotification.PopUpHttpPostSuccessNotification(API.SupplierOrders, firstMessage + "\n" + secondMessage);
+                SuccessNotification.PopUpHttpPostSuccessNotification(API.Orders, firstMessage + "\n" + secondMessage);
             }
         }
         #endregion

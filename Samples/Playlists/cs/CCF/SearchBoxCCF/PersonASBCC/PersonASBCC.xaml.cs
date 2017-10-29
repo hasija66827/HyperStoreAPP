@@ -28,7 +28,7 @@ namespace SDKTemplate
     {
         public static PersonASBCC Current;
         private EntityType EntityType { get; set; }
-        public TSupplier SelectedPersonInASB { get { return this._selectePersonInASB; } }
+        public Person SelectedPersonInASB { get { return this._selectePersonInASB; } }
         private List<PersonASBViewModel> _Persons { get; set; }
         private PersonASBViewModel _selectePersonInASB;
         public event SelectedPersonChangedDelegate SelectedPersonChangedEvent;
@@ -129,7 +129,7 @@ namespace SDKTemplate
         {
             if (person != null)
             {
-                var retrievedPersons = await PersonDataSource.RetrieveThePersonAsync(person.SupplierId);
+                var retrievedPersons = await PersonDataSource.RetrieveThePersonAsync(person.PersonId);
                 if (retrievedPersons == null)
                     return;
                 _selectePersonInASB = new PersonASBViewModel(retrievedPersons);

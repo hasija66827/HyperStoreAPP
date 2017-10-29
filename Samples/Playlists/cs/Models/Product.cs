@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Models
 {
-    public class TProduct
+    public class Product
     {
         public Guid ProductId { get; set; }
         public virtual decimal? CGSTPer { get; set; }
@@ -22,6 +22,6 @@ namespace Models
         public virtual decimal? SGSTPer { get; set; }
         public decimal Threshold { get; set; }
         public decimal TotalQuantity { get; set; }
-        public TProduct() { }
+        public Product() { }
     }
 }

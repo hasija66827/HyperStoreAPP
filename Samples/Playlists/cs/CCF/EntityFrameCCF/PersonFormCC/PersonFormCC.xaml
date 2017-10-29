@@ -21,7 +21,7 @@
                     Margin="10,0,0,0">
             <TextBox x:Name="NameTB"
                      Header="Supplier Name"
-                     Text="{x:Bind _SFV.Name, Mode=TwoWay}"
+                     Text="{x:Bind _PFV.Name, Mode=TwoWay}"
                      ToolTipService.ToolTip="The name of the supplier."
                      PlaceholderText="Enter Supplier Name."
                      Style="{StaticResource FormTextBoxStyle}" />
@@ -29,7 +29,7 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="AddressTB"
                      Header="Address"
-                     Text="{x:Bind _SFV.Address, Mode=TwoWay}"
+                     Text="{x:Bind _PFV.Address, Mode=TwoWay}"
                      ToolTipService.ToolTip="The address of supplier."
                      PlaceholderText="Enter Address of Supplier."
                      Style="{StaticResource FormTextBoxStyle}" />
@@ -37,7 +37,7 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="Mobile Number"
                      x:Name="MobileNoTB"
-                     Text="{x:Bind _SFV.MobileNo, Mode=TwoWay}"
+                     Text="{x:Bind _PFV.MobileNo, Mode=TwoWay}"
                      ToolTipService.ToolTip="Mobile No. e.g. 7987421819"
                      PlaceholderText="Enter Mobile No of Supplier."
                      Style="{StaticResource FormTextBoxStyle}" />
@@ -45,7 +45,7 @@
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox Header="GSTIN"
                      x:Name="GSTINTB"
-                     Text="{x:Bind _SFV.GSTIN, Mode=TwoWay}"
+                     Text="{x:Bind _PFV.GSTIN, Mode=TwoWay}"
                      ToolTipService.ToolTip="GSTIN No. For e.g. 23ABCDE1234F1ZH"
                      PlaceholderText="Enter GSTIN of Supplier."
                      Style="{StaticResource FormTextBoxStyle}" />

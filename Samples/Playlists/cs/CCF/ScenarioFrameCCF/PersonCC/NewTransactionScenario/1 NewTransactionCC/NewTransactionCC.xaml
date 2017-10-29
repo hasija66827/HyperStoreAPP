@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.SupplierNewTransactionCC"
+﻿<Page x:Class="SDKTemplate.NewTransactionCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -10,7 +10,7 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
     </UserControl.Resources>
     <Page.DataContext>
-        <local:SupplierNewTransactionViewModel />
+        <local:NewTransactionViewModel />
     </Page.DataContext>
     <RelativePanel Background="White">
         <Border x:Name="HeaderPanel"
@@ -35,7 +35,7 @@
                 <StackPanel>
                     <TextBlock Text="Payee Name"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SNTV.Supplier.Name}"
+                    <TextBlock Text="{x:Bind _NTV.Supplier.Name}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -51,7 +51,7 @@
                 <StackPanel>
                     <TextBlock Text="Mobile Number"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SNTV.Supplier.MobileNo}"
+                    <TextBlock Text="{x:Bind _NTV.Supplier.MobileNo}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -67,7 +67,7 @@
                 <StackPanel>
                     <TextBlock Text="Wallet Balance"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SNTV.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind _NTV.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -84,7 +84,7 @@
                     </RelativePanel>
                     <TextBox Header="Amount"
                              PlaceholderText="Enter Amount To Pay"
-                             Text="{x:Bind _SNTV.Amount, Mode=TwoWay}"
+                             Text="{x:Bind _NTV.Amount, Mode=TwoWay}"
                              Style="{ThemeResource LargeFormTextBoxStyle}" />
                 </StackPanel>
                 <TextBlock  Text="{Binding Errors[Amount][0]}"
@@ -101,7 +101,7 @@
                                   Style="{StaticResource WhiteFontIconStyle}" />
                     </RelativePanel>
                     <TextBox Header="Description"
-                             Text="{x:Bind _SNTV.Description, Mode=TwoWay}"
+                             Text="{x:Bind _NTV.Description, Mode=TwoWay}"
                              PlaceholderText="Enter Description of Transaction"
                              Style="{ThemeResource LargeFormTextBoxStyle}" />
                 </StackPanel>

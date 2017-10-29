@@ -26,7 +26,7 @@ using SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario;
 namespace SDKTemplate
 {
     public delegate void ProductQtyUpdatedDelegate();
-    public delegate void NewProductAddedDelegate(TProduct product);
+    public delegate void NewProductAddedDelegate(Product product);
 
     public sealed partial class CustomerProductListCC : Page
     {
@@ -50,7 +50,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        private void _AddProductToCart(TProduct product)
+        private void _AddProductToCart(Product product)
         {
             var customerProduct = new CustomerBillingProductViewModel(product);
             int index = 0;

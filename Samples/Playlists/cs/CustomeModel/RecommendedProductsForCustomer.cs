@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class TRecommendedProduct
+    public class RecommendedProduct
     {
         public Guid? ProductId { get; set; }
         public string ProductName { get; set; }

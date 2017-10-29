@@ -10,14 +10,14 @@ namespace SDKTemplate
 {
     public class AnalyticsDataSource
     {
-        public static async Task<List<TCustomerPurchaseTrend>> RetrieveCustomerPurchaseTrend(CustomerPurchaseTrendDTO customerPurchaseTrendDTO)
+        public static async Task<List<CustomerPurchaseTrend>> RetrieveCustomerPurchaseTrend(CustomerPurchaseTrendDTO customerPurchaseTrendDTO)
         {
-            return await Utility.RetrieveAsync<List<TCustomerPurchaseTrend>>(BaseURI.HyperStoreService + API.CustomerPurchaseTrend, null, customerPurchaseTrendDTO);
+            return await Utility.RetrieveAsync<List<CustomerPurchaseTrend>>(BaseURI.HyperStoreService + API.CustomerPurchaseTrend, null, customerPurchaseTrendDTO);
         }
 
-        public static async Task<List<TProductConsumptionDeficientTrend>> RetrieveProductConsumptionTrend(ProductConsumptionTrendDTO productConsumptionTrendDTO)
+        public static async Task<List<ProductConsumptionDeficientTrend>> RetrieveProductConsumptionTrend(ProductConsumptionTrendDTO productConsumptionTrendDTO)
         {
-            return await Utility.RetrieveAsync<List<TProductConsumptionDeficientTrend>>(BaseURI.HyperStoreService + API.ProductConsumptionTrend, null, productConsumptionTrendDTO);
+            return await Utility.RetrieveAsync<List<ProductConsumptionDeficientTrend>>(BaseURI.HyperStoreService + API.ProductConsumptionTrend, null, productConsumptionTrendDTO);
         }
 
         /// <summary>
@@ -26,14 +26,14 @@ namespace SDKTemplate
         /// This will guide him to choose best wholeseller for its product
         /// </summary>
         /// <param name="ProductId"></param>
-        public static async Task<List<TPriceQuotedBySupplier>> RetrieveLatestPriceQuotedBySupplierAsync(Guid productId)
+        public static async Task<List<PriceQuotedBySupplier>> RetrieveLatestPriceQuotedBySupplierAsync(Guid productId)
         {
-            return await Utility.RetrieveAsync<List<TPriceQuotedBySupplier>>(BaseURI.HyperStoreService + API.PriceQuotedBySupplier, productId.ToString(), null);
+            return await Utility.RetrieveAsync<List<PriceQuotedBySupplier>>(BaseURI.HyperStoreService + API.PriceQuotedBySupplier, productId.ToString(), null);
         }
 
-        public static async Task<List<TRecommendedProduct>> RetrieveRecommendedProductAsync(Guid customerId)
+        public static async Task<List<RecommendedProduct>> RetrieveRecommendedProductAsync(Guid customerId)
         {
-            return await Utility.RetrieveAsync<List<TRecommendedProduct>>(BaseURI.HyperStoreService + API.RecommendedProducts, customerId.ToString(), null);
+            return await Utility.RetrieveAsync<List<RecommendedProduct>>(BaseURI.HyperStoreService + API.RecommendedProducts, customerId.ToString(), null);
         }
 
     }

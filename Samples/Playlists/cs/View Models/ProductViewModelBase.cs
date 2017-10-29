@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class ProductViewModelBase : TProduct
+    public class ProductViewModelBase : Product
     {
         public decimal? DiscountAmount
         {
@@ -41,9 +41,9 @@ namespace SDKTemplate
 
         public ProductViewModelBase() { }
 
-        public ProductViewModelBase(TProduct parent)
+        public ProductViewModelBase(Product parent)
         {
-            foreach (PropertyInfo prop in typeof(TProduct).GetProperties())
+            foreach (PropertyInfo prop in typeof(Product).GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }
     }

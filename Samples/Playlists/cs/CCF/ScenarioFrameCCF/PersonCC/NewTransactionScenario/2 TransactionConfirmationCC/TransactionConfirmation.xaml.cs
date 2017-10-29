@@ -21,17 +21,17 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierTransactionOTPVerificationCC : Page
+    public sealed partial class TransactionConfirmationCC : Page
     {
-        private SupplierNewTransactionViewModel _SupplierNewTransactionViewModel { get; set; }
-        public SupplierTransactionOTPVerificationCC()
+        private NewTransactionViewModel _SupplierNewTransactionViewModel { get; set; }
+        public TransactionConfirmationCC()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._SupplierNewTransactionViewModel = (SupplierNewTransactionViewModel)e.Parameter;
+            this._SupplierNewTransactionViewModel = (NewTransactionViewModel)e.Parameter;
         }
 
         private async void VerifyBtn_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace SDKTemplate
             {
                 var transactionDTO = new SupplierTransactionDTO()
                 {
-                    SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.SupplierId,
+                    SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.PersonId,
                     IsCredit = this._SupplierNewTransactionViewModel.Supplier.EntityType == EntityType.Supplier ? false : true,
                     TransactionAmount = Utility.TryToConvertToDecimal(this._SupplierNewTransactionViewModel?.Amount),
                     Description = this._SupplierNewTransactionViewModel?.Description,

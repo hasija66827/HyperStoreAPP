@@ -62,7 +62,7 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="selectedProduct"></param>
         /// <returns></returns>
-        private void _AddProductToCart(TProduct selectedProduct)
+        private void _AddProductToCart(Product selectedProduct)
         {
             int index = 0;
             var existingProduct = this._Products.Where(p => p.ProductId == selectedProduct.ProductId).FirstOrDefault();

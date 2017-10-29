@@ -20,7 +20,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void OrderListUpdatedDelegate(IEnumerable<TSupplierOrder> supplierOrders);
+    public delegate void OrderListUpdatedDelegate(IEnumerable<Order> supplierOrders);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -47,7 +47,7 @@ namespace SDKTemplate
 
         private async Task UpdateMasterListViewByFilterCriteriaAsync()
         {
-            var selectedPersonId = PersonASBCC.Current.SelectedPersonInASB?.SupplierId;
+            var selectedPersonId = PersonASBCC.Current.SelectedPersonInASB?.PersonId;
             var filterSupplierOrderCriteria = FilterOrderCC.Current.FilterSupplierOrderCriteria;
             var sofc = new SupplierOrderFilterCriteriaDTO()
             {
@@ -74,7 +74,7 @@ namespace SDKTemplate
             if (selectedOrder.OrderDetails.Count == 0)
             {
                 DetailContentPresenter.Content = null;
-                var orderDetails = await OrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.SupplierOrderId);
+                var orderDetails = await OrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.OrderId);
                 if (orderDetails != null)
                 {
                     selectedOrder.OrderDetails = orderDetails.Select(sod => new OrderProductViewModel(sod)).ToList();

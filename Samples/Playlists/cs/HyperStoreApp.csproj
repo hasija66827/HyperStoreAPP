@@ -135,16 +135,17 @@
     <Compile Include="CCF\EntityFrameCCF\PersonFormCC\PersonFormCC.xaml.cs">
       <DependentUpon>PersonFormCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterSupplierOrderCC.xaml.cs">
-      <DependentUpon>FilterSupplierOrderCC.xaml</DependentUpon>
+    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterOrderCC.xaml.cs">
+      <DependentUpon>FilterOrderCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterSupplierOrderViewModel.cs" />
+    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterOrderViewModel.cs" />
     <Compile Include="CCF\CheckoutFrameCC\PayNowCC\PayNowCC.xaml.cs">
       <DependentUpon>PayNowCC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\NewsFeedFrame\ProductConsumptionTrend\ProductConsumptionDeficientTrendViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\PersonASBCC\PersonASBViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\PersonNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\NewTransactionScenario\1 NewTransactionCC\NewTransactionViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormCC.xaml.cs">
       <DependentUpon>TagFormCC.xaml</DependentUpon>
     </Compile>
@@ -157,8 +158,7 @@
     <Compile Include="Data Source\UserDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
-    <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
-    <Compile Include="FilterViewModel\FilterProductCriteria.cs" />
+    <Compile Include="CCF\FilterFrameCCF\FilterPersonCC\FilterPersonViewModel.cs" />
     <Compile Include="LessThanAttribute.cs" />
     <Compile Include="CCF\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -166,19 +166,19 @@
     <Compile Include="CCF\Login\LoginViewModel.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\TagDataSource.cs" />
-    <Compile Include="Models\CustomerPurchaseTrend.cs" />
-    <Compile Include="Models\PriceQuotedBySupplier.cs" />
+    <Compile Include="CustomeModel\CustomerPurchaseTrend.cs" />
+    <Compile Include="CustomeModel\PriceQuotedBySupplier.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductMetadata.cs" />
+    <Compile Include="CustomeModel\ProductMetadata.cs" />
     <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\ProductTrend.cs" />
-    <Compile Include="Models\RecommendedProductsForCustomer.cs" />
-    <Compile Include="Models\Supplier.cs" />
-    <Compile Include="Models\SupplierOrder.cs" />
-    <Compile Include="Models\SupplierOrderProduct.cs" />
-    <Compile Include="Models\SupplierOrderTransaction.cs" />
+    <Compile Include="CustomeModel\RecommendedProductsForCustomer.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderProduct.cs" />
+    <Compile Include="Models\OrderTransaction.cs" />
     <Compile Include="Models\Tag.cs" />
-    <Compile Include="Models\SupplierTransaction.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="mvvm2\BindableBase.cs" />
     <Compile Include="mvvm2\BindableValidator.cs" />
@@ -256,7 +256,7 @@
     <Compile Include="CCF\NewsFeedFrame\ProductConsumptionTrend\ProductConsumptionTrendBar.xaml.cs">
       <DependentUpon>ProductConsumptionTrendBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\SupplierTransactionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\TransactionViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\OrderListCC\OrderViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\OrderListCC\OrderListCC.xaml.cs">
       <DependentUpon>OrderListCC.xaml</DependentUpon>
@@ -314,11 +314,11 @@
     <Compile Include="CCF\SummaryFrameCCF\OrderSummaryCC\OrderSummary.xaml.cs">
       <DependentUpon>OrderSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\PersonNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml.cs">
-      <DependentUpon>SupplierNewTransactionCC.xaml</DependentUpon>
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\NewTransactionScenario\1 NewTransactionCC\NewTransactionCC.xaml.cs">
+      <DependentUpon>NewTransactionCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\PersonNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml.cs">
-      <DependentUpon>SupplierTransactionOTPVerification.xaml</DependentUpon>
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\NewTransactionScenario\2 TransactionConfirmationCC\TransactionConfirmation.xaml.cs">
+      <DependentUpon>TransactionConfirmation.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -394,7 +394,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\FilterFrameCCF\FilterOrderCC\FilterSupplierOrderCC.xaml">
+    <Page Include="CCF\FilterFrameCCF\FilterOrderCC\FilterOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -458,11 +458,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\PersonCC\PersonNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\PersonCC\NewTransactionScenario\1 NewTransactionCC\NewTransactionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\PersonCC\PersonNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\PersonCC\NewTransactionScenario\2 TransactionConfirmationCC\TransactionConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

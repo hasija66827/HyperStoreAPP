@@ -31,7 +31,7 @@ namespace SDKTemplate
             OrderCCF.Current.OrderListUpdatedEvent += Current_SupplierOrderListUpdatedEvent;
         }
 
-        private void Current_SupplierOrderListUpdatedEvent(IEnumerable<TSupplierOrder> supplierOrders)
+        private void Current_SupplierOrderListUpdatedEvent(IEnumerable<Order> supplierOrders)
         {
             this._OrderSummaryViewModel.TotalBillAmount = supplierOrders.Sum(so => so.BillAmount);
             this._OrderSummaryViewModel.TotalPayedAmount = supplierOrders.Sum(so => so.PayedAmount);

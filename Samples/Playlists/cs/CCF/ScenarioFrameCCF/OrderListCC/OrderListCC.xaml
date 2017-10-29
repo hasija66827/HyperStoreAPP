@@ -11,14 +11,14 @@
                       x:DataType="local:OrderViewModel">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
-                           Text="{x:Bind Supplier.MobileNo}"
+                           Text="{x:Bind Person.MobileNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="FormattedPaidBillAmount"
                            Text="{x:Bind FormattedPaidBillAmount}"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}"
                            RelativePanel.Below="MobileNo" />
                 <TextBlock x:Name="WholeSellerOrderNo"
-                           Text="{x:Bind SupplierOrderNo}"
+                           Text="{x:Bind OrderNo}"
                            Style="{ThemeResource MasterListRightTextBlockStyle}"
                            RelativePanel.AlignRightWithPanel="True"
                            RelativePanel.RightOf="MobileNo" />

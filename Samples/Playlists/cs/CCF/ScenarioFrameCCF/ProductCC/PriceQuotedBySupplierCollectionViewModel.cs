@@ -22,7 +22,7 @@ namespace SDKTemplate
         }
     }
 
-    public sealed class PriceQuotedBySupplierViewModel : TPriceQuotedBySupplier
+    public sealed class PriceQuotedBySupplierViewModel : PriceQuotedBySupplier
     {
         public string FormattedOrderDate
         {
@@ -33,7 +33,7 @@ namespace SDKTemplate
             }
         }
      
-        public PriceQuotedBySupplierViewModel(TPriceQuotedBySupplier parent)
+        public PriceQuotedBySupplierViewModel(PriceQuotedBySupplier parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);

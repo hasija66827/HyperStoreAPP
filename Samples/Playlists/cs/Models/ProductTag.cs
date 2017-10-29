@@ -15,7 +15,7 @@ namespace Models
 
         [Required]
         public Guid? ProductId { get; set; }
-        public TProduct Product { get; set; }
+        public Product Product { get; set; }
 
         [Required]
         public Guid? TagId { get; set; }

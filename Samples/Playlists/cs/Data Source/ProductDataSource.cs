@@ -14,9 +14,9 @@ namespace SDKTemplate
     {
         public static event ProductEntityChangedDelegate ProductCreatedEvent;
         #region Create
-        public static async Task<TProduct> CreateNewProductAsync(ProductDTO productDTO)
+        public static async Task<Product> CreateNewProductAsync(ProductDTO productDTO)
         {
-            var product = await Utility.CreateAsync<TProduct>(BaseURI.HyperStoreService + API.Products, productDTO);
+            var product = await Utility.CreateAsync<Product>(BaseURI.HyperStoreService + API.Products, productDTO);
             if (product != null)
             {
                 var message = String.Format("You should update the stock of the product {0} ({1}) as the quantity is {2} right now.", product.Name, product.Code, product.TotalQuantity);
@@ -28,15 +28,15 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<TProduct>> RetrieveProductsAsync(ProductFilterCriteriaDTO pfc)
+        public static async Task<List<Product>> RetrieveProductsAsync(ProductFilterCriteriaDTO pfc)
         {
-            List<TProduct> products = await Utility.RetrieveAsync<List<TProduct>>(BaseURI.HyperStoreService + API.Products, null, pfc);
+            List<Product> products = await Utility.RetrieveAsync<List<Product>>(BaseURI.HyperStoreService + API.Products, null, pfc);
             return products;
         }
 
-        public static async Task<TProduct> RetrieveTheProductAsync(Guid productId)
+        public static async Task<Product> RetrieveTheProductAsync(Guid productId)
         {
-            var product = await Utility.RetrieveAsync<TProduct>(BaseURI.HyperStoreService + API.Products, productId.ToString(), null);
+            var product = await Utility.RetrieveAsync<Product>(BaseURI.HyperStoreService + API.Products, productId.ToString(), null);
             return product;
         }
 
@@ -46,9 +46,9 @@ namespace SDKTemplate
             return totalProducts;
         }
 
-        public static async Task<TProductMetadata> RetrieveProductMetadataAsync()
+        public static async Task<ProductMetadata> RetrieveProductMetadataAsync()
         {
-           var productMetadata = await Utility.RetrieveAsync<TProductMetadata>(BaseURI.HyperStoreService + API.Products, "GetProductMetadata", null);
+           var productMetadata = await Utility.RetrieveAsync<ProductMetadata>(BaseURI.HyperStoreService + API.Products, "GetProductMetadata", null);
             return productMetadata;
         }
         #endregion

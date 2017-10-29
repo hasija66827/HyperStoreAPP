@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class SupplierNewTransactionViewModel : ValidatableBindableBase
+    public class NewTransactionViewModel : ValidatableBindableBase
     {
-        public TSupplier Supplier { get; set; }
+        public Person Supplier { get; set; }
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [Range(0, float.MaxValue, ErrorMessage = "Try amount in range(0, 10000000).")]
@@ -35,6 +35,6 @@ namespace SDKTemplate
             }
         }
         public string ProceedToPay { get { return "Proceed" + Utility.ConvertToRupee(Amount); } }
-        public SupplierNewTransactionViewModel() { }
+        public NewTransactionViewModel() { }
     }
 }

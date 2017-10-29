@@ -19,7 +19,7 @@ using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
-    public delegate void SupplierListUpdatedDelegate(List<TSupplier> suppliers);
+    public delegate void SupplierListUpdatedDelegate(List<Person> suppliers);
     /// <summary>
     /// Master Detail View where 
     /// Master shows the list of wholeseller and 
@@ -30,7 +30,7 @@ namespace SDKTemplate
         public static SupplierCCF Current;
         private EntityType _EntityType { get; set; }
         public event SupplierListUpdatedDelegate SupplierListUpdatedEvent;
-        private TSupplier _RightTappedSupplier { get; set; }
+        private Person _RightTappedSupplier { get; set; }
         private Int32 _totalSuppliers;
         public SupplierCCF()
         {
@@ -59,7 +59,7 @@ namespace SDKTemplate
             var sfc = new SupplierFilterCriteriaDTO()
             {
                 EntityType = this._EntityType,
-                SupplierId = selectedSupplier?.SupplierId,
+                SupplierId = selectedSupplier?.PersonId,
                 WalletAmount = filterSupplierCriteria?.WalletBalance
             };
             var items = await PersonDataSource.RetrievePersonsAsync(sfc);
@@ -79,10 +79,10 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var selectedSupplier = (TSupplier)e.ClickedItem;
+            var selectedSupplier = (Person)e.ClickedItem;
             var tfc = new SupplierTransactionFilterCriteriaDTO()
             {
-                SupplierId = selectedSupplier?.SupplierId
+                SupplierId = selectedSupplier?.PersonId
             };
             DetailContentPresenter.Content = null;
             var transactions = await SupplierTransactionDataSource.RetrieveTransactionsAsync(tfc);
@@ -97,16 +97,16 @@ namespace SDKTemplate
 
         private void PayMoney_Click(object sender, RoutedEventArgs e)
         {
-            var selectedSupplier = (TSupplier)MasterListView.SelectedItem;
+            var selectedSupplier = (Person)MasterListView.SelectedItem;
             if (selectedSupplier != null)
-                this.Frame.Navigate(typeof(SupplierNewTransactionCC), selectedSupplier);
+                this.Frame.Navigate(typeof(NewTransactionCC), selectedSupplier);
         }
 
         private void MasterListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             ListView listView = (ListView)sender;
             SupplierMenuFlyout.ShowAt(listView, e.GetPosition(listView));
-            _RightTappedSupplier = ((FrameworkElement)e.OriginalSource).DataContext as TSupplier;
+            _RightTappedSupplier = ((FrameworkElement)e.OriginalSource).DataContext as Person;
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)

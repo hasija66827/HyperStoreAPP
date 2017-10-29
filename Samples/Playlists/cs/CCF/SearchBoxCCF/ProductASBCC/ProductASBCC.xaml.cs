@@ -23,7 +23,7 @@ namespace SDKTemplate
         SearchTheProduct
     }
 
-    public delegate void OnAddProductClickedDelegate(TProduct product);
+    public delegate void OnAddProductClickedDelegate(Product product);
     public delegate Task SelectedProductChangedDelegate();
 
 
@@ -33,7 +33,7 @@ namespace SDKTemplate
     public sealed partial class ProductASBCC : Page
     {
         public static ProductASBCC Current;
-        public TProduct SelectedProductInASB { get { return this._selectedProductInASB; } }
+        public Product SelectedProductInASB { get { return this._selectedProductInASB; } }
         public event OnAddProductClickedDelegate OnAddProductClickedEvent;
         public event SelectedProductChangedDelegate SelectedProductChangedEvent;
         private ProductASBViewModel _selectedProductInASB;

@@ -31,7 +31,7 @@ namespace SDKTemplate
             SupplierCCF.Current.SupplierListUpdatedEvent += Current_SupplierListUpdatedEvent;
         }
 
-        private void Current_SupplierListUpdatedEvent(List<Models.TSupplier> suppliers)
+        private void Current_SupplierListUpdatedEvent(List<Models.Person> suppliers)
         {
             this._PSV.TotalWalletBalance = (decimal)suppliers.Sum(c => c.WalletBalance);
             this._PSV.OnALLPropertyChanged();

@@ -58,13 +58,13 @@ namespace SDKTemplate
             EntityFrame.Navigate(typeof(PersonFormCC), EntityType.Supplier);
         }
 
-        public void UpdateCustomer(TSupplier customer)
+        public void UpdateCustomer(Person customer)
         {
             QuickCreateSplitter.IsPaneOpen = true;
             EntityFrame.Navigate(typeof(PersonFormCC), customer);
         }
 
-        public void UpdateSupplier(TSupplier supplier)
+        public void UpdateSupplier(Person supplier)
         {
             QuickCreateSplitter.IsPaneOpen = true;
             EntityFrame.Navigate(typeof(PersonFormCC), supplier);

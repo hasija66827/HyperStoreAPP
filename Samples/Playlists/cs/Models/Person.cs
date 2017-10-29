@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Models
 {
-    public class TSupplier: ISupplier
+    public class Person : IPerson
     {
         [Required]
         public EntityType? EntityType { get; set; }
-        public Guid SupplierId { get; set; }
+        public Guid PersonId { get; set; }
         public string Address { get; set; }
         public string GSTIN { get; set; }
 
@@ -24,20 +24,22 @@ namespace Models
         public string Name { get; set; }
         public decimal WalletBalance { get; set; }
 
-        public TSupplier()
+        public decimal? NetWorth { get; set; }
+        public DateTime LastVisited { get; set; }
+
+        public Person()
         {
         }
     }
 
-    public interface ISupplier
+    public interface IPerson
     {
-         string Address { get; set; }
-         string GSTIN { get; set; }
+        string Address { get; set; }
+        string GSTIN { get; set; }
         [Required]
-         string MobileNo { get; set; }
+        string MobileNo { get; set; }
         [Required]
-         string Name { get; set; }
-         decimal WalletBalance { get; set; }
+        string Name { get; set; }
+        decimal WalletBalance { get; set; }
     }
-
 }
