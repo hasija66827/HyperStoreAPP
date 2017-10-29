@@ -48,7 +48,12 @@ namespace SDKTemplate
                 };
                 var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 if (transaction != null)
-                    MainPage.RefreshPage(ScenarioType.Suppliers);
+                {
+                    if (this._SupplierNewTransactionViewModel.Supplier.EntityType == EntityType.Supplier)
+                        MainPage.RefreshPage(ScenarioType.Suppliers);
+                    else
+                        MainPage.RefreshPage(ScenarioType.Customers);
+                }
             }
         }
 

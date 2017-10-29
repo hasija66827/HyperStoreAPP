@@ -34,16 +34,16 @@ namespace SDKTemplate
 
             if (scenarioType == ScenarioType.CustomerOrder)
             {
-                HeaderFrame.Navigate(typeof(CustomerASBCC));
-                SearchBoxFrame.Navigate(typeof(FilterOrderCC));
-                ScenarioFrame.Navigate(typeof(CustomerOrderListCCF));
-                SummaryFrame.Navigate(typeof(OrderSummaryCC));
+                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Customer);
+                SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
+                ScenarioFrame.Navigate(typeof(SupplierOrderCCF), EntityType.Customer);
+                SummaryFrame.Navigate(typeof(SupplierOrderSummary));
             }
             else if (scenarioType == ScenarioType.SupplierOrder)
             {
                 HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Supplier);
                 SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
-                ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
+                ScenarioFrame.Navigate(typeof(SupplierOrderCCF), EntityType.Supplier);
                 SummaryFrame.Navigate(typeof(SupplierOrderSummary));
             }
             else if (scenarioType == ScenarioType.Customers)

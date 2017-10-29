@@ -13,8 +13,8 @@ namespace SDKTemplate
 {
     public class CustomerPageNavigationParameter
     {
-        public List<CustomerBillingProductViewModelBase> ProductsConsumed { get; set; }
-        public TCustomer SelectedCustomer { get; set; }
+        public List<CustomerBillingProductViewModelBase> ProductsPurchased { get; set; }
+        public TSupplier SelectedCustomer { get; set; }
         public CustomerBillingSummaryViewModelBase BillingSummaryViewModel { get; set; }
         public CheckoutViewModel CustomerCheckoutViewModel { get; set; }
     }

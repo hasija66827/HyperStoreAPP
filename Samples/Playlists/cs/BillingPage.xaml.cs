@@ -33,11 +33,11 @@ namespace SDKTemplate
 
             if (scenarioType == ScenarioType.CustomerBilling)
             {
-                HeaderFrame.Navigate(typeof(CustomerASBCC));
+                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Customer);
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
                 ScenarioFrame.Navigate(typeof(CustomerProductListCC));
-                RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
                 SummaryFrame.Navigate(typeof(BillingSummaryCC));
+                RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
             }
             else if (scenarioType == ScenarioType.SupplierBilling)
             {

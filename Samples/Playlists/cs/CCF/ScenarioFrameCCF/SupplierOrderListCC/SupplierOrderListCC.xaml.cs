@@ -27,6 +27,7 @@ namespace SDKTemplate
     public sealed partial class SupplierOrderCCF : Page
     {
         public static SupplierOrderCCF Current;
+        private EntityType EntityType { get; set; }
         public SupplierOderListUpdatedDelegate SupplierOrderListUpdatedEvent;
         private Int32 _totalOrders;
         public SupplierOrderCCF()
@@ -39,7 +40,8 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            _totalOrders = await SupplierOrderDataSource.RetrieveTotalSupplierOrder();
+            this.EntityType = (EntityType)e.Parameter;
+            _totalOrders = await SupplierOrderDataSource.RetrieveTotalOrder();
             await UpdateMasterListViewByFilterCriteriaAsync();
         }
 
@@ -53,9 +55,9 @@ namespace SDKTemplate
                 DueDateRange = filterSupplierOrderCriteria?.DueDateRange,
                 OrderDateRange = filterSupplierOrderCriteria?.OrderDateRange,
                 PartiallyPaidOrderOnly = filterSupplierOrderCriteria?.IncludePartiallyPaidOrdersOnly,
-                EntityType = EntityType.Supplier
+                EntityType = this.EntityType,
             };
-            var supplierOrders = await SupplierOrderDataSource.RetrieveSupplierOrdersAsync(sofc);
+            var supplierOrders = await SupplierOrderDataSource.RetrieveOrdersAsync(sofc);
             if (supplierOrders != null)
             {
                 var items = supplierOrders.Select(so => new SupplierOrderViewModel(so));

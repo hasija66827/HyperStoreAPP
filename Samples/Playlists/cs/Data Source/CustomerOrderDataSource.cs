@@ -13,30 +13,19 @@ namespace SDKTemp.Data
     public class CustomerOrderDataSource
     {
         #region Create
-        public static async Task<bool> InitiateCustomerOrderCreationAsync(CustomerPageNavigationParameter PNP)
-        {
-            var customerOrderDTO = _CreateCustomerOrderDTO(PNP);
-            var deductedWalletAmount = await _CreateCustomerOrderAsync(customerOrderDTO);
-            if (deductedWalletAmount != null)
-            {
-                _SendOrderCreationNotification(PNP, deductedWalletAmount);
-                return true;
-            }
-            return false;
-        }
-
+       
         private static CustomerOrderDTO _CreateCustomerOrderDTO(CustomerPageNavigationParameter PNP)
         {
-            var productsConsumed = PNP.ProductsConsumed.Select(p => new ProductConsumedDTO()
+            var productsConsumed = PNP.ProductsPurchased.Select(p => new ProductPurchasedDTO()
             {
                 ProductId = p.ProductId,
-                QuantityConsumed = p.QuantityConsumed
+                QuantityPurchased = p.QuantityPurchased
             }).ToList();
 
             var customerOrderDTO = new CustomerOrderDTO()
             {
                 CustomerBillingSummaryDTO = PNP.BillingSummaryViewModel,
-                CustomerId = PNP.SelectedCustomer?.CustomerId,
+                CustomerId = PNP.SelectedCustomer?.SupplierId,
                 DueDate = PNP.CustomerCheckoutViewModel.DueDate,
                 IntrestRate = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.IntrestRate),
                 PayingAmount = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.PayingAmount),

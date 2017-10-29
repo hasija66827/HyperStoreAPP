@@ -74,7 +74,7 @@ namespace SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario
                     else
                     {
                         this.PageNavigationParameter.CustomerPageNavigationParameter.CustomerCheckoutViewModel = _CV;
-                        var IsCreated = await CustomerOrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
+                        var IsCreated = await SupplierOrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
                         MainPage.RefreshPage(ScenarioType.CustomerBilling);
                     }
                 }

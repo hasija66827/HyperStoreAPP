@@ -65,10 +65,11 @@ namespace SDKTemplate
             SupplierASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             SupplierDetails.Visibility = Visibility.Collapsed;
-            var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(new DTO.SupplierFilterCriteriaDTO() {
-                EntityType=this.EntityType,
-                WalletAmount=null,
-                SupplierId=null,
+            var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(new DTO.SupplierFilterCriteriaDTO()
+            {
+                EntityType = this.EntityType,
+                WalletAmount = null,
+                SupplierId = null,
             });
             if (suppliers != null)
                 this._Suppliers = suppliers.Select(s => new SupplierASBViewModel(s)).ToList();

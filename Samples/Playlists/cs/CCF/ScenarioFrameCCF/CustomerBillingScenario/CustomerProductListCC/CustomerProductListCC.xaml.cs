@@ -60,13 +60,13 @@ namespace SDKTemplate
             if (existingProduct != null)
             {
                 index = this._Products.IndexOf(existingProduct);
-                this._Products[index].QuantityConsumed += 1;//Event will be triggered.
+                this._Products[index].QuantityPurchased += 1;//Event will be triggered.
             }
             else
             {
                 this._Products.Add(customerProduct);
                 index = this._Products.IndexOf(customerProduct);
-                this._Products[index].QuantityConsumed = 1;//Event will be triggered.
+                this._Products[index].QuantityPurchased = 1;//Event will be triggered.
                 this.NewProductAddedIntoListEvent?.Invoke(customerProduct);
             }
         }
@@ -78,16 +78,16 @@ namespace SDKTemplate
 
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            if (CustomerASBCC.Current.SelectedCustomerInASB == null)
+            if (SupplierASBCC.Current.SelectedSupplierInASB == null)
             {
-                CustomerASBCC.Current.NotifyUser();
+                SupplierASBCC.Current.NotifyUser();
                 return;
             }
-            var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
+            var selectedCustomer = SupplierASBCC.Current.SelectedSupplierInASB;
             var billSummary = BillingSummaryCC.Current.BillingSummaryViewModel;
             CustomerPageNavigationParameter customerNavigationParameter = new CustomerPageNavigationParameter()
             {
-                ProductsConsumed = Products,
+                ProductsPurchased = Products,
                 SelectedCustomer = selectedCustomer,
                 BillingSummaryViewModel = billSummary,
             };

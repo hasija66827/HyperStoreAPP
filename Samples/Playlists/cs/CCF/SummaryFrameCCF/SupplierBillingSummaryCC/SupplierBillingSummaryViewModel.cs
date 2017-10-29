@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public sealed class SupplierBillingSummaryViewModelBase : SupplierBillingSummaryDTO, INotifyPropertyChanged
+    public sealed class SupplierBillingSummaryViewModelBase : BillingSummaryDTO, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }

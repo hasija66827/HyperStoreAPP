@@ -40,7 +40,7 @@ namespace SDKTemplate
         {
             Current = this;
             this.InitializeComponent();
-            CustomerASBCC.Current.SelectedCustomerChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            SupplierASBCC.Current.SelectedSupplierChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
 
         }
@@ -59,8 +59,8 @@ namespace SDKTemplate
         /// </summary>
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
-            var selectedCustomer = CustomerASBCC.Current.SelectedCustomerInASB;
-            var customerId = selectedCustomer?.CustomerId;
+            var selectedCustomer = SupplierASBCC.Current.SelectedSupplierInASB;
+            var customerId = selectedCustomer?.SupplierId;
             var filterCustomerCriteria = FilterPersonCC.Current.FilterPersonCriteria;
             CustomerFilterCriteriaDTO cfc = new CustomerFilterCriteriaDTO()
             {

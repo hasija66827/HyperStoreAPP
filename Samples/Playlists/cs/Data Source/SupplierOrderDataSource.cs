@@ -16,7 +16,7 @@ namespace SDKTemplate
             if (IsVerified)
             {
                 var supplierOrderDTO = _CreateSupplierOrderDTO(PNP);
-                var usingWalletAmount = await SupplierOrderDataSource.CreateSupplierOrderAsync(supplierOrderDTO);
+                var usingWalletAmount = await SupplierOrderDataSource.CreateOrderAsync(supplierOrderDTO);
                 if (usingWalletAmount != null)
                 {
                     _SendOrderCreationNotification(PNP, usingWalletAmount);
@@ -24,6 +24,40 @@ namespace SDKTemplate
                 }
             }
             return false;
+        }
+
+        public static async Task<bool> InitiateCustomerOrderCreationAsync(CustomerPageNavigationParameter PNP)
+        {
+            var customerOrderDTO = _CreateCustomerOrderDTO(PNP);
+            var usingWalletAmount = await SupplierOrderDataSource.CreateOrderAsync(customerOrderDTO);
+            if (usingWalletAmount != null)
+            {
+                // _SendOrderCreationNotification(PNP, usingWalletAmount);
+                return true;
+            }
+            return false;
+        }
+
+        private static SupplierOrderDTO _CreateCustomerOrderDTO(CustomerPageNavigationParameter PNP)
+        {
+            var productsPurchased = PNP.ProductsPurchased.Select(p => new ProductPurchasedDTO()
+            {
+                ProductId = p.ProductId,
+                QuantityPurchased = p.QuantityPurchased,
+                PurchasePricePerUnit = p.ValueIncTax
+            }).ToList();
+
+            var customerOrderDTO = new SupplierOrderDTO()
+            {
+                EntityType = EntityType.Customer,
+                BillingSummaryDTO = PNP.BillingSummaryViewModel,
+                SupplierId = PNP.SelectedCustomer?.SupplierId,
+                DueDate = PNP.CustomerCheckoutViewModel.DueDate,
+                IntrestRate = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.IntrestRate),
+                PayingAmount = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.PayingAmount),
+                ProductsPurchased = productsPurchased
+            };
+            return customerOrderDTO;
         }
 
         private static SupplierOrderDTO _CreateSupplierOrderDTO(SupplierPageNavigationParameter PNP)
@@ -44,13 +78,13 @@ namespace SDKTemplate
                 PayingAmount = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.PayingAmount),
                 ProductsPurchased = productPurchased,
                 SupplierId = PNP.SelectedSupplier?.SupplierId,
-                SupplierBillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
+                BillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
             };
             return supplierOrderDTO;
         }
 
         #region Create
-        private static async Task<decimal?> CreateSupplierOrderAsync(SupplierOrderDTO supplierOrderDTO)
+        private static async Task<decimal?> CreateOrderAsync(SupplierOrderDTO supplierOrderDTO)
         {
             MainPage.Current.ActivateProgressRing();
             var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.SupplierOrders, supplierOrderDTO);
@@ -60,13 +94,13 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<TSupplierOrder>> RetrieveSupplierOrdersAsync(SupplierOrderFilterCriteriaDTO sofc)
+        public static async Task<List<TSupplierOrder>> RetrieveOrdersAsync(SupplierOrderFilterCriteriaDTO sofc)
         {
             List<TSupplierOrder> supplierOrders = await Utility.RetrieveAsync<List<TSupplierOrder>>(BaseURI.HyperStoreService + API.SupplierOrders, null, sofc);
             return supplierOrders;
         }
 
-        public static async Task<Int32> RetrieveTotalSupplierOrder()
+        public static async Task<Int32> RetrieveTotalOrder()
         {
             Int32 totalOrders = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.SupplierOrders, CustomAction.GetTotalRecordsCount, null);
             return totalOrders;

@@ -12,12 +12,12 @@ namespace SDKTemplate
 {
     public class CustomerBillingProductViewModelBase : ProductViewModelBase
     {
-        public decimal? NetValue { get { return this.QuantityConsumed * this.ValueIncTax; } }
-        public virtual decimal? QuantityConsumed { get; set; }
+        public decimal? NetValue { get { return this.QuantityPurchased * this.ValueIncTax; } }
+        public virtual decimal? QuantityPurchased { get; set; }
 
         public CustomerBillingProductViewModelBase(TProduct parent) : base(parent)
         {
-            this.QuantityConsumed = 0;
+            this.QuantityPurchased = 0;
         }
     }
 
@@ -25,13 +25,13 @@ namespace SDKTemplate
     public sealed class CustomerBillingProductViewModel : CustomerBillingProductViewModelBase, INotifyPropertyChanged
     {
         private decimal? _quantityConsumed;
-        public override decimal? QuantityConsumed
+        public override decimal? QuantityPurchased
         {
             get { return this._quantityConsumed; }
             set
             {
                 this._quantityConsumed = (value >= 0) ? value : 0;
-                this.OnPropertyChanged(nameof(QuantityConsumed));
+                this.OnPropertyChanged(nameof(QuantityPurchased));
                 this.OnPropertyChanged(nameof(NetValue));
                 CustomerProductListCC.Current.InvokeProductListChangedEvent();
             }

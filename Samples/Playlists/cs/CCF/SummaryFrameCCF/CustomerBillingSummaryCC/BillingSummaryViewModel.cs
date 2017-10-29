@@ -11,9 +11,16 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public sealed class CustomerBillingSummaryViewModelBase : CustomerBillingSummaryDTO, INotifyPropertyChanged
+    public sealed class CustomerBillingSummaryViewModelBase : BillingSummaryDTO, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public decimal? CartAmount { get; set; }
+
+        public decimal? DiscountAmount { get; set; }
+
+        public decimal? Tax { get; set; }
+
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }
 
         public CustomerBillingSummaryViewModelBase()

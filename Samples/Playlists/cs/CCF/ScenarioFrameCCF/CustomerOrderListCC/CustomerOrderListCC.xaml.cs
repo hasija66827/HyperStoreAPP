@@ -32,8 +32,8 @@ namespace SDKTemplate
             Current = this;
             this.InitializeComponent();
 
-            CustomerASBCC.Current.SelectedCustomerChangedEvent +=
-                new SelectedCustomerChangedDelegate(UpdateMasterListViewItemSourceByFilterCriteria);
+            SupplierASBCC.Current.SelectedSupplierChangedEvent +=
+                new SelectedSupplierChangedDelegate(UpdateMasterListViewItemSourceByFilterCriteria);
 
             FilterOrderCC.Current.DateChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
@@ -50,7 +50,7 @@ namespace SDKTemplate
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
             var selectedDateRange = FilterOrderCC.Current.FilterCustomerOrderViewModel?.OrderDateRange;
-            var selectedCustomerId = CustomerASBCC.Current.SelectedCustomerInASB?.CustomerId;
+            var selectedCustomerId = SupplierASBCC.Current.SelectedSupplierInASB?.SupplierId;
             var cofc = new CustomerOrderFilterCriteriaDTO()
             {
                 CustomerId = selectedCustomerId,

@@ -145,7 +145,6 @@
     <Compile Include="CCF\CheckoutFrameCC\PayNowCC\PayNowCC.xaml.cs">
       <DependentUpon>PayNowCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
@@ -309,9 +308,6 @@
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerProductListCC\CustomerProductListCC.xaml.cs">
       <DependentUpon>CustomerProductListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBCC.xaml.cs">
-      <DependentUpon>CustomerASBCC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CCF\FilterFrameCCF\FilterCustomerOrderCC\FilterCustomerOrderViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterCustomerOrderCC\FilterCustomerOrderCC.xaml.cs">
       <DependentUpon>FilterCustomerOrderCC.xaml</DependentUpon>
@@ -425,10 +421,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\SummaryFrameCCF\OrderSummaryCC\OrderSummary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CCF\SearchBoxCCF\CustomerASBCC\CustomerASBCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

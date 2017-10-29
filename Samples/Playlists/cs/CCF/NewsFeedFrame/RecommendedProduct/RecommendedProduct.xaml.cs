@@ -31,7 +31,7 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this._RecomProducts = new ObservableCollection<RecommendedProductViewModel>();
-            CustomerASBCC.Current.SelectedCustomerChangedEvent += Current_SelectedCustomerChangedEvent;
+            SupplierASBCC.Current.SelectedSupplierChangedEvent += Current_SelectedCustomerChangedEvent;
             CustomerProductListCC.Current.NewProductAddedIntoListEvent += Current_NewProductAddedIntoListEvent;
         }
 
@@ -44,11 +44,11 @@ namespace SDKTemplate
 
         private async Task Current_SelectedCustomerChangedEvent()
         {
-            var customer = CustomerASBCC.Current.SelectedCustomerInASB;
+            var customer = SupplierASBCC.Current.SelectedSupplierInASB;
             if (customer != null)
             {
 
-                var TRecomProds = await AnalyticsDataSource.RetrieveRecommendedProductAsync((Guid)customer.CustomerId);
+                var TRecomProds = await AnalyticsDataSource.RetrieveRecommendedProductAsync((Guid)customer.SupplierId);
                 var recomProds = TRecomProds.Select(rp => new RecommendedProductViewModel(rp));
                 recomProds.OrderBy(rp => rp.LastOrderDate);
                 this._RecomProducts.Clear();
