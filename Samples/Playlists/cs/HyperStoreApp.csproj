@@ -116,7 +116,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\..\..\SharedContent\cs\MainPage.xaml.cs">
-      <Link>MainPage.xaml.cs</Link>
+      <Link>BasePages\MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
@@ -124,7 +124,7 @@
     </Compile>
     <Compile Include="APIUtility\API.cs" />
     <Compile Include="APIUtility\APIUtility.cs" />
-    <Compile Include="BillingPage.xaml.cs">
+    <Compile Include="BasePages\BillingPage.xaml.cs">
       <DependentUpon>BillingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormViewModel.cs" />
@@ -132,45 +132,41 @@
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterProductByTagCC.xaml.cs">
       <DependentUpon>FilterProductByTagCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\EntityFrameCCF\SupplierFormCC\SupplierFormCC.xaml.cs">
+    <Compile Include="CCF\EntityFrameCCF\PersonFormCC\SupplierFormCC.xaml.cs">
       <DependentUpon>SupplierFormCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\FilterFrameCCF\FilterSupplierOrderCC\FilterSupplierOrderCC.xaml.cs">
+    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterSupplierOrderCC.xaml.cs">
       <DependentUpon>FilterSupplierOrderCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\FilterFrameCCF\FilterSupplierOrderCC\FilterSupplierOrderViewModel.cs" />
+    <Compile Include="CCF\FilterFrameCCF\FilterOrderCC\FilterSupplierOrderViewModel.cs" />
     <Compile Include="CCF\CheckoutFrameCC\PayNowCC\PayNowCC.xaml.cs">
       <DependentUpon>PayNowCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
-    <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
+    <Compile Include="CCF\SearchBoxCCF\PersonASBCC\SupplierASBViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionViewModel.cs" />
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormCC.xaml.cs">
       <DependentUpon>TagFormCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerTrendCC.xaml.cs">
       <DependentUpon>CustomerTrendCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CommonPage.xaml.cs">
+    <Compile Include="BasePages\CommonPage.xaml.cs">
       <DependentUpon>CommonPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data Source\UserDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
-    <Compile Include="Data Source\SupplierTransactionDataSource.cs" />
+    <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="FilterViewModel\FilterPersonViewModel.cs" />
     <Compile Include="FilterViewModel\FilterProductCriteria.cs" />
     <Compile Include="LessThanAttribute.cs" />
-    <Compile Include="Login\Login.xaml.cs">
+    <Compile Include="CCF\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Login\LoginViewModel.cs" />
+    <Compile Include="CCF\Login\LoginViewModel.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\TagDataSource.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\CustomerOrder.cs" />
-    <Compile Include="Models\CustomerOrderProduct.cs" />
     <Compile Include="Models\CustomerPurchaseTrend.cs" />
-    <Compile Include="Models\CustomerTransaction.cs" />
     <Compile Include="Models\PriceQuotedBySupplier.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductMetadata.cs" />
@@ -202,12 +198,12 @@
     <Compile Include="CCF\NewsFeedFrame\RecommendedProduct\RecommendedProductViewModel.cs" />
     <Compile Include="Notifications\SuccessNotification.cs" />
     <Compile Include="Notifications\SuccessTitle.cs" />
-    <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryCC.xaml.cs">
+    <Compile Include="CCF\SummaryFrameCCF\PersonSummaryCC\SupplierSummaryCC.xaml.cs">
       <DependentUpon>SupplierSummaryCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryViewModel.cs" />
+    <Compile Include="CCF\SummaryFrameCCF\PersonSummaryCC\SupplierSummaryViewModel.cs" />
     <Compile Include="Data Source\OTPDataSource.cs" />
-    <Compile Include="OTPDialogCC\OTPDialog.xaml.cs">
+    <Compile Include="CCF\OTPDialogCC\OTPDialog.xaml.cs">
       <DependentUpon>OTPDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="OTPVerificationConstants.cs" />
@@ -215,16 +211,16 @@
       <DependentUpon>Pro.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\EntityFrameCCF\ProductFormCC\2 ProductPricingFormCC\ProViewModel.cs" />
-    <Compile Include="PasscodeDialogCC\PasscodeDialogCC.xaml.cs">
+    <Compile Include="CCF\PasscodeDialogCC\PasscodeDialogCC.xaml.cs">
       <DependentUpon>PasscodeDialogCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RootPage.xaml.cs">
+    <Compile Include="BasePages\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SettingsCC.xaml.cs">
+    <Compile Include="CCF\SettingsCC\SettingsCC.xaml.cs">
       <DependentUpon>SettingsCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SettingsViewModel.cs" />
+    <Compile Include="CCF\SettingsCC\SettingsViewModel.cs" />
     <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
       <DependentUpon>UserInformationCC.xaml</DependentUpon>
     </Compile>
@@ -250,29 +246,29 @@
     <Compile Include="TextBoxAttached.cs" />
     <Compile Include="CCF\NewsFeedFrame\CustomerTrend\CustomerPurchaseTrendViewModel.cs" />
     <Compile Include="Data Source\AnalyticsDataSource.cs" />
-    <Compile Include="Data Source\SupplierDataSource.cs" />
-    <Compile Include="CCF\EntityFrameCCF\SupplierFormCC\SupplierFormViewModel.cs" />
-    <Compile Include="Data Source\SupplierOrderDataSource.cs" />
-    <Compile Include="CCF\FilterFrameCCF\FilterCustomerSupplierCC\FilterCustomerCC.xaml.cs">
+    <Compile Include="Data Source\PersonDataSource.cs" />
+    <Compile Include="CCF\EntityFrameCCF\PersonFormCC\SupplierFormViewModel.cs" />
+    <Compile Include="Data Source\OrderDataSource.cs" />
+    <Compile Include="CCF\FilterFrameCCF\FilterPersonCC\FilterCustomerCC.xaml.cs">
       <DependentUpon>FilterCustomerCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\ProductCCF\PriceQuotedBySupplierCollectionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\ProductCC\PriceQuotedBySupplierCollectionViewModel.cs" />
     <Compile Include="CCF\NewsFeedFrame\ProductConsumptionTrend\ProductConsumptionTrendBar.xaml.cs">
       <DependentUpon>ProductConsumptionTrendBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierTransactionViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierOrderListCC\SupplierOrderViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierOrderListCC\SupplierOrderListCC.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\SupplierTransactionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\OrderListCC\SupplierOrderViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\OrderListCC\SupplierOrderListCC.xaml.cs">
       <DependentUpon>SupplierOrderListCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummaryViewModel.cs" />
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierCCF.xaml.cs">
+    <Compile Include="CCF\SummaryFrameCCF\OrderSummaryCC\SupplierOrderSummaryViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\SupplierCCF.xaml.cs">
       <DependentUpon>SupplierCCF.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierPageNavigationParameter.cs" />
     <Compile Include="CCF\CheckoutFrameCC\CheckoutViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerPageNavigationParameter.cs" />
-    <Compile Include="BlankPage.xaml.cs">
+    <Compile Include="BasePages\BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SummaryFrameCCF\CustomerBillingSummaryCC\BillingSummaryCC.xaml.cs">
@@ -288,21 +284,20 @@
     <Compile Include="CCF\FilterFrameCCF\FilterProductCC\FilterProduct.xaml.cs">
       <DependentUpon>FilterProduct.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\ProductCCF\ProductInStock.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\ProductCC\ProductInStock.xaml.cs">
       <DependentUpon>ProductInStock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\ErrorTittle.cs" />
     <Compile Include="Notifications\ErrorNotification.cs" />
     <Compile Include="View Models\ProductViewModelBase.cs" />
-    <Compile Include="RangeSelectorControl\RangeSelector.xaml.cs">
+    <Compile Include="CCF\RangeSelectorControl\RangeSelector.xaml.cs">
       <DependentUpon>RangeSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data Source\CustomerOrderDataSource.cs" />
     <Compile Include="Data Source\ProductDataSource.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\CustomerBillingScenario\CustomerProductListCC\CustomerProductViewModel.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="SampleConfiguration.cs" />
-    <Compile Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBCC.xaml.cs">
+    <Compile Include="CCF\SearchBoxCCF\PersonASBCC\SupplierASBCC.xaml.cs">
       <DependentUpon>SupplierASBCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\ScenarioFrameCCF\SupplierBillingScenario\SupplierProductListCC\SupplierOrderProductVieModel.cs" />
@@ -316,13 +311,13 @@
     <Compile Include="CCF\CheckoutFrameCC\PayLaterCC\PayLaterCC.xaml.cs">
       <DependentUpon>PayLaterCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummary.xaml.cs">
+    <Compile Include="CCF\SummaryFrameCCF\OrderSummaryCC\SupplierOrderSummary.xaml.cs">
       <DependentUpon>SupplierOrderSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml.cs">
       <DependentUpon>SupplierNewTransactionCC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml.cs">
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\SupplierNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml.cs">
       <DependentUpon>SupplierTransactionOTPVerification.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -338,7 +333,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="..\..\..\SharedContent\cs\MainPage.xaml">
-      <Link>MainPage.xaml</Link>
+      <Link>BasePages\MainPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -347,7 +342,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="BillingPage.xaml">
+    <Page Include="BasePages\BillingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,7 +350,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\EntityFrameCCF\SupplierFormCC\SupplierFormCC.xaml">
+    <Page Include="CCF\EntityFrameCCF\PersonFormCC\SupplierFormCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -363,7 +358,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BlankPage.xaml">
+    <Page Include="BasePages\BlankPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,7 +382,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\ProductCCF\ProductInStock.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\ProductCC\ProductInStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -395,11 +390,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\FilterFrameCCF\FilterCustomerSupplierCC\FilterCustomerCC.xaml">
+    <Page Include="CCF\FilterFrameCCF\FilterPersonCC\FilterCustomerCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\FilterFrameCCF\FilterSupplierOrderCC\FilterSupplierOrderCC.xaml">
+    <Page Include="CCF\FilterFrameCCF\FilterOrderCC\FilterSupplierOrderCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -411,15 +406,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CommonPage.xaml">
+    <Page Include="BasePages\CommonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Login\Login.xaml">
+    <Page Include="CCF\Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OTPDialogCC\OTPDialog.xaml">
+    <Page Include="CCF\OTPDialogCC\OTPDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -427,15 +422,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PasscodeDialogCC\PasscodeDialogCC.xaml">
+    <Page Include="CCF\PasscodeDialogCC\PasscodeDialogCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RangeSelectorControl\RangeSelector.xaml">
+    <Page Include="CCF\RangeSelectorControl\RangeSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\SearchBoxCCF\SupplierASBCC\SupplierASBCC.xaml">
+    <Page Include="CCF\SearchBoxCCF\PersonASBCC\SupplierASBCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -447,7 +442,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierCCF.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\PersonCC\SupplierCCF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -455,19 +450,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierOrderListCC\SupplierOrderListCC.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\OrderListCC\SupplierOrderListCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\SummaryFrameCCF\SupplierOrderSummaryCC\SupplierOrderSummary.xaml">
+    <Page Include="CCF\SummaryFrameCCF\OrderSummaryCC\SupplierOrderSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\PersonCC\SupplierNewTransactionScenario\1 SupplierNewTransactionCC\SupplierNewTransactionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\ScenarioFrameCCF\SupplierCCF\SupplierNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml">
+    <Page Include="CCF\ScenarioFrameCCF\PersonCC\SupplierNewTransactionScenario\2 SupplierTransactionOTPVerification\SupplierTransactionOTPVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -475,15 +470,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CCF\SummaryFrameCCF\SupplierSummary\SupplierSummaryCC.xaml">
+    <Page Include="CCF\SummaryFrameCCF\PersonSummaryCC\SupplierSummaryCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RootPage.xaml">
+    <Page Include="BasePages\RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Settings\SettingsCC.xaml">
+    <Page Include="CCF\SettingsCC\SettingsCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
