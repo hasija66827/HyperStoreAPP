@@ -42,8 +42,8 @@ namespace SDKTemplate
                 var transactionDTO = new SupplierTransactionDTO()
                 {
                     SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.SupplierId,
-                    IsCredit = false,
-                    TransactionAmount = Utility.TryToConvertToDecimal(this._SupplierNewTransactionViewModel?.PayingAmount),
+                    IsCredit = this._SupplierNewTransactionViewModel.Supplier.EntityType == EntityType.Supplier ? false : true,
+                    TransactionAmount = Utility.TryToConvertToDecimal(this._SupplierNewTransactionViewModel?.Amount),
                     Description = this._SupplierNewTransactionViewModel?.Description,
                 };
                 var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
@@ -63,7 +63,7 @@ namespace SDKTemplate
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
             var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PayToSupplier_Transaction];
-            var fomattedSMSContent = String.Format(SMSContent, this._SupplierNewTransactionViewModel?.PayingAmount, _SupplierNewTransactionViewModel?.Supplier?.Name, OTPVConstants.OTPLiteral);
+            var fomattedSMSContent = String.Format(SMSContent, this._SupplierNewTransactionViewModel?.Amount, _SupplierNewTransactionViewModel?.Supplier?.Name, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {
                 UserID = BaseURI.User.UserId,

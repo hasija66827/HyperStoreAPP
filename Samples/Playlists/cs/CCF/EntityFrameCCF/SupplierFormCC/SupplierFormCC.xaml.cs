@@ -18,11 +18,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    enum Person
-    {
-        Supplier,
-        Customer
-    }
+  
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -77,6 +73,7 @@ namespace SDKTemplate
             {
                 SupplierDTO supplierDTO = new SupplierDTO()
                 {
+                    EntityType = EntityType.Supplier,
                     Address = _SFV.Address,
                     GSTIN = _SFV.GSTIN,
                     MobileNo = _SFV.MobileNo,

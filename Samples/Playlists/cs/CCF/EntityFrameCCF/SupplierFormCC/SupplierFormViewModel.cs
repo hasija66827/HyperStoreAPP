@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace SDKTemplate
 {
-    public class SupplierFormViewModel : ValidatableBindableBase, supplierInterface
+    public class SupplierFormViewModel : ValidatableBindableBase, ISupplier
     {
         public Guid? SupplierId { get; set; }
 

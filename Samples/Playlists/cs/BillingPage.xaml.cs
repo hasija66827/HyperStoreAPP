@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace SDKTemplate
             }
             else if (scenarioType == ScenarioType.SupplierBilling)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC));
+                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Supplier);
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
                 ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                 SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));

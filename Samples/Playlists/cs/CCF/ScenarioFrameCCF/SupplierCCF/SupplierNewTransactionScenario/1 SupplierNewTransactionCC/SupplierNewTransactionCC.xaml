@@ -82,12 +82,12 @@
                                    RelativePanel.AlignHorizontalCenterWith="PayGlyph"
                                    RelativePanel.AlignVerticalCenterWith="PayGlyph" />
                     </RelativePanel>
-                    <TextBox Header="Amount To Pay"
+                    <TextBox Header="Amount"
                              PlaceholderText="Enter Amount To Pay"
-                             Text="{x:Bind _SNTV.PayingAmount, Mode=TwoWay}"
+                             Text="{x:Bind _SNTV.Amount, Mode=TwoWay}"
                              Style="{ThemeResource LargeFormTextBoxStyle}" />
                 </StackPanel>
-                <TextBlock  Text="{Binding Errors[PayingAmount][0]}"
+                <TextBlock  Text="{Binding Errors[Amount][0]}"
                             Style="{StaticResource ErrorTextBlockStyle}" />
             </StackPanel>
             <StackPanel Orientation="Vertical">

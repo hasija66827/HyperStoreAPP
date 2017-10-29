@@ -22,16 +22,26 @@ namespace SDKTemplate
             MainPage.Current.DeactivateProgressRing();
             return transaction;
         }
-       
+
         private static void _SendTransactionCreationNotification(TSupplierTransaction transaction)
         {
             if (transaction == null)
                 return;
             var supplierName = transaction.Supplier.Name;
             var formattedTranAmt = Utility.ConvertToRupee(transaction.TransactionAmount);
-            var firstMessage = String.Format("You Payed {0} to {1}.", formattedTranAmt, supplierName);
+            string firstMessage = "";
+            decimal updatedWalletBalance = 0;
+            if (transaction.IsCredit == false)
+            {
+                firstMessage = String.Format("You Payed {0} to {1}.", formattedTranAmt, supplierName);
+                updatedWalletBalance = transaction.WalletSnapshot - transaction.TransactionAmount;
+            }
+            else
+            {
+                firstMessage = String.Format("You Received {0} from {1}.", formattedTranAmt, supplierName);
+                updatedWalletBalance = transaction.WalletSnapshot + transaction.TransactionAmount;
+            }
             var secondMessage = "";
-            var updatedWalletBalance = transaction.WalletSnapshot - transaction.TransactionAmount;
             var formattedUpdatedWalletBalance = Utility.ConvertToRupee(Math.Abs(updatedWalletBalance));
             if (updatedWalletBalance > 0)
                 secondMessage = String.Format("You owe {0} to {1}.", formattedUpdatedWalletBalance, supplierName);
@@ -40,6 +50,7 @@ namespace SDKTemplate
 
             SuccessNotification.PopUpHttpPostSuccessNotification(API.SupplierTransactions, firstMessage + "\n" + secondMessage);
         }
+
         #endregion
 
 

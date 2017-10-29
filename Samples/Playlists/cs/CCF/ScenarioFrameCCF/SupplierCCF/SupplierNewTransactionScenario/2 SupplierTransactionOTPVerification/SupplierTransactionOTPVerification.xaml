@@ -78,9 +78,9 @@
                                RelativePanel.AlignVerticalCenterWith="ReceiveGlyph" />
                 </RelativePanel>
                 <StackPanel>
-                    <TextBlock Text="Amount To Pay"
+                    <TextBlock Text="Amount"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.PayingAmount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
+                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Amount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>

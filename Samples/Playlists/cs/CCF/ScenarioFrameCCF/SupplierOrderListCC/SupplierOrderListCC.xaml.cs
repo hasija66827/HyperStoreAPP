@@ -53,6 +53,7 @@ namespace SDKTemplate
                 DueDateRange = filterSupplierOrderCriteria?.DueDateRange,
                 OrderDateRange = filterSupplierOrderCriteria?.OrderDateRange,
                 PartiallyPaidOrderOnly = filterSupplierOrderCriteria?.IncludePartiallyPaidOrdersOnly,
+                EntityType = EntityType.Supplier
             };
             var supplierOrders = await SupplierOrderDataSource.RetrieveSupplierOrdersAsync(sofc);
             if (supplierOrders != null)

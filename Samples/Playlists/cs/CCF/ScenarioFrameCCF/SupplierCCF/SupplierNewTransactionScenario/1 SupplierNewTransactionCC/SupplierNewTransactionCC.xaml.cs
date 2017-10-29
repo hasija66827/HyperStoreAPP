@@ -35,7 +35,7 @@ namespace SDKTemplate
             _SNTV = DataContext as SupplierNewTransactionViewModel;
             _SNTV.ErrorsChanged += _SNTV_ErrorsChanged;
             _SNTV.Supplier = selectedSupplier;
-            _SNTV.PayingAmount = null;
+            _SNTV.Amount = null;
         }
 
         private void _SNTV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)

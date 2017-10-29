@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace Models
 {
   public class TSupplierOrder
     {
+        [Required]
+        public EntityType EntityType { get; set; }
         public Guid SupplierOrderId { get; set; }
         public decimal BillAmount { get; set; }
         public DateTime DueDate { get; set; }

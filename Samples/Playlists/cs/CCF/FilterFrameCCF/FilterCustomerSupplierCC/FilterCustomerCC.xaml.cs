@@ -38,9 +38,9 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            var person = (Person)e.Parameter;
+            var person = (EntityType)e.Parameter;
             IRange<double> walletBalanceRange;
-            if (person == Person.Supplier)
+            if (person == EntityType.Supplier)
                 walletBalanceRange = await SupplierDataSource.RetrieveWalletRangeAsync<double>();
             else
                 walletBalanceRange = await CustomerDataSource.RetrieveWalletRangeAsync<double>();

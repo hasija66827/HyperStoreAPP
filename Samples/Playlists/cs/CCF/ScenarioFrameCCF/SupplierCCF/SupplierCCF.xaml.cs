@@ -28,6 +28,7 @@ namespace SDKTemplate
     public sealed partial class SupplierCCF : Page
     {
         public static SupplierCCF Current;
+        private EntityType _EntityType { get; set; }
         public event SupplierListUpdatedDelegate SupplierListUpdatedEvent;
         private TSupplier _RightTappedSupplier { get; set; }
         private Int32 _totalSuppliers;
@@ -41,6 +42,7 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            this._EntityType = (EntityType)e.Parameter;
             _totalSuppliers = await SupplierDataSource.RetrieveTotalSuppliers();
             await UpdateMasterListViewItemSourceByFilterCriteria();
         }
@@ -56,6 +58,7 @@ namespace SDKTemplate
             var filterSupplierCriteria = FilterPersonCC.Current.FilterPersonCriteria;
             var sfc = new SupplierFilterCriteriaDTO()
             {
+                EntityType = this._EntityType,
                 SupplierId = selectedSupplier?.SupplierId,
                 WalletAmount = filterSupplierCriteria?.WalletBalance
             };
@@ -109,6 +112,6 @@ namespace SDKTemplate
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             MainPage.Current.UpdateSupplier(_RightTappedSupplier);
-        }    
+        }
     }
 }

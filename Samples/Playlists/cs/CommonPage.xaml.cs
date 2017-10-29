@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.DTO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,23 +41,23 @@ namespace SDKTemplate
             }
             else if (scenarioType == ScenarioType.SupplierOrder)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC));
+                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Supplier);
                 SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
                 ScenarioFrame.Navigate(typeof(SupplierOrderCCF));
                 SummaryFrame.Navigate(typeof(SupplierOrderSummary));
             }
             else if (scenarioType == ScenarioType.Customers)
             {
-                HeaderFrame.Navigate(typeof(CustomerASBCC));
-                SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Customer);
-                ScenarioFrame.Navigate(typeof(CustomersCCF));
-                SummaryFrame.Navigate(typeof(CustomerSummaryCC));
+                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Customer);
+                SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Customer);
+                ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Customer);
+                SummaryFrame.Navigate(typeof(SupplierSummaryCC));
             }
             else if (scenarioType == ScenarioType.Suppliers)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC));
-                SearchBoxFrame.Navigate(typeof(FilterPersonCC), Person.Supplier);
-                ScenarioFrame.Navigate(typeof(SupplierCCF));
+                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Supplier);
+                SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Supplier);
+                ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Supplier);
                 SummaryFrame.Navigate(typeof(SupplierSummaryCC));
             }
             else if (scenarioType == ScenarioType.Products)

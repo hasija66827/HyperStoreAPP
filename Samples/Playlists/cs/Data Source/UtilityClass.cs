@@ -139,6 +139,8 @@ namespace SDKTemplate
 
         public class SupplierDTO
         {
+            public EntityType EntityType { get; set; }
+
             public string Address { get; set; }
             public string GSTIN { get; set; }
             [Required]
@@ -148,6 +150,11 @@ namespace SDKTemplate
             public string Name { get; set; }
         }
 
+        public enum EntityType
+        {
+            Customer,
+            Supplier
+        }
         #region CustomerPurchaseTrend
         public class CustomerPurchaseTrendDTO
         {
@@ -350,9 +357,11 @@ namespace SDKTemplate
             public decimal? PurchasePricePerUnit { get; set; }
         }
 
-
         public class SupplierOrderDTO
         {
+            [Required]
+            public EntityType? EntityType { get; set; }
+
             [Required]
             public List<ProductPurchasedDTO> ProductsPurchased { get; set; }
 
@@ -388,6 +397,10 @@ namespace SDKTemplate
             [Required]
             [DateRange(ErrorMessage = "{0} is invalid, lb>ub")]
             public IRange<DateTime> DueDateRange { get; set; }
+
+            [Required]
+            public EntityType? EntityType { get; set; }
+
         }
         #endregion
 
@@ -442,6 +455,8 @@ namespace SDKTemplate
         #region Supplier Controller
         public class SupplierFilterCriteriaDTO
         {
+            [Required]
+            public EntityType? EntityType { get; set; }
             public IRange<decimal> WalletAmount { get; set; }
             public Guid? SupplierId { get; set; }
         }

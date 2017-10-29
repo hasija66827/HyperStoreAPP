@@ -1,4 +1,5 @@
 ﻿using Models;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,7 @@ namespace SDKTemplate
     public sealed partial class SupplierASBCC : Page
     {
         public static SupplierASBCC Current;
+        private EntityType EntityType { get; set; }
         public TSupplier SelectedSupplierInASB { get { return this._selectedSupplierInASB; } }
         private List<SupplierASBViewModel> _Suppliers { get; set; }
         private SupplierASBViewModel _selectedSupplierInASB;
@@ -39,6 +41,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            this.EntityType = (EntityType)e.Parameter;
             RefreshTheSuppliers();
             SupplierDataSource.SupplierCreatedEvent += RefreshTheSuppliers;
             SupplierDataSource.SupplierUpdatedEvent += RefreshTheSuppliers;
@@ -62,7 +65,11 @@ namespace SDKTemplate
             SupplierASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             SupplierDetails.Visibility = Visibility.Collapsed;
-            var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(null);
+            var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(new DTO.SupplierFilterCriteriaDTO() {
+                EntityType=this.EntityType,
+                WalletAmount=null,
+                SupplierId=null,
+            });
             if (suppliers != null)
                 this._Suppliers = suppliers.Select(s => new SupplierASBViewModel(s)).ToList();
         }
@@ -109,11 +116,11 @@ namespace SDKTemplate
             }
             else
             {
-                SupplierASBViewModel matchingWholeSeller = null;
+                SupplierASBViewModel matchingSupplier = null;
                 // if a text is present, find best possible match.
                 if (args.QueryText != "")
-                    matchingWholeSeller = (_GetMatchingSuppliers(args.QueryText)).FirstOrDefault();
-                _SelectSupplier(matchingWholeSeller);
+                    matchingSupplier = (_GetMatchingSuppliers(args.QueryText)).FirstOrDefault();
+                _SelectSupplier(matchingSupplier);
             }
         }
 

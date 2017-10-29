@@ -38,6 +38,7 @@ namespace SDKTemplate
 
             var supplierOrderDTO = new SupplierOrderDTO()
             {
+                EntityType = EntityType.Supplier,
                 DueDate = PNP.SupplierCheckoutViewModel.DueDate,
                 IntrestRate = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.IntrestRate),
                 PayingAmount = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.PayingAmount),

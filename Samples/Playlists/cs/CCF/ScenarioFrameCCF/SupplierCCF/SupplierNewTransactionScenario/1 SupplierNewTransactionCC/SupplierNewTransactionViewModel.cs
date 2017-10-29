@@ -9,26 +9,32 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    public class SupplierNewTransactionViewModel: ValidatableBindableBase
+    public class SupplierNewTransactionViewModel : ValidatableBindableBase
     {
         public TSupplier Supplier { get; set; }
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
-        [Range(0, float.MaxValue, ErrorMessage = "Try paying amount in range(0, 10000000).")]
-        public string PayingAmount { get; set; }
+        [Range(0, float.MaxValue, ErrorMessage = "Try amount in range(0, 10000000).")]
+        [LessThanProperty(nameof(AbsWalletBalance))]
+        public string Amount { get; set; }
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [MaxLength(16, ErrorMessage = "Try description with atmost 16 charecters.")]
         public string Description { get; set; }
 
+        public decimal AbsWalletBalance{ get { return Math.Abs(this.Supplier.WalletBalance); } }
+
         public decimal? UpdatedWalletBalance
         {
             get
             {
-                return this.Supplier.WalletBalance - Utility.TryToConvertToDecimal(this.PayingAmount);
+                if (this.Supplier.EntityType == DTO.EntityType.Supplier)
+                    return this.Supplier.WalletBalance - Utility.TryToConvertToDecimal(this.Amount);
+                else
+                    return this.Supplier.WalletBalance + Utility.TryToConvertToDecimal(this.Amount);
             }
         }
-        public string ProceedToPay { get { return "Proceed To Pay " + Utility.ConvertToRupee(PayingAmount); } }
+        public string ProceedToPay { get { return "Proceed" + Utility.ConvertToRupee(Amount); } }
         public SupplierNewTransactionViewModel() { }
     }
 }
