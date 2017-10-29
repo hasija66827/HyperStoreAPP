@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDKTemplate
 {
-    class SupplierSummaryViewModel : INotifyPropertyChanged
+    class PersonSummaryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
@@ -16,7 +16,7 @@ namespace SDKTemplate
         public void OnALLPropertyChanged()
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.
-            foreach (PropertyInfo prop in typeof(SupplierSummaryViewModel).GetProperties())
+            foreach (PropertyInfo prop in typeof(PersonSummaryViewModel).GetProperties())
                 this.PropertyChanged(this, new PropertyChangedEventArgs(prop.Name));
         }
     }

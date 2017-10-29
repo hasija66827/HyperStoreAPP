@@ -41,10 +41,10 @@ namespace SDKTemplate
 
         private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedSupplierInASB = SupplierASBCC.Current.SelectedSupplierInASB;
+            var selectedSupplierInASB = PersonASBCC.Current.SelectedPersonInASB;
             if (selectedSupplierInASB == null)
             {
-                SupplierASBCC.Current.NotifyUser();
+                PersonASBCC.Current.NotifyUser();
                 return;
             }
             var supplierNavigationParameter = new SupplierPageNavigationParameter()

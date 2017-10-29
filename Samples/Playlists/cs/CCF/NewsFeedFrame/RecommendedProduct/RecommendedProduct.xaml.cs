@@ -31,7 +31,7 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this._RecomProducts = new ObservableCollection<RecommendedProductViewModel>();
-            SupplierASBCC.Current.SelectedSupplierChangedEvent += Current_SelectedCustomerChangedEvent;
+            PersonASBCC.Current.SelectedPersonChangedEvent += Current_SelectedCustomerChangedEvent;
             CustomerProductListCC.Current.NewProductAddedIntoListEvent += Current_NewProductAddedIntoListEvent;
         }
 
@@ -44,7 +44,7 @@ namespace SDKTemplate
 
         private async Task Current_SelectedCustomerChangedEvent()
         {
-            var customer = SupplierASBCC.Current.SelectedSupplierInASB;
+            var customer = PersonASBCC.Current.SelectedPersonInASB;
             if (customer != null)
             {
 

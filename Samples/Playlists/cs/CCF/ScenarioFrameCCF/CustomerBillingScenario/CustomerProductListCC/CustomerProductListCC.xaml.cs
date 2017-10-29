@@ -18,8 +18,6 @@ using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
-using SDKTemp.Data;
 using System.Collections.ObjectModel;
 using SDKTemplate.DTO;
 using Models;
@@ -78,12 +76,12 @@ namespace SDKTemplate
 
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            if (SupplierASBCC.Current.SelectedSupplierInASB == null)
+            if (PersonASBCC.Current.SelectedPersonInASB == null)
             {
-                SupplierASBCC.Current.NotifyUser();
+                PersonASBCC.Current.NotifyUser();
                 return;
             }
-            var selectedCustomer = SupplierASBCC.Current.SelectedSupplierInASB;
+            var selectedCustomer = PersonASBCC.Current.SelectedPersonInASB;
             var billSummary = BillingSummaryCC.Current.BillingSummaryViewModel;
             CustomerPageNavigationParameter customerNavigationParameter = new CustomerPageNavigationParameter()
             {

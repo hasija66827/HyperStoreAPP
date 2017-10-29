@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.SupplierASBCC"
+﻿<Page x:Class="SDKTemplate.PersonASBCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -22,9 +22,9 @@
                             TextMemberPath="Supplier_MobileNo_Name"
                             DisplayMemberPath="Supplier_MobileNo_Name"
                             PlaceholderText="Search By Mobile Number or Name"
-                            TextChanged="_SupplierASB_TextChanged"
+                            TextChanged="_PersonASB_TextChanged"
                             QueryIcon="Find"
-                            QuerySubmitted="_SupplierASB_QuerySubmitted"
+                            QuerySubmitted="_PersonASB_QuerySubmitted"
                             MinWidth="280"
                             Width="280" />
             <TextBlock x:Name="NoResults"

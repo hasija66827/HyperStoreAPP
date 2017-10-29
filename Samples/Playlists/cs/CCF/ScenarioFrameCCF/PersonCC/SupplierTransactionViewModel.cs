@@ -9,7 +9,7 @@ using Windows.Globalization.DateTimeFormatting;
 
 namespace SDKTemplate
 {
-    public sealed class SupplierTransactionViewModel : TSupplierTransaction
+    public sealed class TransactionViewModel : TSupplierTransaction
     {
         public string FormattedTransactionDate
         {
@@ -29,18 +29,18 @@ namespace SDKTemplate
             }
         }
 
-        public SupplierTransactionViewModel(TSupplierTransaction parent)
+        public TransactionViewModel(TSupplierTransaction parent)
         {
             foreach (PropertyInfo prop in typeof(TSupplierTransaction).GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }
     }
 
-    public sealed class SupplierTransactionCollection
+    public sealed class TransactionCollection
     {
-        public List<SupplierTransactionViewModel> Transactions { get; set; }
-        public string PayMoneyToSupplier { get { return "Money to " + this.SupplierName; } }
-        public string SupplierName { get; set; }        
-        public SupplierTransactionCollection() { }
+        public List<TransactionViewModel> Transactions { get; set; }
+        public string MoneyToFromPerson { get { return "Money to / from " + this.PersonName; } }
+        public string PersonName { get; set; }        
+        public TransactionCollection() { }
     }
 }

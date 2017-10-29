@@ -26,22 +26,22 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierFormCC : Page
+    public sealed partial class PersonFormCC : Page
     {
-        public static SupplierFormCC Current;
+        public static PersonFormCC Current;
         private EntityType _EntityType { get; set; }
-        private SupplierFormViewModel _SFV { get; set; }
+        private PersonFormViewModel _SFV { get; set; }
         private FormMode _FormMode { get; set; }
-        public SupplierFormCC()
+        public PersonFormCC()
         {
             this.InitializeComponent();
-            _SFV = new SupplierFormViewModel();
+            _SFV = new PersonFormViewModel();
             Current = this;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._EntityType = (EntityType)e.Parameter;
-            _SFV = DataContext as SupplierFormViewModel;
+            _SFV = DataContext as PersonFormViewModel;
             _SFV.ErrorsChanged += AddSupplierViewModel_ErrorsChanged;
             if (e.Parameter != null)
             {
@@ -88,11 +88,11 @@ namespace SDKTemplate
                 TSupplier supplier = null;
                 if (_FormMode == FormMode.Create)
                 {
-                    supplier = await SupplierDataSource.CreateNewSupplier(supplierDTO);
+                    supplier = await PersonDataSource.CreateNewPerson(supplierDTO);
                 }
                 else if (_FormMode == FormMode.Update)
                 {
-                    supplier = await SupplierDataSource.UpdateSupplierAsync((Guid)_SFV.SupplierId, supplierDTO);
+                    supplier = await PersonDataSource.UpdateSupplierAsync((Guid)_SFV.SupplierId, supplierDTO);
                 }
                 else
                 {

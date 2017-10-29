@@ -21,14 +21,14 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierOrderSummary : Page
+    public sealed partial class OrderSummary : Page
     {
-        private SupplierOrderSummaryViewModel _OrderSummaryViewModel { get; set; }
-        public SupplierOrderSummary()
+        private OrderSummaryViewModel _OrderSummaryViewModel { get; set; }
+        public OrderSummary()
         {
             this.InitializeComponent();
-            this._OrderSummaryViewModel = new SupplierOrderSummaryViewModel();
-            SupplierOrderCCF.Current.SupplierOrderListUpdatedEvent += Current_SupplierOrderListUpdatedEvent;
+            this._OrderSummaryViewModel = new OrderSummaryViewModel();
+            OrderCCF.Current.OrderListUpdatedEvent += Current_SupplierOrderListUpdatedEvent;
         }
 
         private void Current_SupplierOrderListUpdatedEvent(IEnumerable<TSupplierOrder> supplierOrders)

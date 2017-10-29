@@ -14,7 +14,7 @@ namespace SDKTemplate
         public static async Task<TSupplierTransaction> CreateNewTransactionAsync(SupplierTransactionDTO transactionDTO)
         {
             MainPage.Current.ActivateProgressRing();
-            var transaction = await Utility.CreateAsync<TSupplierTransaction>(BaseURI.HyperStoreService + API.SupplierTransactions, transactionDTO);
+            var transaction = await Utility.CreateAsync<TSupplierTransaction>(BaseURI.HyperStoreService + API.Transactions, transactionDTO);
             if (transaction != null)
             {
                 _SendTransactionCreationNotification(transaction);
@@ -48,16 +48,15 @@ namespace SDKTemplate
             else
                 secondMessage = String.Format("{1} owes you {0}.", formattedUpdatedWalletBalance, supplierName);
 
-            SuccessNotification.PopUpHttpPostSuccessNotification(API.SupplierTransactions, firstMessage + "\n" + secondMessage);
+            SuccessNotification.PopUpHttpPostSuccessNotification(API.Transactions, firstMessage + "\n" + secondMessage);
         }
 
         #endregion
 
-
         #region Read
         public static async Task<List<TSupplierTransaction>> RetrieveTransactionsAsync(SupplierTransactionFilterCriteriaDTO tfc)
         {
-            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<List<TSupplierTransaction>>(BaseURI.HyperStoreService + API.SupplierTransactions, null, tfc);
+            List<TSupplierTransaction> transactions = await Utility.RetrieveAsync<List<TSupplierTransaction>>(BaseURI.HyperStoreService + API.Transactions, null, tfc);
             return transactions;
         }
         #endregion

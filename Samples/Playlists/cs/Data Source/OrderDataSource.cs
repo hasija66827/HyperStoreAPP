@@ -8,7 +8,7 @@ using SDKTemplate.DTO;
 
 namespace SDKTemplate
 {
-    public class SupplierOrderDataSource
+    public class OrderDataSource
     {
         public async static Task<bool> InitiateSupplierOrderCreationAsync(SupplierPageNavigationParameter PNP)
         {
@@ -16,7 +16,7 @@ namespace SDKTemplate
             if (IsVerified)
             {
                 var supplierOrderDTO = _CreateSupplierOrderDTO(PNP);
-                var usingWalletAmount = await SupplierOrderDataSource.CreateOrderAsync(supplierOrderDTO);
+                var usingWalletAmount = await OrderDataSource.CreateOrderAsync(supplierOrderDTO);
                 if (usingWalletAmount != null)
                 {
                     _SendOrderCreationNotification(PNP, usingWalletAmount);
@@ -29,7 +29,7 @@ namespace SDKTemplate
         public static async Task<bool> InitiateCustomerOrderCreationAsync(CustomerPageNavigationParameter PNP)
         {
             var customerOrderDTO = _CreateCustomerOrderDTO(PNP);
-            var usingWalletAmount = await SupplierOrderDataSource.CreateOrderAsync(customerOrderDTO);
+            var usingWalletAmount = await OrderDataSource.CreateOrderAsync(customerOrderDTO);
             if (usingWalletAmount != null)
             {
                 // _SendOrderCreationNotification(PNP, usingWalletAmount);

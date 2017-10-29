@@ -22,13 +22,13 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class FilterSupplierOrderCC : Page
+    public sealed partial class FilterOrderCC : Page
     {
-        public static FilterSupplierOrderCC Current;
+        public static FilterOrderCC Current;
         public FilterSupplierOrderViewModel FilterSupplierOrderCriteria { get { return this._FilterSupplierOrderViewModel; } }
-        public FilterSupplierOrderCriteriaChangedDelegate FilterSupplierOrderCriteriaChangedEvent;
+        public FilterSupplierOrderCriteriaChangedDelegate FilterOrderCriteriaChangedEvent;
         private FilterSupplierOrderViewModel _FilterSupplierOrderViewModel;
-        public FilterSupplierOrderCC()
+        public FilterOrderCC()
         {
             Current = this;
             this.InitializeComponent();
@@ -42,7 +42,7 @@ namespace SDKTemplate
 
         private void FilterCriteriaChanged(object sender, object e)
         {
-            FilterSupplierOrderCriteriaChangedEvent?.Invoke();
+            FilterOrderCriteriaChangedEvent?.Invoke();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.SupplierFormCC"
+﻿<Page x:Class="SDKTemplate.PersonFormCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <Page.DataContext>
-        <local:SupplierFormViewModel />
+        <local:PersonFormViewModel />
     </Page.DataContext>
     <RelativePanel>
         <Border  x:Name="HeaderPanel"

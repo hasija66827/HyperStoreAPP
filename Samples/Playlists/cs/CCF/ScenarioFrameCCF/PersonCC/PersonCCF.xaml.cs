@@ -36,14 +36,14 @@ namespace SDKTemplate
         {
             Current = this;
             this.InitializeComponent();
-            SupplierASBCC.Current.SelectedSupplierChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
+            PersonASBCC.Current.SelectedPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
             FilterPersonCC.Current.FilterPersonChangedEvent += UpdateMasterListViewItemSourceByFilterCriteria;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this._EntityType = (EntityType)e.Parameter;
-            _totalSuppliers = await SupplierDataSource.RetrieveTotalSuppliers();
+            _totalSuppliers = await PersonDataSource.RetrieveTotalPersons();
             await UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
@@ -54,7 +54,7 @@ namespace SDKTemplate
         /// </summary>
         private async Task UpdateMasterListViewItemSourceByFilterCriteria()
         {
-            var selectedSupplier = SupplierASBCC.Current.SelectedSupplierInASB;
+            var selectedSupplier = PersonASBCC.Current.SelectedPersonInASB;
             var filterSupplierCriteria = FilterPersonCC.Current.FilterPersonCriteria;
             var sfc = new SupplierFilterCriteriaDTO()
             {
@@ -62,7 +62,7 @@ namespace SDKTemplate
                 SupplierId = selectedSupplier?.SupplierId,
                 WalletAmount = filterSupplierCriteria?.WalletBalance
             };
-            var items = await SupplierDataSource.RetrieveSuppliersAsync(sfc);
+            var items = await PersonDataSource.RetrievePersonsAsync(sfc);
             if (items != null)
             {
                 MasterListView.ItemsSource = items;
@@ -88,9 +88,9 @@ namespace SDKTemplate
             var transactions = await SupplierTransactionDataSource.RetrieveTransactionsAsync(tfc);
             if (transactions != null)
             {
-                var supplierTransactionCollection = new SupplierTransactionCollection();
-                supplierTransactionCollection.Transactions = transactions.Select(t => new SupplierTransactionViewModel(t)).ToList();
-                supplierTransactionCollection.SupplierName = selectedSupplier.Name;
+                var supplierTransactionCollection = new TransactionCollection();
+                supplierTransactionCollection.Transactions = transactions.Select(t => new TransactionViewModel(t)).ToList();
+                supplierTransactionCollection.PersonName = selectedSupplier.Name;
                 DetailContentPresenter.Content = supplierTransactionCollection;
             }
         }

@@ -10,7 +10,6 @@
 //*********************************************************
 
 using Models;
-using SDKTemp.Data;
 using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
@@ -44,7 +43,7 @@ namespace SDKTemplate
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(SupplierFormCC), EntityType.Customer);
+            EntityFrame.Navigate(typeof(PersonFormCC), EntityType.Customer);
         }
 
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
@@ -56,19 +55,19 @@ namespace SDKTemplate
         private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(SupplierFormCC), EntityType.Supplier);
+            EntityFrame.Navigate(typeof(PersonFormCC), EntityType.Supplier);
         }
 
         public void UpdateCustomer(TSupplier customer)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(SupplierFormCC), customer);
+            EntityFrame.Navigate(typeof(PersonFormCC), customer);
         }
 
         public void UpdateSupplier(TSupplier supplier)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(SupplierFormCC), supplier);
+            EntityFrame.Navigate(typeof(PersonFormCC), supplier);
         }
 
         //TODO: Bad coding practice.

@@ -20,21 +20,21 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierSummaryCC : Page
+    public sealed partial class PersonSummaryCC : Page
     {
-        private SupplierSummaryViewModel _SupplierSummaryViewModel { get; set; }
+        private PersonSummaryViewModel _PSV { get; set; }
 
-        public SupplierSummaryCC()
+        public PersonSummaryCC()
         {
             this.InitializeComponent();
-            this._SupplierSummaryViewModel = new SupplierSummaryViewModel();
+            this._PSV = new PersonSummaryViewModel();
             SupplierCCF.Current.SupplierListUpdatedEvent += Current_SupplierListUpdatedEvent;
         }
 
         private void Current_SupplierListUpdatedEvent(List<Models.TSupplier> suppliers)
         {
-            this._SupplierSummaryViewModel.TotalWalletBalance = (decimal)suppliers.Sum(c => c.WalletBalance);
-            this._SupplierSummaryViewModel.OnALLPropertyChanged();
+            this._PSV.TotalWalletBalance = (decimal)suppliers.Sum(c => c.WalletBalance);
+            this._PSV.OnALLPropertyChanged();
         }
     }
 }

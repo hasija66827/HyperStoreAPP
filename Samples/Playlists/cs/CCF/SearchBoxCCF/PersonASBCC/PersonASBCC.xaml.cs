@@ -20,38 +20,38 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate Task SelectedSupplierChangedDelegate();
+    public delegate Task SelectedPersonChangedDelegate();
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierASBCC : Page
+    public sealed partial class PersonASBCC : Page
     {
-        public static SupplierASBCC Current;
+        public static PersonASBCC Current;
         private EntityType EntityType { get; set; }
-        public TSupplier SelectedSupplierInASB { get { return this._selectedSupplierInASB; } }
-        private List<SupplierASBViewModel> _Suppliers { get; set; }
-        private SupplierASBViewModel _selectedSupplierInASB;
-        public event SelectedSupplierChangedDelegate SelectedSupplierChangedEvent;
-        public SupplierASBCC()
+        public TSupplier SelectedPersonInASB { get { return this._selectePersonInASB; } }
+        private List<PersonASBViewModel> _Persons { get; set; }
+        private PersonASBViewModel _selectePersonInASB;
+        public event SelectedPersonChangedDelegate SelectedPersonChangedEvent;
+        public PersonASBCC()
         {
             Current = this;
             this.InitializeComponent();
-            this._Suppliers = null;
+            this._Persons = null;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.EntityType = (EntityType)e.Parameter;
-            RefreshTheSuppliers();
-            SupplierDataSource.SupplierCreatedEvent += RefreshTheSuppliers;
-            SupplierDataSource.SupplierUpdatedEvent += RefreshTheSuppliers;
+            RefreshThePersons();
+            PersonDataSource.PersonCreatedEvent += RefreshThePersons;
+            PersonDataSource.PersonUpdatedEvent += RefreshThePersons;
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            SupplierDataSource.SupplierCreatedEvent -= RefreshTheSuppliers;
-            SupplierDataSource.SupplierUpdatedEvent -= RefreshTheSuppliers;
+            PersonDataSource.PersonCreatedEvent -= RefreshThePersons;
+            PersonDataSource.PersonUpdatedEvent -= RefreshThePersons;
             base.OnNavigatedFrom(e);
         }
 
@@ -60,19 +60,19 @@ namespace SDKTemplate
             ErrorTB.Visibility = Visibility.Visible;
         }
 
-        public async void RefreshTheSuppliers()
+        public async void RefreshThePersons()
         {
             SupplierASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             SupplierDetails.Visibility = Visibility.Collapsed;
-            var suppliers = await SupplierDataSource.RetrieveSuppliersAsync(new DTO.SupplierFilterCriteriaDTO()
+            var persons = await PersonDataSource.RetrievePersonsAsync(new DTO.SupplierFilterCriteriaDTO()
             {
                 EntityType = this.EntityType,
                 WalletAmount = null,
                 SupplierId = null,
             });
-            if (suppliers != null)
-                this._Suppliers = suppliers.Select(s => new SupplierASBViewModel(s)).ToList();
+            if (persons != null)
+                this._Persons = persons.Select(s => new PersonASBViewModel(s)).ToList();
         }
 
         /// <summary>
@@ -81,16 +81,16 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="sender">The AutoSuggestBox whose text got changed.</param>
         /// <param name="args">The event arguments.</param>
-        private void _SupplierASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void _PersonASB_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            if (this._Suppliers == null)
+            if (this._Persons == null)
                 return;
             // We only want to get results when it was a user typing, 
             // otherwise we assume the value got filled in by TextMemberPath 
             // or the handler for SuggestionChosen
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                var matchingWholeSellers = _GetMatchingSuppliers(sender.Text);
+                var matchingWholeSellers = _GetMatchingPersons(sender.Text);
                 sender.ItemsSource = matchingWholeSellers.ToList();
             }
         }
@@ -104,51 +104,51 @@ namespace SDKTemplate
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void _SupplierASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void _PersonASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            if (this._Suppliers == null)
+            if (this._Persons == null)
                 return;
 
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item, take an action on it here
                 var choosenSupplier = args.ChosenSuggestion;
-                _SelectSupplier((SupplierASBViewModel)choosenSupplier);
+                _SelectPerson((PersonASBViewModel)choosenSupplier);
             }
             else
             {
-                SupplierASBViewModel matchingSupplier = null;
+                PersonASBViewModel matchingSupplier = null;
                 // if a text is present, find best possible match.
                 if (args.QueryText != "")
-                    matchingSupplier = (_GetMatchingSuppliers(args.QueryText)).FirstOrDefault();
-                _SelectSupplier(matchingSupplier);
+                    matchingSupplier = (_GetMatchingPersons(args.QueryText)).FirstOrDefault();
+                _SelectPerson(matchingSupplier);
             }
         }
 
-        private async void _SelectSupplier(SupplierASBViewModel supplier)
+        private async void _SelectPerson(PersonASBViewModel person)
         {
-            if (supplier != null)
+            if (person != null)
             {
-                var retrievedSupplier = await SupplierDataSource.RetrieveTheSupplierAsync(supplier.SupplierId);
-                if (retrievedSupplier == null)
+                var retrievedPersons = await PersonDataSource.RetrieveThePersonAsync(person.SupplierId);
+                if (retrievedPersons == null)
                     return;
-                _selectedSupplierInASB = new SupplierASBViewModel(retrievedSupplier);
+                _selectePersonInASB = new PersonASBViewModel(retrievedPersons);
                 NoResults.Visibility = Visibility.Collapsed;
                 SupplierDetails.Visibility = Visibility.Visible;
-                WholeSellerMobNo.Text = _selectedSupplierInASB.MobileNo;
-                WholeSellerName.Text = _selectedSupplierInASB.Name;
-                WholeSellerAddress.Text = _selectedSupplierInASB.Address != null ? _selectedSupplierInASB.Address : "";
-                WholeSellerWalletBalance.Text = Utility.ConvertToRupee(_selectedSupplierInASB.WalletBalance);
-                SupplierGlyph.Text = Utility.GetGlyphValue(_selectedSupplierInASB.Name);
+                WholeSellerMobNo.Text = _selectePersonInASB.MobileNo;
+                WholeSellerName.Text = _selectePersonInASB.Name;
+                WholeSellerAddress.Text = _selectePersonInASB.Address != null ? _selectePersonInASB.Address : "";
+                WholeSellerWalletBalance.Text = Utility.ConvertToRupee(_selectePersonInASB.WalletBalance);
+                SupplierGlyph.Text = Utility.GetGlyphValue(_selectePersonInASB.Name);
                 ErrorTB.Visibility = Visibility.Collapsed;
             }
             else
             {
-                _selectedSupplierInASB = null;
+                _selectePersonInASB = null;
                 NoResults.Visibility = Visibility.Visible;
                 SupplierDetails.Visibility = Visibility.Collapsed;
             }
-            SelectedSupplierChangedEvent?.Invoke();
+            SelectedPersonChangedEvent?.Invoke();
         }
 
         /// <summary>
@@ -156,11 +156,11 @@ namespace SDKTemplate
         /// </summary>
         /// <param name="query">The part of the name or company to look for</param>
         /// <returns>An ordered list of mobileNumber that matches the query</returns>
-        private List<SupplierASBViewModel> _GetMatchingSuppliers(string query)
+        private List<PersonASBViewModel> _GetMatchingPersons(string query)
         {
-            if (this._Suppliers == null)
+            if (this._Persons == null)
                 return null;
-            return this._Suppliers
+            return this._Persons
                 .Where(item => item.MobileNo.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1
                             || item.Name?.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(item => item.MobileNo.StartsWith(query, StringComparison.CurrentCultureIgnoreCase)).ToList();

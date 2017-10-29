@@ -1,5 +1,4 @@
-﻿using SDKTemp.Data;
-using SDKTemplate.DTO;
+﻿using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,13 +60,13 @@ namespace SDKTemplate
                 if (this.PageNavigationParameter.OrderType == OrderType.SupplierOrder)
                 {
                     this.PageNavigationParameter.SupplierPageNavigationParameter.SupplierCheckoutViewModel = _CV;
-                    var IsCreated = await SupplierOrderDataSource.InitiateSupplierOrderCreationAsync(this.PageNavigationParameter.SupplierPageNavigationParameter);
+                    var IsCreated = await OrderDataSource.InitiateSupplierOrderCreationAsync(this.PageNavigationParameter.SupplierPageNavigationParameter);
                     MainPage.RefreshPage(ScenarioType.SupplierBilling);
                 }
                 else
                 {
                     this.PageNavigationParameter.CustomerPageNavigationParameter.CustomerCheckoutViewModel = _CV;
-                    var IsCreated = await SupplierOrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
+                    var IsCreated = await OrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
                     MainPage.RefreshPage(ScenarioType.CustomerBilling);
                 }
             }

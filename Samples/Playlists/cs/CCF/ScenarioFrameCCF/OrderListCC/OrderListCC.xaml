@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.SupplierOrderCCF"
+﻿<Page x:Class="SDKTemplate.OrderCCF"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -8,7 +8,7 @@
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
-                      x:DataType="local:SupplierOrderViewModel">
+                      x:DataType="local:OrderViewModel">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind Supplier.MobileNo}"
@@ -31,7 +31,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="local:SupplierOrderViewModel">
+                      x:DataType="local:OrderViewModel">
             <RelativePanel>
                 <StackPanel x:Name="StaticLabelsForList"
                             Style="{StaticResource ListHeaderStackPanel}">
@@ -54,7 +54,7 @@
                               ItemsSource="{x:Bind OrderDetails}"
                               Style="{StaticResource ListViewStyle}">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="local:SupplierOrderProductViewModel">
+                            <DataTemplate x:DataType="local:OrderProductViewModel">
                                 <StackPanel Style="{StaticResource DetailListStackPanel}">
                                     <TextBlock Text="{x:Bind Product.Code, Mode=OneWay}"
                                                Style="{StaticResource CaptionBasicTBStyle}" />
@@ -78,7 +78,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="SupplierBillingSummaryTemplate"
-                      x:DataType="local:SupplierOrderViewModel">
+                      x:DataType="local:OrderViewModel">
             <RelativePanel>
                 <StackPanel x:Name="OrderPricing"
                             Style="{StaticResource DetailListSummaryStackPanel}">

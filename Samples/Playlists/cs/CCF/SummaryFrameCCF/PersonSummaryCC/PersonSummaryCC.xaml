@@ -1,4 +1,4 @@
-﻿<Page x:Class="SDKTemplate.SupplierSummaryCC"
+﻿<Page x:Class="SDKTemplate.PersonSummaryCC"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
@@ -22,7 +22,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Total Wallet Balance:"
                            Style="{StaticResource ArialBaseStyle}" />
-                <TextBlock Text="{x:Bind _SupplierSummaryViewModel.TotalWalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
+                <TextBlock Text="{x:Bind _PSV.TotalWalletBalance, Mode=OneWay, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{StaticResource CalibriBaseStyle}" />
             </StackPanel>
         </RelativePanel>

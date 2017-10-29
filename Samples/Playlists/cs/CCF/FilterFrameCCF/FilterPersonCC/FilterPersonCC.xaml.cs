@@ -41,9 +41,9 @@ namespace SDKTemplate
             var person = (EntityType)e.Parameter;
             IRange<double> walletBalanceRange;
             if (person == EntityType.Supplier)
-                walletBalanceRange = await SupplierDataSource.RetrieveWalletRangeAsync<double>();
+                walletBalanceRange = await PersonDataSource.RetrieveWalletRangeAsync<double>();
             else
-                walletBalanceRange = await SupplierDataSource.RetrieveWalletRangeAsync<double>();
+                walletBalanceRange = await PersonDataSource.RetrieveWalletRangeAsync<double>();
 
             _IntitializeWalletRangeSlider(walletBalanceRange);
             WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;

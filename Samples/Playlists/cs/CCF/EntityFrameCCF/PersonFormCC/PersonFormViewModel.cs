@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace SDKTemplate
 {
-    public class SupplierFormViewModel : ValidatableBindableBase, ISupplier
+    public class PersonFormViewModel : ValidatableBindableBase, ISupplier
     {
         public Guid? SupplierId { get; set; }
 
@@ -48,7 +48,7 @@ namespace SDKTemplate
         private decimal _walletBalance;
         public virtual decimal WalletBalance { get { return this._walletBalance; } set { this._walletBalance = value; } }
 
-        public SupplierFormViewModel()
+        public PersonFormViewModel()
         {
             this._address = null;
             this._mobileNo = null;

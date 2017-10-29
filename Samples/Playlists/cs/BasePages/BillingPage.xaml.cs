@@ -33,7 +33,7 @@ namespace SDKTemplate
 
             if (scenarioType == ScenarioType.CustomerBilling)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Customer);
+                HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Customer);
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
                 ScenarioFrame.Navigate(typeof(CustomerProductListCC));
                 SummaryFrame.Navigate(typeof(BillingSummaryCC));
@@ -41,7 +41,7 @@ namespace SDKTemplate
             }
             else if (scenarioType == ScenarioType.SupplierBilling)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Supplier);
+                HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Supplier);
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
                 ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                 SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));

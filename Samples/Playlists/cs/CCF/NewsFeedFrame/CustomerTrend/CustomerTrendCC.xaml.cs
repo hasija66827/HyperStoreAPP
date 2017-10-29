@@ -31,7 +31,7 @@ namespace SDKTemplate
             this._CustomerPurchaseTrendCollection = new CustomerPurchaseTrendCollectionViewModel();
            
         }
-
+        /*
         private async void Current_CustomerSelectionChangeEvent(TCustomer selectedCustomer)
         {
             var customerPurchaseTrendDTO = new CustomerPurchaseTrendDTO()
@@ -44,5 +44,6 @@ namespace SDKTemplate
             this._CustomerPurchaseTrendCollection.CustomerPurchaseTrends = await AnalyticsDataSource.RetrieveCustomerPurchaseTrend(customerPurchaseTrendDTO);
             CustomerTrendContentPresenter.Content = this._CustomerPurchaseTrendCollection;
         }
+        */
     }
 }

@@ -18,12 +18,12 @@ namespace SDKTemplate
     {
         public static string Customers { get { return "Customers"; } }
         public static string Products { get { return "Products"; } }
-        public static string Suppliers { get { return "Suppliers"; } }
+        public static string Persons { get { return "Suppliers"; } }
         public static string Tags { get { return "Tags"; } }
         public static string CustomerOrders { get { return "CustomerOrders"; } }
         public static string CustomerTransactions { get { return "CustomerTransactions"; } }
         public static string SupplierOrders { get { return "SupplierOrders"; } }
-        public static string SupplierTransactions { get { return "SupplierTransactions"; } }
+        public static string Transactions { get { return "SupplierTransactions"; } }
 
         public static string CustomerOrderProducts { get { return "CustomerOrderProducts"; } }
         public static string SupplierOrderProducts { get { return "SupplierOrderProducts"; } }

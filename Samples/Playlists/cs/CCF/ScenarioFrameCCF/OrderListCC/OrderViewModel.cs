@@ -13,7 +13,7 @@ namespace SDKTemplate
     /// This class represents the Master Detail View Model
     /// Detail view show detail of the order and the trnasactions which completed the payment of the order.
     /// </summary>
-    public class SupplierOrderViewModel : TSupplierOrder
+    public class OrderViewModel : TSupplierOrder
     {
         public decimal PayedAmountByTx { get { return this.SettledPayedAmount - this.PayedAmount; } }
         public decimal RemainingAmount{ get { return this.BillAmount - this.SettledPayedAmount; } }
@@ -42,21 +42,21 @@ namespace SDKTemplate
 
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }
 
-        public List<SupplierOrderProductViewModel> OrderDetails { get; set; }
+        public List<OrderProductViewModel> OrderDetails { get; set; }
 
 
-        public SupplierOrderViewModel(TSupplierOrder parent)
+        public OrderViewModel(TSupplierOrder parent)
         {
-            this.OrderDetails = new List<SupplierOrderProductViewModel>();
+            this.OrderDetails = new List<OrderProductViewModel>();
             foreach (PropertyInfo prop in typeof(TSupplierOrder).GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }
     }
 
-    public sealed class SupplierOrderProductViewModel : TSupplierOrderProduct
+    public sealed class OrderProductViewModel : TSupplierOrderProduct
     {
         public decimal NetValue { get { return this.PurchasePrice * this.QuantityPurchased; } }
-        public SupplierOrderProductViewModel(TSupplierOrderProduct parent)
+        public OrderProductViewModel(TSupplierOrderProduct parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);

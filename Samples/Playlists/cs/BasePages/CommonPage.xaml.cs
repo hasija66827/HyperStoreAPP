@@ -34,31 +34,31 @@ namespace SDKTemplate
 
             if (scenarioType == ScenarioType.CustomerOrder)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Customer);
-                SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
-                ScenarioFrame.Navigate(typeof(SupplierOrderCCF), EntityType.Customer);
-                SummaryFrame.Navigate(typeof(SupplierOrderSummary));
+                HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Customer);
+                SearchBoxFrame.Navigate(typeof(FilterOrderCC));
+                ScenarioFrame.Navigate(typeof(OrderCCF), EntityType.Customer);
+                SummaryFrame.Navigate(typeof(OrderSummary));
             }
             else if (scenarioType == ScenarioType.SupplierOrder)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Supplier);
-                SearchBoxFrame.Navigate(typeof(FilterSupplierOrderCC));
-                ScenarioFrame.Navigate(typeof(SupplierOrderCCF), EntityType.Supplier);
-                SummaryFrame.Navigate(typeof(SupplierOrderSummary));
+                HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Supplier);
+                SearchBoxFrame.Navigate(typeof(FilterOrderCC));
+                ScenarioFrame.Navigate(typeof(OrderCCF), EntityType.Supplier);
+                SummaryFrame.Navigate(typeof(OrderSummary));
             }
             else if (scenarioType == ScenarioType.Customers)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Customer);
+                HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Customer);
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Customer);
                 ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Customer);
-                SummaryFrame.Navigate(typeof(SupplierSummaryCC));
+                SummaryFrame.Navigate(typeof(PersonSummaryCC));
             }
             else if (scenarioType == ScenarioType.Suppliers)
             {
-                HeaderFrame.Navigate(typeof(SupplierASBCC), EntityType.Supplier);
+                HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Supplier);
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Supplier);
                 ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Supplier);
-                SummaryFrame.Navigate(typeof(SupplierSummaryCC));
+                SummaryFrame.Navigate(typeof(PersonSummaryCC));
             }
             else if (scenarioType == ScenarioType.Products)
             {

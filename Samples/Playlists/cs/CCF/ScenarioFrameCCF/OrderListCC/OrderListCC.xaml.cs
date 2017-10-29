@@ -20,64 +20,64 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate
 {
-    public delegate void SupplierOderListUpdatedDelegate(IEnumerable<TSupplierOrder> supplierOrders);
+    public delegate void OrderListUpdatedDelegate(IEnumerable<TSupplierOrder> supplierOrders);
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SupplierOrderCCF : Page
+    public sealed partial class OrderCCF : Page
     {
-        public static SupplierOrderCCF Current;
+        public static OrderCCF Current;
         private EntityType EntityType { get; set; }
-        public SupplierOderListUpdatedDelegate SupplierOrderListUpdatedEvent;
+        public OrderListUpdatedDelegate OrderListUpdatedEvent;
         private Int32 _totalOrders;
-        public SupplierOrderCCF()
+        public OrderCCF()
         {
             Current = this;
             this.InitializeComponent();
-            SupplierASBCC.Current.SelectedSupplierChangedEvent += UpdateMasterListViewByFilterCriteriaAsync;
-            FilterSupplierOrderCC.Current.FilterSupplierOrderCriteriaChangedEvent += UpdateMasterListViewByFilterCriteriaAsync;
+            PersonASBCC.Current.SelectedPersonChangedEvent += UpdateMasterListViewByFilterCriteriaAsync;
+            FilterOrderCC.Current.FilterOrderCriteriaChangedEvent += UpdateMasterListViewByFilterCriteriaAsync;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.EntityType = (EntityType)e.Parameter;
-            _totalOrders = await SupplierOrderDataSource.RetrieveTotalOrder();
+            _totalOrders = await OrderDataSource.RetrieveTotalOrder();
             await UpdateMasterListViewByFilterCriteriaAsync();
         }
 
         private async Task UpdateMasterListViewByFilterCriteriaAsync()
         {
-            var selectedSupplierId = SupplierASBCC.Current.SelectedSupplierInASB?.SupplierId;
-            var filterSupplierOrderCriteria = FilterSupplierOrderCC.Current.FilterSupplierOrderCriteria;
+            var selectedPersonId = PersonASBCC.Current.SelectedPersonInASB?.SupplierId;
+            var filterSupplierOrderCriteria = FilterOrderCC.Current.FilterSupplierOrderCriteria;
             var sofc = new SupplierOrderFilterCriteriaDTO()
             {
-                SupplierId = selectedSupplierId,
+                SupplierId = selectedPersonId,
                 DueDateRange = filterSupplierOrderCriteria?.DueDateRange,
                 OrderDateRange = filterSupplierOrderCriteria?.OrderDateRange,
                 PartiallyPaidOrderOnly = filterSupplierOrderCriteria?.IncludePartiallyPaidOrdersOnly,
                 EntityType = this.EntityType,
             };
-            var supplierOrders = await SupplierOrderDataSource.RetrieveOrdersAsync(sofc);
-            if (supplierOrders != null)
+            var orders = await OrderDataSource.RetrieveOrdersAsync(sofc);
+            if (orders != null)
             {
-                var items = supplierOrders.Select(so => new SupplierOrderViewModel(so));
+                var items = orders.Select(so => new OrderViewModel(so));
                 MasterListView.ItemsSource = items;
                 var totalResults = items.Count();
                 OrderCountTB.Text = "( " + totalResults + " / " + _totalOrders + " )";
-                this.SupplierOrderListUpdatedEvent?.Invoke(items);
+                this.OrderListUpdatedEvent?.Invoke(items);
             }
         }
 
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var selectedOrder = (SupplierOrderViewModel)e.ClickedItem;
+            var selectedOrder = (OrderViewModel)e.ClickedItem;
             if (selectedOrder.OrderDetails.Count == 0)
             {
                 DetailContentPresenter.Content = null;
-                var supplierOrderDetails = await SupplierOrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.SupplierOrderId);
-                if (supplierOrderDetails != null)
+                var orderDetails = await OrderDataSource.RetrieveOrderDetailsAsync(selectedOrder.SupplierOrderId);
+                if (orderDetails != null)
                 {
-                    selectedOrder.OrderDetails = supplierOrderDetails.Select(sod => new SupplierOrderProductViewModel(sod)).ToList();
+                    selectedOrder.OrderDetails = orderDetails.Select(sod => new OrderProductViewModel(sod)).ToList();
                     //Bug: what if he clicks first item which requires database call then second, then you are setting the response to the first order
                     DetailContentPresenter.Content = MasterListView.SelectedItem;
                 }

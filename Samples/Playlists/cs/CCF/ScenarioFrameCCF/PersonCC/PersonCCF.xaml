@@ -27,7 +27,7 @@
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
-                      x:DataType="local:SupplierTransactionCollection">
+                      x:DataType="local:TransactionCollection">
             <RelativePanel>
                 <StackPanel x:Name="StaticLabelForList"
                             Style="{StaticResource ListHeaderStackPanel}">
@@ -51,7 +51,7 @@
                               ItemsSource="{x:Bind Transactions}"
                               Style="{StaticResource ListViewStyle}">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="local:SupplierTransactionViewModel">
+                            <DataTemplate x:DataType="local:TransactionViewModel">
                                 <StackPanel Style="{StaticResource DetailListStackPanel}">
                                     <TextBlock x:Name="TransactionNo"
                                                Text="{x:Bind TransactionNo, Mode=OneWay}"
@@ -78,7 +78,7 @@
                             Orientation="Horizontal"
                             RelativePanel.AlignBottomWithPanel="True">
                     <Button x:Name="PayMoney"
-                            Content="{x:Bind PayMoneyToSupplier}"
+                            Content="{x:Bind MoneyToFromPerson}"
                             Click="PayMoney_Click"
                             Style="{StaticResource DetailButtonStyle}" />
                 </StackPanel>
