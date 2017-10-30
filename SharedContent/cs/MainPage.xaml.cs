@@ -134,6 +134,18 @@ namespace SDKTemplate
             {
                 Current.MainFrame.Navigate(typeof(BillingPage), scenarioType);
             }
+            else if (scenarioType == ScenarioType.Dashboard)
+            {
+                Current.MainFrame.Navigate(typeof(BlankPage));
+            }
+            else if (scenarioType == ScenarioType.PotentialOrders)
+            {
+                Current.MainFrame.Navigate(typeof(BlankPage));
+            }
+            else if (scenarioType == ScenarioType.ShoppingCart)
+            {
+                Current.MainFrame.Navigate(typeof(BlankPage));
+            }
             else
             {
                 Current.MainFrame.Navigate(typeof(CommonPage), scenarioType);

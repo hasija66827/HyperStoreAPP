@@ -11,6 +11,19 @@ namespace SDKTemplate
 {
     public class RecommendedProductViewModel : RecommendedProduct
     {
+        public string DaysSincePurchased
+        {
+            get
+            {
+                var daySincePurchased = DateTime.Now.DayOfYear - this.LastOrderDate.DayOfYear;
+                if (daySincePurchased == 0)
+                    return "Today";
+                else if (daySincePurchased == 1)
+                    return "1 day ago";
+                else
+                    return daySincePurchased + " days ago";
+            }
+        }
         public string FormattedLastOrderDate
         {
             get

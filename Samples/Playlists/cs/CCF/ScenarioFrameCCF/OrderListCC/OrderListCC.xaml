@@ -166,16 +166,6 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <RelativePanel>
-                            <Ellipse x:Name="ByWalletGlyph"
-                                     Style="{StaticResource SmallEllipseStyle}" />
-                            <FontIcon Glyph="&#xE821;"
-                                      RelativePanel.AlignHorizontalCenterWith="ByWalletGlyph"
-                                      RelativePanel.AlignVerticalCenterWith="ByWalletGlyph"
-                                      Style="{StaticResource WhiteFontIconStyle}" />
-                        </RelativePanel>
-                         </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <RelativePanel>
                             <Ellipse x:Name="ByTransactionGlyph"
                                      Style="{StaticResource SmallEllipseStyle}" />
                             <FontIcon Glyph="&#xEC5C;"
@@ -289,7 +279,7 @@
             <Border x:Name="DetailHeaderPanel"
                     RelativePanel.AlignTopWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Supplier Order Details"
+                <TextBlock Text="Order Details"
                            Style="{StaticResource DetailHeaderTextBlockStyle}" />
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"

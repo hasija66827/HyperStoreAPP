@@ -15,19 +15,16 @@
         <ListView x:Name="ListView"
                   ItemsSource="{x:Bind _RecomProducts}"
                   RelativePanel.Below="HeaderPanel"
-            
                   Style="{StaticResource ListViewStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:RecommendedProductViewModel">
-                    <StackPanel
-
-                               Style="{StaticResource DetailListStackPanel}">
+                    <StackPanel Style="{StaticResource DetailListStackPanel}">
                         <TextBlock x:Name="ProductName"
                                    Style="{StaticResource ArialBasicTBStyle}"
                                    Text="{x:Bind ProductName, Mode=OneWay}" />
-                        <TextBlock x:Name="LastOrderDate"
+                        <TextBlock x:Name="DaysSincePurchased"
                                    Style="{StaticResource ListCaptionRightAltTextblockStyle}"
-                                   Text="{x:Bind FormattedLastOrderDate, Mode=OneWay}" />
+                                   Text="{x:Bind DaysSincePurchased, Mode=OneWay}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
