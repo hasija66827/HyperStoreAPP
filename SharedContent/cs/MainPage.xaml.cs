@@ -136,7 +136,7 @@ namespace SDKTemplate
             }
             else if (scenarioType == ScenarioType.Dashboard)
             {
-                Current.MainFrame.Navigate(typeof(BlankPage));
+                Current.MainFrame.Navigate(typeof(Dashe));
             }
             else if (scenarioType == ScenarioType.PotentialOrders)
             {
