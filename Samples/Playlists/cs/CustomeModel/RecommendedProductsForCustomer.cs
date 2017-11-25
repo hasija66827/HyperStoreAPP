@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class RecommendedProduct
+    public class RecommendedProduct {
+        public Product Product { get; set; }
+        public DateTime LatestPurchaseDate { get; set; }
+    }
+
+    public class RecommendedProductForCustomer:RecommendedProduct
     {
-        public Guid? ProductId { get; set; }
-        public string ProductName { get; set; }
-        public DateTime LastOrderDate { get; set; }
+        public double? ExpiredByDays { get; set; }
+    }
+
+    public class RecommendedProductForSupplier:RecommendedProduct
+    {
+        public double DeficientByNumber { get; set; }
     }
 }

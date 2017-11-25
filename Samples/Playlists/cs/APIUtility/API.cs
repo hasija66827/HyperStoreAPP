@@ -21,15 +21,16 @@ namespace SDKTemplate
         public static string Tags { get { return "Tags"; } }
         public static string Orders { get { return "Orders"; } }
         public static string Transactions { get { return "Transactions"; } }
-
         public static string OrderProducts { get { return "OrderProducts"; } }
+        public static string PurhcaseHistory { get { return "PurchaseHistory"; } }
+
         public static string CustomerPurchaseTrend { get { return "CustomerPurchaseTrend"; } }
         public static string ProductConsumptionTrend { get { return "ProductConsumptionTrend"; } }
         public static string PriceQuotedBySupplier { get { return "PriceQuotedBySupplier"; } }
-        public static string RecommendedProducts { get { return "RecommendedProducts"; } }
     }
 
     public class CustomAction {
+        public static string GetRecommendedProducts { get { return "GetRecommendedProducts"; } }
         public static string GetWalletBalanceRange { get { return "GetWalletBalanceRange"; } }
         public static string GetTotalRecordsCount { get { return "GetTotalRecordsCount"; } }
         public static string GetProductMetadata { get { return "GetProductMetadata"; } }

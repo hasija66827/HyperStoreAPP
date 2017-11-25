@@ -15,7 +15,7 @@ namespace SDKTemplate
         {
             get
             {
-                var daySincePurchased = DateTime.Now.DayOfYear - this.LastOrderDate.DayOfYear;
+                var daySincePurchased = DateTime.Now.DayOfYear - this.LatestPurchaseDate.DayOfYear;
                 if (daySincePurchased == 0)
                     return "Today";
                 else if (daySincePurchased == 1)
@@ -24,14 +24,7 @@ namespace SDKTemplate
                     return daySincePurchased + " days ago";
             }
         }
-        public string FormattedLastOrderDate
-        {
-            get
-            {
-                var formatter = new DateTimeFormatter("day month");
-                return formatter.Format(this.LastOrderDate);
-            }
-        }
+
         public RecommendedProductViewModel(RecommendedProduct parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())

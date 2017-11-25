@@ -45,7 +45,7 @@ namespace SDKTemplate
                 SearchBoxFrame.Navigate(typeof(ProductASBCC));
                 ScenarioFrame.Navigate(typeof(SupplierPurchasedProductListCC));
                 SummaryFrame.Navigate(typeof(SupplierBillingSummaryCC));
-                RecommendedProductFrame.Navigate(typeof(BlankPage));
+                RecommendedProductFrame.Navigate(typeof(RecommendedProductCC));
             }
             else
                 throw new NotImplementedException();

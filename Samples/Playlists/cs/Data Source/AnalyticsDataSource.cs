@@ -31,10 +31,9 @@ namespace SDKTemplate
             return await Utility.RetrieveAsync<List<PriceQuotedBySupplier>>(BaseURI.HyperStoreService + API.PriceQuotedBySupplier, productId.ToString(), null);
         }
 
-        public static async Task<List<RecommendedProduct>> RetrieveRecommendedProductAsync(Guid customerId)
+        public static async Task<List<T>> RetrieveRecommendedProductAsync<T>(Guid personId)
         {
-            return await Utility.RetrieveAsync<List<RecommendedProduct>>(BaseURI.HyperStoreService + API.RecommendedProducts, customerId.ToString(), null);
+            return await Utility.RetrieveAsync<List<T>>(BaseURI.HyperStoreService + API.PurhcaseHistory +"/"+ CustomAction.GetRecommendedProducts, personId.ToString(), null);
         }
-
     }
 }

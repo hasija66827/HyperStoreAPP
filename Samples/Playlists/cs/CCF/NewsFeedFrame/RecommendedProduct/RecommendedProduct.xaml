@@ -21,7 +21,7 @@
                     <StackPanel Style="{StaticResource DetailListStackPanel}">
                         <TextBlock x:Name="ProductName"
                                    Style="{StaticResource ArialBasicTBStyle}"
-                                   Text="{x:Bind ProductName, Mode=OneWay}" />
+                                   Text="{x:Bind Product.Name, Mode=OneWay}" />
                         <TextBlock x:Name="DaysSincePurchased"
                                    Style="{StaticResource ListCaptionRightAltTextblockStyle}"
                                    Text="{x:Bind DaysSincePurchased, Mode=OneWay}" />

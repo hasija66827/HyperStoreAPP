@@ -26,9 +26,7 @@ namespace SDKTemplate
         SupplierBilling,
         Suppliers,
         SupplierOrder,
-        PotentialOrders,
         Dashboard,
-        ShoppingCart,
         Settings,
         Logout
     }
@@ -40,7 +38,6 @@ namespace SDKTemplate
         List<Scenario> scenarios = new List<Scenario>
         {
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE734"}, Title = "Dashboard", ScenarioType=ScenarioType.Dashboard },
-            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE8C0"}, Title = "Potential Orders", ScenarioType=ScenarioType.PotentialOrders },
             new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE7BF" }, Title = "Customer Billing", ScenarioType=ScenarioType.CustomerBilling },
             new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"}, Title = "Customers",ScenarioType=ScenarioType.Customers },
             new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Customer Orders", ScenarioType=ScenarioType.CustomerOrder },
@@ -48,7 +45,6 @@ namespace SDKTemplate
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE7BF"}, Title = "Supplier Billing", ScenarioType = ScenarioType.SupplierBilling },
             new Scenario() { FontIcon=new FontIcon(){ Glyph="\uE125"},Title = "Suppliers", ScenarioType=ScenarioType.Suppliers },
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE912"}, Title = "Supplier Orders", ScenarioType=ScenarioType.SupplierOrder },
-            new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE81E"}, Title = "Shopping Cart", ScenarioType=ScenarioType.ShoppingCart },
             new Scenario() {FontIcon=new FontIcon(){ Glyph="\uE713"}, Title = "Settings", ScenarioType=ScenarioType.Settings },
             new Scenario(){ FontIcon=new FontIcon(){Glyph="\uE7E8" }, Title="Logout", ScenarioType=ScenarioType.Logout }
         };
