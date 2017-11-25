@@ -159,6 +159,11 @@
     <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterPersonCC\FilterPersonViewModel.cs" />
+    <Compile Include="DTO\CustomerInsightsDTO.cs" />
+    <Compile Include="DTO\InsightsDTO.cs" />
+    <Compile Include="DTO\SalesInsightDTO.cs" />
+    <Compile Include="DTO\SusceptibleProductsDTO.cs" />
+    <Compile Include="DTO\UtilityDTO.cs" />
     <Compile Include="LessThanAttribute.cs" />
     <Compile Include="CCF\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -221,8 +226,8 @@
       <DependentUpon>SettingsCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SettingsCC\SettingsViewModel.cs" />
-    <Compile Include="PieChart.xaml.cs">
-      <DependentUpon>PieChart.xaml</DependentUpon>
+    <Compile Include="DashboardPage.xaml.cs">
+      <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
       <DependentUpon>UserInformationCC.xaml</DependentUpon>
@@ -485,7 +490,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PieChart.xaml">
+    <Page Include="DashboardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

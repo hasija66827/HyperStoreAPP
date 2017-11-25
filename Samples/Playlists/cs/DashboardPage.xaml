@@ -7,30 +7,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Charting:Chart x:Name="PieChart"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Margin="0">
-            <Charting:PieSeries Margin="0"
-                                IndependentValuePath="Name"
-                                DependentValuePath="Amount"
-                                IsSelectionEnabled="True" />
-        </Charting:Chart>
-        <syncfusion:SfChart HorizontalAlignment="Center"
+    <Grid Background="White">
+          <syncfusion:SfChart HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Header="Demands Comparison"
+                            Header="Products Hitting Zero Stock"
                             FontSize="16"
                             Height="300"
                             Width="500">
             <!--Initialize the horizontal axis for SfChart-->
             <syncfusion:SfChart.PrimaryAxis>
-                <syncfusion:CategoryAxis Header="Demands"
+                <syncfusion:CategoryAxis Header="Products"
                                          FontSize="14" />
             </syncfusion:SfChart.PrimaryAxis>
             <!--Initialize the vertical axis for SfChart-->
             <syncfusion:SfChart.SecondaryAxis>
-                <syncfusion:NumericalAxis Header="Values"
+                <syncfusion:NumericalAxis Header="Number of Days"
                                           FontSize="14" />
             </syncfusion:SfChart.SecondaryAxis>
             <!--Adding Legend to the SfChart-->
@@ -38,14 +29,12 @@
                 <syncfusion:ChartLegend Visibility="Visible" />
             </syncfusion:SfChart.Legend>
             <!--Initialize the series for SfChart-->
-            <syncfusion:ColumnSeries Label="2010"
-                                     ItemsSource="{Binding Demands}"
-                                     XBindingPath="Demand"
-                                     YBindingPath="Year2010" />
-            <syncfusion:ColumnSeries Label="2011"
-                                     ItemsSource="{Binding Demands}"
-                                     XBindingPath="Demand"
-                                     YBindingPath="Year2011" />
+            <syncfusion:BarSeries Label="2010"
+                                  Stroke="RoyalBlue"
+                                  Interior="Blue"
+                                  ItemsSource="{Binding Demands}"
+                                  XBindingPath="Demand"
+                                  YBindingPath="Year2010" />
         </syncfusion:SfChart>
     </Grid>
 </Page>
