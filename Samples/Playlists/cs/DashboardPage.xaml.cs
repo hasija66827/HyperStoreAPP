@@ -1,4 +1,8 @@
-﻿using System;
+﻿using HyperStoreServiceAPP.DTO;
+using HyperStoreServiceAPP.DTO.InsightsDTO;
+using Models;
+using SDKTemplate.Data_Source;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -19,11 +23,6 @@ using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 
 namespace SDKTemplate
 {
-    public class FinancialStuff
-    {
-        public string Name { get; set; }
-        public int Amount { get; set; }
-    }
     public class GoldDemand
     {
         public string Demand { get; set; }
@@ -38,45 +37,23 @@ namespace SDKTemplate
         public Dashboard()
         {
             this.InitializeComponent();
-            this.Demands = new ObservableCollection<GoldDemand>
-            {
-                new GoldDemand()
-                {
-                    Demand = "Jewelry", Year2010 = 1998.0, Year2011 = 2361.2
-                },
-                new GoldDemand()
-                {
-                    Demand = "Electronics", Year2010 = 1284.0, Year2011 = 1328.0
-                },
-                new GoldDemand()
-                {
-                    Demand = "Research", Year2010 = 1090.5, Year2011 = 1032.0
-                },
-                new GoldDemand()
-                {
-                    Demand = "Investment", Year2010 = 1643.0, Year2011 = 1898.0
-                },
-                new GoldDemand()
-                {
-                    Demand = "Bank Purchases", Year2010 = 987.0, Year2011 = 887.0
-                }
-            };
-
+            this.Demands = new ObservableCollection<KeyValuePair<int, Product>>();
+            LoadSusceptibleProductControl();
             this.DataContext = this;
         }
 
-        public ObservableCollection<GoldDemand> Demands { get; set; } 
-        
+        public ObservableCollection<KeyValuePair<int, Product>> Demands { get; set; }
 
-        void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            LoadChartContents();
-        }
 
-        private void LoadChartContents()
+        private async void LoadSusceptibleProductControl()
         {
-            Random rand = new Random();
-           
+            var susceptibleProductDTO = new SusceptibleProductsInsightDTO(new IRange<DateTime>(DateTime.Now.AddDays(-30), DateTime.Now), 25);
+            var susceptibleProductsInsight = await InsightsDataSource.RetrieveSusceptibleProducts(susceptibleProductDTO);
+            if (susceptibleProductsInsight != null)
+            {
+                foreach(var susceptibleProduct in susceptibleProductsInsight.SusceptibleProducts)
+                Demands.Add(susceptibleProduct);
+            }
         }
     }
 }

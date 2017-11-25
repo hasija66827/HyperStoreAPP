@@ -34,7 +34,7 @@ namespace SDKTemplate
             return products;
         }
 
-        public static async Task<Product> RetrieveTheProductAsync(Guid productId)
+        public static async Task<Product> RetrieveTheProductAsync(Guid? productId)
         {
             var product = await Utility.RetrieveAsync<Product>(BaseURI.HyperStoreService + API.Products, productId.ToString(), null);
             return product;

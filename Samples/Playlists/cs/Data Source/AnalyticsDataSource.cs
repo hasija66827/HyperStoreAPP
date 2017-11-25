@@ -26,7 +26,7 @@ namespace SDKTemplate
         /// This will guide him to choose best wholeseller for its product
         /// </summary>
         /// <param name="ProductId"></param>
-        public static async Task<List<PriceQuotedBySupplier>> RetrieveLatestPriceQuotedBySupplierAsync(Guid productId)
+        public static async Task<List<PriceQuotedBySupplier>> RetrieveLatestPriceQuotedBySupplierAsync(Guid? productId)
         {
             return await Utility.RetrieveAsync<List<PriceQuotedBySupplier>>(BaseURI.HyperStoreService + API.PriceQuotedBySupplier, productId.ToString(), null);
         }

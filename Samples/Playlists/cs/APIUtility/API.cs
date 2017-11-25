@@ -23,6 +23,8 @@ namespace SDKTemplate
         public static string Transactions { get { return "Transactions"; } }
         public static string OrderProducts { get { return "OrderProducts"; } }
         public static string PurhcaseHistory { get { return "PurchaseHistory"; } }
+        public static string ProductInsights{ get { return "ProductInsights"; } }
+
 
         public static string CustomerPurchaseTrend { get { return "CustomerPurchaseTrend"; } }
         public static string ProductConsumptionTrend { get { return "ProductConsumptionTrend"; } }
@@ -30,6 +32,7 @@ namespace SDKTemplate
     }
 
     public class CustomAction {
+        public static string GetSusceptibleProducts { get { return "GetSusceptibleProducts"; } }
         public static string GetRecommendedProducts { get { return "GetRecommendedProducts"; } }
         public static string GetWalletBalanceRange { get { return "GetWalletBalanceRange"; } }
         public static string GetTotalRecordsCount { get { return "GetTotalRecordsCount"; } }

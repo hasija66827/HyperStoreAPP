@@ -33,8 +33,8 @@
                                   Stroke="RoyalBlue"
                                   Interior="Blue"
                                   ItemsSource="{Binding Demands}"
-                                  XBindingPath="Demand"
-                                  YBindingPath="Year2010" />
+                                  XBindingPath="Key"
+                                  YBindingPath="Key" />
         </syncfusion:SfChart>
     </Grid>
 </Page>
