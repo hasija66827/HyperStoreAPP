@@ -52,7 +52,7 @@ namespace SDKTemplate
 
         private async void LoadSusceptibleProductControl()
         {
-            var susceptibleProductDTO = new SusceptibleProductsInsightDTO(new IRange<DateTime>(DateTime.Now.AddDays(-31), DateTime.Now), 25);
+            var susceptibleProductDTO = new SusceptibleProductsInsightDTO(new IRange<DateTime>(DateTime.Now.AddDays(-30), DateTime.Now), 25);
             var susceptibleProductsInsight = await InsightsDataSource.RetrieveSusceptibleProducts(susceptibleProductDTO);
             if (susceptibleProductsInsight != null)
             {
@@ -90,7 +90,7 @@ namespace SDKTemplate
 
         private async void LoadNewCustomerChartControl()
         {
-            var customerInsightDTO = new CustomerInsightsDTO(new IRange<DateTime>(DateTime.Now.AddDays(-31), DateTime.Now), 25);
+            var customerInsightDTO = new CustomerInsightsDTO(new IRange<DateTime>(DateTime.Now.AddDays(-30), DateTime.Now), 25);
             var newCustomerInsights = await InsightsDataSource.RetreiveNewCustomers(customerInsightDTO);
             if (newCustomerInsights != null && newCustomerInsights.NewCustomerCount != 0)
             {

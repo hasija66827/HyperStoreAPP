@@ -7,6 +7,7 @@
     "Newtonsoft.Json": "10.0.3",
     "QueryString.NET": "1.0.0",
     "Syncfusion.SfChart.UWP46": "15.3.0.33",
+    "Syncfusion.SfInput.UWP46": "15.4.0.17",
     "WinRTXamlToolkit.Controls.DataVisualization.UWP": "2.3.0"
   },
   "frameworks": {

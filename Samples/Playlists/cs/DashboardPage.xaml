@@ -105,7 +105,7 @@
                            RelativePanel.RightOf="SalesInsightsChart">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    Header="Products Hitting Zero Stock"
+                                    Header="Top Susceptible Products"
                                     FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
@@ -122,7 +122,7 @@
                         <syncfusion:ChartLegend Visibility="Visible" />
                     </syncfusion:SfChart.Legend>
                     <!--Initialize the series for SfChart-->
-                    <syncfusion:BarSeries Interior="Red"
+                    <syncfusion:BarSeries Interior="RosyBrown"
                                           ShowTooltip="True"
                                           ToolTipService.ToolTip="Number of days in month stock hit zero"
                                           ItemsSource="{Binding SusceptibleProducts}"
@@ -135,7 +135,7 @@
                            RelativePanel.RightOf="ProductInsightChartPanel">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    Header="New Customers in past 30 days"
+                                    Header="Top worthy and new customers visited in past 30 days"
                                     FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
@@ -165,7 +165,7 @@
                            RelativePanel.RightOf="NewCustomerChartPanel">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    Header="Customers Not Visited in past 30 days"
+                                    Header="Top worthy customers not visited in past 20 days"
                                     FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
@@ -182,7 +182,7 @@
                         <syncfusion:ChartLegend Visibility="Visible" />
                     </syncfusion:SfChart.Legend>
                     <!--Initialize the series for SfChart-->
-                    <syncfusion:BarSeries Interior="Red"
+                    <syncfusion:BarSeries Interior="OrangeRed"
                                           ShowTooltip="True"
                                           ToolTipService.ToolTip="Total Sales By Customer"
                                           ItemsSource="{Binding DetachedCustomers}"
