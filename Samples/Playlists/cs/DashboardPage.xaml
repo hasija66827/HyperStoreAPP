@@ -7,34 +7,191 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Grid Background="White">
-          <syncfusion:SfChart HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Header="Products Hitting Zero Stock"
-                            FontSize="16"
-                            Height="300"
-                            Width="500">
-            <!--Initialize the horizontal axis for SfChart-->
-            <syncfusion:SfChart.PrimaryAxis>
-                <syncfusion:CategoryAxis Header="Products"
-                                         FontSize="14" />
-            </syncfusion:SfChart.PrimaryAxis>
-            <!--Initialize the vertical axis for SfChart-->
-            <syncfusion:SfChart.SecondaryAxis>
-                <syncfusion:NumericalAxis Header="Number of Days"
-                                          FontSize="14" />
-            </syncfusion:SfChart.SecondaryAxis>
-            <!--Adding Legend to the SfChart-->
-            <syncfusion:SfChart.Legend>
-                <syncfusion:ChartLegend Visibility="Visible" />
-            </syncfusion:SfChart.Legend>
-            <!--Initialize the series for SfChart-->
-            <syncfusion:BarSeries Label="2010"
-                                  Stroke="RoyalBlue"
-                                  Interior="Blue"
-                                  ItemsSource="{Binding Demands}"
-                                  XBindingPath="Key"
-                                  YBindingPath="Key" />
-        </syncfusion:SfChart>
-    </Grid>
+    <ScrollViewer
+        HorizontalScrollBarVisibility="Auto"
+        HorizontalScrollMode="Enabled">
+        <RelativePanel Background="White">
+            <RelativePanel x:Name="SalesInsightsChart"
+                           Width="400">
+                <syncfusion:SfChart HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Header="Sales Insight"
+                                    FontSize="16"
+                                    Height="300">
+                    <!--Initialize the horizontal axis for SfChart-->
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Date"
+                                                 FontSize="14" />
+                    </syncfusion:SfChart.PrimaryAxis>
+                    <!--Initialize the vertical axis for SfChart-->
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis Header="Amount"
+                                                  FontSize="14" />
+                    </syncfusion:SfChart.SecondaryAxis>
+                    <!--Adding Legend to the SfChart-->
+                    <syncfusion:SfChart.Legend>
+                        <syncfusion:ChartLegend Visibility="Visible" />
+                    </syncfusion:SfChart.Legend>
+                    <!--Initialize the series for SfChart-->
+                    <syncfusion:LineSeries Label="Total Sales"
+                                           Interior="Red"
+                                           ShowTooltip="True"
+                                           ToolTipService.ToolTip="Total Sales"
+                                           ItemsSource="{Binding SalesInsights}"
+                                           XBindingPath="Key"
+                                           YBindingPath="Value.TotalSales" />
+                    <syncfusion:StackingColumnSeries Label="Sales"
+                                                     Interior="LightBlue"
+                                                     ShowTooltip="True"
+                                                     ToolTipService.ToolTip="Money In By Sales"
+                                                     ItemsSource="{Binding SalesInsights}"
+                                                     XBindingPath="Key"
+                                                     YBindingPath="Value.MoneyInBySales" />
+                    <syncfusion:StackingColumnSeries Label="Transaction"
+                                                     Interior="LightGreen"
+                                                     ShowTooltip="True"
+                                                     ToolTipService.ToolTip="Money In By Transaction"
+                                                     ItemsSource="{Binding SalesInsights}"
+                                                     XBindingPath="Key"
+                                                     YBindingPath="Value.MoneyInByExplicitTransaction" />
+                </syncfusion:SfChart>
+            </RelativePanel>
+            <RelativePanel x:Name="PurchaseInsightsChart"
+                           RelativePanel.Below="SalesInsightsChart"
+                           RelativePanel.AlignRightWith="SalesInsightsChart">
+                <syncfusion:SfChart HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Header="Purchase Insight"
+                                    FontSize="16"
+                                    Height="300">
+                    <!--Initialize the horizontal axis for SfChart-->
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Date"
+                                                 FontSize="14" />
+                    </syncfusion:SfChart.PrimaryAxis>
+                    <!--Initialize the vertical axis for SfChart-->
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis Header="Amount"
+                                                  FontSize="14" />
+                    </syncfusion:SfChart.SecondaryAxis>
+                    <!--Adding Legend to the SfChart-->
+                    <syncfusion:SfChart.Legend>
+                        <syncfusion:ChartLegend Visibility="Visible" />
+                    </syncfusion:SfChart.Legend>
+                    <!--Initialize the series for SfChart-->
+                    <syncfusion:LineSeries Label="Total Purchase"
+                                           Interior="Red"
+                                           ShowTooltip="True"
+                                           ToolTipService.ToolTip="Total Purchase"
+                                           ItemsSource="{Binding PurchaseInsights}"
+                                           XBindingPath="Key"
+                                           YBindingPath="Value.TotalPurchase" />
+                    <syncfusion:StackingColumnSeries Label="Purchase"
+                                                     Interior="LightBlue"
+                                                     ShowTooltip="True"
+                                                     ToolTipService.ToolTip="Money Out By Purchase"
+                                                     ItemsSource="{Binding PurchaseInsights}"
+                                                     XBindingPath="Key"
+                                                     YBindingPath="Value.MoneyOutByPurchase" />
+                    <syncfusion:StackingColumnSeries Label="Transaction"
+                                                     Interior="LightGreen"
+                                                     ShowTooltip="True"
+                                                     ToolTipService.ToolTip="Money Out By Transaction"
+                                                     ItemsSource="{Binding PurchaseInsights}"
+                                                     XBindingPath="Key"
+                                                     YBindingPath="Value.MoneyOutByExplicitTransactions" />
+                </syncfusion:SfChart>
+            </RelativePanel>
+            <RelativePanel x:Name="ProductInsightChartPanel"
+                           RelativePanel.RightOf="SalesInsightsChart">
+                <syncfusion:SfChart HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Header="Products Hitting Zero Stock"
+                                    FontSize="16"
+                                    Width="500">
+                    <!--Initialize the horizontal axis for SfChart-->
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Products"
+                                                 FontSize="14" />
+                    </syncfusion:SfChart.PrimaryAxis>
+                    <!--Initialize the vertical axis for SfChart-->
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis Header="Number of Days"
+                                                  FontSize="14" />
+                    </syncfusion:SfChart.SecondaryAxis>
+                    <!--Adding Legend to the SfChart-->
+                    <syncfusion:SfChart.Legend>
+                        <syncfusion:ChartLegend Visibility="Visible" />
+                    </syncfusion:SfChart.Legend>
+                    <!--Initialize the series for SfChart-->
+                    <syncfusion:BarSeries Interior="LightBlue"
+                                          ShowTooltip="True"
+                                          ToolTipService.ToolTip="Number of days in month stock hit zero"
+                                          ItemsSource="{Binding SusceptibleProducts}"
+                                          XBindingPath="Value.Name"
+                                          YBindingPath="Key" />
+                </syncfusion:SfChart>
+            </RelativePanel>
+            <RelativePanel x:Name="NewCustomerChartPanel"
+                           RelativePanel.RightOf="ProductInsightChartPanel">
+                <syncfusion:SfChart HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Header="New Customers in past 30 days"
+                                    FontSize="16"
+                                    Width="700">
+                    <!--Initialize the horizontal axis for SfChart-->
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Customer"
+                                                 FontSize="14" />
+                    </syncfusion:SfChart.PrimaryAxis>
+                    <!--Initialize the vertical axis for SfChart-->
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis Header="Net Worth"
+                                                  FontSize="14" />
+                    </syncfusion:SfChart.SecondaryAxis>
+                    <!--Adding Legend to the SfChart-->
+                    <syncfusion:SfChart.Legend>
+                        <syncfusion:ChartLegend Visibility="Visible" />
+                    </syncfusion:SfChart.Legend>
+                    <!--Initialize the series for SfChart-->
+                    <syncfusion:BarSeries Interior="LightBlue"
+                                          ShowTooltip="True"
+                                          ToolTipService.ToolTip="Total Sales By Customer"
+                                          ItemsSource="{Binding NewCustomers}"
+                                          XBindingPath="MobileNo"
+                                          YBindingPath="NetWorth" />
+                </syncfusion:SfChart>
+            </RelativePanel>
+            <RelativePanel x:Name="DetachedCustomerChartPanel"
+                           RelativePanel.RightOf="NewCustomerChartPanel">
+                <syncfusion:SfChart HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Header="Customers Not Visited in past 30 days"
+                                    FontSize="16"
+                                    Width="700">
+                    <!--Initialize the horizontal axis for SfChart-->
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Customer"
+                                                 FontSize="14" />
+                    </syncfusion:SfChart.PrimaryAxis>
+                    <!--Initialize the vertical axis for SfChart-->
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis Header="Net Worth"
+                                                  FontSize="14" />
+                    </syncfusion:SfChart.SecondaryAxis>
+                    <!--Adding Legend to the SfChart-->
+                    <syncfusion:SfChart.Legend>
+                        <syncfusion:ChartLegend Visibility="Visible" />
+                    </syncfusion:SfChart.Legend>
+                    <!--Initialize the series for SfChart-->
+                    <syncfusion:BarSeries Interior="LightBlue"
+                                          ShowTooltip="True"
+                                          ToolTipService.ToolTip="Total Sales By Customer"
+                                          ItemsSource="{Binding DetachedCustomers}"
+                                          XBindingPath="MobileNo"
+                                          YBindingPath="NetWorth" />
+                </syncfusion:SfChart>
+            </RelativePanel>
+        </RelativePanel>
+    </ScrollViewer>
 </Page>

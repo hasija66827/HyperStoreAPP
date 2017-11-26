@@ -23,7 +23,9 @@ namespace SDKTemplate
         public static string Transactions { get { return "Transactions"; } }
         public static string OrderProducts { get { return "OrderProducts"; } }
         public static string PurhcaseHistory { get { return "PurchaseHistory"; } }
-        public static string ProductInsights{ get { return "ProductInsights"; } }
+        public static string BusinessInsight { get { return "BusinessInsights"; } }
+        public static string ProductInsights { get { return "ProductInsights"; } }
+        public static string CustomerInsights { get { return "CustomerInsights"; } }
 
 
         public static string CustomerPurchaseTrend { get { return "CustomerPurchaseTrend"; } }
@@ -31,8 +33,14 @@ namespace SDKTemplate
         public static string PriceQuotedBySupplier { get { return "PriceQuotedBySupplier"; } }
     }
 
-    public class CustomAction {
+    public class CustomAction
+    {
+        public static string GetBusinessInsight { get { return "GetBusinessInsight"; } }
         public static string GetSusceptibleProducts { get { return "GetSusceptibleProducts"; } }
+        public static string GetNewCustomers { get { return "GetNewCustomers"; } }
+        public static string GetDetachedCustomers { get { return "GetDetachedCustomers"; } }
+
+
         public static string GetRecommendedProducts { get { return "GetRecommendedProducts"; } }
         public static string GetWalletBalanceRange { get { return "GetWalletBalanceRange"; } }
         public static string GetTotalRecordsCount { get { return "GetTotalRecordsCount"; } }

@@ -155,6 +155,7 @@
     <Compile Include="BasePages\CommonPage.xaml.cs">
       <DependentUpon>CommonPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DashboardViewModel.cs" />
     <Compile Include="Data Source\InsightsDataSource.cs" />
     <Compile Include="Data Source\UserDataSource.cs" />
     <Compile Include="Data Source\UtilityClass.cs" />
@@ -162,7 +163,7 @@
     <Compile Include="CCF\FilterFrameCCF\FilterPersonCC\FilterPersonViewModel.cs" />
     <Compile Include="DTO\CustomerInsightsDTO.cs" />
     <Compile Include="DTO\InsightsDTO.cs" />
-    <Compile Include="DTO\SalesInsightDTO.cs" />
+    <Compile Include="DTO\BusinessInsightDTO.cs" />
     <Compile Include="DTO\SusceptibleProductsDTO.cs" />
     <Compile Include="DTO\UtilityDTO.cs" />
     <Compile Include="LessThanAttribute.cs" />
