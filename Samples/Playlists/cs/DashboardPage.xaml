@@ -7,17 +7,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <ScrollViewer
-        HorizontalScrollBarVisibility="Auto"
-        HorizontalScrollMode="Enabled">
-        <RelativePanel Background="White">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  HorizontalScrollMode="Enabled">
+        <RelativePanel Background="{StaticResource FrameBackgroundBrush}">
             <RelativePanel x:Name="SalesInsightsChart"
-                           Width="400">
+                           Style="{StaticResource ChartRelativePanel}">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Header="Sales Insight"
-                                    FontSize="16"
-                                    Height="300">
+                                    FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
                         <syncfusion:CategoryAxis Header="Date"
@@ -57,13 +55,13 @@
                 </syncfusion:SfChart>
             </RelativePanel>
             <RelativePanel x:Name="PurchaseInsightsChart"
+                           Style="{StaticResource ChartRelativePanel}"
                            RelativePanel.Below="SalesInsightsChart"
                            RelativePanel.AlignRightWith="SalesInsightsChart">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Header="Purchase Insight"
-                                    FontSize="16"
-                                    Height="300">
+                                    FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
                         <syncfusion:CategoryAxis Header="Date"
@@ -103,12 +101,12 @@
                 </syncfusion:SfChart>
             </RelativePanel>
             <RelativePanel x:Name="ProductInsightChartPanel"
+                           Style="{StaticResource ChartRelativePanel}"
                            RelativePanel.RightOf="SalesInsightsChart">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Header="Products Hitting Zero Stock"
-                                    FontSize="16"
-                                    Width="500">
+                                    FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
                         <syncfusion:CategoryAxis Header="Products"
@@ -124,7 +122,7 @@
                         <syncfusion:ChartLegend Visibility="Visible" />
                     </syncfusion:SfChart.Legend>
                     <!--Initialize the series for SfChart-->
-                    <syncfusion:BarSeries Interior="LightBlue"
+                    <syncfusion:BarSeries Interior="Red"
                                           ShowTooltip="True"
                                           ToolTipService.ToolTip="Number of days in month stock hit zero"
                                           ItemsSource="{Binding SusceptibleProducts}"
@@ -133,12 +131,12 @@
                 </syncfusion:SfChart>
             </RelativePanel>
             <RelativePanel x:Name="NewCustomerChartPanel"
+                           Style="{StaticResource ChartRelativePanel}"
                            RelativePanel.RightOf="ProductInsightChartPanel">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Header="New Customers in past 30 days"
-                                    FontSize="16"
-                                    Width="700">
+                                    FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
                         <syncfusion:CategoryAxis Header="Customer"
@@ -163,12 +161,12 @@
                 </syncfusion:SfChart>
             </RelativePanel>
             <RelativePanel x:Name="DetachedCustomerChartPanel"
+                           Style="{StaticResource ChartRelativePanel}"
                            RelativePanel.RightOf="NewCustomerChartPanel">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Header="Customers Not Visited in past 30 days"
-                                    FontSize="16"
-                                    Width="700">
+                                    FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
                         <syncfusion:CategoryAxis Header="Customer"
@@ -184,7 +182,7 @@
                         <syncfusion:ChartLegend Visibility="Visible" />
                     </syncfusion:SfChart.Legend>
                     <!--Initialize the series for SfChart-->
-                    <syncfusion:BarSeries Interior="LightBlue"
+                    <syncfusion:BarSeries Interior="Red"
                                           ShowTooltip="True"
                                           ToolTipService.ToolTip="Total Sales By Customer"
                                           ItemsSource="{Binding DetachedCustomers}"
