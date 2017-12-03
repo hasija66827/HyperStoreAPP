@@ -66,6 +66,7 @@ namespace SDKTemplate
                 SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
                 SummaryFrame.Navigate(typeof(FilterProductCC));
                 ScenarioFrame.Navigate(typeof(ProductInStock));
+                AnalyticsFrame.Navigate(typeof(ProductConsumptionTrendCC));
             }
             else
                 throw new NotImplementedException();

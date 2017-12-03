@@ -155,6 +155,7 @@
     <Compile Include="BasePages\CommonPage.xaml.cs">
       <DependentUpon>CommonPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomeModel\MapDay_ProductEstConsumption.cs" />
     <Compile Include="DashboardViewModel.cs" />
     <Compile Include="Data Source\InsightsDataSource.cs" />
     <Compile Include="Data Source\UserDataSource.cs" />

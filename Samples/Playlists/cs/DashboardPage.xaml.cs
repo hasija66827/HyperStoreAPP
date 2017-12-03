@@ -63,6 +63,7 @@ namespace SDKTemplate
 
         private async void LoadBusinessInsightControl()
         {
+            /*
             var businessInsightDTO = new BusinessInsightDTO(new IRange<DateTime>(DateTime.Now.AddDays(-31), DateTime.Now));
             var businessInsight = await InsightsDataSource.RetrieveBusinessInsight(businessInsightDTO);
             if (businessInsight != null)
@@ -85,7 +86,7 @@ namespace SDKTemplate
                     };
                     PurchaseInsights.Add(new KeyValuePair<DateTime?, PurchaseInsightViewModel>(businessInsight.OrderInsight[i].Date, purchaseInsight));
                 }
-            }
+            }*/
         }
 
         private async void LoadNewCustomerChartControl()

@@ -14,12 +14,6 @@ namespace SDKTemplate
         {
             return await Utility.RetrieveAsync<List<CustomerPurchaseTrend>>(BaseURI.HyperStoreService + API.CustomerPurchaseTrend, null, customerPurchaseTrendDTO);
         }
-
-        public static async Task<List<ProductConsumptionDeficientTrend>> RetrieveProductConsumptionTrend(ProductConsumptionTrendDTO productConsumptionTrendDTO)
-        {
-            return await Utility.RetrieveAsync<List<ProductConsumptionDeficientTrend>>(BaseURI.HyperStoreService + API.ProductConsumptionTrend, null, productConsumptionTrendDTO);
-        }
-
         /// <summary>
         /// Returns the wholeseller with the latest purchase price quoted by each of the Wholeseller
         /// for the given productID.

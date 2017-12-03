@@ -1,7 +1,9 @@
 ﻿using Models;
+using SDKTemplate.Data_Source;
 using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,28 +25,29 @@ namespace SDKTemplate
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProductConsumptionPer : Page
+    public sealed partial class ProductConsumptionTrendCC : Page
     {
-        public List<ProductConsumptionDeficientTrendViewModel> ProductConsumptionDeficientTrend { get; set; }
-        public ProductConsumptionPer()
+        public ObservableCollection<ProductConsumptionViewModel> ProductEstimatedConsumption { get; set; }
+        public ProductConsumptionTrendCC()
         {
             this.InitializeComponent();
+            this.ProductEstimatedConsumption = new ObservableCollection<ProductConsumptionViewModel>();
             ProductInStock.Current.ProductStockSelectionChangedEvent += Current_ProductStockSelectionChangedEvent;
         }
 
         private async void Current_ProductStockSelectionChangedEvent(ProductViewModelBase productViewModelBase)
         {
-            var productConsumptionTrendDTO = new ProductConsumptionTrendDTO()
-            {
-                ProductId = productViewModelBase.ProductId,
-                MonthsCount = 1,
-            };
-            (ColumnChart.Series[0] as ColumnSeries).ItemsSource = null;
-             var x= await AnalyticsDataSource.RetrieveProductConsumptionTrend(productConsumptionTrendDTO);
-            this.ProductConsumptionDeficientTrend = x.Select(pct => new ProductConsumptionDeficientTrendViewModel(pct)).ToList();
-            (ColumnChart.Series[0] as ColumnSeries).ItemsSource = ProductConsumptionDeficientTrend;
-            (ColumnChart.Series[1] as ColumnSeries).ItemsSource = ProductConsumptionDeficientTrend;
+            var mapDay_ProductEstConsumption = await InsightsDataSource.RetrieveProductConsumptionTrend((Guid)productViewModelBase.ProductId);
+            
 
+            foreach (var productEstConsumption in mapDay_ProductEstConsumption.ProductEstConsumption)
+            {
+                this.ProductEstimatedConsumption.Add(new ProductConsumptionViewModel()
+                {
+                    DayOfWeek = productEstConsumption.Key,
+                    EstConsumption = productEstConsumption.Value
+                });
+            }
         }
     }
 }

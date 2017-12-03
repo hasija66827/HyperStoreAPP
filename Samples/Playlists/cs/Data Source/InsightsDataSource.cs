@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HyperStoreServiceAPP.DTO.InsightsDTO;
+using Models;
 
 namespace SDKTemplate.Data_Source
 {
@@ -27,6 +28,11 @@ namespace SDKTemplate.Data_Source
         public static async Task<DetachedCustomerInsights> RetreiveDetachedCustomer(CustomerInsightsDTO customerInsightsDTO)
         {
             return await Utility.RetrieveAsync<DetachedCustomerInsights>(BaseURI.HyperStoreService + API.CustomerInsights + "/" + CustomAction.GetDetachedCustomers, null, customerInsightsDTO);
+        }
+
+        public static async Task<MapDay_ProductEstConsumption> RetrieveProductConsumptionTrend(Guid productId)
+        {
+            return await Utility.RetrieveAsync<MapDay_ProductEstConsumption>(BaseURI.HyperStoreService + API.ProductConsumptionInsights, productId.ToString(), null);
         }
     }
 }

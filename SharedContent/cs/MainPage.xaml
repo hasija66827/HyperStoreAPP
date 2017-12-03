@@ -57,7 +57,7 @@
             <RelativePanel Margin="0,0,5,0">
                 <Frame x:Name="MainFrame"
                        Background="{StaticResource FrameBackgroundBrush}"
-                       MinWidth="810"
+                       MinWidth="1860"
                        MinHeight="720" />
                 <ProgressRing x:Name="progressRing"
                               Style="{StaticResource ProgressRing}"
