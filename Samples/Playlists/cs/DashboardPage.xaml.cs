@@ -30,8 +30,10 @@ namespace SDKTemplate
     public sealed partial class Dashboard : Page
     {
         public ObservableCollection<KeyValuePair<int, Product>> SusceptibleProducts { get; set; }
-        public ObservableCollection<KeyValuePair<DateTime?, SalesInsightViewModel>> SalesInsights { get; set; }
-        public ObservableCollection<KeyValuePair<DateTime?, PurchaseInsightViewModel>> PurchaseInsights { get; set; }
+        public ObservableCollection<KeyValuePair<string, decimal?>> MoneyInByExplicitTransaction { get; set; }
+        public ObservableCollection<KeyValuePair<string, decimal?>> MoneyOutByExplicitTransaction { get; set; }
+        public ObservableCollection<KeyValuePair<string, SalesInsightViewModel>> SalesInsights { get; set; }
+        public ObservableCollection<KeyValuePair<string, PurchaseInsightViewModel>> PurchaseInsights { get; set; }
         public ObservableCollection<Person> NewCustomers { get; set; }
         public ObservableCollection<Person> DetachedCustomers { get; set; }
 
@@ -39,8 +41,10 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this.SusceptibleProducts = new ObservableCollection<KeyValuePair<int, Product>>();
-            this.SalesInsights = new ObservableCollection<KeyValuePair<DateTime?, SalesInsightViewModel>>();
-            this.PurchaseInsights = new ObservableCollection<KeyValuePair<DateTime?, PurchaseInsightViewModel>>();
+            this.MoneyInByExplicitTransaction = new ObservableCollection<KeyValuePair<string, decimal?>>();
+            this.MoneyOutByExplicitTransaction = new ObservableCollection<KeyValuePair<string, decimal?>>();
+            this.SalesInsights = new ObservableCollection<KeyValuePair<string, SalesInsightViewModel>>();
+            this.PurchaseInsights = new ObservableCollection<KeyValuePair<string, PurchaseInsightViewModel>>();
             this.NewCustomers = new ObservableCollection<Person>();
             this.DetachedCustomers = new ObservableCollection<Person>();
             LoadSusceptibleProductControl();
@@ -63,30 +67,33 @@ namespace SDKTemplate
 
         private async void LoadBusinessInsightControl()
         {
-            /*
             var businessInsightDTO = new BusinessInsightDTO(new IRange<DateTime>(DateTime.Now.AddDays(-31), DateTime.Now));
             var businessInsight = await InsightsDataSource.RetrieveBusinessInsight(businessInsightDTO);
             if (businessInsight != null)
             {
-                for (int i = 0; i < businessInsight.OrderInsight.Count(); i++)
+                foreach (var orderInsight in businessInsight.OrderInsight)
                 {
                     var salesInsight = new SalesInsightViewModel()
                     {
-                        TotalSales = businessInsight.OrderInsight[i].TotalSales,
-                        MoneyInBySales = businessInsight.OrderInsight[i].MoneyIn,
-                        MoneyInByExplicitTransaction = businessInsight.TransactionInsight[i].MoneyIn,
+                        TotalSales = orderInsight.TotalSales,
+                        MoneyInBySales = orderInsight.MoneyIn,
                     };
-                    SalesInsights.Add(new KeyValuePair<DateTime?, SalesInsightViewModel>(businessInsight.OrderInsight[i].Date, salesInsight));
+                    SalesInsights.Add(new KeyValuePair<string, SalesInsightViewModel>(orderInsight.FormattedOrderDate, salesInsight));
 
                     var purchaseInsight = new PurchaseInsightViewModel()
                     {
-                        TotalPurchase = businessInsight.OrderInsight[i].TotalPurchase,
-                        MoneyOutByPurchase = businessInsight.OrderInsight[i].MoneyOut,
-                        MoneyOutByExplicitTransactions = businessInsight.TransactionInsight[i].MoneyOut,
+                        TotalPurchase = orderInsight.TotalPurchase,
+                        MoneyOutByPurchase = orderInsight.MoneyOut,
                     };
-                    PurchaseInsights.Add(new KeyValuePair<DateTime?, PurchaseInsightViewModel>(businessInsight.OrderInsight[i].Date, purchaseInsight));
+                    PurchaseInsights.Add(new KeyValuePair<string, PurchaseInsightViewModel>(orderInsight.FormattedOrderDate, purchaseInsight));
                 }
-            }*/
+
+                foreach (var transactionInsight in businessInsight.TransactionInsight)
+                {
+                    this.MoneyInByExplicitTransaction.Add(new KeyValuePair<string, decimal?>(transactionInsight.FormattedTransactionDate, transactionInsight.MoneyIn));
+                    this.MoneyOutByExplicitTransaction.Add(new KeyValuePair<string, decimal?>(transactionInsight.FormattedTransactionDate, transactionInsight.MoneyOut));                    
+                }
+            }
         }
 
         private async void LoadNewCustomerChartControl()

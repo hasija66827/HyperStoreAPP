@@ -38,15 +38,17 @@ namespace SDKTemplate
         private async void Current_ProductStockSelectionChangedEvent(ProductViewModelBase productViewModelBase)
         {
             var mapDay_ProductEstConsumption = await InsightsDataSource.RetrieveProductConsumptionTrend((Guid)productViewModelBase.ProductId);
-            
 
-            foreach (var productEstConsumption in mapDay_ProductEstConsumption.ProductEstConsumption)
+            if (mapDay_ProductEstConsumption != null)
             {
-                this.ProductEstimatedConsumption.Add(new ProductConsumptionViewModel()
+                foreach (var productEstConsumption in mapDay_ProductEstConsumption.ProductEstConsumption)
                 {
-                    DayOfWeek = productEstConsumption.Key,
-                    EstConsumption = productEstConsumption.Value
-                });
+                    this.ProductEstimatedConsumption.Add(new ProductConsumptionViewModel()
+                    {
+                        DayOfWeek = productEstConsumption.Key,
+                        EstConsumption = productEstConsumption.Value
+                    });
+                }
             }
         }
     }

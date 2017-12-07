@@ -10,13 +10,10 @@ namespace SDKTemplate
     {
         public decimal? TotalSales { get; set; }
         public decimal? MoneyInBySales { get; set; }
-        public decimal? MoneyInByExplicitTransaction { get; set; }
-
     }
 
     public class PurchaseInsightViewModel{
         public decimal? TotalPurchase { get; set; }
         public decimal? MoneyOutByPurchase { get; set; }
-        public decimal? MoneyOutByExplicitTransactions { get; set; } 
     }
 }

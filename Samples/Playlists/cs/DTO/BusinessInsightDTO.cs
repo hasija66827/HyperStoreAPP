@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Models;
+using Windows.Globalization.DateTimeFormatting;
+
 namespace HyperStoreServiceAPP.DTO.InsightsDTO
 {
     public class BusinessInsightDTO : InsightsDTO
@@ -19,15 +21,29 @@ namespace HyperStoreServiceAPP.DTO.InsightsDTO
     {
         public decimal? MoneyIn;
         public decimal? MoneyOut;
-        public DateTime? Date;
+        public DateTime Date;
         public decimal? TotalSales;
         public decimal? TotalPurchase;
+        public string FormattedOrderDate
+        {
+            get
+            {
+                return this.Date.ToString("MMM dd");
+            }
+        }
     }
 
     public class TransactionInsight
     {
         public decimal? MoneyIn;
         public decimal? MoneyOut;
-        public DateTime? Date;
+        public DateTime Date;
+        public string FormattedTransactionDate
+        {
+            get
+            {
+                return this.Date.ToString("MMM dd");
+            }
+        }
     }
 }

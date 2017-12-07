@@ -18,7 +18,7 @@
                                     FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
-                        <syncfusion:CategoryAxis Header="Date"
+                        <syncfusion:CategoryAxis Header="Order Sales Date"
                                                  FontSize="14" />
                     </syncfusion:SfChart.PrimaryAxis>
                     <!--Initialize the vertical axis for SfChart-->
@@ -39,19 +39,43 @@
                                            XBindingPath="Key"
                                            YBindingPath="Value.TotalSales" />
                     <syncfusion:StackingColumnSeries Label="Sales"
-                                                     Interior="LightBlue"
+                                                     Interior="{StaticResource MoneyInBrush}"
                                                      ShowTooltip="True"
                                                      ToolTipService.ToolTip="Money In By Sales"
                                                      ItemsSource="{Binding SalesInsights}"
                                                      XBindingPath="Key"
                                                      YBindingPath="Value.MoneyInBySales" />
-                    <syncfusion:StackingColumnSeries Label="Transaction"
-                                                     Interior="LightGreen"
-                                                     ShowTooltip="True"
-                                                     ToolTipService.ToolTip="Money In By Transaction"
-                                                     ItemsSource="{Binding SalesInsights}"
-                                                     XBindingPath="Key"
-                                                     YBindingPath="Value.MoneyInByExplicitTransaction" />
+                </syncfusion:SfChart>
+            </RelativePanel>
+            <RelativePanel x:Name="MoneyInByExplicitTransactionInsightsChart"
+                           Style="{StaticResource ChartRelativePanel}"
+                           RelativePanel.RightOf="SalesInsightsChart"
+                           RelativePanel.AlignBottomWith="SalesInsightsChart">
+                <syncfusion:SfChart HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Header="Money In By Explicit Transaction"
+                                    FontSize="16">
+                    <!--Initialize the horizontal axis for SfChart-->
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Transaaction Date"
+                                                 FontSize="14" />
+                    </syncfusion:SfChart.PrimaryAxis>
+                    <!--Initialize the vertical axis for SfChart-->
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis Header="Amount"
+                                                  FontSize="14" />
+                    </syncfusion:SfChart.SecondaryAxis>
+                    <!--Adding Legend to the SfChart-->
+                    <syncfusion:SfChart.Legend>
+                        <syncfusion:ChartLegend Visibility="Visible" />
+                    </syncfusion:SfChart.Legend>
+                    <syncfusion:ColumnSeries Label="Money In by Transaction from Customer"
+                                             Interior="{StaticResource MoneyInBrush}"
+                                             ShowTooltip="True"
+                                             ToolTipService.ToolTip="Money In by Transaction from Customer"
+                                             ItemsSource="{Binding MoneyInByExplicitTransaction}"
+                                             XBindingPath="Key"
+                                             YBindingPath="Value" />
                 </syncfusion:SfChart>
             </RelativePanel>
             <RelativePanel x:Name="PurchaseInsightsChart"
@@ -64,7 +88,7 @@
                                     FontSize="16">
                     <!--Initialize the horizontal axis for SfChart-->
                     <syncfusion:SfChart.PrimaryAxis>
-                        <syncfusion:CategoryAxis Header="Date"
+                        <syncfusion:CategoryAxis Header="Order Purchase Date"
                                                  FontSize="14" />
                     </syncfusion:SfChart.PrimaryAxis>
                     <!--Initialize the vertical axis for SfChart-->
@@ -85,24 +109,48 @@
                                            XBindingPath="Key"
                                            YBindingPath="Value.TotalPurchase" />
                     <syncfusion:StackingColumnSeries Label="Purchase"
-                                                     Interior="LightBlue"
+                                                     Interior="{StaticResource MoneyOutBrush}"
                                                      ShowTooltip="True"
                                                      ToolTipService.ToolTip="Money Out By Purchase"
                                                      ItemsSource="{Binding PurchaseInsights}"
                                                      XBindingPath="Key"
                                                      YBindingPath="Value.MoneyOutByPurchase" />
-                    <syncfusion:StackingColumnSeries Label="Transaction"
-                                                     Interior="LightGreen"
-                                                     ShowTooltip="True"
-                                                     ToolTipService.ToolTip="Money Out By Transaction"
-                                                     ItemsSource="{Binding PurchaseInsights}"
-                                                     XBindingPath="Key"
-                                                     YBindingPath="Value.MoneyOutByExplicitTransactions" />
+                </syncfusion:SfChart>
+            </RelativePanel>
+            <RelativePanel x:Name="MoneyOutByExplicitTransactionInsightsChart"
+                           Style="{StaticResource ChartRelativePanel}"
+                           RelativePanel.RightOf="PurchaseInsightsChart"
+                           RelativePanel.AlignBottomWith="PurchaseInsightsChart">
+                <syncfusion:SfChart HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Header="Money Out By Explicit Transaction"
+                                    FontSize="16">
+                    <!--Initialize the horizontal axis for SfChart-->
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Transaction Date"
+                                                 FontSize="14" />
+                    </syncfusion:SfChart.PrimaryAxis>
+                    <!--Initialize the vertical axis for SfChart-->
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis Header="Amount"
+                                                  FontSize="14" />
+                    </syncfusion:SfChart.SecondaryAxis>
+                    <!--Adding Legend to the SfChart-->
+                    <syncfusion:SfChart.Legend>
+                        <syncfusion:ChartLegend Visibility="Visible" />
+                    </syncfusion:SfChart.Legend>
+                    <syncfusion:ColumnSeries Label="Money Out By Transaction to Supplier"
+                                             Interior="{StaticResource MoneyOutBrush}"
+                                             ShowTooltip="True"
+                                             ToolTipService.ToolTip="Money Out By Transaction to Supplier"
+                                             ItemsSource="{Binding MoneyOutByExplicitTransaction}"
+                                             XBindingPath="Key"
+                                             YBindingPath="Value" />
                 </syncfusion:SfChart>
             </RelativePanel>
             <RelativePanel x:Name="ProductInsightChartPanel"
                            Style="{StaticResource ChartRelativePanel}"
-                           RelativePanel.RightOf="SalesInsightsChart">
+                           RelativePanel.RightOf="MoneyInByExplicitTransactionInsightsChart">
                 <syncfusion:SfChart HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Header="Top Susceptible Products"
@@ -122,7 +170,7 @@
                         <syncfusion:ChartLegend Visibility="Visible" />
                     </syncfusion:SfChart.Legend>
                     <!--Initialize the series for SfChart-->
-                    <syncfusion:BarSeries Interior="RosyBrown"
+                    <syncfusion:BarSeries Interior="{StaticResource SusceptibleProductBrush}"
                                           ShowTooltip="True"
                                           ToolTipService.ToolTip="Number of days in month stock hit zero"
                                           ItemsSource="{Binding SusceptibleProducts}"
