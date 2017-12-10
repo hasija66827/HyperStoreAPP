@@ -48,11 +48,21 @@
                            Style="{ThemeResource MasterListRightTextBlockStyle}"
                            RelativePanel.RightOf="ProductName"
                            RelativePanel.AlignRightWithPanel="True" />
-                <TextBlock Text="{x:Bind TotalGSTPer, Converter={StaticResource FloatToPercentageGSTConverter}}"
+                <TextBlock x:Name="TotalGstPerTB"
+                           Text="{x:Bind TotalGSTPer, Converter={StaticResource FloatToPercentageGSTConverter}}"
                            Style="{ThemeResource ListCaptionRightAltTextblockStyle}"
                            RelativePanel.RightOf="DiscountPer"
                            RelativePanel.AlignBottomWith="DiscountPer"
                            RelativePanel.AlignRightWithPanel="True" />
+                <TextBlock x:Name="ProductUnitConsumedPerWeek"
+                           Text="{x:Bind ProductUnitConsumedPerWeek}"
+                           RelativePanel.Below="DisplayPrice"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                <TextBlock x:Name="ProductExtinctionDays"
+                           Text="{x:Bind ProductExtinctionDays}"
+                           RelativePanel.Below="TotalGstPerTB"
+                           RelativePanel.AlignRightWith="TotalGstPerTB"
+                           Style="{ThemeResource ListCaptionRightAltTextblockStyle}" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
@@ -117,7 +127,6 @@
                     <TextBlock Text="Products"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
                     <TextBlock x:Name="ProductCountTB"
-                              
                                Style="{StaticResource ResultCountTextBlockStyle}" />
                 </StackPanel>
             </Border>

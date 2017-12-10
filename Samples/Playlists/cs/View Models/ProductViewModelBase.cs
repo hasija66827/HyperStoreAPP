@@ -43,6 +43,32 @@ namespace SDKTemplate
 
         public MapDay_ProductEstConsumption MapDay_ProductEstConsumption { get; set; }
         public DateTime? ProductExtinctionDate { get; set; }
+        public string ProductExtinctionDays
+        {
+            get
+            {
+                var productExtinctionDays = this.ProductExtinctionDate?.DayOfYear - DateTime.Now.DayOfYear;
+                if (productExtinctionDays == 0)
+                    return "Today";
+                else if (productExtinctionDays == 1)
+                    return "In 1 day";
+                else
+                    return "In " + productExtinctionDays + " days";
+            }
+        }
+        public string ProductUnitConsumedPerWeek
+        {
+            get
+            {
+                string productUnitConsumedPerWeek = "";
+                if (MapDay_ProductEstConsumption != null)
+                {
+                    var unitsConsumed = MapDay_ProductEstConsumption.ProductEstConsumption.Sum(p => p.Value);
+                    productUnitConsumedPerWeek = unitsConsumed + " units per week";
+                }
+                return productUnitConsumedPerWeek;
+            }
+        }
 
         public ProductViewModelBase() { }
 
