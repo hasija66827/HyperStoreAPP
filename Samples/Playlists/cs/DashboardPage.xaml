@@ -38,7 +38,7 @@
                                            ItemsSource="{Binding SalesInsights}"
                                            XBindingPath="Key"
                                            YBindingPath="Value.TotalSales" />
-                    <syncfusion:StackingColumnSeries Label="Sales"
+                    <syncfusion:StackingColumnSeries Label="Money In By Sales"
                                                      Interior="{StaticResource MoneyInBrush}"
                                                      ShowTooltip="True"
                                                      ToolTipService.ToolTip="Money In By Sales"
@@ -108,7 +108,7 @@
                                            ItemsSource="{Binding PurchaseInsights}"
                                            XBindingPath="Key"
                                            YBindingPath="Value.TotalPurchase" />
-                    <syncfusion:StackingColumnSeries Label="Purchase"
+                    <syncfusion:StackingColumnSeries Label="Money Out By Purchase"
                                                      Interior="{StaticResource MoneyOutBrush}"
                                                      ShowTooltip="True"
                                                      ToolTipService.ToolTip="Money Out By Purchase"

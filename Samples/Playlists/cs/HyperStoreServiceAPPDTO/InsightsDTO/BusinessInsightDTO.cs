@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Models;
 using Windows.Globalization.DateTimeFormatting;
+using SDKTemplate;
 
 namespace HyperStoreServiceAPP.DTO.InsightsDTO
 {

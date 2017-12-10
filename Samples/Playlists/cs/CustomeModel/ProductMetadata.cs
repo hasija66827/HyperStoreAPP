@@ -1,11 +1,13 @@
-﻿using SDKTemplate.DTO;
+﻿using HyperStoreServiceAPP.DTO;
+using SDKTemplate;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace HyperStoreService.CustomModels
 {
     class ProductMetadata
     {

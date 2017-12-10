@@ -1,4 +1,6 @@
-﻿using Models;
+﻿using HyperStoreServiceAPP.DTO;
+using LoginSignUpService.DTO;
+using Models;
 using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ namespace SDKTemplate
     class UserDataSource
     {
         #region Create 
-        public static async Task<AuthenticationToken> CreateNewUserAsync(UserDTO userDTO)
+        public static async Task<AuthenticationToken> CreateNewUserAsync(CreateUserDTO userDTO)
         {
             var authenticationToken = await Utility.CreateAsync<AuthenticationToken>(AuthenticationServiceAPI.Users, userDTO);
             if (authenticationToken != null)

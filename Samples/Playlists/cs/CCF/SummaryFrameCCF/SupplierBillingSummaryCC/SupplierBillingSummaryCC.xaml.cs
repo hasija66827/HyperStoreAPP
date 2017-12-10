@@ -39,7 +39,7 @@ namespace SDKTemplate
         private void _ComputeBillSummary(List<SupplierBillingProductViewModelBase>products)
         {
             this._BillingSummaryViewModel.BillAmount = products.Sum(p => (decimal?)p.NetValue);
-            this._BillingSummaryViewModel.TotalQuantity = products.Sum(p => (decimal?)p.QuantityPurchased);
+            this._BillingSummaryViewModel.TotalQuantity = products.Sum(p => (float?)p.QuantityPurchased);
             this._BillingSummaryViewModel.TotalItems = products.Count();
             this._BillingSummaryViewModel.OnALLPropertyChanged();
         }

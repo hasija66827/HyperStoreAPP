@@ -1,4 +1,5 @@
 ﻿
+using HyperStoreServiceAPP.DTO;
 using Models;
 using Newtonsoft.Json;
 using SDKTemplate.DTO;

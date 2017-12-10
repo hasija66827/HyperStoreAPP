@@ -1,9 +1,9 @@
-﻿using SDKTemplate.DTO;
+﻿using SDKTemplate;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-
 
 namespace Models
 {

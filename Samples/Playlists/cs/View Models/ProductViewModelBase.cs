@@ -1,4 +1,6 @@
-﻿using Models;
+﻿using HyperStoreService.CustomModels;
+using HyperStoreServiceAPP.DTO;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,10 +41,24 @@ namespace SDKTemplate
             get { return this.Name + " (" + this.TotalQuantity + ")"; }
         }
 
+        public MapDay_ProductEstConsumption MapDay_ProductEstConsumption { get; set; }
+        public DateTime? ProductExtinctionDate { get; set; }
+
         public ProductViewModelBase() { }
+
+        public ProductViewModelBase(ProductInsight productInsight)
+        {
+            this.ProductExtinctionDate = productInsight.ProductExtinctionDate;
+            this.MapDay_ProductEstConsumption = productInsight.MapDay_ProductEstConsumption;
+            var parent = productInsight.Product;
+            foreach (PropertyInfo prop in typeof(Product).GetProperties())
+                GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
+        }
 
         public ProductViewModelBase(Product parent)
         {
+            this.ProductExtinctionDate = null;
+            this.MapDay_ProductEstConsumption = null;
             foreach (PropertyInfo prop in typeof(Product).GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }

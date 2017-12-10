@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using HyperStoreServiceAPP.DTO;
+using Models;
 using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;

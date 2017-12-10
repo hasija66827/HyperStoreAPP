@@ -1,4 +1,5 @@
-﻿using SDKTemplate.DTO;
+﻿using HyperStoreServiceAPP.DTO;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +29,7 @@ namespace SDKTemplate
     {
         public event FilterProductCriteriaChangedDelegate FilterProductCriteriaChangedEvent;
         public static FilterProductCC Current;
-        public ProductFilterQDTDTO ProductFilterQDT;
+        public FilterProductQDT ProductFilterQDT;
         public FilterProductCC()
         {
             Current = this;
@@ -40,19 +41,23 @@ namespace SDKTemplate
         {
             DiscountPerRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
-            ShowDeficientItemsOnly.Click += ShowDeficientItemsOnly_Click;
+            ConsumptionDayRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             var productMetadata = await ProductDataSource.RetrieveProductMetadataAsync();
             if (productMetadata != null)
             {
                 InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
                 InitializeQuantityRangeSlider(productMetadata.QuantityRange);
+                InitializeConsumptionDayRangeSlider(new IRange<int?>(0, 30));
             }
             this.ProductFilterQDT = GetCurrentState();
         }
 
-        private void ShowDeficientItemsOnly_Click(object sender, RoutedEventArgs e)
+        private void InitializeConsumptionDayRangeSlider(IRange<int?> consumptionDayRange)
         {
-            InvokeFilterProductCriteriaChangedEvent(sender);
+            ConsumptionDayRangeSlider.Maximum = (double)consumptionDayRange.UB + 1;
+            ConsumptionDayRangeSlider.RangeMax = ConsumptionDayRangeSlider.Maximum;
+            ConsumptionDayRangeSlider.Minimum = (double)consumptionDayRange.LB;
+            ConsumptionDayRangeSlider.RangeMin = ConsumptionDayRangeSlider.Minimum;
         }
 
         private void InitializeDiscountRangeSlider(IRange<decimal?> discountPerRange)
@@ -71,15 +76,17 @@ namespace SDKTemplate
             QuantityRangeSlider.RangeMin = QuantityRangeSlider.Minimum;
         }
 
-        private ProductFilterQDTDTO GetCurrentState()
+        private FilterProductQDT GetCurrentState()
         {
-            IRange<decimal?> discounPerRange = new IRange<decimal?>(Convert.ToDecimal(DiscountPerRangeSlider.RangeMin), Convert.ToDecimal(DiscountPerRangeSlider.RangeMax));
-            IRange<decimal?> quantityRange = new IRange<decimal?>(Convert.ToDecimal(QuantityRangeSlider.RangeMin), Convert.ToDecimal(QuantityRangeSlider.RangeMax));
-            var productFilterQDT = new ProductFilterQDTDTO()
+            var discounPerRange = new IRange<decimal?>(Convert.ToDecimal(DiscountPerRangeSlider.RangeMin), Convert.ToDecimal(DiscountPerRangeSlider.RangeMax));
+            var quantityRange = new IRange<float?>(Convert.ToSingle(QuantityRangeSlider.RangeMin), Convert.ToSingle(QuantityRangeSlider.RangeMax));
+            var consumptionDayRange = new IRange<int?>(Convert.ToInt32(ConsumptionDayRangeSlider.RangeMin), Convert.ToInt32(ConsumptionDayRangeSlider.RangeMax));
+
+            var productFilterQDT = new FilterProductQDT()
             {
                 DiscountPerRange = discounPerRange,
                 QuantityRange = quantityRange,
-                IncludeDeficientItemsOnly = ShowDeficientItemsOnly.IsChecked
+                ConsumptionDayRange = consumptionDayRange,
             };
             return productFilterQDT;
         }

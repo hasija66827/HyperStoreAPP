@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using HyperStoreServiceAPP.DTO;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +12,8 @@ namespace SDKTemplate
 {
     public class SupplierBillingProductViewModelBase : ProductViewModelBase
     {
-        public decimal? NetValue { get { return this.QuantityPurchased * this.PurchasePrice; } }
-        public virtual decimal? QuantityPurchased { get; set; }
+        public decimal? NetValue { get { return (decimal)this.QuantityPurchased * this.PurchasePrice; } }
+        public virtual float? QuantityPurchased { get; set; }
         public virtual decimal? PurchasePrice { get; set; }
         public decimal? ProfitAmount { get { return this.ValueIncTax - this.PurchasePrice; } }
         public decimal? ProfitPer
@@ -47,8 +48,8 @@ namespace SDKTemplate
             }
         }
 
-        private decimal? _quantityPurchased;
-        public override decimal? QuantityPurchased
+        private float? _quantityPurchased;
+        public override float? QuantityPurchased
         {
             get { return this._quantityPurchased; }
             set

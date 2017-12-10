@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using HyperStoreServiceAPP.DTO;
+using Models;
 using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
@@ -65,7 +66,7 @@ namespace SDKTemplate
             SupplierASB.Text = "";
             NoResults.Visibility = Visibility.Collapsed;
             SupplierDetails.Visibility = Visibility.Collapsed;
-            var persons = await PersonDataSource.RetrievePersonsAsync(new DTO.SupplierFilterCriteriaDTO()
+            var persons = await PersonDataSource.RetrievePersonsAsync(new SupplierFilterCriteriaDTO()
             {
                 EntityType = this.EntityType,
                 WalletAmount = null,

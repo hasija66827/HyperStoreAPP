@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -17,6 +18,33 @@ using Windows.Web.Http.Filters;
 
 namespace SDKTemplate
 {
+    public enum EntityType
+    {
+        Customer,
+        Supplier
+    }
+    public class IRange<T>
+    {
+        [Required]
+        public T LB { get; set; }
+        [Required]
+        public T UB { get; set; }
+        public IRange(T lb, T ub)
+        {
+            LB = lb;
+            UB = ub;
+        }
+    }
+    public sealed class DateRangeAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            if (value == null)
+                return false;
+            var dateRange = value as IRange<DateTime>;
+            return dateRange.LB <= dateRange.UB;
+        }
+    }
     public class ConvertDateTimeOffsetToDateTime : IValueConverter
     {
         public object Convert(object value, Type targetType,

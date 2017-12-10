@@ -28,7 +28,7 @@ namespace SDKTemplate
         {
             get
             {
-                if (this.Supplier.EntityType == DTO.EntityType.Supplier)
+                if (this.Supplier.EntityType == EntityType.Supplier)
                     return this.Supplier.WalletBalance - Utility.TryToConvertToDecimal(this.Amount);
                 else
                     return this.Supplier.WalletBalance + Utility.TryToConvertToDecimal(this.Amount);

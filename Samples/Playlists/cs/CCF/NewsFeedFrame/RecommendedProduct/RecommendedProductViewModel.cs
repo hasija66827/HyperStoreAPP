@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Models;
 using Windows.Globalization.DateTimeFormatting;
 using System.Reflection;
+using HyperStoreService.CustomModels;
 
 namespace SDKTemplate
 {

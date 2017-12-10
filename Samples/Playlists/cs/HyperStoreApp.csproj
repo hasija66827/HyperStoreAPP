@@ -159,19 +159,29 @@
     <Compile Include="DashboardViewModel.cs" />
     <Compile Include="Data Source\InsightsDataSource.cs" />
     <Compile Include="Data Source\UserDataSource.cs" />
-    <Compile Include="Data Source\UtilityClass.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterPersonCC\FilterPersonViewModel.cs" />
-    <Compile Include="DTO\CustomerInsightsDTO.cs" />
-    <Compile Include="DTO\InsightsDTO.cs" />
-    <Compile Include="DTO\BusinessInsightDTO.cs" />
-    <Compile Include="DTO\SusceptibleProductsDTO.cs" />
-    <Compile Include="DTO\UtilityDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\SupplierDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\SupplierOrderDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\InsightsDTO\CustomerInsightsDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\InsightsDTO\InsightsDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\InsightsDTO\BusinessInsightDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\ProductDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\SupplierTransactionDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\InsightsDTO\SusceptibleProductsDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\TagDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\UtilityDTO.cs" />
     <Compile Include="LessThanAttribute.cs" />
     <Compile Include="CCF\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\Login\LoginViewModel.cs" />
+    <Compile Include="LoginSignUpServiceAppDTO\AuthenticateUserDTO.cs" />
+    <Compile Include="LoginSignUpServiceAppDTO\BusinessInformationDTO.cs" />
+    <Compile Include="LoginSignUpServiceAppDTO\CreateUserDTO.cs" />
+    <Compile Include="LoginSignUpServiceAppDTO\OTPVerificationDTO.cs" />
+    <Compile Include="LoginSignUpServiceAppDTO\PersonalInformationDTO.cs" />
+    <Compile Include="LoginSignUpServiceAppDTO\UpdateUserDTO.cs" />
     <Compile Include="MarginSetter.cs" />
     <Compile Include="Data Source\TagDataSource.cs" />
     <Compile Include="CustomeModel\CustomerPurchaseTrend.cs" />
@@ -180,7 +190,7 @@
     <Compile Include="CustomeModel\ProductMetadata.cs" />
     <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\ProductTrend.cs" />
-    <Compile Include="CustomeModel\RecommendedProductsForCustomer.cs" />
+    <Compile Include="CustomeModel\RecommendedProducts.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderProduct.cs" />

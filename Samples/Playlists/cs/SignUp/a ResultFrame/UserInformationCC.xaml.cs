@@ -1,4 +1,5 @@
-﻿using SDKTemplate.DTO;
+﻿using LoginSignUpService.DTO;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,12 +23,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SDKTemplate.SignUp
 {
-    public class Cordinates
-    {
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
-    }
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -113,7 +108,7 @@ namespace SDKTemplate.SignUp
                 Cordinates = this._Cordinates,
             };
 
-            var user = new UserDTO()
+            var user = new CreateUserDTO()
             {
                 PI = personalInformationDTO,
                 BI = businessInformationDTO,

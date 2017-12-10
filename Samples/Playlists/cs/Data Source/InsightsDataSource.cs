@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HyperStoreServiceAPP.DTO.InsightsDTO;
 using Models;
+using HyperStoreService.CustomModels;
 
 namespace SDKTemplate.Data_Source
 {

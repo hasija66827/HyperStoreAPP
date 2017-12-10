@@ -77,7 +77,7 @@ namespace SDKTemplate
             ProductDetails.Visibility = Visibility.Collapsed;
             var products = await ProductDataSource.RetrieveProductsAsync(null);
             if (products != null)
-                this._Products = products.Select(p => new ProductASBViewModel(p)).ToList();
+                this._Products = products.Select(p => new ProductASBViewModel(p.Product)).ToList();
         }
 
         private void _AddToCartBtn_Click(object sender, RoutedEventArgs e)

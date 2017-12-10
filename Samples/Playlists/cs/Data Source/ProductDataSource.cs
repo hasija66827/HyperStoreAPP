@@ -1,4 +1,6 @@
-﻿using Models;
+﻿using HyperStoreService.CustomModels;
+using HyperStoreServiceAPP.DTO;
+using Models;
 using Newtonsoft.Json;
 using SDKTemplate.DTO;
 using System;
@@ -28,9 +30,9 @@ namespace SDKTemplate
         #endregion
 
         #region Read
-        public static async Task<List<Product>> RetrieveProductsAsync(ProductFilterCriteriaDTO pfc)
+        public static async Task<List<ProductInsight>> RetrieveProductsAsync(ProductFilterCriteriaDTO pfc)
         {
-            List<Product> products = await Utility.RetrieveAsync<List<Product>>(BaseURI.HyperStoreService + API.Products, null, pfc);
+            var products = await Utility.RetrieveAsync<List<ProductInsight>>(BaseURI.HyperStoreService + API.Products, null, pfc);
             return products;
         }
 

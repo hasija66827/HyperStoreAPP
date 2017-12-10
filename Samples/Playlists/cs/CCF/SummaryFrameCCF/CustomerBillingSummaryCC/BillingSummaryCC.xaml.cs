@@ -32,10 +32,10 @@ namespace SDKTemplate
                     var products = CustomerProductListCC.Current.Products;
                         
                     this._BillingSummaryViewModel.TotalItems = (int?)products.Count();
-                    this._BillingSummaryViewModel.TotalQuantity = (decimal?)products.Sum(p => p.QuantityPurchased);
-                    this._BillingSummaryViewModel.CartAmount = (decimal?)products.Sum(p => p.MRP * p.QuantityPurchased);
-                    this._BillingSummaryViewModel.DiscountAmount = (decimal?)products.Sum(p => p.DiscountAmount * p.QuantityPurchased);
-                    this._BillingSummaryViewModel.Tax = (decimal?)products.Sum(p => (p.TotalGSTAmount) * p.QuantityPurchased);
+                    this._BillingSummaryViewModel.TotalQuantity = (float?)products.Sum(p => p.QuantityPurchased);
+                    this._BillingSummaryViewModel.CartAmount = (decimal?)products.Sum(p => (float)p.MRP * p.QuantityPurchased);
+                    this._BillingSummaryViewModel.DiscountAmount = (decimal?)products.Sum(p => (float)p.DiscountAmount * p.QuantityPurchased);
+                    this._BillingSummaryViewModel.Tax = (decimal?)products.Sum(p => ((float)p.TotalGSTAmount) * p.QuantityPurchased);
                     this._BillingSummaryViewModel.BillAmount = (decimal?)products.Sum(p => p.NetValue);
                     this._BillingSummaryViewModel.OnALLPropertyChanged();
                 });

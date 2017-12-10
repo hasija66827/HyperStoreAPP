@@ -9,6 +9,7 @@
 //
 //*********************************************************
 
+using HyperStoreServiceAPP.DTO;
 using Models;
 using SDKTemplate.DTO;
 using System;

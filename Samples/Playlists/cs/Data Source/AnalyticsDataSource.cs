@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SDKTemplate.DTO;
 using Models;
+using HyperStoreService.CustomModels;
+using HyperStoreServiceAPP.DTO;
 
 namespace SDKTemplate
 {

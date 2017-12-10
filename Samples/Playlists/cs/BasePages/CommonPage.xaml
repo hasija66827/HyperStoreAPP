@@ -30,7 +30,7 @@
                Margin="10,10,0,0"
                RelativePanel.Below="SearchBoxFrame"
                MinHeight="200"
-               Height="205"
+               Height="210"
                MinWidth="300"
                Width="300"
                BorderBrush="LightGray"
@@ -41,7 +41,7 @@
                MinWidth="810"
                Width="810"
                MinHeight="720"
-               Height="720"
+               Height="725"
                RelativePanel.RightOf="SearchBoxFrame"
                BorderBrush="LightGray"
                BorderThickness="1" />

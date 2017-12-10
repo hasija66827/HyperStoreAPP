@@ -34,7 +34,7 @@ namespace Models
         public decimal? SGSTPer { get; set; }
         [Required]
         public decimal? Threshold { get; set; }
-        public decimal TotalQuantity { get; set; }
+        public float TotalQuantity { get; set; }
 
         public Guid? LatestSupplierId { get; set; }
         public Person LatestSupplier { get; set; }

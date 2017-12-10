@@ -1,4 +1,5 @@
-﻿using SDKTemplate.DTO;
+﻿using LoginSignUpService.DTO;
+using SDKTemplate.DTO;
 using SDKTemplate.SignUp;
 using System;
 using System.Collections.Generic;

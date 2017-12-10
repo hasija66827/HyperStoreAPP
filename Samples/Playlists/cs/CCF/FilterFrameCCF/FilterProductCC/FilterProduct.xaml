@@ -68,10 +68,32 @@
                             Mode=TwoWay}" />
                 </RelativePanel>
             </RelativePanel>
-            <CheckBox x:Name="ShowDeficientItemsOnly"
-                      Content="Deficient Items Only"
-                      VerticalAlignment="Top"
-                      Margin="0,10,0,0" />
+            <RelativePanel x:Name="ConsumptionDay"
+                           Margin="0,10,0,0">
+                <TextBlock x:Name="ConsumptionDayTB"
+                           Text="Day"
+                           Style="{StaticResource ArialBasicTBStyle}" />
+                <customControl:RangeSlider x:Name="ConsumptionDayRangeSlider"
+                                           Minimum="0"
+                                           RangeMin="0"
+                                           Maximum="100000"
+                                           RangeMax="100000"
+                                           Width="250"
+                                           RelativePanel.Below="ConsumptionDayTB" />
+                <RelativePanel HorizontalAlignment="Stretch"
+                               RelativePanel.RightOf="ConsumptionDayTB"
+                               RelativePanel.AlignRightWith="ConsumptionDayRangeSlider">
+                    <TextBlock x:Name="ConsumptionDayLB"
+                               Style="{StaticResource CalibriBaseStyle}"
+                               Text="{Binding RangeMin, ElementName=ConsumptionDayRangeSlider, Mode=TwoWay}" />
+                    <TextBlock x:Name="ConsumptionDayUB"
+                               RelativePanel.AlignRightWithPanel="True"
+                               Style="{StaticResource CalibriBaseStyle}"
+                               Text="{Binding RangeMax,
+                            ElementName=ConsumptionDayRangeSlider,
+                            Mode=TwoWay}" />
+                </RelativePanel>
+            </RelativePanel>
         </StackPanel>
     </RelativePanel>
 </Page>

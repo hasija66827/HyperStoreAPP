@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Models;
+using SDKTemplate;
+
 namespace HyperStoreServiceAPP.DTO.InsightsDTO
 {
     public class SusceptibleProductsInsightDTO : FiniteInsightsDTO

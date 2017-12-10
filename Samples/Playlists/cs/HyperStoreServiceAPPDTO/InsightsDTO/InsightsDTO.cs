@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Models;
 using SDKTemplate.DTO;
+using SDKTemplate;
 
 namespace HyperStoreServiceAPP.DTO.InsightsDTO
 {
