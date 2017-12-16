@@ -34,35 +34,43 @@
                 <TextBlock x:Name="ProductName"
                            Text="{x:Bind FormattedNameQuantity}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
-                <TextBlock x:Name="DisplayPrice"
-                           Text="{x:Bind MRP, Converter={StaticResource FloatToRupeeConverter} }"
-                           RelativePanel.Below="ProductName"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock x:Name="DiscountPer"
-                           Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"
-                           RelativePanel.Below="ProductName"
-                           RelativePanel.RightOf="DisplayPrice"
-                           Margin="10,0,0,0"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{ThemeResource MasterListRightTextBlockStyle}"
                            RelativePanel.RightOf="ProductName"
                            RelativePanel.AlignRightWithPanel="True" />
+                <TextBlock x:Name="ProductUnitConsumedPerWeek"
+                           Text="{x:Bind ProductUnitConsumedPerWeek}"
+                           RelativePanel.Below="ProductName"
+                           FontFamily="Calibri"
+                           Style="{ThemeResource MasterListTextBlockStyle}" />
+                <TextBlock x:Name="ProductExtinctionDays"
+                           Text="{x:Bind ProductExtinctionDays}"
+                           RelativePanel.AlignBottomWith="ProductUnitConsumedPerWeek"
+                           RelativePanel.AlignRightWith="TotalGstPerTB"
+                           Style="{ThemeResource MasterListRightTextBlockStyle}" />
+                <TextBlock x:Name="DisplayPrice"
+                           Text="{x:Bind MRP, Converter={StaticResource FloatToRupeeConverter} }"
+                           RelativePanel.Below="ProductUnitConsumedPerWeek"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
+                <Line Stretch="Fill"
+                      Stroke="Gray"
+                      StrokeThickness="1"
+                      X1="1"
+                      Width="30"
+                      RelativePanel.AlignHorizontalCenterWith="DisplayPrice"
+                      RelativePanel.AlignVerticalCenterWith="DisplayPrice" />
+                <TextBlock x:Name="DiscountPer"
+                           Text="{x:Bind DiscountPer, Converter={StaticResource FloatToPercentageOFFConverter}}"
+                           RelativePanel.AlignBottomWith="DisplayPrice"
+                           RelativePanel.RightOf="DisplayPrice"
+                           Margin="10,0,0,0"
+                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <TextBlock x:Name="TotalGstPerTB"
                            Text="{x:Bind TotalGSTPer, Converter={StaticResource FloatToPercentageGSTConverter}}"
                            Style="{ThemeResource ListCaptionRightAltTextblockStyle}"
                            RelativePanel.RightOf="DiscountPer"
                            RelativePanel.AlignBottomWith="DiscountPer"
                            RelativePanel.AlignRightWithPanel="True" />
-                <TextBlock x:Name="ProductUnitConsumedPerWeek"
-                           Text="{x:Bind ProductUnitConsumedPerWeek}"
-                           RelativePanel.Below="DisplayPrice"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}" />
-                <TextBlock x:Name="ProductExtinctionDays"
-                           Text="{x:Bind ProductExtinctionDays}"
-                           RelativePanel.Below="TotalGstPerTB"
-                           RelativePanel.AlignRightWith="TotalGstPerTB"
-                           Style="{ThemeResource ListCaptionRightAltTextblockStyle}" />
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
