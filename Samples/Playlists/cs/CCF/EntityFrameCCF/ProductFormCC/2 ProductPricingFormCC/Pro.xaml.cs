@@ -43,7 +43,7 @@ namespace SDKTemplate
         {
 
         }
-
+        //TODO: Take carre of non invnotroy item
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var IsValid = this._ProViewModel.ValidateProperties();
@@ -51,15 +51,16 @@ namespace SDKTemplate
             {
                 var productDTO = new ProductDTO()
                 {
-                    TagIds = _ProdBasicInfo._SelectedTagIds,
                     CGSTPer = Utility.TryToConvertToDecimal(_ProViewModel.CGSTPer),
                     Code = _ProdBasicInfo._PDFV.Code,
                     DiscountPer = Utility.TryToConvertToDecimal(_ProViewModel.DiscPer),
+                    IsNonInventoryProduct = true,//TODO:
                     MRP = Utility.TryToConvertToDecimal(_ProViewModel.MRP),
                     Name = _ProdBasicInfo._PDFV.Name,
                     HSN = _ProdBasicInfo._PDFV.HSN,
                     SGSTPer = Utility.TryToConvertToDecimal(_ProViewModel.SGSTPer),
-                    Threshold = Utility.TryToConvertToDecimal(_ProdBasicInfo._PDFV.Threshold)
+                    Threshold = Utility.TryToConvertToDecimal(_ProdBasicInfo._PDFV.Threshold),
+                    TagIds = _ProdBasicInfo._SelectedTagIds,
                 };
                 var product = await ProductDataSource.CreateNewProductAsync(productDTO);
                 if (product != null)

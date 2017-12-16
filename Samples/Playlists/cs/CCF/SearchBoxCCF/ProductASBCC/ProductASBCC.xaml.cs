@@ -113,7 +113,7 @@ namespace SDKTemplate
         /// <param name="sender">The AutoSuggestBox that fired the event.</param>
         /// <param name="args">The args contain the QueryText, which is the text in the TextBox, 
         /// and also ChosenSuggestion, which is only non-null when a user selects an item in the list.</param>
-        private void _ProductASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private async void _ProductASB_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (this._Products == null)
                 return;
@@ -137,7 +137,7 @@ namespace SDKTemplate
                 else
                     selectedProductInASB = new ProductASBViewModel(matchingProducts.FirstOrDefault());
             }
-            _SelectProduct(selectedProductInASB);
+            await _SelectProduct(selectedProductInASB);
             Current.SelectedProductChangedEvent?.Invoke();
         }
 
@@ -145,7 +145,7 @@ namespace SDKTemplate
         /// Display details of the specified Product.
         /// </summary>
         /// <param name="Product"></param>
-        private async void _SelectProduct(ProductASBViewModel selectedProduct)
+        private async Task _SelectProduct(ProductASBViewModel selectedProduct)
         {
             if (selectedProduct != null)
             {

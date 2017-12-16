@@ -68,7 +68,7 @@ namespace SDKTemplate
             DiscountPerRangeSlider.RangeMin = DiscountPerRangeSlider.Minimum;
         }
 
-        private void InitializeQuantityRangeSlider(IRange<decimal> quantityRange)
+        private void InitializeQuantityRangeSlider(IRange<float?> quantityRange)
         {
             QuantityRangeSlider.Maximum = (double)quantityRange.UB + 1;
             QuantityRangeSlider.RangeMax = QuantityRangeSlider.Maximum;

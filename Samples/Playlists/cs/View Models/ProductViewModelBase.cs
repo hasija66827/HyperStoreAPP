@@ -47,6 +47,10 @@ namespace SDKTemplate
         {
             get
             {
+                if (ProductExtinctionDate == null && this.TotalQuantity==null)
+                    return "NA";
+                if (ProductExtinctionDate == null && this.TotalQuantity != null)
+                    return "Not Computed";
                 var productExtinctionDays = this.ProductExtinctionDate?.DayOfYear - DateTime.Now.DayOfYear;
                 if (productExtinctionDays == 0)
                     return "Today";
@@ -66,6 +70,8 @@ namespace SDKTemplate
                     var unitsConsumed = MapDay_ProductEstConsumption.ProductEstConsumption.Sum(p => p.Value);
                     productUnitConsumedPerWeek = unitsConsumed + " units per week";
                 }
+                else
+                    productUnitConsumedPerWeek = "Not Computed";
                 return productUnitConsumedPerWeek;
             }
         }

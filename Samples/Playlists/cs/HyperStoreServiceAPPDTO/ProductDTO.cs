@@ -15,23 +15,35 @@ namespace HyperStoreServiceAPP.DTO
         [Required]
         [Range(0d, 100)]
         public decimal? CGSTPer { get; set; }
+
         [Required]
         public string Code { get; set; }
+
         [Required]
         public decimal? MRP { get; set; }
+
         [Required]
         [Range(0d, 100)]
         public decimal? DiscountPer { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         public Int32? HSN { get; set; }
+
+        [Required]
+        public bool? IsNonInventoryProduct { get; set; }
+
         [Required]
         [Range(0d, 100)]
         public decimal? SGSTPer { get; set; }
+
         [Required]
         [Range(0, float.MaxValue)]
         public decimal? Threshold { get; set; }
+
         public List<Guid?> TagIds { get; set; }
+
     }
 
     public class ProductFilterCriteriaDTO
@@ -39,7 +51,11 @@ namespace HyperStoreServiceAPP.DTO
         public Guid? ProductId { get; set; }
         public List<Guid?> TagIds { get; set; }
         public FilterProductQDT FilterProductQDT { get; set; }
+        [Required]
+        public bool? ShowNonInventoryProductOnly { get; set; }
     }
+
+
 
     public class FilterProductQDT
     {
@@ -94,6 +110,6 @@ namespace HyperStoreServiceAPP.DTO
     {
         public Product Product { get; set; }
         public MapDay_ProductEstConsumption MapDay_ProductEstConsumption { get; set; }
-        public DateTime ProductExtinctionDate { get; set; }
+        public DateTime? ProductExtinctionDate { get; set; }
     }
 }

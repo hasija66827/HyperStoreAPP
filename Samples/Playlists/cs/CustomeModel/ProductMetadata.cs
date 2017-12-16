@@ -12,6 +12,6 @@ namespace HyperStoreService.CustomModels
     class ProductMetadata
     {
         public IRange<decimal?> DiscountPerRange { get; set; }
-        public IRange<decimal> QuantityRange { get; set; }
+        public IRange<float?> QuantityRange { get; set; }
     }
 }

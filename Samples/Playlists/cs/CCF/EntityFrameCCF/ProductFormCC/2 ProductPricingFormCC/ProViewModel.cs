@@ -73,7 +73,15 @@ namespace SDKTemplate
         public decimal? ValueIncTax { get { return _MRPDec - DiscountAmount; } }
         public decimal? ValueExcTax { get { return ValueIncTax * 100 / (100 + _CGSTPerDec + _SGSTPerDec); } }
         public decimal? TotalGSTAmount { get { return ValueIncTax - ValueExcTax; } }
-        public decimal? CGSTAmount { get { return (_CGSTPerDec * TotalGSTAmount) / (_CGSTPerDec + _SGSTPerDec); } }
+        public decimal? TotalGSTPer { get { return this._CGSTPerDec + this._SGSTPerDec; } }
+        public decimal? CGSTAmount
+        {
+            get
+            {
+                if (TotalGSTPer == 0) return 0;
+                else return (_CGSTPerDec * TotalGSTAmount) / TotalGSTPer;
+            }
+        }
         public decimal? SGSTAmount { get { return TotalGSTAmount - CGSTAmount; } }
 
         public void OnALLPropertyChanged()

@@ -57,7 +57,8 @@ namespace SDKTemplate
             {
                 ProductId = selectedProduct?.ProductId,
                 TagIds = FilterProductByTagCC.Current.SelectedTagIds,
-                FilterProductQDT = FilterProductCC.Current.ProductFilterQDT
+                FilterProductQDT = FilterProductCC.Current.ProductFilterQDT,
+                ShowNonInventoryProductOnly = true
             };
             var products = await ProductDataSource.RetrieveProductsAsync(pfc);
             if (products != null)
@@ -67,7 +68,7 @@ namespace SDKTemplate
                 ProductCountTB.Text = "( " + items.Count + " / " + _totalProducts + " )";
             }
         }
-        
+
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             // Assure we are displaying the correct item. This is necessary in certain adaptive cases.
