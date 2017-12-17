@@ -127,6 +127,15 @@
     <Compile Include="BasePages\BillingPage.xaml.cs">
       <DependentUpon>BillingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\Dashboard\CustomerInsight\CustomerInsightCC.xaml.cs">
+      <DependentUpon>CustomerInsightCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CCF\Dashboard\ProductInsight\ProductInsightCC.xaml.cs">
+      <DependentUpon>ProductInsightCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CCF\Dashboard\BusinessInsight\BusinessInsightCC.xaml.cs">
+      <DependentUpon>BusinessInsightCC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CCF\EntityFrameCCF\TagFormCC\TagFormViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterTagViewModel.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterProductByTagCC\FilterProductByTagCC.xaml.cs">
@@ -156,7 +165,7 @@
       <DependentUpon>CommonPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomeModel\MapDay_ProductEstConsumption.cs" />
-    <Compile Include="DashboardViewModel.cs" />
+    <Compile Include="CCF\Dashboard\DashboardViewModel.cs" />
     <Compile Include="Data Source\InsightsDataSource.cs" />
     <Compile Include="Data Source\UserDataSource.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
@@ -238,7 +247,7 @@
       <DependentUpon>SettingsCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\SettingsCC\SettingsViewModel.cs" />
-    <Compile Include="DashboardPage.xaml.cs">
+    <Compile Include="CCF\Dashboard\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUp\a ResultFrame\UserInformationCC.xaml.cs">
@@ -363,6 +372,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="BasePages\BillingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\Dashboard\CustomerInsight\CustomerInsightCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\Dashboard\ProductInsight\ProductInsightCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\Dashboard\BusinessInsight\BusinessInsightCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -502,7 +523,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DashboardPage.xaml">
+    <Page Include="CCF\Dashboard\DashboardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

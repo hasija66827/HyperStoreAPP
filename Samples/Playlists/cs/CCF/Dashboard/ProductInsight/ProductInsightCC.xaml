@@ -1,0 +1,41 @@
+﻿<Page x:Class="SDKTemplate.CCF.Dashboard.ProductInsight.ProductInsightCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate.CCF.Dashboard.ProductInsight"
+      xmlns:syncfusion="using:Syncfusion.UI.Xaml.Charts"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <RelativePanel Background="{StaticResource FrameBackgroundBrush}">
+        <RelativePanel x:Name="ProductInsightChartPanel"
+                       Style="{StaticResource ChartRelativePanel}"
+                      >
+            <syncfusion:SfChart HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Header="Top Susceptible Products"
+                                FontSize="16">
+                <!--Initialize the horizontal axis for SfChart-->
+                <syncfusion:SfChart.PrimaryAxis>
+                    <syncfusion:CategoryAxis Header="Products"
+                                             FontSize="14" />
+                </syncfusion:SfChart.PrimaryAxis>
+                <!--Initialize the vertical axis for SfChart-->
+                <syncfusion:SfChart.SecondaryAxis>
+                    <syncfusion:NumericalAxis Header="Number of Days"
+                                              FontSize="14" />
+                </syncfusion:SfChart.SecondaryAxis>
+                <!--Adding Legend to the SfChart-->
+                <syncfusion:SfChart.Legend>
+                    <syncfusion:ChartLegend Visibility="Visible" />
+                </syncfusion:SfChart.Legend>
+                <!--Initialize the series for SfChart-->
+                <syncfusion:BarSeries Interior="{StaticResource SusceptibleProductBrush}"
+                                      ShowTooltip="True"
+                                      ToolTipService.ToolTip="Number of days in month stock hit zero"
+                                      ItemsSource="{Binding SusceptibleProducts}"
+                                      XBindingPath="Value.Name"
+                                      YBindingPath="Key" />
+            </syncfusion:SfChart>
+        </RelativePanel>
+    </RelativePanel>
+</Page>

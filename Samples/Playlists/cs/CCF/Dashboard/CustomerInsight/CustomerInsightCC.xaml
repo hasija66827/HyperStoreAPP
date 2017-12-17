@@ -1,0 +1,70 @@
+﻿<Page x:Class="SDKTemplate.CCF.Dashboard.CustomerInsight.CustomerInsightCC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SDKTemplate.CCF.Dashboard.CustomerInsight"
+      xmlns:syncfusion="using:Syncfusion.UI.Xaml.Charts"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <RelativePanel Background="{StaticResource FrameBackgroundBrush}">
+        <RelativePanel x:Name="NewCustomerChartPanel"
+                       Style="{StaticResource ChartRelativePanel}">
+            <syncfusion:SfChart HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Header="Top worthy and new customers visited in past 30 days"
+                                FontSize="16">
+                <!--Initialize the horizontal axis for SfChart-->
+                <syncfusion:SfChart.PrimaryAxis>
+                    <syncfusion:CategoryAxis Header="Customer"
+                                             FontSize="14" />
+                </syncfusion:SfChart.PrimaryAxis>
+                <!--Initialize the vertical axis for SfChart-->
+                <syncfusion:SfChart.SecondaryAxis>
+                    <syncfusion:NumericalAxis Header="Net Worth"
+                                              FontSize="14" />
+                </syncfusion:SfChart.SecondaryAxis>
+                <!--Adding Legend to the SfChart-->
+                <syncfusion:SfChart.Legend>
+                    <syncfusion:ChartLegend Visibility="Visible" />
+                </syncfusion:SfChart.Legend>
+                <!--Initialize the series for SfChart-->
+                <syncfusion:BarSeries Interior="LightBlue"
+                                      ShowTooltip="True"
+                                      ToolTipService.ToolTip="Total Sales By Customer"
+                                      ItemsSource="{Binding NewCustomers}"
+                                      XBindingPath="MobileNo"
+                                      YBindingPath="NetWorth" />
+            </syncfusion:SfChart>
+        </RelativePanel>
+        <RelativePanel x:Name="DetachedCustomerChartPanel"
+                       Style="{StaticResource ChartRelativePanel}"
+                       RelativePanel.RightOf="NewCustomerChartPanel">
+            <syncfusion:SfChart HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Header="Top worthy customers not visited in past 20 days"
+                                FontSize="16">
+                <!--Initialize the horizontal axis for SfChart-->
+                <syncfusion:SfChart.PrimaryAxis>
+                    <syncfusion:CategoryAxis Header="Customer"
+                                             FontSize="14" />
+                </syncfusion:SfChart.PrimaryAxis>
+                <!--Initialize the vertical axis for SfChart-->
+                <syncfusion:SfChart.SecondaryAxis>
+                    <syncfusion:NumericalAxis Header="Net Worth"
+                                              FontSize="14" />
+                </syncfusion:SfChart.SecondaryAxis>
+                <!--Adding Legend to the SfChart-->
+                <syncfusion:SfChart.Legend>
+                    <syncfusion:ChartLegend Visibility="Visible" />
+                </syncfusion:SfChart.Legend>
+                <!--Initialize the series for SfChart-->
+                <syncfusion:BarSeries Interior="OrangeRed"
+                                      ShowTooltip="True"
+                                      ToolTipService.ToolTip="Total Sales By Customer"
+                                      ItemsSource="{Binding DetachedCustomers}"
+                                      XBindingPath="MobileNo"
+                                      YBindingPath="NetWorth" />
+            </syncfusion:SfChart>
+        </RelativePanel>
+    </RelativePanel>
+</Page>
