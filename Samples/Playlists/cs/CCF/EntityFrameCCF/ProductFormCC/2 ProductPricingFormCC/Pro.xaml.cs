@@ -54,12 +54,11 @@ namespace SDKTemplate
                     CGSTPer = Utility.TryToConvertToDecimal(_ProViewModel.CGSTPer),
                     Code = _ProdBasicInfo._PDFV.Code,
                     DiscountPer = Utility.TryToConvertToDecimal(_ProViewModel.DiscPer),
-                    IsNonInventoryProduct = true,//TODO:
+                    IsNonInventoryProduct = _ProdBasicInfo._PDFV.IsNonInventoryProduct,
                     MRP = Utility.TryToConvertToDecimal(_ProViewModel.MRP),
                     Name = _ProdBasicInfo._PDFV.Name,
                     HSN = _ProdBasicInfo._PDFV.HSN,
                     SGSTPer = Utility.TryToConvertToDecimal(_ProViewModel.SGSTPer),
-                    Threshold = Utility.TryToConvertToDecimal(_ProdBasicInfo._PDFV.Threshold),
                     TagIds = _ProdBasicInfo._SelectedTagIds,
                 };
                 var product = await ProductDataSource.CreateNewProductAsync(productDTO);

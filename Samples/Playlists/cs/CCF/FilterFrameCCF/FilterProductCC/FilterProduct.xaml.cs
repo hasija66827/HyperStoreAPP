@@ -29,12 +29,11 @@ namespace SDKTemplate
     {
         public event FilterProductCriteriaChangedDelegate FilterProductCriteriaChangedEvent;
         public static FilterProductCC Current;
-        public FilterProductQDT ProductFilterQDT;
+        public FilterProductQDT ProductFilterQDT { get { return GetCurrentState(); } }
         public FilterProductCC()
         {
             Current = this;
             this.InitializeComponent();
-            this.ProductFilterQDT = null;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -42,14 +41,20 @@ namespace SDKTemplate
             DiscountPerRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             ConsumptionDayRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
+            ShowInventoryItemChkBox.Click += ShowInventoryItem_Click;
             var productMetadata = await ProductDataSource.RetrieveProductMetadataAsync();
             if (productMetadata != null)
             {
                 InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
                 InitializeQuantityRangeSlider(productMetadata.QuantityRange);
                 InitializeConsumptionDayRangeSlider(new IRange<int?>(0, 30));
+                ShowInventoryItemChkBox.IsChecked = true;
             }
-            this.ProductFilterQDT = GetCurrentState();
+        }
+
+        private void ShowInventoryItem_Click(object sender, RoutedEventArgs e)
+        {
+            InvokeFilterProductCriteriaChangedEvent(sender);
         }
 
         private void InitializeConsumptionDayRangeSlider(IRange<int?> consumptionDayRange)
@@ -81,12 +86,12 @@ namespace SDKTemplate
             var discounPerRange = new IRange<decimal?>(Convert.ToDecimal(DiscountPerRangeSlider.RangeMin), Convert.ToDecimal(DiscountPerRangeSlider.RangeMax));
             var quantityRange = new IRange<float?>(Convert.ToSingle(QuantityRangeSlider.RangeMin), Convert.ToSingle(QuantityRangeSlider.RangeMax));
             var consumptionDayRange = new IRange<int?>(Convert.ToInt32(ConsumptionDayRangeSlider.RangeMin), Convert.ToInt32(ConsumptionDayRangeSlider.RangeMax));
-
             var productFilterQDT = new FilterProductQDT()
             {
                 DiscountPerRange = discounPerRange,
                 QuantityRange = quantityRange,
                 ConsumptionDayRange = consumptionDayRange,
+                ShowInventoryProductsOnly = ShowInventoryItemChkBox.IsChecked
             };
             return productFilterQDT;
         }
@@ -95,12 +100,10 @@ namespace SDKTemplate
         {
             try
             {
-                this.ProductFilterQDT = GetCurrentState();
                 FilterProductCriteriaChangedEvent?.Invoke();
             }
             catch (Exception e)
             {
-                Console.Write(e.ToString());
                 MainPage.Current.NotifyUser("Invalid Filter Criteria", NotifyType.ErrorMessage);
             }
         }

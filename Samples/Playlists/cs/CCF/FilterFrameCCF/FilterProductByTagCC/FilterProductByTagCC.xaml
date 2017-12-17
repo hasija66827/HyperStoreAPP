@@ -10,7 +10,7 @@
             <Border  x:Name="HeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Filter By Tag"
+                <TextBlock Text="Filter Product"
                            Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
             <StackPanel x:Name="ContentPanel"

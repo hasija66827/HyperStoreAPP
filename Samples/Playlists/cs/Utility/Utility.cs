@@ -62,20 +62,20 @@ namespace SDKTemplate
         }
     }
 
-    public class InverseBooleanConverter : IValueConverter
+    public class BooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (targetType != typeof(bool))
                 throw new InvalidOperationException("The target must be a boolean");
 
-            return !(bool)value;
+            return (bool)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            // Should never be reached.
-            throw new Exception("Binding of the payltrRadBtn.ischecked is done one way to the enable property of the use walllet.");
+
+            return (bool)value;
         }
     }
 

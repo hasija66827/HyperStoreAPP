@@ -38,10 +38,6 @@ namespace HyperStoreServiceAPP.DTO
         [Range(0d, 100)]
         public decimal? SGSTPer { get; set; }
 
-        [Required]
-        [Range(0, float.MaxValue)]
-        public decimal? Threshold { get; set; }
-
         public List<Guid?> TagIds { get; set; }
 
     }
@@ -51,14 +47,15 @@ namespace HyperStoreServiceAPP.DTO
         public Guid? ProductId { get; set; }
         public List<Guid?> TagIds { get; set; }
         public FilterProductQDT FilterProductQDT { get; set; }
-        [Required]
-        public bool? ShowNonInventoryProductOnly { get; set; }
     }
 
 
 
     public class FilterProductQDT
     {
+        [Required]
+        public bool? ShowInventoryProductsOnly { get; set; }
+
         [Required]
         [DiscountPerRange]
         public IRange<decimal?> DiscountPerRange { get; set; }

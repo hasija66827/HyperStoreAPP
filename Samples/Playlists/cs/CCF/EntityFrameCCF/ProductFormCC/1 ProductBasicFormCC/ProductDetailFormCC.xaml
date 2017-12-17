@@ -40,14 +40,6 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <TextBox x:Name="LowStockAlert"
-                     Header="Low Stock Alert"
-                     Text="{x:Bind _ProdBasicInfo._PDFV.Threshold, Mode=TwoWay}"
-                     PlaceholderText="Enter Number of Units."
-                     ToolTipService.ToolTip="The number of units of product below which you want to mark the product deficient."
-                     Style="{StaticResource FormTextBoxStyle}" />
-            <TextBlock Text="{Binding Errors[Threshold][0]}"
-                       Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="HSN"
                      Header="HSN"
                      Text="{x:Bind _ProdBasicInfo._PDFV.HSN,Converter={StaticResource ConverToInt32}, Mode=TwoWay}"
@@ -56,6 +48,9 @@
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[HSN][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
+            <CheckBox x:Name="IsNonInventoryProductChkBox"
+                      Content="Non Inventory Product"
+                      IsChecked="{x:Bind _ProdBasicInfo._PDFV.IsNonInventoryProduct, Mode=TwoWay}" />
             <TextBlock Text="Add Tag To Product"
                        Style="{StaticResource  ScenarioHeaderTextStyle}" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"

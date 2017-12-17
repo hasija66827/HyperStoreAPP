@@ -6,15 +6,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControl="using:UWP"
       mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:BooleanConverter x:Key="BooleanConverter" />
+    </UserControl.Resources>
     <RelativePanel Background="White">
-        <Border  x:Name="HeaderPanel"
-                 RelativePanel.AlignTopWithPanel="True"
-                 Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Filter Product"
-                       Style="{StaticResource HeaderTextBlockStyle}" />
-        </Border>
         <StackPanel x:Name="ContentPanel"
-                    RelativePanel.Below="HeaderPanel"
                     Margin="10,0,0,0"
                     Orientation="Vertical">
             <RelativePanel x:Name="DiscountPer">
@@ -42,12 +38,15 @@
                             Mode=TwoWay}" />
                 </RelativePanel>
             </RelativePanel>
+            <CheckBox x:Name="ShowInventoryItemChkBox"
+                      Content="Show Inventory Items" />
             <RelativePanel x:Name="Quantity"
                            Margin="0,10,0,0">
                 <TextBlock x:Name="QuantityTB"
                            Text="Quantity"
                            Style="{StaticResource ArialBasicTBStyle}" />
                 <customControl:RangeSlider x:Name="QuantityRangeSlider"
+                                           IsEnabled="{x:Bind ShowInventoryItemChkBox.IsChecked, Mode=TwoWay, Converter={StaticResource BooleanConverter }}"
                                            Minimum="0"
                                            RangeMin="0"
                                            Maximum="100000"
@@ -74,6 +73,7 @@
                            Text="Day"
                            Style="{StaticResource ArialBasicTBStyle}" />
                 <customControl:RangeSlider x:Name="ConsumptionDayRangeSlider"
+                                           IsEnabled="{x:Bind ShowInventoryItemChkBox.IsChecked, Mode=TwoWay, Converter={StaticResource BooleanConverter }}"
                                            Minimum="0"
                                            RangeMin="0"
                                            Maximum="100000"

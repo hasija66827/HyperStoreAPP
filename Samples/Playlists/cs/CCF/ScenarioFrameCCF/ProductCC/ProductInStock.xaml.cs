@@ -58,7 +58,6 @@ namespace SDKTemplate
                 ProductId = selectedProduct?.ProductId,
                 TagIds = FilterProductByTagCC.Current.SelectedTagIds,
                 FilterProductQDT = FilterProductCC.Current.ProductFilterQDT,
-                ShowNonInventoryProductOnly = true
             };
             var products = await ProductDataSource.RetrieveProductsAsync(pfc);
             if (products != null)
