@@ -30,10 +30,5 @@ namespace SDKTemplate.Data_Source
         {
             return await Utility.RetrieveAsync<DetachedCustomerInsights>(BaseURI.HyperStoreService + API.CustomerInsights + "/" + CustomAction.GetDetachedCustomers, null, customerInsightsDTO);
         }
-
-        public static async Task<MapDay_ProductEstConsumption> RetrieveProductConsumptionTrend(Guid productId)
-        {
-            return await Utility.RetrieveAsync<MapDay_ProductEstConsumption>(BaseURI.HyperStoreService + API.ProductConsumptionInsights, productId.ToString(), null);
-        }
     }
 }

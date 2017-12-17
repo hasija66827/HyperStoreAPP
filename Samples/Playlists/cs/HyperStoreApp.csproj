@@ -189,7 +189,6 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="CustomeModel\ProductMetadata.cs" />
     <Compile Include="Models\ProductTag.cs" />
-    <Compile Include="Models\ProductTrend.cs" />
     <Compile Include="CustomeModel\RecommendedProducts.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Order.cs" />

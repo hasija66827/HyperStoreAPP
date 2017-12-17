@@ -35,9 +35,9 @@ namespace SDKTemplate
             ProductInStock.Current.ProductStockSelectionChangedEvent += Current_ProductStockSelectionChangedEvent;
         }
 
-        private async void Current_ProductStockSelectionChangedEvent(ProductViewModelBase productViewModelBase)
+        private void Current_ProductStockSelectionChangedEvent(ProductViewModelBase productViewModelBase)
         {
-            var mapDay_ProductEstConsumption = await InsightsDataSource.RetrieveProductConsumptionTrend((Guid)productViewModelBase.ProductId);
+            var mapDay_ProductEstConsumption = productViewModelBase.MapDay_ProductEstConsumption;
 
             if (mapDay_ProductEstConsumption != null)
             {

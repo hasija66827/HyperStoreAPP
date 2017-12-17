@@ -98,7 +98,7 @@ namespace SDKTemplate
 
         private async void LoadNewCustomerChartControl()
         {
-            var customerInsightDTO = new CustomerInsightsDTO(new IRange<DateTime>(DateTime.Now.AddDays(-30), DateTime.Now), 25);
+            var customerInsightDTO = new CustomerInsightsDTO(new IRange<DateTime>(DateTime.Now.AddDays(-31), DateTime.Now), 25);
             var newCustomerInsights = await InsightsDataSource.RetreiveNewCustomers(customerInsightDTO);
             if (newCustomerInsights != null && newCustomerInsights.NewCustomerCount != 0)
             {
@@ -109,7 +109,7 @@ namespace SDKTemplate
 
         private async void LoadDetachedCustomerChartControl()
         {
-            var customerInsightDTO = new CustomerInsightsDTO(new IRange<DateTime>(DateTime.Now.AddDays(-20), DateTime.Now), 25);
+            var customerInsightDTO = new CustomerInsightsDTO(new IRange<DateTime>(DateTime.Now.AddDays(-21), DateTime.Now), 25);
             var detachedCustomerInsights = await InsightsDataSource.RetreiveDetachedCustomer(customerInsightDTO);
             if (detachedCustomerInsights != null && detachedCustomerInsights.DetachedCustomerCount != 0)
             {
