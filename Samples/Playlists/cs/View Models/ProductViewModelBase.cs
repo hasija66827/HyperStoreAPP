@@ -47,15 +47,17 @@ namespace SDKTemplate
         {
             get
             {
-                if (ProductExtinctionDate == null && this.TotalQuantity==null)
+                if (ProductExtinctionDate == null && this.TotalQuantity == null)
                     return "NA";
                 if (ProductExtinctionDate == null && this.TotalQuantity != null)
                     return "Not Computed";
-                var productExtinctionDays = this.ProductExtinctionDate?.DayOfYear - DateTime.Now.DayOfYear;
+                var productExtinctionDays = (this.ProductExtinctionDate?.Date - DateTime.Now.Date)?.TotalDays;
+                if (productExtinctionDays == -1)
+                    return "Yesterday";
                 if (productExtinctionDays == 0)
                     return "Today";
                 else if (productExtinctionDays == 1)
-                    return "In 1 day";
+                    return "Tomorrow";
                 else
                     return "In " + productExtinctionDays + " days";
             }

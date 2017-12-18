@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -16,7 +17,7 @@ namespace SDKTemplate
     public class OrderViewModel : Order
     {
         public decimal PayedAmountByTx { get { return this.SettledPayedAmount - this.PayedAmount; } }
-        public decimal RemainingAmount{ get { return this.BillAmount - this.SettledPayedAmount; } }
+        public decimal RemainingAmount { get { return this.BillAmount - this.SettledPayedAmount; } }
         public string FormattedOrderDate
         {
             get
@@ -37,7 +38,23 @@ namespace SDKTemplate
 
         public string FormattedPaidBillAmount
         {
-            get { return Utility.ConvertToRupee(this.SettledPayedAmount) + "/" + Utility.ConvertToRupee(this.BillAmount); }
+            get { return Math.Round(this.SettledPayedAmount / this.BillAmount * 100) + "%"; }
+        }
+
+        public string FormattedRemainingAmount
+        {
+            get { return Utility.ConvertToRupee(this.RemainingAmount); }
+        }
+
+        public List<KeyValuePair<string, decimal>> Paid_BillAmount
+        {
+            get
+            {
+                var x = new List<KeyValuePair<string, decimal>>();
+                x.Add(new KeyValuePair<string, decimal>("Settled Amunt", SettledPayedAmount));
+                x.Add(new KeyValuePair<string, decimal>("Remaining Amount", BillAmount - SettledPayedAmount));
+                return x;
+            }
         }
 
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }

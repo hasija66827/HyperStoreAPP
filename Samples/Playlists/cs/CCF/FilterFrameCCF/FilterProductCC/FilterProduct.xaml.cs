@@ -47,7 +47,7 @@ namespace SDKTemplate
             {
                 InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
                 InitializeQuantityRangeSlider(productMetadata.QuantityRange);
-                InitializeConsumptionDayRangeSlider(new IRange<int?>(0, 30));
+                InitializeConsumptionDayRangeSlider(new IRange<int?>(-1, 30));
                 ShowInventoryItemChkBox.IsChecked = true;
             }
         }
