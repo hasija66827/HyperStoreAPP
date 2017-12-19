@@ -7,7 +7,7 @@
       mc:Ignorable="d">
     <RelativePanel Background="{StaticResource FrameBackgroundBrush}">
         <Frame x:Name="HeaderFrame"
-               Margin="5,5,0,0"
+               Margin="3,3,0,0"
                Background="{StaticResource FrameBrush}"
                MinHeight="230"
                Height="230"
@@ -17,16 +17,16 @@
                BorderThickness="1" />
         <Frame x:Name="FilterByTagFrame"
                Background="{StaticResource FrameBrush}"
-               Margin="5,5,0,0"
+               Margin="3,2,0,0"
                RelativePanel.Below="HeaderFrame"
-               Height="200"
+               Height="230"
                MinWidth="300"
                Width="300"
                BorderBrush="LightGray"
                BorderThickness="1,1,1,0" />
         <Frame x:Name="FilterByOtherFrame"
                Background="{StaticResource FrameBrush}"
-               Margin="5,0,0,0"
+               Margin="3,0,0,0"
                RelativePanel.Below="FilterByTagFrame"
                RelativePanel.AlignBottomWithPanel="True"
                MinWidth="300"
@@ -35,7 +35,7 @@
                BorderThickness="1,0,1,1" />
         <Frame x:Name="ScenarioFrame"
                Background="{StaticResource FrameBrush}"
-               Margin="5,5,5,0"
+               Margin="3,3,3,0"
                MinWidth="810"
                Width="810"
                RelativePanel.RightOf="FilterByTagFrame"
@@ -45,7 +45,7 @@
                BorderThickness="1" />
         <Frame x:Name="AnalyticsFrame"
                Background="{StaticResource FrameBrush}"
-               Margin="0,5,0,0"
+               Margin="0,3,0,0"
                MinHeight="200"
                MinWidth="300"
                BorderBrush="LightGray"

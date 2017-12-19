@@ -18,13 +18,14 @@
                         RelativePanel.AlignLeftWithPanel="True"
                         RelativePanel.AlignRightWith="HeaderPanel"
                         RelativePanel.Below="HeaderPanel"
-                        Padding="10">
+                        Margin="10,0">
                 <TextBox FontSize="16"
                          x:Name="TagHeader"
                          IsReadOnly="True"
                          TextWrapping="Wrap"
                          MaxHeight="200" />
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Margin="0,10"
                               MaxHeight="150"
                               Width="300">
                     <ItemsControl x:Name="TagItemControl">

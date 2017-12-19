@@ -38,6 +38,7 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            ShowInventoryItemChkBox.IsChecked = true;
             DiscountPerRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             QuantityRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
             ConsumptionDayRangeSlider.DragCompletedEvent += InvokeFilterProductCriteriaChangedEvent;
@@ -47,8 +48,7 @@ namespace SDKTemplate
             {
                 InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
                 InitializeQuantityRangeSlider(productMetadata.QuantityRange);
-                InitializeConsumptionDayRangeSlider(new IRange<int?>(-1, 30));
-                ShowInventoryItemChkBox.IsChecked = true;
+                InitializeConsumptionDayRangeSlider(new IRange<int?>(-1, 30));            
             }
         }
 
