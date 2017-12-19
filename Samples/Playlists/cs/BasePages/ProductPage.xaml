@@ -19,7 +19,7 @@
                Background="{StaticResource FrameBrush}"
                Margin="5,5,0,0"
                RelativePanel.Below="HeaderFrame"
-               Height="300"
+               Height="200"
                MinWidth="300"
                Width="300"
                BorderBrush="LightGray"

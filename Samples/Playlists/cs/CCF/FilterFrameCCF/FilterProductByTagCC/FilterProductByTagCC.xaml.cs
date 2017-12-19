@@ -43,12 +43,7 @@ namespace SDKTemplate
             TagItemControl.ItemsSource = null;
             if (tags != null)
             {
-                var Items = tags.Select(t => new FilterTagViewModel()
-                {
-                    TagId = t.TagId,
-                    TagName = t.TagName,
-                    IsChecked = false,
-                }).ToList();
+                var Items = tags.Select(t => new FilterTagViewModel(t.TagId, t.TagName, false)).ToList();
                 this._TagCollection = new FilterTagCollection(Items);
                 TagItemControl.ItemsSource = this._TagCollection.Tags;
             }

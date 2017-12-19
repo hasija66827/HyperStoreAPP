@@ -19,7 +19,7 @@ namespace SDKTemplate
         public Guid? TagId { get; set; }
         public string TagName { get; set; }
 
-        bool _IsChecked = default(bool);
+        public bool _IsChecked = default(bool);
         public bool IsChecked
         {
             get { return _IsChecked; }
@@ -29,8 +29,11 @@ namespace SDKTemplate
             }
         }
 
-        public FilterTagViewModel()
+        public FilterTagViewModel(Guid? tagId, string tagName, bool isChecked)
         {
+            _IsChecked = IsChecked;
+            TagId = tagId;
+            TagName = tagName;
         }
     }
 
@@ -58,7 +61,7 @@ namespace SDKTemplate
         public FilterTagCollection(List<FilterTagViewModel> tags)
         {
             this.Tags = tags;
-            
+
         }
     }
 
