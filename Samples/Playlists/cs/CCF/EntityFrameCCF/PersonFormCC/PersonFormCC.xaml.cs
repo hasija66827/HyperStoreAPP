@@ -42,6 +42,7 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._EntityType = (EntityType)e.Parameter;
+            TitleTB.Text = this._EntityType.ToString();
             _PFV = DataContext as PersonFormViewModel;
             _PFV.ErrorsChanged += AddSupplierViewModel_ErrorsChanged;
             if (e.Parameter == null)

@@ -44,6 +44,7 @@ namespace SDKTemplate
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this._EntityType = (EntityType)e.Parameter;
+            MasterColumnTitleTB.Text = this._EntityType.ToString();
             _totalSuppliers = await PersonDataSource.RetrieveTotalPersons();
             await UpdateMasterListViewItemSourceByFilterCriteria();
         }

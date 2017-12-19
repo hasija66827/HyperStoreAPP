@@ -268,7 +268,9 @@
             <Border x:Name="MasterHeaderPanel"
                     Style="{StaticResource HeaderBorder}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Supplier Orders"
+                    <TextBlock 
+                        x:Name="MasteColumnTitleTB"
+                        Text="Orders"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
                     <TextBlock x:Name="OrderCountTB"
                                Style="{StaticResource ResultCountTextBlockStyle}" />

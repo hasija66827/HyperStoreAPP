@@ -9,7 +9,8 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Search By Supplier"
+            <TextBlock x:Name="PersonASBTitleTB"
+                       Text="Supplier"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
         <StackPanel Orientation="Vertical"

@@ -127,6 +127,9 @@
     <Compile Include="BasePages\BillingPage.xaml.cs">
       <DependentUpon>BillingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BasePages\ProductPage.xaml.cs">
+      <DependentUpon>ProductPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CCF\Dashboard\CustomerInsight\CustomerInsightCC.xaml.cs">
       <DependentUpon>CustomerInsightCC.xaml</DependentUpon>
     </Compile>
@@ -372,6 +375,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="BasePages\BillingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BasePages\ProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

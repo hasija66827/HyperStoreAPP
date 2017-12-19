@@ -93,7 +93,7 @@
                     RelativePanel.AlignTopWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Suppliers"
+                    <TextBlock x:Name="MasterColumnTitleTB"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
                     <TextBlock x:Name="SupplierCountTB"
                                Style="{StaticResource ResultCountTextBlockStyle}" />
@@ -134,7 +134,7 @@
             <Border  x:Name="DetailHeaderPanel"
                      RelativePanel.AlignTopWithPanel="True"
                      Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Transactions of the Supplier"
+                <TextBlock Text="Transactions"
                            Style="{StaticResource DetailHeaderTextBlockStyle}" />
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"

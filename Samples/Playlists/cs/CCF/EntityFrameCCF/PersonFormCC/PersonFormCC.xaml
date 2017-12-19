@@ -12,7 +12,7 @@
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource FormHeaderBorder}">
-            <TextBlock Text="Supplier"
+            <TextBlock x:Name="TitleTB"
                        Style="{StaticResource FormHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
@@ -20,18 +20,18 @@
                     RelativePanel.Below="HeaderPanel"
                     Margin="10,0,0,0">
             <TextBox x:Name="NameTB"
-                     Header="Supplier Name"
+                     Header="Name"
                      Text="{x:Bind _PFV.Name, Mode=TwoWay}"
-                     ToolTipService.ToolTip="The name of the supplier."
-                     PlaceholderText="Enter Supplier Name."
+                     ToolTipService.ToolTip="The name e.g. Rahul Hasija."
+                     PlaceholderText="Enter Name."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Name][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
             <TextBox x:Name="AddressTB"
                      Header="Address"
                      Text="{x:Bind _PFV.Address, Mode=TwoWay}"
-                     ToolTipService.ToolTip="The address of supplier."
-                     PlaceholderText="Enter Address of Supplier."
+                     ToolTipService.ToolTip="The address e.g. E707 APZ"
+                     PlaceholderText="Enter Address"
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[Address][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
@@ -39,7 +39,7 @@
                      x:Name="MobileNoTB"
                      Text="{x:Bind _PFV.MobileNo, Mode=TwoWay}"
                      ToolTipService.ToolTip="Mobile No. e.g. 7987421819"
-                     PlaceholderText="Enter Mobile No of Supplier."
+                     PlaceholderText="Enter Mobile No."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[MobileNo][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
@@ -47,7 +47,7 @@
                      x:Name="GSTINTB"
                      Text="{x:Bind _PFV.GSTIN, Mode=TwoWay}"
                      ToolTipService.ToolTip="GSTIN No. For e.g. 23ABCDE1234F1ZH"
-                     PlaceholderText="Enter GSTIN of Supplier."
+                     PlaceholderText="Enter GSTIN."
                      Style="{StaticResource FormTextBoxStyle}" />
             <TextBlock Text="{Binding Errors[GSTIN][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />

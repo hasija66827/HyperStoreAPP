@@ -43,6 +43,7 @@ namespace SDKTemplate
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.EntityType = (EntityType)e.Parameter;
+            PersonASBTitleTB.Text = this.EntityType.ToString();
             RefreshThePersons();
             PersonDataSource.PersonCreatedEvent += RefreshThePersons;
             PersonDataSource.PersonUpdatedEvent += RefreshThePersons;

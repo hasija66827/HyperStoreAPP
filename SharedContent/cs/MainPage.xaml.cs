@@ -10,6 +10,7 @@
 //*********************************************************
 
 using Models;
+using SDKTemplate.BasePages;
 using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
@@ -137,6 +138,10 @@ namespace SDKTemplate
             else if (scenarioType == ScenarioType.Dashboard)
             {
                 Current.MainFrame.Navigate(typeof(Dashboard));
+            }
+            else if (scenarioType == ScenarioType.Products)
+            {
+                Current.MainFrame.Navigate(typeof(ProductPage));
             }
             else
             {

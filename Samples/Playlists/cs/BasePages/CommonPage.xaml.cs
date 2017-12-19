@@ -60,14 +60,6 @@ namespace SDKTemplate
                 ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Supplier);
                 SummaryFrame.Navigate(typeof(PersonSummaryCC));
             }
-            else if (scenarioType == ScenarioType.Products)
-            {
-                HeaderFrame.Navigate(typeof(ProductASBCC), ProductPage.SearchTheProduct);
-                SearchBoxFrame.Navigate(typeof(FilterProductByTagCC));
-                SummaryFrame.Navigate(typeof(FilterProductCC));
-                ScenarioFrame.Navigate(typeof(ProductInStock));
-                AnalyticsFrame.Navigate(typeof(ProductConsumptionTrendCC));
-            }
             else
                 throw new NotImplementedException();
             base.OnNavigatedTo(e);

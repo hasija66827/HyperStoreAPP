@@ -42,6 +42,7 @@ namespace SDKTemplate
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.EntityType = (EntityType)e.Parameter;
+            MasteColumnTitleTB.Text = this.EntityType + " Orders";
             _totalOrders = await OrderDataSource.RetrieveTotalOrder();
             await UpdateMasterListViewByFilterCriteriaAsync();
         }

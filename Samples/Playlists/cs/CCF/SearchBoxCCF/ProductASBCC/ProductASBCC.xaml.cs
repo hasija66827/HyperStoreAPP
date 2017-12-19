@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 namespace SDKTemplate
 {
-    enum ProductPage
+    enum ProductASBType
     {
         AddTheProduct,
         SearchTheProduct
@@ -49,12 +49,12 @@ namespace SDKTemplate
         {
             if (e.Parameter != null)
             {
-                var pageType = (ProductPage)e.Parameter;
-                if (pageType == ProductPage.SearchTheProduct)
+                var pageType = (ProductASBType)e.Parameter;
+                if (pageType == ProductASBType.SearchTheProduct)
                 {
                     AddToCartBtn.Visibility = Visibility.Collapsed;
                 }
-                else if (pageType == ProductPage.AddTheProduct)
+                else if (pageType == ProductASBType.AddTheProduct)
                 {
                     AddToCartBtn.Visibility = Visibility.Visible;
                 }
