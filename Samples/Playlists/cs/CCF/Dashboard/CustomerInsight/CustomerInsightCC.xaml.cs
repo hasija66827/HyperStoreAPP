@@ -37,6 +37,7 @@ namespace SDKTemplate.CCF.Dashboard.CustomerInsight
             LoadNewCustomerChartControl();
             LoadDetachedCustomerChartControl();
         }
+
         private async void LoadNewCustomerChartControl()
         {
             var customerInsightDTO = new CustomerInsightsDTO(new IRange<DateTime>(DateTime.Now.AddDays(-31), DateTime.Now), 25);

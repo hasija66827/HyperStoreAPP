@@ -38,7 +38,13 @@ namespace SDKTemplate
         //TODO: place it in another viewmodel
         public string FormattedNameQuantity
         {
-            get { return this.Name + " (" + this.TotalQuantity + ")"; }
+            get
+            {
+                if (this.TotalQuantity != null)
+                    return this.Name + " (" + this.TotalQuantity + ")";
+                else
+                    return this.Name;
+            }
         }
 
         public MapDay_ProductEstConsumption MapDay_ProductEstConsumption { get; set; }

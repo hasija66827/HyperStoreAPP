@@ -27,21 +27,26 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class ProductConsumptionTrendCC : Page
     {
+        public ObservableCollection<Person> NewCustomers { get; set; }
         public ObservableCollection<ProductConsumptionViewModel> ProductEstimatedConsumption { get; set; }
         public ProductConsumptionTrendCC()
         {
             this.InitializeComponent();
+            this.NewCustomers = new ObservableCollection<Person>();
             this.ProductEstimatedConsumption = new ObservableCollection<ProductConsumptionViewModel>();
             ProductInStock.Current.ProductStockSelectionChangedEvent += Current_ProductStockSelectionChangedEvent;
+            this.DataContext = this;
         }
 
         private void Current_ProductStockSelectionChangedEvent(ProductViewModelBase productViewModelBase)
         {
+            this.ProductEstimatedConsumption.Clear();
             var mapDay_ProductEstConsumption = productViewModelBase.MapDay_ProductEstConsumption;
-
+           
             if (mapDay_ProductEstConsumption != null)
             {
-                foreach (var productEstConsumption in mapDay_ProductEstConsumption.ProductEstConsumption)
+                var productsEstConsumption = mapDay_ProductEstConsumption.ProductEstConsumption.OrderBy(x => x.Key);
+                foreach (var productEstConsumption in productsEstConsumption)
                 {
                     this.ProductEstimatedConsumption.Add(new ProductConsumptionViewModel()
                     {

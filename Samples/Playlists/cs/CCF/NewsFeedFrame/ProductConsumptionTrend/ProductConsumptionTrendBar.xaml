@@ -5,24 +5,22 @@
       xmlns:syncfusion="using:Syncfusion.UI.Xaml.Charts"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
       mc:Ignorable="d">
     <RelativePanel Background="White">
         <RelativePanel x:Name="DetachedCustomerChartPanel"
-                       Style="{StaticResource ChartRelativePanel}"
-                     >
+                       Style="{StaticResource ChartRelativePanel}">
             <syncfusion:SfChart HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Header="Top worthy customers not visited in past 20 days"
+                                Header="Average Consumption Rate of Product"
                                 FontSize="16">
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
-                    <syncfusion:CategoryAxis Header="Customer"
+                    <syncfusion:CategoryAxis Header="Day Of Week"
                                              FontSize="14" />
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
-                    <syncfusion:NumericalAxis Header="Net Worth"
+                    <syncfusion:NumericalAxis Header="Units Consumed"
                                               FontSize="14" />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
@@ -30,12 +28,12 @@
                     <syncfusion:ChartLegend Visibility="Visible" />
                 </syncfusion:SfChart.Legend>
                 <!--Initialize the series for SfChart-->
-                <syncfusion:BarSeries Interior="OrangeRed"
-                                      ShowTooltip="True"
-                                      ToolTipService.ToolTip="Total Sales By Customer"
-                                      ItemsSource="{Binding ProductEstimatedConsumption, Mode=TwoWay}"
-                                      XBindingPath="RoundedEstConsumption"
-                                      YBindingPath="RoundedEstConsumption" />
+                <syncfusion:ColumnSeries Interior="GreenYellow"
+                                         ShowTooltip="True"
+                                         ToolTipService.ToolTip="Average units consumed on the day"
+                                         ItemsSource="{Binding ProductEstimatedConsumption}"
+                                         XBindingPath="FormattedDay"
+                                         YBindingPath="RoundedEstConsumption" />
             </syncfusion:SfChart>
         </RelativePanel>
     </RelativePanel>
