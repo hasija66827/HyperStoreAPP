@@ -20,7 +20,7 @@
                Margin="5,5,0,0"
                RelativePanel.Below="HeaderFrame"
                MinHeight="260"
-               Height="265"
+               Height="275"
                MinWidth="300"
                Width="300"
                BorderBrush="LightGray"
@@ -39,21 +39,11 @@
                Background="{StaticResource FrameBrush}"
                Margin="5,5,5,0"
                MinWidth="810"
-               Width="810"
+               Width="870"
                MinHeight="720"
                Height="725"
                RelativePanel.RightOf="SearchBoxFrame"
                BorderBrush="LightGray"
                BorderThickness="1" />
-        <Frame x:Name="AnalyticsFrame"
-               Background="{StaticResource FrameBrush}"
-               Margin="0,5,0,0"
-               MinHeight="200"
-               MinWidth="300"
-               BorderBrush="LightGray"
-               BorderThickness="1"
-               RelativePanel.RightOf="ScenarioFrame"
-               RelativePanel.AlignBottomWithPanel="True"
-               RelativePanel.AlignTopWithPanel="True" />
-    </RelativePanel>
+     </RelativePanel>
 </Page>

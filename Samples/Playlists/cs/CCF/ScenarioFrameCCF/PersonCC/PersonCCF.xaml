@@ -40,13 +40,15 @@
                                Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Txn Amount"
                                Style="{StaticResource HighlightArialBasicTBStyle}" />
+                    <TextBlock Text="Payment Mode"
+                               Style="{StaticResource HighlightArialBasicTBStyle}" />
                     <TextBlock Text="Description"
                                Width="105"
                                Style="{StaticResource HighlightArialBasicTBStyle}" />
                 </StackPanel>
                 <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
                               RelativePanel.Below="StaticLabelForList"
-                              RelativePanel.Above="CommandPanel">
+                              RelativePanel.Above="PayMoneyBtn">
                     <ListView x:Name="TransactionHistoriesOfWholeSellers"
                               ItemsSource="{x:Bind Transactions}"
                               Style="{StaticResource ListViewStyle}">
@@ -66,6 +68,9 @@
                                                Foreground="{StaticResource PinkBrush}"
                                                Text="{x:Bind SignedTransactionAmount, Mode=OneWay, Converter={StaticResource FloatToRupeeConverterWithSign}}"
                                                Style="{ThemeResource CalibriBasicTBStyle}" />
+                                    <TextBlock x:Name="PaymentMode"
+                                               Text="{x:Bind PaymentOption.Name, Mode=OneWay}"
+                                               Style="{ThemeResource CalibriBasicTBStyle}" />
                                     <TextBlock x:Name="OrderNo"
                                                Text="{x:Bind OrderNo, Mode=OneWay}"
                                                Style="{StaticResource CaptionBasicTBStyle}" />
@@ -74,14 +79,13 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </ScrollViewer>
-                <StackPanel x:Name="CommandPanel"
-                            Orientation="Horizontal"
-                            RelativePanel.AlignBottomWithPanel="True">
-                    <Button x:Name="PayMoney"
-                            Content="{x:Bind MoneyToFromPerson}"
-                            Click="PayMoney_Click"
-                            Style="{StaticResource DetailButtonStyle}" />
-                </StackPanel>
+                <Button x:Name="PayMoneyBtn"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        Content="{x:Bind MoneyToFromPerson}"
+                        Click="PayMoney_Click"
+                        Style="{StaticResource DetailButtonStyle}" />
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>

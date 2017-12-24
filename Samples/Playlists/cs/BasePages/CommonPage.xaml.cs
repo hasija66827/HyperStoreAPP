@@ -60,7 +60,6 @@ namespace SDKTemplate
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Supplier);
                 ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Supplier);
                 SummaryFrame.Navigate(typeof(PersonSummaryCC));
-                AnalyticsFrame.Navigate(typeof(BlankPage));
             }
             else
                 throw new NotImplementedException();

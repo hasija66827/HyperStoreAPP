@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDKTemplate.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Models
         public decimal WalletSnapshot { get; set; }
         public Guid PersonId { get; set; }
         public Person Person { get; set; }
+        public Guid? PaymentOptionId { get; set; }
+        public PaymentOption PaymentOption { get; set; }
         public Transaction() {
         }
     }
