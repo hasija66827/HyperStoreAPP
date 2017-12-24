@@ -76,7 +76,7 @@ namespace SDKTemplate
                 if (MapDay_ProductEstConsumption != null)
                 {
                     var unitsConsumed = MapDay_ProductEstConsumption.ProductEstConsumption.Sum(p => p.Value);
-                    productUnitConsumedPerWeek = unitsConsumed + " units per week";
+                    productUnitConsumedPerWeek = Math.Round(unitsConsumed) + " units per week";
                 }
                 else
                     productUnitConsumedPerWeek = "Not Computed";

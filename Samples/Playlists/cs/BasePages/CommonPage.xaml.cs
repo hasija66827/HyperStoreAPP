@@ -1,4 +1,5 @@
-﻿using SDKTemplate.DTO;
+﻿using SDKTemplate.CCF;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,6 +60,7 @@ namespace SDKTemplate
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Supplier);
                 ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Supplier);
                 SummaryFrame.Navigate(typeof(PersonSummaryCC));
+                AnalyticsFrame.Navigate(typeof(PaymentOptionCC));
             }
             else
                 throw new NotImplementedException();

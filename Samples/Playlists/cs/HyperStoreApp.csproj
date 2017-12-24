@@ -98,12 +98,22 @@
     <Content Include="Assets\app-icon.png" />
     <Content Include="Assets\app-icon.scale-100.png" />
     <Content Include="Assets\app-icon.scale-200.png" />
+    <Content Include="Assets\card.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\cash.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\paytm.png" />
     <Content Include="Assets\smalltile-sdk.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\SquareTile-sdk.png" />
+    <Content Include="Assets\tezz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="htmlPage\googleMap.html" />
     <None Include="HyperStoreApp_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
@@ -130,6 +140,7 @@
     <Compile Include="BasePages\ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CCF\Class1.cs" />
     <Compile Include="CCF\Dashboard\CustomerInsight\CustomerInsightCC.xaml.cs">
       <DependentUpon>CustomerInsightCC.xaml</DependentUpon>
     </Compile>
@@ -155,6 +166,10 @@
       <DependentUpon>PayNowCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\NewsFeedFrame\ProductConsumptionTrend\ProductConsumptionDeficientTrendViewModel.cs" />
+    <Compile Include="CCF\PaymentOptionCC\PaymentOptionCC.xaml.cs">
+      <DependentUpon>PaymentOptionCC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CCF\PaymentOptionCC\PaymentOptionViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\PersonASBCC\PersonASBViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\PersonCC\NewTransactionScenario\1 NewTransactionCC\NewTransactionViewModel.cs" />
@@ -170,6 +185,7 @@
     <Compile Include="CustomeModel\MapDay_ProductEstConsumption.cs" />
     <Compile Include="CCF\Dashboard\DashboardViewModel.cs" />
     <Compile Include="Data Source\InsightsDataSource.cs" />
+    <Compile Include="Data Source\PaymentOptionsDataSource.cs" />
     <Compile Include="Data Source\UserDataSource.cs" />
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterPersonCC\FilterPersonViewModel.cs" />
@@ -198,6 +214,7 @@
     <Compile Include="Data Source\TagDataSource.cs" />
     <Compile Include="CustomeModel\CustomerPurchaseTrend.cs" />
     <Compile Include="CustomeModel\PriceQuotedBySupplier.cs" />
+    <Compile Include="Models\PaymentOption.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="CustomeModel\ProductMetadata.cs" />
     <Compile Include="Models\ProductTag.cs" />
@@ -411,6 +428,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CCF\CheckoutFrameCC\PayNowCC\PayNowCC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CCF\PaymentOptionCC\PaymentOptionCC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

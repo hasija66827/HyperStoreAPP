@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace SDKTemplate
             SupplierCCF.Current.SupplierListUpdatedEvent += Current_SupplierListUpdatedEvent;
         }
 
-        private void Current_SupplierListUpdatedEvent(List<Models.Person> suppliers)
+        private void Current_SupplierListUpdatedEvent(List<Person> suppliers)
         {
             this._PSV.TotalWalletBalance = (decimal)suppliers.Sum(c => c.WalletBalance);
             this._PSV.OnALLPropertyChanged();

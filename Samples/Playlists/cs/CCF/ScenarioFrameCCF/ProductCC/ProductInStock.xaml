@@ -46,7 +46,8 @@
                 <TextBlock x:Name="ProductExtinctionDays"
                            Text="{x:Bind ProductExtinctionDays}"
                            RelativePanel.AlignBottomWith="ProductUnitConsumedPerWeek"
-                           RelativePanel.AlignRightWith="TotalGstPerTB"
+                           RelativePanel.RightOf="ProductUnitConsumedPerWeek"
+                           RelativePanel.AlignRightWithPanel="True"
                            Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="DisplayPrice"
                            Text="{x:Bind MRP, Converter={StaticResource FloatToRupeeConverter} }"

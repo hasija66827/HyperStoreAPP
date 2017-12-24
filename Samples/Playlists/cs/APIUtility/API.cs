@@ -25,6 +25,7 @@ namespace SDKTemplate
         public static string PurhcaseHistory { get { return "PurchaseHistory"; } }
         public static string BusinessInsight { get { return "BusinessInsights"; } }
         public static string ProductInsights { get { return "ProductInsights"; } }
+        public static string PaymentOptions { get { return "PaymentOptions"; } }
         public static string ProductConsumptionInsights { get { return "ProductConsumptionInsights"; } }
 
         public static string CustomerInsights { get { return "CustomerInsights"; } }

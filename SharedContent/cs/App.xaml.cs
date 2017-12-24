@@ -15,10 +15,11 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
- 
+
 using Microsoft.EntityFrameworkCore;
 using SDKTemplate.SignUp;
 using SDKTemplate.Login;
+using Models;
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
 namespace SDKTemplate
@@ -83,7 +84,7 @@ namespace SDKTemplate
                 // configuring the new page by passing required information as a navigation
                 // parameter
 
-                BaseURI.User = new Models.User();// Need to removed, as it will be setup in the login or signup time.
+                BaseURI.User = new User();// Need to removed, as it will be setup in the login or signup time.
                 rootFrame.Navigate(typeof(RootPage), e.Arguments);
             }
             // Ensure the current window is active
