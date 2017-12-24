@@ -25,33 +25,35 @@ namespace SDKTemplate
     /// </summary>
     public sealed partial class TransactionConfirmationCC : Page
     {
-        private NewTransactionViewModel _SupplierNewTransactionViewModel { get; set; }
+        private NewTransactionViewModel _NewTransactionViewModel { get; set; }
         public TransactionConfirmationCC()
         {
             this.InitializeComponent();
+            PaymentModeFrame.Navigate(typeof(PaymentOptionCC));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._SupplierNewTransactionViewModel = (NewTransactionViewModel)e.Parameter;
+            this._NewTransactionViewModel = (NewTransactionViewModel)e.Parameter;
         }
 
-        private async void VerifyBtn_Click(object sender, RoutedEventArgs e)
+        private async void ConfirmBtn_Click(object sender, RoutedEventArgs e)
         {
             var IsVerified = await _InitiatePasscodeVerificationAsync();
             if (IsVerified)
             {
-                var transactionDTO = new SupplierTransactionDTO()
+                var transactionDTO = new TransactionDTO()
                 {
-                    SupplierId = this._SupplierNewTransactionViewModel?.Supplier?.PersonId,
-                    IsCredit = this._SupplierNewTransactionViewModel.Supplier.EntityType == EntityType.Supplier ? false : true,
-                    TransactionAmount = Utility.TryToConvertToDecimal(this._SupplierNewTransactionViewModel?.Amount),
-                    Description = this._SupplierNewTransactionViewModel?.Description,
+                    PersonId = this._NewTransactionViewModel?.Person?.PersonId,
+                    IsCredit = this._NewTransactionViewModel.Person.EntityType == EntityType.Supplier ? false : true,
+                    TransactionAmount = Utility.TryToConvertToDecimal(this._NewTransactionViewModel?.Amount),
+                    Description = this._NewTransactionViewModel?.Description,
+                    PaymentOptionId = PaymentOptionCC.Current?.SelectedPaymentOption?.PaymentOptionId,
                 };
-                var transaction = await SupplierTransactionDataSource.CreateNewTransactionAsync(transactionDTO);
+                var transaction = await TransactionDataSource.CreateNewTransactionAsync(transactionDTO);
                 if (transaction != null)
                 {
-                    if (this._SupplierNewTransactionViewModel.Supplier.EntityType == EntityType.Supplier)
+                    if (this._NewTransactionViewModel.Person.EntityType == EntityType.Supplier)
                         MainPage.RefreshPage(ScenarioType.Suppliers);
                     else
                         MainPage.RefreshPage(ScenarioType.Customers);
@@ -70,7 +72,7 @@ namespace SDKTemplate
         private async Task<bool> _InitiateOTPVerificationAsync()
         {
             var SMSContent = OTPVConstants.SMSContents[OTPScenarioType.PayToSupplier_Transaction];
-            var fomattedSMSContent = String.Format(SMSContent, this._SupplierNewTransactionViewModel?.Amount, _SupplierNewTransactionViewModel?.Supplier?.Name, OTPVConstants.OTPLiteral);
+            var fomattedSMSContent = String.Format(SMSContent, this._NewTransactionViewModel?.Amount, _NewTransactionViewModel?.Person?.Name, OTPVConstants.OTPLiteral);
             var OTPVerificationDTO = new OTPVerificationDTO()
             {
                 UserID = BaseURI.User.UserId,

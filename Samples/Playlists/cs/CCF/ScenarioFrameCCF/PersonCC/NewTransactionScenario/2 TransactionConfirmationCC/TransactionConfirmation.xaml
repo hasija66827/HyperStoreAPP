@@ -31,7 +31,7 @@
                 <StackPanel>
                     <TextBlock Text="Payee Name"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.Name}"
+                    <TextBlock Text="{x:Bind _NewTransactionViewModel.Person.Name}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -47,7 +47,7 @@
                 <StackPanel>
                     <TextBlock Text="Mobile Number"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.MobileNo}"
+                    <TextBlock Text="{x:Bind _NewTransactionViewModel.Person.MobileNo}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -63,7 +63,7 @@
                 <StackPanel>
                     <TextBlock Text="Wallet Balance"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind _NewTransactionViewModel.Person.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -80,7 +80,7 @@
                 <StackPanel>
                     <TextBlock Text="Amount"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Amount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
+                    <TextBlock Text="{x:Bind _NewTransactionViewModel.Amount,Converter={StaticResource FloatToRupeeConverter}, Mode=OneTime}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -96,7 +96,7 @@
                 <StackPanel>
                     <TextBlock Text="Updated Wallet Balance"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind _NewTransactionViewModel.UpdatedWalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -112,14 +112,17 @@
                 <StackPanel>
                     <TextBlock Text="Description"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _SupplierNewTransactionViewModel.Description}"
+                    <TextBlock Text="{x:Bind _NewTransactionViewModel.Description}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
+            <Frame x:Name="PaymentModeFrame"
+                   MaxWidth="400"
+                   MaxHeight="300" />
         </StackPanel>
-               <Button Content="{x:Bind _SupplierNewTransactionViewModel.ProceedToPay}"
+               <Button Content="{x:Bind _NewTransactionViewModel.ProceedToPay}"
                     x:Name="ProceedToPayBtn"
-                    Click="VerifyBtn_Click"
+                    Click="ConfirmBtn_Click"
                 RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.AlignBottomWithPanel="True"

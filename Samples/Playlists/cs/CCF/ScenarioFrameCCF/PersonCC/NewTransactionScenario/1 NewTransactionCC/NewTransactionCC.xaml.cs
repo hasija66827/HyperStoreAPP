@@ -27,14 +27,15 @@ namespace SDKTemplate
         public NewTransactionCC()
         {
             this.InitializeComponent();
+           
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var selectedSupplier = (Person)e.Parameter;
+            var selectedPerson = (Person)e.Parameter;
             _NTV = DataContext as NewTransactionViewModel;
             _NTV.ErrorsChanged += _SNTV_ErrorsChanged;
-            _NTV.Supplier = selectedSupplier;
+            _NTV.Person = selectedPerson;
             _NTV.Amount = null;
         }
 

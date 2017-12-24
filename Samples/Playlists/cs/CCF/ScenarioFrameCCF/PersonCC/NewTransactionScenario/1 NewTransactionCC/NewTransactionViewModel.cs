@@ -11,7 +11,7 @@ namespace SDKTemplate
 {
     public class NewTransactionViewModel : ValidatableBindableBase
     {
-        public Person Supplier { get; set; }
+        public Person Person { get; set; }
 
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [Range(0, float.MaxValue, ErrorMessage = "Try amount in range(0, 10000000).")]
@@ -22,16 +22,16 @@ namespace SDKTemplate
         [MaxLength(16, ErrorMessage = "Try description with atmost 16 charecters.")]
         public string Description { get; set; }
 
-        public decimal AbsWalletBalance{ get { return Math.Abs(this.Supplier.WalletBalance); } }
+        public decimal AbsWalletBalance{ get { return Math.Abs(this.Person.WalletBalance); } }
 
         public decimal? UpdatedWalletBalance
         {
             get
             {
-                if (this.Supplier.EntityType == EntityType.Supplier)
-                    return this.Supplier.WalletBalance - Utility.TryToConvertToDecimal(this.Amount);
+                if (this.Person.EntityType == EntityType.Supplier)
+                    return this.Person.WalletBalance - Utility.TryToConvertToDecimal(this.Amount);
                 else
-                    return this.Supplier.WalletBalance + Utility.TryToConvertToDecimal(this.Amount);
+                    return this.Person.WalletBalance + Utility.TryToConvertToDecimal(this.Amount);
             }
         }
         public string ProceedToPay { get { return "Proceed" + Utility.ConvertToRupee(Amount); } }

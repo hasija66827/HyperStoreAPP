@@ -87,7 +87,7 @@ namespace SDKTemplate
                 SupplierId = selectedSupplier?.PersonId
             };
             DetailContentPresenter.Content = null;
-            var transactions = await SupplierTransactionDataSource.RetrieveTransactionsAsync(tfc);
+            var transactions = await TransactionDataSource.RetrieveTransactionsAsync(tfc);
             if (transactions != null)
             {
                 var supplierTransactionCollection = new TransactionCollection();

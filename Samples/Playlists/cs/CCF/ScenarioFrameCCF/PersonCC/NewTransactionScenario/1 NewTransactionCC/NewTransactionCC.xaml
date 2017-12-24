@@ -35,7 +35,7 @@
                 <StackPanel>
                     <TextBlock Text="Payee Name"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _NTV.Supplier.Name}"
+                    <TextBlock Text="{x:Bind _NTV.Person.Name}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -51,7 +51,7 @@
                 <StackPanel>
                     <TextBlock Text="Mobile Number"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _NTV.Supplier.MobileNo}"
+                    <TextBlock Text="{x:Bind _NTV.Person.MobileNo}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>
@@ -67,7 +67,7 @@
                 <StackPanel>
                     <TextBlock Text="Wallet Balance"
                                Style="{ThemeResource LargeFormTBPropStyle}" />
-                    <TextBlock Text="{x:Bind _NTV.Supplier.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
+                    <TextBlock Text="{x:Bind _NTV.Person.WalletBalance, Converter={StaticResource FloatToRupeeConverter}}"
                                Style="{ThemeResource LargeFormTBValueStyle}" />
                 </StackPanel>
             </StackPanel>

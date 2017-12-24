@@ -9,10 +9,10 @@ using HyperStoreServiceAPP.DTO;
 
 namespace SDKTemplate
 {
-    public class SupplierTransactionDataSource
+    public class TransactionDataSource
     {
         #region create
-        public static async Task<Transaction> CreateNewTransactionAsync(SupplierTransactionDTO transactionDTO)
+        public static async Task<Transaction> CreateNewTransactionAsync(TransactionDTO transactionDTO)
         {
             MainPage.Current.ActivateProgressRing();
             var transaction = await Utility.CreateAsync<Transaction>(BaseURI.HyperStoreService + API.Transactions, transactionDTO);

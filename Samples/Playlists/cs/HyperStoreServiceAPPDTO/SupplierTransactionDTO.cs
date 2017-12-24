@@ -14,19 +14,22 @@ namespace HyperStoreServiceAPP.DTO
         public Guid? SupplierId { get; set; }
     }
 
-    public class SupplierTransactionDTO
+    public class TransactionDTO
     {
         [Required]
         public bool? IsCredit { get; set; }
 
         [Required]
-        public Guid? SupplierId { get; set; }
+        public Guid? PersonId { get; set; }
 
         [Required]
         [Range(0, float.MaxValue)]
         public decimal? TransactionAmount { get; set; }
 
         public string Description { get; set; }
+
+        [Required]
+        public Guid? PaymentOptionId { get; set; }
     }
     #endregion
 }
