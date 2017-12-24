@@ -140,7 +140,6 @@
     <Compile Include="BasePages\ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CCF\Class1.cs" />
     <Compile Include="CCF\Dashboard\CustomerInsight\CustomerInsightCC.xaml.cs">
       <DependentUpon>CustomerInsightCC.xaml</DependentUpon>
     </Compile>
