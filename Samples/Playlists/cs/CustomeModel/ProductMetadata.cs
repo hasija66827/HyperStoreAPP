@@ -13,5 +13,6 @@ namespace HyperStoreService.CustomModels
     {
         public IRange<decimal?> DiscountPerRange { get; set; }
         public IRange<float?> QuantityRange { get; set; }
+        public IRange<int?> DayRange { get; set; }
     }
 }

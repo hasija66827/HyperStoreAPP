@@ -48,7 +48,7 @@ namespace SDKTemplate
             {
                 InitializeDiscountRangeSlider(productMetadata.DiscountPerRange);
                 InitializeQuantityRangeSlider(productMetadata.QuantityRange);
-                InitializeConsumptionDayRangeSlider(new IRange<int?>(-1, 30));            
+                InitializeConsumptionDayRangeSlider(productMetadata.DayRange);            
             }
         }
 
