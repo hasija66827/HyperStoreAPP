@@ -39,12 +39,18 @@ namespace SDKTemplate
             _CV.PayingAmount = null;
             _CV.DueDate = DateTime.Now.AddDays(45);
             _CV.IntrestRate = null;
-
+        
             this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
             if (this.PageNavigationParameter.OrderType == OrderType.SupplierOrder)
+            {
                 _CV.AmountToBePaid = this.PageNavigationParameter.SupplierPageNavigationParameter.SupplierBillingSummaryViewModel.BillAmount;
+                _CV.PaymentOption = this.PageNavigationParameter.SupplierPageNavigationParameter.CheckoutViewModel?.PaymentOption;
+            }
             else
+            {
                 _CV.AmountToBePaid = this.PageNavigationParameter.CustomerPageNavigationParameter.BillingSummaryViewModel.BillAmount;
+                _CV.PaymentOption = this.PageNavigationParameter.CustomerPageNavigationParameter.CheckoutViewModel?.PaymentOption;
+            }
         }
 
         private void _SCV_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
@@ -59,13 +65,13 @@ namespace SDKTemplate
             {
                 if (this.PageNavigationParameter.OrderType == OrderType.SupplierOrder)
                 {
-                    this.PageNavigationParameter.SupplierPageNavigationParameter.SupplierCheckoutViewModel = _CV;
+                    this.PageNavigationParameter.SupplierPageNavigationParameter.CheckoutViewModel = _CV;
                     var IsCreated = await OrderDataSource.InitiateSupplierOrderCreationAsync(this.PageNavigationParameter.SupplierPageNavigationParameter);
                     MainPage.RefreshPage(ScenarioType.SupplierBilling);
                 }
                 else
                 {
-                    this.PageNavigationParameter.CustomerPageNavigationParameter.CustomerCheckoutViewModel = _CV;
+                    this.PageNavigationParameter.CustomerPageNavigationParameter.CheckoutViewModel = _CV;
                     var IsCreated = await OrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
                     MainPage.RefreshPage(ScenarioType.CustomerBilling);
                 }

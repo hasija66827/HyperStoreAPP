@@ -189,7 +189,7 @@
     <Compile Include="Data Source\TransactionDataSource.cs" />
     <Compile Include="CCF\FilterFrameCCF\FilterPersonCC\FilterPersonViewModel.cs" />
     <Compile Include="HyperStoreServiceAPPDTO\SupplierDTO.cs" />
-    <Compile Include="HyperStoreServiceAPPDTO\SupplierOrderDTO.cs" />
+    <Compile Include="HyperStoreServiceAPPDTO\OrderDTO.cs" />
     <Compile Include="HyperStoreServiceAPPDTO\InsightsDTO\CustomerInsightsDTO.cs" />
     <Compile Include="HyperStoreServiceAPPDTO\InsightsDTO\InsightsDTO.cs" />
     <Compile Include="HyperStoreServiceAPPDTO\InsightsDTO\BusinessInsightDTO.cs" />

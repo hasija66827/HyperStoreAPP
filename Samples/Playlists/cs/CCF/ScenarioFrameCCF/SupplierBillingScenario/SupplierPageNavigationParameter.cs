@@ -12,7 +12,7 @@ namespace SDKTemplate
         public List<SupplierBillingProductViewModelBase> ProductPurchased { get; set; }
         public Person SelectedSupplier { get; set; }
         public SupplierBillingSummaryViewModelBase SupplierBillingSummaryViewModel { get; set; }
-        public CheckoutViewModel SupplierCheckoutViewModel { get; set; }
+        public CheckoutViewModel CheckoutViewModel { get; set; }
         public SupplierPageNavigationParameter()
         { }
     }

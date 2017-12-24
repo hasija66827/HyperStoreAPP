@@ -53,6 +53,11 @@
                          Content="Pay Later"
                          GroupName="paymentMode" />
         </StackPanel>
+        <Frame x:Name="PaymentOptionFrame"
+               RelativePanel.AlignLeftWith="BillAmountPanel"
+               RelativePanel.AlignRightWith="BillAmountPanel"
+               RelativePanel.Below="SelectPaymentModePanel"
+               RelativePanel.Above="ProceedToPayment" />
         <Button x:Name="ProceedToPayment"
                 Content="Proceed"
                 Click="ProceedToPayment_Click"

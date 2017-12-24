@@ -178,9 +178,25 @@
                                       Style="{StaticResource WhiteFontIconStyle}" />
                         </RelativePanel>
                         <StackPanel>
-                            <TextBlock Text="By Cash "
+                            <TextBlock Text="Initial Payment"
                                        Style="{ThemeResource CaptionBasicTBStyle}" />
                             <TextBlock Text="{x:Bind PayedAmount, Converter={StaticResource FloatToRupeeConverter}}"
+                                       Style="{ThemeResource CalibriBasicTBStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RelativePanel>
+                            <Ellipse x:Name="InitialPaymentModeGlyph"
+                                     Style="{StaticResource SmallEllipseStyle}" />
+                            <FontIcon Glyph="&#xEC5C;"
+                                      RelativePanel.AlignHorizontalCenterWith="InitialPaymentModeGlyph"
+                                      RelativePanel.AlignVerticalCenterWith="InitialPaymentModeGlyph"
+                                      Style="{StaticResource WhiteFontIconStyle}" />
+                        </RelativePanel>
+                        <StackPanel>
+                            <TextBlock Text="Payment Mode "
+                                       Style="{ThemeResource CaptionBasicTBStyle}" />
+                            <TextBlock Text="{x:Bind PaymentOption.Name}"
                                        Style="{ThemeResource CalibriBasicTBStyle}" />
                         </StackPanel>
                     </StackPanel>

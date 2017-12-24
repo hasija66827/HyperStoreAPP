@@ -39,7 +39,7 @@ namespace SDKTemplate
             return false;
         }
 
-        private static SupplierOrderDTO _CreateCustomerOrderDTO(CustomerPageNavigationParameter PNP)
+        private static OrderDTO _CreateCustomerOrderDTO(CustomerPageNavigationParameter PNP)
         {
             var productsPurchased = PNP.ProductsPurchased.Select(p => new ProductPurchasedDTO()
             {
@@ -48,20 +48,21 @@ namespace SDKTemplate
                 PurchasePricePerUnit = p.ValueIncTax
             }).ToList();
 
-            var customerOrderDTO = new SupplierOrderDTO()
+            var customerOrderDTO = new OrderDTO()
             {
                 EntityType = EntityType.Customer,
                 BillingSummaryDTO = PNP.BillingSummaryViewModel,
-                SupplierId = PNP.SelectedCustomer?.PersonId,
-                DueDate = PNP.CustomerCheckoutViewModel.DueDate,
-                IntrestRate = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.IntrestRate),
-                PayingAmount = Utility.TryToConvertToDecimal(PNP.CustomerCheckoutViewModel.PayingAmount),
-                ProductsPurchased = productsPurchased
+                DueDate = PNP.CheckoutViewModel.DueDate,
+                IntrestRate = Utility.TryToConvertToDecimal(PNP.CheckoutViewModel.IntrestRate),
+                PaymentOptionId = PNP.CheckoutViewModel.PaymentOption?.PaymentOptionId,
+                PayingAmount = Utility.TryToConvertToDecimal(PNP.CheckoutViewModel.PayingAmount),
+                PersonId = PNP.SelectedCustomer?.PersonId,
+                ProductsPurchased = productsPurchased,
             };
             return customerOrderDTO;
         }
 
-        private static SupplierOrderDTO _CreateSupplierOrderDTO(SupplierPageNavigationParameter PNP)
+        private static OrderDTO _CreateSupplierOrderDTO(SupplierPageNavigationParameter PNP)
         {
             var productPurchased = PNP.ProductPurchased.Select(p => new ProductPurchasedDTO()
             {
@@ -71,24 +72,25 @@ namespace SDKTemplate
             }
             ).ToList();
 
-            var supplierOrderDTO = new SupplierOrderDTO()
+            var supplierOrderDTO = new OrderDTO()
             {
                 EntityType = EntityType.Supplier,
-                DueDate = PNP.SupplierCheckoutViewModel.DueDate,
-                IntrestRate = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.IntrestRate),
-                PayingAmount = Utility.TryToConvertToDecimal(PNP.SupplierCheckoutViewModel.PayingAmount),
+                BillingSummaryDTO = PNP.SupplierBillingSummaryViewModel,
+                DueDate = PNP.CheckoutViewModel.DueDate,
+                IntrestRate = Utility.TryToConvertToDecimal(PNP.CheckoutViewModel.IntrestRate),
+                PaymentOptionId = PNP.CheckoutViewModel.PaymentOption?.PaymentOptionId,
+                PayingAmount = Utility.TryToConvertToDecimal(PNP.CheckoutViewModel.PayingAmount),
+                PersonId = PNP.SelectedSupplier?.PersonId,
                 ProductsPurchased = productPurchased,
-                SupplierId = PNP.SelectedSupplier?.PersonId,
-                BillingSummaryDTO = PNP.SupplierBillingSummaryViewModel
             };
             return supplierOrderDTO;
         }
 
         #region Create
-        private static async Task<decimal?> CreateOrderAsync(SupplierOrderDTO supplierOrderDTO)
+        private static async Task<decimal?> CreateOrderAsync(OrderDTO orderDTO)
         {
             MainPage.Current.ActivateProgressRing();
-            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.Orders, supplierOrderDTO);
+            var deductedWalletAmount = await Utility.CreateAsync<decimal?>(BaseURI.HyperStoreService + API.Orders, orderDTO);
             MainPage.Current.DeactivateProgressRing();
             return deductedWalletAmount;
         }

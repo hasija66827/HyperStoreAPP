@@ -1,5 +1,6 @@
 ﻿using SDKTemplate;
 using SDKTemplate.DTO;
+using SDKTemplate.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,5 +28,7 @@ namespace Models
         public string OrderNo { get; set; }
         public Guid PersonId { get; set; }
         public Person Person { get; set; }
+        public Guid? PaymentOptionId { get; set; }
+        public PaymentOption PaymentOption { get; set; }
     }
 }

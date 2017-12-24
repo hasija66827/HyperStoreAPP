@@ -1,5 +1,6 @@
 ﻿using Mvvm;
 using SDKTemplate;
+using SDKTemplate.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,10 @@ namespace SDKTemplate
                 this.OnPropertyChanged(nameof(AmountToBePaidLater));
             }
         }
+
+        [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
+        public PaymentOption PaymentOption { get; set; }
+
         public CheckoutViewModel() { }
     }
 }

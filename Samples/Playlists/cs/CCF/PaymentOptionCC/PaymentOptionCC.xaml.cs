@@ -29,11 +29,12 @@ namespace SDKTemplate
         public static PaymentOptionCC Current;
         public ObservableCollection<PaymentOptionViewModel> PaymentOptions { get; set; }
 
-        public PaymentOptionViewModel SelectedPaymentOption
+        public PaymentOption SelectedPaymentOption
         {
             get
             {
-                return this.PaymentOptions.Where(p => p.IsChecked == true).FirstOrDefault();
+               var selectedPaymentOptionViewModel= this.PaymentOptions.Where(p => p.IsChecked == true).FirstOrDefault();
+                return selectedPaymentOptionViewModel?.PaymentOption;
             }
         }
 
@@ -58,7 +59,7 @@ namespace SDKTemplate
                 var x = new PaymentOptionViewModel()
                 {
                     PaymentOption = paymentOption,
-                    IsChecked = false,
+                    IsChecked = true,
                 };
                 this.PaymentOptions.Add(x);
             }

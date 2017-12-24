@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Models;
+using SDKTemplate.Models;
 
 namespace SDKTemplate
 {
@@ -16,7 +17,7 @@ namespace SDKTemplate
         public List<CustomerBillingProductViewModelBase> ProductsPurchased { get; set; }
         public Person SelectedCustomer { get; set; }
         public CustomerBillingSummaryViewModelBase BillingSummaryViewModel { get; set; }
-        public CheckoutViewModel CustomerCheckoutViewModel { get; set; }
+        public CheckoutViewModel CheckoutViewModel { get; set; }
     }
     public enum OrderType
     {

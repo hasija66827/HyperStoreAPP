@@ -16,11 +16,14 @@
                    Style="{StaticResource SubtitleTextBlockStyle}"
                    Text="Pay With"
                    Width="400" />
-        <ListView x:Name="PaymentOptionListView" ItemsSource="{x:Bind PaymentOptions, Mode=TwoWay}">
+        <ListView x:Name="PaymentOptionListView"
+                  HorizontalAlignment="Left"                 
+                  MaxWidth="200"
+                  ItemsSource="{x:Bind PaymentOptions, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:PaymentOptionViewModel">
                     <RadioButton Content="{x:Bind PaymentOption.Name}"
-                                 IsChecked="{x:Bind IsChecked, Mode=TwoWay}"/>
+                                 IsChecked="{x:Bind IsChecked, Mode=TwoWay}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
