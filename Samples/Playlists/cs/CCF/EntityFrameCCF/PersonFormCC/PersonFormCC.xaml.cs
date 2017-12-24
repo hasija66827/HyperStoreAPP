@@ -30,7 +30,7 @@ namespace SDKTemplate
     public sealed partial class PersonFormCC : Page
     {
         public static PersonFormCC Current;
-        private EntityType _EntityType { get; set; }
+        private EntityType? _EntityType { get; set; }
         private PersonFormViewModel _PFV { get; set; }
         private FormMode _FormMode { get; set; }
         public PersonFormCC()
@@ -39,15 +39,16 @@ namespace SDKTemplate
             _PFV = new PersonFormViewModel();
             Current = this;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._EntityType = (EntityType)e.Parameter;
-            TitleTB.Text = this._EntityType.ToString();
+            var person = (Person)e.Parameter;
+            this._EntityType = person.EntityType;
+            TitleTB.Text = this._EntityType?.ToString();
             _PFV = DataContext as PersonFormViewModel;
             _PFV.ErrorsChanged += AddSupplierViewModel_ErrorsChanged;
-            if (e.Parameter == null)
+            if (person.PersonId != Guid.Empty)
             {
-                var person = (Person)e.Parameter;
                 _PFV.SupplierId = person.PersonId;
                 _PFV.Address = person.Address;
                 _PFV.GSTIN = person.GSTIN;

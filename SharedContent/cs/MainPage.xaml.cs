@@ -44,7 +44,12 @@ namespace SDKTemplate
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
             QuickCreateSplitter.IsPaneOpen = true;
-            EntityFrame.Navigate(typeof(PersonFormCC), EntityType.Customer);
+            var person = new Person()
+            {
+                PersonId=Guid.Empty,
+                EntityType = EntityType.Customer,
+            };
+            EntityFrame.Navigate(typeof(PersonFormCC), person);
         }
 
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
@@ -56,6 +61,11 @@ namespace SDKTemplate
         private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
         {
             QuickCreateSplitter.IsPaneOpen = true;
+            var person = new Person()
+            {
+                PersonId=Guid.Empty,
+                EntityType = EntityType.Customer,
+            };
             EntityFrame.Navigate(typeof(PersonFormCC), EntityType.Supplier);
         }
 
