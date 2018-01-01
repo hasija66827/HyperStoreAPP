@@ -46,7 +46,7 @@ namespace SDKTemplate
             QuickCreateSplitter.IsPaneOpen = true;
             var person = new Person()
             {
-                PersonId=Guid.Empty,
+                PersonId = Guid.Empty,
                 EntityType = EntityType.Customer,
             };
             EntityFrame.Navigate(typeof(PersonFormCC), person);
@@ -58,15 +58,15 @@ namespace SDKTemplate
             EntityFrame.Navigate(typeof(ProductBasicFormCC), null);
         }
 
-        private void AddWholeSellerBtn_Click(object sender, RoutedEventArgs e)
+        private void AddSupplierBtn_Click(object sender, RoutedEventArgs e)
         {
             QuickCreateSplitter.IsPaneOpen = true;
             var person = new Person()
             {
-                PersonId=Guid.Empty,
-                EntityType = EntityType.Customer,
+                PersonId = Guid.Empty,
+                EntityType = EntityType.Supplier,
             };
-            EntityFrame.Navigate(typeof(PersonFormCC), EntityType.Supplier);
+            EntityFrame.Navigate(typeof(PersonFormCC), person);
         }
 
         public void UpdateCustomer(Person customer)
@@ -228,5 +228,4 @@ namespace SDKTemplate
             return true;
         }
     }
-
 }

@@ -16,7 +16,7 @@ namespace SDKTemplate
         {
             get
             {
-                var daySincePurchased = DateTime.Now.DayOfYear - this.LatestPurchaseDate.DayOfYear;
+                var daySincePurchased = (DateTime.Now.Date - this.LatestPurchaseDate.Date).TotalDays;
                 if (daySincePurchased == 0)
                     return "Today";
                 else if (daySincePurchased == 1)

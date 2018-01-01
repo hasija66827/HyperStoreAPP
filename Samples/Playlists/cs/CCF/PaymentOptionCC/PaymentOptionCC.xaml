@@ -10,14 +10,14 @@
     </UserControl.Resources>
     <StackPanel x:Name="MasterStackPanel"
                 Background="White"
-                HorizontalAlignment="Left"
-                Margin="10,0">
+                HorizontalAlignment="Left">
         <TextBlock TextWrapping="Wrap"
                    Style="{StaticResource SubtitleTextBlockStyle}"
-                   Text="Pay With"
+                   Text="Select Payment Gateway"
                    Width="400" />
         <ListView x:Name="PaymentOptionListView"
-                  HorizontalAlignment="Left"                 
+                  Margin="-10,0,0,0"
+                  HorizontalAlignment="Left"
                   MaxWidth="200"
                   ItemsSource="{x:Bind PaymentOptions, Mode=TwoWay}">
             <ListView.ItemTemplate>

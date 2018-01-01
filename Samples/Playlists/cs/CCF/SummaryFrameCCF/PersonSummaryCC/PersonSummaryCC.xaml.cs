@@ -29,7 +29,7 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             this._PSV = new PersonSummaryViewModel();
-            SupplierCCF.Current.SupplierListUpdatedEvent += Current_SupplierListUpdatedEvent;
+            PersonCCF.Current.PersonListUpdatedEvent += Current_SupplierListUpdatedEvent;
         }
 
         private void Current_SupplierListUpdatedEvent(List<Person> suppliers)

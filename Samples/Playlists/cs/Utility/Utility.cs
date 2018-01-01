@@ -238,16 +238,15 @@ namespace SDKTemplate
         {
             try
             {
-                var v = System.Convert.ToDecimal(value);
+                var v = System.Convert.ToSingle(value);
                 if (v < 0)
                     throw new Exception();
+                return v;
             }
             catch (Exception e)
             {
-                value = 1;
-                MainPage.Current.NotifyUser("Invalid value entered, resetting it to one", NotifyType.ErrorMessage);
+                return 1f;
             }
-            return System.Convert.ToDecimal(value);
         }
     }
 

@@ -29,6 +29,17 @@ namespace SDKTemplate
             }
         }
 
+        public string FormattedPaymentOptionName
+        {
+            get
+            {
+                if (this.PaymentOptionId != null)
+                    return PaymentOption.Name;
+                else
+                    return "Auto";
+            }
+        }
+
         public TransactionViewModel(Transaction parent)
         {
             foreach (PropertyInfo prop in typeof(Transaction).GetProperties())
@@ -40,7 +51,7 @@ namespace SDKTemplate
     {
         public List<TransactionViewModel> Transactions { get; set; }
         public string MoneyToFromPerson { get { return "Money to / from " + this.PersonName; } }
-        public string PersonName { get; set; }        
+        public string PersonName { get; set; }
         public TransactionCollection() { }
     }
 }

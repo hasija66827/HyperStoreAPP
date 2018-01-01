@@ -20,20 +20,20 @@ using HyperStoreServiceAPP.DTO;
 
 namespace SDKTemplate
 {
-    public delegate void SupplierListUpdatedDelegate(List<Person> suppliers);
+    public delegate void PersonListUpdatedDelegate(List<Person> suppliers);
     /// <summary>
     /// Master Detail View where 
     /// Master shows the list of wholeseller and 
     /// Detail shows list of transaction done with the wholeseller.
     /// </summary>
-    public sealed partial class SupplierCCF : Page
+    public sealed partial class PersonCCF : Page
     {
-        public static SupplierCCF Current;
+        public static PersonCCF Current;
         private EntityType _EntityType { get; set; }
-        public event SupplierListUpdatedDelegate SupplierListUpdatedEvent;
+        public event PersonListUpdatedDelegate PersonListUpdatedEvent;
         private Person _RightTappedSupplier { get; set; }
-        private Int32 _totalSuppliers;
-        public SupplierCCF()
+        private Int32 _totalPerson;
+        public PersonCCF()
         {
             Current = this;
             this.InitializeComponent();
@@ -45,7 +45,7 @@ namespace SDKTemplate
         {
             this._EntityType = (EntityType)e.Parameter;
             MasterColumnTitleTB.Text = this._EntityType.ToString();
-            _totalSuppliers = await PersonDataSource.RetrieveTotalPersons();
+            _totalPerson = await PersonDataSource.RetrieveTotalPersons();
             await UpdateMasterListViewItemSourceByFilterCriteria();
         }
 
@@ -69,8 +69,8 @@ namespace SDKTemplate
             {
                 MasterListView.ItemsSource = items;
                 var totalResults = items.Count;
-                SupplierCountTB.Text = "( " + totalResults + " / " + _totalSuppliers + " )";
-                SupplierListUpdatedEvent?.Invoke(items);
+                SupplierCountTB.Text = "( " + totalResults + " / " + _totalPerson + " )";
+                PersonListUpdatedEvent?.Invoke(items);
             }
         }
 
@@ -81,19 +81,19 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var selectedSupplier = (Person)e.ClickedItem;
+            var selectedPerson = (Person)e.ClickedItem;
             var tfc = new SupplierTransactionFilterCriteriaDTO()
             {
-                SupplierId = selectedSupplier?.PersonId
+                SupplierId = selectedPerson?.PersonId
             };
             DetailContentPresenter.Content = null;
             var transactions = await TransactionDataSource.RetrieveTransactionsAsync(tfc);
             if (transactions != null)
             {
-                var supplierTransactionCollection = new TransactionCollection();
-                supplierTransactionCollection.Transactions = transactions.Select(t => new TransactionViewModel(t)).ToList();
-                supplierTransactionCollection.PersonName = selectedSupplier.Name;
-                DetailContentPresenter.Content = supplierTransactionCollection;
+                var transactionCollection = new TransactionCollection();
+                transactionCollection.Transactions = transactions.Select(t => new TransactionViewModel(t)).ToList();
+                transactionCollection.PersonName = selectedPerson.Name;
+                DetailContentPresenter.Content = transactionCollection;
             }
         }
 

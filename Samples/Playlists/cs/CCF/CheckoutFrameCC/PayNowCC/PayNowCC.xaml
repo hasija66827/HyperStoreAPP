@@ -54,6 +54,7 @@
                          GroupName="paymentMode" />
         </StackPanel>
         <Frame x:Name="PaymentOptionFrame"
+               Margin="10,20,0,0"
                RelativePanel.AlignLeftWith="BillAmountPanel"
                RelativePanel.AlignRightWith="BillAmountPanel"
                RelativePanel.Below="SelectPaymentModePanel"

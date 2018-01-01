@@ -51,14 +51,14 @@ namespace SDKTemplate
             {
                 HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Customer);
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Customer);
-                ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Customer);
+                ScenarioFrame.Navigate(typeof(PersonCCF), EntityType.Customer);
                 SummaryFrame.Navigate(typeof(PersonSummaryCC));
             }
             else if (scenarioType == ScenarioType.Suppliers)
             {
                 HeaderFrame.Navigate(typeof(PersonASBCC), EntityType.Supplier);
                 SearchBoxFrame.Navigate(typeof(FilterPersonCC), EntityType.Supplier);
-                ScenarioFrame.Navigate(typeof(SupplierCCF), EntityType.Supplier);
+                ScenarioFrame.Navigate(typeof(PersonCCF), EntityType.Supplier);
                 SummaryFrame.Navigate(typeof(PersonSummaryCC));
             }
             else

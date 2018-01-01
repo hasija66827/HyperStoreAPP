@@ -83,6 +83,7 @@
                                    RelativePanel.AlignVerticalCenterWith="PayGlyph" />
                     </RelativePanel>
                     <TextBox Header="Amount"
+                             Margin="10,0"
                              PlaceholderText="Enter Amount To Pay"
                              Text="{x:Bind _NTV.Amount, Mode=TwoWay}"
                              Style="{ThemeResource LargeFormTextBoxStyle}" />
@@ -101,6 +102,7 @@
                                   Style="{StaticResource WhiteFontIconStyle}" />
                     </RelativePanel>
                     <TextBox Header="Description"
+                             Margin="10,0"
                              Text="{x:Bind _NTV.Description, Mode=TwoWay}"
                              PlaceholderText="Enter Description of Transaction"
                              Style="{ThemeResource LargeFormTextBoxStyle}" />
