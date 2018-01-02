@@ -130,6 +130,8 @@
                        RelativePanel.AlignBottomWithPanel="True"
                        RelativePanel.AlignTopWithPanel="True">
             <Border x:Name="MasterHeaderPanel"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignTopWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
                 <StackPanel Orientation="Horizontal">
@@ -141,6 +143,8 @@
             </Border>
             <ScrollViewer RelativePanel.Below="MasterHeaderPanel"
                           RelativePanel.AlignBottomWithPanel="True"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
                           Style="{StaticResource MasterColumScrollViewer}">
                 <ListView x:Name="MasterListView"
                           ItemContainerTransitions="{x:Null}"
@@ -163,12 +167,16 @@
                        RelativePanel.AlignTopWithPanel="True"
                        Style="{StaticResource DetailColumRelativePanelStyle}">
             <Border x:Name="DetailHeaderPanel"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignTopWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
                 <TextBlock Text="Price Quoted By Supplier"
                            Style="{StaticResource DetailHeaderTextBlockStyle}" />
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.AlignLeftWithPanel="True"
+                              RelativePanel.AlignRightWithPanel="True"
                               RelativePanel.Below="DetailHeaderPanel"
                               RelativePanel.AlignBottomWithPanel="True"
                               ContentTemplate="{StaticResource DetailContentTemplate}">

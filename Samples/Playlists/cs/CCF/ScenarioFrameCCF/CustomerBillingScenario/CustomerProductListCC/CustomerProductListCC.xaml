@@ -48,11 +48,12 @@
                            Width="65"
                            Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Dis Amt"
+                           Width="100"
                            Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="ValIncTax"
                            Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Qty"
-                           Width="55"
+                           Width="60"
                            Style="{StaticResource HighlightArialBasicTBStyle}" />
                 <TextBlock Text="Net Value"
                            Style="{StaticResource HighlightArialBasicTBStyle}" />

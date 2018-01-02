@@ -73,9 +73,14 @@
                        RelativePanel.Below="WholeSellerName"
                        RelativePanel.AlignLeftWith="WholeSellerName"
                        Margin="12,0" />
+            <TextBlock x:Name="GSTIN"
+                       Text="GSTIN: "
+                       Style="{StaticResource ArialBaseStyle}"
+                       Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                       RelativePanel.Above="NetWorth" />
             <TextBlock x:Name="NetWorth"
                        Text="Net Worth: "
-                       Foreground="{StaticResource GreenBrush}"
+                       Foreground="DarkGoldenrod"
                        Style="{StaticResource ArialBaseStyle}"
                        RelativePanel.AlignBottomWithPanel="True" />
         </RelativePanel>

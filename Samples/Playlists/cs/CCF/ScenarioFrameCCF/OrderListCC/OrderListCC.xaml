@@ -279,9 +279,12 @@
     </Page.Resources>
     <RelativePanel Background="{StaticResource FrameBrush}">
         <RelativePanel x:Name="MasterColumn"
+                       
                        RelativePanel.AlignBottomWithPanel="True"
                        RelativePanel.AlignTopWithPanel="True">
             <Border x:Name="MasterHeaderPanel"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock 
@@ -293,6 +296,8 @@
                 </StackPanel>
             </Border>
             <ScrollViewer Style="{StaticResource MasterColumScrollViewer}"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
                           RelativePanel.Below="MasterHeaderPanel"
                           RelativePanel.AlignBottomWithPanel="True">
                 <ListView x:Name="MasterListView"
@@ -315,12 +320,16 @@
                        RelativePanel.RightOf="MasterColumn"
                        Style="{StaticResource DetailColumRelativePanelStyle}">
             <Border x:Name="DetailHeaderPanel"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignTopWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
                 <TextBlock Text="Order Details"
                            Style="{StaticResource DetailHeaderTextBlockStyle}" />
             </Border>
             <ContentPresenter x:Name="DetailContentPresenter"
+                              RelativePanel.AlignLeftWithPanel="True"
+                              RelativePanel.AlignRightWithPanel="True"
                               RelativePanel.Below="DetailHeaderPanel"
                               RelativePanel.Above="BillingSummary"
                               ContentTemplate="{StaticResource DetailContentTemplate}"

@@ -142,6 +142,7 @@ namespace SDKTemplate
                 WholeSellerAddress.Text = _selectePersonInASB.Address != null ? _selectePersonInASB.Address : "";
                 WholeSellerWalletBalance.Text = Utility.ConvertToRupee(_selectePersonInASB.WalletBalance);
                 SupplierGlyph.Text = Utility.GetGlyphValue(_selectePersonInASB.Name);
+                GSTIN.Text = "GSTIN: " + _selectePersonInASB.GSTIN;
                 NetWorth.Text = "Net Worth: " + Utility.ConvertToRupee(_selectePersonInASB.NetWorth);
                 ErrorTB.Visibility = Visibility.Collapsed;
             }
