@@ -8,18 +8,23 @@
       mc:Ignorable="d">
     <RelativePanel Background="White">
         <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignLeftWithPanel="True"
+                 RelativePanel.AlignRightWithPanel="True"
                  RelativePanel.AlignTopWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
             <TextBlock Text="Recommended Products"
                        Style="{StaticResource HeaderTextBlockStyle}" />
         </Border>
-        <ListView x:Name="ListView"
+        <ListView x:Name="ListView"              
                   ItemsSource="{x:Bind _RecomProducts}"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True"
                   RelativePanel.Below="HeaderPanel"
                   Style="{StaticResource ListViewStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:RecommendedProductViewModel">
-                    <StackPanel Style="{StaticResource DetailListStackPanel}">
+                    <StackPanel Style="{StaticResource DetailListStackPanel}"
+                                HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
                             <TextBlock x:Name="ProductName"
                                        Style="{StaticResource ArialBasicTBStyle}"
@@ -43,7 +48,7 @@
                                 </input:SfRating.Resources>
                             </input:SfRating>
                         </StackPanel>
-                        <TextBlock Margin="10,0,0,0"
+                        <TextBlock Margin="60,0,0,0"
                                    x:Name="DaysSincePurchased"
                                    Style="{StaticResource ListCaptionRightAltTextblockStyle}"
                                    Text="{x:Bind DaysSincePurchased, Mode=OneWay}" />
