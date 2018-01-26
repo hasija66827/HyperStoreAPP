@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
@@ -68,6 +69,7 @@ namespace SDKTemplate
                     return "In " + productExtinctionDays + " days";
             }
         }
+
         public string ProductUnitConsumedPerWeek
         {
             get
@@ -82,6 +84,16 @@ namespace SDKTemplate
                     productUnitConsumedPerWeek = "Not Computed";
                 return productUnitConsumedPerWeek;
             }
+        }
+
+        public string ProductGlyph
+        {
+            get { return Utility.GetGlyphValue(this.Name); }
+        }
+
+        public SolidColorBrush ProductGlyphColor
+        {
+            get { return new SolidColorBrush(Utility.GetGlyphColors(this.ProductId.ToString())); }
         }
 
         public ProductViewModelBase() { }

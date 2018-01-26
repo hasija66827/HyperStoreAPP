@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
-    class PersonASBViewModel : Person
+    class PersonASBViewModel : PersonViewModelBase
     {
         public string Person_MobileNo_Name
         {

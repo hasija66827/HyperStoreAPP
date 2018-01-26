@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
-    public class PersonViewModel : Person
+    public class PersonViewModelBase : Person
     {
         public string PersonNameGlyph
         {
@@ -19,10 +20,13 @@ namespace SDKTemplate
         {
             get
             {
-                return new SolidColorBrush(Utility.GetGlyphColors(this.MobileNo));
+                return new SolidColorBrush(Utility.GetGlyphColors(this.PersonId.ToString()));
             }
         }
+    }
 
+    public class PersonViewModel : PersonViewModelBase
+    {
         public PersonViewModel(Person parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())

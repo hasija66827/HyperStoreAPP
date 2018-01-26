@@ -31,8 +31,19 @@
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="common:ProductViewModelBase">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
+                <RelativePanel x:Name="ProductGlyph"
+                               Margin="0,0,2,0">
+                    <Ellipse x:Name="ProductBackground"
+                             Style="{StaticResource EllipseStyle}"
+                             Fill="{x:Bind ProductGlyphColor}" />
+                    <TextBlock Text="{x:Bind ProductGlyph}"
+                               Style="{StaticResource GlyphTextBlockStyle}"
+                               RelativePanel.AlignHorizontalCenterWith="ProductBackground"
+                               RelativePanel.AlignVerticalCenterWith="ProductBackground" />
+                </RelativePanel>
                 <TextBlock x:Name="ProductName"
                            Text="{x:Bind FormattedNameQuantity}"
+                           RelativePanel.RightOf="ProductGlyph"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToRupeeConverter}}"
                            Style="{ThemeResource MasterListRightTextBlockStyle}"
@@ -40,6 +51,7 @@
                            RelativePanel.AlignRightWithPanel="True" />
                 <TextBlock x:Name="ProductUnitConsumedPerWeek"
                            Text="{x:Bind ProductUnitConsumedPerWeek}"
+                           RelativePanel.AlignLeftWith="ProductName"
                            RelativePanel.Below="ProductName"
                            FontFamily="Calibri"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
@@ -51,6 +63,7 @@
                            Style="{ThemeResource MasterListRightTextBlockStyle}" />
                 <TextBlock x:Name="DisplayPrice"
                            Text="{x:Bind MRP, Converter={StaticResource FloatToRupeeConverter} }"
+                           RelativePanel.AlignLeftWith="ProductUnitConsumedPerWeek"
                            RelativePanel.Below="ProductUnitConsumedPerWeek"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}" />
                 <Line Stretch="Fill"

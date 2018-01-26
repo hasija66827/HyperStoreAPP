@@ -142,8 +142,8 @@ namespace SDKTemplate
                 WholeSellerName.Text = _selectePersonInASB.Name;
                 WholeSellerAddress.Text = _selectePersonInASB.Address != null ? _selectePersonInASB.Address : "";
                 WholeSellerWalletBalance.Text = Utility.ConvertToRupee(_selectePersonInASB.WalletBalance);
-                SupplierGlyph.Text = Utility.GetGlyphValue(_selectePersonInASB.Name);
-                SupplierBackground.Fill = new SolidColorBrush(Utility.GetGlyphColors(_selectePersonInASB.MobileNo));
+                SupplierGlyph.Text = _selectePersonInASB.PersonNameGlyph;
+                SupplierBackground.Fill = _selectePersonInASB.PersonGlyphColor;
                 GSTIN.Text = "GSTIN: " + _selectePersonInASB.GSTIN;
                 NetWorth.Text = "Net Worth: " + Utility.ConvertToRupee(_selectePersonInASB.NetWorth);
                 ErrorTB.Visibility = Visibility.Collapsed;

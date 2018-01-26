@@ -159,7 +159,8 @@ namespace SDKTemplate
                 ProductCostPrice.Text = Utility.ConvertToRupee(_selectedProductInASB.MRP);
                 ProductDiscountPer.Text = _selectedProductInASB.DiscountPer + "% Off";
                 ProductGSTPer.Text = _selectedProductInASB.SGSTPer + _selectedProductInASB.CGSTPer + "%GST";
-                ProductGlyph.Text = Utility.GetGlyphValue(_selectedProductInASB.Name);
+                ProductGlyph.Text = _selectedProductInASB.ProductGlyph;
+                ProductBackground.Fill = _selectedProductInASB.ProductGlyphColor;
                 NoResults.Visibility = Visibility.Collapsed;
                 ProductDetails.Visibility = Visibility.Visible;
             }

@@ -27,6 +27,34 @@ namespace SDKTemplate
             }
         }
 
+        public string PaymentRemainingDays
+        {
+            get
+            {
+                if (this.RemainingAmount == 0)
+                    return "Payment Complete";
+                else
+                {
+                    var remainingNumberOfDays = (DueDate - DateTime.Now).TotalDays;
+                    var absRemainingNumberOFDays = (int)Math.Abs(remainingNumberOfDays);
+                    if (remainingNumberOfDays <= 0) 
+                        return GetFormattedRemainingDays(absRemainingNumberOFDays) + "overdue";
+                    else
+                        return "In "+ GetFormattedRemainingDays(absRemainingNumberOFDays);
+                }
+            }
+        }
+
+        public string GetFormattedRemainingDays(int days)
+        {
+            if (days < 30)
+                return days + " days";
+            else if (days/30  == 1)
+                return "1 month";
+            else
+                return days / 30 + " months";
+        }
+
         public string FormattedDueDate
         {
             get
@@ -58,7 +86,8 @@ namespace SDKTemplate
         }
 
         private PersonViewModel _personViewModel;
-        public PersonViewModel PersonViewModel {
+        public PersonViewModel PersonViewModel
+        {
             get { return this._personViewModel; }
         }
 
