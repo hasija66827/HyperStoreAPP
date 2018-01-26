@@ -67,9 +67,9 @@ namespace SDKTemplate
             var items = await PersonDataSource.RetrievePersonsAsync(sfc);
             if (items != null)
             {
-                MasterListView.ItemsSource = items;
+                MasterListView.ItemsSource = items.Select(s => new PersonViewModel(s)).ToList();
                 var totalResults = items.Count;
-                SupplierCountTB.Text = "( " + totalResults + " / " + _totalPerson + " )";
+                PersonCountTB.Text = "( " + totalResults + " / " + _totalPerson + " )";
                 PersonListUpdatedEvent?.Invoke(items);
             }
         }

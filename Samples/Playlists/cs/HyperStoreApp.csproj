@@ -169,6 +169,7 @@
       <DependentUpon>PaymentOptionCC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CCF\PaymentOptionCC\PaymentOptionViewModel.cs" />
+    <Compile Include="CCF\ScenarioFrameCCF\PersonCC\PersonViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\ProductASBCC\ProductASBViewModel.cs" />
     <Compile Include="CCF\SearchBoxCCF\PersonASBCC\PersonASBViewModel.cs" />
     <Compile Include="CCF\ScenarioFrameCCF\PersonCC\NewTransactionScenario\1 NewTransactionCC\NewTransactionViewModel.cs" />

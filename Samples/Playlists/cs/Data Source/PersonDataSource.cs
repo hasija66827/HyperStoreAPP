@@ -24,7 +24,12 @@ namespace SDKTemplate
             var person = await Utility.CreateAsync<Person>(BaseURI.HyperStoreService + API.Persons, supplierDTO);
             if (person != null)
             {
-                var message = String.Format("You can Start placing orders to Supplier {0} ({1})", person.Name, person.MobileNo);
+                string message;
+                if (person.EntityType == EntityType.Supplier)
+                    message = String.Format("You can start placing orders to Supplier {0} ({1})", person.Name, person.MobileNo);
+                else
+                    message = String.Format("You can start taking orders from Customer {0} ({1})", person.Name, person.MobileNo);
+
                 PersonCreatedEvent?.Invoke();
                 SuccessNotification.PopUpHttpPostSuccessNotification(API.Persons, message);
             }

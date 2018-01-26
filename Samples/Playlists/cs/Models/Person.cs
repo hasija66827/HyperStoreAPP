@@ -23,12 +23,13 @@ namespace Models
         [StringLength(24)]
         public string Name { get; set; }
         public decimal WalletBalance { get; set; }
-
         public decimal? NetWorth { get; set; }
-
         public DateTime FirstVisited { get; set; }
         public DateTime LastVisited { get; set; }
-
+        public DateTime? LastCalled { get; set; }
+        [Range(0, 5)]
+        public int? Rating { get; set; }
+        public DateTime? PreferedTimeToContact { get; set; }
         public Person()
         {
         }

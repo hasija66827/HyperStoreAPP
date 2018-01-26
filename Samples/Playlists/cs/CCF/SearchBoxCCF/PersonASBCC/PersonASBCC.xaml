@@ -36,7 +36,7 @@
                        RelativePanel.Below="WholeSellerASB" />
             <TextBlock x:Name="ErrorTB"
                        Visibility="Collapsed"
-                       Text="Select the supplier in searchbox."
+                       Text="Select the in searchbox."
                        Style="{StaticResource ErrorTextBlockStyle}" />
         </StackPanel>
         <RelativePanel x:Name="SupplierDetails"

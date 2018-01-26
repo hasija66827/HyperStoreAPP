@@ -174,7 +174,7 @@
                         <Setter Property="Padding"
                                 Value="8,9,8,4" />
                         <Setter Property="MaxWidth"
-                                Value="310" />
+                                Value="370" />
                         <Setter Property="MinWidth"
                                 Value="210" />
                     </Style>
@@ -441,11 +441,11 @@
                            TargetType="Ellipse"
                            BasedOn="{StaticResource EllipseStyleBasic}">
                         <Setter Property="Height"
-                                Value="34" />
+                                Value="32" />
                         <Setter Property="Width"
-                                Value="34" />
+                                Value="32" />
                         <Setter Property="Margin"
-                                Value="8,8,8,0" />
+                                Value="4,4,4,0" />
                     </Style>
                     <Style x:Key="GlyphTextBlockStyle"
                            TargetType="TextBlock">
@@ -455,6 +455,19 @@
                                 Value="#FFFCFCFC" />
                         <Setter Property="FontSize"
                                 Value="20" />
+                        <Setter Property="FocusVisualPrimaryBrush"
+                                Value="#FF8C15EA" />
+                    </Style>
+                    <Style x:Key="SmallGlyphTextBlockStyle"
+                           TargetType="TextBlock">
+                        <Setter Property="Text"
+                                Value="RH" />
+                        <Setter Property="Foreground"
+                                Value="#FFFCFCFC" />
+                        <Setter Property="FontSize"
+                                Value="14" />
+                        <Setter Property="FocusVisualPrimaryBrush"
+                                Value="#FF8C15EA" />
                     </Style>
                     <Style x:Key="LargeFormTBPropStyle"
                            TargetType="TextBlock">

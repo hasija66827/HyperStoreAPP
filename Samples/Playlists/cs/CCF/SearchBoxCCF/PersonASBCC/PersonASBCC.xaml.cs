@@ -59,6 +59,7 @@ namespace SDKTemplate
 
         public void NotifyUser()
         {
+            ErrorTB.Text = String.Format("Select the {0} in search box", this.EntityType);
             ErrorTB.Visibility = Visibility.Visible;
         }
 
@@ -142,6 +143,7 @@ namespace SDKTemplate
                 WholeSellerAddress.Text = _selectePersonInASB.Address != null ? _selectePersonInASB.Address : "";
                 WholeSellerWalletBalance.Text = Utility.ConvertToRupee(_selectePersonInASB.WalletBalance);
                 SupplierGlyph.Text = Utility.GetGlyphValue(_selectePersonInASB.Name);
+                SupplierBackground.Fill = new SolidColorBrush(Utility.GetGlyphColors(_selectePersonInASB.MobileNo));
                 GSTIN.Text = "GSTIN: " + _selectePersonInASB.GSTIN;
                 NetWorth.Text = "Net Worth: " + Utility.ConvertToRupee(_selectePersonInASB.NetWorth);
                 ErrorTB.Visibility = Visibility.Collapsed;

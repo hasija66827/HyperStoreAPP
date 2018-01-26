@@ -2,21 +2,28 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI;
 using Windows.UI.Xaml.Media;
 
 namespace SDKTemplate
 {
-    class PersonASBViewModel : Person
+    public class PersonViewModel : Person
     {
-        public string Person_MobileNo_Name
+        public string PersonNameGlyph
         {
-            get { return string.Format("{0} ({1})", MobileNo, Name); }
+            get { return Utility.GetGlyphValue(this.Name); }
         }
-        public PersonASBViewModel(Person parent)
+
+        public SolidColorBrush PersonGlyphColor
+        {
+            get
+            {
+                return new SolidColorBrush(Utility.GetGlyphColors(this.MobileNo));
+            }
+        }
+
+        public PersonViewModel(Person parent)
         {
             foreach (PropertyInfo prop in parent.GetType().GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography.Certificates;
+using Windows.UI;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -276,7 +277,7 @@ namespace SDKTemplate
         }
     }
 
-   
+
     public class IntToBoolConverter : IValueConverter
     {
         #region IValueConverter Members
@@ -357,6 +358,32 @@ namespace SDKTemplate
 
     partial class Utility
     {
+        private static Color[] _colors;
+        private const int NUMBER_OF_GLYPH_COLOR = 18;
+
+        static Utility()
+        {
+            _colors = new Color[NUMBER_OF_GLYPH_COLOR];
+            Utility._colors[0] = Color.FromArgb(0xFF, 0x75, 0xC7, 0x1B);
+            Utility._colors[1] = Color.FromArgb(0xFF, 0xE1, 0x12, 0xF3);
+            Utility._colors[2] = Color.FromArgb(0xFF, 0x18, 0x42, 0xF3);
+            Utility._colors[3] = Color.FromArgb(0xFF, 0x18, 0xD7, 0xF3);
+            Utility._colors[4] = Color.FromArgb(0xFF, 0x0D, 0xB0, 0x0F);
+            Utility._colors[5] = Color.FromArgb(0xFF, 0x6F, 0xA2, 0x07);
+            Utility._colors[6] = Color.FromArgb(0xFF, 0x99, 0x9A, 0x0B);
+            Utility._colors[7] = Color.FromArgb(0xFF, 0xEA, 0x87, 0x15);
+            Utility._colors[8] = Color.FromArgb(0xFF, 0xEA, 0x15, 0x52);
+            Utility._colors[9] = Color.FromArgb(0xFF, 0x8C, 0x15, 0xEA);
+            Utility._colors[10] = Color.FromArgb(0xFF, 0x6C, 0x09, 0x58);
+            Utility._colors[11] = Color.FromArgb(0xFF, 0x1F, 0x10, 0x66);
+            Utility._colors[12] = Color.FromArgb(0xFF, 0x0D, 0x3C, 0x62);
+            Utility._colors[13] = Color.FromArgb(0xFF, 0x09, 0x54, 0x42);
+            Utility._colors[14] = Color.FromArgb(0xFF, 0x6C, 0x71, 0x06);
+            Utility._colors[15] = Color.FromArgb(0xFF, 0x0E, 0x46, 0x83);
+            Utility._colors[16] = Color.FromArgb(0xFF, 0xE3, 0xE4, 0x69);
+            Utility._colors[17] = Color.FromArgb(0xFF, 0x75, 0xC7, 0x1B);
+        }
+
         public static string GetHardwareId()
         {
             var token = Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(null);
@@ -461,6 +488,11 @@ namespace SDKTemplate
             if (glyph.Length > 2)
                 glyph = glyph.Substring(0, 2);
             return glyph;
+        }
+
+        public static Color GetGlyphColors(string value)
+        {
+            return _colors[Math.Abs(value.GetHashCode()) % NUMBER_OF_GLYPH_COLOR];
         }
 
         /// <summary>

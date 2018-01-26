@@ -27,7 +27,7 @@ namespace HyperStoreServiceAPP.DTO.InsightsDTO
         int _detachedCustomerCount;
         public int DetachedCustomerCount { get { return this._detachedCustomerCount; } }
 
-        public DetachedCustomerInsights(int detachedCustomerCount, List<Person> customers) : base(customers)
+        public DetachedCustomerInsights(int detachedCustomerCount, List<Person> customer) : base(customer)
         {
             _detachedCustomerCount = detachedCustomerCount;
         }

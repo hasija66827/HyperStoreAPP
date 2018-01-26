@@ -57,6 +57,11 @@ namespace SDKTemplate
             }
         }
 
+        private PersonViewModel _personViewModel;
+        public PersonViewModel PersonViewModel {
+            get { return this._personViewModel; }
+        }
+
         public string Items_Quantity { get { return this.TotalItems + "/" + this.TotalQuantity; } }
 
         public List<OrderProductViewModel> OrderDetails { get; set; }
@@ -65,6 +70,7 @@ namespace SDKTemplate
         public OrderViewModel(Order parent)
         {
             this.OrderDetails = new List<OrderProductViewModel>();
+            this._personViewModel = new PersonViewModel(parent.Person);
             foreach (PropertyInfo prop in typeof(Order).GetProperties())
                 GetType().GetProperty(prop.Name).SetValue(this, prop.GetValue(parent, null), null);
         }

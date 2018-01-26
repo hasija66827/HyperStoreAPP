@@ -11,42 +11,57 @@
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:OrderViewModel">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
-                <syncfusion:SfChart x:Name="PaymentStatus"
-                                    MaxWidth="45"
-                                    MaxHeight="45">
-                    <!--Initialize the series for SfChart-->
-                    <syncfusion:DoughnutSeries ItemsSource="{Binding Paid_BillAmount}"
-                                               DoughnutCoefficient="0.3"
-                                               DoughnutSize="1"
-                                               XBindingPath="Key"
-                                               YBindingPath="Value" />
-                </syncfusion:SfChart>
-                <TextBlock x:Name="FormattedPaidBillAmount"
-                           Text="{x:Bind FormattedPaidBillAmount}"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
-                           RelativePanel.AlignHorizontalCenterWith="PaymentStatus"
-                           RelativePanel.AlignVerticalCenterWith="PaymentStatus" />
+                <RelativePanel x:Name="PersonGlyph">
+                    <Ellipse x:Name="PersonBackground"
+                             Style="{StaticResource SmallEllipseStyle}"
+                             Fill="{x:Bind PersonViewModel.PersonGlyphColor}" />
+                    <TextBlock Text="{x:Bind PersonViewModel.PersonNameGlyph}"
+                               Style="{StaticResource SmallGlyphTextBlockStyle}"
+                               RelativePanel.AlignHorizontalCenterWith="PersonBackground"
+                               RelativePanel.AlignVerticalCenterWith="PersonBackground" />
+                </RelativePanel>
                 <TextBlock x:Name="MobileNo"
-                           RelativePanel.RightOf="PaymentStatus"
+                           RelativePanel.RightOf="PersonGlyph"
                            Text="{x:Bind Person.MobileNo}"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="FormattedRemainingAmount"
                            Text="{x:Bind FormattedRemainingAmount}"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}"
-                           RelativePanel.RightOf="PaymentStatus"
+                           RelativePanel.RightOf="PersonGlyph"
                            RelativePanel.Below="MobileNo"
-                           RelativePanel.AlignLeftWith="MobileNo"/>
+                           RelativePanel.AlignLeftWith="MobileNo" />
                 <TextBlock x:Name="WholeSellerOrderNo"
                            Text="{x:Bind OrderNo}"
                            Style="{ThemeResource MasterListRightTextBlockStyle}"
-                           RelativePanel.AlignRightWithPanel="True"
+                           RelativePanel.LeftOf="PaymentStatus"
                            RelativePanel.RightOf="MobileNo" />
                 <TextBlock x:Name="FormattedOrderDate"
                            Text="{x:Bind FormattedOrderDate}"
                            Style="{ThemeResource ListCaptionRightAltTextblockStyle}"
                            RelativePanel.Below="WholeSellerOrderNo"
-                           RelativePanel.RightOf="FormattedRemainingAmount"
-                           RelativePanel.AlignRightWithPanel="True" />
+                           RelativePanel.AlignLeftWith="WholeSellerOrderNo"
+                           RelativePanel.LeftOf="PaymentStatus"
+                           RelativePanel.RightOf="FormattedRemainingAmount" />
+                <RelativePanel x:Name="PaymentStatus"
+                               Margin="5,0"
+                               RelativePanel.AlignRightWithPanel="True">
+                    <syncfusion:SfChart RelativePanel.AlignRightWithPanel="True"
+                                        x:Name="PaymentStatusRing"
+                                        MaxWidth="45"
+                                        MaxHeight="45">
+                        <!--Initialize the series for SfChart-->
+                        <syncfusion:DoughnutSeries ItemsSource="{Binding Paid_BillAmount}"
+                                                   DoughnutCoefficient="0.3"
+                                                   DoughnutSize="1"
+                                                   XBindingPath="Key"
+                                                   YBindingPath="Value" />
+                    </syncfusion:SfChart>
+                    <TextBlock x:Name="FormattedPaidBillAmount"
+                               Text="{x:Bind FormattedPaidBillAmount}"
+                               Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                               RelativePanel.AlignHorizontalCenterWith="PaymentStatusRing"
+                               RelativePanel.AlignVerticalCenterWith="PaymentStatusRing" />
+                </RelativePanel>
             </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate"
@@ -279,7 +294,6 @@
     </Page.Resources>
     <RelativePanel Background="{StaticResource FrameBrush}">
         <RelativePanel x:Name="MasterColumn"
-                       
                        RelativePanel.AlignBottomWithPanel="True"
                        RelativePanel.AlignTopWithPanel="True">
             <Border x:Name="MasterHeaderPanel"
@@ -287,9 +301,8 @@
                     RelativePanel.AlignRightWithPanel="True"
                     Style="{StaticResource HeaderBorder}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock 
-                        x:Name="MasteColumnTitleTB"
-                        Text="Orders"
+                    <TextBlock x:Name="MasteColumnTitleTB"
+                               Text="Orders"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
                     <TextBlock x:Name="OrderCountTB"
                                Style="{StaticResource ResultCountTextBlockStyle}" />

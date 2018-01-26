@@ -55,7 +55,7 @@ namespace SDKTemplate.CCF.Dashboard.CustomerInsight
             var detachedCustomerInsights = await InsightsDataSource.RetreiveDetachedCustomer(customerInsightDTO);
             if (detachedCustomerInsights != null && detachedCustomerInsights.DetachedCustomerCount != 0)
             {
-                foreach (var detachedCustomer in detachedCustomerInsights.Customer)
+                foreach (var detachedCustomer in detachedCustomerInsights?.Customer)
                     DetachedCustomers.Add(detachedCustomer);
             }
         }

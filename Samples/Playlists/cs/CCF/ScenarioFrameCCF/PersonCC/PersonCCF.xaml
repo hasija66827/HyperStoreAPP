@@ -2,7 +2,6 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SDKTemplate"
-      xmlns:model="using:Models"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
@@ -10,14 +9,24 @@
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <local:FloatToRupeeConverterWithSign x:Key="FloatToRupeeConverterWithSign" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
-                      x:DataType="model:Person">
+                      x:DataType="local:PersonViewModel">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
+                <Ellipse x:Name="SupplierBackground"
+                         Style="{StaticResource SmallEllipseStyle}"
+                         Fill="{x:Bind PersonGlyphColor}" />
+                <TextBlock x:Name="SupplierGlyph"
+                           Text="{x:Bind PersonNameGlyph}"
+                           Style="{StaticResource SmallGlyphTextBlockStyle}"
+                           RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
+                           RelativePanel.AlignVerticalCenterWith="SupplierBackground" />
                 <TextBlock x:Name="MobileNo"
                            Text="{x:Bind MobileNo}"
+                           RelativePanel.RightOf="SupplierBackground"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="Name"
                            Text="{x:Bind Name}"
                            Style="{ThemeResource  ListCaptionAltTextblockStyle}"
+                           RelativePanel.AlignLeftWith="MobileNo"
                            RelativePanel.Below="MobileNo" />
                 <TextBlock x:Name="WalletBalance"
                            Text="{x:Bind WalletBalance, Converter={StaticResource FloatToRupeeConverter} }"
@@ -101,7 +110,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="MasterColumnTitleTB"
                                Style="{StaticResource MasterHeaderTextBlockStyle}" />
-                    <TextBlock x:Name="SupplierCountTB"
+                    <TextBlock x:Name="PersonCountTB"
                                Style="{StaticResource ResultCountTextBlockStyle}" />
                 </StackPanel>
             </Border>
