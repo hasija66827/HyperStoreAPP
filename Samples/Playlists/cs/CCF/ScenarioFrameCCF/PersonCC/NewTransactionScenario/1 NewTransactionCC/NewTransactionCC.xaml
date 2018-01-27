@@ -16,7 +16,7 @@
         <Border x:Name="HeaderPanel"
                 RelativePanel.AlignTopWithPanel="True"
                 Style="{StaticResource HeaderBorder}">
-            <TextBlock Text="Pay Money"
+            <TextBlock Text="{x:Bind _NTV.Title, Mode=OneWay}"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />
         </Border>
         <StackPanel x:Name="ContentPanel"
@@ -84,7 +84,7 @@
                     </RelativePanel>
                     <TextBox Header="Amount"
                              Margin="10,0"
-                             PlaceholderText="Enter Amount To Pay"
+                             PlaceholderText="Enter Amount"
                              Text="{x:Bind _NTV.Amount, Mode=TwoWay}"
                              Style="{ThemeResource LargeFormTextBoxStyle}" />
                 </StackPanel>

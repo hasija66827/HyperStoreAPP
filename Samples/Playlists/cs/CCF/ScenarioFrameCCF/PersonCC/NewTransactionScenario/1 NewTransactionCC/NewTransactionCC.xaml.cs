@@ -32,7 +32,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var selectedPerson = (Person)e.Parameter;
+            var selectedPerson = (PersonViewModelBase)e.Parameter;
             _NTV = DataContext as NewTransactionViewModel;
             _NTV.ErrorsChanged += _SNTV_ErrorsChanged;
             _NTV.Person = selectedPerson;

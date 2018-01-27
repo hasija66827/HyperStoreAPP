@@ -83,7 +83,7 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private async void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var selectedPerson = (Person)e.ClickedItem;
+            var selectedPerson = (PersonViewModel)e.ClickedItem;
             var tfc = new SupplierTransactionFilterCriteriaDTO()
             {
                 SupplierId = selectedPerson?.PersonId
@@ -92,16 +92,18 @@ namespace SDKTemplate
             var transactions = await TransactionDataSource.RetrieveTransactionsAsync(tfc);
             if (transactions != null)
             {
-                var transactionCollection = new TransactionCollection();
-                transactionCollection.Transactions = transactions.Select(t => new TransactionViewModel(t)).ToList();
-                transactionCollection.PersonName = selectedPerson.Name;
-                DetailContentPresenter.Content = transactionCollection;
+                var transactionCollection = new TransactionCollection()
+                {
+                    Transactions = transactions.Select(t => new TransactionViewModel(t)).ToList(),
+                    PersonViewModel = selectedPerson,
+                };
+            DetailContentPresenter.Content = transactionCollection;
             }
         }
 
         private void PayMoney_Click(object sender, RoutedEventArgs e)
         {
-            var selectedSupplier = (Person)MasterListView.SelectedItem;
+            var selectedSupplier = (PersonViewModel)MasterListView.SelectedItem;
             if (selectedSupplier != null)
                 this.Frame.Navigate(typeof(NewTransactionCC), selectedSupplier);
         }

@@ -50,8 +50,17 @@ namespace SDKTemplate
     public sealed class TransactionCollection
     {
         public List<TransactionViewModel> Transactions { get; set; }
-        public string MoneyToFromPerson { get { return "Money to / from " + this.PersonName; } }
-        public string PersonName { get; set; }
+        public string MoneyToFromPerson
+        {
+            get
+            {
+                if (this.PersonViewModel?.EntityType == EntityType.Customer)
+                    return "Receive money from " + this.PersonViewModel?.Name;
+                else
+                    return "Pay money to " + this.PersonViewModel?.Name;
+            }
+        }
+        public PersonViewModel PersonViewModel { get; set; }
         public TransactionCollection() { }
     }
 }

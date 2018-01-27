@@ -13,6 +13,17 @@ namespace SDKTemplate
     {
         public Person Person { get; set; }
 
+        public string Title
+        {
+            get
+            {
+                if (this.Person.EntityType == EntityType.Customer)
+                    return "Receive Money";
+                else
+                    return "Pay Money";
+            }
+        }
+
         [Required(ErrorMessage = "You can't leave this empty.", AllowEmptyStrings = false)]
         [Range(0, float.MaxValue, ErrorMessage = "Try amount in range(0, 10000000).")]
         [LessThanProperty(nameof(AbsWalletBalance))]
@@ -22,7 +33,7 @@ namespace SDKTemplate
         [MaxLength(16, ErrorMessage = "Try description with atmost 16 charecters.")]
         public string Description { get; set; }
 
-        public decimal AbsWalletBalance{ get { return Math.Abs(this.Person.WalletBalance); } }
+        public decimal AbsWalletBalance { get { return Math.Abs(this.Person.WalletBalance); } }
 
         public decimal? UpdatedWalletBalance
         {
