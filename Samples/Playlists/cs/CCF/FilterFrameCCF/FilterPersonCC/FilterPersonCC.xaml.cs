@@ -1,4 +1,5 @@
-﻿using SDKTemplate.DTO;
+﻿using SDKTemplate.CustomeModel;
+using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,14 +39,10 @@ namespace SDKTemplate
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            var person = (EntityType)e.Parameter;
+            var entityType = (EntityType)e.Parameter;
             IRange<double> walletBalanceRange;
-            if (person == EntityType.Supplier)
-                walletBalanceRange = await PersonDataSource.RetrieveWalletRangeAsync<double>();
-            else
-                walletBalanceRange = await PersonDataSource.RetrieveWalletRangeAsync<double>();
-
-            _IntitializeWalletRangeSlider(walletBalanceRange);
+            var personMetadata = await PersonDataSource.RetrievePersonMetadata(new PersonMetadataDTO() { EntityType = entityType });
+            _IntitializeWalletRangeSlider(personMetadata.WalletBalanceRange);
             WalletRangeSlider.DragCompletedEvent += WalletRangeSlider_DragCompletedEvent;
         }
 

@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Models;
 using SDKTemplate.DTO;
 using HyperStoreServiceAPP.DTO;
+using SDKTemplate.CustomeModel;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SDKTemplate
@@ -45,7 +46,8 @@ namespace SDKTemplate
         {
             this._EntityType = (EntityType)e.Parameter;
             MasterColumnTitleTB.Text = this._EntityType.ToString();
-            _totalPerson = await PersonDataSource.RetrieveTotalPersons();
+            var personMetadata = await PersonDataSource.RetrievePersonMetadata(new PersonMetadataDTO() { EntityType = this._EntityType });
+            _totalPerson = personMetadata.TotalRecords;
             await UpdateMasterListViewItemSourceByFilterCriteria();
         }
 

@@ -184,6 +184,7 @@
     </Compile>
     <Compile Include="CustomeModel\MapDay_ProductEstConsumption.cs" />
     <Compile Include="CCF\Dashboard\DashboardViewModel.cs" />
+    <Compile Include="CustomeModel\PersonMetadata.cs" />
     <Compile Include="Data Source\InsightsDataSource.cs" />
     <Compile Include="Data Source\PaymentOptionsDataSource.cs" />
     <Compile Include="Data Source\UserDataSource.cs" />

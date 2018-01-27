@@ -43,10 +43,9 @@ namespace SDKTemplate
         public static string GetNewCustomers { get { return "GetNewCustomers"; } }
         public static string GetDetachedCustomers { get { return "GetDetachedCustomers"; } }
 
-
         public static string GetRecommendedProducts { get { return "GetRecommendedProducts"; } }
-        public static string GetWalletBalanceRange { get { return "GetWalletBalanceRange"; } }
         public static string GetTotalRecordsCount { get { return "GetTotalRecordsCount"; } }
+        public static string GetPersonMetadata { get { return "GetPersonMetadata"; } }
         public static string GetProductMetadata { get { return "GetProductMetadata"; } }
     }
 

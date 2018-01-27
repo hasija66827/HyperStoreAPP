@@ -2,6 +2,7 @@
 using HyperStoreServiceAPP.DTO;
 using Models;
 using Newtonsoft.Json;
+using SDKTemplate.CustomeModel;
 using SDKTemplate.DTO;
 using System;
 using System.Collections.Generic;
@@ -64,17 +65,13 @@ namespace SDKTemplate
             return supplier;
         }
 
-        public static async Task<Int32> RetrieveTotalPersons()
+        public static async Task<PersonMetadata> RetrievePersonMetadata(PersonMetadataDTO personMetadataDTO)
         {
-            Int32 totalSuppliers = await Utility.RetrieveAsync<Int32>(BaseURI.HyperStoreService + API.Persons, CustomAction.GetTotalRecordsCount, null);
-            return totalSuppliers;
+            var personMetadata = await Utility.RetrieveAsync<PersonMetadata>(BaseURI.HyperStoreService + API.Persons, CustomAction.GetPersonMetadata, personMetadataDTO);
+            return personMetadata;
         }
 
-        public static async Task<IRange<T>> RetrieveWalletRangeAsync<T>()
-        {
-            var IRange = await Utility.RetrieveAsync<IRange<T>>(BaseURI.HyperStoreService + API.Persons, CustomAction.GetWalletBalanceRange, null);
-            return IRange;
-        }
+        
         #endregion 
     }
 }
