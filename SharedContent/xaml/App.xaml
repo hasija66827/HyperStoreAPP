@@ -195,7 +195,6 @@
                         <Setter Property="MaxHeight"
                                 Value="330" />
                     </Style>
-                    
                     <Style x:Key="DetailListStackPanel"
                            TargetType="StackPanel">
                         <Setter Property="Margin"
@@ -427,6 +426,13 @@
                         <Setter Property="Fill"
                                 Value="#FF0CA6B6" />
                     </Style>
+                    <Style x:Key="GlyphRelativePanelStyle"
+                           TargetType="RelativePanel">
+                        <Setter Property="MinWidth"
+                                Value="54" />
+                        <Setter Property="Margin"
+                                Value="0,0,2,0" />
+                    </Style>
                     <Style x:Key="EllipseStyle"
                            TargetType="Ellipse"
                            BasedOn="{StaticResource EllipseStyleBasic}">
@@ -441,9 +447,9 @@
                            TargetType="Ellipse"
                            BasedOn="{StaticResource EllipseStyleBasic}">
                         <Setter Property="Height"
-                                Value="32" />
+                                Value="36" />
                         <Setter Property="Width"
-                                Value="32" />
+                                Value="36" />
                         <Setter Property="Margin"
                                 Value="4,4,4,0" />
                     </Style>
@@ -465,7 +471,7 @@
                         <Setter Property="Foreground"
                                 Value="#FFFCFCFC" />
                         <Setter Property="FontSize"
-                                Value="14" />
+                                Value="15" />
                         <Setter Property="FocusVisualPrimaryBrush"
                                 Value="#FF8C15EA" />
                     </Style>

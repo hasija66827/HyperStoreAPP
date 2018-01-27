@@ -33,7 +33,7 @@
                       x:DataType="common:ProductViewModelBase">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <RelativePanel x:Name="ProductGlyph"
-                               Margin="0,0,2,0">
+                               Style="{StaticResource GlyphRelativePanelStyle}">
                     <Ellipse x:Name="ProductBackground"
                              Style="{StaticResource SmallEllipseStyle}"
                              Fill="{x:Bind ProductGlyphColor}" />
@@ -44,8 +44,7 @@
                     <TextBlock x:Name="ProductSellingPrice"
                                Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToIntegarRupeeConverter}}"
                                Style="{ThemeResource ArialBaseStyle}"
-                               RelativePanel.Below="ProductBackground"
-                               />
+                               RelativePanel.Below="ProductBackground" />
                 </RelativePanel>
                 <TextBlock x:Name="ProductName"
                            Text="{x:Bind FormattedNameQuantity}"

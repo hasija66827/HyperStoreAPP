@@ -55,7 +55,7 @@
                                 FontSize="16">
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
-                    <syncfusion:CategoryAxis Header="Transaaction Date"
+                    <syncfusion:CategoryAxis Header="Transaction Date"
                                              FontSize="14" />
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->

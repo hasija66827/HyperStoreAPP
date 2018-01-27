@@ -8,18 +8,23 @@
       mc:Ignorable="d">
     <Page.Resources>
         <local:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
+        <local:FloatToIntegarRupeeConverter x:Key="FloatToIntegarRupeeConverter" />
         <DataTemplate x:Key="MasterListViewItemTemplate"
                       x:DataType="local:OrderViewModel">
             <RelativePanel Style="{StaticResource MasterListRelativePanel}">
                 <RelativePanel x:Name="PersonGlyph"
-                               Margin="0,0,2,0">
+                               Style="{StaticResource GlyphRelativePanelStyle}">
                     <Ellipse x:Name="PersonBackground"
-                             Style="{StaticResource EllipseStyle}"
+                             Style="{StaticResource SmallEllipseStyle}"
                              Fill="{x:Bind PersonViewModel.PersonGlyphColor}" />
                     <TextBlock Text="{x:Bind PersonViewModel.PersonNameGlyph}"
-                               Style="{StaticResource GlyphTextBlockStyle}"
+                               Style="{StaticResource SmallGlyphTextBlockStyle}"
                                RelativePanel.AlignHorizontalCenterWith="PersonBackground"
                                RelativePanel.AlignVerticalCenterWith="PersonBackground" />
+                    <TextBlock x:Name="BillAmount"
+                               Text="{x:Bind BillAmount,Converter={StaticResource FloatToIntegarRupeeConverter}}"
+                               Style="{ThemeResource ArialBaseStyle}"
+                               RelativePanel.Below="PersonBackground" />
                 </RelativePanel>
                 <TextBlock x:Name="MobileNo"
                            RelativePanel.RightOf="PersonGlyph"
@@ -27,19 +32,19 @@
                            Style="{ThemeResource MasterListTextBlockStyle}" />
                 <TextBlock x:Name="FormattedOrderDate"
                            Text="{x:Bind FormattedOrderDate}"
-                           Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                           Style="{ThemeResource CalibriBaseStyle}"
                            RelativePanel.Below="MobileNo"
                            RelativePanel.AlignLeftWith="MobileNo" />
-                <TextBlock x:Name="FormattedRemainingAmount"
-                           Text="{x:Bind FormattedRemainingAmount}"
+                <TextBlock x:Name="RemainingAmount"
+                           Text="{x:Bind RemainingAmount,Converter={StaticResource FloatToIntegarRupeeConverter}}"
                            Style="{ThemeResource ListCaptionAltTextblockStyle}"
                            RelativePanel.Below="FormattedOrderDate"
                            RelativePanel.AlignLeftWith="FormattedOrderDate" />
                 <TextBlock x:Name="PaymentRemainingDays"
                            Text="{x:Bind PaymentRemainingDays}"
                            Style="{ThemeResource ListCaptionRightAltTextblockStyle}"
-                           RelativePanel.AlignBottomWith="FormattedRemainingAmount"
-                           RelativePanel.RightOf="FormattedRemainingAmount"
+                           RelativePanel.AlignBottomWith="RemainingAmount"
+                           RelativePanel.RightOf="RemainingAmount"
                            RelativePanel.AlignRightWithPanel="True" />
                 <RelativePanel x:Name="PaymentStatus"
                                Margin="5,0"

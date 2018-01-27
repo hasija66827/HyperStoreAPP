@@ -69,11 +69,7 @@ namespace SDKTemplate
             get { return Math.Round(this.SettledPayedAmount / this.BillAmount * 100) + "%"; }
         }
 
-        public string FormattedRemainingAmount
-        {
-            get { return Utility.ConvertToRupee(this.RemainingAmount); }
-        }
-
+        //TODO: check remove
         public List<KeyValuePair<string, decimal>> Paid_BillAmount
         {
             get
