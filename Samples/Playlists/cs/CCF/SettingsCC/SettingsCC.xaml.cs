@@ -36,7 +36,7 @@ namespace SDKTemplate.Settings
             _SV = DataContext as SettingsViewModel;
             _SV.Passcode = "";
             _SV.ConfirmPasscode = "";
-            SMSBalanceTB.Text = BaseURI.User.NumberOfSMS+" SMS Left";
+           
             _SV.ErrorsChanged += _SV_ErrorsChanged;
             base.OnNavigatedTo(e);
         }

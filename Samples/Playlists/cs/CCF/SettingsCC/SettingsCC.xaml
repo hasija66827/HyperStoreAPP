@@ -54,33 +54,6 @@
                 RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.Below="PasscodeAuthenticationPanel"></Border>
-        <StackPanel x:Name="OTPAuthentication"
-                    RelativePanel.Below="Border"
-                    Margin="10,0">
-            <TextBlock Text="OTP Authentication"
-                       Style="{StaticResource ArialBaseStyle}" />
-            <StackPanel Margin="10,5">
-                <RadioButton GroupName="SMSPlan"
-                             x:Name="PlanA"
-                             Content="350 SMS for 150 INR" />
-                <RadioButton GroupName="SMSPlan"
-                             x:Name="PlanB"
-                             Content="800 SMS for 300 INR" />
-                <RadioButton GroupName="SMSPlan"
-                             x:Name="PlanC"
-                             Content="1500 SMS for 500 INR" />
-            </StackPanel>
-            <Button x:Name="RequestForPlan"
-                    Content="Request For SMS Plan"
-                    Width="200"
-                    Click="RequestForPlan_Click"
-                    Style="{StaticResource TransFormButtonStyle}" />
-        </StackPanel>
-        <TextBlock x:Name="SMSBalanceTB"
-                   Style="{StaticResource PCalibriBasicTBStyle}"
-                   RelativePanel.Below="Border"
-                   RelativePanel.RightOf="OTPAuthentication"
-                   Text=" SMS Left" />
         <TextBlock Text="For any support contact @7987421819 or rahas@hyperlocalstore.in"
                    RelativePanel.AlignBottomWithPanel="True"
                    RelativePanel.AlignHorizontalCenterWithPanel="True"

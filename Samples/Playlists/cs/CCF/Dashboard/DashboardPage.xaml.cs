@@ -51,7 +51,8 @@ namespace SDKTemplate
         {
             this.InitializeComponent();
             InsightCombobox.SelectionChanged += InsightSelectorCmb_SelectionChanged;
-           InitializeInsightSelectorCmb();
+            InitializeInsightSelectorCmb();
+            this.DashboardFrame.Navigate(typeof(BusinessInsightCC));
         }
 
         private void InsightSelectorCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,7 +66,7 @@ namespace SDKTemplate
             insights = new List<InsightComboboxItem>();
             insights.Add(new InsightComboboxItem("Business Insight Dashboard", typeof(BusinessInsightCC)));
             insights.Add(new InsightComboboxItem("Product Insight Dashboard", typeof(ProductInsightCC)));
-            insights.Add(new InsightComboboxItem("Customer Insight Dashboard", typeof(CustomerInsightCC)));
+            insights.Add(new InsightComboboxItem("Customer Insight Dashboard", typeof(CustomerInsightCC)));                      
         }
     }
 }
