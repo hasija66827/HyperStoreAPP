@@ -7,7 +7,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
     <RelativePanel Background="White">
+        <Border  x:Name="HeaderPanel"
+                 RelativePanel.AlignLeftWithPanel="True"
+                 RelativePanel.AlignRightWithPanel="True"
+                 RelativePanel.AlignTopWithPanel="True"
+                 Style="{StaticResource HeaderBorder}">
+            <TextBlock Text="Product Consumption Analytics"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+        </Border>
         <RelativePanel x:Name="DetachedCustomerChartPanel"
+                       RelativePanel.Below="HeaderPanel"
+                       BorderThickness="0"
+                       Margin="0"
                        Style="{StaticResource ChartRelativePanel}">
             <syncfusion:SfChart HorizontalAlignment="Center"
                                 VerticalAlignment="Center"

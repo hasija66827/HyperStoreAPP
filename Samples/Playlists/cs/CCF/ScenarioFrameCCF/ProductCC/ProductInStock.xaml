@@ -35,6 +35,7 @@
                 <RelativePanel x:Name="ProductGlyph"
                                Style="{StaticResource GlyphRelativePanelStyle}">
                     <Ellipse x:Name="ProductBackground"
+                             RelativePanel.AlignHorizontalCenterWithPanel="True"
                              Style="{StaticResource SmallEllipseStyle}"
                              Fill="{x:Bind ProductGlyphColor}" />
                     <TextBlock Text="{x:Bind ProductGlyph}"
@@ -44,6 +45,7 @@
                     <TextBlock x:Name="ProductSellingPrice"
                                Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToIntegarRupeeConverter}}"
                                Style="{ThemeResource ArialBaseStyle}"
+                               RelativePanel.AlignHorizontalCenterWithPanel="True"
                                RelativePanel.Below="ProductBackground" />
                 </RelativePanel>
                 <TextBlock x:Name="ProductName"

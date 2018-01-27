@@ -16,12 +16,12 @@
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
                     <syncfusion:CategoryAxis Header="Customer"
-                                             FontSize="14" />
+                                             Style="{StaticResource CategoryAxisStyle}" />
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
-                    <syncfusion:NumericalAxis Header="Net Worth"
-                                              FontSize="14" />
+                    <syncfusion:NumericalAxis Header="Net Worth(₹)"
+                                              Style="{StaticResource NumericAxisStyle}" />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
                 <syncfusion:SfChart.Legend>
@@ -46,19 +46,20 @@
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
                     <syncfusion:CategoryAxis Header="Customer"
-                                             FontSize="14" />
+                                            
+                                             Style="{StaticResource CategoryAxisStyle}" />
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
-                    <syncfusion:NumericalAxis Header="Net Worth"
-                                              FontSize="14" />
+                    <syncfusion:NumericalAxis Header="Net Worth(₹)"
+                                              Style="{StaticResource NumericAxisStyle}" />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
                 <syncfusion:SfChart.Legend>
                     <syncfusion:ChartLegend Visibility="Visible" />
                 </syncfusion:SfChart.Legend>
                 <!--Initialize the series for SfChart-->
-                <syncfusion:BarSeries Interior="OrangeRed"
+                <syncfusion:BarSeries Interior="#FFDC4465"
                                       ShowTooltip="True"
                                       ToolTipService.ToolTip="Total Sales By Customer"
                                       ItemsSource="{Binding DetachedCustomers}"

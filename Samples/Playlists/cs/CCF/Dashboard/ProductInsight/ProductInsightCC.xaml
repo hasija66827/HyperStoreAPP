@@ -8,8 +8,7 @@
       mc:Ignorable="d">
     <RelativePanel Background="{StaticResource FrameBackgroundBrush}">
         <RelativePanel x:Name="ProductInsightChartPanel"
-                       Style="{StaticResource ChartRelativePanel}"
-                      >
+                       Style="{StaticResource ChartRelativePanel}">
             <syncfusion:SfChart HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Header="Top Susceptible Products"
@@ -17,12 +16,12 @@
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
                     <syncfusion:CategoryAxis Header="Products"
-                                             FontSize="14" />
+                                             Style="{StaticResource CategoryAxisStyle}" />
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
                     <syncfusion:NumericalAxis Header="Number of Days"
-                                              FontSize="14" />
+                                              Style="{StaticResource NumericAxisStyle}" />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
                 <syncfusion:SfChart.Legend>

@@ -63,9 +63,9 @@ namespace SDKTemplate
         private void InitializeInsightSelectorCmb()
         {
             insights = new List<InsightComboboxItem>();
-            insights.Add(new InsightComboboxItem("Business Insight", typeof(BusinessInsightCC)));
-            insights.Add(new InsightComboboxItem("Product Insight", typeof(ProductInsightCC)));
-            insights.Add(new InsightComboboxItem("Customer Insight", typeof(CustomerInsightCC)));
+            insights.Add(new InsightComboboxItem("Business Insight Dashboard", typeof(BusinessInsightCC)));
+            insights.Add(new InsightComboboxItem("Product Insight Dashboard", typeof(ProductInsightCC)));
+            insights.Add(new InsightComboboxItem("Customer Insight Dashboard", typeof(CustomerInsightCC)));
         }
     }
 }

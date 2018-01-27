@@ -8,11 +8,24 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                   HorizontalScrollMode="Enabled">
         <RelativePanel Background="{StaticResource FrameBackgroundBrush}">
-            <ComboBox x:Name="InsightCombobox"
-                      ItemsSource="{x:Bind Insights}" />
+            <Border  x:Name="HeaderPanel"
+                     RelativePanel.AlignTopWithPanel="True"
+                     RelativePanel.AlignRightWithPanel="True"
+                     RelativePanel.AlignLeftWithPanel="True"
+                     Style="{StaticResource HeaderBorder}">
+                <ComboBox BorderThickness="0"
+                          x:Name="InsightCombobox"
+                          ItemsSource="{x:Bind Insights}"
+                          FontFamily="Arial"
+                          FontSize="19"
+                          Padding="3,8,3,0"
+                          Margin="3,0"
+                          Foreground="{StaticResource BlueThemeBrush}"
+                          Background="#FFECF6FC" />
+            </Border>
             <Frame x:Name="DashboardFrame"
                    Background="{StaticResource FrameBrush}"
-                   RelativePanel.Below="InsightCombobox"
+                   RelativePanel.Below="HeaderPanel"
                    RelativePanel.AlignBottomWithPanel="True" />
         </RelativePanel>
     </ScrollViewer>

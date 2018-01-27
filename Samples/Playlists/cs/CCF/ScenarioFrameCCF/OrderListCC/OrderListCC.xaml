@@ -15,6 +15,7 @@
                 <RelativePanel x:Name="PersonGlyph"
                                Style="{StaticResource GlyphRelativePanelStyle}">
                     <Ellipse x:Name="PersonBackground"
+                             RelativePanel.AlignHorizontalCenterWithPanel="True"
                              Style="{StaticResource SmallEllipseStyle}"
                              Fill="{x:Bind PersonViewModel.PersonGlyphColor}" />
                     <TextBlock Text="{x:Bind PersonViewModel.PersonNameGlyph}"
@@ -24,6 +25,7 @@
                     <TextBlock x:Name="BillAmount"
                                Text="{x:Bind BillAmount,Converter={StaticResource FloatToIntegarRupeeConverter}}"
                                Style="{ThemeResource ArialBaseStyle}"
+                               RelativePanel.AlignHorizontalCenterWithPanel="True"
                                RelativePanel.Below="PersonBackground" />
                 </RelativePanel>
                 <TextBlock x:Name="MobileNo"
@@ -50,16 +52,20 @@
                                Margin="5,0"
                                RelativePanel.LeftOf="MobileNo"
                                RelativePanel.AlignRightWithPanel="True">
-                    <syncfusion:SfChart RelativePanel.AlignRightWithPanel="True"
-                                        x:Name="PaymentStatusRing"
+                    <syncfusion:SfChart x:Name="PaymentStatusRing"
+                                        BorderBrush="White"
+                                        BorderThickness="3"
                                         MaxWidth="45"
                                         MaxHeight="45">
                         <!--Initialize the series for SfChart-->
                         <syncfusion:DoughnutSeries ItemsSource="{Binding Paid_BillAmount}"
-                                                   DoughnutCoefficient="0.3"
+                                                   DoughnutCoefficient="0.4"
                                                    DoughnutSize="1"
                                                    XBindingPath="Key"
-                                                   YBindingPath="Value" />
+                                                   YBindingPath="Value"
+                                                   BorderBrush="White"
+                                                   BorderThickness="3"
+                                                   Palette="AutumnBrights"/>
                     </syncfusion:SfChart>
                     <TextBlock x:Name="FormattedPaidBillAmount"
                                Text="{x:Bind FormattedPaidBillAmount}"

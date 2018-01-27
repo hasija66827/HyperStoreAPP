@@ -17,12 +17,13 @@
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
                     <syncfusion:CategoryAxis Header="Order Sales Date"
-                                             FontSize="14" />
+                                             Style="{StaticResource CategoryAxisStyle}"/>
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
-                    <syncfusion:NumericalAxis Header="Amount"
-                                              FontSize="14" />
+                    <syncfusion:NumericalAxis Header="Amount(₹)"
+                                              Style="{StaticResource NumericAxisStyle}"
+                                              />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
                 <syncfusion:SfChart.Legend>
@@ -56,12 +57,12 @@
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
                     <syncfusion:CategoryAxis Header="Transaction Date"
-                                             FontSize="14" />
+                                             Style="{StaticResource CategoryAxisStyle }"/>
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
-                    <syncfusion:NumericalAxis Header="Amount"
-                                              FontSize="14" />
+                    <syncfusion:NumericalAxis Header="Amount(₹)"
+                                              Style="{StaticResource NumericAxisStyle}" />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
                 <syncfusion:SfChart.Legend>
@@ -87,12 +88,12 @@
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
                     <syncfusion:CategoryAxis Header="Order Purchase Date"
-                                             FontSize="14" />
+                                             Style="{StaticResource CategoryAxisStyle }" />
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
-                    <syncfusion:NumericalAxis Header="Amount"
-                                              FontSize="14" />
+                    <syncfusion:NumericalAxis Header="Amount(₹)"
+                                              Style="{StaticResource NumericAxisStyle}" />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
                 <syncfusion:SfChart.Legend>
@@ -126,12 +127,12 @@
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
                     <syncfusion:CategoryAxis Header="Transaction Date"
-                                             FontSize="14" />
+                                             Style="{StaticResource CategoryAxisStyle }" />
                 </syncfusion:SfChart.PrimaryAxis>
                 <!--Initialize the vertical axis for SfChart-->
                 <syncfusion:SfChart.SecondaryAxis>
-                    <syncfusion:NumericalAxis Header="Amount"
-                                              FontSize="14" />
+                    <syncfusion:NumericalAxis Header="Amount(₹)"
+                                              Style="{StaticResource NumericAxisStyle }" />
                 </syncfusion:SfChart.SecondaryAxis>
                 <!--Adding Legend to the SfChart-->
                 <syncfusion:SfChart.Legend>

@@ -32,7 +32,7 @@ namespace SDKTemplate
             get
             {
                 if (this.RemainingAmount == 0)
-                    return "Payment Complete";
+                    return "Payed Fully";
                 else
                 {
                     var remainingNumberOfDays = (DueDate - DateTime.Now).TotalDays;
