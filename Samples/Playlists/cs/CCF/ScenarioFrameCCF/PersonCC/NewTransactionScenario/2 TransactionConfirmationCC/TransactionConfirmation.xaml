@@ -22,8 +22,9 @@
                 <RelativePanel>
                     <Ellipse x:Name="SupplierBackground"
                              Style="{StaticResource EllipseStyle}"
-                             Fill="{StaticResource SupplierEllipseBrush}" />
+                             Fill="{x:Bind _NewTransactionViewModel.Person.PersonGlyphColor}" />
                     <TextBlock x:Name="SupplierGlyph"
+                               Text="{x:Bind _NewTransactionViewModel.Person.PersonNameGlyph}"
                                Style="{StaticResource GlyphTextBlockStyle}"
                                RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
                                RelativePanel.AlignVerticalCenterWith="SupplierBackground" />

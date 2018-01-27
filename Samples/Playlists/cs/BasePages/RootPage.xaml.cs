@@ -31,7 +31,7 @@ namespace SDKTemplate
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            RootFrame.Navigate(typeof(MainPage));
+            RootFrame.Navigate(typeof(Login.LoginCC));
             base.OnNavigatedTo(e);
         }
 

@@ -45,7 +45,18 @@ namespace SDKTemplate
                     return this.Person.WalletBalance + Utility.TryToConvertToDecimal(this.Amount);
             }
         }
-        public string ProceedToPay { get { return "Proceed" + Utility.ConvertToRupee(Amount); } }
+
+        public string ProceedToPay
+        {
+            get
+            {
+                if (this.Person.EntityType == EntityType.Customer)
+                    return "Proceed to Receive " + Utility.ConvertToRupee(Amount);
+                else
+                    return "Proceed to Pay " + Utility.ConvertToRupee(Amount);
+            }
+        }
+
         public NewTransactionViewModel() { }
     }
 }

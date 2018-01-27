@@ -69,12 +69,14 @@ namespace SDKTemplate.Login
                     await msg.ShowAsync();
 
                 }
+                /*
                 else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.OneFactorAuthenticated)
                 {
                     var msg = new MessageDialog("Login from the Device on which you signed up.", "Security Error: Invalid Device");
                     await msg.ShowAsync();
                 }
-                else if (authenticationToken.AuthenticationFactor == EAuthenticationFactor.TwoFactorAuthenticated)
+                */
+                else 
                 {
                     BaseURI.User = authenticationToken.User;
                     RootPage.Current.Navigate(typeof(MainPage));

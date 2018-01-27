@@ -52,7 +52,7 @@ namespace SDKTemplate
     public class AuthenticationServiceAPI
     {
         //private static string BaseURI { get { return "https://loginsignupserviceapp.azurewebsites.net/api/"; } }
-        private static string BaseURI { get { return "https://localhost:44381/api/"; } }
+        private static string BaseURI { get { return "https://localhost:44380/api/"; } }
         public static string Users { get { return BaseURI + "Users"; } }
         public static string OTPVerification { get { return BaseURI + "OTPVerification"; } }
     }
