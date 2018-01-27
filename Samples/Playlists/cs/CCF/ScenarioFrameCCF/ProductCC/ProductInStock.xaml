@@ -25,6 +25,7 @@
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
+        <common:FloatToIntegarRupeeConverter x:Key="FloatToIntegarRupeeConverter" />
         <common:FloatToRupeeConverter x:Key="FloatToRupeeConverter" />
         <common:FloatToPercentageOFFConverter x:Key="FloatToPercentageOFFConverter" />
         <common:FloatToPercentageGSTConverter x:Key="FloatToPercentageGSTConverter" />
@@ -34,21 +35,22 @@
                 <RelativePanel x:Name="ProductGlyph"
                                Margin="0,0,2,0">
                     <Ellipse x:Name="ProductBackground"
-                             Style="{StaticResource EllipseStyle}"
+                             Style="{StaticResource SmallEllipseStyle}"
                              Fill="{x:Bind ProductGlyphColor}" />
                     <TextBlock Text="{x:Bind ProductGlyph}"
-                               Style="{StaticResource GlyphTextBlockStyle}"
+                               Style="{StaticResource SmallGlyphTextBlockStyle}"
                                RelativePanel.AlignHorizontalCenterWith="ProductBackground"
                                RelativePanel.AlignVerticalCenterWith="ProductBackground" />
+                    <TextBlock x:Name="ProductSellingPrice"
+                               Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToIntegarRupeeConverter}}"
+                               Style="{ThemeResource ArialBaseStyle}"
+                               RelativePanel.Below="ProductBackground"
+                               />
                 </RelativePanel>
                 <TextBlock x:Name="ProductName"
                            Text="{x:Bind FormattedNameQuantity}"
                            RelativePanel.RightOf="ProductGlyph"
                            Style="{ThemeResource MasterListTextBlockStyle}" />
-                <TextBlock Text="{x:Bind ValueIncTax, Converter={StaticResource FloatToRupeeConverter}}"
-                           Style="{ThemeResource MasterListRightTextBlockStyle}"
-                           RelativePanel.RightOf="ProductName"
-                           RelativePanel.AlignRightWithPanel="True" />
                 <TextBlock x:Name="ProductUnitConsumedPerWeek"
                            Text="{x:Bind ProductUnitConsumedPerWeek}"
                            RelativePanel.AlignLeftWith="ProductName"

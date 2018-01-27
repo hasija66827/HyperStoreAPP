@@ -26,8 +26,9 @@
                 <RelativePanel>
                     <Ellipse x:Name="SupplierBackground"
                              Style="{StaticResource EllipseStyle}"
-                             Fill="{StaticResource SupplierEllipseBrush}" />
+                             Fill="{x:Bind _NTV.Person.PersonGlyphColor}" />
                     <TextBlock x:Name="SupplierGlyph"
+                               Text="{x:Bind _NTV.Person.PersonNameGlyph}" 
                                Style="{StaticResource GlyphTextBlockStyle}"
                                RelativePanel.AlignHorizontalCenterWith="SupplierBackground"
                                RelativePanel.AlignVerticalCenterWith="SupplierBackground" />

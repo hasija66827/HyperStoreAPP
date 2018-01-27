@@ -145,6 +145,23 @@ namespace SDKTemplate
         }
     }
 
+    // Append the decimal value with Rupee symbol.
+    public class FloatToIntegarRupeeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            return Utility.ConvertToIntegarRupee(value);
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     // Append the decimal value with Rupee symbol and (+ve or -ve sign).
     public class FloatToRupeeConverterWithSign : IValueConverter
     {
@@ -435,6 +452,26 @@ namespace SDKTemplate
             }
         }
 
+        public static string ConvertToIntegarRupee(object value)
+        {
+            try
+            {
+                // value is the data from the source object.
+                var price = System.Convert.ToInt64(value);
+                var absPrice = Math.Abs(price);
+                CultureInfo hindi = new CultureInfo("hi-IN");
+                var text = string.Format(hindi, "{0:c}", absPrice).Split(new Char[] { '.' });
+                // Return the value to pass to the target.
+                if (price >= 0)
+                    return text[0];
+                return "-" + text[0];
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
+
         public static string FloatToNegativeRupeeConverter(object value)
         {
             // value is the data from the source object.
@@ -453,8 +490,6 @@ namespace SDKTemplate
             string text = string.Format(hindi, "{0:c}", price);
             // Return the value to pass to the target.
             return "+" + text;
-
-
         }
 
         public static string ConvertToRupeeWithInverseSign(object value)
@@ -474,7 +509,6 @@ namespace SDKTemplate
             else
                 return Utility.FloatToPositiveRupeeConverter(value);
         }
-
 
         public static string GetGlyphValue(String productName)
         {

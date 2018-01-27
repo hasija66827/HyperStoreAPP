@@ -19,6 +19,7 @@ namespace SDKTemplate
         {
             get { return this.MRP * (this.DiscountPer) / 100; }
         }
+
         public decimal? ValueIncTax
         {
             get { return this.MRP - this.DiscountAmount; }
@@ -30,6 +31,7 @@ namespace SDKTemplate
         }
 
         public decimal? ValueExcTax { get { return ValueIncTax * 100 / (100 + CGSTPer + SGSTPer); } }
+
 
         public virtual decimal? TotalGSTAmount
         {

@@ -11,7 +11,7 @@ namespace SDKTemplate
 {
     public class NewTransactionViewModel : ValidatableBindableBase
     {
-        public Person Person { get; set; }
+        public PersonViewModelBase Person { get; set; }
 
         public string Title
         {
