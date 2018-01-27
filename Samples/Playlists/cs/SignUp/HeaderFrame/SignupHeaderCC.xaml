@@ -7,8 +7,7 @@
       mc:Ignorable="d">
     <StackPanel Orientation="Horizontal"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-               >
+                VerticalAlignment="Center">
         <RelativePanel>
             <Ellipse x:Name="BusinessGlyph"
                      Style="{StaticResource EllipseStyle}" />

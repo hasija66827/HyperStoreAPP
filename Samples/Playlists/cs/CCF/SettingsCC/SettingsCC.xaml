@@ -16,6 +16,8 @@
                    Margin="10">
         <Border  x:Name="HeaderPanel"
                  RelativePanel.AlignTopWithPanel="True"
+                 RelativePanel.AlignRightWithPanel="True"
+                 RelativePanel.AlignLeftWithPanel="True"
                  Style="{StaticResource HeaderBorder}">
             <TextBlock Text="Settings"
                        Style="{StaticResource ScenarioHeaderTextBlockStyle}" />

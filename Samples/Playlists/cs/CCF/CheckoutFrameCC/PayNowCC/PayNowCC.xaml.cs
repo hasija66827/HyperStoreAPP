@@ -33,7 +33,7 @@ namespace SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
-            _CV = DataContext as CheckoutViewModel;   
+            _CV = DataContext as CheckoutViewModel;
             _CV.ErrorsChanged += _SCV_ErrorsChanged;
             _CV.DueDate = DateTime.Now.AddHours(1);
             _CV.IntrestRate = "0";
@@ -69,13 +69,15 @@ namespace SDKTemplate.CCF.ScenarioFrameCCF.SupplierBillingScenario
                     {
                         this.PageNavigationParameter.SupplierPageNavigationParameter.CheckoutViewModel = _CV;
                         var IsCreated = await OrderDataSource.InitiateSupplierOrderCreationAsync(this.PageNavigationParameter.SupplierPageNavigationParameter);
-                        MainPage.RefreshPage(ScenarioType.SupplierBilling);
+                        if (IsCreated)
+                            MainPage.RefreshPage(ScenarioType.SupplierBilling);
                     }
                     else
                     {
                         this.PageNavigationParameter.CustomerPageNavigationParameter.CheckoutViewModel = _CV;
                         var IsCreated = await OrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
-                        MainPage.RefreshPage(ScenarioType.CustomerBilling);
+                        if (IsCreated)
+                            MainPage.RefreshPage(ScenarioType.CustomerBilling);
                     }
                 }
                 else if (PayLaterRadBtn.IsChecked == true)

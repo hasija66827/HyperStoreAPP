@@ -39,7 +39,7 @@ namespace SDKTemplate
             _CV.PayingAmount = null;
             _CV.DueDate = DateTime.Now.AddDays(45);
             _CV.IntrestRate = null;
-        
+
             this.PageNavigationParameter = (PageNavigationParameter)e.Parameter;
             if (this.PageNavigationParameter.OrderType == OrderType.SupplierOrder)
             {
@@ -67,13 +67,15 @@ namespace SDKTemplate
                 {
                     this.PageNavigationParameter.SupplierPageNavigationParameter.CheckoutViewModel = _CV;
                     var IsCreated = await OrderDataSource.InitiateSupplierOrderCreationAsync(this.PageNavigationParameter.SupplierPageNavigationParameter);
-                    MainPage.RefreshPage(ScenarioType.SupplierBilling);
+                    if (IsCreated)
+                        MainPage.RefreshPage(ScenarioType.SupplierBilling);
                 }
                 else
                 {
                     this.PageNavigationParameter.CustomerPageNavigationParameter.CheckoutViewModel = _CV;
                     var IsCreated = await OrderDataSource.InitiateCustomerOrderCreationAsync(this.PageNavigationParameter.CustomerPageNavigationParameter);
-                    MainPage.RefreshPage(ScenarioType.CustomerBilling);
+                    if (IsCreated)
+                        MainPage.RefreshPage(ScenarioType.CustomerBilling);
                 }
             }
         }

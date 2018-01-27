@@ -22,7 +22,7 @@
                        Style="{StaticResource ChartRelativePanel}">
             <syncfusion:SfChart HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Header="Average Consumption Rate of Product"
+                                Header="Analysed last 30 days orders"
                                 FontSize="16">
                 <!--Initialize the horizontal axis for SfChart-->
                 <syncfusion:SfChart.PrimaryAxis>
@@ -39,7 +39,8 @@
                     <syncfusion:ChartLegend Visibility="Visible" />
                 </syncfusion:SfChart.Legend>
                 <!--Initialize the series for SfChart-->
-                <syncfusion:ColumnSeries Interior="GreenYellow"
+                <syncfusion:ColumnSeries Label="Average units consumed of product"
+                                         Interior="GreenYellow"
                                          ShowTooltip="True"
                                          ToolTipService.ToolTip="Average units consumed on the day"
                                          ItemsSource="{Binding ProductEstimatedConsumption}"
