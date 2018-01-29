@@ -40,8 +40,6 @@ namespace SDKTemplate.Login
             base.OnNavigatedTo(e);
         }
 
-
-
         private void _LoginViewModel_ErrorsChanged(object sender, System.ComponentModel.DataErrorsChangedEventArgs e)
         {
 
