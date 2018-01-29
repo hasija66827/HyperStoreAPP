@@ -20,8 +20,8 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>AE287193B1CC52513895C2CBE7278F79BA6DFE75</PackageCertificateThumbprint>
-    <PackageCertificateKeyFile>HyperStoreApp_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>EA599EB27CFCFD2D1517D430D3773D0FB5590FBE</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>HyperStoreApp_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <AppxPackageDir>E:\APP\</AppxPackageDir>
   </PropertyGroup>
@@ -115,9 +115,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="htmlPage\googleMap.html" />
-    <None Include="HyperStoreApp_StoreKey.pfx" />
+    <None Include="HyperStoreApp_TemporaryKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
-    <None Include="Playlists_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -600,6 +599,9 @@
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
