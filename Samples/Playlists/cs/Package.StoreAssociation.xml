@@ -363,6 +363,8 @@
       <ReservedName>Hyper Store</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
-  <AccountPackageIdentityNames />
+  <AccountPackageIdentityNames>
+    <MainPackageIdentityName>5269HyperStore.6338396E2BCAA</MainPackageIdentityName>
+  </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9N433JN5FCN8" />
 </StoreAssociation>
