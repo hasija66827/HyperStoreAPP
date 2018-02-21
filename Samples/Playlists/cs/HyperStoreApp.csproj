@@ -19,7 +19,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>FACB8988500710E942CB7B909F50B4B0238CA025</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>HyperStoreApp_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>

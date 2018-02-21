@@ -12,18 +12,18 @@
                     VerticalAlignment="Center"
                     Background="#FFE9EDED">
         <StackPanel Margin="20">
-            <TextBlock Text="Hyper Store"
+            <TextBlock Text="Inventory Management"
                        Style="{StaticResource ArialBaseStyle}"
                        FontWeight="SemiBold"
                        FontSize="26"
                        Margin="0,0,0,20" />
-            <TextBox Header="Registered Hyper Store Mobile Number"
+            <TextBox Header="Registered Mobile Number"
                      PlaceholderText="Mobile Number"
                      Style="{StaticResource FormTextBoxStyle}"
                      Text="{x:Bind _LoginViewModel.MobileNo, Mode=TwoWay}" />
             <TextBlock Text="{Binding Errors[MobileNo][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <PasswordBox Header="Hyper Store Password"
+            <PasswordBox Header="Password"
                          PlaceholderText="Password"
                          Password="{x:Bind _LoginViewModel.Password, Mode=TwoWay}" />
             <TextBlock Text="{Binding Errors[Password][0]}"

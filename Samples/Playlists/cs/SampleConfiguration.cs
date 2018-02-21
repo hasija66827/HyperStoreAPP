@@ -33,7 +33,7 @@ namespace SDKTemplate
 
     public partial class MainPage : Page
     {
-        public const string FEATURE_NAME = "Hyper Store";
+        public const string FEATURE_NAME = "Inventory and Business Analytics";
 
         List<Scenario> scenarios = new List<Scenario>
         {

@@ -16,7 +16,7 @@
                      Text="{x:Bind _HSAV.MobileNo, Mode=TwoWay}" />
             <TextBlock Text="{Binding Errors[MobileNo][0]}"
                        Style="{StaticResource ErrorTextBlockStyle}" />
-            <PasswordBox Header="Create Hyper Store Password"
+            <PasswordBox Header="Create Password"
                          InputScope="Password"
                          PlaceholderText="Password"
                          Password="{x:Bind _HSAV.Password, Mode=TwoWay}" />
